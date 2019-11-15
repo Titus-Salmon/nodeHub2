@@ -18,6 +18,10 @@ const {
   queryCatapultDB
 } = require('../sqlArch/queryCatapultDB')
 
+const {
+  populateTsqlTable
+} = require('../sqlArch/populateTsqlTable')
+
 
 
 // const {
@@ -63,9 +67,11 @@ router.get('/', function (req, res, next) {
 router.post('/createEmptyTsqlTable', createTsqlTableSimple)
 router.post('/deleteTsqlTable', deleteTsqlTableSimple)
 router.post('/queryCatapultDB', queryCatapultDB)
-
+router.post('/populateTsqlTable', populateTsqlTable)
 
 // router.post('/populateTableSimple', populateTableSimple)
+
+
 // router.post('/results', searchEditCalcUniversal_brandTargeting)
 // router.post('/loadTableUniversal_brandTargeting', loadTableUniversal_brandTargeting)
 // router.post('/saveCSV', saveResultsToCSV)
