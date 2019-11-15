@@ -1,0 +1,57 @@
+doctype html
+html
+	head
+		link(rel='stylesheet', href='../stylesheets/style.css')
+		title= title
+		//- script(src='/javascripts/modules/dashboardM0d.js')
+
+	body
+		//- script.
+		//- 	console.log('locstor--------', localStorage)
+		include partials/header.pug
+		div(style='display:block; margin:0 0 2.5rem 0')
+			|
+			|
+			a(href='/tsqlTableHub', style="margin-bottom: 5rem") T-SQL Table Hub
+			//- a(href='/retailCalcPassport', style="margin-bottom: 5rem") Retail Calculator (complex)
+			//- |
+			//- |
+			a(href='/retailCalcSimple', style="margin-bottom: 5rem") Retail Calculator (simple)
+			//- |
+			//- |
+			//- a(href='/wsDiffPassport', style="margin-bottom: 5rem") WS Diff Checker (complex)
+			|
+			|
+			a(href='/wsDiffSimple', style="margin-bottom: 5rem") WS Diff Checker (simple)
+			//- |
+			//- |
+			//- a(href='/wsDiffTableJoin', style="margin-bottom: 5rem") WS Diff Checker (LEFT JOIN method)
+			|
+			|
+			a(href='/retailDiffSimple', style="margin-bottom: 5rem") Rtl Diff Checker
+			|
+			|
+			a(href="/compareUnequalLists") Compare (unequal) Lists
+			|
+			|
+			a(href="/retailCalcUniversal") Universal Retail Calc
+			|
+			|
+			a(href="/retailCalcUniversal_brandTargeting") Universal Retail Calc (w/ brand targeting)
+			//- |
+			//- |
+			//- a(href="/users/logout") Logout
+			//- div.input-field-noFloat
+			h3(style="margin-top: 0")= title
+
+			//- p Username: #{username}
+			//- p Email: #{userEmail}
+
+			//- if userEmail_stringified
+			//- 	script.
+			//- 		localStorage.clear()
+			//- 		localStorage.setItem('userEmail_localStorage', !{userEmail_stringified})
+			//- 		console.log('localStorage from pug==>', localStorage)
+
+			//- 	script(src='/javascripts/modules/adminM0d.js')
+
