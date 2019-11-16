@@ -60,6 +60,7 @@ module.exports = {
     // });
 
 
+
     // //LOAD DATA LOCAL INFILE '/path/to/products.csv' INTO TABLE products;
     // let query2 = 'LOAD DATA LOCAL INFILE' + "'" + './public/csv-to-insert/' + fileToUpload.name + "'" + ' INTO TABLE ' +
     //   tableToPopulate + ' FIELDS TERMINATED BY ' + "','" + ' ENCLOSED BY ' + `'"'` +
@@ -74,21 +75,25 @@ module.exports = {
     // });
 
     odbc.pool(DSN, (error1, pool) => {
-      if (error1) { return; } // handle
+      if (error1) {
+        return;
+      } // handle
       pool.query(`BULK INSERT ${tableToPopulate} FROM './public/csv-to-insert/${fileToUpload.name}' WITH (FIELDTERMINATOR = ',', ROWTERMINATOR = '\n')`, (error2, result) => {
-        if (error2) { return; } // handle
-        
+        if (error2) {
+          return;
+        } // handle
+
         // console.log(result);
         // loadTableColumnNames(result)
 
         res.render('vw-tsqlTableHub', {
           title: 'vw-tsqlTableHub',
-        //   tableColNames: tableColumnNames
+          //   tableColNames: tableColumnNames
           // sqlTablePopulated: {
           //   tablePopulated: tableToPopulate,
           // },
         });
-        
+
       });
     });
 
