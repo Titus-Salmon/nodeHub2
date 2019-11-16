@@ -28,6 +28,8 @@ module.exports = {
     let fileToUpload = req.files.popTblPost;
     console.log('fileToUpload==>', fileToUpload)
 
+    console.log('process.cwd()==>', process.cwd())
+
     // Use the mv() method to place the file somewhere on your server
     fileToUpload.mv(process.cwd() + '/public/csv-to-insert/' + fileToUpload.name, function (err) {
       if (err)
