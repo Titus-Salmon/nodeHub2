@@ -36,18 +36,50 @@ router.post('/queryTable', function (req, res, next) {
 		for (let i = 0; i < result.length; i++) {
 			let catapultTableListObj = {}
 			catapultTableListObj['invPK'] = result[i]['INV_PK']
-			catapultTableListObj['invScanCode'] = result[i]['INV_ScanCode']
-			catapultTableListObj['invName'] = result[i]['INV_Name']
-			catapultTableListObj['invSize'] = result[i]['INV_Size']
-			catapultTableListObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias']
+			if (typeof result[i]['INV_ScanCode'] == 'string') {
+				catapultTableListObj['invScanCode'] = result[i]['INV_ScanCode'].trim()
+			} else {
+				catapultTableListObj['invScanCode'] = result[i]['INV_ScanCode']
+			}
+			if (typeof result[i]['INV_Name'] == 'string') {
+				catapultTableListObj['invName'] = result[i]['INV_Name'].trim()
+			} else {
+				catapultTableListObj['invName'] = result[i]['INV_Name']
+			}
+			if (typeof result[i]['INV_Size'] == 'string') {
+				catapultTableListObj['invSize'] = result[i]['INV_Size'].trim()
+			} else {
+				catapultTableListObj['invSize'] = result[i]['INV_Size']
+			}
+			if (typeof result[i]['INV_ReceiptAlias'] == 'string') {
+				catapultTableListObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias'].trim()
+			} else {
+				catapultTableListObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias']
+			}
 			catapultTableListObj['posTimeStamp'] = unescape(result[i]['POS_TimeStamp'])
 			catapultTableListObj['invDateCreated'] = result[i]['INV_DateCreated']
 			catapultTableListObj['invEmpFkCreatedBy'] = result[i]['INV_EMP_FK_CreatedBy']
 			catapultTableListObj['ordQuantityInOrderUnit'] = result[i]['ord_quantityinorderunit']
-			catapultTableListObj['oupName'] = result[i]['oup_name']
-			catapultTableListObj['stoName'] = result[i]['sto_name']
-			catapultTableListObj['brdName'] = result[i]['brd_name']
-			catapultTableListObj['dptName'] = result[i]['dpt_name']
+			if (typeof result[i]['oup_name'] == 'string') {
+				catapultTableListObj['oupName'] = result[i]['oup_name'].trim()
+			} else {
+				catapultTableListObj['oupName'] = result[i]['oup_name']
+			}
+			if (typeof result[i]['sto_name'] == 'string') {
+				catapultTableListObj['stoName'] = result[i]['sto_name'].trim()
+			} else {
+				catapultTableListObj['stoName'] = result[i]['sto_name']
+			}
+			if (typeof result[i]['brd_name'] == 'string') {
+				catapultTableListObj['brdName'] = result[i]['brd_name'].trim()
+			} else {
+				catapultTableListObj['brdName'] = result[i]['brd_name']
+			}
+			if (typeof result[i]['dpt_name'] == 'string') {
+				catapultTableListObj['dptName'] = result[i]['dpt_name'].trim()
+			} else {
+				catapultTableListObj['dptName'] = result[i]['dpt_name']
+			}
 			catapultTableListObj['dptNumber'] = result[i]['dpt_number']
 			catapultTableListObj['venCompanyname'] = result[i]['ven_companyname']
 			catapultTableListObj['invLastreceived'] = result[i]['inv_lastreceived']
@@ -57,14 +89,46 @@ router.post('/queryTable', function (req, res, next) {
 			catapultTableListObj['invOnhand'] = result[i]['inv_onhand']
 			catapultTableListObj['invOnorder'] = result[i]['inv_onorder']
 			catapultTableListObj['invIntransit'] = result[i]['inv_intransit']
-			catapultTableListObj['pi1Description'] = result[i]['PI1_Description']
-			catapultTableListObj['pi2Description'] = result[i]['PI2_Description']
-			catapultTableListObj['pi3Description'] = result[i]['PI3_Description']
-			catapultTableListObj['pi4Description'] = result[i]['PI4_Description']
-			catapultTableListObj['invPowerField1'] = result[i]['INV_PowerField1']
-			catapultTableListObj['invPowerField2'] = result[i]['INV_PowerField2']
-			catapultTableListObj['invPowerField3'] = result[i]['INV_PowerField3']
-			catapultTableListObj['invPowerField4'] = result[i]['INV_PowerField4']
+			if (typeof result[i]['PI1_Description'] == 'string') {
+				catapultTableListObj['pi1Description'] = result[i]['PI1_Description'].trim()
+			} else {
+				catapultTableListObj['pi1Description'] = result[i]['PI1_Description']
+			}
+			if (typeof result[i]['PI2_Description'] == 'string') {
+				catapultTableListObj['pi2Description'] = result[i]['PI2_Description'].trim()
+			} else {
+				catapultTableListObj['pi2Description'] = result[i]['PI2_Description']
+			}
+			if (typeof result[i]['PI3_Description'] == 'string') {
+				catapultTableListObj['pi3Description'] = result[i]['PI3_Description'].trim()
+			} else {
+				catapultTableListObj['pi3Description'] = result[i]['PI3_Description']
+			}
+			if (typeof result[i]['PI4_Description'] == 'string') {
+				catapultTableListObj['pi4Description'] = result[i]['PI4_Description'].trim()
+			} else {
+				catapultTableListObj['pi4Description'] = result[i]['PI4_Description']
+			}
+			if (typeof result[i]['INV_PowerField1'] == 'string') {
+				catapultTableListObj['invPowerField1'] = result[i]['INV_PowerField1'].trim()
+			} else {
+				catapultTableListObj['invPowerField1'] = result[i]['INV_PowerField1']
+			}
+			if (typeof result[i]['INV_PowerField2'] == 'string') {
+				catapultTableListObj['invPowerField2'] = result[i]['INV_PowerField2'].trim()
+			} else {
+				catapultTableListObj['invPowerField2'] = result[i]['INV_PowerField2']
+			}
+			if (typeof result[i]['INV_PowerField3'] == 'string') {
+				catapultTableListObj['invPowerField3'] = result[i]['INV_PowerField3'].trim()
+			} else {
+				catapultTableListObj['invPowerField3'] = result[i]['INV_PowerField3']
+			}
+			if (typeof result[i]['INV_PowerField4'] == 'string') {
+				catapultTableListObj['invPowerField4'] = result[i]['INV_PowerField4'].trim()
+			} else {
+				catapultTableListObj['invPowerField4'] = result[i]['INV_PowerField4']
+			}
 
 			catapultTableArr.push(catapultTableListObj)
 		}
@@ -74,8 +138,8 @@ router.post('/queryTable', function (req, res, next) {
 	odbc.connect(DSN, (error, connection) => {
 		connection.query(`${catapultDbQuery}`, (error, result) => {
 			if (error) { console.error(error) }
-			console.log('result==>', result)
-			// console.log('result[0]==>', result[0])
+			// console.log('result==>', result)
+			console.log('result[0]==>', result[0])
 			// console.log('result[\'columns\'][2]==>', result['columns'][2])
 			// console.log('result.length~~~>', result.length)
 			showCatapultTables(result)
@@ -143,6 +207,9 @@ router.post('/save2CSV', function (req, res, next) {
 		const parser = new Parser(opts);
 		const csv = parser.parse(catapultTableArr);
 		// csvContainer.push(csv);
+		// console.log(`req.body-->${req.body}`)
+		console.log(`JSON.stringify(req.body)-->${JSON.stringify(req.body)}`)
+		console.log(`req.body['csvPost']-->${req.body['csvPost']}`)
 		console.log('csv.length=====>>', csv.length);
 		fs.writeFile(process.cwd() + '/public/csv/' + req.body['csvPost'] + '.csv', csv, function (err) {
 			if (err) throw err;
