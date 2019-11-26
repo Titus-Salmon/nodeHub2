@@ -14,7 +14,9 @@ const fileUpload = require('express-fileupload');
 const odbc = require('odbc')
 const DSN = process.env.ODBC_CONN_STRING
 
-router.use(fileUpload())
+router.use(fileUpload({
+  debug: true
+}))
 
 module.exports = {
 
@@ -75,7 +77,11 @@ module.exports = {
 
     odbc.pool(DSN, (error1, pool) => {
       if (error1) { return; } // handle
-      pool.query(`BULK INSERT ${tableToPopulate} FROM './public/csv-to-insert/${fileToUpload.name}' WITH (FIELDTERMINATOR = ',', ROWTERMINATOR = '\n')`, (error2, result) => {
+      console.log(`process.cwd()==> ${process.cwd()}`)
+      pool.query(`LOAD TABLE nodehub_cat_edi_unfi_20191115 
+      (unfi_sku,unfi_upc,unfi_brand,unfi_brand_name,unfi_name,unfi_case,unfi_size,unfi_pkg,unfi_list_ws,unfi_case_price,unfi_list_cost,unfi_cost,unfi_msrp,unfi_category_id,
+        unfi_category,unfi_artificial,unfi_sugar,unfi_low_carb,unfi_low_salt,unfi_no_dairy,unfi_food_svc,unfi_no_gluten,unfi_vegan,unfi_no_wheat,unfi_no_yeast,unfi_kosher,
+        unfi_fairtrade,unfi_no_gmo,unfi_organic,unfi_specialty,unfi_natural) FROM '${process.cwd()}/public/csv-to-insert/${fileToUpload.name}'`, (error2, result) => {
         if (error2) { return; } // handle
         
         // console.log(result);

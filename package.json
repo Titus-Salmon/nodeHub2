@@ -12,6 +12,7 @@
     "express": "~4.16.1",
     "express-fileupload": "^1.1.6-alpha.6",
     "http-errors": "~1.6.3",
+    "json2csv": "^4.5.4",
     "morgan": "~1.9.1",
     "odbc": "^2.2.2",
     "pug": "^2.0.4"
