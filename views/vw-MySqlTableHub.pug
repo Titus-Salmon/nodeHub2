@@ -30,7 +30,7 @@ html
 					p= thing
 
 
-		//-/v// NEW STUFF FOR TSQL
+		//-/v// NEW STUFF FOR MySqlTableHub
 
 		form#queryRBdb(action='/MySqlTableHub/queryRBdb' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
@@ -42,11 +42,11 @@ html
 
 		form#createTable(action='/MySqlTableHub/createRBtable' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
-				label.input-label-1(for='crtTblName') Enter Table Name to CREATE
+				label.input-label-1(for='crtTblName') Enter MySql Table Name to CREATE
 				input#crtTblName.input-unit-1(type='text', placeholder='enter data', name='tblNamePost', value='')
 
-				label.input-label-1(for='crtTblInput') Enter Table Headers (as csv)
-				input#crtTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='')
+				label.input-label-1(for='crtTblInput') Enter Table Headers (as csv) - default headers for nhcrt (Node Hub Catalog Results Table) provided
+				input#crtTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='invScanCode,invName,invSize,invReceiptAlias,posTimeStamp,invDateCreated,invEmpFkCreatedBy,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,venCompanyname,invLastreceived,invLastsold,invLastcost,sibBasePrice,invOnhand,invOnorder,invIntransit,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4')
 				button#crtTblBtn(type='submit', form='createTable', style="display: block; float: left") CREATE Table
 		br
 		br
@@ -73,15 +73,9 @@ html
 			- console.log(`sqlTableDeleted==> ${sqlTableCreated}`)
 			p= 'Deleted Table: ' + sqlTableDeleted
 
-		//-/^// NEW STUFF FOR TSQL
-
-
-
-
-
 
 		br
-		form#populateTable(ref="populateTable" action='/tsqlTableHub/populateTsqlTable' method='POST' encType="multipart/form-data" accept-charset="UTF-8")
+		form#populateTable(ref="populateTable" action='/MySqlTableHub/populateRBTable' method='POST' encType="multipart/form-data" accept-charset="UTF-8")
 			div(style="display:block")
 				label.input-label-1(for='popTbl') Populate Table
 				input#popTbl.input-unit-1(type='file', name='popTblPost')
@@ -96,6 +90,8 @@ html
 
 		if sqlTablePopulated !== undefined
 			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
+
+		//-/^// NEW STUFF FOR MySqlTableHub
 
 
 		form#retailCalcUniversal(action='/retailCalcUniversal_brandTargeting/results' method='POST' accept-charset="UTF-8")

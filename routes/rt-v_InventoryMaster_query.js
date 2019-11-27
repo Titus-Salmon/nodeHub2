@@ -81,7 +81,11 @@ router.post('/queryTable', function (req, res, next) {
 				catapultTableListObj['dptName'] = result[i]['dpt_name']
 			}
 			catapultTableListObj['dptNumber'] = result[i]['dpt_number']
-			catapultTableListObj['venCompanyname'] = result[i]['ven_companyname']
+			if (typeof result[i]['ven_companyname'] == 'string') {
+				catapultTableListObj['venCompanyname'] = result[i]['ven_companyname'].trim()
+			} else {
+				catapultTableListObj['venCompanyname'] = result[i]['ven_companyname']
+			}
 			catapultTableListObj['invLastreceived'] = result[i]['inv_lastreceived']
 			catapultTableListObj['invLastsold'] = result[i]['inv_lastsold']
 			catapultTableListObj['invLastcost'] = result[i]['inv_lastcost']
@@ -156,36 +160,7 @@ router.post('/save2CSV', function (req, res, next) {
 	console.log(`catapultTableArr[0]==>${catapultTableArr[0]}`)
 	console.log(`JSON.stringify(catapultTableArr[0])==>${JSON.stringify(catapultTableArr[0])}`)
 	console.log(`JSON.parse(JSON.stringify(catapultTableArr[0]))==>${JSON.parse(JSON.stringify(catapultTableArr[0]))}`)
-	console.log(`catapultTableArr[0]['invPK']==> ${catapultTableArr[0]['invPK']}`)
-	console.log(`catapultTableArr[0]['invScanCode']==> ${catapultTableArr[0]['invScanCode']}`)
-	console.log(`catapultTableArr[0]['invName']==> ${catapultTableArr[0]['invName']}`)
-	console.log(`catapultTableArr[0]['invSize']==> ${catapultTableArr[0]['invSize']}`)
-	console.log(`catapultTableArr[0]['invReceiptAlias']==> ${catapultTableArr[0]['invReceiptAlias']}`)
-	console.log(`catapultTableArr[0]['posTimeStamp']==> ${catapultTableArr[0]['posTimeStamp']}`)
-	console.log(`catapultTableArr[0]['invDateCreated']==> ${catapultTableArr[0]['invDateCreated']}`)
-	console.log(`catapultTableArr[0]['invEmpFkCreatedBy']==> ${catapultTableArr[0]['invEmpFkCreatedBy']}`)
-	console.log(`catapultTableArr[0]['ordQuantityInOrderUnit']==> ${catapultTableArr[0]['ordQuantityInOrderUnit']}`)
-	console.log(`catapultTableArr[0]['oupName']==> ${catapultTableArr[0]['oupName']}`)
-	console.log(`catapultTableArr[0]['stoName']==> ${catapultTableArr[0]['stoName']}`)
-	console.log(`catapultTableArr[0]['brdName']==> ${catapultTableArr[0]['brdName']}`)
-	console.log(`catapultTableArr[0]['dptName']==> ${catapultTableArr[0]['dptName']}`)
-	console.log(`catapultTableArr[0]['dptNumber']==> ${catapultTableArr[0]['dptNumber']}`)
-	console.log(`catapultTableArr[0]['venCompanyname']==> ${catapultTableArr[0]['venCompanyname']}`)
-	console.log(`catapultTableArr[0]['invLastreceived']==> ${catapultTableArr[0]['invLastreceived']}`)
-	console.log(`catapultTableArr[0]['invLastsold']==> ${catapultTableArr[0]['invLastsold']}`)
-	console.log(`catapultTableArr[0]['invLastcost']==> ${catapultTableArr[0]['invLastcost']}`)
-	console.log(`catapultTableArr[0]['sibBasePrice']==> ${catapultTableArr[0]['sibBasePrice']}`)
-	console.log(`catapultTableArr[0]['invOnhand']==> ${catapultTableArr[0]['invOnhand']}`)
-	console.log(`catapultTableArr[0]['invOnorder']==> ${catapultTableArr[0]['invOnorder']}`)
-	console.log(`catapultTableArr[0]['invIntransit']==> ${catapultTableArr[0]['invIntransit']}`)
-	console.log(`catapultTableArr[0]['pi1Description']==> ${catapultTableArr[0]['pi1Description']}`)
-	console.log(`catapultTableArr[0]['pi2Description']==> ${catapultTableArr[0]['pi2Description']}`)
-	console.log(`catapultTableArr[0]['pi3Description']==> ${catapultTableArr[0]['pi3Description']}`)
-	console.log(`catapultTableArr[0]['pi4Description']==> ${catapultTableArr[0]['pi4Description']}`)
-	console.log(`catapultTableArr[0]['invPowerField1']==> ${catapultTableArr[0]['invPowerField1']}`)
-	console.log(`catapultTableArr[0]['invPowerField2']==> ${catapultTableArr[0]['invPowerField2']}`)
-	console.log(`catapultTableArr[0]['invPowerField3']==> ${catapultTableArr[0]['invPowerField3']}`)
-	console.log(`catapultTableArr[0]['invPowerField4']==> ${catapultTableArr[0]['invPowerField4']}`)
+	
 
 	//begin csv generator //////////////////////////////////////////////////////////////////////////
 	const {
@@ -211,7 +186,7 @@ router.post('/save2CSV', function (req, res, next) {
 		console.log(`JSON.stringify(req.body)-->${JSON.stringify(req.body)}`)
 		console.log(`req.body['csvPost']-->${req.body['csvPost']}`)
 		console.log('csv.length=====>>', csv.length);
-		fs.writeFile(process.cwd() + '/public/csv/' + req.body['csvPost'] + '.csv', csv, function (err) {
+		fs.writeFile(process.cwd() + '/public/csv-to-insert/' + req.body['csvPost'] + '.csv', csv, function (err) {
 			if (err) throw err;
 			console.log('~~~~~>>' + req.body['csvPost'] + 'saved<<~~~~~')
 		})

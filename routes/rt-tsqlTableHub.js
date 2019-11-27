@@ -9,18 +9,21 @@ const router = express.Router()
 const {
   createTsqlTableSimple
 } = require('../sqlArch/createTsqlTableSimple')
-
 const {
   deleteTsqlTableSimple
 } = require('../sqlArch/deleteTsqlTableSimple')
-
 const {
   queryCatapultDB
 } = require('../sqlArch/queryCatapultDB')
-
 const {
   populateTsqlTable
 } = require('../sqlArch/populateTsqlTable')
+const {
+  v_InventoryMasterQuery
+} = require('../sqlArch/v_InventoryMasterQuery')
+const {
+  save2CSV
+} = require('../sqlArch/save2CSV')
 
 
 
@@ -68,6 +71,8 @@ router.post('/createEmptyTsqlTable', createTsqlTableSimple)
 router.post('/deleteTsqlTable', deleteTsqlTableSimple)
 router.post('/queryCatapultDB', queryCatapultDB)
 router.post('/populateTsqlTable', populateTsqlTable)
+router.post('/queryInvMasterTable', v_InventoryMasterQuery)
+router.post('/save2CSV', save2CSV)
 
 // router.post('/populateTableSimple', populateTableSimple)
 

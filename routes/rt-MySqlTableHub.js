@@ -10,6 +10,9 @@ const {
     createRBtable
   } = require('../sqlArch/createRBtable')
   const {
+    populateRBtable
+  } = require('../sqlArch/populateRBtable')
+  const {
     queryRBdb
   } = require('../sqlArch/queryRBdb')
   
@@ -24,6 +27,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/createRBtable', createRBtable)
+router.post('/populateRBtable', populateRBtable)
 router.post('/queryRBdb', queryRBdb)
 
 
