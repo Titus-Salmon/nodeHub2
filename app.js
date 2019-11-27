@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 
 const indexRouter = require('./routes/rt-index'); //t0d
 const tsqlTableHubRouter = require('./routes/rt-tsqlTableHub') //t0d
+const MySqlTableHubRouter = require('./routes/rt-MySqlTableHub') //t0d
 const v_InventoryMaster_queryRouter = require('./routes/rt-v_InventoryMaster_query') //t0d
 
 var app = express();
@@ -30,6 +31,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use('/tsqlTableHub', tsqlTableHubRouter) //t0d
+app.use('/MySqlTableHub', MySqlTableHubRouter) //t0d
 app.use('/v_InventoryMaster_query', v_InventoryMaster_queryRouter) //t0d
 
 // catch 404 and forward to error handler
