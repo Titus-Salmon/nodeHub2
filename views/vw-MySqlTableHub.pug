@@ -6,7 +6,7 @@ html
 
 	body
 		include vw-dashboard.pug
-		h3 #{title}
+		//- h3 #{title}
 		div(style="display:block")
 			form#loadTable(action='/retailCalcUniversal_brandTargeting/loadTableUniversal_brandTargeting' method='POST' accept-charset="UTF-8")
 				label.input-label-1(for='ldTblName') Table Name to Load
@@ -39,6 +39,14 @@ html
 
 				button#crtTblBtn(type='submit', form='queryRBdb', style="display: block; float: left") QUERY Rainbow DB
 		br
+		
+		form#nhcrtDisplay(action='/MySqlTableHub/nhcrtDisplay' method='POST' accept-charset="UTF-8" style="display:block")
+			div(style="display:block")
+				label.input-label-1(for='nhcrtDisplay') Enter NodeHub Catapult Results Table to Display
+				textarea#nhcrtDisplay.input-unit-1(name="nhcrtDisplayPost", cols="30", rows="1", wrap="soft") SELECT * FROM nhcrt_badger20191127;
+
+				button#crtTblBtn(type='submit', form='nhcrtDisplay', style="display: block; float: left") Display NHCRT
+		br
 
 		form#createTable(action='/MySqlTableHub/createRBtable' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
@@ -60,9 +68,9 @@ html
 
 
 
-		form#deleteTable(action='/tsqlTableHub/deleteTsqlTable' method='POST' accept-charset="UTF-8" style="display:block")
+		form#deleteTable(action='/MySqlTableHub/deleteRBtable' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
-				label.input-label-1(for='dltTblName') Enter Table Name to DELETE
+				label.input-label-1(for='dltTblName') Enter RB Table Name to DELETE
 				input#dltTblName.input-unit-1(type='text', placeholder='enter data', name='delTblNamePost', value='')
 
 				button#dltTblBtn(type='submit', form='deleteTable', style="display: block; float: left") DELETE Table

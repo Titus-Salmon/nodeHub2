@@ -7,15 +7,21 @@ const router = express.Router()
 // } = require('../config/auth-t0dt1tz1')
 
 const {
-    createRBtable
-  } = require('../sqlArch/createRBtable')
-  const {
-    populateRBtable
-  } = require('../sqlArch/populateRBtable')
-  const {
-    queryRBdb
-  } = require('../sqlArch/queryRBdb')
-  
+  createRBtable
+} = require('../sqlArch/createRBtable')
+const {
+  deleteRBtable
+} = require('../sqlArch/deleteRBtable')
+const {
+  populateRBtable
+} = require('../sqlArch/populateRBtable')
+const {
+  queryRBdb
+} = require('../sqlArch/queryRBdb')
+const {
+  nhcrtDisplay
+} = require('../sqlArch/nhcrtDisplay')
+
 
 router.get('/', function (req, res, next) {
   res.render('vw-MySqlTableHub', {
@@ -27,8 +33,10 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/createRBtable', createRBtable)
+router.post('/deleteRBtable', deleteRBtable)
 router.post('/populateRBtable', populateRBtable)
 router.post('/queryRBdb', queryRBdb)
+router.post('/nhcrtDisplay', nhcrtDisplay)
 
 
 module.exports = router;

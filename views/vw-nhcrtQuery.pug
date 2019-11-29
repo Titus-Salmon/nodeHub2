@@ -1,0 +1,74 @@
+doctype html
+html
+	head
+		link(rel="stylesheet" type="text/css" href="/stylesheets/style.css")
+
+	body
+		include vw-dashboard.pug
+		div.rslt-tbl-1
+			table#resTbl
+				thead
+					tr
+						th record_id
+						th invScanCode
+						th invName
+						th invSize
+						th invReceiptAlias
+						th posTimeStamp
+						th invDateCreated
+						th invEmpFkCreatedBy
+						th ordQuantityInOrderUnit
+						th oupName
+						th stoName
+						th brdName
+						th dptName
+						th dptNumber
+						th venCompanyname
+						th invLastreceived
+						th invLastsold
+						th invLastcost
+						th sibBasePrice
+						th invOnhand
+						th invOnorder
+						th invIntransit
+						th pi1Description
+						th pi2Description
+						th pi3Description
+						th invPowerField3
+						th invPowerField4
+
+
+				tbody#resTblBdy
+					if nhcrtDisplay !== undefined
+						each elmnt in nhcrtDisplay
+							tr
+								td= elmnt.record_id
+								td= elmnt.invScanCode
+								td= elmnt.invName
+								td= elmnt.invSize
+								td= elmnt.invReceiptAlias
+								td= elmnt.posTimeStamp
+								td= elmnt.invDateCreated
+								td= elmnt.invEmpFkCreatedBy
+								td= elmnt.ordQuantityInOrderUnit
+								td= elmnt.oupName
+								td= elmnt.stoName
+								td= elmnt.brdName
+								td= elmnt.dptName
+								td= elmnt.dptNumber
+								td= elmnt.venCompanyname
+								td= elmnt.invLastreceived
+								td= elmnt.invLastsold
+								td= elmnt.invLastcost
+								td= elmnt.sibBasePrice
+								td= elmnt.invOnhand
+								td= elmnt.invOnorder
+								td= elmnt.invIntransit
+								td= elmnt.pi1Description
+								td= elmnt.pi2Description
+								td= elmnt.pi3Description
+								td= elmnt.invPowerField3
+								td= elmnt.invPowerField4
+
+
+
