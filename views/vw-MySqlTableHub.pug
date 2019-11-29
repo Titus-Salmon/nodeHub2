@@ -39,13 +39,21 @@ html
 
 				button#crtTblBtn(type='submit', form='queryRBdb', style="display: block; float: left") QUERY Rainbow DB
 		br
-		
+
 		form#nhcrtDisplay(action='/MySqlTableHub/nhcrtDisplay' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='nhcrtDisplay') Enter NodeHub Catapult Results Table to Display
 				textarea#nhcrtDisplay.input-unit-1(name="nhcrtDisplayPost", cols="30", rows="1", wrap="soft") SELECT * FROM nhcrt_badger20191127;
 
 				button#crtTblBtn(type='submit', form='nhcrtDisplay', style="display: block; float: left") Display NHCRT
+		br
+
+		form#nhcrtEdiJoin(action='/MySqlTableHub/nhcrtEdiJoin' method='POST' accept-charset="UTF-8" style="display:block")
+			div(style="display:block")
+				label.input-label-1(for='nhcrtEdiJoin') Enter NodeHub Catapult Results Table to Display
+				textarea#nhcrtEdiJoin.input-unit-1(name="nhcrtEdiJoinPost", cols="30", rows="1", wrap="soft") SELECT DISTINCT nhcrt.invScanCode, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.invEmpFkCreatedBy, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.stoName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.venCompanyname, nhcrt.invLastreceived, nhcrt.invLastsold, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.invOnhand, nhcrt.invOnorder, nhcrt.invIntransit, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, edi_table.* FROM ${nhcrtTableName} nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = edi_table.${ediPrefix_upc};
+
+				button#crtTblBtn(type='submit', form='nhcrtEdiJoin', style="display: block; float: left") Display NHCRT/EDI joined tables
 		br
 
 		form#createTable(action='/MySqlTableHub/createRBtable' method='POST' accept-charset="UTF-8" style="display:block")

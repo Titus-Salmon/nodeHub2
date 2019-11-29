@@ -21,6 +21,11 @@ const {
 const {
   nhcrtDisplay
 } = require('../sqlArch/nhcrtDisplay')
+const {
+  nhcrtEdiJoin
+} = require('../sqlArch/nhcrtEdiJoin')
+
+
 
 
 router.get('/', function (req, res, next) {
@@ -37,6 +42,7 @@ router.post('/deleteRBtable', deleteRBtable)
 router.post('/populateRBtable', populateRBtable)
 router.post('/queryRBdb', queryRBdb)
 router.post('/nhcrtDisplay', nhcrtDisplay)
+router.post('/nhcrtEdiJoin', nhcrtEdiJoin)
 
 
 module.exports = router;
