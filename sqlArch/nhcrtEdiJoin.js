@@ -18,7 +18,7 @@ module.exports = {
 
         let nhcrtEdiJoinArr = []
 
-        function displayNhcrt(rows) {
+        function displayNhcrtEdi(rows) {
             for (let i = 0; i < rows.length; i++) {
                 let nhcrtEdiJoinObj = {}
                 nhcrtEdiJoinObj['record_id'] = rows[i]['record_id']
@@ -48,7 +48,7 @@ module.exports = {
                 nhcrtEdiJoinObj['pi3Description'] = rows[i]['pi3Description']
                 nhcrtEdiJoinObj['invPowerField3'] = rows[i]['invPowerField3']
                 nhcrtEdiJoinObj['invPowerField4'] = rows[i]['invPowerField4']
-                
+
                 nhcrtEdiJoinArr.push(nhcrtEdiJoinObj)
             }
             console.log('rows.length~~~>', rows.length)
@@ -64,7 +64,7 @@ module.exports = {
             console.log(`rows[0]['invName']==>${rows[0]['invName']}`)
             // console.log('rows==>', rows)
             // res.send(rows)
-            displayNhcrt(rows)
+            displayNhcrtEdi(rows)
 
             res.render('vw-nhcrtEdiJoin', {
                 title: 'NodeHub CRT Joined on EDI Table Query Results',
