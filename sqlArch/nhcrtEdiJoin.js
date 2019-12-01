@@ -49,9 +49,32 @@ module.exports = {
                 nhcrtEdiJoinObj['invPowerField3'] = rows[i]['invPowerField3']
                 nhcrtEdiJoinObj['invPowerField4'] = rows[i]['invPowerField4']
 
+                for (let j = 0; j < Object.keys(rows[i]).length; j++) {
+                    if (Object.keys(rows[i])[j].includes('_cost')) {
+                        // console.log(`Object.keys(rows[${i}])[${j}]==>${Object.keys(rows[i])[j]}`)
+                        nhcrtEdiJoinObj['ediCost'] = rows[i][`${Object.keys(rows[i])[j]}`]
+                    }
+                }
+
                 nhcrtEdiJoinArr.push(nhcrtEdiJoinObj)
             }
             console.log('rows.length~~~>', rows.length)
+            // console.log(`Object.keys(rows)==>${Object.keys(rows)}`)
+            // console.log(`Object.keys(rows[0])==>${Object.keys(rows[0])}`)
+            // console.log(`Object.keys(rows[0]).length==>${Object.keys(rows[0]).length}`)
+            // console.log(`typeof Object.keys(rows[0])==>${typeof Object.keys(rows[0])}`)
+            // console.log(`Object.keys(rows[0]['invScanCode'])==>${Object.keys(rows[0]['invScanCode'])}`)
+            // // console.log('rows~~~>', rows)
+            // console.log(`rows[0]['RowDataPacket']~~~>${rows[0]['RowDataPacket']}`)
+            // // console.log('rows~~~>', rows)
+            // console.log('rows[0]~~~>', rows[0])
+
+
+            // for (let j=0; j<Object.keys(rows[0]).length; j++) {
+            //     console.log(`Object.keys(rows[0])[j]==>${Object.keys(rows[0])[j]}`)
+            // }
+
+
         }
 
 
