@@ -6,7 +6,8 @@ html
 
 	body
 		include vw-dashboard.pug
-		//- h3 #{title}
+
+		//- //v//***NEED TO DEAL WITH THIS - update or delete (currently has old url info from rbRetailCalculator**********
 		div(style="display:block")
 			form#loadTable(action='/retailCalcUniversal_brandTargeting/loadTableUniversal_brandTargeting' method='POST' accept-charset="UTF-8")
 				label.input-label-1(for='ldTblName') Table Name to Load
@@ -28,6 +29,8 @@ html
 				each thing in loadedTable.tableLoadError
 					- console.log('thing==>', thing)
 					p= thing
+
+		//- //^//***NEED TO DEAL WITH THIS - update or delete (currently has old url info from rbRetailCalculator**********
 
 
 		//-/v// NEW STUFF FOR MySqlTableHub
@@ -110,6 +113,8 @@ html
 		//-/^// NEW STUFF FOR MySqlTableHub
 
 
+
+		//- //v//***NEED TO DEAL WITH THIS - update or delete (currently has old url info from rbRetailCalculator*********************
 		form#retailCalcUniversal(action='/retailCalcUniversal_brandTargeting/results' method='POST' accept-charset="UTF-8")
 
 			if sqlTableCreated !== undefined
