@@ -7,6 +7,8 @@ var logger = require('morgan');
 const dotenv = require('dotenv') //t0d
 dotenv.config() //t0d
 
+const bodyParser = require('body-parser') //t0d
+
 // var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -22,11 +24,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+
 app.use(express.json({
-  limit: '50mb' //MUST SET THIS HIGH, OTHERWISE LARGE CATALOGS (KEHE) WILL THROW error-request entity too large
+  limit: '500mb' //MUST SET THIS HIGH, OTHERWISE LARGE CATALOGS (KEHE) WILL THROW error-request entity too large
+  //originally had it set at 50mb, but even that wasn't high enough for KEKE
 }));
 app.use(express.urlencoded({
-  limit: '50mb' //MUST SET THIS HIGH, OTHERWISE LARGE CATALOGS (KEHE) WILL THROW error-request entity too large
+  limit: '500mb', //MUST SET THIS HIGH, OTHERWISE LARGE CATALOGS (KEHE) WILL THROW error-request entity too large
+  extended: true
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));

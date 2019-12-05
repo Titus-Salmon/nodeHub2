@@ -80,69 +80,6 @@ html
 
 
 		form#deleteTable(action='/MySqlTableHub/deleteRBtable' method='POST' accept-charset="UTF-8" style="display:block")
-			div(style="display:block")
-				label.input-label-1(for='dltTblName') Enter RB Table Name to DELETE
-				input#dltTblName.input-unit-1(type='text', placeholder='enter data', name='delTblNamePost', value='')
-
-				button#dltTblBtn(type='submit', form='deleteTable', style="display: block; float: left") DELETE Table
-		br
-		br
-
-		if sqlTableDeleted !== undefined
-			- console.log(`sqlTableDeleted==> ${sqlTableCreated}`)
-			p= 'Deleted Table: ' + sqlTableDeleted
-
-
-		br
-		form#populateTable(ref="populateTable" action='/MySqlTableHub/populateRBTable' method='POST' encType="multipart/form-data" accept-charset="UTF-8")
-			div(style="display:block")
-				label.input-label-1(for='popTbl') Populate Table
-				input#popTbl.input-unit-1(type='file', name='popTblPost')
-
-				label.input-label-1(for='popTblName') Table to Populate
-				input#popTblName.input-unit-1(type='text', name='popTblNamePost')
-
-				label.input-label-1(for='tblColName') Loaded Column Names
-				input#tblColName.input-unit-1(type='text', name='tblColNamePost', value=tableColNames)
-
-				button#popTblBtn(type='submit', form='populateTable', style="display: block") Populate Table
-
-		if sqlTablePopulated !== undefined
-			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
-
-		//-/^// NEW STUFF FOR MySqlTableHub
-
-
-
-		//- //v//***NEED TO DEAL WITH THIS - update or delete (currently has old url info from rbRetailCalculator*********************
-		form#retailCalcUniversal(action='/retailCalcUniversal_brandTargeting/results' method='POST' accept-charset="UTF-8")
-
-			if sqlTableCreated !== undefined
-
-				input#tblColumnNames.input-unit-1(type='text', placeholder='enter data', name='tblColumnNamesPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.basicColumnNames)
-				input#tblPopulated.input-unit-1(type='text', placeholder='enter data', name='tblPopulatedPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.tableName)
-			if loadedTable !== undefined
-
-				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
-				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-
-			label.input-label-1(for='beerAlcMarg') Beer & Alcohol Margin
-			input#beerAlcMarg.input-unit-1(type='number', placeholder='.20', step='.01', name='beerAlcMargPost', value='.20')
-
-			label.input-label-1(for='bodyCareMarg') Body Care Margin
-			input#bodyCareMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='bodyCareMargPost', value='.45')
-
-			label.input-label-1(for='booksMarg') Books Margin
-			input#booksMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='booksMargPost', value='.40')
-
-			label.input-label-1(for='bulkMarg') Bulk Margin
-			input#bulkMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='bulkMargPost', value='.45')
-
-			label.input-label-1(for='bulkHrbPrpkMarg') Bulk & Herb Prepack Margin
-			input#bulkHrbPrpkMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='bulkHrbPrpkMargPost', value='.45')
-
-			label.input-label-1(for='cbdGrocMarg') CBD - Grocery Margin
-			input#cbdGrocMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='cbdGrocMargPost', value='.45')
 
 			label.input-label-1(for='cbdSuppMarg') CBD - Supplements Margin
 			input#cbdSuppMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='cbdSuppMargPost', value='.50')
