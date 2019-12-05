@@ -7,8 +7,6 @@ var logger = require('morgan');
 const dotenv = require('dotenv') //t0d
 dotenv.config() //t0d
 
-const bodyParser = require('body-parser') //t0d
-
 // var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 

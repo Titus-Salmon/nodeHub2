@@ -24,6 +24,9 @@ const {
 const {
   nhcrtEdiJoin
 } = require('../sqlArch/nhcrtEdiJoin')
+const {
+  save2CSVnhcrtEdiJoin
+} = require('../sqlArch/save2CSVnhcrtEdiJoin')
 
 
 
@@ -43,6 +46,7 @@ router.post('/populateRBtable', populateRBtable)
 router.post('/queryRBdb', queryRBdb)
 router.post('/nhcrtDisplay', nhcrtDisplay)
 router.post('/nhcrtEdiJoin', nhcrtEdiJoin)
+router.post('/save2CSVnhcrtEdiJoin', save2CSVnhcrtEdiJoin)
 
 
 module.exports = router;
