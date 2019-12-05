@@ -50,9 +50,12 @@ module.exports = {
                 nhcrtEdiJoinObj['invPowerField4'] = rows[i]['invPowerField4']
 
                 for (let j = 0; j < Object.keys(rows[i]).length; j++) {
-                    if (Object.keys(rows[i])[j].includes('_cost')) {
+                    if (Object.keys(rows[i])[j].includes('_cost') || Object.keys(rows[i])[j].includes('_tier3')) {
                         // console.log(`Object.keys(rows[${i}])[${j}]==>${Object.keys(rows[i])[j]}`)
                         nhcrtEdiJoinObj['ediCost'] = rows[i][`${Object.keys(rows[i])[j]}`]
+                        console.log(`nhcrtEdiJoinObj['ediCost']==>${nhcrtEdiJoinObj['ediCost']}`)
+                    } else {
+                        // console.log(`Object.keys(rows[${i}])[${j}] doesnt include '_cost'`)
                     }
                 }
 
@@ -60,7 +63,7 @@ module.exports = {
             }
             console.log('rows.length~~~>', rows.length)
             // console.log(`Object.keys(rows)==>${Object.keys(rows)}`)
-            // console.log(`Object.keys(rows[0])==>${Object.keys(rows[0])}`)
+            console.log(`Object.keys(rows[0])==>${Object.keys(rows[0])}`)
             // console.log(`Object.keys(rows[0]).length==>${Object.keys(rows[0]).length}`)
             // console.log(`typeof Object.keys(rows[0])==>${typeof Object.keys(rows[0])}`)
             // console.log(`Object.keys(rows[0]['invScanCode'])==>${Object.keys(rows[0]['invScanCode'])}`)
