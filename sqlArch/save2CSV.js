@@ -12,7 +12,7 @@ module.exports = {
         // console.log(`req.body['save2CSVArrPost']==> ${req.body['save2CSVArrPost']}`)
         console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
         console.log(`JSON.parse(req.body['save2CSVArrPost'])==>${JSON.parse(req.body['save2CSVArrPost'])}`)
-        
+
         // console.log(`catapultTableArr[0]==>${catapultTableArr[0]}`)
         // console.log(`catapultTables[0]==>${catapultTables[0]}`)
         // console.log(`JSON.stringify(catapultTableArr[0])==>${JSON.stringify(catapultTableArr[0])}`)
@@ -25,9 +25,10 @@ module.exports = {
         } = require('json2csv')
 
         const fields = [
-            "invPK", "invScanCode", "invName", "invSize", "invReceiptAlias", "posTimeStamp", "invDateCreated", "invEmpFkCreatedBy", "ordQuantityInOrderUnit", "oupName",
-            "stoName", "brdName", "dptName", "dptNumber", "venCompanyname", "invLastreceived", "invLastsold", "invLastcost", "sibBasePrice", "invOnhand", "invOnorder", "invIntransit",
-            "pi1Description", "pi2Description", "pi3Description", "invPowerField3", "invPowerField4"
+            "invPK", "invScanCode", "invName", "ordSupplierStockNumber", "invSize", "invReceiptAlias", "posTimeStamp", "invDateCreated",
+            "invEmpFkCreatedBy", "ordQuantityInOrderUnit", "oupName", "stoName", "brdName", "dptName", "dptNumber", "venCompanyname",
+            "invLastreceived", "invLastsold", "invLastcost", "sibBasePrice", "invOnhand", "invOnorder", "invIntransit", "pi1Description",
+            "pi2Description", "pi3Description", "invPowerField3", "invPowerField4"
         ]
 
         const opts = {
