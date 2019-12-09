@@ -23,6 +23,7 @@ module.exports = {
                 let nhcrtEdiJoinObj = {}
                 nhcrtEdiJoinObj['record_id'] = rows[i]['record_id']
                 nhcrtEdiJoinObj['invScanCode'] = rows[i]['invScanCode']
+                // nhcrtEdiJoinObj['ascScanCode'] = rows[i]['ascScanCode']
                 nhcrtEdiJoinObj['invName'] = rows[i]['invName']
                 nhcrtEdiJoinObj['invSize'] = rows[i]['invSize']
                 nhcrtEdiJoinObj['invReceiptAlias'] = rows[i]['invReceiptAlias']

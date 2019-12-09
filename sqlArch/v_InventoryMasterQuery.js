@@ -16,111 +16,116 @@ module.exports = {
 
             console.log(`catapultDbQuery==> ${catapultDbQuery}`)
 
-            let catapultTableArr = []
+            let catapultResArr = []
 
-            function showCatapultTables(result) {
+            function showcatapultResults(result) {
                 for (let i = 0; i < result.length; i++) {
-                    let catapultTableListObj = {}
-                    catapultTableListObj['invPK'] = result[i]['INV_PK']
+                    let catapultResObj = {}
+                    catapultResObj['invPK'] = result[i]['INV_PK']
                     if (typeof result[i]['INV_ScanCode'] == 'string') {
-                        catapultTableListObj['invScanCode'] = result[i]['INV_ScanCode'].trim()
+                        catapultResObj['invScanCode'] = result[i]['INV_ScanCode'].trim()
                     } else {
-                        catapultTableListObj['invScanCode'] = result[i]['INV_ScanCode']
+                        catapultResObj['invScanCode'] = result[i]['INV_ScanCode']
+                    }
+                    if (typeof result[i]['ORD_SupplierStockNumber'] == 'string') {
+                        catapultResObj['ordSupplierStockNumber'] = result[i]['ORD_SupplierStockNumber'].trim()
+                    } else {
+                        catapultResObj['invScanCode'] = result[i]['INV_ScanCode']
                     }
                     if (typeof result[i]['INV_Name'] == 'string') {
-                        catapultTableListObj['invName'] = result[i]['INV_Name'].trim()
+                        catapultResObj['invName'] = result[i]['INV_Name'].trim()
                     } else {
-                        catapultTableListObj['invName'] = result[i]['INV_Name']
+                        catapultResObj['invName'] = result[i]['INV_Name']
                     }
                     if (typeof result[i]['INV_Size'] == 'string') {
-                        catapultTableListObj['invSize'] = result[i]['INV_Size'].trim()
+                        catapultResObj['invSize'] = result[i]['INV_Size'].trim()
                     } else {
-                        catapultTableListObj['invSize'] = result[i]['INV_Size']
+                        catapultResObj['invSize'] = result[i]['INV_Size']
                     }
                     if (typeof result[i]['INV_ReceiptAlias'] == 'string') {
-                        catapultTableListObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias'].trim()
+                        catapultResObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias'].trim()
                     } else {
-                        catapultTableListObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias']
+                        catapultResObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias']
                     }
-                    catapultTableListObj['posTimeStamp'] = unescape(result[i]['POS_TimeStamp'])
-                    catapultTableListObj['invDateCreated'] = result[i]['INV_DateCreated']
-                    catapultTableListObj['invEmpFkCreatedBy'] = result[i]['INV_EMP_FK_CreatedBy']
-                    catapultTableListObj['ordQuantityInOrderUnit'] = result[i]['ord_quantityinorderunit']
+                    catapultResObj['posTimeStamp'] = unescape(result[i]['POS_TimeStamp'])
+                    catapultResObj['invDateCreated'] = result[i]['INV_DateCreated']
+                    catapultResObj['invEmpFkCreatedBy'] = result[i]['INV_EMP_FK_CreatedBy']
+                    catapultResObj['ordQuantityInOrderUnit'] = result[i]['ord_quantityinorderunit']
                     if (typeof result[i]['oup_name'] == 'string') {
-                        catapultTableListObj['oupName'] = result[i]['oup_name'].trim()
+                        catapultResObj['oupName'] = result[i]['oup_name'].trim()
                     } else {
-                        catapultTableListObj['oupName'] = result[i]['oup_name']
+                        catapultResObj['oupName'] = result[i]['oup_name']
                     }
                     if (typeof result[i]['sto_name'] == 'string') {
-                        catapultTableListObj['stoName'] = result[i]['sto_name'].trim()
+                        catapultResObj['stoName'] = result[i]['sto_name'].trim()
                     } else {
-                        catapultTableListObj['stoName'] = result[i]['sto_name']
+                        catapultResObj['stoName'] = result[i]['sto_name']
                     }
                     if (typeof result[i]['brd_name'] == 'string') {
-                        catapultTableListObj['brdName'] = result[i]['brd_name'].trim()
+                        catapultResObj['brdName'] = result[i]['brd_name'].trim()
                     } else {
-                        catapultTableListObj['brdName'] = result[i]['brd_name']
+                        catapultResObj['brdName'] = result[i]['brd_name']
                     }
                     if (typeof result[i]['dpt_name'] == 'string') {
-                        catapultTableListObj['dptName'] = result[i]['dpt_name'].trim()
+                        catapultResObj['dptName'] = result[i]['dpt_name'].trim()
                     } else {
-                        catapultTableListObj['dptName'] = result[i]['dpt_name']
+                        catapultResObj['dptName'] = result[i]['dpt_name']
                     }
-                    catapultTableListObj['dptNumber'] = result[i]['dpt_number']
+                    catapultResObj['dptNumber'] = result[i]['dpt_number']
                     if (typeof result[i]['ven_companyname'] == 'string') {
-                        catapultTableListObj['venCompanyname'] = result[i]['ven_companyname'].trim()
+                        catapultResObj['venCompanyname'] = result[i]['ven_companyname'].trim()
                     } else {
-                        catapultTableListObj['venCompanyname'] = result[i]['ven_companyname']
+                        catapultResObj['venCompanyname'] = result[i]['ven_companyname']
                     }
-                    catapultTableListObj['invLastreceived'] = result[i]['inv_lastreceived']
-                    catapultTableListObj['invLastsold'] = result[i]['inv_lastsold']
-                    catapultTableListObj['invLastcost'] = result[i]['inv_lastcost']
-                    catapultTableListObj['sibBasePrice'] = result[i]['SIB_BasePrice']
-                    catapultTableListObj['invOnhand'] = result[i]['inv_onhand']
-                    catapultTableListObj['invOnorder'] = result[i]['inv_onorder']
-                    catapultTableListObj['invIntransit'] = result[i]['inv_intransit']
+                    catapultResObj['invLastreceived'] = result[i]['inv_lastreceived']
+                    catapultResObj['invLastsold'] = result[i]['inv_lastsold']
+                    catapultResObj['invLastcost'] = result[i]['inv_lastcost']
+                    catapultResObj['sibBasePrice'] = result[i]['SIB_BasePrice']
+                    catapultResObj['invOnhand'] = result[i]['inv_onhand']
+                    catapultResObj['invOnorder'] = result[i]['inv_onorder']
+                    catapultResObj['invIntransit'] = result[i]['inv_intransit']
                     if (typeof result[i]['PI1_Description'] == 'string') {
-                        catapultTableListObj['pi1Description'] = result[i]['PI1_Description'].trim()
+                        catapultResObj['pi1Description'] = result[i]['PI1_Description'].trim()
                     } else {
-                        catapultTableListObj['pi1Description'] = result[i]['PI1_Description']
+                        catapultResObj['pi1Description'] = result[i]['PI1_Description']
                     }
                     if (typeof result[i]['PI2_Description'] == 'string') {
-                        catapultTableListObj['pi2Description'] = result[i]['PI2_Description'].trim()
+                        catapultResObj['pi2Description'] = result[i]['PI2_Description'].trim()
                     } else {
-                        catapultTableListObj['pi2Description'] = result[i]['PI2_Description']
+                        catapultResObj['pi2Description'] = result[i]['PI2_Description']
                     }
                     if (typeof result[i]['PI3_Description'] == 'string') {
-                        catapultTableListObj['pi3Description'] = result[i]['PI3_Description'].trim()
+                        catapultResObj['pi3Description'] = result[i]['PI3_Description'].trim()
                     } else {
-                        catapultTableListObj['pi3Description'] = result[i]['PI3_Description']
+                        catapultResObj['pi3Description'] = result[i]['PI3_Description']
                     }
                     if (typeof result[i]['PI4_Description'] == 'string') {
-                        catapultTableListObj['pi4Description'] = result[i]['PI4_Description'].trim()
+                        catapultResObj['pi4Description'] = result[i]['PI4_Description'].trim()
                     } else {
-                        catapultTableListObj['pi4Description'] = result[i]['PI4_Description']
+                        catapultResObj['pi4Description'] = result[i]['PI4_Description']
                     }
                     if (typeof result[i]['INV_PowerField1'] == 'string') {
-                        catapultTableListObj['invPowerField1'] = result[i]['INV_PowerField1'].trim()
+                        catapultResObj['invPowerField1'] = result[i]['INV_PowerField1'].trim()
                     } else {
-                        catapultTableListObj['invPowerField1'] = result[i]['INV_PowerField1']
+                        catapultResObj['invPowerField1'] = result[i]['INV_PowerField1']
                     }
                     if (typeof result[i]['INV_PowerField2'] == 'string') {
-                        catapultTableListObj['invPowerField2'] = result[i]['INV_PowerField2'].trim()
+                        catapultResObj['invPowerField2'] = result[i]['INV_PowerField2'].trim()
                     } else {
-                        catapultTableListObj['invPowerField2'] = result[i]['INV_PowerField2']
+                        catapultResObj['invPowerField2'] = result[i]['INV_PowerField2']
                     }
                     if (typeof result[i]['INV_PowerField3'] == 'string') {
-                        catapultTableListObj['invPowerField3'] = result[i]['INV_PowerField3'].trim()
+                        catapultResObj['invPowerField3'] = result[i]['INV_PowerField3'].trim()
                     } else {
-                        catapultTableListObj['invPowerField3'] = result[i]['INV_PowerField3']
+                        catapultResObj['invPowerField3'] = result[i]['INV_PowerField3']
                     }
                     if (typeof result[i]['INV_PowerField4'] == 'string') {
-                        catapultTableListObj['invPowerField4'] = result[i]['INV_PowerField4'].trim()
+                        catapultResObj['invPowerField4'] = result[i]['INV_PowerField4'].trim()
                     } else {
-                        catapultTableListObj['invPowerField4'] = result[i]['INV_PowerField4']
+                        catapultResObj['invPowerField4'] = result[i]['INV_PowerField4']
                     }
 
-                    catapultTableArr.push(catapultTableListObj)
+                    catapultResArr.push(catapultResObj)
                 }
                 console.log('result.length~~~>', result.length)
             }
@@ -132,11 +137,11 @@ module.exports = {
                     console.log('result[0]==>', result[0])
                     // console.log('result[\'columns\'][2]==>', result['columns'][2])
                     // console.log('result.length~~~>', result.length)
-                    showCatapultTables(result)
+                    showcatapultResults(result)
 
                     res.render('vw-v_InventoryMaster_query2', { //render searchResults to vw-retailCalcPassport page
                         title: 'vw-v_InventoryMaster_query2',
-                        catapultTables: catapultTableArr
+                        catapultResults: catapultResArr
                     })
                 })
             })
@@ -145,7 +150,7 @@ module.exports = {
 
 // /* GET /catapultTableQuery */
 
-// let catapultTableArr = []
+// let catapultResArr = []
 
 // router.get('/', function (req, res, next) {
 //     res.render('vw-v_InventoryMaster_query', {
@@ -158,7 +163,7 @@ module.exports = {
 
 // router.post('/queryTable', function (req, res, next) {
 
-//     // let catapultTableArr = []
+//     // let catapultResArr = []
 
 //     const queryCatapultDBPostBody = req.body
 //     // console.log(`queryCatapultDBPostBody==> ${queryCatapultDBPostBody}`)
@@ -167,111 +172,111 @@ module.exports = {
 
 //     console.log(`catapultDbQuery==> ${catapultDbQuery}`)
 
-//     // let catapultTableArr = []
+//     // let catapultResArr = []
 
-//     function showCatapultTables(result) {
+//     function showcatapultResults(result) {
 //         for (let i = 0; i < result.length; i++) {
-//             let catapultTableListObj = {}
-//             catapultTableListObj['invPK'] = result[i]['INV_PK']
+//             let catapultResObj = {}
+//             catapultResObj['invPK'] = result[i]['INV_PK']
 //             if (typeof result[i]['INV_ScanCode'] == 'string') {
-//                 catapultTableListObj['invScanCode'] = result[i]['INV_ScanCode'].trim()
+//                 catapultResObj['invScanCode'] = result[i]['INV_ScanCode'].trim()
 //             } else {
-//                 catapultTableListObj['invScanCode'] = result[i]['INV_ScanCode']
+//                 catapultResObj['invScanCode'] = result[i]['INV_ScanCode']
 //             }
 //             if (typeof result[i]['INV_Name'] == 'string') {
-//                 catapultTableListObj['invName'] = result[i]['INV_Name'].trim()
+//                 catapultResObj['invName'] = result[i]['INV_Name'].trim()
 //             } else {
-//                 catapultTableListObj['invName'] = result[i]['INV_Name']
+//                 catapultResObj['invName'] = result[i]['INV_Name']
 //             }
 //             if (typeof result[i]['INV_Size'] == 'string') {
-//                 catapultTableListObj['invSize'] = result[i]['INV_Size'].trim()
+//                 catapultResObj['invSize'] = result[i]['INV_Size'].trim()
 //             } else {
-//                 catapultTableListObj['invSize'] = result[i]['INV_Size']
+//                 catapultResObj['invSize'] = result[i]['INV_Size']
 //             }
 //             if (typeof result[i]['INV_ReceiptAlias'] == 'string') {
-//                 catapultTableListObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias'].trim()
+//                 catapultResObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias'].trim()
 //             } else {
-//                 catapultTableListObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias']
+//                 catapultResObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias']
 //             }
-//             catapultTableListObj['posTimeStamp'] = unescape(result[i]['POS_TimeStamp'])
-//             catapultTableListObj['invDateCreated'] = result[i]['INV_DateCreated']
-//             catapultTableListObj['invEmpFkCreatedBy'] = result[i]['INV_EMP_FK_CreatedBy']
-//             catapultTableListObj['ordQuantityInOrderUnit'] = result[i]['ord_quantityinorderunit']
+//             catapultResObj['posTimeStamp'] = unescape(result[i]['POS_TimeStamp'])
+//             catapultResObj['invDateCreated'] = result[i]['INV_DateCreated']
+//             catapultResObj['invEmpFkCreatedBy'] = result[i]['INV_EMP_FK_CreatedBy']
+//             catapultResObj['ordQuantityInOrderUnit'] = result[i]['ord_quantityinorderunit']
 //             if (typeof result[i]['oup_name'] == 'string') {
-//                 catapultTableListObj['oupName'] = result[i]['oup_name'].trim()
+//                 catapultResObj['oupName'] = result[i]['oup_name'].trim()
 //             } else {
-//                 catapultTableListObj['oupName'] = result[i]['oup_name']
+//                 catapultResObj['oupName'] = result[i]['oup_name']
 //             }
 //             if (typeof result[i]['sto_name'] == 'string') {
-//                 catapultTableListObj['stoName'] = result[i]['sto_name'].trim()
+//                 catapultResObj['stoName'] = result[i]['sto_name'].trim()
 //             } else {
-//                 catapultTableListObj['stoName'] = result[i]['sto_name']
+//                 catapultResObj['stoName'] = result[i]['sto_name']
 //             }
 //             if (typeof result[i]['brd_name'] == 'string') {
-//                 catapultTableListObj['brdName'] = result[i]['brd_name'].trim()
+//                 catapultResObj['brdName'] = result[i]['brd_name'].trim()
 //             } else {
-//                 catapultTableListObj['brdName'] = result[i]['brd_name']
+//                 catapultResObj['brdName'] = result[i]['brd_name']
 //             }
 //             if (typeof result[i]['dpt_name'] == 'string') {
-//                 catapultTableListObj['dptName'] = result[i]['dpt_name'].trim()
+//                 catapultResObj['dptName'] = result[i]['dpt_name'].trim()
 //             } else {
-//                 catapultTableListObj['dptName'] = result[i]['dpt_name']
+//                 catapultResObj['dptName'] = result[i]['dpt_name']
 //             }
-//             catapultTableListObj['dptNumber'] = result[i]['dpt_number']
+//             catapultResObj['dptNumber'] = result[i]['dpt_number']
 //             if (typeof result[i]['ven_companyname'] == 'string') {
-//                 catapultTableListObj['venCompanyname'] = result[i]['ven_companyname'].trim()
+//                 catapultResObj['venCompanyname'] = result[i]['ven_companyname'].trim()
 //             } else {
-//                 catapultTableListObj['venCompanyname'] = result[i]['ven_companyname']
+//                 catapultResObj['venCompanyname'] = result[i]['ven_companyname']
 //             }
-//             catapultTableListObj['invLastreceived'] = result[i]['inv_lastreceived']
-//             catapultTableListObj['invLastsold'] = result[i]['inv_lastsold']
-//             catapultTableListObj['invLastcost'] = result[i]['inv_lastcost']
-//             catapultTableListObj['sibBasePrice'] = result[i]['SIB_BasePrice']
-//             catapultTableListObj['invOnhand'] = result[i]['inv_onhand']
-//             catapultTableListObj['invOnorder'] = result[i]['inv_onorder']
-//             catapultTableListObj['invIntransit'] = result[i]['inv_intransit']
+//             catapultResObj['invLastreceived'] = result[i]['inv_lastreceived']
+//             catapultResObj['invLastsold'] = result[i]['inv_lastsold']
+//             catapultResObj['invLastcost'] = result[i]['inv_lastcost']
+//             catapultResObj['sibBasePrice'] = result[i]['SIB_BasePrice']
+//             catapultResObj['invOnhand'] = result[i]['inv_onhand']
+//             catapultResObj['invOnorder'] = result[i]['inv_onorder']
+//             catapultResObj['invIntransit'] = result[i]['inv_intransit']
 //             if (typeof result[i]['PI1_Description'] == 'string') {
-//                 catapultTableListObj['pi1Description'] = result[i]['PI1_Description'].trim()
+//                 catapultResObj['pi1Description'] = result[i]['PI1_Description'].trim()
 //             } else {
-//                 catapultTableListObj['pi1Description'] = result[i]['PI1_Description']
+//                 catapultResObj['pi1Description'] = result[i]['PI1_Description']
 //             }
 //             if (typeof result[i]['PI2_Description'] == 'string') {
-//                 catapultTableListObj['pi2Description'] = result[i]['PI2_Description'].trim()
+//                 catapultResObj['pi2Description'] = result[i]['PI2_Description'].trim()
 //             } else {
-//                 catapultTableListObj['pi2Description'] = result[i]['PI2_Description']
+//                 catapultResObj['pi2Description'] = result[i]['PI2_Description']
 //             }
 //             if (typeof result[i]['PI3_Description'] == 'string') {
-//                 catapultTableListObj['pi3Description'] = result[i]['PI3_Description'].trim()
+//                 catapultResObj['pi3Description'] = result[i]['PI3_Description'].trim()
 //             } else {
-//                 catapultTableListObj['pi3Description'] = result[i]['PI3_Description']
+//                 catapultResObj['pi3Description'] = result[i]['PI3_Description']
 //             }
 //             if (typeof result[i]['PI4_Description'] == 'string') {
-//                 catapultTableListObj['pi4Description'] = result[i]['PI4_Description'].trim()
+//                 catapultResObj['pi4Description'] = result[i]['PI4_Description'].trim()
 //             } else {
-//                 catapultTableListObj['pi4Description'] = result[i]['PI4_Description']
+//                 catapultResObj['pi4Description'] = result[i]['PI4_Description']
 //             }
 //             if (typeof result[i]['INV_PowerField1'] == 'string') {
-//                 catapultTableListObj['invPowerField1'] = result[i]['INV_PowerField1'].trim()
+//                 catapultResObj['invPowerField1'] = result[i]['INV_PowerField1'].trim()
 //             } else {
-//                 catapultTableListObj['invPowerField1'] = result[i]['INV_PowerField1']
+//                 catapultResObj['invPowerField1'] = result[i]['INV_PowerField1']
 //             }
 //             if (typeof result[i]['INV_PowerField2'] == 'string') {
-//                 catapultTableListObj['invPowerField2'] = result[i]['INV_PowerField2'].trim()
+//                 catapultResObj['invPowerField2'] = result[i]['INV_PowerField2'].trim()
 //             } else {
-//                 catapultTableListObj['invPowerField2'] = result[i]['INV_PowerField2']
+//                 catapultResObj['invPowerField2'] = result[i]['INV_PowerField2']
 //             }
 //             if (typeof result[i]['INV_PowerField3'] == 'string') {
-//                 catapultTableListObj['invPowerField3'] = result[i]['INV_PowerField3'].trim()
+//                 catapultResObj['invPowerField3'] = result[i]['INV_PowerField3'].trim()
 //             } else {
-//                 catapultTableListObj['invPowerField3'] = result[i]['INV_PowerField3']
+//                 catapultResObj['invPowerField3'] = result[i]['INV_PowerField3']
 //             }
 //             if (typeof result[i]['INV_PowerField4'] == 'string') {
-//                 catapultTableListObj['invPowerField4'] = result[i]['INV_PowerField4'].trim()
+//                 catapultResObj['invPowerField4'] = result[i]['INV_PowerField4'].trim()
 //             } else {
-//                 catapultTableListObj['invPowerField4'] = result[i]['INV_PowerField4']
+//                 catapultResObj['invPowerField4'] = result[i]['INV_PowerField4']
 //             }
 
-//             catapultTableArr.push(catapultTableListObj)
+//             catapultResArr.push(catapultResObj)
 //         }
 //         console.log('result.length~~~>', result.length)
 //     }
@@ -283,20 +288,20 @@ module.exports = {
 //             console.log('result[0]==>', result[0])
 //             // console.log('result[\'columns\'][2]==>', result['columns'][2])
 //             // console.log('result.length~~~>', result.length)
-//             showCatapultTables(result)
+//             showcatapultResults(result)
 
 //             res.render('vw-v_InventoryMaster_query', { //render searchResults to vw-retailCalcPassport page
 //                 title: 'v_InventoryMaster query results',
-//                 catapultTables: catapultTableArr
+//                 catapultResults: catapultResArr
 //             })
 //         })
 //     })
 // });
 
 // router.post('/save2CSV', function (req, res, next) {
-//     console.log(`catapultTableArr[0]==>${catapultTableArr[0]}`)
-//     console.log(`JSON.stringify(catapultTableArr[0])==>${JSON.stringify(catapultTableArr[0])}`)
-//     console.log(`JSON.parse(JSON.stringify(catapultTableArr[0]))==>${JSON.parse(JSON.stringify(catapultTableArr[0]))}`)
+//     console.log(`catapultResArr[0]==>${catapultResArr[0]}`)
+//     console.log(`JSON.stringify(catapultResArr[0])==>${JSON.stringify(catapultResArr[0])}`)
+//     console.log(`JSON.parse(JSON.stringify(catapultResArr[0]))==>${JSON.parse(JSON.stringify(catapultResArr[0]))}`)
 
 
 //     //begin csv generator //////////////////////////////////////////////////////////////////////////
@@ -315,9 +320,9 @@ module.exports = {
 //     }
 
 //     try {
-//         console.log('catapultTableArr[0] from json2csv======>>', catapultTableArr[0])
+//         console.log('catapultResArr[0] from json2csv======>>', catapultResArr[0])
 //         const parser = new Parser(opts);
-//         const csv = parser.parse(catapultTableArr);
+//         const csv = parser.parse(catapultResArr);
 //         // csvContainer.push(csv);
 //         // console.log(`req.body-->${req.body}`)
 //         console.log(`JSON.stringify(req.body)-->${JSON.stringify(req.body)}`)
