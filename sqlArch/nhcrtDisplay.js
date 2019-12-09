@@ -23,6 +23,7 @@ module.exports = {
                 let nhcrtObj = {}
                 nhcrtObj['record_id'] = rows[i]['record_id']
                 nhcrtObj['invScanCode'] = rows[i]['invScanCode']
+                nhcrtObj['ordSupplierStockNumber'] = rows[i]['ordSupplierStockNumber']
                 nhcrtObj['invName'] = rows[i]['invName']
                 nhcrtObj['invSize'] = rows[i]['invSize']
                 nhcrtObj['invReceiptAlias'] = rows[i]['invReceiptAlias']

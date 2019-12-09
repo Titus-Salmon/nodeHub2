@@ -8,7 +8,8 @@ const connection = mysql.createConnection({
   host: process.env.RB_HOST,
   user: process.env.RB_USER,
   password: process.env.RB_PW,
-  database: process.env.RB_DB
+  database: process.env.RB_DB,
+  // multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
 
 // const odbc = require('odbc')
@@ -18,7 +19,7 @@ router.use(fileUpload())
 
 module.exports = {
 
-    populateRBtable: router.post('/populateRBtable', (req, res, next) => {
+  populateRBtable: router.post('/populateRBtable', (req, res, next) => {
     let columnHeaderArray = []
     // if (Object.keys(req.files).length == 0) {
     //   return res.status(400).send('No files were uploaded.');
@@ -40,7 +41,7 @@ module.exports = {
     let tableColumnNames = []
 
     function loadTableColumnNames(result) {
-      for (let i=0; i<result['columns'].length; i++) {
+      for (let i = 0; i < result['columns'].length; i++) {
         tableColumnNames.push(result['columns'][i]['name'])
       }
       console.log('tableColumnNames==>', tableColumnNames)
@@ -49,15 +50,15 @@ module.exports = {
 
 
 
-    let query1 = 'SHOW COLUMNS FROM ' + tableToPopulate + ';'
-    connection.query(query1, (error, response) => {
-      console.log(error || response);
-      console.log(`response.length==> ${response.length}`)
-      for (let i = 0; i < response.length; i++) {
-        console.log(`response[i]['Field']==> ${response[i]['Field']}`)
-        columnHeaderArray.push(response[i]['Field'])
-      }
-    });
+    // let query1 = 'SHOW COLUMNS FROM ' + tableToPopulate + ';'
+    // connection.query(query1, (error, response) => {
+    //   console.log(error || response);
+    //   console.log(`response.length==> ${response.length}`)
+    //   for (let i = 0; i < response.length; i++) {
+    //     console.log(`response[i]['Field']==> ${response[i]['Field']}`)
+    //     columnHeaderArray.push(response[i]['Field'])
+    //   }
+    // });
 
 
     //LOAD DATA LOCAL INFILE '/path/to/products.csv' INTO TABLE products;
@@ -71,13 +72,21 @@ module.exports = {
         console.log('response==>', response);
       }
 
+      // res.render('vw-MySqlTableHub', {
+      //   title: 'vw-MySqlTableHub...',
+      //   tableColNames: tableColumnNames
+      //   // sqlTablePopulated: {
+      //   //   tablePopulated: tableToPopulate,
+      //   // },
+      // });
+
     });
 
     // odbc.pool(DSN, (error1, pool) => {
     //   if (error1) { return; } // handle
     //   pool.query(`SELECT * FROM ${tableToPopulate}`, (error2, result) => {
     //     if (error2) { return; } // handle
-        
+
     //     console.log(result);
     //     loadTableColumnNames(result)
 
@@ -88,7 +97,7 @@ module.exports = {
     //       //   tablePopulated: tableToPopulate,
     //       // },
     //     });
-        
+
     //   });
     // });
 
