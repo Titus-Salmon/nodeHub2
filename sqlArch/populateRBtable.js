@@ -59,7 +59,7 @@ module.exports = {
 
 
     //LOAD DATA LOCAL INFILE '/path/to/products.csv' INTO TABLE products;
-    let query2 = `LOAD DATA LOCAL INFILE ./public/csv-to-insert/${fileToUpload.name} INTO TABLE ${tableToPopulate} FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+    let query2 = `LOAD DATA LOCAL INFILE './public/csv-to-insert/${fileToUpload.name}' INTO TABLE ${tableToPopulate} FIELDS TERMINATED BY ',' ENCLOSED BY '"'
      LINES TERMINATED BY '\r\n' IGNORE 1 LINES;`
     // let query2 = 'LOAD DATA LOCAL INFILE' + "'" + './public/csv-to-insert/' + fileToUpload.name + "'" + ' INTO TABLE ' +
     //   tableToPopulate + ' FIELDS TERMINATED BY ' + "','" + ' ENCLOSED BY ' + `'"'` +
