@@ -23,7 +23,7 @@ module.exports = {
                 let nhcrtEdiJoinObj = {}
                 nhcrtEdiJoinObj['record_id'] = rows[i]['record_id']
                 nhcrtEdiJoinObj['invScanCode'] = rows[i]['invScanCode']
-                // nhcrtEdiJoinObj['ascScanCode'] = rows[i]['ascScanCode']
+                nhcrtEdiJoinObj['ordSupplierStockNumber'] = rows[i]['ordSupplierStockNumber']
                 nhcrtEdiJoinObj['invName'] = rows[i]['invName']
                 nhcrtEdiJoinObj['invSize'] = rows[i]['invSize']
                 nhcrtEdiJoinObj['invReceiptAlias'] = rows[i]['invReceiptAlias']
@@ -87,8 +87,9 @@ module.exports = {
         connection.query(mySqlQuery, function (err, rows, fields) {
             if (err) throw err
             console.log(`rows.length==>${rows.length}`)
-            console.log(`rows[0]['invScanCode']==>${rows[0]['invScanCode']}`)
-            console.log(`rows[0]['invName']==>${rows[0]['invName']}`)
+            console.log('rows[0]==>', rows[0])
+            // console.log(`rows[0]['invScanCode']==>${rows[0]['invScanCode']}`)
+            // console.log(`rows[0]['invName']==>${rows[0]['invName']}`)
             // console.log('rows==>', rows)
             // res.send(rows)
             displayNhcrtEdi(rows)
