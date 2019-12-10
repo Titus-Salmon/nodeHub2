@@ -12,9 +12,6 @@ const connection = mysql.createConnection({
   // multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
 
-// const odbc = require('odbc')
-// const DSN = process.env.ODBC_CONN_STRING
-
 router.use(fileUpload())
 
 module.exports = {
@@ -27,7 +24,7 @@ module.exports = {
 
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     let fileToUpload = req.files.popTblPost;
-    console.log('fileToUpload==>', fileToUpload)
+    console.log(`fileToUpload==> ${fileToUpload}`)
 
     // Use the mv() method to place the file somewhere on your server
     fileToUpload.mv(process.cwd() + '/public/csv-to-insert/' + fileToUpload.name, function (err) {
@@ -62,9 +59,11 @@ module.exports = {
 
 
     //LOAD DATA LOCAL INFILE '/path/to/products.csv' INTO TABLE products;
-    let query2 = 'LOAD DATA LOCAL INFILE' + "'" + './public/csv-to-insert/' + fileToUpload.name + "'" + ' INTO TABLE ' +
-      tableToPopulate + ' FIELDS TERMINATED BY ' + "','" + ' ENCLOSED BY ' + `'"'` +
-      ' LINES TERMINATED BY ' + "'\r\n'" + 'IGNORE 1 LINES;'
+    let query2 = `LOAD DATA LOCAL INFILE ./public/csv-to-insert/${fileToUpload.name} INTO TABLE ${tableToPopulate} FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+     LINES TERMINATED BY '\r\n' IGNORE 1 LINES;`
+    // let query2 = 'LOAD DATA LOCAL INFILE' + "'" + './public/csv-to-insert/' + fileToUpload.name + "'" + ' INTO TABLE ' +
+    //   tableToPopulate + ' FIELDS TERMINATED BY ' + "','" + ' ENCLOSED BY ' + `'"'` +
+    //   ' LINES TERMINATED BY ' + "'\r\n'" + 'IGNORE 1 LINES;'
     connection.query(query2, (error, response) => {
       if (error) {
         console.log('error===>', error)
