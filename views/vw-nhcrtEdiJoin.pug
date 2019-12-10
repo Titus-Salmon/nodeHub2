@@ -11,9 +11,9 @@ html
 			if nhcrtEdiJoin !== undefined
 				label.input-label-1(for='csv') filename:
 					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				label.input-label-1(for='csvHeaders') filename:
-					input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', value='record_id,invScanCode,invName,invSize,invReceiptAlias,posTimeStamp,invDateCreated,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,venCompanyname,invLastcost,sibBasePrice,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4,ediCost')
-				label.input-label-1(for='csvData') filename:
+				label.input-label-1(for='csvHeaders') CSV Headers
+					input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', value='record_id,invScanCode,ordSupplierStockNumber,invName,invSize,invReceiptAlias,posTimeStamp,invDateCreated,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,venCompanyname,invLastcost,sibBasePrice,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4,ediCost')
+				label.input-label-1(for='csvData') CSV Body data
 					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=nhcrtEdiJoin)
 				button#saveCSVnhcrtEdi(type="submit" form="nhcrtEdiCSVPost") Save Results as CSV - NHCRT/EDI joined tables
 
@@ -24,6 +24,7 @@ html
 						th record_id
 						th invScanCode
 						th ordSupplierStockNumber
+						th ediSKU
 						th invName
 						th invSize
 						th invReceiptAlias
@@ -40,6 +41,7 @@ html
 						//- th invLastreceived
 						//- th invLastsold
 						th invLastcost
+						th ediCost
 						th sibBasePrice
 						//- th invOnhand
 						//- th invOnorder
@@ -49,8 +51,7 @@ html
 						th pi3Description
 						th invPowerField3
 						th invPowerField4
-						th ediCost
-
+						
 
 				tbody#resTblBdy
 					if nhcrtEdiJoin !== undefined
@@ -59,6 +60,7 @@ html
 								td= elmnt.record_id
 								td= elmnt.invScanCode
 								td= elmnt.ordSupplierStockNumber
+								td= elmnt.ediSKU
 								td= elmnt.invName
 								td= elmnt.invSize
 								td= elmnt.invReceiptAlias
@@ -75,6 +77,7 @@ html
 								//- td= elmnt.invLastreceived
 								//- td= elmnt.invLastsold
 								td= elmnt.invLastcost
+								td= elmnt.ediCost
 								td= elmnt.sibBasePrice
 								//- td= elmnt.invOnhand
 								//- td= elmnt.invOnorder
@@ -84,7 +87,7 @@ html
 								td= elmnt.pi3Description
 								td= elmnt.invPowerField3
 								td= elmnt.invPowerField4
-								td= elmnt.ediCost
+								
 
 //- testing for clone
 //- change made from home computer

@@ -24,6 +24,13 @@ module.exports = {
                 nhcrtEdiJoinObj['record_id'] = rows[i]['record_id']
                 nhcrtEdiJoinObj['invScanCode'] = rows[i]['invScanCode']
                 nhcrtEdiJoinObj['ordSupplierStockNumber'] = rows[i]['ordSupplierStockNumber']
+                for (let j = 0; j < Object.keys(rows[i]).length; j++) {
+                    if (Object.keys(rows[i])[j].includes('_sku')) {
+                        // console.log(`Object.keys(rows[${i}])[${j}]==>${Object.keys(rows[i])[j]}`)
+                        nhcrtEdiJoinObj['ediSKU'] = rows[i][`${Object.keys(rows[i])[j]}`]
+                        // console.log(`nhcrtEdiJoinObj['ediSKU']==>${nhcrtEdiJoinObj['ediSKU']}`)
+                    }
+                }
                 nhcrtEdiJoinObj['invName'] = rows[i]['invName']
                 nhcrtEdiJoinObj['invSize'] = rows[i]['invSize']
                 nhcrtEdiJoinObj['invReceiptAlias'] = rows[i]['invReceiptAlias']
