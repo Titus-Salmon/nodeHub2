@@ -44,9 +44,6 @@ module.exports = {
       console.log('tableColumnNames==>', tableColumnNames)
     }
 
-
-
-
     // let query1 = 'SHOW COLUMNS FROM ' + tableToPopulate + ';'
     // connection.query(query1, (error, response) => {
     //   console.log(error || response);
@@ -58,48 +55,15 @@ module.exports = {
     // });
 
 
-    //LOAD DATA LOCAL INFILE '/path/to/products.csv' INTO TABLE products;
-    let query2 = `LOAD DATA LOCAL INFILE './public/csv-to-insert/${fileToUpload.name}' INTO TABLE ${tableToPopulate} FIELDS TERMINATED BY ',' ENCLOSED BY '"'
-     LINES TERMINATED BY '\r\n' IGNORE 1 LINES;`
-    // let query2 = 'LOAD DATA LOCAL INFILE' + "'" + './public/csv-to-insert/' + fileToUpload.name + "'" + ' INTO TABLE ' +
-    //   tableToPopulate + ' FIELDS TERMINATED BY ' + "','" + ' ENCLOSED BY ' + `'"'` +
-    //   ' LINES TERMINATED BY ' + "'\r\n'" + 'IGNORE 1 LINES;'
+    let query2 = `LOAD DATA LOCAL INFILE './public/csv-to-insert/${fileToUpload.name}' INTO TABLE ${tableToPopulate} FIELDS TERMINATED BY ','
+     ENCLOSED BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES;`
     connection.query(query2, (error, response) => {
       if (error) {
         console.log('error===>', error)
       } else {
         console.log('response==>', response);
       }
-
-      // res.render('vw-MySqlTableHub', {
-      //   title: 'vw-MySqlTableHub...',
-      //   tableColNames: tableColumnNames
-      //   // sqlTablePopulated: {
-      //   //   tablePopulated: tableToPopulate,
-      //   // },
-      // });
-
     });
-
-    // odbc.pool(DSN, (error1, pool) => {
-    //   if (error1) { return; } // handle
-    //   pool.query(`SELECT * FROM ${tableToPopulate}`, (error2, result) => {
-    //     if (error2) { return; } // handle
-
-    //     console.log(result);
-    //     loadTableColumnNames(result)
-
-    //     res.render('vw-tsqlTableHub', {
-    //       title: 'vw-tsqlTableHub',
-    //       tableColNames: tableColumnNames
-    //       // sqlTablePopulated: {
-    //       //   tablePopulated: tableToPopulate,
-    //       // },
-    //     });
-
-    //   });
-    // });
-
 
     res.render('vw-MySqlTableHub', {
       title: 'vw-MySqlTableHub...',
