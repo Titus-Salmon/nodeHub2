@@ -23,8 +23,8 @@ module.exports = {
     console.log(`loadTablePostBody['ldTblNamePost']==> ${loadTablePostBody['ldTblNamePost']}`)
     // let wsDiffResults = loadTablePostBody['wsDiffResultsLoadTblPost']
 
-    // let sqlQuery = 'SELECT * FROM ' + tableNameToLoad + ';' + 'SHOW COLUMNS FROM ' + tableNameToLoad + ';'
-    let sqlQuery = `SELECT * FROM ${tableNameToLoad}; SHOW COLUMNS FROM ${tableNameToLoad};`
+    // let sqlQuery = `SELECT * FROM ${tableNameToLoad}; SHOW COLUMNS FROM ${tableNameToLoad};`
+    let sqlQuery = `SHOW COLUMNS FROM ${tableNameToLoad};`
     connection.query(sqlQuery, (error, response, rows) => {
       if (error) {
         console.log('error=====>>', error)
@@ -39,18 +39,14 @@ module.exports = {
           },
         })
       } else {
-        console.log(`the following queries have been successfully performed from loadTable_MySqlHub.js:
-        (1) SELECT * FROM ${tableNameToLoad}; ***THIS QUERY MAY BE UNNECESSARY; ONLY THING WE REALLY NEED HERE MAY BE THE TABLE COLUMN NAMES (2nd query)***
-        (2) SHOW COLUMNS FROM ${tableNameToLoad};
+        console.log(`the following querie(s) have been successfully performed from loadTable_MySqlHub.js:
+        (1) SHOW COLUMNS FROM ${tableNameToLoad};
         This gives a response.length of ==> ${response.length} (one response per query)
-        >>The first response (response[0]) is the entire table. Here is the 1st RowDataPacket of that response, as an example:
-        ${JSON.stringify(response[0][0])}
-        >>The second response (response[1]) is all columns for that table. Here are the 1st 2 RowDataPackets of that response, as an example:
-        ${JSON.stringify(response[1][0])}
-        ${JSON.stringify(response[1][1])}`)
+        >>Here is that entire response:
+        JSON.stringify(response)==> ${JSON.stringify(response)}`)
 
-        for (let i = 0; i < response[1].length; i++) {
-          FieldArray.push(response[1][i]['Field'])
+        for (let i = 0; i < response.length; i++) {
+          FieldArray.push(response[i]['Field'])
         }
         res.render('vw-MySqlTableHub', {
           title: `vw-MySqlTableHub with table headers for <<${tableNameToLoad}>> loaded`,
