@@ -41,7 +41,7 @@ module.exports = {
       } else {
         console.log(`the following querie(s) have been successfully performed from loadTable_MySqlHub.js:
         (1) SHOW COLUMNS FROM ${tableNameToLoad};
-        This gives a response.length of ==> ${response.length} (one response per query)
+        This gives a response.length of ==> ${response.length}
         >>Here is that entire response:
         JSON.stringify(response)==> ${JSON.stringify(response)}`)
 
