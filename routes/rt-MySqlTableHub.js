@@ -47,6 +47,7 @@ router.post('/queryRBdb', queryRBdb)
 router.post('/nhcrtDisplay', nhcrtDisplay)
 router.post('/nhcrtEdiJoin', nhcrtEdiJoin)
 router.post('/save2CSVnhcrtEdiJoin', save2CSVnhcrtEdiJoin)
+router.post('/loadTable_MySqlHub', loadTable_MySqlHub)
 
 
 module.exports = router;

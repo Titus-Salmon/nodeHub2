@@ -7,9 +7,9 @@ html
 	body
 		include vw-dashboard.pug
 
-		//- //v//***NEED TO DEAL WITH THIS - update or delete (currently has old url info from rbRetailCalculator**********
+		//- //v//%%in process of changing%%***NEED TO DEAL WITH THIS - update or delete (currently has old url info from rbRetailCalculator**********
 		div(style="display:block")
-			form#loadTable(action='/retailCalcUniversal_brandTargeting/loadTableUniversal_brandTargeting' method='POST' accept-charset="UTF-8")
+			form#loadTable(action='/MySqlTableHub/loadTable_MySqlHub' method='POST' accept-charset="UTF-8")
 				label.input-label-1(for='ldTblName') Table Name to Load
 				input#ldTblName.input-unit-1(type='text', placeholder='enter data1', name='ldTblNamePost', value='')
 
@@ -19,15 +19,13 @@ html
 				button#ldTblBtn(type='submit', form='loadTable') Load Table
 
 		if loadedTable !== undefined
-			- console.log('vw-retailCalcUniversal_brandTargeting.pug says \'loadedTable\' object===>', loadedTable)
-
 			input#loadedTblName.input-unit-1(type='text', placeholder='enter data2', name='loadedTblNamePost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
 			input#ldTblFields.input-unit-1(type='text', placeholder='enter data', name='ldTblFieldsPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-			p= 'Loaded Table: ' + loadedTable.tableNameToLoad
+			p= `Loaded Table: ${loadedTable.tableNameToLoad}`
 			p Errors:
 			if loadedTable.tableLoadError.length > 0
 				each thing in loadedTable.tableLoadError
-					- console.log('thing==>', thing)
+					- console.log(`thing==> ${thing}`)
 					p= thing
 
 		//- //^//***NEED TO DEAL WITH THIS - update or delete (currently has old url info from rbRetailCalculator**********
