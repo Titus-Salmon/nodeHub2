@@ -170,24 +170,9 @@ module.exports = {
         genericHeaderObj.nameHeader = splitFieldResult[i]
       }
       //v//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
-      if (splitFieldResult[i] !== 'discount_cost' && splitFieldResult[i] !== 'item_cost' && splitFieldResult[i] !== 'rb_cost_status' && splitFieldResult[i].includes('cost')) { //Last Cost(?) ==>updated WS
+      if (splitFieldResult[i] == 'ediCost') { //Last Cost(?) ==>updated WS
         genericHeaderObj.costHeader = splitFieldResult[i]
-      } //<-- targeted rb_cost; this was causing items that we apparently don't carry to be included in DOM table, 
-      //and also consequently in retail IMW, which we don't want... SHOULD target item_cost; see below (***20191206 N.B. actually, DO want to target rb_cost...
-      //ITEMS THAT COME UP AS BLANK ("") IN MARGIN REPORT ARE ITEMS WHERE THE vendor cat UPC & SKU don't match the Catapult UPC & SKU
-      //NEED TO ***NOT*** INCLUDE THOSE IN THE RETAIL GENERATOR)
-      //N.B. IF item_cost = "", IT MEANS THIS ITEM IS NOT IN THE CURRENT EDI CATALOG (BUT IT MAY HAVE A rb_cost, BECAUSE IT WAS ONCE A PRODUCT WE ORDERED)
-      //v//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      //20191121 N.B. on above: this isn't entirely correct. There is actully an error in Tom's Margin Report that causes it to think some items
-      //aren't in Catapult, when in fact they are; and furthermore, RB has them in stock. Tom thinks it has something to do with items that use their
-      //UPC as a double for their SKU, and for some reason the Margin Report considers them as invalid/not in Catapult...
-      //SOLUTION FOR NOW: UNCOMMENT PORTION ABOVE THAT TARGETS rb_cost, AND COMMENT OUT PORTION BELOW THAT TARGETS item_cost
-      //^//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      if (splitFieldResult[i] !== 'discount_cost' && splitFieldResult[i] !== 'rb_cost' && //<==targets item_cost
-        splitFieldResult[i] !== 'rb_cost_status' && splitFieldResult[i].includes('cost') ||
-        splitFieldResult[i].includes('kehe_tier3')) { //Last Cost(?) ==>updated WS
-        genericHeaderObj.costHeaderItemCost = splitFieldResult[i]
-      }
+      } //targeting ediCost from vendor catalog
       //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       if (splitFieldResult[i].includes('item_price') || splitFieldResult[i].includes('msrp')) { //Suggested Retail ==>msrp?
