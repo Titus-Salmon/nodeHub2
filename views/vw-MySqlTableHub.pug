@@ -52,7 +52,7 @@ html
 
 		br
 
-		//- //v// joins nhcrt table to edi table'
+		//- //v// joins nhcrt table to edi table
 		form#nhcrtEdiJoin(action='/MySqlTableHub/nhcrtEdiJoin' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='nhcrtEdiJoin') This query joins nhcrt & edi tables
@@ -60,17 +60,11 @@ html
 				//- //^//ACTUALLY DON'T WANT 'DISTINCT' HERE, BECAUSE WANT TO CATCH ANY UPC&SKU MISMATCHES BETWEEN VENDOR CATALOG & CATAPULT.
 				textarea#nhcrtEdiJoin.input-unit-1(name="nhcrtEdiJoinPost", cols="30", rows="1", wrap="soft") SELECT nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, edi_table.* FROM ${nhcrtTableName} nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = edi_table.${ediPrefix_upc};
 				button#crtTblBtn(type='submit', form='nhcrtEdiJoin', style="display: block; float: left") Display NHCRT/EDI joined tables
-		//- //^// joins nhcrt table to edi table'
+		//- //^// joins nhcrt table to edi table
 
 		br
 
-		//- div(style="display:block")
-		//- 	form#nhcrtEdiCSVPost(action='/tsqlTableHub/save2CSV' method='POST' accept-charset='UTF-8')
-		//- 		if nhcrtEdiJoin !== undefined
-		//- 			label.input-label-1(for='csv') filename:
-		//- 				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-		//- 			button#saveCSVnhcrtEdi(type="submit" form="nhcrtEdiCSVPost") Save Results as CSV - NHCRT/EDI joined tables
-
+		//- //v// creates empty mysql table
 		form#createTable(action='/MySqlTableHub/createRBtable' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='crtTblName') Enter MySql Table Name to CREATE
@@ -79,6 +73,8 @@ html
 				label.input-label-1(for='crtTblInput') Enter Table Headers (as csv) - default headers for nhcrt (Node Hub Catalog Results Table) provided
 				input#crtTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='invScanCode,invName,ordSupplierStockNumber,invSize,invReceiptAlias,posTimeStamp,invDateCreated,invEmpFkCreatedBy,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,venCompanyname,invLastreceived,invLastsold,invLastcost,sibBasePrice,invOnhand,invOnorder,invIntransit,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4')
 				button#crtTblBtn(type='submit', form='createTable', style="display: block; float: left") CREATE Table
+		//- //^// creates empty mysql table
+		
 		br
 		br
 
