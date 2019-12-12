@@ -20,17 +20,18 @@ module.exports = {
 
     const loadTablePostBody = req.body
     let tableNameToLoad = loadTablePostBody['ldTblNamePost']
+    console.log(`loadTablePostBody['ldTblNamePost']==> ${loadTablePostBody['ldTblNamePost']}`)
     // let wsDiffResults = loadTablePostBody['wsDiffResultsLoadTblPost']
 
     // let sqlQuery = 'SELECT * FROM ' + tableNameToLoad + ';' + 'SHOW COLUMNS FROM ' + tableNameToLoad + ';'
-    let sqlQuery = `SHOW COLUMNS FROM ${tableNameToLoad};`
+    let sqlQuery = `SELECT * FROM ${tableNameToLoad}; SHOW COLUMNS FROM ${tableNameToLoad};`
     connection.query(sqlQuery, (error, response, rows) => {
       if (error) {
         console.log('error=====>>', error)
         loadErrors.push(error.code)
         console.log('loadErrors==>', loadErrors)
         res.render('vw-MySqlTableHub', {
-          title: `**ERROR** vw-MySqlTableHub with table headers for <<${loadedTable.tableNameToLoad}>> loaded **ERROR**`,
+          title: `**ERROR** vw-MySqlTableHub with table headers for <<${tableNameToLoad}>> loaded **ERROR**`,
           loadedTable: {
             tableNameToLoad: tableNameToLoad,
             tableLoadError: loadErrors,
@@ -51,8 +52,8 @@ module.exports = {
         for (let i = 0; i < response[1].length; i++) {
           FieldArray.push(response[1][i]['Field'])
         }
-        res.render('vw-retailCalcUniversal_brandTargeting', {
-          title: `vw-MySqlTableHub with table headers for <<${loadedTable.tableNameToLoad}>> loaded`,
+        res.render('vw-MySqlTableHub', {
+          title: `vw-MySqlTableHub with table headers for <<${tableNameToLoad}>> loaded`,
           loadedTable: {
             tableNameToLoad: tableNameToLoad,
             tableLoadError: loadErrors,
