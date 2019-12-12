@@ -7,13 +7,15 @@ html
 	body
 		include vw-dashboard.pug
 
-		//- //v//%%in process of changing%%***NEED TO DEAL WITH THIS - update or delete (currently has old url info from rbRetailCalculator**********
+		//-/v// NEW STUFF FOR MySqlTableHub*****************************************************************************************************
+
+		//- //v// loads table column names for specified table
 		div(style="display:block")
 			form#loadTable(action='/MySqlTableHub/loadTable_MySqlHub' method='POST' accept-charset="UTF-8")
-				label.input-label-1(for='ldTblName') Table Name to Load
+				label.input-label-1(for='ldTblName') Table Name to Load (loads column names)
 				input#ldTblName.input-unit-1(type='text', placeholder='enter data1', name='ldTblNamePost', value='')
 
-				label.input-label-1(for='wsDiffResults') WS Diff Results
+				label.input-label-1(for='wsDiffResults') WS Diff Results (handling for this has been commented out, so currently not functional)
 				input#wsDiffResultsLoadTbl.input-unit-1(type='text', name='wsDiffResultsLoadTblPost' value=wsDiff)
 
 				button#ldTblBtn(type='submit', form='loadTable') Load Table
@@ -27,36 +29,39 @@ html
 				each thing in loadedTable.tableLoadError
 					- console.log(`thing==> ${thing}`)
 					p= thing
+		//- //^// loads table column names for specified table
 
-		//- //^//***NEED TO DEAL WITH THIS - update or delete (currently has old url info from rbRetailCalculator**********
 
-
-		//-/v// NEW STUFF FOR MySqlTableHub
-
+		//- //v// queries RB DB - default query here is 'show tables;'
 		form#queryRBdb(action='/MySqlTableHub/queryRBdb' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='dbQuery') Enter Query for Rainbow DB
 				textarea#dbQuery.input-unit-1(name="dbQueryPost", cols="30", rows="1", wrap="soft") show tables;
-
 				button#crtTblBtn(type='submit', form='queryRBdb', style="display: block; float: left") QUERY Rainbow DB
-		br
+		//- //^// queries RB DB - default query here is 'show tables;'
 
+		br
+		
+		//- //v// queries RB DB - default query here is 'SELECT * FROM ${nhcrtTableName};'
 		form#nhcrtDisplay(action='/MySqlTableHub/nhcrtDisplay' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='nhcrtDisplay') Enter NodeHub Catapult Results Table to Display
 				textarea#nhcrtDisplay.input-unit-1(name="nhcrtDisplayPost", cols="30", rows="1", wrap="soft") SELECT * FROM nhcrt_badger20191127;
-
 				button#crtTblBtn(type='submit', form='nhcrtDisplay', style="display: block; float: left") Display NHCRT
+		//- //^// queries RB DB - default query here is 'SELECT * FROM ${nhcrtTableName};'
+
 		br
 
+		//- //v// joins nhcrt table to edi table'
 		form#nhcrtEdiJoin(action='/MySqlTableHub/nhcrtEdiJoin' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
-				label.input-label-1(for='nhcrtEdiJoin') Enter NodeHub Catapult Results Table to Display
+				label.input-label-1(for='nhcrtEdiJoin') This query joins nhcrt & edi tables
 				//- textarea#nhcrtEdiJoin.input-unit-1(name="nhcrtEdiJoinPost", cols="30", rows="1", wrap="soft") SELECT DISTINCT nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, edi_table.* FROM ${nhcrtTableName} nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = edi_table.${ediPrefix_upc};
 				//- //^//ACTUALLY DON'T WANT 'DISTINCT' HERE, BECAUSE WANT TO CATCH ANY UPC&SKU MISMATCHES BETWEEN VENDOR CATALOG & CATAPULT.
 				textarea#nhcrtEdiJoin.input-unit-1(name="nhcrtEdiJoinPost", cols="30", rows="1", wrap="soft") SELECT nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, edi_table.* FROM ${nhcrtTableName} nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = edi_table.${ediPrefix_upc};
-
 				button#crtTblBtn(type='submit', form='nhcrtEdiJoin', style="display: block; float: left") Display NHCRT/EDI joined tables
+		//- //^// joins nhcrt table to edi table'
+
 		br
 
 		//- div(style="display:block")
@@ -115,7 +120,7 @@ html
 		if sqlTablePopulated !== undefined
 			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
 
-		//-/^// NEW STUFF FOR MySqlTableHub
+		//-/^// NEW STUFF FOR MySqlTableHub*********************************************************************************************************
 
 
 
