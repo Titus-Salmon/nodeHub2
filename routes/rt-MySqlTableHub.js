@@ -30,6 +30,9 @@ const {
 const {
   loadTable_MySqlHub
 } = require('../sqlArch/loadTable_MySqlHub')
+const {
+  calcResults
+} = require('../sqlArch/calcResults')
 
 
 
@@ -51,6 +54,7 @@ router.post('/nhcrtDisplay', nhcrtDisplay)
 router.post('/nhcrtEdiJoin', nhcrtEdiJoin)
 router.post('/save2CSVnhcrtEdiJoin', save2CSVnhcrtEdiJoin)
 router.post('/loadTable_MySqlHub', loadTable_MySqlHub)
+router.post('/calcResults', calcResults)
 
 
 module.exports = router;
