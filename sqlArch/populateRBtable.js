@@ -17,7 +17,7 @@ router.use(fileUpload())
 module.exports = {
 
   populateRBtable: router.post('/populateRBtable', (req, res, next) => {
-    let columnHeaderArray = []
+    // let columnHeaderArray = []
     // if (Object.keys(req.files).length == 0) {
     //   return res.status(400).send('No files were uploaded.');
     // }
@@ -35,14 +35,14 @@ module.exports = {
     let tableToPopulate = req.body['popTblNamePost']
     console.log(`req.body['popTblNamePost']==> ${req.body['popTblNamePost']}`)
 
-    let tableColumnNames = []
+    // let tableColumnNames = []
 
-    function loadTableColumnNames(result) {
-      for (let i = 0; i < result['columns'].length; i++) {
-        tableColumnNames.push(result['columns'][i]['name'])
-      }
-      console.log('tableColumnNames==>', tableColumnNames)
-    }
+    // function loadTableColumnNames(result) {
+    //   for (let i = 0; i < result['columns'].length; i++) {
+    //     tableColumnNames.push(result['columns'][i]['name'])
+    //   }
+    //   console.log('tableColumnNames==>', tableColumnNames)
+    // }
 
     // let query1 = 'SHOW COLUMNS FROM ' + tableToPopulate + ';'
     // connection.query(query1, (error, response) => {
@@ -66,11 +66,11 @@ module.exports = {
     });
 
     res.render('vw-MySqlTableHub', {
-      title: 'vw-MySqlTableHub...',
-      tableColNames: tableColumnNames
-      // sqlTablePopulated: {
-      //   tablePopulated: tableToPopulate,
-      // },
+      title: `vw-MySqlTableHub **Populated Table <<${tableToPopulate}>>**`,
+      // tableColNames: tableColumnNames,
+      sqlTablePopulated: {
+        tablePopulated: tableToPopulate,
+      },
     });
   })
 }

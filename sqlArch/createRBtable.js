@@ -29,7 +29,7 @@ module.exports = {
     });
 
     res.render('vw-MySqlTableHub', {
-      title: 'vw-MySqlTableHub',
+      title: `vw-MySqlTableHub Table Created: <<${tableName}>>`,
       sqlTableCreated: {
         tableName: tableName,
         columnNames: columnNames,
