@@ -150,32 +150,33 @@ module.exports = {
 
 
     //****************************************************************************************************************** */
-    //v//generate generic column headers corresponding to margin_report table column headers that are associated with
-    //primary key, upc, sku, name, cost, & msrp
+    //v//generate generic column headers corresponding to nhcrtEdiJoin table column headers that are associated with
+    //primary key, upc, sku, name, cost, msrp, etc...
     let genericHeaderObj = {}
 
     for (let i = 0; i < splitFieldResult.length; i++) {
       if (splitFieldResult[i].includes('record_id')) { //primary key - don't think this will be needed for inv mnt wksht
         genericHeaderObj.primarykeyHeader = splitFieldResult[i]
       }
-      if (splitFieldResult[i] !== 'item_upc' && splitFieldResult[i].includes('upc')) { //Item ID (1); want to avoid the 'item_upc' column name in margin reports
-        //(this will use rb_upc instead for margin reports, and vendorprefix_upc for edi tables)
+      if (splitFieldResult[i] == 'invScanCode') { //Item ID (1); targets upc from catapult v_InventoryMaster table
         genericHeaderObj.upcHeader = splitFieldResult[i]
         console.log('calcResults says: genericHeaderObj.upcHeader==>', genericHeaderObj.upcHeader)
       }
-      if (splitFieldResult[i] !== 'item_sku' && splitFieldResult[i].includes('sku')) { //Supplier Unit ID (25)
+      if (splitFieldResult[i] == 'ordSupplierStockNumber') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
+        //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
         genericHeaderObj.skuHeader = splitFieldResult[i]
       }
-      if (splitFieldResult[i] !== 'item_name' && splitFieldResult[i].includes('name')) { //Item Name (6)
+      if (splitFieldResult[i] == 'invName') { //Item Name (6); targets prod name from catapult v_InventoryMaster portion of nhcrtEdiJoin table
         genericHeaderObj.nameHeader = splitFieldResult[i]
       }
       //v//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
-      if (splitFieldResult[i] == 'ediCost') { //Last Cost(?) ==>updated WS
+      if (splitFieldResult[i] == 'ediCost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
         genericHeaderObj.costHeader = splitFieldResult[i]
       } //targeting ediCost from vendor catalog
       //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       if (splitFieldResult[i].includes('item_price') || splitFieldResult[i].includes('msrp')) { //Suggested Retail ==>msrp?
+        //***NEED TO ADD MSRP FROM EDI table to nhcrtEdiJoin results*/
         genericHeaderObj.msrpHeader = splitFieldResult[i]
       }
       if (splitFieldResult[i] == 'rb_price') { //
