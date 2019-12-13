@@ -171,8 +171,11 @@ module.exports = {
       }
       //v//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
       if (splitFieldResult[i] == 'ediCost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
-        genericHeaderObj.costHeader = splitFieldResult[i]
+        genericHeaderObj.ediCostHeader = splitFieldResult[i]
       } //targeting ediCost from vendor catalog
+      if (splitFieldResult[i] == 'invLastcost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
+        genericHeaderObj.invLastcostHeader = splitFieldResult[i]
+      } //targeting invLastcost from catapult v_InventoryMaster table
       //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       if (splitFieldResult[i].includes('item_price') || splitFieldResult[i].includes('msrp')) { //Suggested Retail ==>msrp?
@@ -371,7 +374,7 @@ module.exports = {
 
         if (typeOfIMW.toLowerCase() == 'wholesale' || typeOfIMW.toLowerCase() == 'new') { //include ws (last cost) for new &
           //wholesale IMWs
-          srcRsObj['lastCost'] = rows[i][genericHeaderObj.costHeader]
+          srcRsObj['lastCost'] = rows[i][genericHeaderObj.ediCostHeader]
         } else {
           srcRsObj['lastCost'] = "" //Last Cost is used for ws cost in IMWs (need for WS update IMWs & new item IMWs, but not for retail update IMWs)
         }
@@ -446,23 +449,23 @@ module.exports = {
           // console.log('genericHeaderObj.keheUOSHeader==>', genericHeaderObj.keheUOSHeader)
           // console.log('rows[' + i + '][genericHeaderObj.keheUOSHeader]==>', rows[i][genericHeaderObj.keheUOSHeader])
           if (rows[i][genericHeaderObj.keheUOSHeader] !== "" && rows[i][genericHeaderObj.keheUOSHeader] > 0) {
-            reviewObj['cost'] = srcRsObj['cost'] = rows[i][genericHeaderObj.costHeader] / rows[i][genericHeaderObj.keheUOSHeader]
+            reviewObj['cost'] = srcRsObj['cost'] = rows[i][genericHeaderObj.ediCostHeader] / rows[i][genericHeaderObj.keheUOSHeader]
             // console.log('case cost / uos==>', srcRsObj['cost'])
           } else {
-            reviewObj['cost'] = srcRsObj['cost'] = rows[i][genericHeaderObj.costHeader]
+            reviewObj['cost'] = srcRsObj['cost'] = rows[i][genericHeaderObj.ediCostHeader]
             // console.log('standard cost1==>', srcRsObj['cost'])
           }
         } else {
-          reviewObj['cost'] = srcRsObj['cost'] = rows[i][genericHeaderObj.costHeader] //INCLUDE in save2CSVreview export data
+          reviewObj['cost'] = srcRsObj['cost'] = rows[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
           // console.log('standard cost2==>', srcRsObj['cost'])
-          if (rows[i][genericHeaderObj.costHeaderItemCost] == "") { //generate blankEdiCostUPC entry to flag any margin report item_cost
+          if (rows[i][genericHeaderObj.ediCostHeaderItemCost] == "") { //generate blankEdiCostUPC entry to flag any margin report item_cost
             //values that are blank. This will then appear in the retail review worksheet under column name blankEdiCost. THESE ITEMS NEED
             //TO BE INVESTIGATED TO SEE IF SKUs ARE INACCURATE, OR WHATEVER ELSE IS GOING ON
             reviewObj['blankEdiCostUPC'] = srcRsObj['blankEdiCostUPC'] = rows[i][genericHeaderObj.upcHeader]
           }
         }
-        // srcRsObj['cost'] = rows[i][genericHeaderObj.costHeader] 
-        // reviewObj['cost'] = rows[i][genericHeaderObj.costHeader]//INCLUDE in save2CSVreview export data
+        // srcRsObj['cost'] = rows[i][genericHeaderObj.ediCostHeader] 
+        // reviewObj['cost'] = rows[i][genericHeaderObj.ediCostHeader]//INCLUDE in save2CSVreview export data
         srcRsObj['msrp'] = rows[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
         reviewObj['msrp'] = rows[i][genericHeaderObj.msrpHeader] //INCLUDE in save2CSVreview export data
 
@@ -733,48 +736,64 @@ module.exports = {
         })
     }
 
+    // function queryMarginReportTable() {
+    //   //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
+    //   if (formInput63 == '' && formInput64 == '' && formInput65 == '' && formInput66 == '' && formInput69 == '') { //return all table entries if search string is empty
+    //     connection.query("SELECT * FROM " + formInput0 + " GROUP BY " + genericHeaderObj.upcHeader + " HAVING COUNT(*) = 5" + ";", function (err, rows, fields) {
+    //       if (err) throw err
+    //       showSearchResults(rows)
+
+    //       res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
+    //         title: 'Retail Price Calculator (Universal w/ Brand Targeting)',
+    //         searchResRows: searchResults,
+    //         loadedSqlTbl: loadedSqlTbl
+    //       })
+    //     })
+    //   } else { // if no records found, render vw-noRecords page
+    //     if (formInput0 !== undefined && formInput63 !== undefined && formInput64 !== undefined &&
+    //       formInput65 !== undefined && formInput66 !== undefined && formInput69 !== undefined) {
+    //       connection.query("SELECT * FROM " + formInput0 + " WHERE " + "'" + genericHeaderObj.upcHeader + "'" + " LIKE " + "'" + formInput62 + "%" + "'" +
+    //         " AND " + genericHeaderObj.skuHeader + " LIKE " + "'" + formInput63 + "%" + "'" +
+    //         " AND " + genericHeaderObj.nameHeader + " LIKE " + "'" + formInput64 + "%" + "'" +
+    //         " AND " + genericHeaderObj.ediCostHeader + " LIKE " + "'" + formInput65 + "%" + "'" +
+    //         " AND " + genericHeaderObj.msrpHeader + " LIKE " + "'" + formInput68 + "%" + "'",
+    //         function (err, rows, fields) {
+    //           if (err) throw err
+    //           if (rows.length <= 0) {
+    //             console.log('NO RECORDS FOUND')
+    //             res.render('vw-noRecords', {
+    //               title: 'no results',
+    //             })
+    //           } else { //if records found for search string entered, add them to searchResults
+    //             showSearchResults(rows)
+
+    //             res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
+    //               title: 'Retail Price Calculator (Universal w/ Brand Targeting)',
+    //               searchResRows: searchResults,
+    //               // wsDiff: wholesaleDiffT0d.wsDifferenceArr
+    //             })
+    //           }
+    //         })
+    //     }
+
+    //     //^//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
+    //   }
+    // }
+
     function queryMarginReportTable() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
-      if (formInput63 == '' && formInput64 == '' && formInput65 == '' && formInput66 == '' && formInput69 == '') { //return all table entries if search string is empty
-        connection.query("SELECT * FROM " + formInput0 + " GROUP BY " + genericHeaderObj.upcHeader + " HAVING COUNT(*) = 5" + ";", function (err, rows, fields) {
-          if (err) throw err
-          showSearchResults(rows)
+      //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
+      connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader};`, function (err, rows, fields) {
+        if (err) throw err
+        showSearchResults(rows)
 
-          res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
-            title: 'Retail Price Calculator (Universal w/ Brand Targeting)',
-            searchResRows: searchResults,
-            loadedSqlTbl: loadedSqlTbl
-          })
+        res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
+          title: 'Retail Price Calculator (using nhcrtEdiJoin table)',
+          searchResRows: searchResults,
+          loadedSqlTbl: loadedSqlTbl
         })
-      } else { // if no records found, render vw-noRecords page
-        if (formInput0 !== undefined && formInput63 !== undefined && formInput64 !== undefined &&
-          formInput65 !== undefined && formInput66 !== undefined && formInput69 !== undefined) {
-          connection.query("SELECT * FROM " + formInput0 + " WHERE " + "'" + genericHeaderObj.upcHeader + "'" + " LIKE " + "'" + formInput62 + "%" + "'" +
-            " AND " + genericHeaderObj.skuHeader + " LIKE " + "'" + formInput63 + "%" + "'" +
-            " AND " + genericHeaderObj.nameHeader + " LIKE " + "'" + formInput64 + "%" + "'" +
-            " AND " + genericHeaderObj.costHeader + " LIKE " + "'" + formInput65 + "%" + "'" +
-            " AND " + genericHeaderObj.msrpHeader + " LIKE " + "'" + formInput68 + "%" + "'",
-            function (err, rows, fields) {
-              if (err) throw err
-              if (rows.length <= 0) {
-                console.log('NO RECORDS FOUND')
-                res.render('vw-noRecords', {
-                  title: 'no results',
-                })
-              } else { //if records found for search string entered, add them to searchResults
-                showSearchResults(rows)
+      })
 
-                res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
-                  title: 'Retail Price Calculator (Universal w/ Brand Targeting)',
-                  searchResRows: searchResults,
-                  // wsDiff: wholesaleDiffT0d.wsDifferenceArr
-                })
-              }
-            })
-        }
-
-        //^//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
-      }
     }
 
     function queryOtherTables() {
@@ -796,7 +815,7 @@ module.exports = {
           connection.query("SELECT * FROM " + formInput0 + " WHERE " + "'" + genericHeaderObj.upcHeader + "'" + " LIKE " + "'" + formInput62 + "%" + "'" +
             " AND " + genericHeaderObj.skuHeader + " LIKE " + "'" + formInput63 + "%" + "'" +
             " AND " + genericHeaderObj.nameHeader + " LIKE " + "'" + formInput64 + "%" + "'" +
-            " AND " + genericHeaderObj.costHeader + " LIKE " + "'" + formInput65 + "%" + "'" +
+            " AND " + genericHeaderObj.ediCostHeader + " LIKE " + "'" + formInput65 + "%" + "'" +
             " AND " + genericHeaderObj.msrpHeader + " LIKE " + "'" + formInput68 + "%" + "'",
             function (err, rows, fields) {
               if (err) throw err
