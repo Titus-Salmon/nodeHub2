@@ -229,8 +229,8 @@ module.exports = {
         function calcCharm(departmentMargin, lowerCutRqdRtl, lowerCutoffCharm1, lowerCutoffCharm2, lowerCutoffCharm3, lowerCutoffCharm4,
           lowerCutoffCharm5, lowerCutoffCharm6, lowerCutoffCharm7, upperCharmRqdRtl, defaultCharm1, defaultCharm2, defaultCharm3, defaultCharm4) {
           //apply DEPARTMENT margin to calculate charm pricing
-          if (srcRsObj['cost'] > 0) {
-            srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['cost'] - srcRsObj['cost'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+          if (srcRsObj['ediCost'] > 0) {
+            srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCost'] - srcRsObj['ediCost'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
             //AND also applies any % discount; discountToApply is set at default 0
             //Finally, Math.round(number*100)/100 converts the result to a number with just 2 decimal places.
             if (srcRsObj['reqdRetail'] % 1 < .10 && srcRsObj['reqdRetail'] > 0) { //change charm price to (#-1).99 if req'd rtl is #.00 -> #.10
@@ -349,6 +349,9 @@ module.exports = {
         srcRsObj['upc'] = rows[i][genericHeaderObj.upcHeader] //Item ID
         // console.log('calcResults says: srcRsObj[\'upc\']~~~>', srcRsObj['upc'])
         reviewObj['upc'] = rows[i][genericHeaderObj.upcHeader] //Item ID
+
+        srcRsObj['cpltCost'] = reviewObj['cpltCost'] = rows[i][genericHeaderObj.invLastcostHeader]
+
         srcRsObj['deptID'] = "" //Department ID
         srcRsObj['deptName'] = "" //Department Name
         srcRsObj['rcptAlias'] = "" //Receipt Alias
@@ -455,23 +458,23 @@ module.exports = {
           // console.log('genericHeaderObj.keheUOSHeader==>', genericHeaderObj.keheUOSHeader)
           // console.log('rows[' + i + '][genericHeaderObj.keheUOSHeader]==>', rows[i][genericHeaderObj.keheUOSHeader])
           if (rows[i][genericHeaderObj.keheUOSHeader] !== "" && rows[i][genericHeaderObj.keheUOSHeader] > 0) {
-            reviewObj['cost'] = srcRsObj['cost'] = rows[i][genericHeaderObj.ediCostHeader] / rows[i][genericHeaderObj.keheUOSHeader]
-            // console.log('case cost / uos==>', srcRsObj['cost'])
+            reviewObj['ediCost'] = srcRsObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader] / rows[i][genericHeaderObj.keheUOSHeader]
+            // console.log('case cost / uos==>', srcRsObj['ediCost'])
           } else {
-            reviewObj['cost'] = srcRsObj['cost'] = rows[i][genericHeaderObj.ediCostHeader]
-            // console.log('standard cost1==>', srcRsObj['cost'])
+            reviewObj['ediCost'] = srcRsObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader]
+            // console.log('standard cost1==>', srcRsObj['ediCost'])
           }
         } else {
-          reviewObj['cost'] = srcRsObj['cost'] = rows[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
-          // console.log('standard cost2==>', srcRsObj['cost'])
+          reviewObj['ediCost'] = srcRsObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
+          // console.log('standard cost2==>', srcRsObj['ediCost'])
           if (rows[i][genericHeaderObj.ediCostHeaderItemCost] == "") { //generate blankEdiCostUPC entry to flag any margin report item_cost
             //values that are blank. This will then appear in the retail review worksheet under column name blankEdiCost. THESE ITEMS NEED
             //TO BE INVESTIGATED TO SEE IF SKUs ARE INACCURATE, OR WHATEVER ELSE IS GOING ON
             reviewObj['blankEdiCostUPC'] = srcRsObj['blankEdiCostUPC'] = rows[i][genericHeaderObj.upcHeader]
           }
         }
-        // srcRsObj['cost'] = rows[i][genericHeaderObj.ediCostHeader] 
-        // reviewObj['cost'] = rows[i][genericHeaderObj.ediCostHeader]//INCLUDE in save2CSVreview export data
+        // srcRsObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader] 
+        // reviewObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader]//INCLUDE in save2CSVreview export data
         srcRsObj['msrp'] = rows[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
         reviewObj['msrp'] = rows[i][genericHeaderObj.msrpHeader] //INCLUDE in save2CSVreview export data
 
