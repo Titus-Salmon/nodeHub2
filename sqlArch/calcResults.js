@@ -780,7 +780,7 @@ module.exports = {
     //   }
     // }
 
-    function queryMarginReportTable() {
+    function queryNhcrtEdiJoinTable() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
       //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
       connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader};`, function (err, rows, fields) {
@@ -840,11 +840,11 @@ module.exports = {
       }
     }
 
-    if (formInput0.includes('margin_report') && tableToJoin !== "") {
+    if (formInput0.includes('nhcrtedijoin') && tableToJoin !== "") {
       queryJoinedTables()
     } else {
-      if (formInput0.includes('margin_report')) {
-        queryMarginReportTable()
+      if (formInput0.includes('nhcrtedijoin')) {
+        queryNhcrtEdiJoinTable()
       } else {
         queryOtherTables()
       }
