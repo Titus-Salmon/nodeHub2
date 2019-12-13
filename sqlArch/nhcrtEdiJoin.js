@@ -24,13 +24,13 @@ module.exports = {
                 nhcrtEdiJoinObj['record_id'] = rows[i]['record_id']
                 nhcrtEdiJoinObj['invScanCode'] = rows[i]['invScanCode']
                 nhcrtEdiJoinObj['ordSupplierStockNumber'] = rows[i]['ordSupplierStockNumber']
+
                 for (let j = 0; j < Object.keys(rows[i]).length; j++) {
                     if (Object.keys(rows[i])[j].includes('_sku')) {
-                        // console.log(`Object.keys(rows[${i}])[${j}]==>${Object.keys(rows[i])[j]}`)
                         nhcrtEdiJoinObj['ediSKU'] = rows[i][`${Object.keys(rows[i])[j]}`]
-                        // console.log(`nhcrtEdiJoinObj['ediSKU']==>${nhcrtEdiJoinObj['ediSKU']}`)
                     }
                 }
+
                 nhcrtEdiJoinObj['invName'] = rows[i]['invName']
                 nhcrtEdiJoinObj['invSize'] = rows[i]['invSize']
                 nhcrtEdiJoinObj['invReceiptAlias'] = rows[i]['invReceiptAlias']
@@ -47,7 +47,23 @@ module.exports = {
                 nhcrtEdiJoinObj['invLastreceived'] = rows[i]['invLastreceived']
                 nhcrtEdiJoinObj['invLastsold'] = rows[i]['invLastsold']
                 nhcrtEdiJoinObj['invLastcost'] = rows[i]['invLastcost']
+
+                for (let j = 0; j < Object.keys(rows[i]).length; j++) {
+                    if (Object.keys(rows[i])[j].includes('_cost') || Object.keys(rows[i])[j].includes('_tier3')) {
+                        nhcrtEdiJoinObj['ediCost'] = rows[i][`${Object.keys(rows[i])[j]}`]
+                        console.log(`nhcrtEdiJoinObj['ediCost']==>${nhcrtEdiJoinObj['ediCost']}`)
+                    }
+                }
+
                 nhcrtEdiJoinObj['sibBasePrice'] = rows[i]['sibBasePrice']
+
+                for (let j = 0; j < Object.keys(rows[i]).length; j++) {
+                    if (Object.keys(rows[i])[j].includes('_msrp') || Object.keys(rows[i])[j].includes('_tier3')) {
+                        nhcrtEdiJoinObj['ediPrice'] = rows[i][`${Object.keys(rows[i])[j]}`]
+                        console.log(`nhcrtEdiJoinObj['ediPrice']==>${nhcrtEdiJoinObj['ediPrice']}`)
+                    }
+                }
+
                 nhcrtEdiJoinObj['invOnhand'] = rows[i]['invOnhand']
                 nhcrtEdiJoinObj['invOnorder'] = rows[i]['invOnorder']
                 nhcrtEdiJoinObj['invIntransit'] = rows[i]['invIntransit']
@@ -56,16 +72,6 @@ module.exports = {
                 nhcrtEdiJoinObj['pi3Description'] = rows[i]['pi3Description']
                 nhcrtEdiJoinObj['invPowerField3'] = rows[i]['invPowerField3']
                 nhcrtEdiJoinObj['invPowerField4'] = rows[i]['invPowerField4']
-
-                for (let j = 0; j < Object.keys(rows[i]).length; j++) {
-                    if (Object.keys(rows[i])[j].includes('_cost') || Object.keys(rows[i])[j].includes('_tier3')) {
-                        // console.log(`Object.keys(rows[${i}])[${j}]==>${Object.keys(rows[i])[j]}`)
-                        nhcrtEdiJoinObj['ediCost'] = rows[i][`${Object.keys(rows[i])[j]}`]
-                        console.log(`nhcrtEdiJoinObj['ediCost']==>${nhcrtEdiJoinObj['ediCost']}`)
-                    } else {
-                        // console.log(`Object.keys(rows[${i}])[${j}] doesnt include '_cost'`)
-                    }
-                }
 
                 nhcrtEdiJoinArr.push(nhcrtEdiJoinObj)
             }
