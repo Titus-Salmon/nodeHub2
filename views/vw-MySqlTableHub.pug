@@ -377,7 +377,8 @@ html
 					tr
 						th(onclick="sortTable(0)") Primary Key
 						th(onclick="sortTable(1)") UPC
-						th(onclick="sortTable(2)") SKU
+						th(onclick="sortTable(2)") SKU (Cplt)
+						th(onclick="sortTable(2)") SKU (EDI)
 						th(onclick="sortTable(3)") Description
 						th(onclick="sortTable(4)") Updated WS
 						th(onclick="sortTable(5)") Global Margin
@@ -397,7 +398,8 @@ html
 							tr
 								td= elmnt.P_K
 								td= elmnt.upc
-								td= elmnt.sku
+								td= elmnt.cpltSKU
+								td= elmnt.ediSKU
 								td= elmnt.name
 								td= elmnt.cost
 								td= elmnt.globalMargin

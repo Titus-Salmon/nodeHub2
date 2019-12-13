@@ -164,7 +164,11 @@ module.exports = {
       }
       if (splitFieldResult[i] == 'ordSupplierStockNumber') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
         //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
-        genericHeaderObj.skuHeader = splitFieldResult[i]
+        genericHeaderObj.cpltSKUHeader = splitFieldResult[i]
+      }
+      if (splitFieldResult[i] == 'ediSKU') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
+        //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
+        genericHeaderObj.ediSKUHeader = splitFieldResult[i]
       }
       if (splitFieldResult[i] == 'invName') { //Item Name (6); targets prod name from catapult v_InventoryMaster portion of nhcrtEdiJoin table
         genericHeaderObj.nameHeader = splitFieldResult[i]
@@ -175,7 +179,7 @@ module.exports = {
       } //targeting ediCost from vendor catalog
       if (splitFieldResult[i] == 'invLastcost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
         genericHeaderObj.invLastcostHeader = splitFieldResult[i]
-      } //targeting invLastcost from catapult v_InventoryMaster table
+      } //targeting invLastcost from catapult v_InventoryMaster table -- probably going to want to check if ediCost == invLastCost
       //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       if (splitFieldResult[i].includes('item_price') || splitFieldResult[i].includes('msrp')) { //Suggested Retail ==>msrp?
@@ -395,8 +399,10 @@ module.exports = {
         srcRsObj['altID'] = "" //Alternate ID
         srcRsObj['altRcptAlias'] = "" //Alternate Receipt Alias
         srcRsObj['pkgQnt'] = "" //Package Quantity
-        srcRsObj['sku'] = rows[i][genericHeaderObj.skuHeader] //Supplier Unit ID
-        reviewObj['sku'] = rows[i][genericHeaderObj.skuHeader] //Supplier Unit ID
+        srcRsObj['cpltSKU'] = rows[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
+        reviewObj['cpltSKU'] = rows[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
+        srcRsObj['ediSKU'] = rows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
+        reviewObj['ediSKU'] = rows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
         srcRsObj['splrID'] = rows[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
         srcRsObj['unit'] = "" //Unit
         srcRsObj['numPkgs'] = "" //Number of Packages
