@@ -182,8 +182,12 @@ module.exports = {
       } //targeting invLastcost from catapult v_InventoryMaster table -- probably going to want to check if ediCost == invLastCost
       //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      if (splitFieldResult[i].includes('item_price') || splitFieldResult[i].includes('msrp')) { //Suggested Retail ==>msrp?
-        //***NEED TO ADD MSRP FROM EDI table to nhcrtEdiJoin results*/
+      // if (splitFieldResult[i].includes('item_price') || splitFieldResult[i].includes('msrp')) { //Suggested Retail ==>msrp?
+      //   //***NEED TO ADD MSRP FROM EDI table to nhcrtEdiJoin results*/
+      //   genericHeaderObj.msrpHeader = splitFieldResult[i]
+      // }
+      if (splitFieldResult[i].includes('ediPrice')) { //Suggested Retail ==>msrp?
+        //targets msrp from edi table
         genericHeaderObj.msrpHeader = splitFieldResult[i]
       }
       if (splitFieldResult[i] == 'rb_price') { //
