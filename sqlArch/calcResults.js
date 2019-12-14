@@ -186,7 +186,7 @@ module.exports = {
       //   //***NEED TO ADD MSRP FROM EDI table to nhcrtEdiJoin results*/
       //   genericHeaderObj.msrpHeader = splitFieldResult[i]
       // }
-      if (splitFieldResult[i] == 'ediPrice') { //Suggested Retail ==>msrp?
+      if (splitFieldResult[i].includes('ediPrice')) { //Suggested Retail ==>msrp?
         //targets msrp from edi table
         genericHeaderObj.msrpHeader = splitFieldResult[i]
       }
