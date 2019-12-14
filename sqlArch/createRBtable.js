@@ -22,8 +22,11 @@ module.exports = {
     }
 
     let mySqlQuery = `CREATE TABLE ${tableName} (record_id int NOT NULL AUTO_INCREMENT, ${columnNames}, PRIMARY KEY (record_id));`
+    //consider changing record_id to pk_t0d column, and populating DOM query results with an auto-incremented pk_t0d column; then
+    //not including record_id in the save2CSV... files, but include pk_t0d instead. this might eliminate the need for stripping the
+    //non-sequential (and repeated - def not actual primary key!) record_id column out of save2CSV... results & repoplulating with
+    //new sequential record_id via xlsx manipulations 
 
-    // let sqlQuery = 'CREATE TABLE ' + tableName + ' (record_id int NOT NULL AUTO_INCREMENT, ' + columnNames + ', PRIMARY KEY (record_id));'
     connection.query(mySqlQuery, (error, response) => {
       console.log(error || response);
     });
