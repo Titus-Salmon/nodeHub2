@@ -43,6 +43,7 @@ module.exports = {
                 nhcrtEdiJoinObj['brdName'] = rows[i]['brdName']
                 nhcrtEdiJoinObj['dptName'] = rows[i]['dptName']
                 nhcrtEdiJoinObj['dptNumber'] = rows[i]['dptNumber']
+                nhcrtEdiJoinObj['sibIdealMargin'] = rows[i]['sibIdealMargin']
                 nhcrtEdiJoinObj['venCompanyname'] = rows[i]['venCompanyname']
                 nhcrtEdiJoinObj['invLastreceived'] = rows[i]['invLastreceived']
                 nhcrtEdiJoinObj['invLastsold'] = rows[i]['invLastsold']
