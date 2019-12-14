@@ -388,22 +388,23 @@ html
 				button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
 				thead
 					tr
-						th(onclick="sortTable(0)") Primary Key
-						th(onclick="sortTable(1)") UPC
-						th(onclick="sortTable(2)") SKU (Cplt)
-						th(onclick="sortTable(2)") SKU (EDI)
-						th(onclick="sortTable(3)") Description
-						th(onclick="sortTable(4)") Exst WS (Cplt)
-						th(onclick="sortTable(4)") Updtd WS (EDI)
-						th(onclick="sortTable(5)") Global Margin
-						th(onclick="sortTable(6)") Retail Required
-						th(onclick="sortTable(7)") Charm Price
-						th(onclick="sortTable(8)") MSRP (EDI)
-						th(onclick="sortTable(9)") rb_dept
-						th(onclick="sortTable(10)") rb_dept_id
-						th(onclick="sortTable(11)") rb_dept_margin
-						th(onclick="sortTable(12)") wsDiff
-						th(onclick="sortTable(13)") Appld Disco
+						th Primary Key
+						th UPC
+						th SKU (Cplt)
+						th SKU (EDI)
+						th Description
+						th Exst WS (Cplt)
+						th Updtd WS (EDI)
+						th Global Margin
+						th Rtl Rqd
+						th Charm Price
+						th MSRP (EDI)
+						th CrntPr(Cplt)
+						th dptName (Catapult)
+						th dptNumber(Cplt)
+						th rb_dept_margin
+						th wsDiff
+						th Appld Disco
 
 
 				tbody#resTblBdy
@@ -420,9 +421,10 @@ html
 								td= elmnt.globalMargin
 								td= elmnt.reqdRetail
 								td= elmnt.charm
-								td= elmnt.msrp
-								td= elmnt.rb_dept
-								td= elmnt.rb_dept_id
+								td= elmnt.ediPrice
+								td= elmnt.sibBasePrice
+								td= elmnt.dptName
+								td= elmnt.dptNumber
 								td= elmnt.rb_dept_margin
 								td= elmnt.wsDiff_t0d
 								td= elmnt.discountToApply

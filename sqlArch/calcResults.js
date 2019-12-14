@@ -190,13 +190,22 @@ module.exports = {
         //targets msrp from edi table
         genericHeaderObj.msrpHeader = splitFieldResult[i]
       }
-      if (splitFieldResult[i] == 'rb_price') { //
-        genericHeaderObj.rbPriceHeader = splitFieldResult[i]
+      // if (splitFieldResult[i] == 'rb_price') { //
+      //   genericHeaderObj.rbPriceHeader = splitFieldResult[i]
+      // }
+      if (splitFieldResult[i] == 'sibBasePrice') { //
+        genericHeaderObj.sibBasePriceHeader = splitFieldResult[i]
       }
-      if (splitFieldResult[i] == 'rb_dept') { //
+      // if (splitFieldResult[i] == 'rb_dept') { //
+      //   genericHeaderObj.rbDeptHeader = splitFieldResult[i]
+      // }
+      if (splitFieldResult[i] == 'dptName') { //
         genericHeaderObj.rbDeptHeader = splitFieldResult[i]
       }
-      if (splitFieldResult[i] == 'rb_dept_id') {
+      // if (splitFieldResult[i] == 'rb_dept_id') {
+      //   genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
+      // }
+      if (splitFieldResult[i] == 'dptNumber') {
         genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
       }
       if (splitFieldResult[i] == 'rb_dept_margin') {
@@ -479,17 +488,28 @@ module.exports = {
         }
         // srcRsObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader] 
         // reviewObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader]//INCLUDE in save2CSVreview export data
-        srcRsObj['msrp'] = rows[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
-        reviewObj['msrp'] = rows[i][genericHeaderObj.msrpHeader] //INCLUDE in save2CSVreview export data
+        srcRsObj['ediPrice'] = rows[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
+        reviewObj['ediPrice'] = rows[i][genericHeaderObj.msrpHeader] //INCLUDE in save2CSVreview export data
 
-        srcRsObj['rb_price'] = rows[i][genericHeaderObj.rbPriceHeader] //INCLUDE in csv to export data
-        reviewObj['rb_price'] = rows[i][genericHeaderObj.rbPriceHeader] //INCLUDE in save2CSVreview export data
+        // srcRsObj['rb_price'] = rows[i][genericHeaderObj.rbPriceHeader] //INCLUDE in csv to export data
+        // reviewObj['rb_price'] = rows[i][genericHeaderObj.rbPriceHeader] //INCLUDE in save2CSVreview export data
+
+        srcRsObj['sibBasePrice'] = rows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in csv to export data
+        reviewObj['sibBasePrice'] = rows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in save2CSVreview export data
 
         srcRsObj['globalMargin'] = globalMargin //do not include in csv to export data
-        srcRsObj['rb_dept'] = rows[i][genericHeaderObj.rbDeptHeader]
-        reviewObj['rb_dept'] = rows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
-        srcRsObj['rb_dept_id'] = rows[i][genericHeaderObj.rbDeptIDHeader]
-        reviewObj['rb_dept_id'] = rows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data 
+        // srcRsObj['rb_dept'] = rows[i][genericHeaderObj.rbDeptHeader]
+        // reviewObj['rb_dept'] = rows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
+
+        srcRsObj['dptName'] = rows[i][genericHeaderObj.rbDeptHeader]
+        reviewObj['dptName'] = rows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
+
+        // srcRsObj['rb_dept_id'] = rows[i][genericHeaderObj.rbDeptIDHeader]
+        // reviewObj['rb_dept_id'] = rows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
+
+        srcRsObj['dptNumber'] = rows[i][genericHeaderObj.rbDeptIDHeader]
+        reviewObj['dptNumber'] = rows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
+
         srcRsObj['rb_dept_margin'] = rows[i][genericHeaderObj.rbDeptMarginHeader]
         reviewObj['rb_dept_margin'] = rows[i][genericHeaderObj.rbDeptMarginHeader] //INCLUDE in save2CSVreview export data 
 
@@ -521,194 +541,194 @@ module.exports = {
         }
         //^//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for globalMargin
 
-        if (srcRsObj['rb_dept_id'] == '54') { //Beer & Alcohol
+        if (srcRsObj['dptNumber'] == '54') { //Beer & Alcohol
           //apply Department margin to calculate charm pricing
           calcCharm(beerAlcMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(beerAlcMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '152') { //Body Care
+        if (srcRsObj['dptNumber'] == '152') { //Body Care
           calcCharm(bodyCareMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
           revealAppliedMarg(bodyCareMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '9') { //Books
+        if (srcRsObj['dptNumber'] == '9') { //Books
           calcCharm(booksMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
           revealAppliedMarg(booksMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '19') { //Bulk
+        if (srcRsObj['dptNumber'] == '19') { //Bulk
           calcCharm(bulkMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(bulkMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '30') { //Bulk & Herb Prepack
+        if (srcRsObj['dptNumber'] == '30') { //Bulk & Herb Prepack
           calcCharm(bulkHrbPrpkMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(bulkHrbPrpkMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '175') { //CBD - Grocery
+        if (srcRsObj['dptNumber'] == '175') { //CBD - Grocery
           calcCharm(cbdGrocMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(cbdGrocMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '176') { //CBD - Supplements
+        if (srcRsObj['dptNumber'] == '176') { //CBD - Supplements
           calcCharm(cbdSuppMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
           revealAppliedMarg(cbdSuppMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '177') { //CBD - Topicals
+        if (srcRsObj['dptNumber'] == '177') { //CBD - Topicals
           calcCharm(cbdTopMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
           revealAppliedMarg(cbdTopMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '148') { //Consignments
+        if (srcRsObj['dptNumber'] == '148') { //Consignments
           calcCharm(consignMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(consignMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '18') { //Frozen
+        if (srcRsObj['dptNumber'] == '18') { //Frozen
           calcCharm(frozenMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(frozenMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '150') { //General Merchandise
+        if (srcRsObj['dptNumber'] == '150') { //General Merchandise
           calcCharm(genMerchMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(genMerchMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '13') { //Gift Items
+        if (srcRsObj['dptNumber'] == '13') { //Gift Items
           calcCharm(giftMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
           revealAppliedMarg(giftMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '62') { //Grab & Go
+        if (srcRsObj['dptNumber'] == '62') { //Grab & Go
           calcCharm(grabGoMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(grabGoMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '25') { //Grocery
+        if (srcRsObj['dptNumber'] == '25') { //Grocery
           calcCharm(grocMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(grocMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '179') { //Grocery - Local
+        if (srcRsObj['dptNumber'] == '179') { //Grocery - Local
           calcCharm(grocLocMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(grocLocMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '38') { //Grocery - Local Meat
+        if (srcRsObj['dptNumber'] == '38') { //Grocery - Local Meat
           calcCharm(grocLcMtMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(grocLcMtMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '12') { //HBA - had this as 17 & was causing hba items not to get chram applied
+        if (srcRsObj['dptNumber'] == '12') { //HBA - had this as 17 & was causing hba items not to get chram applied
           calcCharm(hbaMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
           revealAppliedMarg(hbaMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '158') { //Herbs & Homeopathic
+        if (srcRsObj['dptNumber'] == '158') { //Herbs & Homeopathic
           calcCharm(herbsHomeoMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
           revealAppliedMarg(herbsHomeoMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '80') { //LifeBar
+        if (srcRsObj['dptNumber'] == '80') { //LifeBar
           calcCharm(lfBrMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(lfBrMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '151') { //Other
+        if (srcRsObj['dptNumber'] == '151') { //Other
           calcCharm(otherMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
           revealAppliedMarg(otherMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '32') { //Produce
+        if (srcRsObj['dptNumber'] == '32') { //Produce
           calcCharm(produceMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(produceMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '171') { //Produce - CSA
+        if (srcRsObj['dptNumber'] == '171') { //Produce - CSA
           calcCharm(prodCSAMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(prodCSAMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '181') { //Produce - Floral
+        if (srcRsObj['dptNumber'] == '181') { //Produce - Floral
           calcCharm(prodFlorMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(prodFlorMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '178') { //Produce - Local
+        if (srcRsObj['dptNumber'] == '178') { //Produce - Local
           calcCharm(prodLocMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(prodLocMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '154') { //Produce - Packaged
+        if (srcRsObj['dptNumber'] == '154') { //Produce - Packaged
           calcCharm(prodPkgMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(prodPkgMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '154') { //Produce - Plants
+        if (srcRsObj['dptNumber'] == '154') { //Produce - Plants
           calcCharm(prodPlantsMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(prodPlantsMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '174') { //Produce - Prepared
+        if (srcRsObj['dptNumber'] == '174') { //Produce - Prepared
           calcCharm(prodPrepMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(prodPrepMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '170') { //Salad Bar
+        if (srcRsObj['dptNumber'] == '170') { //Salad Bar
           calcCharm(prodSldBrMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(prodSldBrMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '155') { //Refrigerated
+        if (srcRsObj['dptNumber'] == '155') { //Refrigerated
           calcCharm(refrigMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
             lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
             defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           revealAppliedMarg(refrigMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '157') { //Vitamins & Supplements
+        if (srcRsObj['dptNumber'] == '157') { //Vitamins & Supplements
           calcCharm(vitSuppMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
           revealAppliedMarg(vitSuppMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '173') { //Wellness Practitioner Tips
+        if (srcRsObj['dptNumber'] == '173') { //Wellness Practitioner Tips
           calcCharm(wlnsPrctTipsMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
           revealAppliedMarg(wlnsPrctTipsMargin)
         }
-        if (srcRsObj['rb_dept_id'] == '172') { //Wellness Practitioner Tips
+        if (srcRsObj['dptNumber'] == '172') { //Wellness Practitioner Tips
           calcCharm(wlnsPrctMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
             lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
             defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
