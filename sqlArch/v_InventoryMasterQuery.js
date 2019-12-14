@@ -72,6 +72,7 @@ module.exports = {
                         catapultResObj['dptName'] = result[i]['dpt_name']
                     }
                     catapultResObj['dptNumber'] = result[i]['dpt_number']
+                    catapultResObj['sibIdealMargin'] = result[i]['SIB_IdealMargin']
                     if (typeof result[i]['ven_companyname'] == 'string') {
                         catapultResObj['venCompanyname'] = result[i]['ven_companyname'].trim()
                     } else {

@@ -169,7 +169,7 @@ router.post('/save2CSV', function (req, res, next) {
 
 	const fields = [
 		"invPK", "invScanCode", "invName", "invSize", "invReceiptAlias", "posTimeStamp", "invDateCreated", "invEmpFkCreatedBy", "ordQuantityInOrderUnit", "oupName",
-		"stoName", "brdName", "dptName", "dptNumber", "venCompanyname", "invLastreceived", "invLastsold", "invLastcost", "sibBasePrice", "invOnhand", "invOnorder", "invIntransit",
+		"stoName", "brdName", "dptName", "dptNumber", "sibIdealMargin", "venCompanyname", "invLastreceived", "invLastsold", "invLastcost", "sibBasePrice", "invOnhand", "invOnorder", "invIntransit",
 		"pi1Description", "pi2Description", "pi3Description", "invPowerField3", "invPowerField4"
 	]
 
