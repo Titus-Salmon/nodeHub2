@@ -65,7 +65,7 @@ module.exports = {
       }
     });
 
-    res.render('vw-MySqlTableHub', {
+    return res.render('vw-MySqlTableHub', {
       title: `vw-MySqlTableHub **Populated Table <<${tableToPopulate}>>**`,
       // tableColNames: tableColumnNames,
       sqlTablePopulated: {
