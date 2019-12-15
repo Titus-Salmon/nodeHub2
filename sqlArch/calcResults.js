@@ -237,6 +237,8 @@ module.exports = {
 
     function showSearchResults(rows) {
 
+      console.log(`rows[0]==> ${rows[0]}`)
+
       for (let i = 0; i < rows.length; i++) { //Add searched-for table entries from db to searchResults array, for
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
         let srcRsObj = {}
@@ -512,95 +514,6 @@ module.exports = {
 
         srcRsObj['dptNumber'] = rows[i][genericHeaderObj.rbDeptIDHeader]
         reviewObj['dptNumber'] = rows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
-
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '54') { //Beer & Alcohol
-        //   srcRsObj['rb_dept_margin'] = '20'
-        //   reviewObj['rb_dept_margin'] = '20'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '152') { //Body Care
-        //   srcRsObj['rb_dept_margin'] = '45'
-        //   reviewObj['rb_dept_margin'] = '45'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '9') { //Books
-        //   srcRsObj['rb_dept_margin'] = '40'
-        //   reviewObj['rb_dept_margin'] = '40'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '19') { //Bulk
-        //   srcRsObj['rb_dept_margin'] = '45'
-        //   reviewObj['rb_dept_margin'] = '45'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '30') { //Bulk & Herb Prepack
-        //   srcRsObj['rb_dept_margin'] = '45'
-        //   reviewObj['rb_dept_margin'] = '45'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '175') { //CBD - Grocery
-        //   srcRsObj['rb_dept_margin'] = '45'
-        //   reviewObj['rb_dept_margin'] = '45'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '176') { //CBD - Supplements
-        //   srcRsObj['rb_dept_margin'] = '50'
-        //   reviewObj['rb_dept_margin'] = '50'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '177') { //CBD - Topicals
-        //   srcRsObj['rb_dept_margin'] = '45'
-        //   reviewObj['rb_dept_margin'] = '45'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '148') { //Consignments
-        //   srcRsObj['rb_dept_margin'] = '20'
-        //   reviewObj['rb_dept_margin'] = '20'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '18') { //Frozen
-        //   srcRsObj['rb_dept_margin'] = '38'
-        //   reviewObj['rb_dept_margin'] = '38'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '150') { //General Merchandise
-        //   srcRsObj['rb_dept_margin'] = '38'
-        //   reviewObj['rb_dept_margin'] = '38'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '13') { //Gift Items
-        //   srcRsObj['rb_dept_margin'] = '50'
-        //   reviewObj['rb_dept_margin'] = '50'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '62') { //Grab & Go
-        //   srcRsObj['rb_dept_margin'] = '33'
-        //   reviewObj['rb_dept_margin'] = '33'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '25') { //Grocery
-        //   srcRsObj['rb_dept_margin'] = '38'
-        //   reviewObj['rb_dept_margin'] = '38'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '179') { //Grocery - Local
-        //   srcRsObj['rb_dept_margin'] = '33'
-        //   reviewObj['rb_dept_margin'] = '33'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '38') { //Grocery - Local Meat
-        //   srcRsObj['rb_dept_margin'] = '25'
-        //   reviewObj['rb_dept_margin'] = '25'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '12') { //HBA
-        //   srcRsObj['rb_dept_margin'] = '45'
-        //   reviewObj['rb_dept_margin'] = '45'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '158') { //Herbs & Homeopathic
-        //   srcRsObj['rb_dept_margin'] = '40'
-        //   reviewObj['rb_dept_margin'] = '40'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '80') { //LifeBar
-        //   srcRsObj['rb_dept_margin'] = '0'
-        //   reviewObj['rb_dept_margin'] = '0'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '151') { //Other
-        //   srcRsObj['rb_dept_margin'] = '45'
-        //   reviewObj['rb_dept_margin'] = '45'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '155') { //Refrigerated
-        //   srcRsObj['rb_dept_margin'] = '33'
-        //   reviewObj['rb_dept_margin'] = '33'
-        // }
-        // if (rows[i][genericHeaderObj.rbDeptIDHeader] == '157') { //Vitamins & Supplements
-        //   srcRsObj['rb_dept_margin'] = '40'
-        //   reviewObj['rb_dept_margin'] = '40'
-        // }
 
         // srcRsObj['rb_dept_margin'] = rows[i][genericHeaderObj.rbDeptMarginHeader]
         // reviewObj['rb_dept_margin'] = rows[i][genericHeaderObj.rbDeptMarginHeader] //INCLUDE in save2CSVreview export data
