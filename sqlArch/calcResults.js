@@ -52,79 +52,79 @@ module.exports = {
     let formInput19 = Object.values(postBody)[19] = herbsHomeoMargin = postBody['herbsHomeoMargPost'] //herbsHomeoMargPost
     let formInput20 = Object.values(postBody)[20] = lfBrMargin = postBody['lfBrMargPost'] //lfBrMargPost
     let formInput21 = Object.values(postBody)[21] = otherMargin = postBody['otherMargPost'] //otherMargPost
-    let formInput22 = Object.values(postBody)[22] = produceMargin = postBody['produceMargPost'] //produceMargPost
-    let formInput23 = Object.values(postBody)[23] = prodCSAMargin = postBody['prodCSAMargPost'] //prodCSAMargPost
-    let formInput24 = Object.values(postBody)[24] = prodFlorMargin = postBody['prodFlorMargPost'] //prodFlorMargPost
-    let formInput25 = Object.values(postBody)[25] = prodLocMargin = postBody['prodLocMargPost'] //prodLocMargPost
-    let formInput26 = Object.values(postBody)[26] = prodPkgMargin = postBody['prodPkgMargPost'] //prodPkgMargPost
-    let formInput27 = Object.values(postBody)[27] = prodPlantsMargin = postBody['prodPlantsMargPost'] //prodPlantsMargPost
-    let formInput28 = Object.values(postBody)[28] = prodPrepMargin = postBody['prodPrepMargPost'] //prodPrepMargPost
-    let formInput29 = Object.values(postBody)[29] = prodSldBrMargin = postBody['sldBrMargPost'] //prodSldBrMargPost
-    let formInput30 = Object.values(postBody)[30] = refrigMargin = postBody['refrigMargPost'] //refrigMargPost
-    let formInput31 = Object.values(postBody)[31] = vitSuppMargin = postBody['vitSuppMargPost'] //vitSuppMargPost
-    let formInput32 = Object.values(postBody)[32] = wlnsPrctTipsMargin = postBody['wlnsPrctTipsMargPost'] //wlnsPrctTipsMargPost
-    let formInput33 = Object.values(postBody)[33] = wlnsPrctMargin = postBody['wlnsPrctMargPost'] //wlnsPrctMargPost
-    let formInput34 = Object.values(postBody)[34] = globalMargin = postBody['globalMargPost'] //globalMargPost
+    // let formInput22 = Object.values(postBody)[22] = produceMargin = postBody['produceMargPost'] //produceMargPost
+    // let formInput23 = Object.values(postBody)[23] = prodCSAMargin = postBody['prodCSAMargPost'] //prodCSAMargPost
+    // let formInput24 = Object.values(postBody)[24] = prodFlorMargin = postBody['prodFlorMargPost'] //prodFlorMargPost
+    // let formInput25 = Object.values(postBody)[25] = prodLocMargin = postBody['prodLocMargPost'] //prodLocMargPost
+    // let formInput26 = Object.values(postBody)[26] = prodPkgMargin = postBody['prodPkgMargPost'] //prodPkgMargPost
+    // let formInput27 = Object.values(postBody)[27] = prodPlantsMargin = postBody['prodPlantsMargPost'] //prodPlantsMargPost
+    // let formInput28 = Object.values(postBody)[28] = prodPrepMargin = postBody['prodPrepMargPost'] //prodPrepMargPost
+    // let formInput29 = Object.values(postBody)[29] = prodSldBrMargin = postBody['sldBrMargPost'] //prodSldBrMargPost
+    let formInput22 = Object.values(postBody)[22] = refrigMargin = postBody['refrigMargPost'] //refrigMargPost
+    let formInput23 = Object.values(postBody)[23] = vitSuppMargin = postBody['vitSuppMargPost'] //vitSuppMargPost
+    // let formInput32 = Object.values(postBody)[32] = wlnsPrctTipsMargin = postBody['wlnsPrctTipsMargPost'] //wlnsPrctTipsMargPost
+    // let formInput33 = Object.values(postBody)[33] = wlnsPrctMargin = postBody['wlnsPrctMargPost'] //wlnsPrctMargPost
+    let formInput24 = Object.values(postBody)[24] = globalMargin = postBody['globalMargPost'] //globalMargPost
 
-    let formInput35 = Object.values(postBody)[35] = lowerCutRqdRtlAndrea = postBody['lowerCutRqdRtlAndreaPost'] //lowerCutRqdRtlAndreaPost
-    let formInput36 = Object.values(postBody)[36] = lowerCutRqdRtlBrad = postBody['lowerCutRqdRtlBradPost'] //lowerCutRqdRtlBradPost
+    let formInput25 = Object.values(postBody)[25] = lowerCutRqdRtlAndrea = postBody['lowerCutRqdRtlAndreaPost'] //lowerCutRqdRtlAndreaPost
+    let formInput26 = Object.values(postBody)[26] = lowerCutRqdRtlBrad = postBody['lowerCutRqdRtlBradPost'] //lowerCutRqdRtlBradPost
 
-    let formInput37 = Object.values(postBody)[37] = lowerCutoffCharm1Andrea = postBody['lowerCutoffCharm1AndreaPost'] //lowerCutoffCharm1AndreaPost
-    let formInput38 = Object.values(postBody)[38] = lowerCutoffCharm1Brad = postBody['lowerCutoffCharm1BradPost'] //lowerCutoffCharm1BradPost
+    let formInput27 = Object.values(postBody)[27] = lowerCutoffCharm1Andrea = postBody['lowerCutoffCharm1AndreaPost'] //lowerCutoffCharm1AndreaPost
+    let formInput28 = Object.values(postBody)[28] = lowerCutoffCharm1Brad = postBody['lowerCutoffCharm1BradPost'] //lowerCutoffCharm1BradPost
 
-    let formInput39 = Object.values(postBody)[39] = lowerCutoffCharm2Andrea = postBody['lowerCutoffCharm2AndreaPost'] //lowerCutoffCharm2AndreaPost
-    let formInput40 = Object.values(postBody)[40] = lowerCutoffCharm2Brad = postBody['lowerCutoffCharm2BradPost'] //lowerCutoffCharm2BradPost
+    let formInput39 = Object.values(postBody)[29] = lowerCutoffCharm2Andrea = postBody['lowerCutoffCharm2AndreaPost'] //lowerCutoffCharm2AndreaPost
+    let formInput40 = Object.values(postBody)[30] = lowerCutoffCharm2Brad = postBody['lowerCutoffCharm2BradPost'] //lowerCutoffCharm2BradPost
 
-    let formInput41 = Object.values(postBody)[41] = lowerCutoffCharm3Andrea = postBody['lowerCutoffCharm3AndreaPost'] //lowerCutoffCharm3AndreaPost
-    let formInput42 = Object.values(postBody)[42] = lowerCutoffCharm3Brad = postBody['lowerCutoffCharm3BradPost'] //lowerCutoffCharm3BradPost
+    let formInput41 = Object.values(postBody)[31] = lowerCutoffCharm3Andrea = postBody['lowerCutoffCharm3AndreaPost'] //lowerCutoffCharm3AndreaPost
+    let formInput42 = Object.values(postBody)[32] = lowerCutoffCharm3Brad = postBody['lowerCutoffCharm3BradPost'] //lowerCutoffCharm3BradPost
 
-    let formInput43 = Object.values(postBody)[43] = lowerCutoffCharm4Andrea = postBody['lowerCutoffCharm4AndreaPost'] //lowerCutoffCharm4AndreaPost
-    let formInput44 = Object.values(postBody)[44] = lowerCutoffCharm4Brad = postBody['lowerCutoffCharm4BradPost'] //lowerCutoffCharm4BradPost
+    let formInput43 = Object.values(postBody)[33] = lowerCutoffCharm4Andrea = postBody['lowerCutoffCharm4AndreaPost'] //lowerCutoffCharm4AndreaPost
+    let formInput44 = Object.values(postBody)[34] = lowerCutoffCharm4Brad = postBody['lowerCutoffCharm4BradPost'] //lowerCutoffCharm4BradPost
 
-    let formInput45 = Object.values(postBody)[45] = lowerCutoffCharm5Andrea = postBody['lowerCutoffCharm5AndreaPost'] //lowerCutoffCharm5AndreaPost
-    let formInput46 = Object.values(postBody)[46] = lowerCutoffCharm5Brad = postBody['lowerCutoffCharm5BradPost'] //lowerCutoffCharm5BradPost
+    let formInput45 = Object.values(postBody)[35] = lowerCutoffCharm5Andrea = postBody['lowerCutoffCharm5AndreaPost'] //lowerCutoffCharm5AndreaPost
+    let formInput46 = Object.values(postBody)[36] = lowerCutoffCharm5Brad = postBody['lowerCutoffCharm5BradPost'] //lowerCutoffCharm5BradPost
 
-    let formInput47 = Object.values(postBody)[47] = lowerCutoffCharm6Andrea = postBody['lowerCutoffCharm6AndreaPost'] //lowerCutoffCharm6AndreaPost
-    let formInput48 = Object.values(postBody)[48] = lowerCutoffCharm6Brad = postBody['lowerCutoffCharm6BradPost'] //lowerCutoffCharm6BradPost
+    let formInput47 = Object.values(postBody)[37] = lowerCutoffCharm6Andrea = postBody['lowerCutoffCharm6AndreaPost'] //lowerCutoffCharm6AndreaPost
+    let formInput48 = Object.values(postBody)[38] = lowerCutoffCharm6Brad = postBody['lowerCutoffCharm6BradPost'] //lowerCutoffCharm6BradPost
 
-    let formInput49 = Object.values(postBody)[49] = lowerCutoffCharm7Andrea = postBody['lowerCutoffCharm7AndreaPost'] //lowerCutoffCharm7AndreaPost
-    let formInput50 = Object.values(postBody)[50] = lowerCutoffCharm7Brad = postBody['lowerCutoffCharm7BradPost'] //lowerCutoffCharm7BradPost
+    let formInput49 = Object.values(postBody)[39] = lowerCutoffCharm7Andrea = postBody['lowerCutoffCharm7AndreaPost'] //lowerCutoffCharm7AndreaPost
+    let formInput50 = Object.values(postBody)[40] = lowerCutoffCharm7Brad = postBody['lowerCutoffCharm7BradPost'] //lowerCutoffCharm7BradPost
 
-    let formInput51 = Object.values(postBody)[51] = upperCharmRqdRtlAndrea = postBody['upperCharmRqdRtlAndreaPost'] //upperCharmRqdRtlAndreaPost
-    let formInput52 = Object.values(postBody)[52] = upperCharmRqdRtlBrad = postBody['upperCharmRqdRtlBradPost'] //upperCharmRqdRtlBradPost
+    let formInput51 = Object.values(postBody)[41] = upperCharmRqdRtlAndrea = postBody['upperCharmRqdRtlAndreaPost'] //upperCharmRqdRtlAndreaPost
+    let formInput52 = Object.values(postBody)[42] = upperCharmRqdRtlBrad = postBody['upperCharmRqdRtlBradPost'] //upperCharmRqdRtlBradPost
 
-    let formInput53 = Object.values(postBody)[53] = defaultCharm1Andrea = postBody['defaultCharm1AndreaPost'] //defaultCharm1AndreaPost
-    let formInput54 = Object.values(postBody)[54] = defaultCharm1Brad = postBody['defaultCharm1BradPost'] //defaultCharm1BradPost
+    let formInput53 = Object.values(postBody)[43] = defaultCharm1Andrea = postBody['defaultCharm1AndreaPost'] //defaultCharm1AndreaPost
+    let formInput54 = Object.values(postBody)[44] = defaultCharm1Brad = postBody['defaultCharm1BradPost'] //defaultCharm1BradPost
 
-    let formInput55 = Object.values(postBody)[55] = defaultCharm2Andrea = postBody['defaultCharm2AndreaPost'] //defaultCharm2AndreaPost
-    let formInput56 = Object.values(postBody)[56] = defaultCharm2Brad = postBody['defaultCharm2BradPost'] //defaultCharm2BradPost
+    let formInput55 = Object.values(postBody)[45] = defaultCharm2Andrea = postBody['defaultCharm2AndreaPost'] //defaultCharm2AndreaPost
+    let formInput56 = Object.values(postBody)[46] = defaultCharm2Brad = postBody['defaultCharm2BradPost'] //defaultCharm2BradPost
 
-    let formInput57 = Object.values(postBody)[57] = defaultCharm3Andrea = postBody['defaultCharm3AndreaPost'] //defaultCharm3AndreaPost
-    let formInput58 = Object.values(postBody)[58] = defaultCharm3Brad = postBody['defaultCharm3BradPost'] //defaultCharm3BradPost
+    let formInput57 = Object.values(postBody)[47] = defaultCharm3Andrea = postBody['defaultCharm3AndreaPost'] //defaultCharm3AndreaPost
+    let formInput58 = Object.values(postBody)[48] = defaultCharm3Brad = postBody['defaultCharm3BradPost'] //defaultCharm3BradPost
 
-    let formInput59 = Object.values(postBody)[59] = defaultCharm4Andrea = postBody['defaultCharm4AndreaPost'] //defaultCharm4AndreaPost
-    let formInput60 = Object.values(postBody)[60] = defaultCharm4Brad = postBody['defaultCharm4BradPost'] //defaultCharm4BradPost
+    let formInput59 = Object.values(postBody)[49] = defaultCharm4Andrea = postBody['defaultCharm4AndreaPost'] //defaultCharm4AndreaPost
+    let formInput60 = Object.values(postBody)[50] = defaultCharm4Brad = postBody['defaultCharm4BradPost'] //defaultCharm4BradPost
 
-    let formInput61 = Object.values(postBody)[61] = discountToApply = postBody['discountToApplyPost'] //discountToApplyPost
+    let formInput61 = Object.values(postBody)[51] = discountToApply = postBody['discountToApplyPost'] //discountToApplyPost
 
-    let formInput62 = Object.values(postBody)[62] //prKyPost
+    let formInput62 = Object.values(postBody)[52] //prKyPost
 
-    let formInput63 = Object.values(postBody)[63] //upcPost
-    let formInput64 = Object.values(postBody)[64] //skuPost
-    let formInput65 = Object.values(postBody)[65] //descrPost
-    let formInput66 = Object.values(postBody)[66] //updtWSPost
+    let formInput63 = Object.values(postBody)[53] //upcPost
+    let formInput64 = Object.values(postBody)[54] //skuPost
+    let formInput65 = Object.values(postBody)[55] //descrPost
+    let formInput66 = Object.values(postBody)[56] //updtWSPost
 
-    let formInput67 = Object.values(postBody)[67] //rbMargPost
-    let formInput68 = Object.values(postBody)[68] //rtlReqdPost
+    let formInput67 = Object.values(postBody)[57] //rbMargPost
+    let formInput68 = Object.values(postBody)[58] //rtlReqdPost
 
-    let formInput69 = Object.values(postBody)[69] //msrpPost
+    let formInput69 = Object.values(postBody)[59] //msrpPost
 
-    let formInput70 = Object.values(postBody)[70] //wsDiffResultsPost
+    let formInput70 = Object.values(postBody)[60] //wsDiffResultsPost
 
-    let formInput71 = typeOfIMW = Object.values(postBody)[71] //typeOfIMWPost
+    let formInput71 = typeOfIMW = Object.values(postBody)[61] //typeOfIMWPost
     console.log('typeOfIMW==>', typeOfIMW)
 
-    let formInput72 = tableToJoin = Object.values(postBody)[72] //tableToJoinPost
+    let formInput72 = tableToJoin = Object.values(postBody)[62] //tableToJoinPost
     console.log('tableToJoin==>', tableToJoin)
 
     //^//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
