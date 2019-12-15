@@ -59,9 +59,9 @@ module.exports = {
      ENCLOSED BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES;` //"IGNORE 1 LINES" skips the 1st row of the csv (which is the column name line)
     connection.query(query2, (error, response) => {
       if (error) {
-        console.log('error===>', error)
+        return console.log('error===>', error)
       } else {
-        console.log('response==>', response);
+        return console.log('response==>', response);
       }
     });
 
