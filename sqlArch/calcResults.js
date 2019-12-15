@@ -695,71 +695,6 @@ module.exports = {
       console.log('calcResults says: searchResultsForCSVreview from showSearchResults()==>', searchResultsForCSVreview)
     }
 
-    function queryJoinedTables() {
-      connection.query(
-        //Here is what you want to use; this will grab any upc & cost from the margin report table (only distinct rows) &
-        //join that table to the edi table, so you can then grab both 
-        "SELECT DISTINCT margin_report.rb_upc, margin_report.rb_cost, margin_report.rb_name, margin_report.rb_dept_id, edi_table.* FROM " +
-        formInput0 + " margin_report JOIN " +
-        tableToJoin +
-        " edi_table ON margin_report.rb_upc WHERE margin_report.rb_upc = edi_table.kehe_upc;",
-
-        function (err, rows, fields) {
-          if (err) throw err
-          console.log('rows from queryJoinedTables==>', rows)
-          // showSearchResults(rows)
-
-          res.render('vw-MySqlTableHub', { //render searchResults to vw-retailCalcPassport page
-            title: 'Retail Price Calculator (Universal w/ Brand Targeting) (TableJoin method)',
-            searchResRows: searchResults,
-            loadedSqlTbl: loadedSqlTbl
-          })
-        })
-    }
-
-    // function queryMarginReportTable() {
-    //   //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
-    //   if (formInput63 == '' && formInput64 == '' && formInput65 == '' && formInput66 == '' && formInput69 == '') { //return all table entries if search string is empty
-    //     connection.query("SELECT * FROM " + formInput0 + " GROUP BY " + genericHeaderObj.upcHeader + " HAVING COUNT(*) = 5" + ";", function (err, rows, fields) {
-    //       if (err) throw err
-    //       showSearchResults(rows)
-
-    //       res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
-    //         title: 'Retail Price Calculator (Universal w/ Brand Targeting)',
-    //         searchResRows: searchResults,
-    //         loadedSqlTbl: loadedSqlTbl
-    //       })
-    //     })
-    //   } else { // if no records found, render vw-noRecords page
-    //     if (formInput0 !== undefined && formInput63 !== undefined && formInput64 !== undefined &&
-    //       formInput65 !== undefined && formInput66 !== undefined && formInput69 !== undefined) {
-    //       connection.query("SELECT * FROM " + formInput0 + " WHERE " + "'" + genericHeaderObj.upcHeader + "'" + " LIKE " + "'" + formInput62 + "%" + "'" +
-    //         " AND " + genericHeaderObj.skuHeader + " LIKE " + "'" + formInput63 + "%" + "'" +
-    //         " AND " + genericHeaderObj.nameHeader + " LIKE " + "'" + formInput64 + "%" + "'" +
-    //         " AND " + genericHeaderObj.ediCostHeader + " LIKE " + "'" + formInput65 + "%" + "'" +
-    //         " AND " + genericHeaderObj.msrpHeader + " LIKE " + "'" + formInput68 + "%" + "'",
-    //         function (err, rows, fields) {
-    //           if (err) throw err
-    //           if (rows.length <= 0) {
-    //             console.log('NO RECORDS FOUND')
-    //             res.render('vw-noRecords', {
-    //               title: 'no results',
-    //             })
-    //           } else { //if records found for search string entered, add them to searchResults
-    //             showSearchResults(rows)
-
-    //             res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
-    //               title: 'Retail Price Calculator (Universal w/ Brand Targeting)',
-    //               searchResRows: searchResults,
-    //               // wsDiff: wholesaleDiffT0d.wsDifferenceArr
-    //             })
-    //           }
-    //         })
-    //     }
-
-    //     //^//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
-    //   }
-    // }
 
     function queryNhcrtEdiJoinTable() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
@@ -778,59 +713,7 @@ module.exports = {
 
     }
 
-    function queryOtherTables() {
-      //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
-      if (formInput63 == '' && formInput64 == '' && formInput65 == '' && formInput66 == '' && formInput69 == '') { //return all table entries if search string is empty
-        connection.query("SELECT * FROM " + formInput0 + ";", function (err, rows, fields) {
-          if (err) throw err
-          showSearchResults(rows)
-
-          res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
-            title: 'Retail Price Calculator (Universal w/ Brand Targeting)',
-            searchResRows: searchResults,
-            loadedSqlTbl: loadedSqlTbl
-          })
-        })
-      } else { // if no records found, render vw-noRecords page
-        if (formInput0 !== undefined && formInput63 !== undefined && formInput64 !== undefined &&
-          formInput65 !== undefined && formInput66 !== undefined && formInput69 !== undefined) {
-          connection.query("SELECT * FROM " + formInput0 + " WHERE " + "'" + genericHeaderObj.upcHeader + "'" + " LIKE " + "'" + formInput62 + "%" + "'" +
-            " AND " + genericHeaderObj.skuHeader + " LIKE " + "'" + formInput63 + "%" + "'" +
-            " AND " + genericHeaderObj.nameHeader + " LIKE " + "'" + formInput64 + "%" + "'" +
-            " AND " + genericHeaderObj.ediCostHeader + " LIKE " + "'" + formInput65 + "%" + "'" +
-            " AND " + genericHeaderObj.msrpHeader + " LIKE " + "'" + formInput68 + "%" + "'",
-            function (err, rows, fields) {
-              if (err) throw err
-              if (rows.length <= 0) {
-                console.log('NO RECORDS FOUND')
-                res.render('vw-noRecords', {
-                  title: 'no results',
-                })
-              } else { //if records found for search string entered, add them to searchResults
-                showSearchResults(rows)
-
-                res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
-                  title: 'Retail Price Calculator (Universal w/ Brand Targeting)',
-                  searchResRows: searchResults,
-                  // wsDiff: wholesaleDiffT0d.wsDifferenceArr
-                })
-              }
-            })
-        }
-
-        //^//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
-      }
-    }
-
-    if (formInput0.includes('nhcrtedijoin') && tableToJoin !== "") {
-      queryJoinedTables()
-    } else {
-      if (formInput0.includes('nhcrtedijoin')) {
-        queryNhcrtEdiJoinTable()
-      } else {
-        queryOtherTables()
-      }
-    }
+    queryNhcrtEdiJoinTable()
 
   })
 }
