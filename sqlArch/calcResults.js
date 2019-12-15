@@ -211,6 +211,9 @@ module.exports = {
       // if (splitFieldResult[i] == 'rb_dept_margin') {
       //   genericHeaderObj.rbDeptMarginHeader = splitFieldResult[i]
       // }
+      if (splitFieldResult[i] == 'sibIdealMargin') {
+        genericHeaderObj.sibIdealMarginHeader = splitFieldResult[i]
+      }
       if (splitFieldResult[i] == 'rb_supplier') {
         genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
       }
@@ -599,8 +602,11 @@ module.exports = {
         //   reviewObj['rb_dept_margin'] = '40'
         // }
 
-        srcRsObj['rb_dept_margin'] = rows[i][genericHeaderObj.rbDeptMarginHeader]
-        reviewObj['rb_dept_margin'] = rows[i][genericHeaderObj.rbDeptMarginHeader] //INCLUDE in save2CSVreview export data 
+        // srcRsObj['rb_dept_margin'] = rows[i][genericHeaderObj.rbDeptMarginHeader]
+        // reviewObj['rb_dept_margin'] = rows[i][genericHeaderObj.rbDeptMarginHeader] //INCLUDE in save2CSVreview export data
+
+        srcRsObj['sibIdealMargin'] = rows[i][genericHeaderObj.sibIdealMarginHeader]
+        reviewObj['sibIdealMargin'] = rows[i][genericHeaderObj.sibIdealMarginHeader] //INCLUDE in save2CSVreview export data
 
         srcRsObj['edlp_flag'] = rows[i][genericHeaderObj.edlpFlagHeader]
         reviewObj['edlp_flag'] = rows[i][genericHeaderObj.edlpFlagHeader] //INCLUDE in save2CSVreview export data
