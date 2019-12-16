@@ -549,7 +549,7 @@ module.exports = {
         }
 
         if (typeOfIMW.toLowerCase() == 'wholesale') {
-          if (skuOveride.toLowerCase() == 'matchOnly') { //option for including or excluding matching catapult/edi SKUs
+          if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
             if (rows[i][genericHeaderObj.cpltSKUHeader] == rows[i][genericHeaderObj.ediSKUHeader]) {
               srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
               srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
@@ -710,7 +710,7 @@ module.exports = {
             // searchResults.push(srcRsObj)
             // searchResultsForCSV.push(srcRsObj)
             // searchResultsForCSVreview.push(reviewObj)
-            if (skuOveride.toLowerCase() == 'matchOnly') { //option for including or excluding matching catapult/edi SKUs
+            if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
               if (rows[i][genericHeaderObj.cpltSKUHeader] == rows[i][genericHeaderObj.ediSKUHeader]) {
                 searchResults.push(srcRsObj)
                 searchResultsForCSV.push(srcRsObj)
@@ -725,9 +725,9 @@ module.exports = {
         }
 
       }
-      console.log('calcResults says: searchResults from showSearchResults()==>', searchResults)
+      console.log('calcResults says: searchResults[0] from showSearchResults()==>', searchResults[0])
       // console.log('calcResults says: searchResultsForCSV from showSearchResults()==>', searchResultsForCSV)
-      console.log('calcResults says: searchResultsForCSVreview from showSearchResults()==>', searchResultsForCSVreview)
+      console.log('calcResults says: searchResultsForCSVreview[0] from showSearchResults()==>', searchResultsForCSVreview[0])
     }
 
 
