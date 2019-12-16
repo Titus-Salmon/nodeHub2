@@ -257,11 +257,12 @@ module.exports = {
           //apply DEPARTMENT margin to calculate charm pricing
           if (srcRsObj['ediCost'] > 0) {
             let oupNameLC = rows[i][genericHeaderObj.oupName]
-            if (oupNameLC.toLowerCase().includes('ea-') || oupNameLC.toLowerCase().includes('cs-')) {
-              oupNameSplit = oupNameLC.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+            oupNameSplit = oupNameLC.split(/([0-9]+)/)
+            if (oupNameSplit[0].toLowerCase().includes('ea') || oupNameSplit[0].toLowerCase().includes('cs')) {
+              // oupNameSplit = oupNameLC.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
               srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value
             } else {
-              if (oupNameLC.toLowerCase().includes('each')) {
+              if (oupNameLC.toLowerCase() == 'each' || oupNameLC.toLowerCase() == 'ea' || oupNameLC.toLowerCase() == 'cs') {
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / 1
               } //divide ediCost by 1 for items with oupName value of just "each"
               else {
