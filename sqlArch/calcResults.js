@@ -262,7 +262,7 @@ module.exports = {
               // oupNameSplit = oupNameLC.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
               srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value
             } else {
-              if (oupNameLC.toLowerCase() == 'each' || oupNameLC.toLowerCase() == 'ea' || oupNameLC.toLowerCase() == 'cs') {
+              if (oupNameLC.toLowerCase() == 'each' || oupNameLC.toLowerCase() == 'ea' || oupNameLC.toLowerCase() == 'cs') { //try trimming out whitespace fdor this
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / 1
               } //divide ediCost by 1 for items with oupName value of just "each"
               else {
