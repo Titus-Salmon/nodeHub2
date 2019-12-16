@@ -437,12 +437,15 @@ module.exports = {
         //v//provide different update messages, based on what type of update you're doing (i.e. ws IMW, retail IMW, new item IMW)
         if (typeOfIMW.toLowerCase() == 'wholesale') {
           srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + " WS UPDT (pf5)" //Power Field 5 - today's date
+          srcRsObj['pf8'] = "" //Power Field 8
         }
         if (typeOfIMW.toLowerCase() == 'retail') {
           srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + " RTL UPDT (pf5)" //Power Field 5 - today's date
+          srcRsObj['pf8'] = `ACTUAL MSRP: ${rows[i][genericHeaderObj.msrpHeader]}` //Suggested Retail //Power Field 8 - this will target the ACTUAL MSRP
         }
         if (typeOfIMW.toLowerCase() == 'new') {
           srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + " NEW ITEM UPDT (pf5)" //Power Field 5 - today's date
+          srcRsObj['pf8'] = "" //Power Field 8
         }
         //^//provide different update messages, based on what type of update you're doing (i.e. ws IMW, retail IMW, new item IMW)
 
@@ -450,8 +453,7 @@ module.exports = {
         srcRsObj['pf6'] = rows[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
         reviewObj['pf6'] = rows[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
         srcRsObj['pf7'] = "" //Power Field 7
-        srcRsObj['pf8'] = "" //Power Field 8
-        srcRsObj['pf8'] = `ACTUAL MSRP: ${rows[i][genericHeaderObj.msrpHeader]}` //Suggested Retail //Power Field 8 - this will target the ACTUAL MSRP
+        // srcRsObj['pf8'] = "" //Power Field 8
 
         srcRsObj['onhndQnt'] = "" //On Hand Quantity
         srcRsObj['rdrPnt'] = "" //Reorder Point
