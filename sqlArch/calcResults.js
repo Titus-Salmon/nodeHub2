@@ -258,7 +258,7 @@ module.exports = {
           if (srcRsObj['ediCost'] > 0) {
             let oupNameLC = rows[i][genericHeaderObj.oupName]
             if (oupNameLC.toLowerCase().includes('ea-')) {
-              oupNameSplit = oupName.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+              oupNameSplit = oupNameLC.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
               srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName value
             }
             srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCost'] - srcRsObj['ediCost'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
