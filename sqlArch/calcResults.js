@@ -257,7 +257,7 @@ module.exports = {
           //apply DEPARTMENT margin to calculate charm pricing
           if (srcRsObj['ediCost'] > 0) {
             let oupNameLC = rows[i][genericHeaderObj.oupName]
-            if (oupName.toLowerCase().includes('ea-')) {
+            if (oupNameLC.toLowerCase().includes('ea-')) {
               oupNameSplit = oupName.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
               srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName value
             }
