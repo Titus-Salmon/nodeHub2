@@ -329,6 +329,10 @@ html
 				option(value='retail') Retail Update IMW
 				option(value='new') New Item(s) IMW
 
+			select#skuOveride.input-unit-1(name='skuOveridePost')
+				option(value='allowMismatch') Allow SKU Mismatches
+				option(value='matchOnly') Require SKU Match
+
 			input#tableToJoin.input-unit-1(type='text', placeholder='enter table to join', name='tableToJoinPost', value="")
 
 		button#searchDB(type='submit', form='retailCalcUniversal', style="display: block; float: left") Search Loaded Table

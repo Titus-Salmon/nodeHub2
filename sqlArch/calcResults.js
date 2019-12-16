@@ -123,8 +123,10 @@ module.exports = {
 
     let formInput61 = typeOfIMW = Object.values(postBody)[61] //typeOfIMWPost
     console.log('typeOfIMW==>', typeOfIMW)
+    let formInput62 = skuOveride = Object.values(postBody)[62] //skuOveridePost
+    console.log('skuOveride==>', skuOveride)
 
-    let formInput62 = tableToJoin = Object.values(postBody)[62] //tableToJoinPost
+    let formInput63 = tableToJoin = Object.values(postBody)[63] //tableToJoinPost
     console.log('tableToJoin==>', tableToJoin)
 
     //^//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
@@ -547,13 +549,21 @@ module.exports = {
         }
 
         if (typeOfIMW.toLowerCase() == 'wholesale') {
-          srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
-          srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
-
-          searchResults.push(srcRsObj)
-          searchResultsForCSV.push(srcRsObj)
-          searchResultsForCSVreview.push(reviewObj)
-
+          if (skuOveride.toLowerCase() == 'matchOnly') { //option for including or excluding matching catapult/edi SKUs
+            if (rows[i][genericHeaderObj.cpltSKUHeader] == rows[i][genericHeaderObj.ediSKUHeader]) {
+              srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
+              srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
+              searchResults.push(srcRsObj)
+              searchResultsForCSV.push(srcRsObj)
+              searchResultsForCSVreview.push(reviewObj)
+            }
+          } else {
+            srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
+            srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
+            searchResults.push(srcRsObj)
+            searchResultsForCSV.push(srcRsObj)
+            searchResultsForCSVreview.push(reviewObj)
+          }
         } else {
           //v//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for globalMargin
           if (formInput0.includes('edi_')) {
@@ -697,9 +707,20 @@ module.exports = {
             revealAppliedMarg(vitSuppMargin)
           }
           if (srcRsObj['charm'] !== "") { //only push results that have some value for "charm" column
-            searchResults.push(srcRsObj)
-            searchResultsForCSV.push(srcRsObj)
-            searchResultsForCSVreview.push(reviewObj)
+            // searchResults.push(srcRsObj)
+            // searchResultsForCSV.push(srcRsObj)
+            // searchResultsForCSVreview.push(reviewObj)
+            if (skuOveride.toLowerCase() == 'matchOnly') { //option for including or excluding matching catapult/edi SKUs
+              if (rows[i][genericHeaderObj.cpltSKUHeader] == rows[i][genericHeaderObj.ediSKUHeader]) {
+                searchResults.push(srcRsObj)
+                searchResultsForCSV.push(srcRsObj)
+                searchResultsForCSVreview.push(reviewObj)
+              }
+            } else {
+              searchResults.push(srcRsObj)
+              searchResultsForCSV.push(srcRsObj)
+              searchResultsForCSVreview.push(reviewObj)
+            }
           }
         }
 
