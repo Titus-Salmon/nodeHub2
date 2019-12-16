@@ -98,7 +98,7 @@ module.exports = {
     }); //do you need to end this connection before res.render, or put res.render inside of connection.query?? (to fix [ERR_HTTP_HEADERS_SENT])
     //or will setting up a connection pool be the solution?
 
-    //connection.end()
+    connection.end()
 
     res.render('vw-MySqlTableHub', {
       title: `vw-MySqlTableHub **Populated Table <<${tableToPopulate}>>**`,
