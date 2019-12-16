@@ -400,6 +400,8 @@ module.exports = {
         if (typeOfIMW.toLowerCase() == 'wholesale' || typeOfIMW.toLowerCase() == 'new') { //include ws (last cost) for new &
           //wholesale IMWs
           srcRsObj['lastCost'] = rows[i][genericHeaderObj.ediCostHeader]
+          srcRsObj['sugstdRtl'] = ""
+          srcRsObj['charm'] = ""
         } else {
           srcRsObj['lastCost'] = "" //Last Cost is used for ws cost in IMWs (need for WS update IMWs & new item IMWs, but not for retail update IMWs)
         }
