@@ -216,7 +216,10 @@ module.exports = {
       if (splitFieldResult[i] == 'sibIdealMargin') {
         genericHeaderObj.sibIdealMarginHeader = splitFieldResult[i]
       }
-      if (splitFieldResult[i] == 'rb_supplier') {
+      // if (splitFieldResult[i] == 'rb_supplier') {
+      //   genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
+      // }
+      if (splitFieldResult[i] == 'venCompanyname') {
         genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
       }
       if (splitFieldResult[i] == 'edlp_flag') {
