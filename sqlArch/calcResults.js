@@ -409,7 +409,9 @@ module.exports = {
         // srcRsObj['charm'] = "" //Base Price ==>INCLUDE in save2CSVreview export data
         srcRsObj['autoDiscount'] = "" //Auto Discount
 
-        srcRsObj['idealMarg'] = "" //Ideal Margin
+        // srcRsObj['idealMarg'] = "" //Ideal Margin
+        srcRsObj['idealMarg'] = rows[i][genericHeaderObj.sibIdealMarginHeader] //set idealMarg to what it actually is in Catapult
+
         srcRsObj['wtPrfl'] = "" //Weight Profile
         srcRsObj['tax1'] = "" //Tax1
         srcRsObj['tax2'] = "" //Tax2
