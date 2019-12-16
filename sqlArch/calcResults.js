@@ -247,7 +247,7 @@ module.exports = {
         function calcCharm(departmentMargin, lowerCutRqdRtl, lowerCutoffCharm1, lowerCutoffCharm2, lowerCutoffCharm3, lowerCutoffCharm4,
           lowerCutoffCharm5, lowerCutoffCharm6, lowerCutoffCharm7, upperCharmRqdRtl, defaultCharm1, defaultCharm2, defaultCharm3, defaultCharm4) {
           //apply DEPARTMENT margin to calculate charm pricing
-          if (srcRsObj['ediCost'] > 0 && typeOfIMW.toLowerCase() !== 'wholesale') {
+          if (srcRsObj['ediCost'] > 0) {
             srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCost'] - srcRsObj['ediCost'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
             //AND also applies any % discount; discountToApply is set at default 0
             //Finally, Math.round(number*100)/100 converts the result to a number with just 2 decimal places.
@@ -352,9 +352,12 @@ module.exports = {
             }
 
             // reviewObj['charm'] = srcRsObj['charm']
+            if (typeOfIMW.toLowerCase() == 'wholesale') {
+              srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
+              srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
+            }
           } else {
             srcRsObj['reqdRetail'] = ""
-            srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
             srcRsObj['charm'] = ""
           }
         }
