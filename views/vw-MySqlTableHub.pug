@@ -335,7 +335,7 @@ html
 		br
 		br
 		button.adminButton#saveCSV(type="submit" form="saveCSVPost") Save Results as CSV - Inv Mnt Wksht (for WS, Retail, or New Item Update)
-		form#saveCSVPost(action='/retailCalcUniversal_brandTargeting/saveCSV' method='POST' accept-charset='UTF-8')
+		form#saveCSVPost(action='/MySqlTableHub/saveIMW_CSV' method='POST' accept-charset='UTF-8')
 			label.input-label-1(for='csv') filename:
 				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
 				//- input#typeOfIMW.input-unit-1(type='text', placeholder='Type if IMW', name='typeOfIMWPost', value='')

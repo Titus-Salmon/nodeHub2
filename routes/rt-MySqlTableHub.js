@@ -28,6 +28,9 @@ const {
   save2CSVnhcrtEdiJoin
 } = require('../sqlArch/save2CSVnhcrtEdiJoin')
 const {
+  saveIMW_CSV
+} = require('../sqlArch/saveIMW_CSV')
+const {
   loadTable_MySqlHub
 } = require('../sqlArch/loadTable_MySqlHub')
 const {
@@ -53,6 +56,7 @@ router.post('/queryRBdb', queryRBdb)
 router.post('/nhcrtDisplay', nhcrtDisplay)
 router.post('/nhcrtEdiJoin', nhcrtEdiJoin)
 router.post('/save2CSVnhcrtEdiJoin', save2CSVnhcrtEdiJoin)
+router.post('/saveIMW_CSV', saveIMW_CSV)
 router.post('/loadTable_MySqlHub', loadTable_MySqlHub)
 router.post('/calcResults', calcResults)
 
