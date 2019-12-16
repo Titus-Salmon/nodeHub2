@@ -257,11 +257,16 @@ module.exports = {
           //apply DEPARTMENT margin to calculate charm pricing
           if (srcRsObj['ediCost'] > 0) {
             let oupNameLC = rows[i][genericHeaderObj.oupName]
-            if (oupNameLC.toLowerCase().includes('ea-')) {
+            if (oupNameLC.toLowerCase().includes('ea-') || oupNameLC.toLowerCase().includes('cs-')) {
               oupNameSplit = oupNameLC.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
               srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value
             } else {
-              srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameLC //divide ediCost by oupName non-parsed value
+              if (oupNameLC.toLowerCase().includes('each')) {
+                srcRsObj['ediCost'] = srcRsObj['ediCost'] / 1
+              } //divide ediCost by 1 for items with oupName value of just "each"
+              else {
+                srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameLC //divide ediCost by oupName non-parsed value
+              }
             }
             srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCost'] - srcRsObj['ediCost'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
             //AND also applies any % discount; discountToApply is set at default 0
