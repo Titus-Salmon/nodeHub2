@@ -31,6 +31,9 @@ module.exports = {
       console.log(error || response);
     });
 
+    //do you need to end this connection before res.render, or put res.render inside of connection.query?? (to fix [ERR_HTTP_HEADERS_SENT])
+    connection.end()
+
     res.render('vw-MySqlTableHub', {
       title: `vw-MySqlTableHub Table Created: <<${tableName}>>`,
       sqlTableCreated: {
