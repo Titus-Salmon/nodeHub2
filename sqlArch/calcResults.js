@@ -228,8 +228,11 @@ module.exports = {
       if (splitFieldResult[i] == 'sale_flag') {
         genericHeaderObj.saleFlagHeader = splitFieldResult[i]
       }
-      if (splitFieldResult[i] == 'kehe_uos') { //need to target kehe_uos in order to divide by that for kehe items sold by case
-        genericHeaderObj.keheUOSHeader = splitFieldResult[i]
+      // if (splitFieldResult[i] == 'kehe_uos') { //need to target kehe_uos in order to divide by that for kehe items sold by case
+      //   genericHeaderObj.keheUOSHeader = splitFieldResult[i]
+      // }
+      if (splitFieldResult[i] == 'oupName') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
+        genericHeaderObj.oupName = splitFieldResult[i]
       }
     }
 
@@ -434,6 +437,10 @@ module.exports = {
         reviewObj['ediSKU'] = rows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
         srcRsObj['splrID'] = rows[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
         srcRsObj['unit'] = "" //Unit
+
+        srcRsObj['oupName'] = rows[i][genericHeaderObj.oupName] //oupName from catapult
+        reviewObj['oupName'] = rows[i][genericHeaderObj.oupName] //oupName from catapult
+
         srcRsObj['numPkgs'] = "" //Number of Packages
         srcRsObj['pf1'] = "" //Power Field 1 (today's date) - no, Tom says this should be pf5
         srcRsObj['pf2'] = "" //Power Field 2 (Supplier ID (EDI-VENDORNAME) again, for some reason)
