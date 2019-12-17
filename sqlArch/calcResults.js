@@ -264,8 +264,10 @@ module.exports = {
             } else {
               console.log(`oupNameVar.trim().toLowerCase()1==> ${oupNameVar.trim().toLowerCase()}`)
               if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') { //try trimming out whitespace for this
+                console.log(`srcRsObj['ediCost'] (precalc) ${srcRsObj['ediCost']}`)
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / 1
-              } //divide ediCost by 1 for items with oupName value of just "each", "ea", or "cs"
+                console.log(`srcRsObj['ediCost'] (postcalc) ${srcRsObj['ediCost']}`)
+              } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               else {
                 console.log(`oupNameVar.trim().toLowerCase()2==> ${oupNameVar.trim().toLowerCase()}`)
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
