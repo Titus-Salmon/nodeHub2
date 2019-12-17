@@ -256,17 +256,17 @@ module.exports = {
           lowerCutoffCharm5, lowerCutoffCharm6, lowerCutoffCharm7, upperCharmRqdRtl, defaultCharm1, defaultCharm2, defaultCharm3, defaultCharm4) {
           //apply DEPARTMENT margin to calculate charm pricing
           if (srcRsObj['ediCost'] > 0) {
-            let oupNameLC = rows[i][genericHeaderObj.oupName]
-            oupNameSplit = oupNameLC.split(/([0-9]+)/)
+            let oupNameVar = rows[i][genericHeaderObj.oupName]
+            oupNameSplit = oupNameVar.split(/([0-9]+)/)
             if (oupNameSplit[0].toLowerCase().includes('ea') || oupNameSplit[0].toLowerCase().includes('cs')) {
-              // oupNameSplit = oupNameLC.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
-              srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value
+              // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+              srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
             } else {
-              if (oupNameLC.toLowerCase() == 'each' || oupNameLC.toLowerCase() == 'ea' || oupNameLC.toLowerCase() == 'cs') { //try trimming out whitespace fdor this
+              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'cs') { //try trimming out whitespace for this
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / 1
-              } //divide ediCost by 1 for items with oupName value of just "each"
+              } //divide ediCost by 1 for items with oupName value of just "each", "ea", or "cs"
               else {
-                srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameLC //divide ediCost by oupName non-parsed value
+                srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
               }
             }
             srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCost'] - srcRsObj['ediCost'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
