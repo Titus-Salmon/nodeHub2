@@ -262,6 +262,7 @@ module.exports = {
               // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
               srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
             } else {
+              console.log(`oupNameVar==> ${oupNameVar}`)
               console.log(`oupNameVar.trim().toLowerCase()1==> ${oupNameVar.trim().toLowerCase()}`)
               if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') { //try trimming out whitespace for this
                 console.log(`srcRsObj['ediCost'] (precalc) ${srcRsObj['ediCost']}`)
