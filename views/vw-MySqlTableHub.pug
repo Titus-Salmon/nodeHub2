@@ -41,7 +41,7 @@ html
 		//- //^// queries RB DB - default query here is 'show tables;'
 
 		br
-		
+
 		//- //v// queries RB DB - default query here is 'SELECT * FROM ${nhcrtTableName};'
 		form#nhcrtDisplay(action='/MySqlTableHub/nhcrtDisplay' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
@@ -74,7 +74,7 @@ html
 				input#crtNhcrtTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='invScanCode,invName,ordSupplierStockNumber,invSize,invReceiptAlias,posTimeStamp,invDateCreated,invEmpFkCreatedBy,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastreceived,invLastsold,invLastcost,sibBasePrice,invOnhand,invOnorder,invIntransit,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4')
 				button#crtNhcrtTblBtn(type='submit', form='createNhcrtTable', style="display: block; float: left") CREATE NHCRT Table
 		//- //^// creates empty mysql table
-		
+
 		br
 
 		//- //v// creates empty nhcrtEdiJoin mysql table
@@ -332,6 +332,10 @@ html
 			select#skuOveride.input-unit-1(name='skuOveridePost')
 				option(value='allowMismatch') Allow SKU Mismatches
 				option(value='matchOnly') Require SKU Match
+
+			div(style="display:block")
+				label.input-label-1(for='deptFilter') WS Diff Results
+				input#deptFilter.input-unit-1(type='text', name='deptFilterPost' value='')
 
 			input#tableToJoin.input-unit-1(type='text', placeholder='enter table to join', name='tableToJoinPost', value="")
 

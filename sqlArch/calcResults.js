@@ -14,6 +14,8 @@ module.exports = {
 
   calcResults: router.post('/calcResults', (req, res, next) => {
 
+
+
     let searchResults = [] //clear searchResults from previous search
     console.log('calcResults says: searchResults from router.post level===>', searchResults)
     searchResultsForCSV = []
@@ -125,8 +127,10 @@ module.exports = {
     console.log('typeOfIMW==>', typeOfIMW)
     let formInput62 = skuOveride = Object.values(postBody)[62] //skuOveridePost
     console.log('skuOveride==>', skuOveride)
+    let formInput63 = deptFilter = Object.values(postBody)[63] //skuOveridePost
+    console.log('deptFilter==>', deptFilter)
 
-    let formInput63 = tableToJoin = Object.values(postBody)[63] //tableToJoinPost
+    let formInput64 = tableToJoin = Object.values(postBody)[63] //tableToJoinPost
     console.log('tableToJoin==>', tableToJoin)
 
     //^//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
@@ -620,6 +624,73 @@ module.exports = {
               defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           }
           //^//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for globalMargin
+
+          let deptFilterArr = [{
+              '54': 'Beer & Alcohol'
+            },
+            {
+              '152': 'Body Care'
+            },
+            {
+              '9': 'Books'
+            },
+            {
+              '19': 'Bulk'
+            },
+            {
+              '30': 'Bulk & Herb Prepack'
+            },
+            {
+              '175': 'CBD - Grocery'
+            },
+            {
+              '176': 'CBD - Supplements'
+            },
+            {
+              '177': 'CBD - Topicals'
+            },
+            {
+              '148': 'Consignments'
+            },
+            {
+              '150': 'General Merchandise'
+            },
+            {
+              '13': 'Gift Items'
+            },
+            {
+              '62': 'Grab & Go'
+            },
+            {
+              '25': 'Grocery'
+            },
+            {
+              '179': 'Grocery - Local'
+            },
+            {
+              '38': 'Grocery - Local Meat'
+            },
+            {
+              '12': 'HBA'
+            },
+            {
+              '158': 'Herbs & Homeopathic'
+            },
+            {
+              '80': 'LifeBar'
+            },
+            {
+              '151': 'Other'
+            },
+            {
+              '155': 'Refrigerated'
+            },
+            {
+              '157': 'Vitamins & Supplements'
+            }
+          ]
+
+          console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
 
           if (srcRsObj['dptNumber'] == '54') { //Beer & Alcohol
             //apply Department margin to calculate charm pricing
