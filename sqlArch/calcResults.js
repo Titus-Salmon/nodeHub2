@@ -202,8 +202,8 @@ module.exports = {
 
     for (let k = 0; k < deptFilterArr.length; k++) {
       console.log(`Object.keys(deptFilterArr[${k}]==> ${Object.keys(deptFilterArr[k])}`)
-      if (Object.keys(deptFilterArr[k]) = deptFilter) {
-        deptFilterToApply = deptFilter
+      if (Object.keys(deptFilterArr[k]) == deptFilter) {
+        return deptFilterToApply = deptFilter
       } else {
         deptFilterToApply = null
       }
