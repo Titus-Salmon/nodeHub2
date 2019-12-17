@@ -195,7 +195,7 @@ module.exports = {
     let formInput63 = deptFilter = Object.values(postBody)[63] //skuOveridePost
     console.log('deptFilter==>', deptFilter)
 
-    let formInput64 = tableToJoin = Object.values(postBody)[63] //tableToJoinPost
+    let formInput64 = tableToJoin = Object.values(postBody)[64] //tableToJoinPost
     console.log('tableToJoin==>', tableToJoin)
 
     //^//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
