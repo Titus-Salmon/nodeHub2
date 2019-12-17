@@ -262,6 +262,7 @@ module.exports = {
               // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
               srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
             } else {
+              console.log(`oupNameVar.trim().toLowerCase()==> ${oupNameVar.trim().toLowerCase()}`)
               if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'cs') { //try trimming out whitespace for this
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / 1
               } //divide ediCost by 1 for items with oupName value of just "each", "ea", or "cs"
@@ -347,11 +348,11 @@ module.exports = {
                     }
                     if (srcRsObj['reqdRetail'] % 1 <= .855) { //bump anything from #.56 to #.85 ==> #.79 (Brad); Andrea gets bumped
                       //to #.99 for anything from #.56 to #.85 (because defaultCharm3 for Brad is .79, but for Andrea it is .99)
-                      console.log('srcRsObj[\'reqdRetail\'] (<= .855)==>', srcRsObj['reqdRetail'])
-                      console.log('srcRsObj[\'reqdRetail\'] %1 (<= .855)==>', srcRsObj['reqdRetail'] % 1)
-                      console.log('defaultCharm2==>', defaultCharm2)
-                      console.log('defaultCharm3==>', defaultCharm3)
-                      console.log('defaultCharm4==>', defaultCharm4)
+                      // console.log('srcRsObj[\'reqdRetail\'] (<= .855)==>', srcRsObj['reqdRetail'])
+                      // console.log('srcRsObj[\'reqdRetail\'] %1 (<= .855)==>', srcRsObj['reqdRetail'] % 1)
+                      // console.log('defaultCharm2==>', defaultCharm2)
+                      // console.log('defaultCharm3==>', defaultCharm3)
+                      // console.log('defaultCharm4==>', defaultCharm4)
                       if (defaultCharm3 > 0) {
                         return srcRsObj['sugstdRtl'] = reviewObj['charm'] = srcRsObj['charm'] = srcRsObj['reqdRetail'] - srcRsObj['reqdRetail'] % 1 + defaultCharm3
                       } else {
@@ -359,8 +360,8 @@ module.exports = {
                       }
                     }
                     if (srcRsObj['reqdRetail'] % 1 > .856) { //bump anything from #.85+ and higher ==> #.99
-                      console.log('srcRsObj[\'reqdRetail\'] (> .856)==>', srcRsObj['reqdRetail'])
-                      console.log('srcRsObj[\'reqdRetail\'] %1 (> .856)==>', srcRsObj['reqdRetail'] % 1)
+                      // console.log('srcRsObj[\'reqdRetail\'] (> .856)==>', srcRsObj['reqdRetail'])
+                      // console.log('srcRsObj[\'reqdRetail\'] %1 (> .856)==>', srcRsObj['reqdRetail'] % 1)
                       if (lowerCutoffCharm4 > 0) {
                         return srcRsObj['sugstdRtl'] = reviewObj['charm'] = srcRsObj['charm'] = srcRsObj['reqdRetail'] - srcRsObj['reqdRetail'] % 1 + defaultCharm4
                       }
