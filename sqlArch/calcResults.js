@@ -409,6 +409,7 @@ module.exports = {
 
           if (srcRsObj['upc'] == srcRsObj['edlpUPC']) {
             srcRsObj['edlpVar'] = "EDLP"
+            reviewObj['edlpVar'] = "EDLP"
           }
         }
         //^//EDLP HANDLER///////////////////////////////////////////////////////////////////////////////////////
