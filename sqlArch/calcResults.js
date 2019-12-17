@@ -256,6 +256,7 @@ module.exports = {
         let srcRsObj = {}
         let reviewObj = {} //push data to this obj for review CSV
 
+
         function calcCharm(departmentMargin, lowerCutRqdRtl, lowerCutoffCharm1, lowerCutoffCharm2, lowerCutoffCharm3, lowerCutoffCharm4,
           lowerCutoffCharm5, lowerCutoffCharm6, lowerCutoffCharm7, upperCharmRqdRtl, defaultCharm1, defaultCharm2, defaultCharm3, defaultCharm4) {
           //apply DEPARTMENT margin to calculate charm pricing
@@ -399,6 +400,18 @@ module.exports = {
         srcRsObj['upc'] = nejRows[i][genericHeaderObj.upcHeader] //Item ID
         // console.log('calcResults says: srcRsObj[\'upc\']~~~>', srcRsObj['upc'])
         reviewObj['upc'] = nejRows[i][genericHeaderObj.upcHeader] //Item ID
+
+
+        //v//EDLP HANDLER///////////////////////////////////////////////////////////////////////////////////////
+        for (let j = 0; j < edlpRows.length; j++) {
+          srcRsObj['edlpUPC'] = edlpRows[j]['edlp_upc']
+          reviewObj['edlpUPC'] = edlpRows[j]['edlp_upc'] //INCLUDE in save2CSVreview export data
+
+          if (srcRsObj['upc'] == srcRsObj['edlpUPC']) {
+            srcRsObj['edlpVar'] = "EDLP"
+          }
+        }
+        //^//EDLP HANDLER///////////////////////////////////////////////////////////////////////////////////////
 
         srcRsObj['cpltCost'] = reviewObj['cpltCost'] = nejRows[i][genericHeaderObj.invLastcostHeader]
 
@@ -563,15 +576,6 @@ module.exports = {
 
         // srcRsObj['edlp_flag'] = nejRows[i][genericHeaderObj.edlpFlagHeader]
         // reviewObj['edlp_flag'] = nejRows[i][genericHeaderObj.edlpFlagHeader] //INCLUDE in save2CSVreview export data
-
-        srcRsObj['edlpUPC'] = edlpRows[i]['edlp_upc']
-        reviewObj['edlpUPC'] = edlpRows[i]['edlp_upc'] //INCLUDE in save2CSVreview export data
-
-        //v//EDLP HANDLER///////////////////////////////////////////////////////////////////////////////////////
-        if (srcRsObj['upc'] == srcRsObj['edlpUPC']) {
-          srcRsObj['edlpVar'] = "EDLP"
-        }
-        //^//EDLP HANDLER///////////////////////////////////////////////////////////////////////////////////////
 
         srcRsObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader]
         reviewObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data
