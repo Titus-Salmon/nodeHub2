@@ -14,7 +14,72 @@ module.exports = {
 
   calcResults: router.post('/calcResults', (req, res, next) => {
 
+    let deptFilterArr = [{
+        '54': 'Beer & Alcohol'
+      },
+      {
+        '152': 'Body Care'
+      },
+      {
+        '9': 'Books'
+      },
+      {
+        '19': 'Bulk'
+      },
+      {
+        '30': 'Bulk & Herb Prepack'
+      },
+      {
+        '175': 'CBD - Grocery'
+      },
+      {
+        '176': 'CBD - Supplements'
+      },
+      {
+        '177': 'CBD - Topicals'
+      },
+      {
+        '148': 'Consignments'
+      },
+      {
+        '150': 'General Merchandise'
+      },
+      {
+        '13': 'Gift Items'
+      },
+      {
+        '62': 'Grab & Go'
+      },
+      {
+        '25': 'Grocery'
+      },
+      {
+        '179': 'Grocery - Local'
+      },
+      {
+        '38': 'Grocery - Local Meat'
+      },
+      {
+        '12': 'HBA'
+      },
+      {
+        '158': 'Herbs & Homeopathic'
+      },
+      {
+        '80': 'LifeBar'
+      },
+      {
+        '151': 'Other'
+      },
+      {
+        '155': 'Refrigerated'
+      },
+      {
+        '157': 'Vitamins & Supplements'
+      }
+    ]
 
+    console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
 
     let searchResults = [] //clear searchResults from previous search
     console.log('calcResults says: searchResults from router.post level===>', searchResults)
@@ -135,6 +200,15 @@ module.exports = {
 
     //^//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
 
+    for (let k = 0; k < deptFilterArr.length; k++) {
+      if (Object.keys(deptFilterArr[k]) == deptFilter) {
+        deptFilterToApply = deptFilter
+      } else {
+        deptFilterToApply = null
+      }
+    }
+
+    console.log(`deptFilterToApply==> ${deptFilterToApply}`)
 
     if (postBody['wsDiffResultsPost'].length > 0) { //must check to see if anything was entered in WS Diff Results
       //input, otherwise get 'unexpected end of JSON' error
@@ -605,16 +679,32 @@ module.exports = {
             if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
               srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
               srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
-              searchResults.push(srcRsObj)
-              searchResultsForCSV.push(srcRsObj)
-              searchResultsForCSVreview.push(reviewObj)
+              if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
+                if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+                  searchResults.push(srcRsObj)
+                  searchResultsForCSV.push(srcRsObj)
+                  searchResultsForCSVreview.push(reviewObj)
+                }
+              } else { //otherwise, push all depts into searchResults
+                searchResults.push(srcRsObj)
+                searchResultsForCSV.push(srcRsObj)
+                searchResultsForCSVreview.push(reviewObj)
+              }
             }
           } else {
             srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
             srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
-            searchResults.push(srcRsObj)
-            searchResultsForCSV.push(srcRsObj)
-            searchResultsForCSVreview.push(reviewObj)
+            if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
+              if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+                searchResults.push(srcRsObj)
+                searchResultsForCSV.push(srcRsObj)
+                searchResultsForCSVreview.push(reviewObj)
+              }
+            } else { //otherwise, push all depts into searchResults
+              searchResults.push(srcRsObj)
+              searchResultsForCSV.push(srcRsObj)
+              searchResultsForCSVreview.push(reviewObj)
+            }
           }
         } else {
           //v//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for globalMargin
@@ -624,73 +714,6 @@ module.exports = {
               defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           }
           //^//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for globalMargin
-
-          let deptFilterArr = [{
-              '54': 'Beer & Alcohol'
-            },
-            {
-              '152': 'Body Care'
-            },
-            {
-              '9': 'Books'
-            },
-            {
-              '19': 'Bulk'
-            },
-            {
-              '30': 'Bulk & Herb Prepack'
-            },
-            {
-              '175': 'CBD - Grocery'
-            },
-            {
-              '176': 'CBD - Supplements'
-            },
-            {
-              '177': 'CBD - Topicals'
-            },
-            {
-              '148': 'Consignments'
-            },
-            {
-              '150': 'General Merchandise'
-            },
-            {
-              '13': 'Gift Items'
-            },
-            {
-              '62': 'Grab & Go'
-            },
-            {
-              '25': 'Grocery'
-            },
-            {
-              '179': 'Grocery - Local'
-            },
-            {
-              '38': 'Grocery - Local Meat'
-            },
-            {
-              '12': 'HBA'
-            },
-            {
-              '158': 'Herbs & Homeopathic'
-            },
-            {
-              '80': 'LifeBar'
-            },
-            {
-              '151': 'Other'
-            },
-            {
-              '155': 'Refrigerated'
-            },
-            {
-              '157': 'Vitamins & Supplements'
-            }
-          ]
-
-          console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
 
           if (srcRsObj['dptNumber'] == '54') { //Beer & Alcohol
             //apply Department margin to calculate charm pricing
@@ -831,14 +854,30 @@ module.exports = {
             // searchResultsForCSVreview.push(reviewObj)
             if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
               if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
+                if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
+                  if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+                    searchResults.push(srcRsObj)
+                    searchResultsForCSV.push(srcRsObj)
+                    searchResultsForCSVreview.push(reviewObj)
+                  }
+                } else { //otherwise, push all depts into searchResults
+                  searchResults.push(srcRsObj)
+                  searchResultsForCSV.push(srcRsObj)
+                  searchResultsForCSVreview.push(reviewObj)
+                }
+              }
+            } else {
+              if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
+                if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+                  searchResults.push(srcRsObj)
+                  searchResultsForCSV.push(srcRsObj)
+                  searchResultsForCSVreview.push(reviewObj)
+                }
+              } else { //otherwise, push all depts into searchResults
                 searchResults.push(srcRsObj)
                 searchResultsForCSV.push(srcRsObj)
                 searchResultsForCSVreview.push(reviewObj)
               }
-            } else {
-              searchResults.push(srcRsObj)
-              searchResultsForCSV.push(srcRsObj)
-              searchResultsForCSVreview.push(reviewObj)
             }
           }
         }
