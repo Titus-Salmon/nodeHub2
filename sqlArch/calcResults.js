@@ -258,10 +258,11 @@ module.exports = {
           if (srcRsObj['ediCost'] > 0) {
             let oupNameVar = rows[i][genericHeaderObj.oupName]
             oupNameSplit = oupNameVar.split(/([0-9]+)/)
-            console.log(`oupNameVar1==> ${oupNameVar}`)
-            console.log(`oupNameSplit==> ${oupNameSplit}`)
-            console.log(`oupNameSplit.length==> ${oupNameSplit.length}`)
-            if (oupNameSplit[0].toLowerCase().includes('ea') || oupNameSplit[0].toLowerCase().includes('cs')) {
+            // console.log(`oupNameVar1==> ${oupNameVar}`)
+            // console.log(`oupNameSplit==> ${oupNameSplit}`)
+            // console.log(`oupNameSplit.length==> ${oupNameSplit.length}`)
+            if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' ||
+              oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
               // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
               srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
             } else {
