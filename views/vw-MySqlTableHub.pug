@@ -347,7 +347,7 @@ html
 				label.input-label-1(for='csvHeaders') CSV headers:
 					input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
 		button.adminButton#saveCSVreview(type="submit" form="saveCSVreviewPost") Save Results as CSV - Retail Price Review
-		form#saveCSVreviewPost(action='/retailCalcUniversal_brandTargeting/saveCSVreview' method='POST' accept-charset='UTF-8')
+		form#saveCSVreviewPost(action='/MySqlTableHub/save2CSVreviewNEJ' method='POST' accept-charset='UTF-8')
 			label.input-label-1(for='csv') filename:
 				input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
 			if loadedTable !== undefined
@@ -381,6 +381,7 @@ html
 						th rb_dept_margin
 						th wsDiff
 						th Appld Disco
+						th EDLP
 
 
 				tbody#resTblBdy
@@ -406,6 +407,7 @@ html
 								td= elmnt.rb_dept_margin
 								td= elmnt.wsDiff_t0d
 								td= elmnt.discountToApply
+								td= elmnt.edlpVar
 									//- label.input-label-1(for='mrgnVl') margin value
 									//- input#mrgVl.input-unit-1(type='number', placeholder='0', name='mrgVldPost', value='')
 

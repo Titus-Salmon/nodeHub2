@@ -561,8 +561,18 @@ module.exports = {
         srcRsObj['sibIdealMargin'] = nejRows[i][genericHeaderObj.sibIdealMarginHeader]
         reviewObj['sibIdealMargin'] = nejRows[i][genericHeaderObj.sibIdealMarginHeader] //INCLUDE in save2CSVreview export data
 
-        srcRsObj['edlp_flag'] = nejRows[i][genericHeaderObj.edlpFlagHeader]
-        reviewObj['edlp_flag'] = nejRows[i][genericHeaderObj.edlpFlagHeader] //INCLUDE in save2CSVreview export data
+        // srcRsObj['edlp_flag'] = nejRows[i][genericHeaderObj.edlpFlagHeader]
+        // reviewObj['edlp_flag'] = nejRows[i][genericHeaderObj.edlpFlagHeader] //INCLUDE in save2CSVreview export data
+
+        srcRsObj['edlpUPC'] = edlpRows[i]['edlp_upc']
+        reviewObj['edlpUPC'] = edlpRows[i]['edlp_upc'] //INCLUDE in save2CSVreview export data
+
+        //v//EDLP HANDLER///////////////////////////////////////////////////////////////////////////////////////
+        if (srcRsObj['upc'] == srcRsObj['edlpUPC']) {
+          srcRsObj['edlpVar'] = "EDLP"
+        }
+        //^//EDLP HANDLER///////////////////////////////////////////////////////////////////////////////////////
+
         srcRsObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader]
         reviewObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data
 
