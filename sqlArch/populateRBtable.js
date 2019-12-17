@@ -9,6 +9,7 @@ const connection = mysql.createConnection({
   user: process.env.RB_USER,
   password: process.env.RB_PW,
   database: process.env.RB_DB,
+  debug: true
   // multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
 //try using connection pool
@@ -95,10 +96,15 @@ module.exports = {
         //   },
         // });
       }
-    }); //do you need to end this connection before res.render, or put res.render inside of connection.query?? (to fix [ERR_HTTP_HEADERS_SENT])
+    }).on('end', function () {
+      // all rows have been received
+      connection.destroy()
+    })
+    //do you need to end this connection before res.render, or put res.render inside of connection.query?? (to fix [ERR_HTTP_HEADERS_SENT])
     //or will setting up a connection pool be the solution?
 
-    connection.end()
+    // connection.end()
+    // connection.destroy()
 
     res.render('vw-MySqlTableHub', {
       title: `vw-MySqlTableHub **Populated Table <<${tableToPopulate}>>**`,

@@ -5,7 +5,8 @@ const connection = mysql.createConnection({
   host: process.env.RB_HOST,
   user: process.env.RB_USER,
   password: process.env.RB_PW,
-  database: process.env.RB_DB
+  database: process.env.RB_DB,
+  debug: true
 })
 
 module.exports = {
@@ -29,10 +30,14 @@ module.exports = {
 
     connection.query(mySqlQuery, (error, response) => {
       console.log(error || response);
-    });
+    }).on('end', function () {
+      // all rows have been received
+      connection.destroy()
+    })
 
     //do you need to end this connection before res.render, or put res.render inside of connection.query?? (to fix [ERR_HTTP_HEADERS_SENT])
-    connection.end()
+    // connection.end()
+    // connection.destroy()
 
     res.render('vw-MySqlTableHub', {
       title: `vw-MySqlTableHub Table Created: <<${tableName}>>`,
