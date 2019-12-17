@@ -200,12 +200,12 @@ module.exports = {
 
     //^//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
 
-    let deptFilterToApply = null
+    var deptFilterToApply = null
 
     for (let k = 0; k < deptFilterArr.length; k++) {
       console.log(`Object.keys(deptFilterArr[${k}]==> ${Object.keys(deptFilterArr[k])}`)
       if (Object.keys(deptFilterArr[k]) == deptFilter) {
-        let deptFilterToApply = deptFilter
+        deptFilterToApply = deptFilter
       }
     }
 
