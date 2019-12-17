@@ -248,8 +248,8 @@ module.exports = {
       let nejRows = rows[0] //targets 1st query on NEJ table
       let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
 
-      console.log(`nejRows[0]==> ${nejRows[0]}`)
-      console.log(`edlpRows[0]==> ${edlpRows[0]}`)
+      console.log(`JSON.parse(nejRows[0])==> ${JSON.parse(nejRows[0])}`)
+      console.log(`JSON.parse(edlpRows[0])==> ${JSON.parse(edlpRows[0])}`)
 
       for (let i = 0; i < nejRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
