@@ -259,20 +259,20 @@ module.exports = {
             let oupNameVar = rows[i][genericHeaderObj.oupName]
             oupNameSplit = oupNameVar.split(/([0-9]+)/)
             console.log(`oupNameVar1==> ${oupNameVar}`)
-            console.log(`oupNameSplit==> ${oupNameSplit}`)
+            // console.log(`oupNameSplit==> ${oupNameSplit}`)
             if (oupNameSplit[0].toLowerCase().includes('ea') || oupNameSplit[0].toLowerCase().includes('cs')) {
               // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
               srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
             } else {
               console.log(`oupNameVar2==> ${oupNameVar}`)
-              console.log(`oupNameVar.trim().toLowerCase()1==> ${oupNameVar.trim().toLowerCase()}`)
+              // console.log(`oupNameVar.trim().toLowerCase()1==> ${oupNameVar.trim().toLowerCase()}`)
               if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') { //try trimming out whitespace for this
-                console.log(`srcRsObj['ediCost'] (precalc) ${srcRsObj['ediCost']}`)
+                // console.log(`srcRsObj['ediCost'] (precalc) ${srcRsObj['ediCost']}`)
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / 1
-                console.log(`srcRsObj['ediCost'] (postcalc) ${srcRsObj['ediCost']}`)
+                // console.log(`srcRsObj['ediCost'] (postcalc) ${srcRsObj['ediCost']}`)
               } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               else {
-                console.log(`oupNameVar.trim().toLowerCase()2==> ${oupNameVar.trim().toLowerCase()}`)
+                // console.log(`oupNameVar.trim().toLowerCase()2==> ${oupNameVar.trim().toLowerCase()}`)
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
               }
             }
