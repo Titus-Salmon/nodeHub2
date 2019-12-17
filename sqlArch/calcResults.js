@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   user: process.env.RB_USER,
   password: process.env.RB_PW,
   database: process.env.RB_DB,
-  // multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+  multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
 
 module.exports = {
@@ -245,9 +245,13 @@ module.exports = {
 
     function showSearchResults(rows) {
 
-      console.log(`rows[0]==> ${rows[0]}`)
+      let nejRows = rows[0] //targets 1st query on NEJ table
+      let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
 
-      for (let i = 0; i < rows.length; i++) { //Add searched-for table entries from db to searchResults array, for
+      console.log(`nejRows[0]==> ${nejRows[0]}`)
+      console.log(`edlpRows[0]==> ${edlpRows[0]}`)
+
+      for (let i = 0; i < nejRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
         let srcRsObj = {}
         let reviewObj = {} //push data to this obj for review CSV
@@ -256,32 +260,25 @@ module.exports = {
           lowerCutoffCharm5, lowerCutoffCharm6, lowerCutoffCharm7, upperCharmRqdRtl, defaultCharm1, defaultCharm2, defaultCharm3, defaultCharm4) {
           //apply DEPARTMENT margin to calculate charm pricing
           if (srcRsObj['ediCost'] > 0) {
-            let oupNameVar = rows[i][genericHeaderObj.oupName]
-            oupNameSplit = oupNameVar.split(/([0-9]+)/)
-            // console.log(`oupNameVar1==> ${oupNameVar}`)
-            // console.log(`oupNameSplit==> ${oupNameSplit}`)
-            // console.log(`oupNameSplit.length==> ${oupNameSplit.length}`)
+
+            ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+            let oupNameVar = nejRows[i][genericHeaderObj.oupName]
+            oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
             if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' ||
               oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
-              // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
-              // console.log(`oupNameVar${i}==> ${oupNameVar}`)
-              // console.log(`oupNameSplit[1]${i}==> ${oupNameSplit[1]}`)
               if (oupNameSplit[1] !== undefined) {
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
               }
             } else {
-              // console.log(`oupNameVar3==> ${oupNameVar}`)
-              // console.log(`oupNameVar.trim().toLowerCase()1==> ${oupNameVar.trim().toLowerCase()}`)
-              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') { //try trimming out whitespace for this
-                // console.log(`srcRsObj['ediCost'] (precalc) ${srcRsObj['ediCost']}`)
+              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / 1
-                // console.log(`srcRsObj['ediCost'] (postcalc) ${srcRsObj['ediCost']}`)
               } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               else {
-                // console.log(`oupNameVar.trim().toLowerCase()2==> ${oupNameVar.trim().toLowerCase()}`)
                 srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
               }
             }
+            ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+
             srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCost'] - srcRsObj['ediCost'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
             //AND also applies any % discount; discountToApply is set at default 0
             //Finally, Math.round(number*100)/100 converts the result to a number with just 2 decimal places.
@@ -397,13 +394,13 @@ module.exports = {
           reviewObj['pf3'] = departmentMargin * 100
         }
 
-        srcRsObj['P_K'] = rows[i][genericHeaderObj.primarykeyHeader] //for every row returned from sql query of margin_report table,
+        srcRsObj['P_K'] = nejRows[i][genericHeaderObj.primarykeyHeader] //for every row returned from sql query of margin_report table,
         //populate search results onject (srcRsObj) with corresponding primary key mapped to a key of 'P_K' 
-        srcRsObj['upc'] = rows[i][genericHeaderObj.upcHeader] //Item ID
+        srcRsObj['upc'] = nejRows[i][genericHeaderObj.upcHeader] //Item ID
         // console.log('calcResults says: srcRsObj[\'upc\']~~~>', srcRsObj['upc'])
-        reviewObj['upc'] = rows[i][genericHeaderObj.upcHeader] //Item ID
+        reviewObj['upc'] = nejRows[i][genericHeaderObj.upcHeader] //Item ID
 
-        srcRsObj['cpltCost'] = reviewObj['cpltCost'] = rows[i][genericHeaderObj.invLastcostHeader]
+        srcRsObj['cpltCost'] = reviewObj['cpltCost'] = nejRows[i][genericHeaderObj.invLastcostHeader]
 
         srcRsObj['deptID'] = "" //Department ID
         srcRsObj['deptName'] = "" //Department Name
@@ -411,11 +408,11 @@ module.exports = {
         srcRsObj['brand'] = "" //Brand
 
         if (typeOfIMW.toLowerCase() == 'new') {
-          if (rows[i][genericHeaderObj.nameHeader].includes(',')) { //remove any commas from item names, so csv isn't horked
-            var cleanedName = rows[i][genericHeaderObj.nameHeader].replace(',', '')
+          if (nejRows[i][genericHeaderObj.nameHeader].includes(',')) { //remove any commas from item names, so csv isn't horked
+            var cleanedName = nejRows[i][genericHeaderObj.nameHeader].replace(',', '')
             srcRsObj['itemName'] = cleanedName
           } else {
-            srcRsObj['itemName'] = rows[i][genericHeaderObj.nameHeader]
+            srcRsObj['itemName'] = nejRows[i][genericHeaderObj.nameHeader]
           }
         } else {
           srcRsObj['itemName'] = "" //Item Name
@@ -424,7 +421,7 @@ module.exports = {
         srcRsObj['size'] = "" //Size
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //v//20191122 moved SUGGESTED RETAIL to pf8 & now populating the IMW sugstdRtl column with RB charm price
-        // srcRsObj['sugstdRtl'] = rows[i][genericHeaderObj.msrpHeader] //Suggested Retail
+        // srcRsObj['sugstdRtl'] = nejRows[i][genericHeaderObj.msrpHeader] //Suggested Retail
         //TODO: May need to change this to srcRsObj['sugstdRtl'] = srcRsObj['charm'] (will have to declare it in calcCharm() function,
         //where you are actually calculating srcRsObj['charm']. I don't think this is a good idea AT ALL, especially given the fact
         //that Catapult specifically defines suggested retail as MSRP, so the way you're currently doing it is the correct way.
@@ -434,7 +431,7 @@ module.exports = {
 
         if (typeOfIMW.toLowerCase() == 'wholesale' || typeOfIMW.toLowerCase() == 'new') { //include ws (last cost) for new &
           //wholesale IMWs
-          srcRsObj['lastCost'] = rows[i][genericHeaderObj.ediCostHeader]
+          srcRsObj['lastCost'] = nejRows[i][genericHeaderObj.ediCostHeader]
         } else {
           srcRsObj['lastCost'] = "" //Last Cost is used for ws cost in IMWs (need for WS update IMWs & new item IMWs, but not for retail update IMWs)
         }
@@ -444,7 +441,7 @@ module.exports = {
         srcRsObj['autoDiscount'] = "" //Auto Discount
 
         // srcRsObj['idealMarg'] = "" //Ideal Margin
-        srcRsObj['idealMarg'] = rows[i][genericHeaderObj.sibIdealMarginHeader] //set idealMarg to what it actually is in Catapult
+        srcRsObj['idealMarg'] = nejRows[i][genericHeaderObj.sibIdealMarginHeader] //set idealMarg to what it actually is in Catapult
 
         srcRsObj['wtPrfl'] = "" //Weight Profile
         srcRsObj['tax1'] = "" //Tax1
@@ -457,15 +454,15 @@ module.exports = {
         srcRsObj['altID'] = "" //Alternate ID
         srcRsObj['altRcptAlias'] = "" //Alternate Receipt Alias
         srcRsObj['pkgQnt'] = "" //Package Quantity
-        srcRsObj['cpltSKU'] = rows[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
-        reviewObj['cpltSKU'] = rows[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
-        srcRsObj['ediSKU'] = rows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
-        reviewObj['ediSKU'] = rows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
-        srcRsObj['splrID'] = rows[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
+        srcRsObj['cpltSKU'] = nejRows[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
+        reviewObj['cpltSKU'] = nejRows[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
+        srcRsObj['ediSKU'] = nejRows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
+        reviewObj['ediSKU'] = nejRows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
+        srcRsObj['splrID'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
         srcRsObj['unit'] = "" //Unit
 
-        srcRsObj['oupName'] = rows[i][genericHeaderObj.oupName] //oupName from catapult
-        reviewObj['oupName'] = rows[i][genericHeaderObj.oupName] //oupName from catapult
+        srcRsObj['oupName'] = nejRows[i][genericHeaderObj.oupName] //oupName from catapult
+        reviewObj['oupName'] = nejRows[i][genericHeaderObj.oupName] //oupName from catapult
 
         srcRsObj['numPkgs'] = "" //Number of Packages
         srcRsObj['pf1'] = "" //Power Field 1 (today's date) - no, Tom says this should be pf5
@@ -481,7 +478,7 @@ module.exports = {
         }
         if (typeOfIMW.toLowerCase() == 'retail') {
           srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + " RTL UPDT (pf5)" //Power Field 5 - today's date
-          srcRsObj['pf8'] = `ACTUAL MSRP: ${rows[i][genericHeaderObj.msrpHeader]}` //Suggested Retail //Power Field 8 - this will target the ACTUAL MSRP
+          srcRsObj['pf8'] = `ACTUAL MSRP: ${nejRows[i][genericHeaderObj.msrpHeader]}` //Suggested Retail //Power Field 8 - this will target the ACTUAL MSRP
         }
         if (typeOfIMW.toLowerCase() == 'new') {
           srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + " NEW ITEM UPDT (pf5)" //Power Field 5 - today's date
@@ -490,8 +487,8 @@ module.exports = {
         //^//provide different update messages, based on what type of update you're doing (i.e. ws IMW, retail IMW, new item IMW)
 
         // srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + "RTL UPDT (pf5)" //Power Field 5 - today's date
-        srcRsObj['pf6'] = rows[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
-        reviewObj['pf6'] = rows[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
+        srcRsObj['pf6'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
+        reviewObj['pf6'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
         srcRsObj['pf7'] = "" //Power Field 7
         // srcRsObj['pf8'] = "" //Power Field 8
 
@@ -513,61 +510,61 @@ module.exports = {
         srcRsObj['ovr'] = "" //OVR
 
 
-        srcRsObj['name'] = rows[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
-        reviewObj['name'] = rows[i][genericHeaderObj.nameHeader]
+        srcRsObj['name'] = nejRows[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
+        reviewObj['name'] = nejRows[i][genericHeaderObj.nameHeader]
         if (genericHeaderObj.keheUOSHeader) {
           // console.log('genericHeaderObj.keheUOSHeader==>', genericHeaderObj.keheUOSHeader)
-          // console.log('rows[' + i + '][genericHeaderObj.keheUOSHeader]==>', rows[i][genericHeaderObj.keheUOSHeader])
-          if (rows[i][genericHeaderObj.keheUOSHeader] !== "" && rows[i][genericHeaderObj.keheUOSHeader] > 0) {
-            reviewObj['ediCost'] = srcRsObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader] / rows[i][genericHeaderObj.keheUOSHeader]
+          // console.log('nejRows[' + i + '][genericHeaderObj.keheUOSHeader]==>', nejRows[i][genericHeaderObj.keheUOSHeader])
+          if (nejRows[i][genericHeaderObj.keheUOSHeader] !== "" && nejRows[i][genericHeaderObj.keheUOSHeader] > 0) {
+            reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] / nejRows[i][genericHeaderObj.keheUOSHeader]
             // console.log('case cost / uos==>', srcRsObj['ediCost'])
           } else {
-            reviewObj['ediCost'] = srcRsObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader]
+            reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader]
             // console.log('standard cost1==>', srcRsObj['ediCost'])
           }
         } else {
-          reviewObj['ediCost'] = srcRsObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
+          reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
           // console.log('standard cost2==>', srcRsObj['ediCost'])
-          if (rows[i][genericHeaderObj.ediCostHeaderItemCost] == "") { //generate blankEdiCostUPC entry to flag any margin report item_cost
+          if (nejRows[i][genericHeaderObj.ediCostHeaderItemCost] == "") { //generate blankEdiCostUPC entry to flag any margin report item_cost
             //values that are blank. This will then appear in the retail review worksheet under column name blankEdiCost. THESE ITEMS NEED
             //TO BE INVESTIGATED TO SEE IF SKUs ARE INACCURATE, OR WHATEVER ELSE IS GOING ON
-            reviewObj['blankEdiCostUPC'] = srcRsObj['blankEdiCostUPC'] = rows[i][genericHeaderObj.upcHeader]
+            reviewObj['blankEdiCostUPC'] = srcRsObj['blankEdiCostUPC'] = nejRows[i][genericHeaderObj.upcHeader]
           }
         }
-        // srcRsObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader] 
-        // reviewObj['ediCost'] = rows[i][genericHeaderObj.ediCostHeader]//INCLUDE in save2CSVreview export data
-        srcRsObj['ediPrice'] = rows[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
-        reviewObj['ediPrice'] = rows[i][genericHeaderObj.msrpHeader] //INCLUDE in save2CSVreview export data
+        // srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] 
+        // reviewObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader]//INCLUDE in save2CSVreview export data
+        srcRsObj['ediPrice'] = nejRows[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
+        reviewObj['ediPrice'] = nejRows[i][genericHeaderObj.msrpHeader] //INCLUDE in save2CSVreview export data
 
-        // srcRsObj['rb_price'] = rows[i][genericHeaderObj.rbPriceHeader] //INCLUDE in csv to export data
-        // reviewObj['rb_price'] = rows[i][genericHeaderObj.rbPriceHeader] //INCLUDE in save2CSVreview export data
+        // srcRsObj['rb_price'] = nejRows[i][genericHeaderObj.rbPriceHeader] //INCLUDE in csv to export data
+        // reviewObj['rb_price'] = nejRows[i][genericHeaderObj.rbPriceHeader] //INCLUDE in save2CSVreview export data
 
-        srcRsObj['sibBasePrice'] = rows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in csv to export data
-        reviewObj['sibBasePrice'] = rows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in save2CSVreview export data
+        srcRsObj['sibBasePrice'] = nejRows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in csv to export data
+        reviewObj['sibBasePrice'] = nejRows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in save2CSVreview export data
 
         srcRsObj['globalMargin'] = globalMargin //do not include in csv to export data
-        // srcRsObj['rb_dept'] = rows[i][genericHeaderObj.rbDeptHeader]
-        // reviewObj['rb_dept'] = rows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
+        // srcRsObj['rb_dept'] = nejRows[i][genericHeaderObj.rbDeptHeader]
+        // reviewObj['rb_dept'] = nejRows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
 
-        srcRsObj['dptName'] = rows[i][genericHeaderObj.rbDeptHeader]
-        reviewObj['dptName'] = rows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
+        srcRsObj['dptName'] = nejRows[i][genericHeaderObj.rbDeptHeader]
+        reviewObj['dptName'] = nejRows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
 
-        // srcRsObj['rb_dept_id'] = rows[i][genericHeaderObj.rbDeptIDHeader]
-        // reviewObj['rb_dept_id'] = rows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
+        // srcRsObj['rb_dept_id'] = nejRows[i][genericHeaderObj.rbDeptIDHeader]
+        // reviewObj['rb_dept_id'] = nejRows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
 
-        srcRsObj['dptNumber'] = rows[i][genericHeaderObj.rbDeptIDHeader]
-        reviewObj['dptNumber'] = rows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
+        srcRsObj['dptNumber'] = nejRows[i][genericHeaderObj.rbDeptIDHeader]
+        reviewObj['dptNumber'] = nejRows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
 
-        // srcRsObj['rb_dept_margin'] = rows[i][genericHeaderObj.rbDeptMarginHeader]
-        // reviewObj['rb_dept_margin'] = rows[i][genericHeaderObj.rbDeptMarginHeader] //INCLUDE in save2CSVreview export data
+        // srcRsObj['rb_dept_margin'] = nejRows[i][genericHeaderObj.rbDeptMarginHeader]
+        // reviewObj['rb_dept_margin'] = nejRows[i][genericHeaderObj.rbDeptMarginHeader] //INCLUDE in save2CSVreview export data
 
-        srcRsObj['sibIdealMargin'] = rows[i][genericHeaderObj.sibIdealMarginHeader]
-        reviewObj['sibIdealMargin'] = rows[i][genericHeaderObj.sibIdealMarginHeader] //INCLUDE in save2CSVreview export data
+        srcRsObj['sibIdealMargin'] = nejRows[i][genericHeaderObj.sibIdealMarginHeader]
+        reviewObj['sibIdealMargin'] = nejRows[i][genericHeaderObj.sibIdealMarginHeader] //INCLUDE in save2CSVreview export data
 
-        srcRsObj['edlp_flag'] = rows[i][genericHeaderObj.edlpFlagHeader]
-        reviewObj['edlp_flag'] = rows[i][genericHeaderObj.edlpFlagHeader] //INCLUDE in save2CSVreview export data
-        srcRsObj['sale_flag'] = rows[i][genericHeaderObj.saleFlagHeader]
-        reviewObj['sale_flag'] = rows[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data
+        srcRsObj['edlp_flag'] = nejRows[i][genericHeaderObj.edlpFlagHeader]
+        reviewObj['edlp_flag'] = nejRows[i][genericHeaderObj.edlpFlagHeader] //INCLUDE in save2CSVreview export data
+        srcRsObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader]
+        reviewObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data
 
         srcRsObj['discountToApply'] = discountToApply * 100
         reviewObj['discountToApply'] = discountToApply * 100 //INCLUDE in save2CSVreview export data
@@ -586,7 +583,7 @@ module.exports = {
 
         if (typeOfIMW.toLowerCase() == 'wholesale') {
           if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
-            if (rows[i][genericHeaderObj.cpltSKUHeader] == rows[i][genericHeaderObj.ediSKUHeader]) {
+            if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
               srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
               srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
               searchResults.push(srcRsObj)
@@ -747,7 +744,7 @@ module.exports = {
             // searchResultsForCSV.push(srcRsObj)
             // searchResultsForCSVreview.push(reviewObj)
             if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
-              if (rows[i][genericHeaderObj.cpltSKUHeader] == rows[i][genericHeaderObj.ediSKUHeader]) {
+              if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
                 searchResults.push(srcRsObj)
                 searchResultsForCSV.push(srcRsObj)
                 searchResultsForCSVreview.push(reviewObj)
@@ -770,8 +767,8 @@ module.exports = {
     function queryNhcrtEdiJoinTable() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
       //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
-      connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader}
-      ORDER BY record_id;`, function (err, rows, fields) {
+      connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY record_id;
+      SELECT * FROM rb_edlp_data;`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
 
