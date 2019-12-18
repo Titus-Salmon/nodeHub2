@@ -365,6 +365,7 @@ module.exports = {
 
         function divideCostToUOS_WS_IMW() {
           console.log(`srcRsObj['cpltCost'].trim().replace('"', '')${i}==>${srcRsObj['cpltCost'].trim().replace('"', '')}`)
+          console.log(`srcRsObj['ediCost'].trim().replace('"', '')${i}==>${srcRsObj['ediCost'].trim().replace('"', '')}`)
           console.log(`srcRsObj['ediCostMod'].trim().replace('"', '')${i}==>${srcRsObj['ediCostMod'].trim().replace('"', '')}`)
           if (srcRsObj['cpltCost'].trim().replace('"', '') !== srcRsObj['ediCostMod'].trim().replace('"', '')) { //only push results where exist. cplt cost different than new edi cat cost 
             ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
