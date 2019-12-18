@@ -370,10 +370,11 @@ html
 						th UPC
 						th SKU (Cplt)
 						th SKU (EDI)
-						th Description
+						th Description (Cplt)
 						th oupName (Cplt)
 						th Exst WS (Cplt)
 						th Updtd WS (EDI)
+						th ediCostMod
 						th Global Margin
 						th Rtl Rqd
 						th Charm Price
@@ -400,6 +401,7 @@ html
 								td= elmnt.oupName
 								td= elmnt.cpltCost
 								td= elmnt.ediCost
+								td= elmnt.ediCostMod
 								td= elmnt.globalMargin
 								td= elmnt.reqdRetail
 								td= elmnt.charm

@@ -347,19 +347,19 @@ module.exports = {
             if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' ||
               oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
               if (oupNameSplit[1] !== undefined) {
-                srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
+                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
               }
             } else {
               if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-                srcRsObj['ediCost'] = srcRsObj['ediCost'] / 1
+                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1
               } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               else {
-                srcRsObj['ediCost'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
+                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
               }
             }
             ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
 
-            srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCost'] - srcRsObj['ediCost'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+            srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
             //AND also applies any % discount; discountToApply is set at default 0
             //Finally, Math.round(number*100)/100 converts the result to a number with just 2 decimal places.
             if (srcRsObj['reqdRetail'] % 1 < .10 && srcRsObj['reqdRetail'] > 0) { //change charm price to (#-1).99 if req'd rtl is #.00 -> #.10
@@ -605,25 +605,32 @@ module.exports = {
 
         srcRsObj['name'] = nejRows[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
         reviewObj['name'] = nejRows[i][genericHeaderObj.nameHeader]
-        if (genericHeaderObj.keheUOSHeader) {
-          // console.log('genericHeaderObj.keheUOSHeader==>', genericHeaderObj.keheUOSHeader)
-          // console.log('nejRows[' + i + '][genericHeaderObj.keheUOSHeader]==>', nejRows[i][genericHeaderObj.keheUOSHeader])
-          if (nejRows[i][genericHeaderObj.keheUOSHeader] !== "" && nejRows[i][genericHeaderObj.keheUOSHeader] > 0) {
-            reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] / nejRows[i][genericHeaderObj.keheUOSHeader]
-            // console.log('case cost / uos==>', srcRsObj['ediCost'])
-          } else {
-            reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader]
-            // console.log('standard cost1==>', srcRsObj['ediCost'])
-          }
-        } else {
-          reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
-          // console.log('standard cost2==>', srcRsObj['ediCost'])
-          if (nejRows[i][genericHeaderObj.ediCostHeaderItemCost] == "") { //generate blankEdiCostUPC entry to flag any margin report item_cost
-            //values that are blank. This will then appear in the retail review worksheet under column name blankEdiCost. THESE ITEMS NEED
-            //TO BE INVESTIGATED TO SEE IF SKUs ARE INACCURATE, OR WHATEVER ELSE IS GOING ON
-            reviewObj['blankEdiCostUPC'] = srcRsObj['blankEdiCostUPC'] = nejRows[i][genericHeaderObj.upcHeader]
-          }
+        // if (genericHeaderObj.keheUOSHeader) {
+        //   // console.log('genericHeaderObj.keheUOSHeader==>', genericHeaderObj.keheUOSHeader)
+        //   // console.log('nejRows[' + i + '][genericHeaderObj.keheUOSHeader]==>', nejRows[i][genericHeaderObj.keheUOSHeader])
+        //   if (nejRows[i][genericHeaderObj.keheUOSHeader] !== "" && nejRows[i][genericHeaderObj.keheUOSHeader] > 0) {
+        //     reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] / nejRows[i][genericHeaderObj.keheUOSHeader]
+        //     // console.log('case cost / uos==>', srcRsObj['ediCost'])
+        //   } else {
+        //     reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader]
+        //     // console.log('standard cost1==>', srcRsObj['ediCost'])
+        //   }
+        // } else {
+
+        //v//this should get set as the value from edi catalog & never changed 
+        reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
+        //^//this should get set as the value from edi catalog & never changed 
+
+        //v//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
+        reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = nejRows[i][genericHeaderObj.ediCostHeader] //NEED TO CHECK
+        //^//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
+
+        if (nejRows[i][genericHeaderObj.ediCostHeaderItemCost] == "") { //generate blankEdiCostUPC entry to flag any margin report item_cost
+          //values that are blank. This will then appear in the retail review worksheet under column name blankEdiCost. THESE ITEMS NEED
+          //TO BE INVESTIGATED TO SEE IF SKUs ARE INACCURATE, OR WHATEVER ELSE IS GOING ON
+          reviewObj['blankEdiCostUPC'] = srcRsObj['blankEdiCostUPC'] = nejRows[i][genericHeaderObj.upcHeader]
         }
+        //}
         // srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] 
         // reviewObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader]//INCLUDE in save2CSVreview export data
         srcRsObj['ediPrice'] = nejRows[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
@@ -850,9 +857,6 @@ module.exports = {
             revealAppliedMarg(vitSuppMargin)
           }
           if (srcRsObj['charm'] !== "") { //only push results that have some value for "charm" column
-            // searchResults.push(srcRsObj)
-            // searchResultsForCSV.push(srcRsObj)
-            // searchResultsForCSVreview.push(reviewObj)
             if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
               if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
                 if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
