@@ -701,7 +701,7 @@ module.exports = {
 
         if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
-          if (srcRsObj['cpltCost'] == srcRsObj['ediCostMod']) { //only push results where exist. cplt cost different than new edi cat cost 
+          if (srcRsObj['cpltCost'] != srcRsObj['ediCostMod']) { //only push results where exist. cplt cost different than new edi cat cost 
             divideCostToUOS()
             if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
               if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
