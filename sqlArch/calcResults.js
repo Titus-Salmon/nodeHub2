@@ -379,7 +379,7 @@ module.exports = {
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
                   console.log(`srcRsObj['ediCost'] / oupNameSplit[1]==> ${srcRsObj['ediCost'] / oupNameSplit[1]}`)
                 } else {
-                  srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test1'
+                  // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test1'
                 }
 
               }
