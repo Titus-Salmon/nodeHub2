@@ -16,7 +16,7 @@ module.exports = {
 
     const fields = [
       "upc", "cpltSKU", "ediSKU", "name", "oupName", "cpltCost", "ediCost", "ediCostMod", "reqdRetail", "charm", "ediPrice",
-      "sibBasePrice", "dptName", "dptNumber", "sibIdealMargin", "rb_dept_margin", "appdlMrgn", "wsDiff_t0d", "discountToApply", "edlpVar",
+      "sibBasePrice", "dptName", "dptNumber", "sibIdealMargin", "rb_dept_margin", "appldMrgn", "wsDiff_t0d", "discountToApply", "edlpVar",
       "pi1Description", "pi2Description", "pi3Description", "invPowerField3", "invPowerField4"
     ];
     const opts = {
