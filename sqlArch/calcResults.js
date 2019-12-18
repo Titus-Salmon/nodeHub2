@@ -366,10 +366,7 @@ module.exports = {
 
         function divideCostToUOS_WS_IMW() {
           if (typeOfIMW.toLowerCase() == 'wholesale') {
-            // console.log(`srcRsObj['cpltCost'].trim().replace('"', '')${i}==>${srcRsObj['cpltCost'].trim().replace('"', '')}`)
-            // console.log(`srcRsObj['ediCost'].trim().replace('"', '')${i}==>${srcRsObj['ediCost'].trim().replace('"', '')}`)
-            // console.log(`srcRsObj['ediCostMod'].trim().replace('"', '')${i}==>${srcRsObj['ediCostMod'].trim().replace('"', '')}`)
-            // if (srcRsObj['cpltCost'].trim().replace('"', '') !== srcRsObj['ediCostMod'].trim().replace('"', '')) { //only push results where exist. cplt cost different than new edi cat cost 
+
             ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
             let oupNameVar = nejRows[i][genericHeaderObj.oupName]
             oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
@@ -377,53 +374,49 @@ module.exports = {
               oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
               if (oupNameSplit[1] !== undefined) {
                 let testCost = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
-                // console.log(`typeof testCost==> ${typeof testCost}`)
-                // console.log(`typeof srcRsObj['cpltCost']==> ${typeof srcRsObj['cpltCost']}`)
-                // console.log(`typeof srcRsObj['ediCost']==> ${typeof srcRsObj['ediCost']}`)
-                // let testCostTrimmed = testCost.trim().replace('"', '')
-                // console.log(`testCostTrimmed(${i})==> ${testCostTrimmed}`)
-                if (testCost.trim().replace(/"/g, '') == srcRsObj['cpltCost'].trim().replace(/"/g, '')) {
-                  console.log(`${testCost.trim().replace(/"/g, '')} == ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
-
-                } else {
-                  console.log(`${testCost.trim().replace(/"/g, '')} !== ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
-                }
-                console.log(`srcRsObj['cpltCost'](${i})==> ${srcRsObj['cpltCost']}`)
+                // if (testCost.trim().replace(/"/g, '') == srcRsObj['cpltCost'].trim().replace(/"/g, '')) {
+                //   console.log(`${testCost.trim().replace(/"/g, '')} == ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
+                // } else {
+                //   console.log(`${testCost.trim().replace(/"/g, '')} !== ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
+                // }
+                // console.log(`srcRsObj['cpltCost'](${i})==> ${srcRsObj['cpltCost']}`)
                 if (testCost.trim().replace(/"/g, '') !== srcRsObj['cpltCost'].trim().replace(/"/g, '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
                   reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
+                } else {
+                  reviewObj['ediCostMod'] = 'test1'
                 }
 
               }
             } else {
               if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
                 let testCost = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
-                // let testCostTrimmed = testCost.trim().replace('"', '')
-                // console.log(`testCost.trim().replace('"', '')==>${testCost.trim().replace('"', '')}`)
-                // console.log(`srcRsObj['cpltCost'].trim().replace('"', '')==>${srcRsObj['cpltCost'].trim().replace('"', '')}`)
-                if (testCost.trim().replace(/"/g, '') == srcRsObj['cpltCost'].trim().replace(/"/g, '')) {
-                  console.log(`${testCost.trim().replace(/"/g, '')} == ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
+                // if (testCost.trim().replace(/"/g, '') == srcRsObj['cpltCost'].trim().replace(/"/g, '')) {
+                //   console.log(`${testCost.trim().replace(/"/g, '')} == ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
 
-                } else {
-                  console.log(`${testCost.trim().replace(/"/g, '')} !== ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
-                }
+                // } else {
+                //   console.log(`${testCost.trim().replace(/"/g, '')} !== ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
+                // }
                 if (testCost.trim().replace('"', '') !== srcRsObj['cpltCost'].trim().replace('"', '')) { //only handle items where new edi cat cost not equal to exist. catapult cost  
                   reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
+                } else {
+                  reviewObj['ediCostMod'] = 'test2'
                 }
               } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               else {
                 let testCost = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
-                // let testCostTrimmed = testCost.trim().replace('"', '')
-                if (testCost.trim().replace(/"/g, '') == srcRsObj['cpltCost'].trim().replace(/"/g, '')) {
-                  console.log(`${testCost.trim().replace(/"/g, '')} == ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
+                // if (testCost.trim().replace(/"/g, '') == srcRsObj['cpltCost'].trim().replace(/"/g, '')) {
+                //   console.log(`${testCost.trim().replace(/"/g, '')} == ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
 
-                } else {
-                  console.log(`${testCost.trim().replace(/"/g, '')} !== ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
-                }
+                // } else {
+                //   console.log(`${testCost.trim().replace(/"/g, '')} !== ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
+                // }
                 if (testCost.trim().replace(/"/g, '') !== srcRsObj['cpltCost'].trim().replace(/"/g, '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
                   reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
+                } else {
+                  reviewObj['ediCostMod'] = 'test3'
                 }
               }
             }
