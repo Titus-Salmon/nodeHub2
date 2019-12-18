@@ -373,16 +373,11 @@ module.exports = {
             if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' ||
               oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
               if (oupNameSplit[1] !== undefined) {
-                let testCost = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
-                // if (testCost.trim().replace(/"/g, '') == srcRsObj['cpltCost'].trim().replace(/"/g, '')) {
-                //   console.log(`${testCost.trim().replace(/"/g, '')} == ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
-                // } else {
-                //   console.log(`${testCost.trim().replace(/"/g, '')} !== ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
-                // }
-                // console.log(`srcRsObj['cpltCost'](${i})==> ${srcRsObj['cpltCost']}`)
-                if (testCost.trim().replace(/"/g, '') !== srcRsObj['cpltCost'].trim().replace(/"/g, '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
+                let testCost1 = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
+                if (testCost1.trim().replace(/"/g, '') !== srcRsObj['cpltCost'].trim().replace(/"/g, '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
                   reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
+                  console.log(`srcRsObj['ediCost'] / oupNameSplit[1]==> ${srcRsObj['ediCost'] / oupNameSplit[1]}`)
                 } else {
                   reviewObj['ediCostMod'] = 'test1'
                 }
@@ -390,29 +385,18 @@ module.exports = {
               }
             } else {
               if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-                let testCost = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
-                // if (testCost.trim().replace(/"/g, '') == srcRsObj['cpltCost'].trim().replace(/"/g, '')) {
-                //   console.log(`${testCost.trim().replace(/"/g, '')} == ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
-
-                // } else {
-                //   console.log(`${testCost.trim().replace(/"/g, '')} !== ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
-                // }
-                if (testCost.trim().replace('"', '') !== srcRsObj['cpltCost'].trim().replace('"', '')) { //only handle items where new edi cat cost not equal to exist. catapult cost  
+                let testCost2 = `"${srcRsObj['ediCost'] / 1}"`
+                if (testCost2.trim().replace('"', '') !== srcRsObj['cpltCost'].trim().replace('"', '')) { //only handle items where new edi cat cost not equal to exist. catapult cost  
                   reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
+                  console.log(`srcRsObj['ediCost'] / oupNameSplit[1]==> ${srcRsObj['ediCost'] / oupNameSplit[1]}`)
                 } else {
                   reviewObj['ediCostMod'] = 'test2'
                 }
               } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               else {
-                let testCost = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
-                // if (testCost.trim().replace(/"/g, '') == srcRsObj['cpltCost'].trim().replace(/"/g, '')) {
-                //   console.log(`${testCost.trim().replace(/"/g, '')} == ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
-
-                // } else {
-                //   console.log(`${testCost.trim().replace(/"/g, '')} !== ${srcRsObj['cpltCost'].trim().replace(/"/g, '')}`)
-                // }
-                if (testCost.trim().replace(/"/g, '') !== srcRsObj['cpltCost'].trim().replace(/"/g, '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
+                let testCost3 = `"${srcRsObj['ediCost'] / oupNameVar}"`
+                if (testCost3.trim().replace(/"/g, '') !== srcRsObj['cpltCost'].trim().replace(/"/g, '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
                   reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
                 } else {
