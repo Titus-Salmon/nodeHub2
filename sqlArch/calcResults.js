@@ -701,9 +701,25 @@ module.exports = {
 
         if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
-          divideCostToUOS()
-          if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
-            if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
+          if (srcRsObj['cpltCost'] == srcRsObj['ediCostMod']) { //only push results where exist. cplt cost different than new edi cat cost 
+            divideCostToUOS()
+            if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
+              if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
+                srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
+                srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
+                if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
+                  if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+                    searchResults.push(srcRsObj)
+                    searchResultsForCSV.push(srcRsObj)
+                    searchResultsForCSVreview.push(reviewObj)
+                  }
+                } else { //otherwise, push all depts into searchResults
+                  searchResults.push(srcRsObj)
+                  searchResultsForCSV.push(srcRsObj)
+                  searchResultsForCSVreview.push(reviewObj)
+                }
+              }
+            } else {
               srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
               srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
               if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
@@ -718,21 +734,8 @@ module.exports = {
                 searchResultsForCSVreview.push(reviewObj)
               }
             }
-          } else {
-            srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
-            srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
-            if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
-              if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
-                searchResults.push(srcRsObj)
-                searchResultsForCSV.push(srcRsObj)
-                searchResultsForCSVreview.push(reviewObj)
-              }
-            } else { //otherwise, push all depts into searchResults
-              searchResults.push(srcRsObj)
-              searchResultsForCSV.push(srcRsObj)
-              searchResultsForCSVreview.push(reviewObj)
-            }
           }
+
         } else {
           //v//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for globalMargin
           if (formInput0.includes('edi_')) {
