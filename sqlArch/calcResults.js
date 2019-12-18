@@ -375,11 +375,17 @@ module.exports = {
             oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
             if (oupNameSplit[1] !== undefined) {
               let testCost = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
-              console.log(`typeof testCost==> ${typeof testCost}`)
-              console.log(`typeof srcRsObj['cpltCost']==> ${typeof srcRsObj['cpltCost']}`)
-              console.log(`typeof srcRsObj['ediCost']==> ${typeof srcRsObj['ediCost']}`)
+              // console.log(`typeof testCost==> ${typeof testCost}`)
+              // console.log(`typeof srcRsObj['cpltCost']==> ${typeof srcRsObj['cpltCost']}`)
+              // console.log(`typeof srcRsObj['ediCost']==> ${typeof srcRsObj['ediCost']}`)
               // let testCostTrimmed = testCost.trim().replace('"', '')
               // console.log(`testCostTrimmed(${i})==> ${testCostTrimmed}`)
+              if (testCost.trim().replace('"', '') == srcRsObj['cpltCost'].trim().replace('"', '')) {
+                console.log(`${testCost.trim().replace('"', '')} == ${srcRsObj['cpltCost'].trim().replace('"', '')}`)
+
+              } else {
+                console.log(`${testCost.trim().replace('"', '')} !== ${srcRsObj['cpltCost'].trim().replace('"', '')}`)
+              }
               console.log(`srcRsObj['cpltCost'](${i})==> ${srcRsObj['cpltCost']}`)
               if (testCost.trim().replace('"', '') !== srcRsObj['cpltCost'].trim().replace('"', '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
                 reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
