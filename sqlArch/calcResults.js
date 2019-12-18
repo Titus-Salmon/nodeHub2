@@ -313,6 +313,9 @@ module.exports = {
       if (splitFieldResult[i] == 'oupName') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
         genericHeaderObj.oupName = splitFieldResult[i]
       }
+      if (splitFieldResult[i] == 'stoName') { //targets Catapult nhcrt stoName column
+        genericHeaderObj.oupName = splitFieldResult[i]
+      }
     }
 
     console.log('calcResults says: genericHeaderObj==>', genericHeaderObj)
@@ -567,6 +570,9 @@ module.exports = {
 
         srcRsObj['oupName'] = nejRows[i][genericHeaderObj.oupName] //oupName from catapult
         reviewObj['oupName'] = nejRows[i][genericHeaderObj.oupName] //oupName from catapult
+
+        srcRsObj['stoName'] = nejRows[i][genericHeaderObj.stoName] //stoName from catapult
+        reviewObj['stoName'] = nejRows[i][genericHeaderObj.stoName] //stoName from catapult
 
         srcRsObj['numPkgs'] = "" //Number of Packages
         srcRsObj['pf1'] = "" //Power Field 1 (today's date) - no, Tom says this should be pf5
