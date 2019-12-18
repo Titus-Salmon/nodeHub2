@@ -375,6 +375,7 @@ module.exports = {
             oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
             if (oupNameSplit[1] !== undefined) {
               let testCost = srcRsObj['ediCost'] / oupNameSplit[1]
+              console.log(`typeof testCost==> ${typeof testCost}`)
               let testCostTrimmed = testCost.trim().replace('"', '')
               console.log(`testCostTrimmed(${i})==> ${testCostTrimmed}`)
               console.log(`srcRsObj['cpltCost'](${i})==> ${srcRsObj['cpltCost']}`)
