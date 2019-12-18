@@ -692,9 +692,13 @@ module.exports = {
         reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
         //^//this should get set as the value from edi catalog & never changed 
 
-        //v//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
-        reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = nejRows[i][genericHeaderObj.ediCostHeader] //NEED TO CHECK
-        //^//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
+
+        if (typeOfIMW.toLowerCase() == 'retail') {
+          //v//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
+          reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = nejRows[i][genericHeaderObj.ediCostHeader] //NEED TO CHECK
+          //^//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
+        }
+
 
         if (nejRows[i][genericHeaderObj.ediCostHeaderItemCost] == "") { //generate blankEdiCostUPC entry to flag any margin report item_cost
           //values that are blank. This will then appear in the retail review worksheet under column name blankEdiCost. THESE ITEMS NEED
