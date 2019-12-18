@@ -528,13 +528,13 @@ module.exports = {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        if (typeOfIMW.toLowerCase() == 'wholesale' || typeOfIMW.toLowerCase() == 'new') { //include ws (last cost) for new &
-          //wholesale IMWs
-          // srcRsObj['lastCost'] = nejRows[i][genericHeaderObj.ediCostHeader]
-          divideCostToUOS()
-        } else {
-          srcRsObj['lastCost'] = "" //Last Cost is used for ws cost in IMWs (need for WS update IMWs & new item IMWs, but not for retail update IMWs)
-        }
+        // if (typeOfIMW.toLowerCase() == 'wholesale' || typeOfIMW.toLowerCase() == 'new') { //include ws (last cost) for new &
+        //   //wholesale IMWs
+        //   // srcRsObj['lastCost'] = nejRows[i][genericHeaderObj.ediCostHeader]
+        //   divideCostToUOS()
+        // } else {
+        //   srcRsObj['lastCost'] = "" //Last Cost is used for ws cost in IMWs (need for WS update IMWs & new item IMWs, but not for retail update IMWs)
+        // }
 
 
         // srcRsObj['charm'] = "" //Base Price ==>INCLUDE in save2CSVreview export data
@@ -691,10 +691,12 @@ module.exports = {
 
         if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
+          divideCostToUOS()
           if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
             if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
               srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
               srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
+              srcRsObj['lastCost'] = "" //set charm to empty if typeofIMW = 'wholesale'
               if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
                 if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
                   searchResults.push(srcRsObj)
