@@ -338,7 +338,8 @@ module.exports = {
         let srcRsObj = {}
         let reviewObj = {} //push data to this obj for review CSV
 
-        function divideCostToUOS() {
+        function divideCostToUOS_Rtl_IMW() {
+
           ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
           let oupNameVar = nejRows[i][genericHeaderObj.oupName]
           oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
@@ -359,6 +360,34 @@ module.exports = {
             }
           }
           ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+
+        }
+
+        function divideCostToUOS_WS_IMW() {
+          console.log(`srcRsObj['cpltCost'].trim().replace('"', '')${i}==>${srcRsObj['cpltCost'].trim().replace('"', '')}`)
+          console.log(`srcRsObj['ediCostMod'].trim().replace('"', '')${i}==>${srcRsObj['ediCostMod'].trim().replace('"', '')}`)
+          if (srcRsObj['cpltCost'].trim().replace('"', '') !== srcRsObj['ediCostMod'].trim().replace('"', '')) { //only push results where exist. cplt cost different than new edi cat cost 
+            ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+            let oupNameVar = nejRows[i][genericHeaderObj.oupName]
+            oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+            if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' ||
+              oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
+              if (oupNameSplit[1] !== undefined) {
+                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
+                reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
+              }
+            } else {
+              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
+                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1
+                reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
+              } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
+              else {
+                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
+                reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
+              }
+            }
+            ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+          }
         }
 
         function calcCharm(departmentMargin, lowerCutRqdRtl, lowerCutoffCharm1, lowerCutoffCharm2, lowerCutoffCharm3, lowerCutoffCharm4,
@@ -366,7 +395,7 @@ module.exports = {
           //apply DEPARTMENT margin to calculate charm pricing
           if (srcRsObj['ediCost'] > 0) {
 
-            divideCostToUOS()
+            divideCostToUOS_Rtl_IMW()
 
             srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
             //AND also applies any % discount; discountToApply is set at default 0
@@ -701,28 +730,11 @@ module.exports = {
 
         if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
-          console.log(`srcRsObj['ediCostMod'].trim().replace('"', '')${i}==>${srcRsObj['ediCostMod'].trim().replace('"', '')}`)
-          divideCostToUOS()
-          console.log(`srcRsObj['cpltCost'].trim().replace('"', '')${i}==>${srcRsObj['cpltCost'].trim().replace('"', '')}`)
-          // console.log(`srcRsObj['ediCostMod'].trim().replace('"', '')${i}==>${srcRsObj['ediCostMod'].trim().replace('"', '')}`)
-          if (srcRsObj['cpltCost'].trim().replace('"', '') !== srcRsObj['ediCostMod'].trim().replace('"', '')) { //only push results where exist. cplt cost different than new edi cat cost 
-            if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
-              if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
-                srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
-                srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
-                if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
-                  if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
-                    searchResults.push(srcRsObj)
-                    searchResultsForCSV.push(srcRsObj)
-                    searchResultsForCSVreview.push(reviewObj)
-                  }
-                } else { //otherwise, push all depts into searchResults
-                  searchResults.push(srcRsObj)
-                  searchResultsForCSV.push(srcRsObj)
-                  searchResultsForCSVreview.push(reviewObj)
-                }
-              }
-            } else {
+
+          divideCostToUOS_WS_IMW()
+
+          if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
+            if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
               srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
               srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
               if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
@@ -737,7 +749,22 @@ module.exports = {
                 searchResultsForCSVreview.push(reviewObj)
               }
             }
+          } else {
+            srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
+            srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
+            if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
+              if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+                searchResults.push(srcRsObj)
+                searchResultsForCSV.push(srcRsObj)
+                searchResultsForCSVreview.push(reviewObj)
+              }
+            } else { //otherwise, push all depts into searchResults
+              searchResults.push(srcRsObj)
+              searchResultsForCSV.push(srcRsObj)
+              searchResultsForCSVreview.push(reviewObj)
+            }
           }
+
 
         } else {
           //v//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for globalMargin
