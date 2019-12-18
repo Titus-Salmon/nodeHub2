@@ -376,6 +376,7 @@ module.exports = {
             if (oupNameSplit[1] !== undefined) {
               let testCost = srcRsObj['ediCost'] / oupNameSplit[1]
               console.log(`testCost==> ${testCost}`)
+              console.log(`srcRsObj['cpltCost']==> ${srcRsObj['cpltCost']}`)
               if (testCost !== srcRsObj['cpltCost']) { //only handle items where new edi cat cost not equal to exist. catapult cost
                 reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
                 reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
