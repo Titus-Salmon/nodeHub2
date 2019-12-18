@@ -391,8 +391,8 @@ module.exports = {
             if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
               let testCost = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
               // let testCostTrimmed = testCost.trim().replace('"', '')
-              console.log(`testCost.trim().replace('"', '')==>${testCost.trim().replace('"', '')}`)
-              console.log(`srcRsObj['cpltCost'].trim().replace('"', '')==>${srcRsObj['cpltCost'].trim().replace('"', '')}`)
+              // console.log(`testCost.trim().replace('"', '')==>${testCost.trim().replace('"', '')}`)
+              // console.log(`srcRsObj['cpltCost'].trim().replace('"', '')==>${srcRsObj['cpltCost'].trim().replace('"', '')}`)
               if (testCost.trim().replace('"', '') == srcRsObj['cpltCost'].trim().replace('"', '')) {
                 console.log(`${testCost.trim().replace('"', '')} == ${srcRsObj['cpltCost'].trim().replace('"', '')}`)
 
