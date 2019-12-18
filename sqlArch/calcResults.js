@@ -407,6 +407,12 @@ module.exports = {
             else {
               let testCost = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
               // let testCostTrimmed = testCost.trim().replace('"', '')
+              if (testCost.trim().replace('"', '') == srcRsObj['cpltCost'].trim().replace('"', '')) {
+                console.log(`${testCost.trim().replace('"', '')} == ${srcRsObj['cpltCost'].trim().replace('"', '')}`)
+
+              } else {
+                console.log(`${testCost.trim().replace('"', '')} !== ${srcRsObj['cpltCost'].trim().replace('"', '')}`)
+              }
               if (testCost.trim().replace('"', '') !== srcRsObj['cpltCost'].trim().replace('"', '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
                 reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
                 reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
