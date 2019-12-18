@@ -696,7 +696,6 @@ module.exports = {
             if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
               srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
               srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
-              srcRsObj['lastCost'] = "" //set charm to empty if typeofIMW = 'wholesale'
               if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
                 if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
                   searchResults.push(srcRsObj)
