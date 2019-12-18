@@ -476,8 +476,12 @@ module.exports = {
           }
         }
 
+        // function revealAppliedMarg(departmentMargin) {
+        //   reviewObj['pf3'] = departmentMargin * 100
+        // }
+
         function revealAppliedMarg(departmentMargin) {
-          reviewObj['pf3'] = departmentMargin * 100
+          srcRsObj['appldMrgn'] = reviewObj['appldMrgn'] = departmentMargin * 100
         }
 
         srcRsObj['P_K'] = nejRows[i][genericHeaderObj.primarykeyHeader] //for every row returned from sql query of margin_report table,
