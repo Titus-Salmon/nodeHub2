@@ -374,7 +374,7 @@ module.exports = {
           if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' ||
             oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
             if (oupNameSplit[1] !== undefined) {
-              let testCost = srcRsObj['ediCost'] / oupNameSplit[1]
+              let testCost = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
               console.log(`typeof testCost==> ${typeof testCost}`)
               console.log(`typeof srcRsObj['cpltCost']==> ${typeof srcRsObj['cpltCost']}`)
               console.log(`typeof srcRsObj['ediCost']==> ${typeof srcRsObj['ediCost']}`)
