@@ -693,7 +693,7 @@ module.exports = {
         //^//this should get set as the value from edi catalog & never changed 
 
 
-        if (typeOfIMW.toLowerCase() == 'retail') {
+        if (typeOfIMW.toLowerCase() == 'retail') { //only apply this if running retail
           //v//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
           reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = nejRows[i][genericHeaderObj.ediCostHeader] //NEED TO CHECK
           //^//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
