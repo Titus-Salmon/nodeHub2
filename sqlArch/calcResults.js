@@ -314,7 +314,7 @@ module.exports = {
         genericHeaderObj.oupName = splitFieldResult[i]
       }
       if (splitFieldResult[i] == 'stoName') { //targets Catapult nhcrt stoName column
-        genericHeaderObj.oupName = splitFieldResult[i]
+        genericHeaderObj.stoName = splitFieldResult[i]
       }
     }
 
