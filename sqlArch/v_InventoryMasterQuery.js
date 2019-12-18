@@ -33,7 +33,7 @@ module.exports = {
                 }
                 if (typeof result[i]['INV_Name'] == 'string') {
                     catapultResObj['invName'] = result[i]['INV_Name'].trim()
-                    catapultResObj['invName'].replace(',', '') //remove any commas in name so csv doesn't get horked
+                    // catapultResObj['invName'].replace(',', '') //remove any commas in name so csv doesn't get horked
                 } else {
                     catapultResObj['invName'] = result[i]['INV_Name']
                 }

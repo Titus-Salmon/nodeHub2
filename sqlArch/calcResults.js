@@ -335,29 +335,35 @@ module.exports = {
         let srcRsObj = {}
         let reviewObj = {} //push data to this obj for review CSV
 
+        function divideCostToUOS() {
+          ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+          let oupNameVar = nejRows[i][genericHeaderObj.oupName]
+          oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+          if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' ||
+            oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
+            if (oupNameSplit[1] !== undefined) {
+              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
+              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
+            }
+          } else {
+            if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
+              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1
+              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
+            } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
+            else {
+              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
+              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
+            }
+          }
+          ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+        }
 
         function calcCharm(departmentMargin, lowerCutRqdRtl, lowerCutoffCharm1, lowerCutoffCharm2, lowerCutoffCharm3, lowerCutoffCharm4,
           lowerCutoffCharm5, lowerCutoffCharm6, lowerCutoffCharm7, upperCharmRqdRtl, defaultCharm1, defaultCharm2, defaultCharm3, defaultCharm4) {
           //apply DEPARTMENT margin to calculate charm pricing
           if (srcRsObj['ediCost'] > 0) {
 
-            ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
-            let oupNameVar = nejRows[i][genericHeaderObj.oupName]
-            oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
-            if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' ||
-              oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
-              if (oupNameSplit[1] !== undefined) {
-                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
-              }
-            } else {
-              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1
-              } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
-              else {
-                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
-              }
-            }
-            ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+            divideCostToUOS()
 
             srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
             //AND also applies any % discount; discountToApply is set at default 0
@@ -524,7 +530,8 @@ module.exports = {
 
         if (typeOfIMW.toLowerCase() == 'wholesale' || typeOfIMW.toLowerCase() == 'new') { //include ws (last cost) for new &
           //wholesale IMWs
-          srcRsObj['lastCost'] = nejRows[i][genericHeaderObj.ediCostHeader]
+          // srcRsObj['lastCost'] = nejRows[i][genericHeaderObj.ediCostHeader]
+          divideCostToUOS()
         } else {
           srcRsObj['lastCost'] = "" //Last Cost is used for ws cost in IMWs (need for WS update IMWs & new item IMWs, but not for retail update IMWs)
         }
@@ -682,7 +689,8 @@ module.exports = {
           }
         }
 
-        if (typeOfIMW.toLowerCase() == 'wholesale') {
+        if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
+          //because lower down, we will be filtering for retail imw after running calcCharm()
           if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
             if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
               srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
