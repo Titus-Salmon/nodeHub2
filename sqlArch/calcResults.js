@@ -701,10 +701,10 @@ module.exports = {
 
         if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
-
+          console.log(`srcRsObj['ediCostMod'].trim().replace('"', '')${i}==>${srcRsObj['ediCostMod'].trim().replace('"', '')}`)
           divideCostToUOS()
           console.log(`srcRsObj['cpltCost'].trim().replace('"', '')${i}==>${srcRsObj['cpltCost'].trim().replace('"', '')}`)
-          console.log(`srcRsObj['ediCostMod'].trim().replace('"', '')${i}==>${srcRsObj['ediCostMod'].trim().replace('"', '')}`)
+          // console.log(`srcRsObj['ediCostMod'].trim().replace('"', '')${i}==>${srcRsObj['ediCostMod'].trim().replace('"', '')}`)
           if (srcRsObj['cpltCost'].trim().replace('"', '') !== srcRsObj['ediCostMod'].trim().replace('"', '')) { //only push results where exist. cplt cost different than new edi cat cost 
             if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
               if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
