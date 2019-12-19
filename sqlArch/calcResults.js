@@ -373,10 +373,14 @@ module.exports = {
             if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' ||
               oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
               if (oupNameSplit[1] !== undefined) {
-                let testCost1 = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
-                if (testCost1.trim().replace(/"/g, '') !== srcRsObj['cpltCost'].trim().replace(/"/g, '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
-                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
-                  reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
+                let ediTestCost1 = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
+                let ediTstCst1Tr = ediTestCost1.trim().replace(/"/g, '')
+                let ediTstCst1TrRnd = Math.round(ediTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+                let cpltTstCst1Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
+                let cpltTstCst1TrRnd = Math.round(cpltTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+                if (ediTstCst1TrRnd !== cpltTstCst1TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost
+                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round((srcRsObj['ediCost'] / oupNameSplit[1]) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
+                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round((srcRsObj['ediCost'] / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   // console.log(`srcRsObj['ediCost'] / oupNameSplit[1]==> ${srcRsObj['ediCost'] / oupNameSplit[1]}`)
                   console.log(`typeof srcRsObj['ediCostMod']1==> ${typeof srcRsObj['ediCostMod']}`)
                 } else {
@@ -386,10 +390,14 @@ module.exports = {
               }
             } else {
               if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-                let testCost2 = `"${srcRsObj['ediCost'] / 1}"`
-                if (testCost2.trim().replace('"', '') !== srcRsObj['cpltCost'].trim().replace('"', '')) { //only handle items where new edi cat cost not equal to exist. catapult cost  
-                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1
-                  reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
+                let ediTestCost2 = `"${srcRsObj['ediCost'] / 1}"`
+                let ediTstCst2Tr = ediTestCost2.trim().replace(/"/g, '')
+                let ediTstCst2TrRnd = Math.round(ediTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+                let cpltTstCst2Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
+                let cpltTstCst2TrRnd = Math.round(cpltTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+                if (ediTstCst2TrRnd !== cpltTstCst2TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost  
+                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round((srcRsObj['ediCost'] / 1) * 100) / 100
+                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round((srcRsObj['ediCost'] / 1) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   // console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / 1}`)
                   console.log(`typeof srcRsObj['ediCostMod']2==> ${typeof srcRsObj['ediCostMod']}`)
                 } else {
@@ -397,10 +405,14 @@ module.exports = {
                 }
               } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               else {
-                let testCost3 = `"${srcRsObj['ediCost'] / oupNameVar}"`
-                if (testCost3.trim().replace(/"/g, '') !== srcRsObj['cpltCost'].trim().replace(/"/g, '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
-                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
-                  reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
+                let ediTestCost3 = `"${srcRsObj['ediCost'] / oupNameVar}"`
+                let ediTestCost3Tr = ediTestCost3.trim().replace(/"/g, '')
+                let ediTestCost3TrRnd = Math.round(ediTestCost3Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+                let cpltTstCst3Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
+                let cpltTstCst3TrRnd = Math.round(cpltTstCst3Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+                if (ediTestCost3TrRnd !== cpltTstCst3TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost
+                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round((srcRsObj['ediCost'] / oupNameVar) * 100) / 100 //divide ediCost by oupName non-parsed value
+                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round((srcRsObj['ediCost'] / oupNameVar) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   // console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / oupNameVar}`)
                   console.log(`typeof srcRsObj['ediCostMod']3==> ${typeof srcRsObj['ediCostMod']}`)
                 } else {
