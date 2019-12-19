@@ -377,7 +377,8 @@ module.exports = {
                 if (testCost1.trim().replace(/"/g, '') !== srcRsObj['cpltCost'].trim().replace(/"/g, '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
                   reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
-                  console.log(`srcRsObj['ediCost'] / oupNameSplit[1]==> ${srcRsObj['ediCost'] / oupNameSplit[1]}`)
+                  // console.log(`srcRsObj['ediCost'] / oupNameSplit[1]==> ${srcRsObj['ediCost'] / oupNameSplit[1]}`)
+                  console.log(`typeof srcRsObj['ediCostMod']1==> ${typeof srcRsObj['ediCostMod']}`)
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test1'
                 }
@@ -389,7 +390,8 @@ module.exports = {
                 if (testCost2.trim().replace('"', '') !== srcRsObj['cpltCost'].trim().replace('"', '')) { //only handle items where new edi cat cost not equal to exist. catapult cost  
                   reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
-                  console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / 1}`)
+                  // console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / 1}`)
+                  console.log(`typeof srcRsObj['ediCostMod']2==> ${typeof srcRsObj['ediCostMod']}`)
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test2'
                 }
@@ -399,7 +401,8 @@ module.exports = {
                 if (testCost3.trim().replace(/"/g, '') !== srcRsObj['cpltCost'].trim().replace(/"/g, '')) { //only handle items where new edi cat cost not equal to exist. catapult cost
                   reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
-                  console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / oupNameVar}`)
+                  // console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / oupNameVar}`)
+                  console.log(`typeof srcRsObj['ediCostMod']3==> ${typeof srcRsObj['ediCostMod']}`)
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test3'
                 }
