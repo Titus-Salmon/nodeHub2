@@ -328,6 +328,7 @@ module.exports = {
     function showSearchResults(rows) {
       console.log(`rows.length==>${rows.length}`)
       let nejRows = rows[0] //targets 1st query on NEJ table
+      console.log(`rows[0]==>${rows[0]}`)
       let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
 
       console.log(`JSON.stringify(nejRows[0])==> ${JSON.stringify(nejRows[0])}`)
