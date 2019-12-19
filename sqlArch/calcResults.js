@@ -329,6 +329,7 @@ module.exports = {
       console.log(`rows.length==>${rows.length}`)
       console.log(`rows[0]==>${rows[0]}`)
       console.log(`rows==>${rows}`)
+      console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
       let nejRows = rows[0] //targets 1st query on NEJ table
       let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
 
