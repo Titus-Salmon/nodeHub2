@@ -952,7 +952,8 @@ module.exports = {
               defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
             revealAppliedMarg(vitSuppMargin)
           }
-          if (srcRsObj['charm'] !== "") { //only push results that have some value for "charm" column
+          if (srcRsObj['charm'] !== "" && srcRsObj['charm'] !== srcRsObj['sibBasePrice']) { //only push results that have some
+            //value for "charm" column, AND ALSO select only items whose updated price is different than the exist. price in cplt
             if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
               if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
                 if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
