@@ -391,7 +391,7 @@ module.exports = {
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
                   console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / 1}`)
                 } else {
-                  srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test2'
+                  // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test2'
                 }
               } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               else {
@@ -401,7 +401,7 @@ module.exports = {
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
                   console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / oupNameVar}`)
                 } else {
-                  srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test3'
+                  // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test3'
                 }
               }
             }
