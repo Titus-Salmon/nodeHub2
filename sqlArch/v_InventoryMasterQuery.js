@@ -136,8 +136,8 @@ module.exports = {
                 if (error) {
                     console.error(error)
                 }
-                // console.log('result==>', result)
-                console.log('result[0]==>', result[0])
+                console.log('result==>', result)
+                // console.log('result[0]==>', result[0])
                 // console.log('result[\'columns\'][2]==>', result['columns'][2])
                 // console.log('result.length~~~>', result.length)
                 showcatapultResults(result)
