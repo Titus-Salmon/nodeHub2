@@ -35,6 +35,7 @@ module.exports = {
 				// console.log('result[0]==>', result[0])
 				// console.log('result==>', result)
 				console.log(`result==> ${result}`)
+				console.log(`JSON.stringify(result)==> ${JSON.stringify(result)}`)
 				console.log('result[\'columns\']==>', result['columns'])
 				// console.log('result[\'columns\'][0][\'name\']==>', result['columns'][0]['name'])
 				showCatapultTables(result)
