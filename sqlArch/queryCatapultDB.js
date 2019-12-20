@@ -29,9 +29,12 @@ module.exports = {
 
 		odbc.connect(DSN, (error, connection) => {
 			connection.query(`${catapultDbQuery}`, (error, result) => {
-				if (error) { console.error(error) }
+				if (error) {
+					console.error(error)
+				}
 				// console.log('result[0]==>', result[0])
 				// console.log('result==>', result)
+				console.log(`result==> ${result}`)
 				console.log('result[\'columns\']==>', result['columns'])
 				// console.log('result[\'columns\'][0][\'name\']==>', result['columns'][0]['name'])
 				showCatapultTables(result)
