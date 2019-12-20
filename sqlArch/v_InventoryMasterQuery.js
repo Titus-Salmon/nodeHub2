@@ -21,6 +21,7 @@ module.exports = {
             for (let i = 0; i < result.length; i++) {
                 let catapultResObj = {}
                 catapultResObj['invPK'] = result[i]['INV_PK']
+                catapultResObj['invCPK'] = result[i]['INV_CPK']
                 if (typeof result[i]['INV_ScanCode'] == 'string') {
                     catapultResObj['invScanCode'] = result[i]['INV_ScanCode'].trim()
                 } else {
