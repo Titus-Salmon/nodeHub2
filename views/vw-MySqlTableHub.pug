@@ -337,7 +337,13 @@ html
 				label.input-label-1(for='deptFilter') Dept Filter
 				input#deptFilter.input-unit-1(type='text', name='deptFilterPost' value='')
 
-			input#tableToJoin.input-unit-1(type='text', placeholder='enter table to join', name='tableToJoinPost', value="")
+			//- div(style="display:block")
+			//- 	label.input-label-1(for='itemUnitValSwitch') Populate IMW with ItemUnitValues?
+			//- 	select#itemUnitValSwitch.input-unit-1(name='itemUnitValSwitchPost')
+			//- 		option(value='yes') no
+			//- 		option(value='yes') yes
+
+			//- input#tableToJoin.input-unit-1(type='text', placeholder='enter table to join', name='tableToJoinPost', value="")
 
 		button#searchDB(type='submit', form='retailCalcUniversal', style="display: block; float: left") Search Loaded Table
 		br
@@ -352,7 +358,7 @@ html
 					input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
 		button.adminButton#saveCSVreview(type="submit" form="saveCSVreviewPost") Save Results as CSV - Retail Price Review
 		form#saveCSVreviewPost(action='/MySqlTableHub/save2CSVreviewNEJ' method='POST' accept-charset='UTF-8')
-			label.input-label-1(for='csv') filename:
+			label.input-label-1(for='csvReview') filename:
 				input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
 			//- if loadedTable !== undefined
 			//- 	label.input-label-1(for='csvReviewHeaders') CSV Review headers:

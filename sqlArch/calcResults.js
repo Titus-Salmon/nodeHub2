@@ -192,11 +192,13 @@ module.exports = {
     console.log('typeOfIMW==>', typeOfIMW)
     let formInput62 = skuOveride = Object.values(postBody)[62] //skuOveridePost
     console.log('skuOveride==>', skuOveride)
-    let formInput63 = deptFilter = Object.values(postBody)[63] //skuOveridePost
+    let formInput63 = deptFilter = Object.values(postBody)[63] //deptFilterPost
     console.log('deptFilter==>', deptFilter)
+    // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
+    // console.log('itemUnitValSwitch==>', itemUnitValSwitch)
 
-    let formInput64 = tableToJoin = Object.values(postBody)[64] //tableToJoinPost
-    console.log('tableToJoin==>', tableToJoin)
+    // let formInput64 = tableToJoin = Object.values(postBody)[64] //tableToJoinPost
+    // console.log('tableToJoin==>', tableToJoin)
 
     //^//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
 
@@ -313,6 +315,9 @@ module.exports = {
       if (splitFieldResult[i] == 'oupName') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
         genericHeaderObj.oupName = splitFieldResult[i]
       }
+      if (splitFieldResult[i] == 'ordQuantityInOrderUnit') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
+        genericHeaderObj.ordQuantityInOrderUnit = splitFieldResult[i]
+      }
       if (splitFieldResult[i] == 'stoName') { //targets Catapult nhcrt stoName column
         genericHeaderObj.stoName = splitFieldResult[i]
       }
@@ -352,15 +357,18 @@ module.exports = {
             if (oupNameSplit[1] !== undefined) {
               reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
               reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
+              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
             }
           } else {
-            if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1
+            if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
+              oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
+              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1 //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
-            } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
-            else {
+              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
+            } else {
               reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
               reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
+              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
             }
           }
           ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
@@ -386,13 +394,15 @@ module.exports = {
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round((srcRsObj['ediCost'] / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   // console.log(`srcRsObj['ediCost'] / oupNameSplit[1]==> ${srcRsObj['ediCost'] / oupNameSplit[1]}`)
                   console.log(`typeof srcRsObj['ediCostMod']1==> ${typeof srcRsObj['ediCostMod']}`)
+                  reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test1'
                 }
 
               }
             } else {
-              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' || oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
+              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
+                oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
                 let ediTestCost2 = `"${srcRsObj['ediCost'] / 1}"`
                 let ediTstCst2Tr = ediTestCost2.trim().replace(/"/g, '')
                 let ediTstCst2TrRnd = Math.round(ediTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
@@ -403,6 +413,7 @@ module.exports = {
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round((srcRsObj['ediCost'] / 1) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   // console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / 1}`)
                   console.log(`typeof srcRsObj['ediCostMod']2==> ${typeof srcRsObj['ediCostMod']}`)
+                  reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test2'
                 }
@@ -418,6 +429,7 @@ module.exports = {
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round((srcRsObj['ediCost'] / oupNameVar) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   // console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / oupNameVar}`)
                   console.log(`typeof srcRsObj['ediCostMod']3==> ${typeof srcRsObj['ediCostMod']}`)
+                  reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test3'
                 }
@@ -646,7 +658,11 @@ module.exports = {
         srcRsObj['stoName'] = nejRows[i][genericHeaderObj.stoName] //stoName from catapult
         reviewObj['stoName'] = nejRows[i][genericHeaderObj.stoName] //stoName from catapult
 
-        srcRsObj['numPkgs'] = "" //Number of Packages
+        // srcRsObj['numPkgs'] = "" //Number of Packages
+
+        srcRsObj['numPkgs'] = reviewObj['numPkgs'] = 1 //set numPkgs (for IMW) to 1 FOR EVERYTHING (CRITICAL)
+
+
         srcRsObj['pf1'] = "" //Power Field 1 (today's date) - no, Tom says this should be pf5
         srcRsObj['pf2'] = "" //Power Field 2 (Supplier ID (EDI-VENDORNAME) again, for some reason)
         reviewObj['pf2'] = "" //Power Field 2 (Supplier ID (EDI-VENDORNAME) again, for some reason)
@@ -687,9 +703,14 @@ module.exports = {
 
         srcRsObj['dscMltplr'] = "" //Discount Multiplier
 
-        srcRsObj['csPkgMltpl'] = "" //Case Package Multiple
+        // srcRsObj['csPkgMltpl'] = "" //Case Package Multiple -- THIS IS NOW SET IN divideCostToUOS_Rtl_IMW() & divideCostToUOS_WS_IMW()
+
+        srcRsObj['ovr'] = reviewObj['ovr'] = 0 //set ovr (for IMW) to 0 FOR EVERYTHING (CRITICAL)
+        //this will NOT give buyers the option to override to buy "eaches" for items vendors sell to us in cases
+        //AS A GENERAL RULE, THIS SHOULD ALWAYS BE SET TO 0... IN SOME CASES, WE MIGHT CHANGE TO 1
+
         // srcRsObj['ovr'] = "" //OVR
-        srcRsObj['ovr'] = "" //OVR
+        // srcRsObj['ovr'] = "" //OVR
 
 
         srcRsObj['name'] = nejRows[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
