@@ -71,7 +71,7 @@ html
 			form#queryOrderingInfoTable(action='/tsqlTableHub/queryOrderingInfoTable' method='POST' accept-charset="UTF-8" style="display:block")
 				div(style="display:block")
 					label.input-label-1(for='tblQry') Enter Query for Catapult OrderingInfo
-					textarea#tblQry.input-unit-1(name="tblQryPost", cols="30", rows="1", wrap="soft") SELECT ORD_VEN_FK, ORD_PK, ORD_SupplierStockNumber, ORD_INV_FK, ORD_CPK, ORD_INV_CFK, ORD_Primary, ORD_QuantityInOrderUnit, ORD_ASC_FK, ORD_ASC_CFK, ORD_OUP_FK, ORD_OUP_CFK, convert(varchar(10), ORD_TimeStamp, 120), ORD_DSDItem, ORD_DefaultSupplier, ORD_Discontinued, convert(varchar(10), ORD_DateDiscontinued, 120), ORD_MinimumOrder, ORD_FirstOrdRecordDSDFlagSet, ORD_SuggestedMultiple, ORD_AllowOverrideOfMultiple FROM catapult.ecrs.OrderingInfo WHERE trim(ORD_INV_CFK) IN ('129809')
+					textarea#tblQry.input-unit-1(name="tblQryPost", cols="30", rows="1", wrap="soft") SELECT ORD_VEN_FK, ORD_PK, ORD_SupplierStockNumber, ORD_INV_FK, ORD_CPK, ORD_INV_CFK, ORD_Primary, ORD_QuantityInOrderUnit, ORD_ASC_FK, ORD_ASC_CFK, ORD_OUP_FK, ORD_OUP_CFK, convert(varchar(10), ORD_TimeStamp, 120), ORD_DSDItem, ORD_DefaultSupplier, ORD_Discontinued, convert(varchar(10), ORD_DateDiscontinued, 120), ORD_MinimumOrder, ORD_FirstOrdRecordDSDFlagSet, ORD_SuggestedMultiple, ORD_AllowOverrideOfMultiple FROM catapult.ecrs.OrderingInfo WHERE trim(ORD_INV_FK) IN ('129809')
 					button(type='submit', form='queryOrderingInfoTable', style="display: block; float: left") QUERY OrderingInfo
 
 		br
