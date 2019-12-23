@@ -31,77 +31,55 @@ html
 			table#resTbl
 				thead
 					tr
-						th invPK
-						th invCPK
-						th invScanCode
-						th ordSupplierStockNumber
-						th invName
-						th invSize
-						th invReceiptAlias
-						th posTimeStamp
-						th invDateCreated
-						th invEmpFkCreatedBy
-						th ordQuantityInOrderUnit
-						th oupName
-						th stoName
-						th brdName
-						th dptName
-						th dptNumber
-						th sibIdealMargin
-						th venCompanyname
-						th invLastreceived
-						th invLastsold
-						th invLastcost
-						th sibBasePrice
-						th invOnhand
-						th invOnorder
-						th invIntransit
-						th pi1Description
-						th pi2Description
-						th pi3Description
-						th pi4Description
-						th invPowerField1
-						th invPowerField2
-						th invPowerField3
-						th invPowerField4
+						th ORD_VEN_FK
+						th ORD_PK
+						th ORD_SupplierStockNumber
+						th ORD_INV_FK
+						th ORD_CPK
+						th ORD_INV_CFK
+						th ORD_VEN_CFK
+						th ORD_Primary
+						th ORD_QuantityInOrderUnit
+						th ORD_ASC_FK
+						th ORD_ASC_CFK
+						th ORD_OUP_FK
+						th ORD_OUP_CFK
+						th ORD_Timestamp
+						th ORD_DSDItem
+						th ORD_DefaultSupplier
+						th ORD_Discontinued
+						th ORD_DateDiscontinued
+						th ORD_MinimumOrder
+						th ORD_FirstOrdRecordDSDFlagSet
+						th ORD_SuggestedMultiple
+						th ORD_AllowOverrideOfMultiple
 
 				tbody#resTblBdy
 					if catapultResults !== undefined
 						each elmnt in catapultResults
 							tr
-								td= elmnt.invPK
-								td= elmnt.invCPK
-								td= elmnt.invScanCode
-								td= elmnt.ordSupplierStockNumber
-								td= elmnt.invName
-								td= elmnt.invSize
-								td= elmnt.invReceiptAlias
-								td= elmnt.posTimeStamp
-								td= elmnt.invDateCreated
-								td= elmnt.invEmpFkCreatedBy
-								td= elmnt.ordQuantityInOrderUnit
-								td= elmnt.oupName
-								td= elmnt.stoName
-								td= elmnt.brdName
-								td= elmnt.dptName
-								td= elmnt.dptNumber
-								td= elmnt.sibIdealMargin
-								td= elmnt.venCompanyname
-								td= elmnt.invLastreceived
-								td= elmnt.invLastsold
-								td= elmnt.invLastcost
-								td= elmnt.sibBasePrice
-								td= elmnt.invOnhand
-								td= elmnt.invOnorder
-								td= elmnt.invIntransit
-								td= elmnt.pi1Description
-								td= elmnt.pi2Description
-								td= elmnt.pi3Description
-								td= elmnt.pi4Description
-								td= elmnt.invPowerField1
-								td= elmnt.invPowerField2
-								td= elmnt.invPowerField3
-								td= elmnt.invPowerField4
+								td= elmnt.ORD_VEN_FK
+                td= elmnt.ORD_PK
+                td= elmnt.ORD_SupplierStockNumber
+                td= elmnt.ORD_INV_FK
+                td= elmnt.ORD_CPK
+                td= elmnt.ORD_INV_CFK
+                td= elmnt.ORD_VEN_CFK
+                td= elmnt.ORD_Primary
+                td= elmnt.ORD_QuantityInOrderUnit
+                td= elmnt.ORD_ASC_FK
+                td= elmnt.ORD_ASC_CFK
+                td= elmnt.ORD_OUP_FK
+                td= elmnt.ORD_OUP_CFK
+                td= elmnt.ORD_Timestamp
+                td= elmnt.ORD_DSDItem
+                td= elmnt.ORD_DefaultSupplier
+                td= elmnt.ORD_Discontinued
+                td= elmnt.ORD_DateDiscontinued
+                td= elmnt.ORD_MinimumOrder
+                td= elmnt.ORD_FirstOrdRecordDSDFlagSet
+                td= elmnt.ORD_SuggestedMultiple
+                td= elmnt.ORD_AllowOverrideOfMultiple
 
 
 

@@ -22,6 +22,9 @@ const {
   v_InventoryMasterQuery
 } = require('../sqlArch/v_InventoryMasterQuery')
 const {
+  OrderingInfoQuery
+} = require('../sqlArch/OrderingInfoQuery')
+const {
   save2CSV
 } = require('../sqlArch/save2CSV')
 
@@ -72,6 +75,7 @@ router.post('/deleteTsqlTable', deleteTsqlTableSimple)
 router.post('/queryCatapultDB', queryCatapultDB)
 router.post('/populateTsqlTable', populateTsqlTable)
 router.post('/queryInvMasterTable', v_InventoryMasterQuery)
+router.post('/queryOrderingInfoTable', OrderingInfoQuery)
 router.post('/save2CSV', save2CSV)
 
 // router.post('/populateTableSimple', populateTableSimple)
