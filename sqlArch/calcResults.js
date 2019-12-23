@@ -82,12 +82,12 @@ module.exports = {
     console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
 
     let searchResults = [] //clear searchResults from previous search
-    console.log('calcResults says: searchResults from router.post level===>', searchResults)
+    // console.log('calcResults says: searchResults from router.post level===>', searchResults)
     searchResultsForCSV = []
     searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
-    console.log('calcResults says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
+    // console.log('calcResults says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
     csvContainer = []
-    console.log('calcResults says: csvContainer from router.post level===>', csvContainer)
+    // console.log('calcResults says: csvContainer from router.post level===>', csvContainer)
 
 
     const postBody = req.body
@@ -216,18 +216,18 @@ module.exports = {
     if (postBody['wsDiffResultsPost'].length > 0) { //must check to see if anything was entered in WS Diff Results
       //input, otherwise get 'unexpected end of JSON' error
       let wsDiffResults = JSON.parse(postBody['wsDiffResultsPost'])
-      console.log('calcResults says: wsDiffResults from vw-MySqlTableHub.pug wsDiffResultsPost~~~>', wsDiffResults)
-      console.log('calcResults says: wsDiffResults.length from vw-MySqlTableHub.pug wsDiffResultsPost~~~>', wsDiffResults.length)
+      // console.log('calcResults says: wsDiffResults from vw-MySqlTableHub.pug wsDiffResultsPost~~~>', wsDiffResults)
+      // console.log('calcResults says: wsDiffResults.length from vw-MySqlTableHub.pug wsDiffResultsPost~~~>', wsDiffResults.length)
     }
 
     //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
     let toSplitField = postBody['fldArrToPostPost']
-    console.log('calcResults says: toSplitField before replace==>', toSplitField)
+    // console.log('calcResults says: toSplitField before replace==>', toSplitField)
     let sanitizeColumnFields = /(\[)|(\])|(")/g
     let toSplitFieldReplace = toSplitField.replace(sanitizeColumnFields, "")
-    console.log('calcResults says: toSplitFieldReplace after replace==>', toSplitFieldReplace)
+    // console.log('calcResults says: toSplitFieldReplace after replace==>', toSplitFieldReplace)
     let splitFieldResult = toSplitFieldReplace.split(',')
-    console.log('calcResults says: splitFieldResult==>', splitFieldResult)
+    // console.log('calcResults says: splitFieldResult==>', splitFieldResult)
     //^//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
 
 
@@ -243,7 +243,7 @@ module.exports = {
       }
       if (splitFieldResult[i] == 'invScanCode') { //Item ID (1); targets upc from catapult v_InventoryMaster table
         genericHeaderObj.upcHeader = splitFieldResult[i]
-        console.log('calcResults says: genericHeaderObj.upcHeader==>', genericHeaderObj.upcHeader)
+        // console.log('calcResults says: genericHeaderObj.upcHeader==>', genericHeaderObj.upcHeader)
       }
       if (splitFieldResult[i] == 'ordSupplierStockNumber') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
         //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
@@ -332,9 +332,9 @@ module.exports = {
 
     function showSearchResults(rows) {
       console.log(`rows.length==>${rows.length}`)
-      console.log(`rows[0]==>${rows[0]}`)
-      console.log(`rows==>${rows}`)
-      console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
+      // console.log(`rows[0]==>${rows[0]}`)
+      // console.log(`rows==>${rows}`)
+      // console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
       let nejRows = rows[0] //targets 1st query on NEJ table
       let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
 
@@ -791,7 +791,7 @@ module.exports = {
             if (srcRsObj['upc'] == wsDiffResults[j]['wsDiffNewTable_upc']) {
               srcRsObj['wsDiff_t0d'] = wsDiffResults[j]['wsDiffNewTable_upc'] //INCLUDE in save2CSVreview export data
               reviewObj['wsDiff_t0d'] = wsDiffResults[j]['wsDiffNewTable_upc'] //INCLUDE in save2CSVreview export data
-              console.log('calcResults says: wsDiffResults[j][\'wsDiffNewTable_upc\']##>>', wsDiffResults[j]['wsDiffNewTable_upc'])
+              // console.log('calcResults says: wsDiffResults[j][\'wsDiffNewTable_upc\']##>>', wsDiffResults[j]['wsDiffNewTable_upc'])
             }
           }
         }
