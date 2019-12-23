@@ -7,7 +7,7 @@ const DSN = process.env.ODBC_CONN_STRING
 const fs = require('fs')
 
 module.exports = {
-  v_InventoryMasterQuery: router.post('/queryOrderingInfoTable', (req, res, next) => {
+  OrderingInfoQuery: router.post('/queryOrderingInfoTable', (req, res, next) => {
     const queryCatapultDBPostBody = req.body
     // console.log(`queryCatapultDBPostBody==> ${queryCatapultDBPostBody}`)
     // console.log(`JSON.stringify(queryCatapultDBPostBody)==> ${JSON.stringify(queryCatapultDBPostBody)}`)
