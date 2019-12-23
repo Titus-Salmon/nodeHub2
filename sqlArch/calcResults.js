@@ -303,12 +303,12 @@ module.exports = {
       if (splitFieldResult[i] == 'venCompanyname') {
         genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
       }
-      if (splitFieldResult[i] == 'edlp_flag') {
-        genericHeaderObj.edlpFlagHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'sale_flag') {
-        genericHeaderObj.saleFlagHeader = splitFieldResult[i]
-      }
+      // if (splitFieldResult[i] == 'edlp_flag') {
+      //   genericHeaderObj.edlpFlagHeader = splitFieldResult[i]
+      // }
+      // if (splitFieldResult[i] == 'sale_flag') {
+      //   genericHeaderObj.saleFlagHeader = splitFieldResult[i]
+      // }
       // if (splitFieldResult[i] == 'kehe_uos') { //need to target kehe_uos in order to divide by that for kehe items sold by case
       //   genericHeaderObj.keheUOSHeader = splitFieldResult[i]
       // }
