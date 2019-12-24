@@ -705,9 +705,12 @@ module.exports = {
 
         // srcRsObj['csPkgMltpl'] = "" //Case Package Multiple -- THIS IS NOW SET IN divideCostToUOS_Rtl_IMW() & divideCostToUOS_WS_IMW()
 
-        srcRsObj['ovr'] = reviewObj['ovr'] = 0 //set ovr (for IMW) to 0 FOR EVERYTHING (CRITICAL)
-        //this will NOT give buyers the option to override to buy "eaches" for items vendors sell to us in cases
-        //AS A GENERAL RULE, THIS SHOULD ALWAYS BE SET TO 0... IN SOME CASES, WE MIGHT CHANGE TO 1
+        // srcRsObj['ovr'] = reviewObj['ovr'] = 0 //set ovr (for IMW) to 0 FOR EVERYTHING (CRITICAL)
+        // //this will NOT give buyers the option to override to buy "eaches" for items vendors sell to us in cases
+        // //AS A GENERAL RULE, THIS SHOULD ALWAYS BE SET TO 0... IN SOME CASES, WE MIGHT CHANGE TO 1
+
+        srcRsObj['ovr'] = reviewObj['ovr'] = 1 //20191224 set ovr (for IMW) to 1 FOR EVERYTHING per MaryKate's request
+        //this WILL give buyers the option to override to buy "eaches" for items vendors sell to us in "cases"
 
         // srcRsObj['ovr'] = "" //OVR
         // srcRsObj['ovr'] = "" //OVR
