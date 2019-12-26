@@ -456,7 +456,14 @@ module.exports = {
 
               divideCostToUOS_Rtl_IMW()
 
-              srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+              if (srcRsObj['edlpVar'] !== 'EDLP') {
+                srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100
+                //applies margin to WS for NON-EDLP
+              } else {
+                srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * edlpDisco) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+                //applies margin to WS for EDLP
+              }
+              // srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
               //AND also applies any % discount; discountToApply is set at default 0
               //Finally, Math.round(number*100)/100 converts the result to a number with just 2 decimal places.
               if (srcRsObj['reqdRetail'] % 1 < .10 && srcRsObj['reqdRetail'] > 0) { //change charm price to (#-1).99 if req'd rtl is #.00 -> #.10
