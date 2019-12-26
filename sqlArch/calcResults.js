@@ -1033,9 +1033,7 @@ module.exports = {
               populateResultsObj_Rtl()
             }
           } else {
-            if (srcRsObj['edlpVar'] == 'EDLP') {
-              populateResultsObj_Rtl()
-            }
+            populateResultsObj_Rtl()
           }
           //^//EDLP switch handler. This should exclude EDLPS from calcCharm results if switch is set to 'no', but include them if set to 'yes'
 
