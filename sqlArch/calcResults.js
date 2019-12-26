@@ -188,15 +188,15 @@ module.exports = {
 
     // let formInput59 = Object.values(postBody)[59] //msrpPost
 
-    let formInput53 = Object.values(postBody)[54] //wsDiffResultsPost
+    let formInput53 = Object.values(postBody)[53] //wsDiffResultsPost
 
-    let formInput55 = typeOfIMW = Object.values(postBody)[55] //typeOfIMWPost
+    let formInput54 = typeOfIMW = Object.values(postBody)[54] //typeOfIMWPost
     console.log('typeOfIMW==>', typeOfIMW)
-    let formInput56 = skuOveride = Object.values(postBody)[56] //skuOveridePost
+    let formInput55 = skuOveride = Object.values(postBody)[55] //skuOveridePost
     console.log('skuOveride==>', skuOveride)
-    let formInput57 = deptFilter = Object.values(postBody)[57] //deptFilterPost
+    let formInput56 = deptFilter = Object.values(postBody)[56] //deptFilterPost
     console.log('deptFilter==>', deptFilter)
-    let formInput58 = edlpSwitch = Object.values(postBody)[58] //edlpSwitchPost
+    let formInput57 = edlpSwitch = Object.values(postBody)[57] //edlpSwitchPost
     console.log('edlpSwitch==>', edlpSwitch)
 
     // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
