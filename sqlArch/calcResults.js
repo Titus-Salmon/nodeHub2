@@ -850,6 +850,9 @@ module.exports = {
             }
           }
         } else {
+          // if (edlpSwitch == 'no') {
+
+          // }
           //v//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for globalMargin
           if (formInput0.includes('edi_')) {
             calcCharm(globalMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
@@ -991,10 +994,25 @@ module.exports = {
               defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
             revealAppliedMarg(vitSuppMargin)
           }
-          if (srcRsObj['charm'] !== "" && Math.round((srcRsObj['charm']) * 100) / 100 !== Math.round((srcRsObj['sibBasePrice']) * 100) / 100) { // only push results that have some
-            //value for "charm" column, AND ALSO select only items whose updated price is different than the exist. price in cplt
-            if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
-              if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
+
+          function populateResultsObj_Rtl() {
+            if (srcRsObj['charm'] !== "" && Math.round((srcRsObj['charm']) * 100) / 100 !== Math.round((srcRsObj['sibBasePrice']) * 100) / 100) { // only push results that have some
+              //value for "charm" column, AND ALSO select only items whose updated price is different than the exist. price in cplt
+              if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
+                if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
+                  if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
+                    if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+                      searchResults.push(srcRsObj)
+                      searchResultsForCSV.push(srcRsObj)
+                      searchResultsForCSVreview.push(reviewObj)
+                    }
+                  } else { //otherwise, push all depts into searchResults
+                    searchResults.push(srcRsObj)
+                    searchResultsForCSV.push(srcRsObj)
+                    searchResultsForCSVreview.push(reviewObj)
+                  }
+                }
+              } else {
                 if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
                   if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
                     searchResults.push(srcRsObj)
@@ -1007,20 +1025,51 @@ module.exports = {
                   searchResultsForCSVreview.push(reviewObj)
                 }
               }
-            } else {
-              if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
-                if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
-                  searchResults.push(srcRsObj)
-                  searchResultsForCSV.push(srcRsObj)
-                  searchResultsForCSVreview.push(reviewObj)
-                }
-              } else { //otherwise, push all depts into searchResults
-                searchResults.push(srcRsObj)
-                searchResultsForCSV.push(srcRsObj)
-                searchResultsForCSVreview.push(reviewObj)
-              }
             }
           }
+          //v//EDLP switch handler. This should exclude EDLPS from calcCharm results if switch is set to 'no', but include them if set to 'yes'
+          if (edlpSwitch == 'no') {
+            if (srcRsObj['edlpVar'] !== 'EDLP') {
+              populateResultsObj_Rtl()
+            }
+          } else {
+            if (srcRsObj['edlpVar'] == 'EDLP') {
+              populateResultsObj_Rtl()
+            }
+          }
+          //^//EDLP switch handler. This should exclude EDLPS from calcCharm results if switch is set to 'no', but include them if set to 'yes'
+
+
+          // if (srcRsObj['charm'] !== "" && Math.round((srcRsObj['charm']) * 100) / 100 !== Math.round((srcRsObj['sibBasePrice']) * 100) / 100) { // only push results that have some
+          //   //value for "charm" column, AND ALSO select only items whose updated price is different than the exist. price in cplt
+          //   if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
+          //     if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
+          //       if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
+          //         if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+          //           searchResults.push(srcRsObj)
+          //           searchResultsForCSV.push(srcRsObj)
+          //           searchResultsForCSVreview.push(reviewObj)
+          //         }
+          //       } else { //otherwise, push all depts into searchResults
+          //         searchResults.push(srcRsObj)
+          //         searchResultsForCSV.push(srcRsObj)
+          //         searchResultsForCSVreview.push(reviewObj)
+          //       }
+          //     }
+          //   } else {
+          //     if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
+          //       if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+          //         searchResults.push(srcRsObj)
+          //         searchResultsForCSV.push(srcRsObj)
+          //         searchResultsForCSVreview.push(reviewObj)
+          //       }
+          //     } else { //otherwise, push all depts into searchResults
+          //       searchResults.push(srcRsObj)
+          //       searchResultsForCSV.push(srcRsObj)
+          //       searchResultsForCSVreview.push(reviewObj)
+          //     }
+          //   }
+          // }
         }
 
       }
