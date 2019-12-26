@@ -194,6 +194,9 @@ module.exports = {
     console.log('skuOveride==>', skuOveride)
     let formInput63 = deptFilter = Object.values(postBody)[63] //deptFilterPost
     console.log('deptFilter==>', deptFilter)
+    let formInput64 = edlpSwitch = Object.values(postBody)[64] //edlpSwitchPost
+    console.log('edlpSwitch==>', edlpSwitch)
+
     // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
     // console.log('itemUnitValSwitch==>', itemUnitValSwitch)
 

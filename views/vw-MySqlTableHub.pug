@@ -337,10 +337,16 @@ html
 				label.input-label-1(for='deptFilter') Dept Filter
 				input#deptFilter.input-unit-1(type='text', name='deptFilterPost' value='')
 
+			div(style="display:block")
+				label.input-label-1(for='edlpSwitch') Include EDLP?
+				select#itemUnitValSwitch.input-unit-1(name='edlpSwitchPost')
+					option(value='no') no
+					option(value='yes') yes
+
 			//- div(style="display:block")
 			//- 	label.input-label-1(for='itemUnitValSwitch') Populate IMW with ItemUnitValues?
 			//- 	select#itemUnitValSwitch.input-unit-1(name='itemUnitValSwitchPost')
-			//- 		option(value='yes') no
+			//- 		option(value='no') no
 			//- 		option(value='yes') yes
 
 			//- input#tableToJoin.input-unit-1(type='text', placeholder='enter table to join', name='tableToJoinPost', value="")
