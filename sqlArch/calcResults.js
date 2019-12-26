@@ -173,6 +173,8 @@ module.exports = {
     let formInput50 = Object.values(postBody)[50] = defaultCharm4Brad = postBody['defaultCharm4BradPost'] //defaultCharm4BradPost
 
     let formInput51 = Object.values(postBody)[51] = discountToApply = postBody['discountToApplyPost'] //discountToApplyPost
+    let formInput52 = Object.values(postBody)[52] = edlpDisco = postBody['edlpDiscoPost'] //edlpDiscoPost
+
 
     // let formInput52 = Object.values(postBody)[52] //prKyPost
 
@@ -186,15 +188,15 @@ module.exports = {
 
     // let formInput59 = Object.values(postBody)[59] //msrpPost
 
-    let formInput60 = Object.values(postBody)[60] //wsDiffResultsPost
+    let formInput53 = Object.values(postBody)[54] //wsDiffResultsPost
 
-    let formInput53 = typeOfIMW = Object.values(postBody)[53] //typeOfIMWPost
+    let formInput55 = typeOfIMW = Object.values(postBody)[55] //typeOfIMWPost
     console.log('typeOfIMW==>', typeOfIMW)
-    let formInput54 = skuOveride = Object.values(postBody)[54] //skuOveridePost
+    let formInput56 = skuOveride = Object.values(postBody)[56] //skuOveridePost
     console.log('skuOveride==>', skuOveride)
-    let formInput55 = deptFilter = Object.values(postBody)[55] //deptFilterPost
+    let formInput57 = deptFilter = Object.values(postBody)[57] //deptFilterPost
     console.log('deptFilter==>', deptFilter)
-    let formInput56 = edlpSwitch = Object.values(postBody)[56] //edlpSwitchPost
+    let formInput58 = edlpSwitch = Object.values(postBody)[58] //edlpSwitchPost
     console.log('edlpSwitch==>', edlpSwitch)
 
     // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
