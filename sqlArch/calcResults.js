@@ -174,27 +174,27 @@ module.exports = {
 
     let formInput51 = Object.values(postBody)[51] = discountToApply = postBody['discountToApplyPost'] //discountToApplyPost
 
-    let formInput52 = Object.values(postBody)[52] //prKyPost
+    // let formInput52 = Object.values(postBody)[52] //prKyPost
 
-    let formInput53 = Object.values(postBody)[53] //upcPost
-    let formInput54 = Object.values(postBody)[54] //skuPost
-    let formInput55 = Object.values(postBody)[55] //descrPost
-    let formInput56 = Object.values(postBody)[56] //updtWSPost
+    // let formInput53 = Object.values(postBody)[53] //upcPost
+    // let formInput54 = Object.values(postBody)[54] //skuPost
+    // let formInput55 = Object.values(postBody)[55] //descrPost
+    // let formInput56 = Object.values(postBody)[56] //updtWSPost
 
-    let formInput57 = Object.values(postBody)[57] //rbMargPost
-    let formInput58 = Object.values(postBody)[58] //rtlReqdPost
+    // let formInput57 = Object.values(postBody)[57] //rbMargPost
+    // let formInput58 = Object.values(postBody)[58] //rtlReqdPost
 
-    let formInput59 = Object.values(postBody)[59] //msrpPost
+    // let formInput59 = Object.values(postBody)[59] //msrpPost
 
     let formInput60 = Object.values(postBody)[60] //wsDiffResultsPost
 
-    let formInput61 = typeOfIMW = Object.values(postBody)[61] //typeOfIMWPost
+    let formInput53 = typeOfIMW = Object.values(postBody)[53] //typeOfIMWPost
     console.log('typeOfIMW==>', typeOfIMW)
-    let formInput62 = skuOveride = Object.values(postBody)[62] //skuOveridePost
+    let formInput54 = skuOveride = Object.values(postBody)[54] //skuOveridePost
     console.log('skuOveride==>', skuOveride)
-    let formInput63 = deptFilter = Object.values(postBody)[63] //deptFilterPost
+    let formInput55 = deptFilter = Object.values(postBody)[55] //deptFilterPost
     console.log('deptFilter==>', deptFilter)
-    let formInput64 = edlpSwitch = Object.values(postBody)[64] //edlpSwitchPost
+    let formInput56 = edlpSwitch = Object.values(postBody)[56] //edlpSwitchPost
     console.log('edlpSwitch==>', edlpSwitch)
 
     // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
