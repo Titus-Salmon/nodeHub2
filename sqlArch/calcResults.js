@@ -14,382 +14,382 @@ module.exports = {
 
   calcResults: router.post('/calcResults', (req, res, next) => {
 
-    let deptFilterArr = [{
-        '54': 'Beer & Alcohol'
-      },
-      {
-        '152': 'Body Care'
-      },
-      {
-        '9': 'Books'
-      },
-      {
-        '19': 'Bulk'
-      },
-      {
-        '30': 'Bulk & Herb Prepack'
-      },
-      {
-        '175': 'CBD - Grocery'
-      },
-      {
-        '176': 'CBD - Supplements'
-      },
-      {
-        '177': 'CBD - Topicals'
-      },
-      {
-        '148': 'Consignments'
-      },
-      {
-        '150': 'General Merchandise'
-      },
-      {
-        '13': 'Gift Items'
-      },
-      {
-        '62': 'Grab & Go'
-      },
-      {
-        '25': 'Grocery'
-      },
-      {
-        '179': 'Grocery - Local'
-      },
-      {
-        '38': 'Grocery - Local Meat'
-      },
-      {
-        '12': 'HBA'
-      },
-      {
-        '158': 'Herbs & Homeopathic'
-      },
-      {
-        '80': 'LifeBar'
-      },
-      {
-        '151': 'Other'
-      },
-      {
-        '155': 'Refrigerated'
-      },
-      {
-        '157': 'Vitamins & Supplements'
-      }
-    ]
-
-    console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
-
-    let searchResults = [] //clear searchResults from previous search
-    // console.log('calcResults says: searchResults from router.post level===>', searchResults)
-    searchResultsForCSV = []
-    searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
-    // console.log('calcResults says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
-    csvContainer = []
-    // console.log('calcResults says: csvContainer from router.post level===>', csvContainer)
-
-
-    const postBody = req.body
-    console.log('calcResults says: postBody==>', postBody)
-    console.log('calcResults says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
-    console.log('calcResults says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
-
-    //v//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
-    let formInput0 = Object.values(postBody)[0] = loadedSqlTbl = postBody['tblNameToPostPost'] //tblNameToPostPost
-    console.log('formInput0==>', formInput0)
-    let formInput1 = Object.values(postBody)[1] //fldArrToPostPost
-    let formInput2 = Object.values(postBody)[2] = beerAlcMargin = postBody['beerAlcMargPost'] //beerAlcMargPost
-    let formInput3 = Object.values(postBody)[3] = bodyCareMargin = postBody['bodyCareMargPost'] //bodyCareMargPost
-    let formInput4 = Object.values(postBody)[4] = booksMargin = postBody['booksMargPost'] //booksMargPost
-    let formInput5 = Object.values(postBody)[5] = bulkMargin = postBody['bulkMargPost'] //bulkMargPost
-    let formInput6 = Object.values(postBody)[6] = bulkHrbPrpkMargin = postBody['bulkHrbPrpkMargPost'] //bulkHrbPrpkMargPost
-    let formInput7 = Object.values(postBody)[7] = cbdGrocMargin = postBody['cbdGrocMargPost'] //cbdGrocMargPost
-    let formInput8 = Object.values(postBody)[8] = cbdSuppMargin = postBody['cbdSuppMargPost'] //cbdSuppMargPost
-    let formInput9 = Object.values(postBody)[9] = cbdTopMargin = postBody['cbdTopMargPost'] //cbdTopMargPost
-    let formInput10 = Object.values(postBody)[10] = consignMargin = postBody['consignMargPost'] //consignMargPost
-    let formInput11 = Object.values(postBody)[11] = frozenMargin = postBody['frozenMargPost'] //frozenMargPost
-    let formInput12 = Object.values(postBody)[12] = genMerchMargin = postBody['genMerchMargPost'] //genMerchMargPost
-    let formInput13 = Object.values(postBody)[13] = giftMargin = postBody['giftMargPost'] //giftMargPost
-    let formInput14 = Object.values(postBody)[14] = grabGoMargin = postBody['grabGoMargPost'] //grabGoMargPost
-    let formInput15 = Object.values(postBody)[15] = grocMargin = postBody['grocMargPost'] //grocMargPost
-    let formInput16 = Object.values(postBody)[16] = grocLocMargin = postBody['grocLocMargPost'] //grocLocMargPost
-    let formInput17 = Object.values(postBody)[17] = grocLcMtMargin = postBody['grocLcMtMargPost'] //grocLcMtMargPost
-    let formInput18 = Object.values(postBody)[18] = hbaMargin = postBody['hbaMargPost'] //hbaMargPost
-    let formInput19 = Object.values(postBody)[19] = herbsHomeoMargin = postBody['herbsHomeoMargPost'] //herbsHomeoMargPost
-    let formInput20 = Object.values(postBody)[20] = lfBrMargin = postBody['lfBrMargPost'] //lfBrMargPost
-    let formInput21 = Object.values(postBody)[21] = otherMargin = postBody['otherMargPost'] //otherMargPost
-    // let formInput22 = Object.values(postBody)[22] = produceMargin = postBody['produceMargPost'] //produceMargPost
-    // let formInput23 = Object.values(postBody)[23] = prodCSAMargin = postBody['prodCSAMargPost'] //prodCSAMargPost
-    // let formInput24 = Object.values(postBody)[24] = prodFlorMargin = postBody['prodFlorMargPost'] //prodFlorMargPost
-    // let formInput25 = Object.values(postBody)[25] = prodLocMargin = postBody['prodLocMargPost'] //prodLocMargPost
-    // let formInput26 = Object.values(postBody)[26] = prodPkgMargin = postBody['prodPkgMargPost'] //prodPkgMargPost
-    // let formInput27 = Object.values(postBody)[27] = prodPlantsMargin = postBody['prodPlantsMargPost'] //prodPlantsMargPost
-    // let formInput28 = Object.values(postBody)[28] = prodPrepMargin = postBody['prodPrepMargPost'] //prodPrepMargPost
-    // let formInput29 = Object.values(postBody)[29] = prodSldBrMargin = postBody['sldBrMargPost'] //prodSldBrMargPost
-    let formInput22 = Object.values(postBody)[22] = refrigMargin = postBody['refrigMargPost'] //refrigMargPost
-    let formInput23 = Object.values(postBody)[23] = vitSuppMargin = postBody['vitSuppMargPost'] //vitSuppMargPost
-    // let formInput32 = Object.values(postBody)[32] = wlnsPrctTipsMargin = postBody['wlnsPrctTipsMargPost'] //wlnsPrctTipsMargPost
-    // let formInput33 = Object.values(postBody)[33] = wlnsPrctMargin = postBody['wlnsPrctMargPost'] //wlnsPrctMargPost
-    let formInput24 = Object.values(postBody)[24] = globalMargin = postBody['globalMargPost'] //globalMargPost
-
-    let formInput25 = Object.values(postBody)[25] = lowerCutRqdRtlAndrea = postBody['lowerCutRqdRtlAndreaPost'] //lowerCutRqdRtlAndreaPost
-    let formInput26 = Object.values(postBody)[26] = lowerCutRqdRtlBrad = postBody['lowerCutRqdRtlBradPost'] //lowerCutRqdRtlBradPost
-
-    let formInput27 = Object.values(postBody)[27] = lowerCutoffCharm1Andrea = postBody['lowerCutoffCharm1AndreaPost'] //lowerCutoffCharm1AndreaPost
-    let formInput28 = Object.values(postBody)[28] = lowerCutoffCharm1Brad = postBody['lowerCutoffCharm1BradPost'] //lowerCutoffCharm1BradPost
-
-    let formInput29 = Object.values(postBody)[29] = lowerCutoffCharm2Andrea = postBody['lowerCutoffCharm2AndreaPost'] //lowerCutoffCharm2AndreaPost
-    let formInput30 = Object.values(postBody)[30] = lowerCutoffCharm2Brad = postBody['lowerCutoffCharm2BradPost'] //lowerCutoffCharm2BradPost
-
-    let formInput31 = Object.values(postBody)[31] = lowerCutoffCharm3Andrea = postBody['lowerCutoffCharm3AndreaPost'] //lowerCutoffCharm3AndreaPost
-    let formInput32 = Object.values(postBody)[32] = lowerCutoffCharm3Brad = postBody['lowerCutoffCharm3BradPost'] //lowerCutoffCharm3BradPost
-
-    let formInput33 = Object.values(postBody)[33] = lowerCutoffCharm4Andrea = postBody['lowerCutoffCharm4AndreaPost'] //lowerCutoffCharm4AndreaPost
-    let formInput34 = Object.values(postBody)[34] = lowerCutoffCharm4Brad = postBody['lowerCutoffCharm4BradPost'] //lowerCutoffCharm4BradPost
-
-    let formInput35 = Object.values(postBody)[35] = lowerCutoffCharm5Andrea = postBody['lowerCutoffCharm5AndreaPost'] //lowerCutoffCharm5AndreaPost
-    let formInput36 = Object.values(postBody)[36] = lowerCutoffCharm5Brad = postBody['lowerCutoffCharm5BradPost'] //lowerCutoffCharm5BradPost
-
-    let formInput37 = Object.values(postBody)[37] = lowerCutoffCharm6Andrea = postBody['lowerCutoffCharm6AndreaPost'] //lowerCutoffCharm6AndreaPost
-    let formInput38 = Object.values(postBody)[38] = lowerCutoffCharm6Brad = postBody['lowerCutoffCharm6BradPost'] //lowerCutoffCharm6BradPost
-
-    let formInput39 = Object.values(postBody)[39] = lowerCutoffCharm7Andrea = postBody['lowerCutoffCharm7AndreaPost'] //lowerCutoffCharm7AndreaPost
-    let formInput40 = Object.values(postBody)[40] = lowerCutoffCharm7Brad = postBody['lowerCutoffCharm7BradPost'] //lowerCutoffCharm7BradPost
-
-    let formInput41 = Object.values(postBody)[41] = upperCharmRqdRtlAndrea = postBody['upperCharmRqdRtlAndreaPost'] //upperCharmRqdRtlAndreaPost
-    let formInput42 = Object.values(postBody)[42] = upperCharmRqdRtlBrad = postBody['upperCharmRqdRtlBradPost'] //upperCharmRqdRtlBradPost
-
-    let formInput43 = Object.values(postBody)[43] = defaultCharm1Andrea = postBody['defaultCharm1AndreaPost'] //defaultCharm1AndreaPost
-    let formInput44 = Object.values(postBody)[44] = defaultCharm1Brad = postBody['defaultCharm1BradPost'] //defaultCharm1BradPost
-
-    let formInput45 = Object.values(postBody)[45] = defaultCharm2Andrea = postBody['defaultCharm2AndreaPost'] //defaultCharm2AndreaPost
-    let formInput46 = Object.values(postBody)[46] = defaultCharm2Brad = postBody['defaultCharm2BradPost'] //defaultCharm2BradPost
-
-    let formInput47 = Object.values(postBody)[47] = defaultCharm3Andrea = postBody['defaultCharm3AndreaPost'] //defaultCharm3AndreaPost
-    let formInput48 = Object.values(postBody)[48] = defaultCharm3Brad = postBody['defaultCharm3BradPost'] //defaultCharm3BradPost
-
-    let formInput49 = Object.values(postBody)[49] = defaultCharm4Andrea = postBody['defaultCharm4AndreaPost'] //defaultCharm4AndreaPost
-    let formInput50 = Object.values(postBody)[50] = defaultCharm4Brad = postBody['defaultCharm4BradPost'] //defaultCharm4BradPost
-
-    let formInput51 = Object.values(postBody)[51] = discountToApply = postBody['discountToApplyPost'] //discountToApplyPost
-    let formInput52 = Object.values(postBody)[52] = edlpDisco = postBody['edlpDiscoPost'] //edlpDiscoPost
-
-
-    // let formInput52 = Object.values(postBody)[52] //prKyPost
-
-    // let formInput53 = Object.values(postBody)[53] //upcPost
-    // let formInput54 = Object.values(postBody)[54] //skuPost
-    // let formInput55 = Object.values(postBody)[55] //descrPost
-    // let formInput56 = Object.values(postBody)[56] //updtWSPost
-
-    // let formInput57 = Object.values(postBody)[57] //rbMargPost
-    // let formInput58 = Object.values(postBody)[58] //rtlReqdPost
-
-    // let formInput59 = Object.values(postBody)[59] //msrpPost
-
-    let formInput53 = Object.values(postBody)[53] //wsDiffResultsPost
-
-    let formInput54 = typeOfIMW = Object.values(postBody)[54] //typeOfIMWPost
-    console.log('typeOfIMW==>', typeOfIMW)
-    let formInput55 = skuOveride = Object.values(postBody)[55] //skuOveridePost
-    console.log('skuOveride==>', skuOveride)
-    let formInput56 = deptFilter = Object.values(postBody)[56] //deptFilterPost
-    console.log('deptFilter==>', deptFilter)
-    let formInput57 = edlpSwitch = Object.values(postBody)[57] //edlpSwitchPost
-    console.log('edlpSwitch==>', edlpSwitch)
-
-    // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
-    // console.log('itemUnitValSwitch==>', itemUnitValSwitch)
-
-    // let formInput64 = tableToJoin = Object.values(postBody)[64] //tableToJoinPost
-    // console.log('tableToJoin==>', tableToJoin)
-
-    //^//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
-
-    var deptFilterToApply = null
-
-    for (let k = 0; k < deptFilterArr.length; k++) {
-      console.log(`Object.keys(deptFilterArr[${k}]==> ${Object.keys(deptFilterArr[k])}`)
-      if (Object.keys(deptFilterArr[k]) == deptFilter) {
-        deptFilterToApply = deptFilter
-      }
-    }
-
-    console.log(`deptFilterToApply==> ${deptFilterToApply}`)
-
-    if (postBody['wsDiffResultsPost'].length > 0) { //must check to see if anything was entered in WS Diff Results
-      //input, otherwise get 'unexpected end of JSON' error
-      let wsDiffResults = JSON.parse(postBody['wsDiffResultsPost'])
-      // console.log('calcResults says: wsDiffResults from vw-MySqlTableHub.pug wsDiffResultsPost~~~>', wsDiffResults)
-      // console.log('calcResults says: wsDiffResults.length from vw-MySqlTableHub.pug wsDiffResultsPost~~~>', wsDiffResults.length)
-    }
-
-    //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
-    let toSplitField = postBody['fldArrToPostPost']
-    // console.log('calcResults says: toSplitField before replace==>', toSplitField)
-    let sanitizeColumnFields = /(\[)|(\])|(")/g
-    let toSplitFieldReplace = toSplitField.replace(sanitizeColumnFields, "")
-    // console.log('calcResults says: toSplitFieldReplace after replace==>', toSplitFieldReplace)
-    let splitFieldResult = toSplitFieldReplace.split(',')
-    // console.log('calcResults says: splitFieldResult==>', splitFieldResult)
-    //^//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
-
-
-
-    //****************************************************************************************************************** */
-    //v//generate generic column headers corresponding to nhcrtEdiJoin table column headers that are associated with
-    //primary key, upc, sku, name, cost, msrp, etc...
-    let genericHeaderObj = {}
-
-    for (let i = 0; i < splitFieldResult.length; i++) {
-      if (splitFieldResult[i].includes('ri_t0d')) { //primary key - don't think this will be needed for inv mnt wksht
-        genericHeaderObj.primarykeyHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'invScanCode') { //Item ID (1); targets upc from catapult v_InventoryMaster table
-        genericHeaderObj.upcHeader = splitFieldResult[i]
-        // console.log('calcResults says: genericHeaderObj.upcHeader==>', genericHeaderObj.upcHeader)
-      }
-      if (splitFieldResult[i] == 'ordSupplierStockNumber') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
-        //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
-        genericHeaderObj.cpltSKUHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'ediSKU') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
-        //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
-        genericHeaderObj.ediSKUHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'invName') { //Item Name (6); targets prod name from catapult v_InventoryMaster portion of nhcrtEdiJoin table
-        genericHeaderObj.nameHeader = splitFieldResult[i]
-      }
-      //v//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
-      if (splitFieldResult[i] == 'ediCost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
-        genericHeaderObj.ediCostHeader = splitFieldResult[i]
-      } //targeting ediCost from vendor catalog
-      if (splitFieldResult[i] == 'invLastcost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
-        genericHeaderObj.invLastcostHeader = splitFieldResult[i]
-      } //targeting invLastcost from catapult v_InventoryMaster table -- probably going to want to check if ediCost == invLastCost
-      //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      // if (splitFieldResult[i].includes('item_price') || splitFieldResult[i].includes('msrp')) { //Suggested Retail ==>msrp?
-      //   //***NEED TO ADD MSRP FROM EDI table to nhcrtEdiJoin results*/
-      //   genericHeaderObj.msrpHeader = splitFieldResult[i]
-      // }
-      if (splitFieldResult[i].includes('ediPrice')) { //Suggested Retail ==>msrp?
-        //targets msrp from edi table
-        genericHeaderObj.msrpHeader = splitFieldResult[i]
-      }
-      // if (splitFieldResult[i] == 'rb_price') { //
-      //   genericHeaderObj.rbPriceHeader = splitFieldResult[i]
-      // }
-      if (splitFieldResult[i] == 'sibBasePrice') { //
-        genericHeaderObj.sibBasePriceHeader = splitFieldResult[i]
-      }
-      // if (splitFieldResult[i] == 'rb_dept') { //
-      //   genericHeaderObj.rbDeptHeader = splitFieldResult[i]
-      // }
-      if (splitFieldResult[i] == 'dptName') { //
-        genericHeaderObj.rbDeptHeader = splitFieldResult[i]
-      }
-      // if (splitFieldResult[i] == 'rb_dept_id') {
-      //   genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
-      // }
-      if (splitFieldResult[i] == 'dptNumber') {
-        genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
-      }
-      // if (splitFieldResult[i] == 'rb_dept_margin') {
-      //   genericHeaderObj.rbDeptMarginHeader = splitFieldResult[i]
-      // }
-      if (splitFieldResult[i] == 'sibIdealMargin') {
-        genericHeaderObj.sibIdealMarginHeader = splitFieldResult[i]
-      }
-      // if (splitFieldResult[i] == 'rb_supplier') {
-      //   genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
-      // }
-      if (splitFieldResult[i] == 'venCompanyname') {
-        genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
-      }
-      // if (splitFieldResult[i] == 'edlp_flag') {
-      //   genericHeaderObj.edlpFlagHeader = splitFieldResult[i]
-      // }
-      // if (splitFieldResult[i] == 'sale_flag') {
-      //   genericHeaderObj.saleFlagHeader = splitFieldResult[i]
-      // }
-      // if (splitFieldResult[i] == 'kehe_uos') { //need to target kehe_uos in order to divide by that for kehe items sold by case
-      //   genericHeaderObj.keheUOSHeader = splitFieldResult[i]
-      // }
-      if (splitFieldResult[i] == 'oupName') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
-        genericHeaderObj.oupName = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'ordQuantityInOrderUnit') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
-        genericHeaderObj.ordQuantityInOrderUnit = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'stoName') { //targets Catapult nhcrt stoName column
-        genericHeaderObj.stoName = splitFieldResult[i]
-      }
-    }
-
-    console.log('calcResults says: genericHeaderObj==>', genericHeaderObj)
-    //^//generate generic column headers corresponding to margin_report table column headers that are associated with
-    //primary key, upc, sku, name, cost, & msrp
-    //****************************************************************************************************************** */
-
-
-
-    function showSearchResults(rows) {
-      console.log(`rows.length==>${rows.length}`)
-      // console.log(`rows[0]==>${rows[0]}`)
-      // console.log(`rows==>${rows}`)
-      // console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
-      let nejRows = rows[0] //targets 1st query on NEJ table
-      let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
-
-      console.log(`JSON.stringify(nejRows[0])==> ${JSON.stringify(nejRows[0])}`)
-      console.log(`JSON.stringify(edlpRows[0])==> ${JSON.stringify(edlpRows[0])}`)
-
-      for (let i = 0; i < nejRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
-        //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
-        let srcRsObj = {}
-        let reviewObj = {} //push data to this obj for review CSV
-
-        function divideCostToUOS_Rtl_IMW() {
-
-          // if (typeOfIMW.toLowerCase() == 'retail') {
-          ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
-          let oupNameVar = nejRows[i][genericHeaderObj.oupName]
-          oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
-          if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
-            oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case' && oupNameSplit[0].toLowerCase() !== 'cs') {
-            if (oupNameSplit[1] !== undefined) {
-              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
-              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
-            }
-          } else {
-            console.log(`oupNameSplit[0].toLowerCase()==> ${oupNameSplit[0].toLowerCase()}`)
-            console.log(`oupNameVar==> ${oupNameVar}`)
-            if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
-              oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1 //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
-              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
-            } else {
-              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
-              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
-            }
-          }
-          ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
-          //}
+      let deptFilterArr = [{
+          '54': 'Beer & Alcohol'
+        },
+        {
+          '152': 'Body Care'
+        },
+        {
+          '9': 'Books'
+        },
+        {
+          '19': 'Bulk'
+        },
+        {
+          '30': 'Bulk & Herb Prepack'
+        },
+        {
+          '175': 'CBD - Grocery'
+        },
+        {
+          '176': 'CBD - Supplements'
+        },
+        {
+          '177': 'CBD - Topicals'
+        },
+        {
+          '148': 'Consignments'
+        },
+        {
+          '150': 'General Merchandise'
+        },
+        {
+          '13': 'Gift Items'
+        },
+        {
+          '62': 'Grab & Go'
+        },
+        {
+          '25': 'Grocery'
+        },
+        {
+          '179': 'Grocery - Local'
+        },
+        {
+          '38': 'Grocery - Local Meat'
+        },
+        {
+          '12': 'HBA'
+        },
+        {
+          '158': 'Herbs & Homeopathic'
+        },
+        {
+          '80': 'LifeBar'
+        },
+        {
+          '151': 'Other'
+        },
+        {
+          '155': 'Refrigerated'
+        },
+        {
+          '157': 'Vitamins & Supplements'
         }
+      ]
 
-        function divideCostToUOS_WS_IMW() {
-          if (typeOfIMW.toLowerCase() == 'wholesale') {
+      console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
 
+      let searchResults = [] //clear searchResults from previous search
+      // console.log('calcResults says: searchResults from router.post level===>', searchResults)
+      searchResultsForCSV = []
+      searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
+      // console.log('calcResults says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
+      csvContainer = []
+      // console.log('calcResults says: csvContainer from router.post level===>', csvContainer)
+
+
+      const postBody = req.body
+      console.log('calcResults says: postBody==>', postBody)
+      console.log('calcResults says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
+      console.log('calcResults says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
+
+      //v//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
+      let formInput0 = Object.values(postBody)[0] = loadedSqlTbl = postBody['tblNameToPostPost'] //tblNameToPostPost
+      console.log('formInput0==>', formInput0)
+      let formInput1 = Object.values(postBody)[1] //fldArrToPostPost
+      let formInput2 = Object.values(postBody)[2] = beerAlcMargin = postBody['beerAlcMargPost'] //beerAlcMargPost
+      let formInput3 = Object.values(postBody)[3] = bodyCareMargin = postBody['bodyCareMargPost'] //bodyCareMargPost
+      let formInput4 = Object.values(postBody)[4] = booksMargin = postBody['booksMargPost'] //booksMargPost
+      let formInput5 = Object.values(postBody)[5] = bulkMargin = postBody['bulkMargPost'] //bulkMargPost
+      let formInput6 = Object.values(postBody)[6] = bulkHrbPrpkMargin = postBody['bulkHrbPrpkMargPost'] //bulkHrbPrpkMargPost
+      let formInput7 = Object.values(postBody)[7] = cbdGrocMargin = postBody['cbdGrocMargPost'] //cbdGrocMargPost
+      let formInput8 = Object.values(postBody)[8] = cbdSuppMargin = postBody['cbdSuppMargPost'] //cbdSuppMargPost
+      let formInput9 = Object.values(postBody)[9] = cbdTopMargin = postBody['cbdTopMargPost'] //cbdTopMargPost
+      let formInput10 = Object.values(postBody)[10] = consignMargin = postBody['consignMargPost'] //consignMargPost
+      let formInput11 = Object.values(postBody)[11] = frozenMargin = postBody['frozenMargPost'] //frozenMargPost
+      let formInput12 = Object.values(postBody)[12] = genMerchMargin = postBody['genMerchMargPost'] //genMerchMargPost
+      let formInput13 = Object.values(postBody)[13] = giftMargin = postBody['giftMargPost'] //giftMargPost
+      let formInput14 = Object.values(postBody)[14] = grabGoMargin = postBody['grabGoMargPost'] //grabGoMargPost
+      let formInput15 = Object.values(postBody)[15] = grocMargin = postBody['grocMargPost'] //grocMargPost
+      let formInput16 = Object.values(postBody)[16] = grocLocMargin = postBody['grocLocMargPost'] //grocLocMargPost
+      let formInput17 = Object.values(postBody)[17] = grocLcMtMargin = postBody['grocLcMtMargPost'] //grocLcMtMargPost
+      let formInput18 = Object.values(postBody)[18] = hbaMargin = postBody['hbaMargPost'] //hbaMargPost
+      let formInput19 = Object.values(postBody)[19] = herbsHomeoMargin = postBody['herbsHomeoMargPost'] //herbsHomeoMargPost
+      let formInput20 = Object.values(postBody)[20] = lfBrMargin = postBody['lfBrMargPost'] //lfBrMargPost
+      let formInput21 = Object.values(postBody)[21] = otherMargin = postBody['otherMargPost'] //otherMargPost
+      // let formInput22 = Object.values(postBody)[22] = produceMargin = postBody['produceMargPost'] //produceMargPost
+      // let formInput23 = Object.values(postBody)[23] = prodCSAMargin = postBody['prodCSAMargPost'] //prodCSAMargPost
+      // let formInput24 = Object.values(postBody)[24] = prodFlorMargin = postBody['prodFlorMargPost'] //prodFlorMargPost
+      // let formInput25 = Object.values(postBody)[25] = prodLocMargin = postBody['prodLocMargPost'] //prodLocMargPost
+      // let formInput26 = Object.values(postBody)[26] = prodPkgMargin = postBody['prodPkgMargPost'] //prodPkgMargPost
+      // let formInput27 = Object.values(postBody)[27] = prodPlantsMargin = postBody['prodPlantsMargPost'] //prodPlantsMargPost
+      // let formInput28 = Object.values(postBody)[28] = prodPrepMargin = postBody['prodPrepMargPost'] //prodPrepMargPost
+      // let formInput29 = Object.values(postBody)[29] = prodSldBrMargin = postBody['sldBrMargPost'] //prodSldBrMargPost
+      let formInput22 = Object.values(postBody)[22] = refrigMargin = postBody['refrigMargPost'] //refrigMargPost
+      let formInput23 = Object.values(postBody)[23] = vitSuppMargin = postBody['vitSuppMargPost'] //vitSuppMargPost
+      // let formInput32 = Object.values(postBody)[32] = wlnsPrctTipsMargin = postBody['wlnsPrctTipsMargPost'] //wlnsPrctTipsMargPost
+      // let formInput33 = Object.values(postBody)[33] = wlnsPrctMargin = postBody['wlnsPrctMargPost'] //wlnsPrctMargPost
+      let formInput24 = Object.values(postBody)[24] = globalMargin = postBody['globalMargPost'] //globalMargPost
+
+      let formInput25 = Object.values(postBody)[25] = lowerCutRqdRtlAndrea = postBody['lowerCutRqdRtlAndreaPost'] //lowerCutRqdRtlAndreaPost
+      let formInput26 = Object.values(postBody)[26] = lowerCutRqdRtlBrad = postBody['lowerCutRqdRtlBradPost'] //lowerCutRqdRtlBradPost
+
+      let formInput27 = Object.values(postBody)[27] = lowerCutoffCharm1Andrea = postBody['lowerCutoffCharm1AndreaPost'] //lowerCutoffCharm1AndreaPost
+      let formInput28 = Object.values(postBody)[28] = lowerCutoffCharm1Brad = postBody['lowerCutoffCharm1BradPost'] //lowerCutoffCharm1BradPost
+
+      let formInput29 = Object.values(postBody)[29] = lowerCutoffCharm2Andrea = postBody['lowerCutoffCharm2AndreaPost'] //lowerCutoffCharm2AndreaPost
+      let formInput30 = Object.values(postBody)[30] = lowerCutoffCharm2Brad = postBody['lowerCutoffCharm2BradPost'] //lowerCutoffCharm2BradPost
+
+      let formInput31 = Object.values(postBody)[31] = lowerCutoffCharm3Andrea = postBody['lowerCutoffCharm3AndreaPost'] //lowerCutoffCharm3AndreaPost
+      let formInput32 = Object.values(postBody)[32] = lowerCutoffCharm3Brad = postBody['lowerCutoffCharm3BradPost'] //lowerCutoffCharm3BradPost
+
+      let formInput33 = Object.values(postBody)[33] = lowerCutoffCharm4Andrea = postBody['lowerCutoffCharm4AndreaPost'] //lowerCutoffCharm4AndreaPost
+      let formInput34 = Object.values(postBody)[34] = lowerCutoffCharm4Brad = postBody['lowerCutoffCharm4BradPost'] //lowerCutoffCharm4BradPost
+
+      let formInput35 = Object.values(postBody)[35] = lowerCutoffCharm5Andrea = postBody['lowerCutoffCharm5AndreaPost'] //lowerCutoffCharm5AndreaPost
+      let formInput36 = Object.values(postBody)[36] = lowerCutoffCharm5Brad = postBody['lowerCutoffCharm5BradPost'] //lowerCutoffCharm5BradPost
+
+      let formInput37 = Object.values(postBody)[37] = lowerCutoffCharm6Andrea = postBody['lowerCutoffCharm6AndreaPost'] //lowerCutoffCharm6AndreaPost
+      let formInput38 = Object.values(postBody)[38] = lowerCutoffCharm6Brad = postBody['lowerCutoffCharm6BradPost'] //lowerCutoffCharm6BradPost
+
+      let formInput39 = Object.values(postBody)[39] = lowerCutoffCharm7Andrea = postBody['lowerCutoffCharm7AndreaPost'] //lowerCutoffCharm7AndreaPost
+      let formInput40 = Object.values(postBody)[40] = lowerCutoffCharm7Brad = postBody['lowerCutoffCharm7BradPost'] //lowerCutoffCharm7BradPost
+
+      let formInput41 = Object.values(postBody)[41] = upperCharmRqdRtlAndrea = postBody['upperCharmRqdRtlAndreaPost'] //upperCharmRqdRtlAndreaPost
+      let formInput42 = Object.values(postBody)[42] = upperCharmRqdRtlBrad = postBody['upperCharmRqdRtlBradPost'] //upperCharmRqdRtlBradPost
+
+      let formInput43 = Object.values(postBody)[43] = defaultCharm1Andrea = postBody['defaultCharm1AndreaPost'] //defaultCharm1AndreaPost
+      let formInput44 = Object.values(postBody)[44] = defaultCharm1Brad = postBody['defaultCharm1BradPost'] //defaultCharm1BradPost
+
+      let formInput45 = Object.values(postBody)[45] = defaultCharm2Andrea = postBody['defaultCharm2AndreaPost'] //defaultCharm2AndreaPost
+      let formInput46 = Object.values(postBody)[46] = defaultCharm2Brad = postBody['defaultCharm2BradPost'] //defaultCharm2BradPost
+
+      let formInput47 = Object.values(postBody)[47] = defaultCharm3Andrea = postBody['defaultCharm3AndreaPost'] //defaultCharm3AndreaPost
+      let formInput48 = Object.values(postBody)[48] = defaultCharm3Brad = postBody['defaultCharm3BradPost'] //defaultCharm3BradPost
+
+      let formInput49 = Object.values(postBody)[49] = defaultCharm4Andrea = postBody['defaultCharm4AndreaPost'] //defaultCharm4AndreaPost
+      let formInput50 = Object.values(postBody)[50] = defaultCharm4Brad = postBody['defaultCharm4BradPost'] //defaultCharm4BradPost
+
+      let formInput51 = Object.values(postBody)[51] = discountToApply = postBody['discountToApplyPost'] //discountToApplyPost
+      let formInput52 = Object.values(postBody)[52] = edlpDisco = postBody['edlpDiscoPost'] //edlpDiscoPost
+
+
+      // let formInput52 = Object.values(postBody)[52] //prKyPost
+
+      // let formInput53 = Object.values(postBody)[53] //upcPost
+      // let formInput54 = Object.values(postBody)[54] //skuPost
+      // let formInput55 = Object.values(postBody)[55] //descrPost
+      // let formInput56 = Object.values(postBody)[56] //updtWSPost
+
+      // let formInput57 = Object.values(postBody)[57] //rbMargPost
+      // let formInput58 = Object.values(postBody)[58] //rtlReqdPost
+
+      // let formInput59 = Object.values(postBody)[59] //msrpPost
+
+      let formInput53 = Object.values(postBody)[53] //wsDiffResultsPost
+
+      let formInput54 = typeOfIMW = Object.values(postBody)[54] //typeOfIMWPost
+      console.log('typeOfIMW==>', typeOfIMW)
+      let formInput55 = skuOveride = Object.values(postBody)[55] //skuOveridePost
+      console.log('skuOveride==>', skuOveride)
+      let formInput56 = deptFilter = Object.values(postBody)[56] //deptFilterPost
+      console.log('deptFilter==>', deptFilter)
+      let formInput57 = edlpSwitch = Object.values(postBody)[57] //edlpSwitchPost
+      console.log('edlpSwitch==>', edlpSwitch)
+
+      // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
+      // console.log('itemUnitValSwitch==>', itemUnitValSwitch)
+
+      // let formInput64 = tableToJoin = Object.values(postBody)[64] //tableToJoinPost
+      // console.log('tableToJoin==>', tableToJoin)
+
+      //^//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
+
+      var deptFilterToApply = null
+
+      for (let k = 0; k < deptFilterArr.length; k++) {
+        console.log(`Object.keys(deptFilterArr[${k}]==> ${Object.keys(deptFilterArr[k])}`)
+        if (Object.keys(deptFilterArr[k]) == deptFilter) {
+          deptFilterToApply = deptFilter
+        }
+      }
+
+      console.log(`deptFilterToApply==> ${deptFilterToApply}`)
+
+      if (postBody['wsDiffResultsPost'].length > 0) { //must check to see if anything was entered in WS Diff Results
+        //input, otherwise get 'unexpected end of JSON' error
+        let wsDiffResults = JSON.parse(postBody['wsDiffResultsPost'])
+        // console.log('calcResults says: wsDiffResults from vw-MySqlTableHub.pug wsDiffResultsPost~~~>', wsDiffResults)
+        // console.log('calcResults says: wsDiffResults.length from vw-MySqlTableHub.pug wsDiffResultsPost~~~>', wsDiffResults.length)
+      }
+
+      //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
+      let toSplitField = postBody['fldArrToPostPost']
+      // console.log('calcResults says: toSplitField before replace==>', toSplitField)
+      let sanitizeColumnFields = /(\[)|(\])|(")/g
+      let toSplitFieldReplace = toSplitField.replace(sanitizeColumnFields, "")
+      // console.log('calcResults says: toSplitFieldReplace after replace==>', toSplitFieldReplace)
+      let splitFieldResult = toSplitFieldReplace.split(',')
+      // console.log('calcResults says: splitFieldResult==>', splitFieldResult)
+      //^//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
+
+
+
+      //****************************************************************************************************************** */
+      //v//generate generic column headers corresponding to nhcrtEdiJoin table column headers that are associated with
+      //primary key, upc, sku, name, cost, msrp, etc...
+      let genericHeaderObj = {}
+
+      for (let i = 0; i < splitFieldResult.length; i++) {
+        if (splitFieldResult[i].includes('ri_t0d')) { //primary key - don't think this will be needed for inv mnt wksht
+          genericHeaderObj.primarykeyHeader = splitFieldResult[i]
+        }
+        if (splitFieldResult[i] == 'invScanCode') { //Item ID (1); targets upc from catapult v_InventoryMaster table
+          genericHeaderObj.upcHeader = splitFieldResult[i]
+          // console.log('calcResults says: genericHeaderObj.upcHeader==>', genericHeaderObj.upcHeader)
+        }
+        if (splitFieldResult[i] == 'ordSupplierStockNumber') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
+          //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
+          genericHeaderObj.cpltSKUHeader = splitFieldResult[i]
+        }
+        if (splitFieldResult[i] == 'ediSKU') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
+          //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
+          genericHeaderObj.ediSKUHeader = splitFieldResult[i]
+        }
+        if (splitFieldResult[i] == 'invName') { //Item Name (6); targets prod name from catapult v_InventoryMaster portion of nhcrtEdiJoin table
+          genericHeaderObj.nameHeader = splitFieldResult[i]
+        }
+        //v//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if (splitFieldResult[i] == 'ediCost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
+          genericHeaderObj.ediCostHeader = splitFieldResult[i]
+        } //targeting ediCost from vendor catalog
+        if (splitFieldResult[i] == 'invLastcost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
+          genericHeaderObj.invLastcostHeader = splitFieldResult[i]
+        } //targeting invLastcost from catapult v_InventoryMaster table -- probably going to want to check if ediCost == invLastCost
+        //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // if (splitFieldResult[i].includes('item_price') || splitFieldResult[i].includes('msrp')) { //Suggested Retail ==>msrp?
+        //   //***NEED TO ADD MSRP FROM EDI table to nhcrtEdiJoin results*/
+        //   genericHeaderObj.msrpHeader = splitFieldResult[i]
+        // }
+        if (splitFieldResult[i].includes('ediPrice')) { //Suggested Retail ==>msrp?
+          //targets msrp from edi table
+          genericHeaderObj.msrpHeader = splitFieldResult[i]
+        }
+        // if (splitFieldResult[i] == 'rb_price') { //
+        //   genericHeaderObj.rbPriceHeader = splitFieldResult[i]
+        // }
+        if (splitFieldResult[i] == 'sibBasePrice') { //
+          genericHeaderObj.sibBasePriceHeader = splitFieldResult[i]
+        }
+        // if (splitFieldResult[i] == 'rb_dept') { //
+        //   genericHeaderObj.rbDeptHeader = splitFieldResult[i]
+        // }
+        if (splitFieldResult[i] == 'dptName') { //
+          genericHeaderObj.rbDeptHeader = splitFieldResult[i]
+        }
+        // if (splitFieldResult[i] == 'rb_dept_id') {
+        //   genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
+        // }
+        if (splitFieldResult[i] == 'dptNumber') {
+          genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
+        }
+        // if (splitFieldResult[i] == 'rb_dept_margin') {
+        //   genericHeaderObj.rbDeptMarginHeader = splitFieldResult[i]
+        // }
+        if (splitFieldResult[i] == 'sibIdealMargin') {
+          genericHeaderObj.sibIdealMarginHeader = splitFieldResult[i]
+        }
+        // if (splitFieldResult[i] == 'rb_supplier') {
+        //   genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
+        // }
+        if (splitFieldResult[i] == 'venCompanyname') {
+          genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
+        }
+        // if (splitFieldResult[i] == 'edlp_flag') {
+        //   genericHeaderObj.edlpFlagHeader = splitFieldResult[i]
+        // }
+        // if (splitFieldResult[i] == 'sale_flag') {
+        //   genericHeaderObj.saleFlagHeader = splitFieldResult[i]
+        // }
+        // if (splitFieldResult[i] == 'kehe_uos') { //need to target kehe_uos in order to divide by that for kehe items sold by case
+        //   genericHeaderObj.keheUOSHeader = splitFieldResult[i]
+        // }
+        if (splitFieldResult[i] == 'oupName') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
+          genericHeaderObj.oupName = splitFieldResult[i]
+        }
+        if (splitFieldResult[i] == 'ordQuantityInOrderUnit') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
+          genericHeaderObj.ordQuantityInOrderUnit = splitFieldResult[i]
+        }
+        if (splitFieldResult[i] == 'stoName') { //targets Catapult nhcrt stoName column
+          genericHeaderObj.stoName = splitFieldResult[i]
+        }
+      }
+
+      console.log('calcResults says: genericHeaderObj==>', genericHeaderObj)
+      //^//generate generic column headers corresponding to margin_report table column headers that are associated with
+      //primary key, upc, sku, name, cost, & msrp
+      //****************************************************************************************************************** */
+
+
+
+      function showSearchResults(rows) {
+        console.log(`rows.length==>${rows.length}`)
+        // console.log(`rows[0]==>${rows[0]}`)
+        // console.log(`rows==>${rows}`)
+        // console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
+        let nejRows = rows[0] //targets 1st query on NEJ table
+        let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
+
+        console.log(`JSON.stringify(nejRows[0])==> ${JSON.stringify(nejRows[0])}`)
+        console.log(`JSON.stringify(edlpRows[0])==> ${JSON.stringify(edlpRows[0])}`)
+
+        for (let i = 0; i < nejRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
+          //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
+          let srcRsObj = {}
+          let reviewObj = {} //push data to this obj for review CSV
+
+          function divideCostToUOS_Rtl_IMW() {
+
+            // if (typeOfIMW.toLowerCase() == 'retail') {
             ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
             let oupNameVar = nejRows[i][genericHeaderObj.oupName]
             oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
-            if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' ||
-              oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') {
+            if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
+              oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case' && oupNameSplit[0].toLowerCase() !== 'cs') {
+              if (oupNameSplit[1] !== undefined) {
+                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
+                reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
+                reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
+              }
+            } else {
+              console.log(`oupNameSplit[0].toLowerCase()==> ${oupNameSplit[0].toLowerCase()}`)
+              console.log(`oupNameVar==> ${oupNameVar}`)
+              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
+                oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
+                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1 //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
+                reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
+                reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
+              } else {
+                reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
+                reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
+                reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
+              }
+            }
+            ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+            //}
+          }
+
+          function divideCostToUOS_WS_IMW() {
+            if (typeOfIMW.toLowerCase() == 'wholesale') {
+
+              ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+              let oupNameVar = nejRows[i][genericHeaderObj.oupName]
+              oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+              if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
+                oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case') && oupNameSplit[0].toLowerCase() !== 'cs') {
               if (oupNameSplit[1] !== undefined) {
                 let ediTestCost1 = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
                 let ediTstCst1Tr = ediTestCost1.trim().replace(/"/g, '')
@@ -817,8 +817,8 @@ module.exports = {
           //because lower down, we will be filtering for retail imw after running calcCharm()
           divideCostToUOS_WS_IMW()
           if (srcRsObj['ediCostMod'] !== undefined) { //only push items that have ediCostMod value (which means that exist cplt cost
-            // console.log(`srcRsObj['upc'](${i})...srcRsObj['ediCostMod'](${i})==>${srcRsObj['upc']}...${srcRsObj['ediCostMod']}`)
             //is different than new divided-to-uos edi cost, as determined in divideCostToUOS_WS_IMW())
+            // console.log(`srcRsObj['upc'](${i})...srcRsObj['ediCostMod'](${i})==>${srcRsObj['upc']}...${srcRsObj['ediCostMod']}`)
             if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
               if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
                 srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
