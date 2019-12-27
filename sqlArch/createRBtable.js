@@ -32,20 +32,28 @@ module.exports = {
       console.log(error || response);
     }).on('end', function () {
       // all rows have been received
-      connection.destroy()
+      // connection.destroy()
+      res.render('vw-MySqlTableHub', {
+        title: `vw-MySqlTableHub Table Created: <<${tableName}>>`,
+        sqlTableCreated: {
+          tableName: tableName,
+          columnNames: columnNames,
+          basicColumnNames: tableHeadersArray
+        },
+      });
     })
 
     //do you need to end this connection before res.render, or put res.render inside of connection.query?? (to fix [ERR_HTTP_HEADERS_SENT])
     // connection.end()
     // connection.destroy()
 
-    res.render('vw-MySqlTableHub', {
-      title: `vw-MySqlTableHub Table Created: <<${tableName}>>`,
-      sqlTableCreated: {
-        tableName: tableName,
-        columnNames: columnNames,
-        basicColumnNames: tableHeadersArray
-      },
-    });
+    // res.render('vw-MySqlTableHub', {
+    //   title: `vw-MySqlTableHub Table Created: <<${tableName}>>`,
+    //   sqlTableCreated: {
+    //     tableName: tableName,
+    //     columnNames: columnNames,
+    //     basicColumnNames: tableHeadersArray
+    //   },
+    // });
   })
 }
