@@ -33,7 +33,7 @@ module.exports = {
     }).on('end', function () {
       // all rows have been received
       // connection.destroy()
-      res.render('vw-MySqlTableHub', {
+      res.render('vw-MySqlTableHub', { //*****CRITICAL TO PUT THIS HERE; SOLVES [ERR_HTTP_HEADERS_SENT] error*****--t0d
         title: `vw-MySqlTableHub Table Created: <<${tableName}>>`,
         sqlTableCreated: {
           tableName: tableName,
