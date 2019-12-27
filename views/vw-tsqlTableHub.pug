@@ -388,26 +388,28 @@ html
 				button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
 				thead
 					tr
-						th(onclick="sortTable(0)") Primary Key
-						th(onclick="sortTable(1)") UPC
-						th(onclick="sortTable(2)") SKU
-						th(onclick="sortTable(3)") Description
-						th(onclick="sortTable(4)") Updated WS
-						th(onclick="sortTable(5)") Global Margin
-						th(onclick="sortTable(6)") Retail Required
-						th(onclick="sortTable(7)") Charm Price
-						th(onclick="sortTable(8)") MSRP
-						th(onclick="sortTable(9)") rb_dept
-						th(onclick="sortTable(10)") rb_dept_id
-						th(onclick="sortTable(11)") rb_dept_margin
-						th(onclick="sortTable(12)") wsDiff
-						th(onclick="sortTable(13)") Appld Disco
+						th ri_t0d
+						th Primary Key
+						th UPC
+						th SKU
+						th Description
+						th Updated WS
+						th Global Margin
+						th Retail Required
+						th Charm Price
+						th MSRP
+						th rb_dept
+						th rb_dept_id
+						th rb_dept_margin
+						th wsDiff
+						th Appld Disco
 
 
 				tbody#resTblBdy
 					if searchResRows !== undefined
 						each elmnt in searchResRows
 							tr
+								td= elmnt.ri_t0d
 								td= elmnt.P_K
 								td= elmnt.upc
 								td= elmnt.sku

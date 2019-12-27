@@ -98,7 +98,14 @@ module.exports = {
       }
     }).on('end', function () {
       // all rows have been received
-      connection.destroy()
+      // connection.destroy()
+      res.render('vw-MySqlTableHub', {
+        title: `vw-MySqlTableHub **Populated Table <<${tableToPopulate}>>**`,
+        // tableColNames: tableColumnNames,
+        sqlTablePopulated: {
+          tablePopulated: tableToPopulate,
+        },
+      });
     })
     //do you need to end this connection before res.render, or put res.render inside of connection.query?? (to fix [ERR_HTTP_HEADERS_SENT])
     //or will setting up a connection pool be the solution?
@@ -106,13 +113,13 @@ module.exports = {
     // connection.end()
     // connection.destroy()
 
-    res.render('vw-MySqlTableHub', {
-      title: `vw-MySqlTableHub **Populated Table <<${tableToPopulate}>>**`,
-      // tableColNames: tableColumnNames,
-      sqlTablePopulated: {
-        tablePopulated: tableToPopulate,
-      },
-    });
+    // res.render('vw-MySqlTableHub', {
+    //   title: `vw-MySqlTableHub **Populated Table <<${tableToPopulate}>>**`,
+    //   // tableColNames: tableColumnNames,
+    //   sqlTablePopulated: {
+    //     tablePopulated: tableToPopulate,
+    //   },
+    // });
   })
 }
 

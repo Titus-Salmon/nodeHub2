@@ -20,6 +20,8 @@ module.exports = {
         function showcatapultResults(result) {
             for (let i = 0; i < result.length; i++) {
                 let catapultResObj = {}
+                catapultResObj['ri_t0d'] = i //create sequential record id (ri_t0d) column for saving as csv; you will NOT
+                //want to include INV_PK or INV_CPK in your save-to-csv results - ONLY ri_t0d
                 catapultResObj['invPK'] = result[i]['INV_PK']
                 catapultResObj['invCPK'] = result[i]['INV_CPK']
                 if (typeof result[i]['INV_ScanCode'] == 'string') {
