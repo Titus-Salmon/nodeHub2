@@ -21,7 +21,7 @@ module.exports = {
         function displayNhcrt(rows) {
             for (let i = 0; i < rows.length; i++) {
                 let nhcrtObj = {}
-                nhcrtObj['record_id'] = rows[i]['record_id']
+                nhcrtObj['ri_t0d'] = rows[i]['ri_t0d']
                 nhcrtObj['invScanCode'] = rows[i]['invScanCode']
                 nhcrtObj['ordSupplierStockNumber'] = rows[i]['ordSupplierStockNumber']
                 nhcrtObj['invName'] = rows[i]['invName']
@@ -49,7 +49,7 @@ module.exports = {
                 nhcrtObj['pi3Description'] = rows[i]['pi3Description']
                 nhcrtObj['invPowerField3'] = rows[i]['invPowerField3']
                 nhcrtObj['invPowerField4'] = rows[i]['invPowerField4']
-                
+
                 nhcrtDisplayArr.push(nhcrtObj)
             }
             console.log('rows.length~~~>', rows.length)
