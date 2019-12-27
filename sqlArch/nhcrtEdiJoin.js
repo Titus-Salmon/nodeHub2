@@ -21,7 +21,7 @@ module.exports = {
         function displayNhcrtEdi(rows) {
             for (let i = 0; i < rows.length; i++) {
                 let nhcrtEdiJoinObj = {}
-                nhcrtEdiJoinObj['record_id'] = rows[i]['record_id']
+                nhcrtEdiJoinObj['ri_t0d'] = rows[i]['ri_t0d']
                 nhcrtEdiJoinObj['invScanCode'] = rows[i]['invScanCode']
                 nhcrtEdiJoinObj['ordSupplierStockNumber'] = rows[i]['ordSupplierStockNumber']
 
