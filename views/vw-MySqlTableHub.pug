@@ -381,7 +381,7 @@ html
 				button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
 				thead
 					tr
-						th Primary Key
+						th ri_t0d
 						th UPC
 						th SKU (Cplt)
 						th SKU (EDI)
@@ -413,7 +413,7 @@ html
 					if searchResRows !== undefined
 						each elmnt in searchResRows
 							tr
-								td= elmnt.P_K
+								td= elmnt.ri_t0d
 								td= elmnt.upc
 								td= elmnt.cpltSKU
 								td= elmnt.ediSKU
