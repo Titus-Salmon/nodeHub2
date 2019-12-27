@@ -243,7 +243,7 @@ module.exports = {
     let genericHeaderObj = {}
 
     for (let i = 0; i < splitFieldResult.length; i++) {
-      if (splitFieldResult[i].includes('record_id')) { //primary key - don't think this will be needed for inv mnt wksht
+      if (splitFieldResult[i].includes('ri_t0d')) { //primary key - don't think this will be needed for inv mnt wksht
         genericHeaderObj.primarykeyHeader = splitFieldResult[i]
       }
       if (splitFieldResult[i] == 'invScanCode') { //Item ID (1); targets upc from catapult v_InventoryMaster table
@@ -583,8 +583,8 @@ module.exports = {
           srcRsObj['appldMrgn'] = reviewObj['appldMrgn'] = departmentMargin * 100
         }
 
-        srcRsObj['P_K'] = nejRows[i][genericHeaderObj.primarykeyHeader] //for every row returned from sql query of margin_report table,
-        //populate search results onject (srcRsObj) with corresponding primary key mapped to a key of 'P_K' 
+        srcRsObj['ri_t0d'] = nejRows[i][genericHeaderObj.primarykeyHeader] //for every row returned from sql query of NEJ table,
+        //populate search results onject (srcRsObj) with corresponding primary key mapped to a key of 'ri_t0d' 
         srcRsObj['upc'] = nejRows[i][genericHeaderObj.upcHeader] //Item ID
         // console.log('calcResults says: srcRsObj[\'upc\']~~~>', srcRsObj['upc'])
         reviewObj['upc'] = nejRows[i][genericHeaderObj.upcHeader] //Item ID
