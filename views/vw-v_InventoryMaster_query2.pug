@@ -31,6 +31,7 @@ html
 			table#resTbl
 				thead
 					tr
+						th ri_t0d
 						th invPK
 						th invCPK
 						th invScanCode
@@ -69,6 +70,7 @@ html
 					if catapultResults !== undefined
 						each elmnt in catapultResults
 							tr
+								td= elmnt.ri_t0d
 								td= elmnt.invPK
 								td= elmnt.invCPK
 								td= elmnt.invScanCode
