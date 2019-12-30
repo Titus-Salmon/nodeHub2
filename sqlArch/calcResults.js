@@ -144,6 +144,7 @@ module.exports = {
 
     console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
     console.log(`deptFilterArr[0][Object.keys(deptFilterArr[0])]==> ${deptFilterArr[0][Object.keys(deptFilterArr[0])]}`)
+    console.log(`deptFilterArr[0][Object.keys(deptFilterArr[0])]['dfltMrg']==> ${deptFilterArr[0][Object.keys(deptFilterArr[0])]['dfltMrg']}`)
     console.log(`Object.entries(deptFilterArr[0])==> ${Object.entries(deptFilterArr[0])}`)
     console.log(`Object.values(deptFilterArr[0])==> ${Object.values(deptFilterArr[0])}`)
     console.log(`Object.entries(Object.values(deptFilterArr[0]))==> ${Object.entries(Object.values(deptFilterArr[0]))}`)
