@@ -143,6 +143,7 @@ module.exports = {
     ]
 
     console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
+    console.log(`Object.values(deptFilterArr[0])==> ${Object.values(deptFilterArr[0])}`)
 
     let searchResults = [] //clear searchResults from previous search
     // console.log('calcResults says: searchResults from router.post level===>', searchResults)
