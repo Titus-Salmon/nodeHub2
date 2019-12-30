@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
 })
 
 module.exports = {
-  rainbowCatDisplay: router.post('/rainbowCatDisplayPost', (req, res, next) => {
+  rainbowCatDisplay: router.post('/rainbowCatDisplay', (req, res, next) => {
     const rainbowCatDisplayPostBody = req.body
     // console.log(`req.body==> ${req.body}`)
     let rainbowCatQuery = rainbowCatDisplayPostBody['rainbowCatDisplayPost']
