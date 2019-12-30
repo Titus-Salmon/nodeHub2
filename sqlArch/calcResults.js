@@ -853,7 +853,7 @@ module.exports = {
 
         for (let m = 0; m < deptFilterArr.length; m++) {
           if (srcRsObj['dptNumber'] == Object.keys(deptFilterArr[m])) {
-            srcRsObj['defaultMarg'] = reviewObj['defaultMarg'] = deptFilterArr[0][Object.keys(deptFilterArr[0])]['dfltMrg'] //populate defaultMarg column in retail review
+            srcRsObj['defaultMarg'] = reviewObj['defaultMarg'] = deptFilterArr[m][Object.keys(deptFilterArr[m])]['dfltMrg'] //populate defaultMarg column in retail review
             //with default rb margin for a particular department number
           }
         }
