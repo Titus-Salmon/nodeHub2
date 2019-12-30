@@ -15,7 +15,10 @@ module.exports = {
   calcResults: router.post('/calcResults', (req, res, next) => {
 
     let deptFilterArr = [{
-        '54': 'Beer & Alcohol'
+        '54': {
+          'name': 'Beer & Alcohol',
+          'dfltMrg': '20'
+        }
       },
       {
         '152': 'Body Care'
@@ -676,7 +679,6 @@ module.exports = {
 
         srcRsObj['numPkgs'] = reviewObj['numPkgs'] = 1 //set numPkgs (for IMW) to 1 FOR EVERYTHING (CRITICAL)
 
-
         srcRsObj['pf1'] = "" //Power Field 1 (today's date) - no, Tom says this should be pf5
         srcRsObj['pf2'] = "" //Power Field 2 (Supplier ID (EDI-VENDORNAME) again, for some reason)
         reviewObj['pf2'] = "" //Power Field 2 (Supplier ID (EDI-VENDORNAME) again, for some reason)
@@ -785,6 +787,13 @@ module.exports = {
 
         srcRsObj['dptNumber'] = nejRows[i][genericHeaderObj.rbDeptIDHeader]
         reviewObj['dptNumber'] = nejRows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
+
+        for (let m = 0; m < deptFilterArr.length; m++) {
+          if (srcRsObj['dptNumber'] == Object.keys(deptFilterArr[m])) {
+            srcRsObj['defaultMarg'] = reviewObj['defaultMarg'] = Object.values(deptFilterArr[m]['dfltMarg']) //populate defaultMarg column in retail review
+            //with default rb margin for a particular department number
+          }
+        }
 
         // srcRsObj['rb_dept_margin'] = nejRows[i][genericHeaderObj.rbDeptMarginHeader]
         // reviewObj['rb_dept_margin'] = nejRows[i][genericHeaderObj.rbDeptMarginHeader] //INCLUDE in save2CSVreview export data
