@@ -3,16 +3,16 @@ var router = express.Router();
 
 const mysql = require('mysql');
 
-// const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
-// connection.connect();
+const connection = mysql.createConnection(process.env.RAINBOWCAT_CONNECTION_STRING);
+connection.connect();
 
-const connection = mysql.createConnection({
-  host: process.env.RAINBOWCAT_HOST,
-  user: process.env.RAINBOWCAT_USERNAME,
-  password: process.env.RAINBOWCAT_PASSWORD,
-  port: process.env.RAINBOWCAT_PORT,
-  database: process.env.RAINBOWCAT_DATABASE,
-})
+// const connection = mysql.createConnection({
+//   host: process.env.RAINBOWCAT_HOST,
+//   user: process.env.RAINBOWCAT_USERNAME,
+//   password: process.env.RAINBOWCAT_PASSWORD,
+//   port: process.env.RAINBOWCAT_PORT,
+//   database: process.env.RAINBOWCAT_DATABASE,
+// })
 
 module.exports = {
   rainbowCatDisplay: router.post('/rainbowCatDisplay', (req, res, next) => {
