@@ -12,21 +12,43 @@ module.exports = {
     deleteRBtable: router.post('/deleteRBTable', (req, res, next) => {
         const deleteTablePostBody = req.body
         let tableName = deleteTablePostBody['delTblNamePost']
-        
+
 
         let mySqlQuery = `DROP TABLE ${tableName};`
 
-        connection.query(mySqlQuery, (error, response) => {
-            console.log(`error==>${error}` || `response==>${response}`)
-        })
+        if (tableName.toLowerCase().includes(nej) || tableName.toLowerCase().includes(nhcrt)) {
+            connection.query(mySqlQuery, (error, response) => {
+                console.log(`error==>${error}` || `response==>${response}`)
+            }).on('end', function () {
+                res.render('vw-MySqlTableHub', {
+                    title: `vw-MySqlTableHub - ${tableName} Deleted`,
+                    // sqlTableCreated: {
+                    //     tableName: tableName,
+                    //     columnNames: columnNames,
+                    //     basicColumnNames: tableHeadersArray
+                    // },
+                })
+            })
+        } else {
+            res.render('vw-MySqlTableHub', {
+                title: `vw-MySqlTableHub - ${tableName} **NOT** Deleted, as it does not conform to nej/nhcrt naming standards`,
+                // sqlTableCreated: {
+                //     tableName: tableName,
+                //     columnNames: columnNames,
+                //     basicColumnNames: tableHeadersArray
+                // },
+            })
+        }
 
-        res.render('vw-MySqlTableHub', {
-            title: `vw-MySqlTableHub - ${tableName} Deleted`,
-            // sqlTableCreated: {
-            //     tableName: tableName,
-            //     columnNames: columnNames,
-            //     basicColumnNames: tableHeadersArray
-            // },
-        })
+
+
+        // res.render('vw-MySqlTableHub', {
+        //     title: `vw-MySqlTableHub - ${tableName} Deleted`,
+        //     // sqlTableCreated: {
+        //     //     tableName: tableName,
+        //     //     columnNames: columnNames,
+        //     //     basicColumnNames: tableHeadersArray
+        //     // },
+        // })
     })
 }
