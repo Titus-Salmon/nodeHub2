@@ -11,7 +11,7 @@ html
 		form#rainbowCatDisplay(action='/rainbowCatTableHub/rainbowCatDisplay' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='rainbowCatDisplay') Enter rainbow--cat Results Table to Display
-				textarea#rainbowCatDisplay.input-unit-1(name="rainbowCatDisplayPost", cols="30", rows="1", wrap="soft") SELECT * FROM nhcrt_badger20191127;
+				textarea#rainbowCatDisplay.input-unit-1(name="rainbowCatDisplayPost", cols="30", rows="1", wrap="soft") SELECT * FROM rainbowcat;
 				button#crtTblBtn(type='submit', form='rainbowCatDisplay', style="display: block; float: left") Display rainbow--cat
 		//- //^// queries RB DB - default query here is 'SELECT * FROM ${nhcrtTableName};'
 
