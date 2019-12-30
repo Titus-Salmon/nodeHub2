@@ -1,0 +1,59 @@
+doctype html
+html
+	head
+		link(rel="stylesheet" type="text/css" href="/stylesheets/style.css")
+		title #{title}
+
+	body
+		include vw-dashboard.pug
+
+		//- //- //v// queries RB DB - default query here is 'SELECT * FROM ${nhcrtTableName};'
+		form#rainbowCatDisplay(action='/rainbowCatTableHub/rainbowCatDisplay' method='POST' accept-charset="UTF-8" style="display:block")
+			div(style="display:block")
+				label.input-label-1(for='rainbowCatDisplay') Enter rainbow--cat Results Table to Display
+				textarea#rainbowCatDisplay.input-unit-1(name="rainbowCatDisplayPost", cols="30", rows="1", wrap="soft") SELECT * FROM nhcrt_badger20191127;
+				button#crtTblBtn(type='submit', form='rainbowCatDisplay', style="display: block; float: left") Display rainbow--cat
+		//- //^// queries RB DB - default query here is 'SELECT * FROM ${nhcrtTableName};'
+
+		br
+
+			div.rslt-tbl-1
+			table#resTbl
+				button#editDB(style="display: inline-block") Edit Selection
+				button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
+				thead
+					tr
+						th(onclick="sortTable(0)" style="display:none") Primary Key
+						th(onclick="sortTable(1)") Vendor Name
+						th(onclick="sortTable(2)") EDI Name
+						th(onclick="sortTable(3)") Issue Date
+						th(onclick="sortTable(4)") Need New Catalog?
+						th(onclick="sortTable(5)") Updated w/ Latest?
+						th(onclick="sortTable(6)" style="min-width:15rem") Reporter Comments
+						th(onclick="sortTable(7)" style="min-width:10rem") General Comments
+						th(onclick="sortTable(8)") User Comments
+						th(onclick="sortTable(9)") Vendor Email
+
+
+
+				tbody#resTblBdy
+					if searchResRows !== undefined
+						each elmnt in searchResRows
+							tr
+								td(style="display:none")= elmnt.P_K
+								td= elmnt.Vendor
+								td= elmnt.EDI
+								td= elmnt.IssDt
+								td= elmnt.NdNw
+								td= elmnt.Updtd
+								td= elmnt.Rep
+								td= elmnt.Cmnts
+								td= elmnt.Andr
+								td= elmnt.vndemail
+
+
+		//- script(src='/javascripts/modules/sortTableM0d.js')
+		//- script(src='/javascripts/modules/tblHiliteM0d.js')
+		//- script(src='/javascripts/modules/dateCalcM0d.js')
+		//- script(src='/javascripts/modules/editDBM0d.js')
+		script(src='/javascripts/modules/adminM0d.js')
