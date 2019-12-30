@@ -10,7 +10,8 @@ const connection = mysql.createConnection({
   host: process.env.RAINBOWCAT_HOST,
   user: process.env.RAINBOWCAT_USERNAME,
   password: process.env.RAINBOWCAT_PASSWORD,
-  database: process.env.RAINBOWCAT_DATABASE
+  port: process.env.RAINBOWCAT_PORT,
+  database: process.env.RAINBOWCAT_DATABASE,
 })
 
 module.exports = {
