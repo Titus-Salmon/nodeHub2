@@ -143,8 +143,9 @@ module.exports = {
     ]
 
     console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
+    console.log(`Object.entries(deptFilterArr[0])==> ${Object.entries(deptFilterArr[0])}`)
     console.log(`Object.values(deptFilterArr[0])==> ${Object.values(deptFilterArr[0])}`)
-    console.log(`Object.values(deptFilterArr[0][0])==> ${Object.values(deptFilterArr[0][0])}`)
+    console.log(`Object.values(deptFilterArr[0]['dfltMrg'])==> ${Object.values(deptFilterArr[0]['dfltMrg'])}`)
     console.log(`JSON.stringify(Object.values(deptFilterArr[0]))==> ${JSON.stringify(Object.values(deptFilterArr[0]))}`)
     console.log(`JSON.parse(Object.values(deptFilterArr[0]))==> ${JSON.parse(Object.values(deptFilterArr[0]))}`)
     // console.log(`JSON.parse(JSON.stringify(Object.values(deptFilterArr[0]['dfltMrg'])))==> ${JSON.parse(JSON.stringify(Object.values(deptFilterArr[0]['dfltMrg'])))}`)
