@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const helmet = require('helmet')
-app.use(helmet()) //t0d
 
 const dotenv = require('dotenv') //t0d
 dotenv.config() //t0d
@@ -19,6 +18,8 @@ const MySqlTableHubRouter = require('./routes/rt-MySqlTableHub') //t0d
 // const v_InventoryMaster_queryRouter = require('./routes/rt-v_InventoryMaster_query') //t0d
 
 var app = express();
+
+app.use(helmet()) //t0d
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
