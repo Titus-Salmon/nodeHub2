@@ -736,9 +736,9 @@ module.exports = {
         reviewObj['ediSKU'] = nejRows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
 
         if (skuToggle.toLowerCase() == 'edi') { //provide option to choose which SKU (EDI vs Catapult) to populate IMW with
-          srcRsObj['imwEDI'] = reviewObj['imwEDI'] = srcRsObj['ediSKU']
+          srcRsObj['imwSKU'] = reviewObj['imwSKU'] = srcRsObj['ediSKU']
         } else {
-          srcRsObj['imwEDI'] = reviewObj['imwEDI'] = srcRsObj['cpltSKU']
+          srcRsObj['imwSKU'] = reviewObj['imwSKU'] = srcRsObj['cpltSKU']
         }
 
         srcRsObj['splrID'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
