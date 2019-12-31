@@ -264,6 +264,8 @@ module.exports = {
     console.log('deptFilter==>', deptFilter)
     let formInput57 = edlpSwitch = Object.values(postBody)[57] //edlpSwitchPost
     console.log('edlpSwitch==>', edlpSwitch)
+    let formInput58 = skuToggle = Object.values(postBody)[58] //skuTogglePost
+    console.log('skuToggle==>', skuToggle)
 
     // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
     // console.log('itemUnitValSwitch==>', itemUnitValSwitch)
@@ -732,6 +734,13 @@ module.exports = {
         reviewObj['cpltSKU'] = nejRows[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
         srcRsObj['ediSKU'] = nejRows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
         reviewObj['ediSKU'] = nejRows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
+
+        if (skuToggle.toLowerCase() == 'edi') { //provide option to choose which SKU (EDI vs Catapult) to populate IMW with
+          srcRsObj['imwEDI'] = reviewObj['imwEDI'] = srcRsObj['ediSKU']
+        } else {
+          srcRsObj['imwEDI'] = reviewObj['imwEDI'] = srcRsObj['cpltSKU']
+        }
+
         srcRsObj['splrID'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
         srcRsObj['unit'] = "" //Unit
 

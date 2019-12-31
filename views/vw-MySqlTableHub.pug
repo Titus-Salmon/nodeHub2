@@ -342,9 +342,15 @@ html
 
 			div(style="display:block")
 				label.input-label-1(for='edlpSwitch') Include EDLP?
-				select#itemUnitValSwitch.input-unit-1(name='edlpSwitchPost')
+				select#edlpSwitch.input-unit-1(name='edlpSwitchPost')
 					option(value='no') no
 					option(value='yes') yes
+
+			div(style="display:block")
+				label.input-label-1(for='skuToggle') Include EDLP?
+				select#skuToggle.input-unit-1(name='skuTogglePost')
+					option(value='edi') edi
+					option(value='catapult') catapult
 
 			//- div(style="display:block")
 			//- 	label.input-label-1(for='itemUnitValSwitch') Populate IMW with ItemUnitValues?
