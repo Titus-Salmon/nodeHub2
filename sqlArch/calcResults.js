@@ -744,7 +744,7 @@ module.exports = {
         if (reviewObj['ediSKU'] !== reviewObj['cpltSKU']) {
           reviewObj['skuMismatch'] = reviewObj['upc']
         } else {
-          reviewObj['skuMismatch'] = ''
+          reviewObj['skuMismatch'] = 'same'
         }
 
         srcRsObj['splrID'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
