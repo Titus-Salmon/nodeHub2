@@ -58,7 +58,7 @@ html
 				label.input-label-1(for='nhcrtEdiJoin') This query joins nhcrt & edi tables
 				//- textarea#nhcrtEdiJoin.input-unit-1(name="nhcrtEdiJoinPost", cols="30", rows="1", wrap="soft") SELECT DISTINCT nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, edi_table.* FROM ${nhcrtTableName} nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = edi_table.${ediPrefix_upc};
 				//- //^//ACTUALLY DON'T WANT 'DISTINCT' HERE, BECAUSE WANT TO CATCH ANY UPC&SKU MISMATCHES BETWEEN VENDOR CATALOG & CATAPULT.
-				textarea#nhcrtEdiJoin.input-unit-1(name="nhcrtEdiJoinPost", cols="30", rows="1", wrap="soft") SELECT nhcrt.ri_t0d, nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.stoName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.sibIdealMargin, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, edi_table.* FROM ${nhcrtTableName} nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = edi_table.${ediPrefix_upc} ORDER BY nhcrt.ri_t0d;
+				textarea#nhcrtEdiJoin.input-unit-1(name="nhcrtEdiJoinPost", cols="30", rows="1", wrap="soft") SELECT nhcrt.ri_t0d, nhcrt.invPK, nhcrt.invCPK, nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.stoName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.sibIdealMargin, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, edi_table.* FROM ${nhcrtTableName} nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = edi_table.${ediPrefix_upc} ORDER BY nhcrt.ri_t0d;
 				button#crtTblBtn(type='submit', form='nhcrtEdiJoin', style="display: block; float: left") Display NHCRT/EDI joined tables
 		//- //^// joins nhcrt table to edi table
 
@@ -71,7 +71,7 @@ html
 				input#crtNhcrtTbl.input-unit-1(type='text', placeholder='enter data', name='tblNamePost', value='')
 
 				label.input-label-1(for='crtNhcrtTblInput') Enter Table Headers (as csv) - default headers for nhcrt (Node Hub Catalog Results Table) provided
-				input#crtNhcrtTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='invScanCode,invName,ordSupplierStockNumber,invSize,invReceiptAlias,posTimeStamp,invDateCreated,invEmpFkCreatedBy,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastreceived,invLastsold,invLastcost,sibBasePrice,invOnhand,invOnorder,invIntransit,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4')
+				input#crtNhcrtTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='invPK,invCPK,invScanCode,invName,ordSupplierStockNumber,invSize,invReceiptAlias,posTimeStamp,invDateCreated,invEmpFkCreatedBy,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastreceived,invLastsold,invLastcost,sibBasePrice,invOnhand,invOnorder,invIntransit,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4')
 				button#crtNhcrtTblBtn(type='submit', form='createNhcrtTable', style="display: block; float: left") CREATE NHCRT Table
 		//- //^// creates empty mysql table
 
@@ -84,7 +84,7 @@ html
 				input#crtNhcrtEdiTbl.input-unit-1(type='text', placeholder='enter data', name='tblNamePost', value='')
 
 				label.input-label-1(for='crtNhcrtEdiInput') Enter Table Headers (as csv) - default headers for nhcrtEdiJoin provided
-				input#crtNhcrtEdiInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='invScanCode,ordSupplierStockNumber,ediSKU,invName,invSize,invReceiptAlias,posTimeStamp,invDateCreated,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastcost,ediCost,sibBasePrice,ediPrice,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4')
+				input#crtNhcrtEdiInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='invPK,invCPK,invScanCode,ordSupplierStockNumber,ediSKU,invName,invSize,invReceiptAlias,posTimeStamp,invDateCreated,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastcost,ediCost,sibBasePrice,ediPrice,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4')
 				button#crtNhcrtEdiBtn(type='submit', form='createNhcrtEdiTable', style="display: block; float: left") CREATE nhcrtEdiJoin Table
 		//- //^// creates empty mysql table
 
@@ -382,6 +382,8 @@ html
 				thead
 					tr
 						th ri_t0d
+						th invPK
+						th invCPK
 						th UPC
 						th SKU (Cplt)
 						th SKU (EDI)
@@ -414,6 +416,8 @@ html
 						each elmnt in searchResRows
 							tr
 								td= elmnt.ri_t0d
+								td= elmnt.invPK
+								td= elmnt.invCPK
 								td= elmnt.upc
 								td= elmnt.cpltSKU
 								td= elmnt.ediSKU

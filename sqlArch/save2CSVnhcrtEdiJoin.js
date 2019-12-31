@@ -22,7 +22,7 @@ module.exports = {
         } = require('json2csv')
 
         const fields = [
-            "ri_t0d", "invScanCode", "ordSupplierStockNumber", "ediSKU", "invName", "invSize", "invReceiptAlias", "posTimeStamp",
+            "ri_t0d", "invPK", "invCPK", "invScanCode", "ordSupplierStockNumber", "ediSKU", "invName", "invSize", "invReceiptAlias", "posTimeStamp",
             "invDateCreated", "ordQuantityInOrderUnit", "oupName", "stoName", "brdName", "dptName", "dptNumber", "sibIdealMargin", "venCompanyname", "invLastcost",
             "ediCost", "sibBasePrice", "ediPrice", "pi1Description", "pi2Description", "pi3Description", "invPowerField3", "invPowerField4"
         ]
