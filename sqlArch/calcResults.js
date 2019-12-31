@@ -1158,17 +1158,19 @@ module.exports = {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
       //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
       // connection.query(`SELECT * FROM ${formInput0};
-      connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY upc;
-      SELECT * FROM rb_edlp_data;`, function (err, rows, fields) {
-        if (err) throw err
-        showSearchResults(rows)
+      // connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ri_t0d;
+      connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
+      SELECT * FROM rb_edlp_data;`,
+        function (err, rows, fields) {
+          if (err) throw err
+          showSearchResults(rows)
 
-        res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
-          title: 'Retail Price Calculator (using nhcrtEdiJoin table)',
-          searchResRows: searchResults,
-          loadedSqlTbl: loadedSqlTbl
+          res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
+            title: 'Retail Price Calculator (using nhcrtEdiJoin table)',
+            searchResRows: searchResults,
+            loadedSqlTbl: loadedSqlTbl
+          })
         })
-      })
 
     }
 
