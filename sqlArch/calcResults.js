@@ -741,6 +741,12 @@ module.exports = {
           srcRsObj['imwSKU'] = reviewObj['imwSKU'] = srcRsObj['cpltSKU']
         }
 
+        if (reviewObj['ediSKU'] !== reviewObj['cpltSKU']) {
+          reviewObj['skuMismatch'] = reviewObj['upc']
+        } else {
+          reviewObj['skuMismatch'] = ''
+        }
+
         srcRsObj['splrID'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
         srcRsObj['unit'] = "" //Unit
 
