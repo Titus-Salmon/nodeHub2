@@ -742,9 +742,9 @@ module.exports = {
         }
 
         if (reviewObj['ediSKU'] !== reviewObj['cpltSKU']) {
-          reviewObj['skuMismatch'] = reviewObj['upc']
+          srcRsObj['skuMismatch'] = reviewObj['skuMismatch'] = reviewObj['upc']
         } else {
-          reviewObj['skuMismatch'] = 'same'
+          srcRsObj['skuMismatch'] = reviewObj['skuMismatch'] = ''
         }
 
         srcRsObj['splrID'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
