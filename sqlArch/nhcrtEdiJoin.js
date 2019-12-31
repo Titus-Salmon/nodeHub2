@@ -54,7 +54,7 @@ module.exports = {
                 for (let j = 0; j < Object.keys(rows[i]).length; j++) {
                     if (Object.keys(rows[i])[j].includes('_cost') || Object.keys(rows[i])[j].includes('_tier3')) {
                         nhcrtEdiJoinObj['ediCost'] = rows[i][`${Object.keys(rows[i])[j]}`]
-                        console.log(`nhcrtEdiJoinObj['ediCost']==>${nhcrtEdiJoinObj['ediCost']}`)
+                        // console.log(`nhcrtEdiJoinObj['ediCost']==>${nhcrtEdiJoinObj['ediCost']}`)
                     }
                 }
 
@@ -63,7 +63,7 @@ module.exports = {
                 for (let j = 0; j < Object.keys(rows[i]).length; j++) {
                     if (Object.keys(rows[i])[j].includes('_msrp') || Object.keys(rows[i])[j].includes('_tier3')) {
                         nhcrtEdiJoinObj['ediPrice'] = rows[i][`${Object.keys(rows[i])[j]}`]
-                        console.log(`nhcrtEdiJoinObj['ediPrice']==>${nhcrtEdiJoinObj['ediPrice']}`)
+                        // console.log(`nhcrtEdiJoinObj['ediPrice']==>${nhcrtEdiJoinObj['ediPrice']}`)
                     }
                 }
 
