@@ -6,13 +6,6 @@ const mysql = require('mysql');
 const connection = mysql.createConnection(process.env.RAINBOWCAT_CONNECTION_STRING);
 connection.connect();
 
-// const connection = mysql.createConnection({
-//   host: process.env.RAINBOWCAT_HOST,
-//   user: process.env.RAINBOWCAT_USERNAME,
-//   password: process.env.RAINBOWCAT_PASSWORD,
-//   port: process.env.RAINBOWCAT_PORT,
-//   database: process.env.RAINBOWCAT_DATABASE,
-// })
 
 module.exports = {
   rainbowCatDisplay: router.post('/rainbowCatDisplay', (req, res, next) => {
@@ -36,6 +29,7 @@ module.exports = {
         rainbowCatObj['Cmnts'] = rows[i]['comments']
         rainbowCatObj['Andr'] = rows[i]['andrea']
         rainbowCatObj['vndemail'] = rows[i]['vendorEmail']
+        rainbowCatObj['ongDisco'] = rows[i]['ongDisco']
 
         rainbowCatDisplayArr.push(rainbowCatObj)
       }
