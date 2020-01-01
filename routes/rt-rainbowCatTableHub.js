@@ -9,6 +9,16 @@ const router = express.Router()
 const {
   rainbowCatDisplay
 } = require('../rainbowCat/rainbowCatDisplay')
+const {
+  save2CSVrbCatTbl
+} = require('../rainbowCat/save2CSVrbCatTbl')
+const {
+  createRainbowCatTbl
+} = require('../rainbowCat/createRainbowCatTbl')
+const {
+  populateRainbowCatTable
+} = require('../rainbowCat/populateRainbowCatTable')
+
 
 
 
@@ -23,6 +33,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/rainbowCatDisplay', rainbowCatDisplay)
+router.post('/save2CSVrbCatTbl', save2CSVrbCatTbl)
+router.post('/createRainbowCatTbl', createRainbowCatTbl)
+router.post('/populateRainbowCatTable', populateRainbowCatTable)
 
 
 module.exports = router;
