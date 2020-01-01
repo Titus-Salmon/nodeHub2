@@ -19,8 +19,6 @@ html
 
 		div.rslt-tbl-1
 			table#resTbl
-				button#editDB(style="display: inline-block") Edit Selection
-				button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
 				thead
 					tr
 						th(onclick="sortTable(0)" style="display:none") Primary Key
@@ -37,8 +35,8 @@ html
 
 
 				tbody#resTblBdy
-					if searchResRows !== undefined
-						each elmnt in searchResRows
+					if rainbowCatDisplay !== undefined
+						each elmnt in rainbowCatDisplay
 							tr
 								td(style="display:none")= elmnt.P_K
 								td= elmnt.Vendor
