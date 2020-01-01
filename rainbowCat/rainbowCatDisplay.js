@@ -19,6 +19,7 @@ module.exports = {
     function displayrainbowCat(rows) {
       for (let i = 0; i < rows.length; i++) {
         let rainbowCatObj = {}
+        rainbowCatObj['ri_t0d'] = rows[i]['ri_t0d']
         rainbowCatObj['P_K'] = rows[i]['prim_key']
         rainbowCatObj['Vendor'] = rows[i]['vendorName']
         rainbowCatObj['EDI'] = rows[i]['ediName']
