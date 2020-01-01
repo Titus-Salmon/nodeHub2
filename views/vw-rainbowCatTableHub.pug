@@ -39,10 +39,19 @@ html
 
 		br
 
-		button.adminButton#save2CSVrbCatTbl(type="submit" form="save2CSVrbCatTblPost") Save Results as CSV - Rainbow Cat table
+		//- button.adminButton#save2CSVrbCatTbl(type="submit" form="save2CSVrbCatTblPost") Save Results as CSV - Rainbow Cat table
+		//- form#save2CSVrbCatTblPost(action='/rainbowCatTableHub/save2CSVrbCatTbl' method='POST' accept-charset='UTF-8')
+		//- 	label.input-label-1(for='csvReview') filename:
+		//- 		input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+
+		div(style="display:block")
 		form#save2CSVrbCatTblPost(action='/rainbowCatTableHub/save2CSVrbCatTbl' method='POST' accept-charset='UTF-8')
-			label.input-label-1(for='csvReview') filename:
-				input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+			if rainbowCatDisplay !== undefined
+				label.input-label-1(for='csv') filename:
+					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+				label.input-label-1(for='csvData') CSV Body data
+					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=rainbowCatDisplay)
+				button#save2CSVrbCatTbl(type="submit" form="save2CSVrbCatTblPost") Save Results as CSV - Rainbow Cat table
 
 		br
 
