@@ -26,16 +26,16 @@ module.exports = {
     function displayrainbowCat(rows) {
       for (let i = 0; i < rows.length; i++) {
         let rainbowCatObj = {}
-        rainbowCatObj['P_K'] = rows[i]['P_K']
-        rainbowCatObj['Vendor'] = rows[i]['Vendor']
-        rainbowCatObj['EDI'] = rows[i]['EDI']
-        rainbowCatObj['IssDt'] = rows[i]['IssDt']
-        rainbowCatObj['NdNw'] = rows[i]['NdNw']
-        rainbowCatObj['Updtd'] = rows[i]['Updtd']
-        rainbowCatObj['Rep'] = rows[i]['Rep']
-        rainbowCatObj['Cmnts'] = rows[i]['Cmnts']
-        rainbowCatObj['Andr'] = rows[i]['Andr']
-        rainbowCatObj['vndemail'] = rows[i]['vndemail']
+        rainbowCatObj['P_K'] = rows[i]['prim_key']
+        rainbowCatObj['Vendor'] = rows[i]['vendorName']
+        rainbowCatObj['EDI'] = rows[i]['ediName']
+        rainbowCatObj['IssDt'] = rows[i]['issueDate']
+        rainbowCatObj['NdNw'] = rows[i]['needNewCat']
+        rainbowCatObj['Updtd'] = rows[i]['updatedWLatest']
+        rainbowCatObj['Rep'] = rows[i]['reporter']
+        rainbowCatObj['Cmnts'] = rows[i]['comments']
+        rainbowCatObj['Andr'] = rows[i]['andrea']
+        rainbowCatObj['vndemail'] = rows[i]['vendorEmail']
 
         rainbowCatDisplayArr.push(rainbowCatObj)
       }
