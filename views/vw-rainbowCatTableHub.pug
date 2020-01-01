@@ -59,7 +59,7 @@ html
 			table#resTbl
 				thead
 					tr
-						th(onclick="sortTable(0)" style="display:none") Primary Key
+						th(onclick="sortTable(0)") Primary Key
 						th(onclick="sortTable(1)") Vendor Name
 						th(onclick="sortTable(2)") EDI Name
 						th(onclick="sortTable(3)") Issue Date
@@ -77,16 +77,16 @@ html
 					if rainbowCatDisplay !== undefined
 						each elmnt in rainbowCatDisplay
 							tr
-								td(style="display:none")= elmnt.P_K
-								td= elmnt.Vendor
-								td= elmnt.EDI
-								td= elmnt.IssDt
-								td= elmnt.NdNw
-								td= elmnt.Updtd
-								td= elmnt.Rep
-								td= elmnt.Cmnts
-								td= elmnt.Andr
-								td= elmnt.vndemail
+								td(style="display:none")= elmnt.prim_key
+								td= elmnt.vendorName
+								td= elmnt.ediName
+								td= elmnt.issueDate
+								td= elmnt.needNewCat
+								td= elmnt.updatedWLatest
+								td= elmnt.reporter
+								td= elmnt.comments
+								td= elmnt.andrea
+								td= elmnt.vendorEmail
 								td= elmnt.ongDisco
 
 

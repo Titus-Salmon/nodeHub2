@@ -20,16 +20,16 @@ module.exports = {
       for (let i = 0; i < rows.length; i++) {
         let rainbowCatObj = {}
         rainbowCatObj['ri_t0d'] = i + 1 //need to add 1 so mysql doesnt get confused by index 0
-        rainbowCatObj['P_K'] = rows[i]['prim_key']
-        rainbowCatObj['Vendor'] = rows[i]['vendorName']
-        rainbowCatObj['EDI'] = rows[i]['ediName']
-        rainbowCatObj['IssDt'] = rows[i]['issueDate']
-        rainbowCatObj['NdNw'] = rows[i]['needNewCat']
-        rainbowCatObj['Updtd'] = rows[i]['updatedWLatest']
-        rainbowCatObj['Rep'] = rows[i]['reporter']
-        rainbowCatObj['Cmnts'] = rows[i]['comments']
-        rainbowCatObj['Andr'] = rows[i]['andrea']
-        rainbowCatObj['vndemail'] = rows[i]['vendorEmail']
+        rainbowCatObj['prim_key'] = rows[i]['prim_key']
+        rainbowCatObj['vendorName'] = rows[i]['vendorName']
+        rainbowCatObj['ediName'] = rows[i]['ediName']
+        rainbowCatObj['issueDate'] = rows[i]['issueDate']
+        rainbowCatObj['needNewCat'] = rows[i]['needNewCat']
+        rainbowCatObj['updatedWLatest'] = rows[i]['updatedWLatest']
+        rainbowCatObj['reporter'] = rows[i]['reporter']
+        rainbowCatObj['comments'] = rows[i]['comments']
+        rainbowCatObj['andrea'] = rows[i]['andrea']
+        rainbowCatObj['vendorEmail'] = rows[i]['vendorEmail']
         rainbowCatObj['ongDisco'] = rows[i]['ongDisco']
 
         rainbowCatDisplayArr.push(rainbowCatObj)
