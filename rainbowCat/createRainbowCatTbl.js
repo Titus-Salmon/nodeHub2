@@ -3,8 +3,14 @@ var router = express.Router();
 
 const mysql = require('mysql');
 
-const connection = mysql.createConnection(process.env.RAINBOWCAT_CONNECTION_STRING);
-connection.connect();
+const connection = mysql.createConnection({
+  host: process.env.RB_HOST,
+  user: process.env.RB_USER,
+  password: process.env.RB_PW,
+  database: process.env.RB_DB,
+  debug: true
+  // multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+})
 
 module.exports = {
   createRainbowCatTbl: router.post('/createRainbowCatTbl', (req, res, next) => {
