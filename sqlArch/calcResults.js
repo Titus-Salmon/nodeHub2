@@ -423,9 +423,9 @@ module.exports = {
         //if (rainbowCatRows['ediName'] == ediTblName) {
         // rcthRsObj['ongoingDisco'] = rcthReviewObj['ongoingDisco'] = rainbowCatRows[n]['ongDisco']
         if (rainbowCatRows[n]['ongDisco'] !== null) {
-          let ongDsc = rainbowCatRows[n]['ongDisco'] / 100
+          var ongDsc = rainbowCatRows[n]['ongDisco'] / 100
         } else {
-          let ongDsc = 0
+          var ongDsc = 0
         }
         //}
       }
@@ -1200,7 +1200,8 @@ module.exports = {
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: 'Retail Price Calculator (using nhcrtEdiJoin table)',
             searchResRows: searchResults,
-            loadedSqlTbl: loadedSqlTbl
+            loadedSqlTbl: loadedSqlTbl,
+            ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
           })
         })
 
