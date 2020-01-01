@@ -352,6 +352,10 @@ html
 					option(value='edi') edi
 					option(value='catapult') catapult
 
+			div(style="display:block")
+				label.input-label-1(for='ediTblName') EDI Table Name (EDI-VENDORNAME) - used to extract data from rainbow--cat (from RB DB)
+				input#ediTblName.input-unit-1(type='text' name='ediTblNamePost' value='EDI-VENDORNAME')
+
 			//- div(style="display:block")
 			//- 	label.input-label-1(for='itemUnitValSwitch') Populate IMW with ItemUnitValues?
 			//- 	select#itemUnitValSwitch.input-unit-1(name='itemUnitValSwitchPost')

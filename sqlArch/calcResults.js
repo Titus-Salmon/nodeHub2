@@ -266,6 +266,8 @@ module.exports = {
     console.log('edlpSwitch==>', edlpSwitch)
     let formInput58 = skuToggle = Object.values(postBody)[58] //skuTogglePost
     console.log('skuToggle==>', skuToggle)
+    let formInput59 = ediTblName = Object.values(postBody)[59] //ediTblNamePost
+    console.log('ediTblName==>', ediTblName)
 
     // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
     // console.log('itemUnitValSwitch==>', itemUnitValSwitch)
@@ -410,9 +412,23 @@ module.exports = {
       // console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
       let nejRows = rows[0] //targets 1st query on NEJ table
       let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
+      let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
 
       console.log(`JSON.stringify(nejRows[0])==> ${JSON.stringify(nejRows[0])}`)
       console.log(`JSON.stringify(edlpRows[0])==> ${JSON.stringify(edlpRows[0])}`)
+
+      for (let n = 0; n < rainbowCatRows.length; n++) {
+        // let rcthRsObj = {}
+        // let rcthReviewObj = {}
+        //if (rainbowCatRows['ediName'] == ediTblName) {
+        // rcthRsObj['ongoingDisco'] = rcthReviewObj['ongoingDisco'] = rainbowCatRows[n]['ongDisco']
+        if (rainbowCatRows[n]['ongDisco'] !== null) {
+          let ongDsc = rainbowCatRows[n]['ongDisco'] / 100
+        } else {
+          let ongDsc = 0
+        }
+        //}
+      }
 
       for (let i = 0; i < nejRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
@@ -1175,7 +1191,8 @@ module.exports = {
       // connection.query(`SELECT * FROM ${formInput0};
       // connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ri_t0d;
       connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
-      SELECT * FROM rb_edlp_data;`,
+      SELECT * FROM rb_edlp_data;
+      SELECT * FROM rcth20200101;`, //3rd query selects from current rainbow--cat table saved in RB DB; can refine this approach as necessary 
         function (err, rows, fields) {
           if (err) throw err
           showSearchResults(rows)

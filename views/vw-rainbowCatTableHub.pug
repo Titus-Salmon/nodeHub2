@@ -12,7 +12,7 @@ html
 		//- //v// creates empty Rainbow Cat table
 		form#createRainbowCatTbl(action='/rainbowCatTableHub/createRainbowCatTbl' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
-				label.input-label-1(for='crtRBcat') Enter Rainbow Cat Table Name to CREATE
+				label.input-label-1(for='crtRBcat') Enter RB DB Rainbow Cat Table Name to CREATE
 				input#crtRBcat.input-unit-1(type='text', placeholder='enter data', name='tblNamePost', value='')
 
 				label.input-label-1(for='crtRBcatInput') Enter Table Headers (as csv) - default headers for nhcrt (Node Hub Catalog Results Table) provided
@@ -32,7 +32,7 @@ html
 		//- //- //v// queries RB DB - default query here is 'SELECT * FROM ${nhcrtTableName};'
 		form#rainbowCatDisplay(action='/rainbowCatTableHub/rainbowCatDisplay' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
-				label.input-label-1(for='rainbowCatDisplay') Enter rainbow--cat Results Table to Display
+				label.input-label-1(for='rainbowCatDisplay') Enter HEROKU rainbow--cat Results Table to Display
 				textarea#rainbowCatDisplay.input-unit-1(name="rainbowCatDisplayPost", cols="30", rows="1", wrap="soft") SELECT * FROM rainbowcat;
 				button#crtTblBtn(type='submit', form='rainbowCatDisplay', style="display: block; float: left") Display rainbow--cat
 		//- //^// queries RB DB - default query here is 'SELECT * FROM ${nhcrtTableName};'
