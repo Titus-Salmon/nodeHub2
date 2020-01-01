@@ -39,11 +39,6 @@ html
 
 		br
 
-		//- button.adminButton#save2CSVrbCatTbl(type="submit" form="save2CSVrbCatTblPost") Save Results as CSV - Rainbow Cat table
-		//- form#save2CSVrbCatTblPost(action='/rainbowCatTableHub/save2CSVrbCatTbl' method='POST' accept-charset='UTF-8')
-		//- 	label.input-label-1(for='csvReview') filename:
-		//- 		input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-
 		div(style="display:block")
 		form#save2CSVrbCatTblPost(action='/rainbowCatTableHub/save2CSVrbCatTbl' method='POST' accept-charset='UTF-8')
 			if rainbowCatDisplay !== undefined
@@ -52,6 +47,24 @@ html
 				label.input-label-1(for='csvData') CSV Body data
 					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=rainbowCatDisplay)
 				button#save2CSVrbCatTbl(type="submit" form="save2CSVrbCatTblPost") Save Results as CSV - Rainbow Cat table
+
+		br
+
+		form#populateTable(ref="populateTable" action='/rainbowCatTableHub/populateRainbowCatTable' method='POST' encType="multipart/form-data" accept-charset="UTF-8")
+			div(style="display:block")
+				label.input-label-1(for='popTbl') Populate Table
+				input#popTbl.input-unit-1(type='file', name='popTblPost')
+
+				label.input-label-1(for='popTblName') Table to Populate
+				input#popTblName.input-unit-1(type='text', name='popTblNamePost')
+
+				label.input-label-1(for='tblColName') Loaded Column Names
+				input#tblColName.input-unit-1(type='text', name='tblColNamePost', value=tableColNames)
+
+				button#popTblBtn(type='submit', form='populateTable', style="display: block") Populate Table
+
+		if sqlTablePopulated !== undefined
+			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
 
 		br
 
