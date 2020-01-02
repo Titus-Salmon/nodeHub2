@@ -9,6 +9,16 @@ html
 
 		br
 
+		//- //v// queries Heroku rainbow--cat table - default query here is 'SELECT ongDisco FROM rainbowcat WHERE ediName = 'EDI-VENDORNAME';'
+		form#rbCatExtractor(action='/rainbowCatTableHub/rbCatExtractor' method='POST' accept-charset="UTF-8" style="display:block")
+			div(style="display:block")
+				label.input-label-1(for='rbCatExtractor') Enter query to extract data from Heroku rainbow--cat
+				textarea#rbCatExtractor.input-unit-1(name="rbCatExtractorPost", cols="30", rows="1", wrap="soft") SELECT ongDisco FROM rainbowcat WHERE ediName = 'EDI-VENDORNAME';
+				button(type='submit', form='rbCatExtractor', style="display: block; float: left") Extract rainbow--cat data
+		//- //^// queries Heroku rainbow--cat table - default query here is 'SELECT ongDisco FROM rainbowcat WHERE ediName = 'EDI-VENDORNAME';'
+
+		br
+
 		//- //v// creates empty Rainbow Cat table
 		form#createRainbowCatTbl(action='/rainbowCatTableHub/createRainbowCatTbl' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")

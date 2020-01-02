@@ -18,6 +18,9 @@ const {
 const {
   populateRainbowCatTable
 } = require('../rainbowCat/populateRainbowCatTable')
+const {
+  rbCatExtractor
+} = require('../rainbowCat/rbCatExtractor')
 
 
 
@@ -36,6 +39,7 @@ router.post('/rainbowCatDisplay', rainbowCatDisplay)
 router.post('/save2CSVrbCatTbl', save2CSVrbCatTbl)
 router.post('/createRainbowCatTbl', createRainbowCatTbl)
 router.post('/populateRainbowCatTable', populateRainbowCatTable)
+router.post('/rbCatExtractor', rbCatExtractor)
 
 
 module.exports = router;

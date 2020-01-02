@@ -412,23 +412,23 @@ module.exports = {
       // console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
       let nejRows = rows[0] //targets 1st query on NEJ table
       let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
-      let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
+      // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
 
       console.log(`JSON.stringify(nejRows[0])==> ${JSON.stringify(nejRows[0])}`)
       console.log(`JSON.stringify(edlpRows[0])==> ${JSON.stringify(edlpRows[0])}`)
 
-      for (let n = 0; n < rainbowCatRows.length; n++) {
-        // let rcthRsObj = {}
-        // let rcthReviewObj = {}
-        //if (rainbowCatRows['ediName'] == ediTblName) {
-        // rcthRsObj['ongoingDisco'] = rcthReviewObj['ongoingDisco'] = rainbowCatRows[n]['ongDisco']
-        if (rainbowCatRows[n]['ongDisco'] !== null) {
-          var ongDsc = rainbowCatRows[n]['ongDisco'] / 100
-        } else {
-          var ongDsc = 0
-        }
-        //}
-      }
+      // for (let n = 0; n < rainbowCatRows.length; n++) {
+      //   // let rcthRsObj = {}
+      //   // let rcthReviewObj = {}
+      //   //if (rainbowCatRows['ediName'] == ediTblName) {
+      //   // rcthRsObj['ongoingDisco'] = rcthReviewObj['ongoingDisco'] = rainbowCatRows[n]['ongDisco']
+      //   if (rainbowCatRows[n]['ongDisco'] !== null) {
+      //     var ongDsc = rainbowCatRows[n]['ongDisco'] / 100
+      //   } else {
+      //     var ongDsc = 0
+      //   }
+      //   //}
+      // }
 
       for (let i = 0; i < nejRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
@@ -1191,8 +1191,7 @@ module.exports = {
       // connection.query(`SELECT * FROM ${formInput0};
       // connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ri_t0d;
       connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
-      SELECT * FROM rb_edlp_data;
-      SELECT * FROM rcth20200101;`, //3rd query selects from current rainbow--cat table saved in RB DB; can refine this approach as necessary 
+      SELECT * FROM rb_edlp_data;`,
         function (err, rows, fields) {
           if (err) throw err
           showSearchResults(rows)
@@ -1201,7 +1200,7 @@ module.exports = {
             title: 'Retail Price Calculator (using nhcrtEdiJoin table)',
             searchResRows: searchResults,
             loadedSqlTbl: loadedSqlTbl,
-            ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
+            // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
           })
         })
 
