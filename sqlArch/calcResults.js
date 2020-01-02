@@ -548,7 +548,8 @@ module.exports = {
 
               divideCostToUOS_Rtl_IMW()
 
-              if (srcRsObj['edlpVar'] !== 'EDLP') {
+              if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
+                //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
                 srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100
                 //applies margin to WS for NON-EDLP
               } else {
