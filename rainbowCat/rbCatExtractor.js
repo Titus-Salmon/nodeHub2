@@ -14,7 +14,7 @@ module.exports = {
     let rainbowCatQuery = rbCatExtractorPostBody['rbCatExtractorPost']
     console.log(`rainbowCatQuery==> ${rainbowCatQuery}`)
 
-    function ongDiscoExtractor() {
+    function ongDiscoExtractor(rows) {
       let ongDisco = rows['ongDisco']
     }
 
@@ -23,7 +23,7 @@ module.exports = {
     connection.query(mySqlQuery, function (err, rows, fields) {
       if (err) throw err
       console.log('rows==>', rows)
-      ongDiscoExtractor()
+      ongDiscoExtractor(rows)
 
       res.render('vw-MysqlTableHub', {
         title: `Extracted data from Heroku rainbow--cat <<${ongDisco}>>`,
