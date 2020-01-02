@@ -16,6 +16,7 @@ module.exports = {
 
     function ongDiscoExtractor(rows) {
       let ongDisco = rows['ongDisco']
+      return ongDisco
     }
 
     let mySqlQuery = `${rainbowCatQuery}`
