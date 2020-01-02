@@ -23,6 +23,8 @@ module.exports = {
     console.log(`loadTablePostBody['ldTblNamePost']==> ${loadTablePostBody['ldTblNamePost']}`)
     // let wsDiffResults = loadTablePostBody['wsDiffResultsLoadTblPost']
 
+    let discoToApplyCarryOver = loadTablePostBody['discountToApplyPost']
+
     // let sqlQuery = `SELECT * FROM ${tableNameToLoad}; SHOW COLUMNS FROM ${tableNameToLoad};`
     let sqlQuery = `SHOW COLUMNS FROM ${tableNameToLoad};`
     connection.query(sqlQuery, (error, response, rows) => {
@@ -53,7 +55,8 @@ module.exports = {
           loadedTable: {
             tableNameToLoad: tableNameToLoad,
             tableLoadError: loadErrors,
-            tableFields: FieldArray
+            tableFields: FieldArray,
+            ongDisco: discoToApplyCarryOver
           },
           // wsDiff: wsDiffResults
         });

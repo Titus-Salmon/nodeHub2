@@ -14,6 +14,8 @@ html
 			form#loadTable(action='/MySqlTableHub/loadTable_MySqlHub' method='POST' accept-charset="UTF-8")
 				label.input-label-1(for='ldTblName') Table Name to Load (loads column names)
 				input#ldTblName.input-unit-1(type='text', placeholder='enter data1', name='ldTblNamePost', value='')
+				label.input-label-1(for='discountToApplyCarryOver') % Discount To Apply To Entire Catalog (CarryOver)
+				input#discountToApplyCarryOver.input-unit-1(type='number', placeholder='0', step='.01', name='discountToApplyPost', value=ongDisco)
 
 				label.input-label-1(for='wsDiffResults') WS Diff Results (handling for this has been commented out, so currently not functional)
 				input#wsDiffResultsLoadTbl.input-unit-1(type='text', name='wsDiffResultsLoadTblPost' value=wsDiff)
