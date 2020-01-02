@@ -17,7 +17,7 @@ module.exports = {
     var ongDisco
 
     function ongDiscoExtractor(rows) {
-      ongDisco = rows[0]['ongDisco']
+      ongDisco = rows[0]['ongDisco'] / 100
     }
 
     let mySqlQuery = `${rainbowCatQuery}`
