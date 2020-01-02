@@ -443,6 +443,18 @@ module.exports = {
 
         function divideCostToUOS_Rtl_IMW() {
 
+          if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
+            //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
+            var wsDiscoVar = discountToApply
+          } else {
+            var wsDiscoVar = edlpDisco
+          }
+
+          if (wsDiscoVar !== undefined) {
+            srcRsObj['ediCost'] = srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar //apply wsDiscoVar to ediCost, so that down below,
+            //ediCostMod is calculated on the discounted wholesale
+          }
+
           // if (typeOfIMW.toLowerCase() == 'retail') {
           ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
           let oupNameVar = nejRows[i][genericHeaderObj.oupName]
