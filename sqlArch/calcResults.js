@@ -240,6 +240,8 @@ module.exports = {
 
     let formInput51 = Object.values(postBody)[51] = discountToApply = postBody['discountToApplyPost'] //discountToApplyPost
     console.log(`typeof discountToApply==> ${typeof discountToApply}`)
+    console.log(`discountToApply==> ${discountToApply}`)
+    console.log(`discountToApply * 5==> ${discountToApply * 5}`)
     let formInput52 = Object.values(postBody)[52] = edlpDisco = postBody['edlpDiscoPost'] //edlpDiscoPost
 
 
