@@ -472,8 +472,35 @@ module.exports = {
           //}
         }
 
+        // function wsDiscoCalc() {
+        //   if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
+        //     //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
+        //     let wsDiscoVar = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100
+        //     //applies margin to WS for NON-EDLP
+        //   } else {
+        //     let wsDiscoVar = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * edlpDisco) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+        //     //applies margin to WS for EDLP
+        //   }
+        // }
+
+        // function wsDiscoCalc() {
+        //   if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
+        //     //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
+        //     var wsDiscoVar = discountToApply
+        //   } else {
+        //     var wsDiscoVar = edlpDisco
+        //   }
+        // }
+
         function divideCostToUOS_WS_IMW() {
           if (typeOfIMW.toLowerCase() == 'wholesale') {
+
+            if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
+              //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
+              var wsDiscoVar = discountToApply
+            } else {
+              var wsDiscoVar = edlpDisco
+            }
 
             ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
             let oupNameVar = nejRows[i][genericHeaderObj.oupName]
@@ -487,10 +514,10 @@ module.exports = {
                 let cpltTstCst1Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
                 let cpltTstCst1TrRnd = Math.round(cpltTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
                 if (ediTstCst1TrRnd !== cpltTstCst1TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost
-                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round((srcRsObj['ediCost'] / oupNameSplit[1]) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
-                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round((srcRsObj['ediCost'] / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
-                  // console.log(`srcRsObj['ediCost'] / oupNameSplit[1]==> ${srcRsObj['ediCost'] / oupNameSplit[1]}`)
-                  console.log(`typeof srcRsObj['ediCostMod']1==> ${typeof srcRsObj['ediCostMod']}`)
+                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
+                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
+                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
+                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
                   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test1'
@@ -506,10 +533,10 @@ module.exports = {
                 let cpltTstCst2Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
                 let cpltTstCst2TrRnd = Math.round(cpltTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
                 if (ediTstCst2TrRnd !== cpltTstCst2TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost  
-                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round((srcRsObj['ediCost'] / 1) * 100) / 100
-                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round((srcRsObj['ediCost'] / 1) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
-                  // console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / 1}`)
-                  console.log(`typeof srcRsObj['ediCostMod']2==> ${typeof srcRsObj['ediCostMod']}`)
+                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
+                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
+                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
+                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
                   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test2'
@@ -522,10 +549,10 @@ module.exports = {
                 let cpltTstCst3Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
                 let cpltTstCst3TrRnd = Math.round(cpltTstCst3Tr * 100) / 100 //converts the result to a number with just 2 decimal places
                 if (ediTestCost3TrRnd !== cpltTstCst3TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost
-                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round((srcRsObj['ediCost'] / oupNameVar) * 100) / 100 //divide ediCost by oupName non-parsed value
-                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round((srcRsObj['ediCost'] / oupNameVar) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
-                  // console.log(`srcRsObj['ediCost'] / 1==> ${srcRsObj['ediCost'] / oupNameVar}`)
-                  console.log(`typeof srcRsObj['ediCostMod']3==> ${typeof srcRsObj['ediCostMod']}`)
+                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //divide ediCost by oupName non-parsed value
+                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
+                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
+                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
                   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test3'
@@ -548,14 +575,16 @@ module.exports = {
 
               divideCostToUOS_Rtl_IMW()
 
-              if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
-                //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
-                srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100
-                //applies margin to WS for NON-EDLP
-              } else {
-                srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * edlpDisco) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
-                //applies margin to WS for EDLP
-              }
+              srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod']) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+
+              // if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
+              //   //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
+              //   srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100
+              //   //applies margin to WS for NON-EDLP
+              // } else {
+              //   srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * edlpDisco) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+              //   //applies margin to WS for EDLP
+              // }
               // srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
               //AND also applies any % discount; discountToApply is set at default 0
               //Finally, Math.round(number*100)/100 converts the result to a number with just 2 decimal places.
@@ -923,11 +952,34 @@ module.exports = {
           }
         }
 
+        // function wsDiscoCalc() {
+        //   if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
+        //     //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
+        //     srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100
+        //     //applies margin to WS for NON-EDLP
+        //   } else {
+        //     srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * edlpDisco) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+        //     //applies margin to WS for EDLP
+        //   }
+        // }
+
+        // function wsDiscoCalc() {
+        //   if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
+        //     //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
+        //     let wsDiscoVar = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100
+        //     //applies margin to WS for NON-EDLP
+        //   } else {
+        //     let wsDiscoVar = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * edlpDisco) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+        //     //applies margin to WS for EDLP
+        //   }
+        // }
+
         if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
           divideCostToUOS_WS_IMW()
           if (srcRsObj['ediCostMod'] !== undefined) { //only push items that have ediCostMod value (which means that exist cplt cost
             //is different than new divided-to-uos edi cost, as determined in divideCostToUOS_WS_IMW())
+
             // console.log(`srcRsObj['upc'](${i})...srcRsObj['ediCostMod'](${i})==>${srcRsObj['upc']}...${srcRsObj['ediCostMod']}`)
             if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
               if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
