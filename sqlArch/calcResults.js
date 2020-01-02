@@ -450,10 +450,10 @@ module.exports = {
             var wsDiscoVar = edlpDisco
           }
 
-          if (wsDiscoVar !== undefined) {
-            srcRsObj['ediCost'] = srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar //apply wsDiscoVar to ediCost, so that down below,
-            //ediCostMod is calculated on the discounted wholesale
-          }
+          // if (wsDiscoVar !== undefined) {
+          //   srcRsObj['ediCost'] = srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar //apply wsDiscoVar to ediCost, so that down below,
+          //   //ediCostMod is calculated on the discounted wholesale
+          // }
 
           // if (typeOfIMW.toLowerCase() == 'retail') {
           ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
@@ -462,8 +462,10 @@ module.exports = {
           if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
             oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case' && oupNameSplit[0].toLowerCase() !== 'cs') {
             if (oupNameSplit[1] !== undefined) {
-              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
+              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / oupNameSplit[1] //divide ediCost by oupName parsed value (index 1 = numerical value)
+              //AND deduct any vendor discount from ediCost
+              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / oupNameSplit[1] //change lastCost to ediCostMod for wholesale IMWs
+              //AND deduct any vendor discount from ediCost
               reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
             }
           } else {
@@ -471,12 +473,16 @@ module.exports = {
             console.log(`oupNameVar==> ${oupNameVar}`)
             if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
               oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / 1 //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / 1 //change lastCost to ediCostMod for wholesale IMWs
+              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / 1 //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
+              //AND deduct any vendor discount from ediCost
+              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / 1 //change lastCost to ediCostMod for wholesale IMWs
+              //AND deduct any vendor discount from ediCost
               reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
             } else {
-              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] / oupNameVar //divide ediCost by oupName non-parsed value
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
+              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / oupNameVar //divide ediCost by oupName non-parsed value
+              //AND deduct any vendor discount from ediCost
+              reviewObj['lastCost'] = srcRsObj['lastCost'] = srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / oupNameVar //change lastCost to ediCostMod for wholesale IMWs
+              //AND deduct any vendor discount from ediCost
               reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
             }
           }
