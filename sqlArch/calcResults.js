@@ -526,7 +526,7 @@ module.exports = {
             if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
               oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case' && oupNameSplit[0].toLowerCase() !== 'cs') {
               if (oupNameSplit[1] !== undefined) {
-                let ediTestCost1 = `"${srcRsObj['ediCost'] / oupNameSplit[1]}"`
+                let ediTestCost1 = `"${srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / oupNameSplit[1]}"` //apply vendor WS discount, if applicable
                 let ediTstCst1Tr = ediTestCost1.trim().replace(/"/g, '')
                 let ediTstCst1TrRnd = Math.round(ediTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
                 let cpltTstCst1Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
@@ -545,7 +545,7 @@ module.exports = {
             } else {
               if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
                 oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-                let ediTestCost2 = `"${srcRsObj['ediCost'] / 1}"`
+                let ediTestCost2 = `"${srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / 1}"` //apply vendor WS discount, if applicable
                 let ediTstCst2Tr = ediTestCost2.trim().replace(/"/g, '')
                 let ediTstCst2TrRnd = Math.round(ediTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
                 let cpltTstCst2Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
@@ -561,7 +561,7 @@ module.exports = {
                 }
               } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               else {
-                let ediTestCost3 = `"${srcRsObj['ediCost'] / oupNameVar}"`
+                let ediTestCost3 = `"${srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / oupNameVar}"` //apply vendor WS discount, if applicable
                 let ediTestCost3Tr = ediTestCost3.trim().replace(/"/g, '')
                 let ediTestCost3TrRnd = Math.round(ediTestCost3Tr * 100) / 100 //converts the result to a number with just 2 decimal places
                 let cpltTstCst3Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
