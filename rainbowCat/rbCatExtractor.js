@@ -14,9 +14,10 @@ module.exports = {
     let rainbowCatQuery = rbCatExtractorPostBody['rbCatExtractorPost']
     console.log(`rainbowCatQuery==> ${rainbowCatQuery}`)
 
+    var ongDisco
+
     function ongDiscoExtractor(rows) {
-      let ongDisco = rows['ongDisco']
-      return ongDisco
+      ongDisco = rows['ongDisco']
     }
 
     let mySqlQuery = `${rainbowCatQuery}`
