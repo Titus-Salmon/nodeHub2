@@ -148,13 +148,9 @@ module.exports = {
 
 
     let searchResults = [] //clear searchResults from previous search
-    // console.log('calcResults says: searchResults from router.post level===>', searchResults)
     searchResultsForCSV = []
     searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
-    // console.log('calcResults says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
     csvContainer = []
-    // console.log('calcResults says: csvContainer from router.post level===>', csvContainer)
-
 
     const postBody = req.body
     console.log('calcResults says: postBody==>', postBody)
@@ -294,8 +290,6 @@ module.exports = {
     if (postBody['wsDiffResultsPost'].length > 0) { //must check to see if anything was entered in WS Diff Results
       //input, otherwise get 'unexpected end of JSON' error
       let wsDiffResults = JSON.parse(postBody['wsDiffResultsPost'])
-      // console.log('calcResults says: wsDiffResults from vw-MySqlTableHub.pug wsDiffResultsPost~~~>', wsDiffResults)
-      // console.log('calcResults says: wsDiffResults.length from vw-MySqlTableHub.pug wsDiffResultsPost~~~>', wsDiffResults.length)
     }
 
     //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
@@ -410,28 +404,12 @@ module.exports = {
 
     function showSearchResults(rows) {
       console.log(`rows.length==>${rows.length}`)
-      // console.log(`rows[0]==>${rows[0]}`)
-      // console.log(`rows==>${rows}`)
-      // console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
       let nejRows = rows[0] //targets 1st query on NEJ table
       let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
       // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
 
       console.log(`JSON.stringify(nejRows[0])==> ${JSON.stringify(nejRows[0])}`)
       console.log(`JSON.stringify(edlpRows[0])==> ${JSON.stringify(edlpRows[0])}`)
-
-      // for (let n = 0; n < rainbowCatRows.length; n++) {
-      //   // let rcthRsObj = {}
-      //   // let rcthReviewObj = {}
-      //   //if (rainbowCatRows['ediName'] == ediTblName) {
-      //   // rcthRsObj['ongoingDisco'] = rcthReviewObj['ongoingDisco'] = rainbowCatRows[n]['ongDisco']
-      //   if (rainbowCatRows[n]['ongDisco'] !== null) {
-      //     var ongDsc = rainbowCatRows[n]['ongDisco'] / 100
-      //   } else {
-      //     var ongDsc = 0
-      //   }
-      //   //}
-      // }
 
       for (let i = 0; i < nejRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
@@ -442,20 +420,12 @@ module.exports = {
         srcRsObj['invCPK'] = reviewObj['invCPK'] = nejRows[i]['invCPK'] //populate srcRsObj & reviewObj with invCPK from Catapult
 
         function divideCostToUOS_Rtl_IMW() {
-
           if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
             //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
             var wsDiscoVar = discountToApply
           } else {
             var wsDiscoVar = edlpDisco
           }
-
-          // if (wsDiscoVar !== undefined) {
-          //   srcRsObj['ediCost'] = srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar //apply wsDiscoVar to ediCost, so that down below,
-          //   //ediCostMod is calculated on the discounted wholesale
-          // }
-
-          // if (typeOfIMW.toLowerCase() == 'retail') {
           ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
           let oupNameVar = nejRows[i][genericHeaderObj.oupName]
           oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
@@ -487,28 +457,7 @@ module.exports = {
             }
           }
           ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
-          //}
         }
-
-        // function wsDiscoCalc() {
-        //   if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
-        //     //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
-        //     let wsDiscoVar = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100
-        //     //applies margin to WS for NON-EDLP
-        //   } else {
-        //     let wsDiscoVar = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * edlpDisco) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
-        //     //applies margin to WS for EDLP
-        //   }
-        // }
-
-        // function wsDiscoCalc() {
-        //   if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
-        //     //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
-        //     var wsDiscoVar = discountToApply
-        //   } else {
-        //     var wsDiscoVar = edlpDisco
-        //   }
-        // }
 
         function divideCostToUOS_WS_IMW() {
           if (typeOfIMW.toLowerCase() == 'wholesale') {
@@ -683,11 +632,6 @@ module.exports = {
                       }
                       if (srcRsObj['reqdRetail'] % 1 <= .855) { //bump anything from #.56 to #.85 ==> #.79 (Brad); Andrea gets bumped
                         //to #.99 for anything from #.56 to #.85 (because defaultCharm3 for Brad is .79, but for Andrea it is .99)
-                        // console.log('srcRsObj[\'reqdRetail\'] (<= .855)==>', srcRsObj['reqdRetail'])
-                        // console.log('srcRsObj[\'reqdRetail\'] %1 (<= .855)==>', srcRsObj['reqdRetail'] % 1)
-                        // console.log('defaultCharm2==>', defaultCharm2)
-                        // console.log('defaultCharm3==>', defaultCharm3)
-                        // console.log('defaultCharm4==>', defaultCharm4)
                         if (defaultCharm3 > 0) {
                           return srcRsObj['sugstdRtl'] = reviewObj['charm'] = srcRsObj['charm'] = srcRsObj['reqdRetail'] - srcRsObj['reqdRetail'] % 1 + defaultCharm3
                         } else {
@@ -695,8 +639,6 @@ module.exports = {
                         }
                       }
                       if (srcRsObj['reqdRetail'] % 1 > .856) { //bump anything from #.85+ and higher ==> #.99
-                        // console.log('srcRsObj[\'reqdRetail\'] (> .856)==>', srcRsObj['reqdRetail'])
-                        // console.log('srcRsObj[\'reqdRetail\'] %1 (> .856)==>', srcRsObj['reqdRetail'] % 1)
                         if (lowerCutoffCharm4 > 0) {
                           return srcRsObj['sugstdRtl'] = reviewObj['charm'] = srcRsObj['charm'] = srcRsObj['reqdRetail'] - srcRsObj['reqdRetail'] % 1 + defaultCharm4
                         }
@@ -707,19 +649,12 @@ module.exports = {
                   }
                 }
               }
-
-              // reviewObj['charm'] = srcRsObj['charm']
-
             } else {
               srcRsObj['reqdRetail'] = ""
               srcRsObj['charm'] = ""
             }
           }
         }
-
-        // function revealAppliedMarg(departmentMargin) {
-        //   reviewObj['pf3'] = departmentMargin * 100
-        // }
 
         function revealAppliedMarg(departmentMargin) {
           srcRsObj['appldMrgn'] = reviewObj['appldMrgn'] = departmentMargin * 100
@@ -771,16 +706,6 @@ module.exports = {
         //that Catapult specifically defines suggested retail as MSRP, so the way you're currently doing it is the correct way.
         //For now, if it is an issue with Tom, just manually change sugstdRtl column to be same as charm column)
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        // if (typeOfIMW.toLowerCase() == 'wholesale' || typeOfIMW.toLowerCase() == 'new') { //include ws (last cost) for new &
-        //   //wholesale IMWs
-        //   // srcRsObj['lastCost'] = nejRows[i][genericHeaderObj.ediCostHeader]
-        //   divideCostToUOS()
-        // } else {
-        //   srcRsObj['lastCost'] = "" //Last Cost is used for ws cost in IMWs (need for WS update IMWs & new item IMWs, but not for retail update IMWs)
-        // }
-
 
         // srcRsObj['charm'] = "" //Base Price ==>INCLUDE in save2CSVreview export data
         srcRsObj['autoDiscount'] = "" //Auto Discount
@@ -884,17 +809,6 @@ module.exports = {
 
         srcRsObj['name'] = nejRows[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
         reviewObj['name'] = nejRows[i][genericHeaderObj.nameHeader]
-        // if (genericHeaderObj.keheUOSHeader) {
-        //   // console.log('genericHeaderObj.keheUOSHeader==>', genericHeaderObj.keheUOSHeader)
-        //   // console.log('nejRows[' + i + '][genericHeaderObj.keheUOSHeader]==>', nejRows[i][genericHeaderObj.keheUOSHeader])
-        //   if (nejRows[i][genericHeaderObj.keheUOSHeader] !== "" && nejRows[i][genericHeaderObj.keheUOSHeader] > 0) {
-        //     reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] / nejRows[i][genericHeaderObj.keheUOSHeader]
-        //     // console.log('case cost / uos==>', srcRsObj['ediCost'])
-        //   } else {
-        //     reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader]
-        //     // console.log('standard cost1==>', srcRsObj['ediCost'])
-        //   }
-        // } else {
 
         //v//this should get set as the value from edi catalog & never changed 
         reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
@@ -913,7 +827,7 @@ module.exports = {
           //TO BE INVESTIGATED TO SEE IF SKUs ARE INACCURATE, OR WHATEVER ELSE IS GOING ON
           reviewObj['blankEdiCostUPC'] = srcRsObj['blankEdiCostUPC'] = nejRows[i][genericHeaderObj.upcHeader]
         }
-        //}
+
         // srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] 
         // reviewObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader]//INCLUDE in save2CSVreview export data
         srcRsObj['ediPrice'] = nejRows[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
@@ -971,28 +885,6 @@ module.exports = {
             }
           }
         }
-
-        // function wsDiscoCalc() {
-        //   if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
-        //     //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
-        //     srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100
-        //     //applies margin to WS for NON-EDLP
-        //   } else {
-        //     srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * edlpDisco) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
-        //     //applies margin to WS for EDLP
-        //   }
-        // }
-
-        // function wsDiscoCalc() {
-        //   if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
-        //     //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
-        //     let wsDiscoVar = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * discountToApply) / (departmentMargin - 1)) * 100) / 100
-        //     //applies margin to WS for NON-EDLP
-        //   } else {
-        //     let wsDiscoVar = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * edlpDisco) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
-        //     //applies margin to WS for EDLP
-        //   }
-        // }
 
         if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
@@ -1220,38 +1112,6 @@ module.exports = {
             populateResultsObj_Rtl()
           }
           //^//EDLP switch handler. This should exclude EDLPS from calcCharm results if switch is set to 'no', but include them if set to 'yes'
-
-
-          // if (srcRsObj['charm'] !== "" && Math.round((srcRsObj['charm']) * 100) / 100 !== Math.round((srcRsObj['sibBasePrice']) * 100) / 100) { // only push results that have some
-          //   //value for "charm" column, AND ALSO select only items whose updated price is different than the exist. price in cplt
-          //   if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
-          //     if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
-          //       if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
-          //         if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
-          //           searchResults.push(srcRsObj)
-          //           searchResultsForCSV.push(srcRsObj)
-          //           searchResultsForCSVreview.push(reviewObj)
-          //         }
-          //       } else { //otherwise, push all depts into searchResults
-          //         searchResults.push(srcRsObj)
-          //         searchResultsForCSV.push(srcRsObj)
-          //         searchResultsForCSVreview.push(reviewObj)
-          //       }
-          //     }
-          //   } else {
-          //     if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
-          //       if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
-          //         searchResults.push(srcRsObj)
-          //         searchResultsForCSV.push(srcRsObj)
-          //         searchResultsForCSVreview.push(reviewObj)
-          //       }
-          //     } else { //otherwise, push all depts into searchResults
-          //       searchResults.push(srcRsObj)
-          //       searchResultsForCSV.push(srcRsObj)
-          //       searchResultsForCSVreview.push(reviewObj)
-          //     }
-          //   }
-          // }
         }
 
       }
@@ -1264,8 +1124,6 @@ module.exports = {
     function queryNhcrtEdiJoinTable() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
       //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
-      // connection.query(`SELECT * FROM ${formInput0};
-      // connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ri_t0d;
       connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
       SELECT * FROM rb_edlp_data;`,
         function (err, rows, fields) {
