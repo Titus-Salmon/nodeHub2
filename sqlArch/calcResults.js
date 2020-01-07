@@ -475,7 +475,7 @@ module.exports = {
             if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
               oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case' && oupNameSplit[0].toLowerCase() !== 'cs') {
               if (oupNameSplit[1] !== undefined) {
-                let ediTestCost1 = `"${srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / oupNameSplit[1]}"` //apply vendor WS discount, if applicable
+                let ediTestCost1 = `${srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar / oupNameSplit[1]}` //apply vendor WS discount, if applicable
                 let ediTstCst1Tr = ediTestCost1.trim().replace(/"/g, '')
                 let ediTstCst1TrRnd = Math.round(ediTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
                 let cpltTstCst1Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
