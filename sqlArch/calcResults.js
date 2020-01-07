@@ -149,7 +149,7 @@ module.exports = {
 
     let searchResults = [] //clear searchResults from previous search
     searchResultsForCSV = []
-    searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
+    searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad/Nathan
     csvContainer = []
 
     const postBody = req.body
