@@ -42,8 +42,8 @@ module.exports = {
     }
     //end csv generator //////////////////////////////////////////////////////////////////////////
 
-    res.render('vw-csvSaved', { //render searchResults to vw-dbEditPassport page
-      title: 'CSV Saved'
+    res.render('vw-MySqlTableHub', {
+      title: `<<${process.cwd()}/public/csv/${req.body['csvPost']} SAVED>>`
     });
 
   })

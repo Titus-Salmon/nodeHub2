@@ -15,10 +15,6 @@ module.exports = {
     } = require('json2csv');
 
     const fields = [
-      // 'P_K', 'upc', 'sku', 'name', 'cost', 'msrp', 'rbMargin', 'reqdRetail', 'charm',
-      // 'upc', 'deptID', 'deptName', 'rcptAlias', 'brand', 'itemName', 'size', 'sugstdRtl', 'lastCost', 'charm', 'autoDiscount', 'dscMltplr',
-      // 'idealMarg', 'wtPrfl', 'tax1', 'tax2', 'tax3', 'spclTndr1', 'spclTndr2', 'posPrmpt', 'lctn', 'altID', 'altRcptAlias', 'pkgQnt', 'sku',
-      // 'splrID', 'unit', 'numPkgs', 'dsd', 'csPkgMltpl', 'ovr', 'pf1', 'pf2', 'pf3', 'pf4', 'pf5', 'pf6', 'pf7', 'pf8', 'onhndQnt', 'rdrPnt', 'mcl', 'rdrQnt', 'flrRsn'
       "upc", "deptID", "deptName", "rcptAlias", "brand", "itemName", "size", "sugstdRtl", "lastCost", "charm", "autoDiscount", "idealMarg", "wtPrfl", "tax1",
       "tax2", "tax3", "spclTndr1", "spclTndr2", "posPrmpt", "lctn", "altID", "altRcptAlias", "pkgQnt", "imwSKU", "splrID", "unit", "numPkgs", "pf1", "pf2", "pf3",
       "pf4", "pf5", "pf6", "pf7", "pf8", "onhndQnt", "rdrPnt", "mcl", "rdrQnt", "memo", "flrRsn", "dsd", "dscMltplr", "csPkgMltpl", "ovr"
@@ -46,8 +42,8 @@ module.exports = {
     }
     //end csv generator //////////////////////////////////////////////////////////////////////////
 
-    res.render('vw-csvSaved', { //render searchResults to vw-dbEditPassport page
-      title: 'CSV Saved'
+    res.render('vw-MySqlTableHub', {
+      title: `<<${process.cwd()}/public/csv/${req.body['csvPost']} SAVED>>`
     });
 
   })

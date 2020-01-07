@@ -1,9 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const mysql = require('mysql');
-const fileUpload = require('express-fileupload');
-const fs = require('fs');
-const csv = require('fast-csv');
+const express = require('express')
+const router = express.Router()
+const mysql = require('mysql')
+const fileUpload = require('express-fileupload')
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
   user: process.env.RB_USER,
@@ -12,16 +10,6 @@ const connection = mysql.createConnection({
   debug: true
   // multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
-//try using connection pool
-// const cnxnPool = mysql.createPool({
-//   host: process.env.RB_HOST,
-//   user: process.env.RB_USER,
-//   password: process.env.RB_PW,
-//   database: process.env.RB_DB,
-//   // multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
-// })
-
-// router.use(fileUpload())
 
 router.use(fileUpload({
   debug: true, //set debug mode to try and figure out [ERR_HTTP_HEADERS_SENT]
@@ -44,44 +32,13 @@ module.exports = {
       //might want to try and use the actual UNC path here (\\WEBSERVER...)
       if (err)
         return res.status(500).send(err);
-    });
+    })
 
     let tableToPopulate = req.body['popTblNamePost']
     console.log(`req.body['popTblNamePost']==> ${req.body['popTblNamePost']}`)
 
-    // let tableColumnNames = []
-
-    // function loadTableColumnNames(result) {
-    //   for (let i = 0; i < result['columns'].length; i++) {
-    //     tableColumnNames.push(result['columns'][i]['name'])
-    //   }
-    //   console.log('tableColumnNames==>', tableColumnNames)
-    // }
-
-    // let query1 = 'SHOW COLUMNS FROM ' + tableToPopulate + ';'
-    // connection.query(query1, (error, response) => {
-    //   console.log(error || response);
-    //   console.log(`response.length==> ${response.length}`)
-    //   for (let i = 0; i < response.length; i++) {
-    //     console.log(`response[i]['Field']==> ${response[i]['Field']}`)
-    //     columnHeaderArray.push(response[i]['Field'])
-    //   }
-    // });
-
-
     let query2 = `LOAD DATA LOCAL INFILE './public/csv-to-insert/${fileToUpload.name}' INTO TABLE ${tableToPopulate} FIELDS TERMINATED BY ','
      ENCLOSED BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES;` //"IGNORE 1 LINES" skips the 1st row of the csv (which is the column name line)
-
-    //try using connection pool:
-    // cnxn.getConnection(function (err) {
-    //   cnxn.query(query2, (error, response) => {
-    //     if (error) {
-    //       console.log('error===>', error)
-    //     } else {
-    //       console.log('response==>', response);
-    //     }
-    //   })
-    // });
 
     connection.query(query2, (error, response) => {
       if (error) {
@@ -94,7 +51,7 @@ module.exports = {
         //   sqlTablePopulated: {
         //     tablePopulated: tableToPopulate,
         //   },
-        // });
+        // }); DO NOT res.render here; this will throw a "headers already sent error"; NEED TO USE .on('end') TO HANDLE ANSYNC SITUATION
       }
     }).on('end', function () {
       // all rows have been received
@@ -105,25 +62,7 @@ module.exports = {
         sqlTablePopulated: {
           tablePopulated: tableToPopulate,
         },
-      });
+      })
     })
-    //do you need to end this connection before res.render, or put res.render inside of connection.query?? (to fix [ERR_HTTP_HEADERS_SENT])
-    //or will setting up a connection pool be the solution?
-
-    // connection.end()
-    // connection.destroy()
-
-    // res.render('vw-MySqlTableHub', {
-    //   title: `vw-MySqlTableHub **Populated Table <<${tableToPopulate}>>**`,
-    //   // tableColNames: tableColumnNames,
-    //   sqlTablePopulated: {
-    //     tablePopulated: tableToPopulate,
-    //   },
-    // });
   })
 }
-
-//or maybe your router.use(fileUpload()) should go down here???
-// router.use(fileUpload({
-//   debug: true, //set debug mode to try and figure out [ERR_HTTP_HEADERS_SENT]
-// }))

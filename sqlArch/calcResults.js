@@ -1131,7 +1131,7 @@ module.exports = {
           showSearchResults(rows)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
-            title: 'Retail Price Calculator (using nhcrtEdiJoin table)',
+            title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${loadedSqlTbl}>>)`,
             searchResRows: searchResults,
             loadedSqlTbl: loadedSqlTbl,
             // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
