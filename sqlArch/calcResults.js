@@ -488,6 +488,7 @@ module.exports = {
                   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
                   console.log(`ediTstCst1TrRnd==> ${ediTstCst1TrRnd}`)
                   console.log(`cpltTstCst1TrRnd==> ${cpltTstCst1TrRnd}`)
+                  console.log(`oupNameSplit[1]==> ${oupNameSplit[1]}`)
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test1'
                 }
