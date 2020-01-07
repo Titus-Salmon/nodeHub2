@@ -486,6 +486,8 @@ module.exports = {
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
                   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
+                  console.log(`ediTstCst1TrRnd==> ${ediTstCst1TrRnd}`)
+                  console.log(`cpltTstCst1TrRnd==> ${cpltTstCst1TrRnd}`)
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test1'
                 }
@@ -505,6 +507,8 @@ module.exports = {
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
                   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
+                  console.log(`ediTstCst2TrRnd==> ${ediTstCst2TrRnd}`)
+                  console.log(`cpltTstCst2TrRnd==> ${cpltTstCst2TrRnd}`)
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test2'
                 }
@@ -521,6 +525,8 @@ module.exports = {
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
                   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
+                  console.log(`ediTstCst3TrRnd==> ${ediTstCst3TrRnd}`)
+                  console.log(`cpltTstCst3TrRnd==> ${cpltTstCst3TrRnd}`)
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test3'
                 }
