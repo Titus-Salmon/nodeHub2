@@ -267,6 +267,8 @@ module.exports = {
     console.log('skuToggle==>', skuToggle)
     let formInput59 = ediTblName = Object.values(postBody)[59] //ediTblNamePost
     console.log('ediTblName==>', ediTblName)
+    let formInput60 = skuMismatchOption = Object.values(postBody)[60] //skuMismatchOptionPost
+    console.log('skuMismatchOption==>', skuMismatchOption)
 
     // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
     // console.log('itemUnitValSwitch==>', itemUnitValSwitch)
@@ -415,6 +417,13 @@ module.exports = {
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
         let srcRsObj = {}
         let reviewObj = {} //push data to this obj for review CSV
+
+        //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
+        if (skuMismatchOption == "yes") {
+          srcRsObj['imwSKU'] = reviewObj['imwSKU'] = ""
+          srcRsObj['pf4'] = reviewObj['pf4'] = "skuMismatch"
+        }
+        //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
 
         srcRsObj['invPK'] = reviewObj['invPK'] = nejRows[i]['invPK'] //populate srcRsObj & reviewObj with invPK from Catapult
         srcRsObj['invCPK'] = reviewObj['invCPK'] = nejRows[i]['invCPK'] //populate srcRsObj & reviewObj with invCPK from Catapult

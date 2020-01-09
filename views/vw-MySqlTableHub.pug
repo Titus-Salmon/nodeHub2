@@ -359,6 +359,12 @@ html
 				label.input-label-1(for='ediTblName') EDI Table Name (EDI-VENDORNAME) - used to extract data from rainbow--cat (from RB DB)
 				input#ediTblName.input-unit-1(type='text' name='ediTblNamePost' value='EDI-VENDORNAME')
 
+			div(style="display:block")
+				label.input-label-1(for='skuMismatchOption') Flag SKU mismatch & leave SKU blank for IMW?
+				select#skuMismatchOption.input-unit-1(name='skuMismatchOptionPost')
+					option(value='no') no
+					option(value='yes') yes
+
 			//- div(style="display:block")
 			//- 	label.input-label-1(for='itemUnitValSwitch') Populate IMW with ItemUnitValues?
 			//- 	select#itemUnitValSwitch.input-unit-1(name='itemUnitValSwitchPost')
