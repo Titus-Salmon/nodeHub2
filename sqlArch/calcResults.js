@@ -419,10 +419,15 @@ module.exports = {
         let reviewObj = {} //push data to this obj for review CSV
 
         //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
-        if (skuMismatchOption == "yes") {
-          srcRsObj['imwSKU'] = reviewObj['imwSKU'] = ""
-          srcRsObj['pf4'] = reviewObj['pf4'] = "skuMismatch"
+        function skuMismatchFlagOptionHandler() { //Flag SKU mismatch & leave SKU blank for IMW if skuMismatchFlagOption = "yes"
+          if (nejRows[i][genericHeaderObj.cpltSKUHeader] !== nejRows[i][genericHeaderObj.ediSKUHeader]) {
+            if (skuMismatchOption == "yes") {
+              srcRsObj['imwSKU'] = reviewObj['imwSKU'] = ""
+              srcRsObj['pf4'] = reviewObj['pf4'] = "skuMismatch"
+            }
+          }
         }
+        skuMismatchFlagOptionHandler()
         //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
 
         srcRsObj['invPK'] = reviewObj['invPK'] = nejRows[i]['invPK'] //populate srcRsObj & reviewObj with invPK from Catapult
