@@ -432,7 +432,7 @@ module.exports = {
             }
           }
         }
-        skuMismatchFlagOptionHandler()
+        // skuMismatchFlagOptionHandler()
         //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
 
         srcRsObj['invPK'] = reviewObj['invPK'] = nejRows[i]['invPK'] //populate srcRsObj & reviewObj with invPK from Catapult
@@ -915,6 +915,7 @@ module.exports = {
         if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
           divideCostToUOS_WS_IMW()
+          skuMismatchFlagOptionHandler()
           if (srcRsObj['ediCostMod'] !== undefined) { //only push items that have ediCostMod value (which means that exist cplt cost
             //is different than new divided-to-uos edi cost, as determined in divideCostToUOS_WS_IMW())
 
@@ -1098,6 +1099,7 @@ module.exports = {
           }
 
           function populateResultsObj_Rtl() {
+            skuMismatchFlagOptionHandler()
             if (srcRsObj['charm'] !== "" && Math.round((srcRsObj['charm']) * 100) / 100 !== Math.round((srcRsObj['sibBasePrice']) * 100) / 100) { // only push results that have some
               //value for "charm" column, AND ALSO select only items whose updated price is different than the exist. price in cplt
               if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
