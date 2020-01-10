@@ -429,9 +429,6 @@ module.exports = {
         let srcRsObj = {}
         let reviewObj = {} //push data to this obj for review CSV
 
-        skuMismatchFlagOptionHandler.skuMismatchFlagOptionHandler() //this should fire skuMismatchFlagOptionHandler() from the
-        //skuMismatchFlagOptionHandler.js file located in funcLib_t0d folder
-
         // //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
         // function skuMismatchFlagOptionHandler() { //Flag SKU mismatch & leave SKU blank for IMW if skuMismatchFlagOption = "yes"
         //   if (nejRows[i][genericHeaderObj.cpltSKUHeader] !== nejRows[i][genericHeaderObj.ediSKUHeader]) {
@@ -929,7 +926,9 @@ module.exports = {
         if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
           divideCostToUOS_WS_IMW()
-          skuMismatchFlagOptionHandler()
+          // skuMismatchFlagOptionHandler()
+          skuMismatchFlagOptionHandler.skuMismatchFlagOptionHandler() //this should fire skuMismatchFlagOptionHandler() from the
+          //skuMismatchFlagOptionHandler.js file located in funcLib_t0d folder
           if (srcRsObj['ediCostMod'] !== undefined) { //only push items that have ediCostMod value (which means that exist cplt cost
             //is different than new divided-to-uos edi cost, as determined in divideCostToUOS_WS_IMW())
 
