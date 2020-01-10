@@ -16,6 +16,11 @@ module.exports = {
 
   calcResults: router.post('/calcResults', (req, res, next) => {
 
+    let searchResults = [] //clear searchResults from previous search
+    searchResultsForCSV = []
+    searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad/Nathan
+    csvContainer = []
+
     let deptFilterArr = [{
         '54': {
           'name': 'Beer & Alcohol',
@@ -149,10 +154,10 @@ module.exports = {
     console.log(`deptFilterArr[0][Object.keys(deptFilterArr[0])]['dfltMrg']==> ${deptFilterArr[0][Object.keys(deptFilterArr[0])]['dfltMrg']}`)
 
 
-    let searchResults = [] //clear searchResults from previous search
-    searchResultsForCSV = []
-    searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad/Nathan
-    csvContainer = []
+    // let searchResults = [] //clear searchResults from previous search
+    // searchResultsForCSV = []
+    // searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad/Nathan
+    // csvContainer = []
 
     const postBody = req.body
     console.log('calcResults says: postBody==>', postBody)
