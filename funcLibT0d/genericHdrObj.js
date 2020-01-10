@@ -13,7 +13,7 @@ module.exports = {
     //****************************************************************************************************************** */
     //v//generate generic column headers corresponding to nhcrtEdiJoin table column headers that are associated with
     //primary key, upc, sku, name, cost, msrp, etc...
-    let genHeadObj = {}
+    // let genHeadObj = {}
 
     for (let i = 0; i < splitFieldResult.length; i++) {
       if (splitFieldResult[i].includes('ri_t0d')) { //primary key - don't think this will be needed for inv mnt wksht
