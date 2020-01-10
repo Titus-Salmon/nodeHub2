@@ -267,10 +267,11 @@ module.exports = {
 
     // console.log(`deptFilterToApply==> ${deptFilterToApply}`)
 
-    clcRsFrmInputs.clcRsFrmInputs(postBody)
+
+    let formInputsObj = {}
+    clcRsFrmInputs.clcRsFrmInputs(postBody, formInputsObj)
 
     let genericHeaderObj = {}
-
     genericHdrObj.genericHdrObj(postBody, genericHeaderObj)
 
     // //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
@@ -806,9 +807,9 @@ module.exports = {
         srcRsObj['dptNumber'] = nejRows[i][genericHeaderObj.rbDeptIDHeader]
         reviewObj['dptNumber'] = nejRows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
 
-        for (let m = 0; m < deptFilterArr.length; m++) {
-          if (srcRsObj['dptNumber'] == Object.keys(deptFilterArr[m])) {
-            srcRsObj['defaultMarg'] = reviewObj['defaultMarg'] = deptFilterArr[m][Object.keys(deptFilterArr[m])]['dfltMrg'] //populate defaultMarg column in retail review
+        for (let m = 0; m < formInputsObj.deptFilterArr.length; m++) {
+          if (srcRsObj['dptNumber'] == Object.keys(formInputsObj.deptFilterArr[m])) {
+            srcRsObj['defaultMarg'] = reviewObj['defaultMarg'] = formInputsObj.deptFilterArr[m][Object.keys(formInputsObj.deptFilterArr[m])]['dfltMrg'] //populate defaultMarg column in retail review
             //with default rb margin for a particular department number
           }
         }
@@ -849,8 +850,8 @@ module.exports = {
             } else {
               srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
               srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
-              if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
-                if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+              if (formInputsObj.deptFilterToApply !== null) { //if a valid dept filter option is entered,
+                if (srcRsObj['dptNumber'] == formInputsObj.deptFilterToApply) { //only push that dept into searchResults
                   searchResults.push(srcRsObj)
                   searchResultsForCSV.push(srcRsObj)
                   searchResultsForCSVreview.push(reviewObj)
@@ -1062,7 +1063,7 @@ module.exports = {
     function queryNhcrtEdiJoinTable() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
       //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
-      connection.query(`SELECT * FROM ${formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
+      connection.query(`SELECT * FROM ${formInputsObj.formInputObj0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
       SELECT * FROM rb_edlp_data;`,
         function (err, rows, fields) {
           if (err) throw err

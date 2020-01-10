@@ -1,6 +1,6 @@
 module.exports = {
-  clcRsFrmInputs: function clcRsFrmInputs(postBodyData) {
-    let deptFilterArr = [{
+  clcRsFrmInputs: function clcRsFrmInputs(postBodyData, formInputsObj) {
+    formInputsObj.deptFilterArr = [{
         '54': {
           'name': 'Beer & Alcohol',
           'dfltMrg': '20'
@@ -128,9 +128,9 @@ module.exports = {
       }
     ]
 
-    console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
-    console.log(`deptFilterArr[0][Object.keys(deptFilterArr[0])]==> ${deptFilterArr[0][Object.keys(deptFilterArr[0])]}`)
-    console.log(`deptFilterArr[0][Object.keys(deptFilterArr[0])]['dfltMrg']==> ${deptFilterArr[0][Object.keys(deptFilterArr[0])]['dfltMrg']}`)
+    console.log(`Object.keys(formInputsObj.deptFilterArr[0])==> ${Object.keys(formInputsObj.deptFilterArr[0])}`)
+    console.log(`formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]==> ${formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]}`)
+    console.log(`formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]['dfltMrg']==> ${formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]['dfltMrg']}`)
 
     console.log('calcResults says: postBodyData==>', postBodyData)
     console.log('calcResults says: postBodyData[\'fldArrToPostPost\']==>', postBodyData['fldArrToPostPost'])
@@ -139,6 +139,7 @@ module.exports = {
     //v//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
     let formInput0 = Object.values(postBodyData)[0] = loadedSqlTbl = postBodyData['tblNameToPostPost'] //tblNameToPostPost
     console.log('formInput0==>', formInput0)
+    formInputsObj.formInputObj0 = formInput0
     let formInput1 = Object.values(postBodyData)[1] //fldArrToPostPost
     let formInput2 = Object.values(postBodyData)[2] = beerAlcMargin = postBodyData['beerAlcMargPost'] //beerAlcMargPost
     let formInput3 = Object.values(postBodyData)[3] = bodyCareMargin = postBodyData['bodyCareMargPost'] //bodyCareMargPost
@@ -217,6 +218,7 @@ module.exports = {
     console.log('skuOveride==>', skuOveride)
     let formInput55 = deptFilter = Object.values(postBodyData)[55] //deptFilterPost
     console.log('deptFilter==>', deptFilter)
+    formInputsObj.deptFilter = deptFilter
     let formInput56 = edlpSwitch = Object.values(postBodyData)[56] //edlpSwitchPost
     console.log('edlpSwitch==>', edlpSwitch)
     let formInput57 = skuToggle = Object.values(postBodyData)[57] //skuTogglePost
@@ -226,15 +228,15 @@ module.exports = {
     let formInput59 = skuMismatchOption = Object.values(postBodyData)[59] //skuMismatchOptionPost
     console.log('skuMismatchOption==>', skuMismatchOption)
 
-    var deptFilterToApply = null
+    formInputsObj.deptFilterToApply = null
 
-    for (let k = 0; k < deptFilterArr.length; k++) {
-      console.log(`Object.keys(deptFilterArr[${k}]==> ${Object.keys(deptFilterArr[k])}`)
-      if (Object.keys(deptFilterArr[k]) == deptFilter) {
-        deptFilterToApply = deptFilter
+    for (let k = 0; k < formInputsObj.deptFilterArr.length; k++) {
+      console.log(`Object.keys(formInputsObj.deptFilterArr[${k}]==> ${Object.keys(formInputsObj.deptFilterArr[k])}`)
+      if (Object.keys(formInputsObj.deptFilterArr[k]) == formInputsObj.deptFilter) {
+        formInputsObj.deptFilterToApply = formInputsObj.deptFilter
       }
     }
 
-    console.log(`deptFilterToApply==> ${deptFilterToApply}`)
+    console.log(`formInputsObj.deptFilterToApply==> ${formInputsObj.deptFilterToApply}`)
   }
 }
