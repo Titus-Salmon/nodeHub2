@@ -416,11 +416,12 @@ module.exports = {
 
 
     function showSearchResults(rows) {
-      const skuMismatchFlagOptionHandler = require('../funcLib_t0d/skuMismatchFlagOptionHandler')
       console.log(`rows.length==>${rows.length}`)
       let nejRows = rows[0] //targets 1st query on NEJ table
       let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
       // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
+
+      const skuMismatchFlagOptionHandler = require('../funcLib_t0d/skuMismatchFlagOptionHandler')
 
       console.log(`JSON.stringify(nejRows[0])==> ${JSON.stringify(nejRows[0])}`)
       console.log(`JSON.stringify(edlpRows[0])==> ${JSON.stringify(edlpRows[0])}`)
