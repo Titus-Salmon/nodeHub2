@@ -181,18 +181,8 @@ module.exports = {
     let formInput19 = Object.values(postBody)[19] = herbsHomeoMargin = postBody['herbsHomeoMargPost'] //herbsHomeoMargPost
     let formInput20 = Object.values(postBody)[20] = lfBrMargin = postBody['lfBrMargPost'] //lfBrMargPost
     let formInput21 = Object.values(postBody)[21] = otherMargin = postBody['otherMargPost'] //otherMargPost
-    // let formInput22 = Object.values(postBody)[22] = produceMargin = postBody['produceMargPost'] //produceMargPost
-    // let formInput23 = Object.values(postBody)[23] = prodCSAMargin = postBody['prodCSAMargPost'] //prodCSAMargPost
-    // let formInput24 = Object.values(postBody)[24] = prodFlorMargin = postBody['prodFlorMargPost'] //prodFlorMargPost
-    // let formInput25 = Object.values(postBody)[25] = prodLocMargin = postBody['prodLocMargPost'] //prodLocMargPost
-    // let formInput26 = Object.values(postBody)[26] = prodPkgMargin = postBody['prodPkgMargPost'] //prodPkgMargPost
-    // let formInput27 = Object.values(postBody)[27] = prodPlantsMargin = postBody['prodPlantsMargPost'] //prodPlantsMargPost
-    // let formInput28 = Object.values(postBody)[28] = prodPrepMargin = postBody['prodPrepMargPost'] //prodPrepMargPost
-    // let formInput29 = Object.values(postBody)[29] = prodSldBrMargin = postBody['sldBrMargPost'] //prodSldBrMargPost
     let formInput22 = Object.values(postBody)[22] = refrigMargin = postBody['refrigMargPost'] //refrigMargPost
     let formInput23 = Object.values(postBody)[23] = vitSuppMargin = postBody['vitSuppMargPost'] //vitSuppMargPost
-    // let formInput32 = Object.values(postBody)[32] = wlnsPrctTipsMargin = postBody['wlnsPrctTipsMargPost'] //wlnsPrctTipsMargPost
-    // let formInput33 = Object.values(postBody)[33] = wlnsPrctMargin = postBody['wlnsPrctMargPost'] //wlnsPrctMargPost
     let formInput24 = Object.values(postBody)[24] = globalMargin = postBody['globalMargPost'] //globalMargPost
 
     let formInput25 = Object.values(postBody)[25] = lowerCutRqdRtlAndrea = postBody['lowerCutRqdRtlAndreaPost'] //lowerCutRqdRtlAndreaPost
@@ -240,43 +230,22 @@ module.exports = {
     console.log(`discountToApply * 5==> ${discountToApply * 5}`)
     let formInput52 = Object.values(postBody)[52] = edlpDisco = postBody['edlpDiscoPost'] //edlpDiscoPost
 
+    // let formInput53 = Object.values(postBody)[53] //wsDiffResultsPost
 
-    // let formInput52 = Object.values(postBody)[52] //prKyPost
-
-    // let formInput53 = Object.values(postBody)[53] //upcPost
-    // let formInput54 = Object.values(postBody)[54] //skuPost
-    // let formInput55 = Object.values(postBody)[55] //descrPost
-    // let formInput56 = Object.values(postBody)[56] //updtWSPost
-
-    // let formInput57 = Object.values(postBody)[57] //rbMargPost
-    // let formInput58 = Object.values(postBody)[58] //rtlReqdPost
-
-    // let formInput59 = Object.values(postBody)[59] //msrpPost
-
-    let formInput53 = Object.values(postBody)[53] //wsDiffResultsPost
-
-    let formInput54 = typeOfIMW = Object.values(postBody)[54] //typeOfIMWPost
+    let formInput53 = typeOfIMW = Object.values(postBody)[53] //typeOfIMWPost
     console.log('typeOfIMW==>', typeOfIMW)
-    let formInput55 = skuOveride = Object.values(postBody)[55] //skuOveridePost
+    let formInput54 = skuOveride = Object.values(postBody)[54] //skuOveridePost
     console.log('skuOveride==>', skuOveride)
-    let formInput56 = deptFilter = Object.values(postBody)[56] //deptFilterPost
+    let formInput55 = deptFilter = Object.values(postBody)[55] //deptFilterPost
     console.log('deptFilter==>', deptFilter)
-    let formInput57 = edlpSwitch = Object.values(postBody)[57] //edlpSwitchPost
+    let formInput56 = edlpSwitch = Object.values(postBody)[56] //edlpSwitchPost
     console.log('edlpSwitch==>', edlpSwitch)
-    let formInput58 = skuToggle = Object.values(postBody)[58] //skuTogglePost
+    let formInput57 = skuToggle = Object.values(postBody)[57] //skuTogglePost
     console.log('skuToggle==>', skuToggle)
-    let formInput59 = ediTblName = Object.values(postBody)[59] //ediTblNamePost
+    let formInput58 = ediTblName = Object.values(postBody)[58] //ediTblNamePost
     console.log('ediTblName==>', ediTblName)
-    let formInput60 = skuMismatchOption = Object.values(postBody)[60] //skuMismatchOptionPost
+    let formInput59 = skuMismatchOption = Object.values(postBody)[59] //skuMismatchOptionPost
     console.log('skuMismatchOption==>', skuMismatchOption)
-
-    // let formInput64 = itemUnitValSwitch = Object.values(postBody)[64] //itemUnitValSwitchPost
-    // console.log('itemUnitValSwitch==>', itemUnitValSwitch)
-
-    // let formInput64 = tableToJoin = Object.values(postBody)[64] //tableToJoinPost
-    // console.log('tableToJoin==>', tableToJoin)
-
-    //^//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
 
     var deptFilterToApply = null
 
@@ -289,11 +258,6 @@ module.exports = {
 
     console.log(`deptFilterToApply==> ${deptFilterToApply}`)
 
-    if (postBody['wsDiffResultsPost'].length > 0) { //must check to see if anything was entered in WS Diff Results
-      //input, otherwise get 'unexpected end of JSON' error
-      let wsDiffResults = JSON.parse(postBody['wsDiffResultsPost'])
-    }
-
     //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
     let toSplitField = postBody['fldArrToPostPost']
     // console.log('calcResults says: toSplitField before replace==>', toSplitField)
@@ -301,9 +265,7 @@ module.exports = {
     let toSplitFieldReplace = toSplitField.replace(sanitizeColumnFields, "")
     // console.log('calcResults says: toSplitFieldReplace after replace==>', toSplitFieldReplace)
     let splitFieldResult = toSplitFieldReplace.split(',')
-    // console.log('calcResults says: splitFieldResult==>', splitFieldResult)
     //^//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
-
 
 
     //****************************************************************************************************************** */
@@ -339,53 +301,25 @@ module.exports = {
       } //targeting invLastcost from catapult v_InventoryMaster table -- probably going to want to check if ediCost == invLastCost
       //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      // if (splitFieldResult[i].includes('item_price') || splitFieldResult[i].includes('msrp')) { //Suggested Retail ==>msrp?
-      //   //***NEED TO ADD MSRP FROM EDI table to nhcrtEdiJoin results*/
-      //   genericHeaderObj.msrpHeader = splitFieldResult[i]
-      // }
       if (splitFieldResult[i].includes('ediPrice')) { //Suggested Retail ==>msrp?
         //targets msrp from edi table
         genericHeaderObj.msrpHeader = splitFieldResult[i]
       }
-      // if (splitFieldResult[i] == 'rb_price') { //
-      //   genericHeaderObj.rbPriceHeader = splitFieldResult[i]
-      // }
       if (splitFieldResult[i] == 'sibBasePrice') { //
         genericHeaderObj.sibBasePriceHeader = splitFieldResult[i]
       }
-      // if (splitFieldResult[i] == 'rb_dept') { //
-      //   genericHeaderObj.rbDeptHeader = splitFieldResult[i]
-      // }
       if (splitFieldResult[i] == 'dptName') { //
         genericHeaderObj.rbDeptHeader = splitFieldResult[i]
       }
-      // if (splitFieldResult[i] == 'rb_dept_id') {
-      //   genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
-      // }
       if (splitFieldResult[i] == 'dptNumber') {
         genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
       }
-      // if (splitFieldResult[i] == 'rb_dept_margin') {
-      //   genericHeaderObj.rbDeptMarginHeader = splitFieldResult[i]
-      // }
       if (splitFieldResult[i] == 'sibIdealMargin') {
         genericHeaderObj.sibIdealMarginHeader = splitFieldResult[i]
       }
-      // if (splitFieldResult[i] == 'rb_supplier') {
-      //   genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
-      // }
       if (splitFieldResult[i] == 'venCompanyname') {
         genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
       }
-      // if (splitFieldResult[i] == 'edlp_flag') {
-      //   genericHeaderObj.edlpFlagHeader = splitFieldResult[i]
-      // }
-      // if (splitFieldResult[i] == 'sale_flag') {
-      //   genericHeaderObj.saleFlagHeader = splitFieldResult[i]
-      // }
-      // if (splitFieldResult[i] == 'kehe_uos') { //need to target kehe_uos in order to divide by that for kehe items sold by case
-      //   genericHeaderObj.keheUOSHeader = splitFieldResult[i]
-      // }
       if (splitFieldResult[i] == 'oupName') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
         genericHeaderObj.oupName = splitFieldResult[i]
       }
@@ -801,7 +735,6 @@ module.exports = {
         }
         //^//provide different update messages, based on what type of update you're doing (i.e. ws IMW, retail IMW, new item IMW)
 
-        // srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + "RTL UPDT (pf5)" //Power Field 5 - today's date
         srcRsObj['pf6'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
         reviewObj['pf6'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
         srcRsObj['pf7'] = "" //Power Field 7
@@ -820,18 +753,8 @@ module.exports = {
 
         srcRsObj['dscMltplr'] = "" //Discount Multiplier
 
-        // srcRsObj['csPkgMltpl'] = "" //Case Package Multiple -- THIS IS NOW SET IN divideCostToUOS_Rtl_IMW() & divideCostToUOS_WS_IMW()
-
-        // srcRsObj['ovr'] = reviewObj['ovr'] = 0 //set ovr (for IMW) to 0 FOR EVERYTHING (CRITICAL)
-        // //this will NOT give buyers the option to override to buy "eaches" for items vendors sell to us in cases
-        // //AS A GENERAL RULE, THIS SHOULD ALWAYS BE SET TO 0... IN SOME CASES, WE MIGHT CHANGE TO 1
-
         srcRsObj['ovr'] = reviewObj['ovr'] = 1 //20191224 set ovr (for IMW) to 1 FOR EVERYTHING per MaryKate's request
         //this WILL give buyers the option to override to buy "eaches" for items vendors sell to us in "cases"
-
-        // srcRsObj['ovr'] = "" //OVR
-        // srcRsObj['ovr'] = "" //OVR
-
 
         srcRsObj['name'] = nejRows[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
         reviewObj['name'] = nejRows[i][genericHeaderObj.nameHeader]
@@ -854,26 +777,16 @@ module.exports = {
           reviewObj['blankEdiCostUPC'] = srcRsObj['blankEdiCostUPC'] = nejRows[i][genericHeaderObj.upcHeader]
         }
 
-        // srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] 
-        // reviewObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader]//INCLUDE in save2CSVreview export data
         srcRsObj['ediPrice'] = nejRows[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
         reviewObj['ediPrice'] = nejRows[i][genericHeaderObj.msrpHeader] //INCLUDE in save2CSVreview export data
-
-        // srcRsObj['rb_price'] = nejRows[i][genericHeaderObj.rbPriceHeader] //INCLUDE in csv to export data
-        // reviewObj['rb_price'] = nejRows[i][genericHeaderObj.rbPriceHeader] //INCLUDE in save2CSVreview export data
 
         srcRsObj['sibBasePrice'] = nejRows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in csv to export data
         reviewObj['sibBasePrice'] = nejRows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in save2CSVreview export data
 
         srcRsObj['globalMargin'] = globalMargin //do not include in csv to export data
-        // srcRsObj['rb_dept'] = nejRows[i][genericHeaderObj.rbDeptHeader]
-        // reviewObj['rb_dept'] = nejRows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
 
         srcRsObj['dptName'] = nejRows[i][genericHeaderObj.rbDeptHeader]
         reviewObj['dptName'] = nejRows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
-
-        // srcRsObj['rb_dept_id'] = nejRows[i][genericHeaderObj.rbDeptIDHeader]
-        // reviewObj['rb_dept_id'] = nejRows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
 
         srcRsObj['dptNumber'] = nejRows[i][genericHeaderObj.rbDeptIDHeader]
         reviewObj['dptNumber'] = nejRows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
@@ -885,32 +798,14 @@ module.exports = {
           }
         }
 
-        // srcRsObj['rb_dept_margin'] = nejRows[i][genericHeaderObj.rbDeptMarginHeader]
-        // reviewObj['rb_dept_margin'] = nejRows[i][genericHeaderObj.rbDeptMarginHeader] //INCLUDE in save2CSVreview export data
-
         srcRsObj['sibIdealMargin'] = nejRows[i][genericHeaderObj.sibIdealMarginHeader]
         reviewObj['sibIdealMargin'] = nejRows[i][genericHeaderObj.sibIdealMarginHeader] //INCLUDE in save2CSVreview export data
-
-        // srcRsObj['edlp_flag'] = nejRows[i][genericHeaderObj.edlpFlagHeader]
-        // reviewObj['edlp_flag'] = nejRows[i][genericHeaderObj.edlpFlagHeader] //INCLUDE in save2CSVreview export data
 
         srcRsObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader]
         reviewObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data
 
         srcRsObj['discountToApply'] = discountToApply * 100
         reviewObj['discountToApply'] = discountToApply * 100 //INCLUDE in save2CSVreview export data
-
-        if (postBody['wsDiffResultsPost'] !== undefined && postBody['wsDiffResultsPost'].length > 0) { //must check to see if anything was entered in WS Diff Results
-          //input, otherwise wsDiffResults will be undefined
-          let wsDiffResults = JSON.parse(postBody['wsDiffResultsPost'])
-          for (let j = 0; j < wsDiffResults.length; j++) {
-            if (srcRsObj['upc'] == wsDiffResults[j]['wsDiffNewTable_upc']) {
-              srcRsObj['wsDiff_t0d'] = wsDiffResults[j]['wsDiffNewTable_upc'] //INCLUDE in save2CSVreview export data
-              reviewObj['wsDiff_t0d'] = wsDiffResults[j]['wsDiffNewTable_upc'] //INCLUDE in save2CSVreview export data
-              // console.log('calcResults says: wsDiffResults[j][\'wsDiffNewTable_upc\']##>>', wsDiffResults[j]['wsDiffNewTable_upc'])
-            }
-          }
-        }
 
         if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
