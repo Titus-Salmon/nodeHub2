@@ -260,6 +260,8 @@ module.exports = {
 
     console.log(`deptFilterToApply==> ${deptFilterToApply}`)
 
+    let genericHeaderObj = {}
+
     genericHdrObj.genericHdrObj(postBody, genericHeaderObj)
 
     // //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
