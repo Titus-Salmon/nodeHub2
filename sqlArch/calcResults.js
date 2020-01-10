@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const mysql = require('mysql')
 
-const skuMismatchFlagOptionHandler = require('../funcLib_t0d/skuMismatchFlagOptionHandler')
+// const skuMismatchFlagOptionHandler = require('../funcLib_t0d/skuMismatchFlagOptionHandler')
 
 // In the other .js files, you can “include” the ‘common.js’ by
 
@@ -416,6 +416,7 @@ module.exports = {
 
 
     function showSearchResults(rows) {
+      const skuMismatchFlagOptionHandler = require('../funcLib_t0d/skuMismatchFlagOptionHandler')
       console.log(`rows.length==>${rows.length}`)
       let nejRows = rows[0] //targets 1st query on NEJ table
       let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
