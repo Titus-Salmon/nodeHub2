@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const mysql = require('mysql')
 
+const genericHdrObj = require('../funcLibT0d/genericHdrObj')
+
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
   user: process.env.RB_USER,
@@ -258,83 +260,85 @@ module.exports = {
 
     console.log(`deptFilterToApply==> ${deptFilterToApply}`)
 
-    //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
-    let toSplitField = postBody['fldArrToPostPost']
-    // console.log('calcResults says: toSplitField before replace==>', toSplitField)
-    let sanitizeColumnFields = /(\[)|(\])|(")/g
-    let toSplitFieldReplace = toSplitField.replace(sanitizeColumnFields, "")
-    // console.log('calcResults says: toSplitFieldReplace after replace==>', toSplitFieldReplace)
-    let splitFieldResult = toSplitFieldReplace.split(',')
-    //^//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
+    genericHdrObj.genericHdrObj()
+
+    // //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
+    // let toSplitField = postBody['fldArrToPostPost']
+    // // console.log('calcResults says: toSplitField before replace==>', toSplitField)
+    // let sanitizeColumnFields = /(\[)|(\])|(")/g
+    // let toSplitFieldReplace = toSplitField.replace(sanitizeColumnFields, "")
+    // // console.log('calcResults says: toSplitFieldReplace after replace==>', toSplitFieldReplace)
+    // let splitFieldResult = toSplitFieldReplace.split(',')
+    // //^//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
 
 
-    //****************************************************************************************************************** */
-    //v//generate generic column headers corresponding to nhcrtEdiJoin table column headers that are associated with
-    //primary key, upc, sku, name, cost, msrp, etc...
-    let genericHeaderObj = {}
+    // //****************************************************************************************************************** */
+    // //v//generate generic column headers corresponding to nhcrtEdiJoin table column headers that are associated with
+    // //primary key, upc, sku, name, cost, msrp, etc...
+    // let genericHeaderObj = {}
 
-    for (let i = 0; i < splitFieldResult.length; i++) {
-      if (splitFieldResult[i].includes('ri_t0d')) { //primary key - don't think this will be needed for inv mnt wksht
-        genericHeaderObj.primarykeyHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'invScanCode') { //Item ID (1); targets upc from catapult v_InventoryMaster table
-        genericHeaderObj.upcHeader = splitFieldResult[i]
-        // console.log('calcResults says: genericHeaderObj.upcHeader==>', genericHeaderObj.upcHeader)
-      }
-      if (splitFieldResult[i] == 'ordSupplierStockNumber') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
-        //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
-        genericHeaderObj.cpltSKUHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'ediSKU') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
-        //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
-        genericHeaderObj.ediSKUHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'invName') { //Item Name (6); targets prod name from catapult v_InventoryMaster portion of nhcrtEdiJoin table
-        genericHeaderObj.nameHeader = splitFieldResult[i]
-      }
-      //v//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
-      if (splitFieldResult[i] == 'ediCost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
-        genericHeaderObj.ediCostHeader = splitFieldResult[i]
-      } //targeting ediCost from vendor catalog
-      if (splitFieldResult[i] == 'invLastcost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
-        genericHeaderObj.invLastcostHeader = splitFieldResult[i]
-      } //targeting invLastcost from catapult v_InventoryMaster table -- probably going to want to check if ediCost == invLastCost
-      //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // for (let i = 0; i < splitFieldResult.length; i++) {
+    //   if (splitFieldResult[i].includes('ri_t0d')) { //primary key - don't think this will be needed for inv mnt wksht
+    //     genericHeaderObj.primarykeyHeader = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'invScanCode') { //Item ID (1); targets upc from catapult v_InventoryMaster table
+    //     genericHeaderObj.upcHeader = splitFieldResult[i]
+    //     // console.log('calcResults says: genericHeaderObj.upcHeader==>', genericHeaderObj.upcHeader)
+    //   }
+    //   if (splitFieldResult[i] == 'ordSupplierStockNumber') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
+    //     //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
+    //     genericHeaderObj.cpltSKUHeader = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'ediSKU') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
+    //     //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
+    //     genericHeaderObj.ediSKUHeader = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'invName') { //Item Name (6); targets prod name from catapult v_InventoryMaster portion of nhcrtEdiJoin table
+    //     genericHeaderObj.nameHeader = splitFieldResult[i]
+    //   }
+    //   //v//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //   if (splitFieldResult[i] == 'ediCost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
+    //     genericHeaderObj.ediCostHeader = splitFieldResult[i]
+    //   } //targeting ediCost from vendor catalog
+    //   if (splitFieldResult[i] == 'invLastcost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
+    //     genericHeaderObj.invLastcostHeader = splitFieldResult[i]
+    //   } //targeting invLastcost from catapult v_InventoryMaster table -- probably going to want to check if ediCost == invLastCost
+    //   //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      if (splitFieldResult[i].includes('ediPrice')) { //Suggested Retail ==>msrp?
-        //targets msrp from edi table
-        genericHeaderObj.msrpHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'sibBasePrice') { //
-        genericHeaderObj.sibBasePriceHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'dptName') { //
-        genericHeaderObj.rbDeptHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'dptNumber') {
-        genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'sibIdealMargin') {
-        genericHeaderObj.sibIdealMarginHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'venCompanyname') {
-        genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'oupName') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
-        genericHeaderObj.oupName = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'ordQuantityInOrderUnit') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
-        genericHeaderObj.ordQuantityInOrderUnit = splitFieldResult[i]
-      }
-      if (splitFieldResult[i] == 'stoName') { //targets Catapult nhcrt stoName column
-        genericHeaderObj.stoName = splitFieldResult[i]
-      }
-    }
+    //   if (splitFieldResult[i].includes('ediPrice')) { //Suggested Retail ==>msrp?
+    //     //targets msrp from edi table
+    //     genericHeaderObj.msrpHeader = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'sibBasePrice') { //
+    //     genericHeaderObj.sibBasePriceHeader = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'dptName') { //
+    //     genericHeaderObj.rbDeptHeader = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'dptNumber') {
+    //     genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'sibIdealMargin') {
+    //     genericHeaderObj.sibIdealMarginHeader = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'venCompanyname') {
+    //     genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'oupName') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
+    //     genericHeaderObj.oupName = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'ordQuantityInOrderUnit') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
+    //     genericHeaderObj.ordQuantityInOrderUnit = splitFieldResult[i]
+    //   }
+    //   if (splitFieldResult[i] == 'stoName') { //targets Catapult nhcrt stoName column
+    //     genericHeaderObj.stoName = splitFieldResult[i]
+    //   }
+    // }
 
-    console.log('calcResults says: genericHeaderObj==>', genericHeaderObj)
-    //^//generate generic column headers corresponding to margin_report table column headers that are associated with
-    //primary key, upc, sku, name, cost, & msrp
-    //****************************************************************************************************************** */
+    // console.log('calcResults says: genericHeaderObj==>', genericHeaderObj)
+    // //^//generate generic column headers corresponding to margin_report table column headers that are associated with
+    // //primary key, upc, sku, name, cost, & msrp
+    // //****************************************************************************************************************** */
 
 
 
