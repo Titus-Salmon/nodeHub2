@@ -260,7 +260,7 @@ module.exports = {
 
     console.log(`deptFilterToApply==> ${deptFilterToApply}`)
 
-    genericHdrObj.genericHdrObj(postBody)
+    genericHdrObj.genericHdrObj(postBody, genericHeaderObj)
 
     // //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
     // let toSplitField = postBody['fldArrToPostPost']

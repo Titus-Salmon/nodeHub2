@@ -1,5 +1,5 @@
 module.exports = {
-  genericHdrObj: function genericHdrObj(postBodyData) {
+  genericHdrObj: function genericHdrObj(postBodyData, genericHeaderObj) {
     //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
     let toSplitField = postBodyData['fldArrToPostPost']
     // console.log('calcResults says: toSplitField before replace==>', toSplitField)
