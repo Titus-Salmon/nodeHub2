@@ -66,9 +66,9 @@ module.exports = {
         function divideCostToUOS_Rtl_IMW() {
           if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
             //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
-            var wsDiscoVar = discountToApply
+            var wsDiscoVar = frmInptsObj.discountToApply
           } else {
-            var wsDiscoVar = edlpDisco
+            var wsDiscoVar = frmInptsObj.edlpDisco
           }
           ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
           let oupNameVar = nejRows[i][genericHeaderObj.oupName]
@@ -110,7 +110,7 @@ module.exports = {
               //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
               var wsDiscoVar = frmInptsObj.discountToApply
             } else {
-              var wsDiscoVar = edlpDisco
+              var wsDiscoVar = frmInptsObj.edlpDisco
             }
 
             ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
@@ -380,7 +380,7 @@ module.exports = {
         srcRsObj['ediSKU'] = nejRows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
         reviewObj['ediSKU'] = nejRows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
 
-        if (skuToggle.toLowerCase() == 'edi') { //provide option to choose which SKU (EDI vs Catapult) to populate IMW with
+        if (frmInptsObj.skuToggle.toLowerCase() == 'edi') { //provide option to choose which SKU (EDI vs Catapult) to populate IMW with
           srcRsObj['imwSKU'] = reviewObj['imwSKU'] = srcRsObj['ediSKU']
         } else {
           srcRsObj['imwSKU'] = reviewObj['imwSKU'] = srcRsObj['cpltSKU']
@@ -510,8 +510,8 @@ module.exports = {
               if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
                 srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if frmInptsObj.typeOfIMW = 'wholesale'
                 srcRsObj['charm'] = "" //set charm to empty if frmInptsObj.typeOfIMW = 'wholesale'
-                if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
-                  if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+                if (frmInptsObj.deptFilterToApply !== null) { //if a valid dept filter option is entered,
+                  if (srcRsObj['dptNumber'] == frmInptsObj.deptFilterToApply) { //only push that dept into searchResults
                     searchResults.push(srcRsObj)
                     searchResultsForCSV.push(srcRsObj)
                     searchResultsForCSVreview.push(reviewObj)
@@ -544,144 +544,145 @@ module.exports = {
           // }
           //v//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for frmInptsObj.globalMargin
           if (frmInptsObj.formInput0.includes('edi_')) {
-            calcCharm(frmInptsObj.globalMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
+            calcCharm(frmInptsObj.globalMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad,
+              frmInptsObj.lowerCutoffCharm3Brad, frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad,
+              frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad, frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad,
+              frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
           }
           //^//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for frmInptsObj.globalMargin
 
           if (srcRsObj['dptNumber'] == '54') { //Beer & Alcohol
             //apply Department margin to calculate charm pricing
-            calcCharm(beerAlcMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(beerAlcMargin)
+            calcCharm(frmInptsObj.beerAlcMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.beerAlcMargin)
           }
           if (srcRsObj['dptNumber'] == '152') { //Body Care
-            calcCharm(bodyCareMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
-              lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
-              defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
-            revealAppliedMarg(bodyCareMargin)
+            calcCharm(frmInptsObj.bodyCareMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.bodyCareMargin)
           }
           if (srcRsObj['dptNumber'] == '9') { //Books
-            calcCharm(booksMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
-              lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
-              defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
-            revealAppliedMarg(booksMargin)
+            calcCharm(frmInptsObj.booksMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.booksMargin)
           }
           if (srcRsObj['dptNumber'] == '19') { //Bulk
-            calcCharm(bulkMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(bulkMargin)
+            calcCharm(frmInptsObj.bulkMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.bulkMargin)
           }
           if (srcRsObj['dptNumber'] == '30') { //Bulk & Herb Prepack
-            calcCharm(bulkHrbPrpkMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(bulkHrbPrpkMargin)
+            calcCharm(frmInptsObj.bulkHrbPrpkMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.bulkHrbPrpkMargin)
           }
           if (srcRsObj['dptNumber'] == '175') { //CBD - Grocery
-            calcCharm(cbdGrocMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(cbdGrocMargin)
+            calcCharm(frmInptsObj.cbdGrocMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.cbdGrocMargin)
           }
           if (srcRsObj['dptNumber'] == '176') { //CBD - Supplements
-            calcCharm(cbdSuppMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
-              lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
-              defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
-            revealAppliedMarg(cbdSuppMargin)
+            calcCharm(frmInptsObj.cbdSuppMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.cbdSuppMargin)
           }
           if (srcRsObj['dptNumber'] == '177') { //CBD - Topicals
-            calcCharm(cbdTopMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
-              lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
-              defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
-            revealAppliedMarg(cbdTopMargin)
+            calcCharm(frmInptsObj.cbdTopMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.cbdTopMargin)
           }
           if (srcRsObj['dptNumber'] == '148') { //Consignments
-            calcCharm(consignMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(consignMargin)
+            calcCharm(frmInptsObj.consignMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.consignMargin)
           }
           if (srcRsObj['dptNumber'] == '18') { //Frozen
-            calcCharm(frozenMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(frozenMargin)
+            calcCharm(frmInptsObj.frozenMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.frozenMargin)
           }
           if (srcRsObj['dptNumber'] == '150') { //General Merchandise
-            calcCharm(genMerchMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(genMerchMargin)
+            calcCharm(frmInptsObj.genMerchMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.genMerchMargin)
           }
           if (srcRsObj['dptNumber'] == '13') { //Gift Items
-            calcCharm(giftMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
-              lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
-              defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
-            revealAppliedMarg(giftMargin)
+            calcCharm(frmInptsObj.giftMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.giftMargin)
           }
           if (srcRsObj['dptNumber'] == '62') { //Grab & Go
-            calcCharm(grabGoMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(grabGoMargin)
+            calcCharm(frmInptsObj.grabGoMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.grabGoMargin)
           }
           if (srcRsObj['dptNumber'] == '25') { //Grocery
-            calcCharm(grocMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(grocMargin)
+            calcCharm(frmInptsObj.grocMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.grocMargin)
           }
           if (srcRsObj['dptNumber'] == '179') { //Grocery - Local
-            calcCharm(grocLocMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(grocLocMargin)
+            calcCharm(frmInptsObj.grocLocMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.grocLocMargin)
           }
           if (srcRsObj['dptNumber'] == '38') { //Grocery - Local Meat
-            calcCharm(grocLcMtMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(grocLcMtMargin)
+            calcCharm(frmInptsObj.grocLcMtMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.grocLcMtMargin)
           }
           if (srcRsObj['dptNumber'] == '12') { //HBA - had this as 17 & was causing hba items not to get charm applied
-            calcCharm(hbaMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
-              lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
-              defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
-            revealAppliedMarg(hbaMargin)
+            calcCharm(frmInptsObj.hbaMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.hbaMargin)
           }
           if (srcRsObj['dptNumber'] == '158') { //Herbs & Homeopathic
-            calcCharm(herbsHomeoMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
-              lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
-              defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
-            revealAppliedMarg(herbsHomeoMargin)
+            calcCharm(frmInptsObj.herbsHomeoMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.herbsHomeoMargin)
           }
           if (srcRsObj['dptNumber'] == '80') { //LifeBar
-            calcCharm(lfBrMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(lfBrMargin)
+            calcCharm(frmInptsObj.lfBrMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.lfBrMargin)
           }
           if (srcRsObj['dptNumber'] == '151') { //Other
-            calcCharm(otherMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
-              lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
-              defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
-            revealAppliedMarg(otherMargin)
+            calcCharm(frmInptsObj.otherMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.otherMargin)
           }
           if (srcRsObj['dptNumber'] == '155') { //Refrigerated
-            calcCharm(refrigMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
-              lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
-              defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
-            revealAppliedMarg(refrigMargin)
+            calcCharm(frmInptsObj.refrigMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.refrigMargin)
           }
           if (srcRsObj['dptNumber'] == '157') { //Vitamins & Supplements
-            calcCharm(vitSuppMargin, lowerCutRqdRtlAndrea, lowerCutoffCharm1Andrea, lowerCutoffCharm2Andrea, lowerCutoffCharm3Andrea,
-              lowerCutoffCharm4Andrea, lowerCutoffCharm5Andrea, lowerCutoffCharm6Andrea, lowerCutoffCharm7Andrea, upperCharmRqdRtlAndrea,
-              defaultCharm1Andrea, defaultCharm2Andrea, defaultCharm3Andrea, defaultCharm4Andrea)
-            revealAppliedMarg(vitSuppMargin)
+            calcCharm(frmInptsObj.vitSuppMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.vitSuppMargin)
           }
 
           function populateResultsObj_Rtl() {
