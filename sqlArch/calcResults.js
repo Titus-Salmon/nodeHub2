@@ -495,7 +495,7 @@ module.exports = {
         srcRsObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader]
         reviewObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data
 
-        srcRsObj['discountToApply'] = discountToApply * 100
+        srcRsObj['discountToApply'] = frmInptsObj.discountToApply * 100
         reviewObj['discountToApply'] = discountToApply * 100 //INCLUDE in save2CSVreview export data
 
         if (frmInptsObj.typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
