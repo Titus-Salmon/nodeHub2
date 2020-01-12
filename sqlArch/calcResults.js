@@ -46,8 +46,8 @@ module.exports = {
         //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
         function skuMismatchFlagOptionHandler() { //Flag SKU mismatch & leave SKU blank for IMW if skuMismatchFlagOption = "yes"
           if (nejRows[i][genericHeaderObj.cpltSKUHeader] !== nejRows[i][genericHeaderObj.ediSKUHeader]) {
-            if (skuMismatchOption == "yes") {
-              console.log(`skuMismatchOption==> ${skuMismatchOption}`)
+            if (frmInptsObj.skuMismatchOption == "yes") {
+              console.log(`frmInptsObj.skuMismatchOption==> ${frmInptsObj.skuMismatchOption}`)
               srcRsObj['imwSKU'] = reviewObj['imwSKU'] = ""
               srcRsObj['pf4'] = reviewObj['pf4'] = "skuMismatch"
               console.log(`nejRows[${i}][genericHeaderObj.cpltSKUHeader]==> ${nejRows[i][genericHeaderObj.cpltSKUHeader]}`)
