@@ -222,7 +222,7 @@ module.exports = {
     // formInputsObj.deptFilter = deptFilter
     formInputsObj.formInput56 = formInputsObj.edlpSwitch = Object.values(postBodyData)[56] //edlpSwitchPost
     console.log('formInputsObj.edlpSwitch==>', formInputsObj.edlpSwitch)
-    formInputsObj.formInput57 = skuToggle = Object.values(postBodyData)[57] //skuTogglePost
+    formInputsObj.formInput57 = formInputsObj.skuToggle = Object.values(postBodyData)[57] //skuTogglePost
     console.log('formInputsObj.skuToggle==>', formInputsObj.skuToggle)
     formInputsObj.formInput58 = formInputsObj.ediTblName = Object.values(postBodyData)[58] //ediTblNamePost
     console.log('formInputsObj.ediTblName==>', formInputsObj.ediTblName)
