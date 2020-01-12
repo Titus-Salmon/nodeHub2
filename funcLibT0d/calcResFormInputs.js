@@ -1,5 +1,5 @@
 module.exports = {
-  clcRsFrmInputs: function clcRsFrmInputs(postBodyData, formInputsObj) {
+  clcRsFrmInpts: function (postBodyData, formInputsObj) { //this function is exported
     formInputsObj.deptFilterArr = [{
         '54': {
           'name': 'Beer & Alcohol',
@@ -137,9 +137,10 @@ module.exports = {
     console.log('calcResults says: postBodyData[\'fldArrToPostPost\'][0]==>', postBodyData['fldArrToPostPost'][0])
 
     //v//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
-    let formInput0 = Object.values(postBodyData)[0] = loadedSqlTbl = postBodyData['tblNameToPostPost'] //tblNameToPostPost
-    console.log('formInput0==>', formInput0)
-    formInputsObj.formInputObj0 = formInput0
+    // let formInput0 = Object.values(postBodyData)[0] = loadedSqlTbl = postBodyData['tblNameToPostPost'] //tblNameToPostPost (damage control revert1)
+    formInputsObj.formInput0 = Object.values(postBodyData)[0] = formInputsObj.loadedSqlTbl = postBodyData['tblNameToPostPost'] //tblNameToPostPost
+    // console.log('formInput0==>', formInput0)
+    // formInputsObj.formInputObj0 = formInput0 (damage control revert1)
     let formInput1 = Object.values(postBodyData)[1] //fldArrToPostPost
     let formInput2 = Object.values(postBodyData)[2] = beerAlcMargin = postBodyData['beerAlcMargPost'] //beerAlcMargPost
     let formInput3 = Object.values(postBodyData)[3] = bodyCareMargin = postBodyData['bodyCareMargPost'] //bodyCareMargPost
