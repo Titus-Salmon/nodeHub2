@@ -23,336 +23,11 @@ module.exports = {
     csvContainer = []
     const postBody = req.body
 
-    // let deptFilterArr = [{
-    //     '54': {
-    //       'name': 'Beer & Alcohol',
-    //       'dfltMrg': '20'
-    //     }
-    //   },
-    //   {
-    //     '152': {
-    //       'name': 'Body Care',
-    //       'dfltMrg': '45'
-    //     }
-    //   },
-    //   {
-    //     '9': {
-    //       'name': 'Books',
-    //       'dfltMrg': '40'
-    //     }
-    //   },
-    //   {
-    //     '19': {
-    //       'name': 'Bulk',
-    //       'dfltMrg': '45'
-    //     }
-    //   },
-    //   {
-    //     '30': {
-    //       'name': 'Bulk & Herb Prepack',
-    //       'dfltMrg': '45'
-    //     }
-    //   },
-    //   {
-    //     '175': {
-    //       'name': 'CBD - Grocery',
-    //       'dfltMrg': '45'
-    //     }
-    //   },
-    //   {
-    //     '176': {
-    //       'name': 'CBD - Supplements',
-    //       'dfltMrg': '50'
-    //     }
-    //   },
-    //   {
-    //     '177': {
-    //       'name': 'CBD - Topicals',
-    //       'dfltMrg': '45'
-    //     }
-    //   },
-    //   {
-    //     '148': {
-    //       'name': 'Consignments',
-    //       'dfltMrg': '20'
-    //     }
-    //   },
-    //   {
-    //     '150': {
-    //       'name': 'General Merchandise',
-    //       'dfltMrg': '38'
-    //     }
-    //   },
-    //   {
-    //     '13': {
-    //       'name': 'Gift Items',
-    //       'dfltMrg': '50'
-    //     }
-    //   },
-    //   {
-    //     '62': {
-    //       'name': 'Grab & Go',
-    //       'dfltMrg': '33'
-    //     }
-    //   },
-    //   {
-    //     '25': {
-    //       'name': 'Grocery',
-    //       'dfltMrg': '38'
-    //     }
-    //   },
-    //   {
-    //     '179': {
-    //       'name': 'Grocery - Local',
-    //       'dfltMrg': '33'
-    //     }
-    //   },
-    //   {
-    //     '38': {
-    //       'name': 'Grocery - Local Meat',
-    //       'dfltMrg': '25'
-    //     }
-    //   },
-    //   {
-    //     '12': {
-    //       'name': 'HBA',
-    //       'dfltMrg': '45'
-    //     }
-    //   },
-    //   {
-    //     '158': {
-    //       'name': 'Herbs & Homeopathic',
-    //       'dfltMrg': '40'
-    //     }
-    //   },
-    //   {
-    //     '80': {
-    //       'name': 'LifeBar',
-    //       'dfltMrg': '0'
-    //     }
-    //   },
-    //   {
-    //     '151': {
-    //       'name': 'Other',
-    //       'dfltMrg': '45'
-    //     }
-    //   },
-    //   {
-    //     '155': {
-    //       'name': 'Refrigerated',
-    //       'dfltMrg': '33'
-    //     }
-    //   },
-    //   {
-    //     '157': {
-    //       'name': 'Vitamins & Supplements',
-    //       'dfltMrg': '40'
-    //     }
-    //   }
-    // ]
-
-    // console.log(`Object.keys(deptFilterArr[0])==> ${Object.keys(deptFilterArr[0])}`)
-    // console.log(`deptFilterArr[0][Object.keys(deptFilterArr[0])]==> ${deptFilterArr[0][Object.keys(deptFilterArr[0])]}`)
-    // console.log(`deptFilterArr[0][Object.keys(deptFilterArr[0])]['dfltMrg']==> ${deptFilterArr[0][Object.keys(deptFilterArr[0])]['dfltMrg']}`)
-
-
-    // // let searchResults = [] //clear searchResults from previous search
-    // // searchResultsForCSV = []
-    // // searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad/Nathan
-    // // csvContainer = []
-
-    // const postBody = req.body
-    // console.log('calcResults says: postBody==>', postBody)
-    // console.log('calcResults says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
-    // console.log('calcResults says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
-
-    // //v//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
-    // let formInput0 = Object.values(postBody)[0] = frmInptsObj.loadedSqlTbl = postBody['tblNameToPostPost'] //tblNameToPostPost
-    // console.log('formInput0==>', formInput0)
-    // let formInput1 = Object.values(postBody)[1] //fldArrToPostPost
-    // let formInput2 = Object.values(postBody)[2] = beerAlcMargin = postBody['beerAlcMargPost'] //beerAlcMargPost
-    // let formInput3 = Object.values(postBody)[3] = bodyCareMargin = postBody['bodyCareMargPost'] //bodyCareMargPost
-    // let formInput4 = Object.values(postBody)[4] = booksMargin = postBody['booksMargPost'] //booksMargPost
-    // let formInput5 = Object.values(postBody)[5] = bulkMargin = postBody['bulkMargPost'] //bulkMargPost
-    // let formInput6 = Object.values(postBody)[6] = bulkHrbPrpkMargin = postBody['bulkHrbPrpkMargPost'] //bulkHrbPrpkMargPost
-    // let formInput7 = Object.values(postBody)[7] = cbdGrocMargin = postBody['cbdGrocMargPost'] //cbdGrocMargPost
-    // let formInput8 = Object.values(postBody)[8] = cbdSuppMargin = postBody['cbdSuppMargPost'] //cbdSuppMargPost
-    // let formInput9 = Object.values(postBody)[9] = cbdTopMargin = postBody['cbdTopMargPost'] //cbdTopMargPost
-    // let formInput10 = Object.values(postBody)[10] = consignMargin = postBody['consignMargPost'] //consignMargPost
-    // let formInput11 = Object.values(postBody)[11] = frozenMargin = postBody['frozenMargPost'] //frozenMargPost
-    // let formInput12 = Object.values(postBody)[12] = genMerchMargin = postBody['genMerchMargPost'] //genMerchMargPost
-    // let formInput13 = Object.values(postBody)[13] = giftMargin = postBody['giftMargPost'] //giftMargPost
-    // let formInput14 = Object.values(postBody)[14] = grabGoMargin = postBody['grabGoMargPost'] //grabGoMargPost
-    // let formInput15 = Object.values(postBody)[15] = grocMargin = postBody['grocMargPost'] //grocMargPost
-    // let formInput16 = Object.values(postBody)[16] = grocLocMargin = postBody['grocLocMargPost'] //grocLocMargPost
-    // let formInput17 = Object.values(postBody)[17] = grocLcMtMargin = postBody['grocLcMtMargPost'] //grocLcMtMargPost
-    // let formInput18 = Object.values(postBody)[18] = hbaMargin = postBody['hbaMargPost'] //hbaMargPost
-    // let formInput19 = Object.values(postBody)[19] = herbsHomeoMargin = postBody['herbsHomeoMargPost'] //herbsHomeoMargPost
-    // let formInput20 = Object.values(postBody)[20] = lfBrMargin = postBody['lfBrMargPost'] //lfBrMargPost
-    // let formInput21 = Object.values(postBody)[21] = otherMargin = postBody['otherMargPost'] //otherMargPost
-    // let formInput22 = Object.values(postBody)[22] = refrigMargin = postBody['refrigMargPost'] //refrigMargPost
-    // let formInput23 = Object.values(postBody)[23] = vitSuppMargin = postBody['vitSuppMargPost'] //vitSuppMargPost
-    // let formInput24 = Object.values(postBody)[24] = globalMargin = postBody['globalMargPost'] //globalMargPost
-
-    // let formInput25 = Object.values(postBody)[25] = lowerCutRqdRtlAndrea = postBody['lowerCutRqdRtlAndreaPost'] //lowerCutRqdRtlAndreaPost
-    // let formInput26 = Object.values(postBody)[26] = lowerCutRqdRtlBrad = postBody['lowerCutRqdRtlBradPost'] //lowerCutRqdRtlBradPost
-
-    // let formInput27 = Object.values(postBody)[27] = lowerCutoffCharm1Andrea = postBody['lowerCutoffCharm1AndreaPost'] //lowerCutoffCharm1AndreaPost
-    // let formInput28 = Object.values(postBody)[28] = lowerCutoffCharm1Brad = postBody['lowerCutoffCharm1BradPost'] //lowerCutoffCharm1BradPost
-
-    // let formInput29 = Object.values(postBody)[29] = lowerCutoffCharm2Andrea = postBody['lowerCutoffCharm2AndreaPost'] //lowerCutoffCharm2AndreaPost
-    // let formInput30 = Object.values(postBody)[30] = lowerCutoffCharm2Brad = postBody['lowerCutoffCharm2BradPost'] //lowerCutoffCharm2BradPost
-
-    // let formInput31 = Object.values(postBody)[31] = lowerCutoffCharm3Andrea = postBody['lowerCutoffCharm3AndreaPost'] //lowerCutoffCharm3AndreaPost
-    // let formInput32 = Object.values(postBody)[32] = lowerCutoffCharm3Brad = postBody['lowerCutoffCharm3BradPost'] //lowerCutoffCharm3BradPost
-
-    // let formInput33 = Object.values(postBody)[33] = lowerCutoffCharm4Andrea = postBody['lowerCutoffCharm4AndreaPost'] //lowerCutoffCharm4AndreaPost
-    // let formInput34 = Object.values(postBody)[34] = lowerCutoffCharm4Brad = postBody['lowerCutoffCharm4BradPost'] //lowerCutoffCharm4BradPost
-
-    // let formInput35 = Object.values(postBody)[35] = lowerCutoffCharm5Andrea = postBody['lowerCutoffCharm5AndreaPost'] //lowerCutoffCharm5AndreaPost
-    // let formInput36 = Object.values(postBody)[36] = lowerCutoffCharm5Brad = postBody['lowerCutoffCharm5BradPost'] //lowerCutoffCharm5BradPost
-
-    // let formInput37 = Object.values(postBody)[37] = lowerCutoffCharm6Andrea = postBody['lowerCutoffCharm6AndreaPost'] //lowerCutoffCharm6AndreaPost
-    // let formInput38 = Object.values(postBody)[38] = lowerCutoffCharm6Brad = postBody['lowerCutoffCharm6BradPost'] //lowerCutoffCharm6BradPost
-
-    // let formInput39 = Object.values(postBody)[39] = lowerCutoffCharm7Andrea = postBody['lowerCutoffCharm7AndreaPost'] //lowerCutoffCharm7AndreaPost
-    // let formInput40 = Object.values(postBody)[40] = lowerCutoffCharm7Brad = postBody['lowerCutoffCharm7BradPost'] //lowerCutoffCharm7BradPost
-
-    // let formInput41 = Object.values(postBody)[41] = upperCharmRqdRtlAndrea = postBody['upperCharmRqdRtlAndreaPost'] //upperCharmRqdRtlAndreaPost
-    // let formInput42 = Object.values(postBody)[42] = upperCharmRqdRtlBrad = postBody['upperCharmRqdRtlBradPost'] //upperCharmRqdRtlBradPost
-
-    // let formInput43 = Object.values(postBody)[43] = defaultCharm1Andrea = postBody['defaultCharm1AndreaPost'] //defaultCharm1AndreaPost
-    // let formInput44 = Object.values(postBody)[44] = defaultCharm1Brad = postBody['defaultCharm1BradPost'] //defaultCharm1BradPost
-
-    // let formInput45 = Object.values(postBody)[45] = defaultCharm2Andrea = postBody['defaultCharm2AndreaPost'] //defaultCharm2AndreaPost
-    // let formInput46 = Object.values(postBody)[46] = defaultCharm2Brad = postBody['defaultCharm2BradPost'] //defaultCharm2BradPost
-
-    // let formInput47 = Object.values(postBody)[47] = defaultCharm3Andrea = postBody['defaultCharm3AndreaPost'] //defaultCharm3AndreaPost
-    // let formInput48 = Object.values(postBody)[48] = defaultCharm3Brad = postBody['defaultCharm3BradPost'] //defaultCharm3BradPost
-
-    // let formInput49 = Object.values(postBody)[49] = defaultCharm4Andrea = postBody['defaultCharm4AndreaPost'] //defaultCharm4AndreaPost
-    // let formInput50 = Object.values(postBody)[50] = defaultCharm4Brad = postBody['defaultCharm4BradPost'] //defaultCharm4BradPost
-
-    // let formInput51 = Object.values(postBody)[51] = discountToApply = postBody['discountToApplyPost'] //discountToApplyPost
-    // console.log(`typeof discountToApply==> ${typeof discountToApply}`)
-    // console.log(`discountToApply==> ${discountToApply}`)
-    // console.log(`discountToApply * 5==> ${discountToApply * 5}`)
-    // let formInput52 = Object.values(postBody)[52] = edlpDisco = postBody['edlpDiscoPost'] //edlpDiscoPost
-
-    // // let formInput53 = Object.values(postBody)[53] //wsDiffResultsPost
-
-    // let formInput53 = typeOfIMW = Object.values(postBody)[53] //typeOfIMWPost
-    // console.log('typeOfIMW==>', typeOfIMW)
-    // let formInput54 = skuOveride = Object.values(postBody)[54] //skuOveridePost
-    // console.log('skuOveride==>', skuOveride)
-    // let formInput55 = deptFilter = Object.values(postBody)[55] //deptFilterPost
-    // console.log('deptFilter==>', deptFilter)
-    // let formInput56 = edlpSwitch = Object.values(postBody)[56] //edlpSwitchPost
-    // console.log('edlpSwitch==>', edlpSwitch)
-    // let formInput57 = skuToggle = Object.values(postBody)[57] //skuTogglePost
-    // console.log('skuToggle==>', skuToggle)
-    // let formInput58 = ediTblName = Object.values(postBody)[58] //ediTblNamePost
-    // console.log('ediTblName==>', ediTblName)
-    // let formInput59 = skuMismatchOption = Object.values(postBody)[59] //skuMismatchOptionPost
-    // console.log('skuMismatchOption==>', skuMismatchOption)
-
-    // var deptFilterToApply = null
-
-    // for (let k = 0; k < deptFilterArr.length; k++) {
-    //   console.log(`Object.keys(deptFilterArr[${k}]==> ${Object.keys(deptFilterArr[k])}`)
-    //   if (Object.keys(deptFilterArr[k]) == deptFilter) {
-    //     deptFilterToApply = deptFilter
-    //   }
-    // }
-
-    // console.log(`deptFilterToApply==> ${deptFilterToApply}`)
-
-
     let frmInptsObj = {} //provide empty object to populate with form inputs & values generated from calcResFormInputs.js module
     cAlcRsFrmInputs.clcRsFrmInpts(postBody, frmInptsObj)
 
     let genericHeaderObj = {} //provide empty object to populate with generic headers generated from genericHdrObj.js module
     gEnericHdrObj.gnrcHdrObj(postBody, genericHeaderObj)
-
-    // //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
-    // let toSplitField = postBody['fldArrToPostPost']
-    // // console.log('calcResults says: toSplitField before replace==>', toSplitField)
-    // let sanitizeColumnFields = /(\[)|(\])|(")/g
-    // let toSplitFieldReplace = toSplitField.replace(sanitizeColumnFields, "")
-    // // console.log('calcResults says: toSplitFieldReplace after replace==>', toSplitFieldReplace)
-    // let splitFieldResult = toSplitFieldReplace.split(',')
-    // //^//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
-
-
-    // //****************************************************************************************************************** */
-    // //v//generate generic column headers corresponding to nhcrtEdiJoin table column headers that are associated with
-    // //primary key, upc, sku, name, cost, msrp, etc...
-    // let genericHeaderObj = {}
-
-    // for (let i = 0; i < splitFieldResult.length; i++) {
-    //   if (splitFieldResult[i].includes('ri_t0d')) { //primary key - don't think this will be needed for inv mnt wksht
-    //     genericHeaderObj.primarykeyHeader = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'invScanCode') { //Item ID (1); targets upc from catapult v_InventoryMaster table
-    //     genericHeaderObj.upcHeader = splitFieldResult[i]
-    //     // console.log('calcResults says: genericHeaderObj.upcHeader==>', genericHeaderObj.upcHeader)
-    //   }
-    //   if (splitFieldResult[i] == 'ordSupplierStockNumber') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
-    //     //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
-    //     genericHeaderObj.cpltSKUHeader = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'ediSKU') { //Supplier Unit ID (25); targets SKU from catapult v_InventoryMaster portion of
-    //     //nhcrtEdiJoin table; ALSO NEED TO TARGET ediSKU from EDI portion of nhcrtEdiJoin table & THEN CHECK TO SEE IF THEY'RE THE SAME
-    //     genericHeaderObj.ediSKUHeader = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'invName') { //Item Name (6); targets prod name from catapult v_InventoryMaster portion of nhcrtEdiJoin table
-    //     genericHeaderObj.nameHeader = splitFieldResult[i]
-    //   }
-    //   //v//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //   if (splitFieldResult[i] == 'ediCost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
-    //     genericHeaderObj.ediCostHeader = splitFieldResult[i]
-    //   } //targeting ediCost from vendor catalog
-    //   if (splitFieldResult[i] == 'invLastcost') { //Last Cost(?) ==>updated WS; cost from EDI portion of nhcrtEdiJoin
-    //     genericHeaderObj.invLastcostHeader = splitFieldResult[i]
-    //   } //targeting invLastcost from catapult v_InventoryMaster table -- probably going to want to check if ediCost == invLastCost
-    //   //^//20191121 MARGIN REPORT ISSUE///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    //   if (splitFieldResult[i].includes('ediPrice')) { //Suggested Retail ==>msrp?
-    //     //targets msrp from edi table
-    //     genericHeaderObj.msrpHeader = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'sibBasePrice') { //
-    //     genericHeaderObj.sibBasePriceHeader = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'dptName') { //
-    //     genericHeaderObj.rbDeptHeader = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'dptNumber') {
-    //     genericHeaderObj.rbDeptIDHeader = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'sibIdealMargin') {
-    //     genericHeaderObj.sibIdealMarginHeader = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'venCompanyname') {
-    //     genericHeaderObj.rbSupplierHeader = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'oupName') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
-    //     genericHeaderObj.oupName = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'ordQuantityInOrderUnit') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
-    //     genericHeaderObj.ordQuantityInOrderUnit = splitFieldResult[i]
-    //   }
-    //   if (splitFieldResult[i] == 'stoName') { //targets Catapult nhcrt stoName column
-    //     genericHeaderObj.stoName = splitFieldResult[i]
-    //   }
-    // }
-
-    // console.log('calcResults says: genericHeaderObj==>', genericHeaderObj)
-    // //^//generate generic column headers corresponding to margin_report table column headers that are associated with
-    // //primary key, upc, sku, name, cost, & msrp
-    // //****************************************************************************************************************** */
-
-
 
     function showSearchResults(rows) {
       console.log(`rows.length==>${rows.length}`)
@@ -429,7 +104,7 @@ module.exports = {
         }
 
         function divideCostToUOS_WS_IMW() {
-          if (typeOfIMW.toLowerCase() == 'wholesale') {
+          if (frmInptsObj.typeOfIMW.toLowerCase() == 'wholesale') {
 
             if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
               //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
@@ -511,7 +186,7 @@ module.exports = {
         function calcCharm(departmentMargin, lowerCutRqdRtl, lowerCutoffCharm1, lowerCutoffCharm2, lowerCutoffCharm3, lowerCutoffCharm4,
           lowerCutoffCharm5, lowerCutoffCharm6, lowerCutoffCharm7, upperCharmRqdRtl, defaultCharm1, defaultCharm2, defaultCharm3, defaultCharm4) {
 
-          if (typeOfIMW.toLowerCase() == 'retail') {
+          if (frmInptsObj.typeOfIMW.toLowerCase() == 'retail') {
             //apply DEPARTMENT margin to calculate charm pricing
 
             if (srcRsObj['ediCost'] > 0) {
@@ -662,7 +337,7 @@ module.exports = {
         srcRsObj['rcptAlias'] = "" //Receipt Alias
         srcRsObj['brand'] = "" //Brand
 
-        if (typeOfIMW.toLowerCase() == 'new') {
+        if (frmInptsObj.typeOfIMW.toLowerCase() == 'new') {
           if (nejRows[i][genericHeaderObj.nameHeader].includes(',')) { //remove any commas from item names, so csv isn't horked
             var cleanedName = nejRows[i][genericHeaderObj.nameHeader].replace(',', '')
             srcRsObj['itemName'] = cleanedName
@@ -737,15 +412,15 @@ module.exports = {
         // reviewObj['pf3'] = //Power Field 3 revealAppliedMarg()
         srcRsObj['pf4'] = "" //Power Field 4
         //v//provide different update messages, based on what type of update you're doing (i.e. ws IMW, retail IMW, new item IMW)
-        if (typeOfIMW.toLowerCase() == 'wholesale') {
+        if (frmInptsObj.typeOfIMW.toLowerCase() == 'wholesale') {
           srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + " WS UPDT (pf5)" //Power Field 5 - today's date
           srcRsObj['pf8'] = "" //Power Field 8
         }
-        if (typeOfIMW.toLowerCase() == 'retail') {
+        if (frmInptsObj.typeOfIMW.toLowerCase() == 'retail') {
           srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + " RTL UPDT (pf5)" //Power Field 5 - today's date
           srcRsObj['pf8'] = `ACTUAL MSRP: ${nejRows[i][genericHeaderObj.msrpHeader]}` //Suggested Retail //Power Field 8 - this will target the ACTUAL MSRP
         }
-        if (typeOfIMW.toLowerCase() == 'new') {
+        if (frmInptsObj.typeOfIMW.toLowerCase() == 'new') {
           srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + " NEW ITEM UPDT (pf5)" //Power Field 5 - today's date
           srcRsObj['pf8'] = "" //Power Field 8
         }
@@ -780,7 +455,7 @@ module.exports = {
         //^//this should get set as the value from edi catalog & never changed 
 
 
-        if (typeOfIMW.toLowerCase() == 'retail') { //only apply this if running retail
+        if (frmInptsObj.typeOfIMW.toLowerCase() == 'retail') { //only apply this if running retail
           //v//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
           reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = nejRows[i][genericHeaderObj.ediCostHeader] //NEED TO CHECK
           //^//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
@@ -823,7 +498,7 @@ module.exports = {
         srcRsObj['discountToApply'] = discountToApply * 100
         reviewObj['discountToApply'] = discountToApply * 100 //INCLUDE in save2CSVreview export data
 
-        if (typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
+        if (frmInptsObj.typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
           divideCostToUOS_WS_IMW()
           skuMismatchFlagOptionHandler()
@@ -833,8 +508,8 @@ module.exports = {
             // console.log(`srcRsObj['upc'](${i})...srcRsObj['ediCostMod'](${i})==>${srcRsObj['upc']}...${srcRsObj['ediCostMod']}`)
             if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
               if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
-                srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
-                srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
+                srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if frmInptsObj.typeOfIMW = 'wholesale'
+                srcRsObj['charm'] = "" //set charm to empty if frmInptsObj.typeOfIMW = 'wholesale'
                 if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
                   if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
                     searchResults.push(srcRsObj)
@@ -848,8 +523,8 @@ module.exports = {
                 }
               }
             } else {
-              srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if typeofIMW = 'wholesale'
-              srcRsObj['charm'] = "" //set charm to empty if typeofIMW = 'wholesale'
+              srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if frmInptsObj.typeOfIMW = 'wholesale'
+              srcRsObj['charm'] = "" //set charm to empty if frmInptsObj.typeOfIMW = 'wholesale'
               if (frmInptsObj.deptFilterToApply !== null) { //if a valid dept filter option is entered,
                 if (srcRsObj['dptNumber'] == frmInptsObj.deptFilterToApply) { //only push that dept into searchResults
                   searchResults.push(srcRsObj)
