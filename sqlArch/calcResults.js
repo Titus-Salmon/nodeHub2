@@ -496,7 +496,7 @@ module.exports = {
         reviewObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data
 
         srcRsObj['discountToApply'] = frmInptsObj.discountToApply * 100
-        reviewObj['discountToApply'] = discountToApply * 100 //INCLUDE in save2CSVreview export data
+        reviewObj['discountToApply'] = frmInptsObj.discountToApply * 100 //INCLUDE in save2CSVreview export data
 
         if (frmInptsObj.typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
           //because lower down, we will be filtering for retail imw after running calcCharm()
