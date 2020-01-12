@@ -141,93 +141,93 @@ module.exports = {
     formInputsObj.formInput0 = Object.values(postBodyData)[0] = formInputsObj.loadedSqlTbl = postBodyData['tblNameToPostPost'] //tblNameToPostPost
     // console.log('formInput0==>', formInput0)
     // formInputsObj.formInputObj0 = formInput0 (damage control revert1)
-    let formInput1 = Object.values(postBodyData)[1] //fldArrToPostPost
-    let formInput2 = Object.values(postBodyData)[2] = beerAlcMargin = postBodyData['beerAlcMargPost'] //beerAlcMargPost
-    let formInput3 = Object.values(postBodyData)[3] = bodyCareMargin = postBodyData['bodyCareMargPost'] //bodyCareMargPost
-    let formInput4 = Object.values(postBodyData)[4] = booksMargin = postBodyData['booksMargPost'] //booksMargPost
-    let formInput5 = Object.values(postBodyData)[5] = bulkMargin = postBodyData['bulkMargPost'] //bulkMargPost
-    let formInput6 = Object.values(postBodyData)[6] = bulkHrbPrpkMargin = postBodyData['bulkHrbPrpkMargPost'] //bulkHrbPrpkMargPost
-    let formInput7 = Object.values(postBodyData)[7] = cbdGrocMargin = postBodyData['cbdGrocMargPost'] //cbdGrocMargPost
-    let formInput8 = Object.values(postBodyData)[8] = cbdSuppMargin = postBodyData['cbdSuppMargPost'] //cbdSuppMargPost
-    let formInput9 = Object.values(postBodyData)[9] = cbdTopMargin = postBodyData['cbdTopMargPost'] //cbdTopMargPost
-    let formInput10 = Object.values(postBodyData)[10] = consignMargin = postBodyData['consignMargPost'] //consignMargPost
-    let formInput11 = Object.values(postBodyData)[11] = frozenMargin = postBodyData['frozenMargPost'] //frozenMargPost
-    let formInput12 = Object.values(postBodyData)[12] = genMerchMargin = postBodyData['genMerchMargPost'] //genMerchMargPost
-    let formInput13 = Object.values(postBodyData)[13] = giftMargin = postBodyData['giftMargPost'] //giftMargPost
-    let formInput14 = Object.values(postBodyData)[14] = grabGoMargin = postBodyData['grabGoMargPost'] //grabGoMargPost
-    let formInput15 = Object.values(postBodyData)[15] = grocMargin = postBodyData['grocMargPost'] //grocMargPost
-    let formInput16 = Object.values(postBodyData)[16] = grocLocMargin = postBodyData['grocLocMargPost'] //grocLocMargPost
-    let formInput17 = Object.values(postBodyData)[17] = grocLcMtMargin = postBodyData['grocLcMtMargPost'] //grocLcMtMargPost
-    let formInput18 = Object.values(postBodyData)[18] = hbaMargin = postBodyData['hbaMargPost'] //hbaMargPost
-    let formInput19 = Object.values(postBodyData)[19] = herbsHomeoMargin = postBodyData['herbsHomeoMargPost'] //herbsHomeoMargPost
-    let formInput20 = Object.values(postBodyData)[20] = lfBrMargin = postBodyData['lfBrMargPost'] //lfBrMargPost
-    let formInput21 = Object.values(postBodyData)[21] = otherMargin = postBodyData['otherMargPost'] //otherMargPost
-    let formInput22 = Object.values(postBodyData)[22] = refrigMargin = postBodyData['refrigMargPost'] //refrigMargPost
-    let formInput23 = Object.values(postBodyData)[23] = vitSuppMargin = postBodyData['vitSuppMargPost'] //vitSuppMargPost
-    let formInput24 = Object.values(postBodyData)[24] = globalMargin = postBodyData['globalMargPost'] //globalMargPost
+    formInputsObj.formInput1 = Object.values(postBodyData)[1] //fldArrToPostPost
+    formInputsObj.formInput2 = Object.values(postBodyData)[2] = formInputsObj.beerAlcMargin = postBodyData['beerAlcMargPost'] //beerAlcMargPost
+    formInputsObj.formInput3 = Object.values(postBodyData)[3] = formInputsObj.bodyCareMargin = postBodyData['bodyCareMargPost'] //bodyCareMargPost
+    formInputsObj.formInput4 = Object.values(postBodyData)[4] = formInputsObj.booksMargin = postBodyData['booksMargPost'] //booksMargPost
+    formInputsObj.formInput5 = Object.values(postBodyData)[5] = formInputsObj.bulkMargin = postBodyData['bulkMargPost'] //bulkMargPost
+    formInputsObj.formInput6 = Object.values(postBodyData)[6] = formInputsObj.bulkHrbPrpkMargin = postBodyData['bulkHrbPrpkMargPost'] //bulkHrbPrpkMargPost
+    formInputsObj.formInput7 = Object.values(postBodyData)[7] = formInputsObj.cbdGrocMargin = postBodyData['cbdGrocMargPost'] //cbdGrocMargPost
+    formInputsObj.formInput8 = Object.values(postBodyData)[8] = formInputsObj.cbdSuppMargin = postBodyData['cbdSuppMargPost'] //cbdSuppMargPost
+    formInputsObj.formInput9 = Object.values(postBodyData)[9] = formInputsObj.cbdTopMargin = postBodyData['cbdTopMargPost'] //cbdTopMargPost
+    formInputsObj.formInput10 = Object.values(postBodyData)[10] = formInputsObj.consignMargin = postBodyData['consignMargPost'] //consignMargPost
+    formInputsObj.formInput11 = Object.values(postBodyData)[11] = formInputsObj.frozenMargin = postBodyData['frozenMargPost'] //frozenMargPost
+    formInputsObj.formInput12 = Object.values(postBodyData)[12] = formInputsObj.genMerchMargin = postBodyData['genMerchMargPost'] //genMerchMargPost
+    formInputsObj.formInput13 = Object.values(postBodyData)[13] = formInputsObj.giftMargin = postBodyData['giftMargPost'] //giftMargPost
+    formInputsObj.formInput14 = Object.values(postBodyData)[14] = formInputsObj.grabGoMargin = postBodyData['grabGoMargPost'] //grabGoMargPost
+    formInputsObj.formInput15 = Object.values(postBodyData)[15] = formInputsObj.grocMargin = postBodyData['grocMargPost'] //grocMargPost
+    formInputsObj.formInput16 = Object.values(postBodyData)[16] = formInputsObj.grocLocMargin = postBodyData['grocLocMargPost'] //grocLocMargPost
+    formInputsObj.formInput17 = Object.values(postBodyData)[17] = formInputsObj.grocLcMtMargin = postBodyData['grocLcMtMargPost'] //grocLcMtMargPost
+    formInputsObj.formInput18 = Object.values(postBodyData)[18] = formInputsObj.hbaMargin = postBodyData['hbaMargPost'] //hbaMargPost
+    formInputsObj.formInput19 = Object.values(postBodyData)[19] = formInputsObj.herbsHomeoMargin = postBodyData['herbsHomeoMargPost'] //herbsHomeoMargPost
+    formInputsObj.formInput20 = Object.values(postBodyData)[20] = formInputsObj.lfBrMargin = postBodyData['lfBrMargPost'] //lfBrMargPost
+    formInputsObj.formInput21 = Object.values(postBodyData)[21] = formInputsObj.otherMargin = postBodyData['otherMargPost'] //otherMargPost
+    formInputsObj.formInput22 = Object.values(postBodyData)[22] = formInputsObj.refrigMargin = postBodyData['refrigMargPost'] //refrigMargPost
+    formInputsObj.formInput23 = Object.values(postBodyData)[23] = formInputsObj.vitSuppMargin = postBodyData['vitSuppMargPost'] //vitSuppMargPost
+    formInputsObj.formInput24 = Object.values(postBodyData)[24] = formInputsObj.globalMargin = postBodyData['globalMargPost'] //globalMargPost
 
-    let formInput25 = Object.values(postBodyData)[25] = lowerCutRqdRtlAndrea = postBodyData['lowerCutRqdRtlAndreaPost'] //lowerCutRqdRtlAndreaPost
-    let formInput26 = Object.values(postBodyData)[26] = lowerCutRqdRtlBrad = postBodyData['lowerCutRqdRtlBradPost'] //lowerCutRqdRtlBradPost
+    formInputsObj.formInput25 = Object.values(postBodyData)[25] = formInputsObj.lowerCutRqdRtlAndrea = postBodyData['lowerCutRqdRtlAndreaPost'] //lowerCutRqdRtlAndreaPost
+    formInputsObj.formInput26 = Object.values(postBodyData)[26] = formInputsObj.lowerCutRqdRtlBrad = postBodyData['lowerCutRqdRtlBradPost'] //lowerCutRqdRtlBradPost
 
-    let formInput27 = Object.values(postBodyData)[27] = lowerCutoffCharm1Andrea = postBodyData['lowerCutoffCharm1AndreaPost'] //lowerCutoffCharm1AndreaPost
-    let formInput28 = Object.values(postBodyData)[28] = lowerCutoffCharm1Brad = postBodyData['lowerCutoffCharm1BradPost'] //lowerCutoffCharm1BradPost
+    formInputsObj.formInput27 = Object.values(postBodyData)[27] = formInputsObj.lowerCutoffCharm1Andrea = postBodyData['lowerCutoffCharm1AndreaPost'] //lowerCutoffCharm1AndreaPost
+    formInputsObj.formInput28 = Object.values(postBodyData)[28] = formInputsObj.lowerCutoffCharm1Brad = postBodyData['lowerCutoffCharm1BradPost'] //lowerCutoffCharm1BradPost
 
-    let formInput29 = Object.values(postBodyData)[29] = lowerCutoffCharm2Andrea = postBodyData['lowerCutoffCharm2AndreaPost'] //lowerCutoffCharm2AndreaPost
-    let formInput30 = Object.values(postBodyData)[30] = lowerCutoffCharm2Brad = postBodyData['lowerCutoffCharm2BradPost'] //lowerCutoffCharm2BradPost
+    formInputsObj.formInput29 = Object.values(postBodyData)[29] = formInputsObj.lowerCutoffCharm2Andrea = postBodyData['lowerCutoffCharm2AndreaPost'] //lowerCutoffCharm2AndreaPost
+    formInputsObj.formInput30 = Object.values(postBodyData)[30] = formInputsObj.lowerCutoffCharm2Brad = postBodyData['lowerCutoffCharm2BradPost'] //lowerCutoffCharm2BradPost
 
-    let formInput31 = Object.values(postBodyData)[31] = lowerCutoffCharm3Andrea = postBodyData['lowerCutoffCharm3AndreaPost'] //lowerCutoffCharm3AndreaPost
-    let formInput32 = Object.values(postBodyData)[32] = lowerCutoffCharm3Brad = postBodyData['lowerCutoffCharm3BradPost'] //lowerCutoffCharm3BradPost
+    formInputsObj.formInput31 = Object.values(postBodyData)[31] = formInputsObj.lowerCutoffCharm3Andrea = postBodyData['lowerCutoffCharm3AndreaPost'] //lowerCutoffCharm3AndreaPost
+    formInputsObj.formInput32 = Object.values(postBodyData)[32] = formInputsObj.lowerCutoffCharm3Brad = postBodyData['lowerCutoffCharm3BradPost'] //lowerCutoffCharm3BradPost
 
-    let formInput33 = Object.values(postBodyData)[33] = lowerCutoffCharm4Andrea = postBodyData['lowerCutoffCharm4AndreaPost'] //lowerCutoffCharm4AndreaPost
-    let formInput34 = Object.values(postBodyData)[34] = lowerCutoffCharm4Brad = postBodyData['lowerCutoffCharm4BradPost'] //lowerCutoffCharm4BradPost
+    formInputsObj.formInput33 = Object.values(postBodyData)[33] = formInputsObj.lowerCutoffCharm4Andrea = postBodyData['lowerCutoffCharm4AndreaPost'] //lowerCutoffCharm4AndreaPost
+    formInputsObj.formInput34 = Object.values(postBodyData)[34] = formInputsObj.lowerCutoffCharm4Brad = postBodyData['lowerCutoffCharm4BradPost'] //lowerCutoffCharm4BradPost
 
-    let formInput35 = Object.values(postBodyData)[35] = lowerCutoffCharm5Andrea = postBodyData['lowerCutoffCharm5AndreaPost'] //lowerCutoffCharm5AndreaPost
-    let formInput36 = Object.values(postBodyData)[36] = lowerCutoffCharm5Brad = postBodyData['lowerCutoffCharm5BradPost'] //lowerCutoffCharm5BradPost
+    formInputsObj.formInput35 = Object.values(postBodyData)[35] = formInputsObj.lowerCutoffCharm5Andrea = postBodyData['lowerCutoffCharm5AndreaPost'] //lowerCutoffCharm5AndreaPost
+    formInputsObj.formInput36 = Object.values(postBodyData)[36] = formInputsObj.lowerCutoffCharm5Brad = postBodyData['lowerCutoffCharm5BradPost'] //lowerCutoffCharm5BradPost
 
-    let formInput37 = Object.values(postBodyData)[37] = lowerCutoffCharm6Andrea = postBodyData['lowerCutoffCharm6AndreaPost'] //lowerCutoffCharm6AndreaPost
-    let formInput38 = Object.values(postBodyData)[38] = lowerCutoffCharm6Brad = postBodyData['lowerCutoffCharm6BradPost'] //lowerCutoffCharm6BradPost
+    formInputsObj.formInput37 = Object.values(postBodyData)[37] = formInputsObj.lowerCutoffCharm6Andrea = postBodyData['lowerCutoffCharm6AndreaPost'] //lowerCutoffCharm6AndreaPost
+    formInputsObj.formInput38 = Object.values(postBodyData)[38] = formInputsObj.lowerCutoffCharm6Brad = postBodyData['lowerCutoffCharm6BradPost'] //lowerCutoffCharm6BradPost
 
-    let formInput39 = Object.values(postBodyData)[39] = lowerCutoffCharm7Andrea = postBodyData['lowerCutoffCharm7AndreaPost'] //lowerCutoffCharm7AndreaPost
-    let formInput40 = Object.values(postBodyData)[40] = lowerCutoffCharm7Brad = postBodyData['lowerCutoffCharm7BradPost'] //lowerCutoffCharm7BradPost
+    formInputsObj.formInput39 = Object.values(postBodyData)[39] = formInputsObj.lowerCutoffCharm7Andrea = postBodyData['lowerCutoffCharm7AndreaPost'] //lowerCutoffCharm7AndreaPost
+    formInputsObj.formInput40 = Object.values(postBodyData)[40] = formInputsObj.lowerCutoffCharm7Brad = postBodyData['lowerCutoffCharm7BradPost'] //lowerCutoffCharm7BradPost
 
-    let formInput41 = Object.values(postBodyData)[41] = upperCharmRqdRtlAndrea = postBodyData['upperCharmRqdRtlAndreaPost'] //upperCharmRqdRtlAndreaPost
-    let formInput42 = Object.values(postBodyData)[42] = upperCharmRqdRtlBrad = postBodyData['upperCharmRqdRtlBradPost'] //upperCharmRqdRtlBradPost
+    formInputsObj.formInput41 = Object.values(postBodyData)[41] = formInputsObj.upperCharmRqdRtlAndrea = postBodyData['upperCharmRqdRtlAndreaPost'] //upperCharmRqdRtlAndreaPost
+    formInputsObj.formInput42 = Object.values(postBodyData)[42] = formInputsObj.upperCharmRqdRtlBrad = postBodyData['upperCharmRqdRtlBradPost'] //upperCharmRqdRtlBradPost
 
-    let formInput43 = Object.values(postBodyData)[43] = defaultCharm1Andrea = postBodyData['defaultCharm1AndreaPost'] //defaultCharm1AndreaPost
-    let formInput44 = Object.values(postBodyData)[44] = defaultCharm1Brad = postBodyData['defaultCharm1BradPost'] //defaultCharm1BradPost
+    formInputsObj.formInput43 = Object.values(postBodyData)[43] = formInputsObj.defaultCharm1Andrea = postBodyData['defaultCharm1AndreaPost'] //defaultCharm1AndreaPost
+    formInputsObj.formInput44 = Object.values(postBodyData)[44] = formInputsObj.defaultCharm1Brad = postBodyData['defaultCharm1BradPost'] //defaultCharm1BradPost
 
-    let formInput45 = Object.values(postBodyData)[45] = defaultCharm2Andrea = postBodyData['defaultCharm2AndreaPost'] //defaultCharm2AndreaPost
-    let formInput46 = Object.values(postBodyData)[46] = defaultCharm2Brad = postBodyData['defaultCharm2BradPost'] //defaultCharm2BradPost
+    formInputsObj.formInput45 = Object.values(postBodyData)[45] = formInputsObj.defaultCharm2Andrea = postBodyData['defaultCharm2AndreaPost'] //defaultCharm2AndreaPost
+    formInputsObj.formInput46 = Object.values(postBodyData)[46] = formInputsObj.defaultCharm2Brad = postBodyData['defaultCharm2BradPost'] //defaultCharm2BradPost
 
-    let formInput47 = Object.values(postBodyData)[47] = defaultCharm3Andrea = postBodyData['defaultCharm3AndreaPost'] //defaultCharm3AndreaPost
-    let formInput48 = Object.values(postBodyData)[48] = defaultCharm3Brad = postBodyData['defaultCharm3BradPost'] //defaultCharm3BradPost
+    formInputsObj.formInput47 = Object.values(postBodyData)[47] = formInputsObj.defaultCharm3Andrea = postBodyData['defaultCharm3AndreaPost'] //defaultCharm3AndreaPost
+    formInputsObj.formInput48 = Object.values(postBodyData)[48] = formInputsObj.defaultCharm3Brad = postBodyData['defaultCharm3BradPost'] //defaultCharm3BradPost
 
-    let formInput49 = Object.values(postBodyData)[49] = defaultCharm4Andrea = postBodyData['defaultCharm4AndreaPost'] //defaultCharm4AndreaPost
-    let formInput50 = Object.values(postBodyData)[50] = defaultCharm4Brad = postBodyData['defaultCharm4BradPost'] //defaultCharm4BradPost
+    formInputsObj.formInput49 = Object.values(postBodyData)[49] = formInputsObj.defaultCharm4Andrea = postBodyData['defaultCharm4AndreaPost'] //defaultCharm4AndreaPost
+    formInputsObj.formInput50 = Object.values(postBodyData)[50] = formInputsObj.defaultCharm4Brad = postBodyData['defaultCharm4BradPost'] //defaultCharm4BradPost
 
-    let formInput51 = Object.values(postBodyData)[51] = discountToApply = postBodyData['discountToApplyPost'] //discountToApplyPost
-    console.log(`typeof discountToApply==> ${typeof discountToApply}`)
-    console.log(`discountToApply==> ${discountToApply}`)
-    console.log(`discountToApply * 5==> ${discountToApply * 5}`)
-    let formInput52 = Object.values(postBodyData)[52] = edlpDisco = postBodyData['edlpDiscoPost'] //edlpDiscoPost
+    formInputsObj.formInput51 = Object.values(postBodyData)[51] = formInputsObj.discountToApply = postBodyData['discountToApplyPost'] //discountToApplyPost
+    console.log(`typeof formInputsObj.discountToApply==> ${typeof formInputsObj.discountToApply}`)
+    console.log(`formInputsObj.discountToApply==> ${formInputsObj.discountToApply}`)
+    console.log(`formInputsObj.discountToApply * 5==> ${formInputsObj.discountToApply * 5}`)
+    formInputsObj.formInput52 = Object.values(postBodyData)[52] = formInputsObj.edlpDisco = postBodyData['edlpDiscoPost'] //edlpDiscoPost
 
-    // let formInput53 = Object.values(postBodyData)[53] //wsDiffResultsPost
+    // formInputsObj.formInput53 = Object.values(postBodyData)[53] //wsDiffResultsPost
 
-    let formInput53 = typeOfIMW = Object.values(postBodyData)[53] //typeOfIMWPost
-    console.log('typeOfIMW==>', typeOfIMW)
-    let formInput54 = skuOveride = Object.values(postBodyData)[54] //skuOveridePost
-    console.log('skuOveride==>', skuOveride)
-    let formInput55 = deptFilter = Object.values(postBodyData)[55] //deptFilterPost
-    console.log('deptFilter==>', deptFilter)
-    formInputsObj.deptFilter = deptFilter
-    let formInput56 = edlpSwitch = Object.values(postBodyData)[56] //edlpSwitchPost
-    console.log('edlpSwitch==>', edlpSwitch)
-    let formInput57 = skuToggle = Object.values(postBodyData)[57] //skuTogglePost
-    console.log('skuToggle==>', skuToggle)
-    let formInput58 = ediTblName = Object.values(postBodyData)[58] //ediTblNamePost
-    console.log('ediTblName==>', ediTblName)
-    let formInput59 = skuMismatchOption = Object.values(postBodyData)[59] //skuMismatchOptionPost
-    console.log('skuMismatchOption==>', skuMismatchOption)
+    formInputsObj.formInput53 = formInputsObj.typeOfIMW = Object.values(postBodyData)[53] //typeOfIMWPost
+    console.log('formInputsObj.typeOfIMW==>', formInputsObj.typeOfIMW)
+    formInputsObj.formInput54 = formInputsObj.skuOveride = Object.values(postBodyData)[54] //skuOveridePost
+    console.log('formInputsObj.skuOveride==>', formInputsObj.skuOveride)
+    formInputsObj.formInput55 = formInputsObj.deptFilter = Object.values(postBodyData)[55] //deptFilterPost
+    console.log('formInputsObj.deptFilter==>', formInputsObj.deptFilter)
+    // formInputsObj.deptFilter = deptFilter
+    formInputsObj.formInput56 = formInputsObj.edlpSwitch = Object.values(postBodyData)[56] //edlpSwitchPost
+    console.log('formInputsObj.edlpSwitch==>', formInputsObj.edlpSwitch)
+    formInputsObj.formInput57 = skuToggle = Object.values(postBodyData)[57] //skuTogglePost
+    console.log('formInputsObj.skuToggle==>', formInputsObj.skuToggle)
+    formInputsObj.formInput58 = formInputsObj.ediTblName = Object.values(postBodyData)[58] //ediTblNamePost
+    console.log('formInputsObj.ediTblName==>', formInputsObj.ediTblName)
+    formInputsObj.formInput59 = formInputsObj.skuMismatchOption = Object.values(postBodyData)[59] //skuMismatchOptionPost
+    console.log('formInputsObj.skuMismatchOption==>', formInputsObj.skuMismatchOption)
 
     formInputsObj.deptFilterToApply = null
 
