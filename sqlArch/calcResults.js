@@ -474,7 +474,7 @@ module.exports = {
         srcRsObj['sibBasePrice'] = nejRows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in csv to export data
         reviewObj['sibBasePrice'] = nejRows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in save2CSVreview export data
 
-        srcRsObj['globalMargin'] = globalMargin //do not include in csv to export data
+        srcRsObj['globalMargin'] = frmInptsObj.globalMargin //do not include in csv to export data
 
         srcRsObj['dptName'] = nejRows[i][genericHeaderObj.rbDeptHeader]
         reviewObj['dptName'] = nejRows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
@@ -542,13 +542,13 @@ module.exports = {
           // if (edlpSwitch == 'no') {
 
           // }
-          //v//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for globalMargin
-          if (formInput0.includes('edi_')) {
-            calcCharm(globalMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
+          //v//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for frmInptsObj.globalMargin
+          if (frmInptsObj.formInput0.includes('edi_')) {
+            calcCharm(frmInptsObj.globalMargin, lowerCutRqdRtlBrad, lowerCutoffCharm1Brad, lowerCutoffCharm2Brad, lowerCutoffCharm3Brad,
               lowerCutoffCharm4Brad, lowerCutoffCharm5Brad, lowerCutoffCharm6Brad, lowerCutoffCharm7Brad, upperCharmRqdRtlBrad,
               defaultCharm1Brad, defaultCharm2Brad, defaultCharm3Brad, defaultCharm4Brad)
           }
-          //^//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for globalMargin
+          //^//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for frmInptsObj.globalMargin
 
           if (srcRsObj['dptNumber'] == '54') { //Beer & Alcohol
             //apply Department margin to calculate charm pricing
