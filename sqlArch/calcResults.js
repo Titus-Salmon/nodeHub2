@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const mysql = require('mysql')
 
-const genericHdrObj = require('../funcLibT0d/genericHdrObj')
+const gEnericHdrObj = require('../funcLibT0d/genericHdrObj')
 const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')
 
 const connection = mysql.createConnection({
@@ -167,7 +167,7 @@ module.exports = {
     // console.log('calcResults says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
 
     // //v//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
-    // let formInput0 = Object.values(postBody)[0] = loadedSqlTbl = postBody['tblNameToPostPost'] //tblNameToPostPost
+    // let formInput0 = Object.values(postBody)[0] = frmInptsObj.loadedSqlTbl = postBody['tblNameToPostPost'] //tblNameToPostPost
     // console.log('formInput0==>', formInput0)
     // let formInput1 = Object.values(postBody)[1] //fldArrToPostPost
     // let formInput2 = Object.values(postBody)[2] = beerAlcMargin = postBody['beerAlcMargPost'] //beerAlcMargPost
@@ -268,11 +268,11 @@ module.exports = {
     // console.log(`deptFilterToApply==> ${deptFilterToApply}`)
 
 
-    let frmInptsObj = {} //provide empty object for which to populate ... might not even need this
+    let frmInptsObj = {} //provide empty object to populate with form inputs & values generated from calcResFormInputs.js module
     cAlcRsFrmInputs.clcRsFrmInpts(postBody, frmInptsObj)
 
-    let genericHeaderObj = {}
-    genericHdrObj.genericHdrObj(postBody, genericHeaderObj)
+    let genericHeaderObj = {} //provide empty object to populate with generic headers generated from genericHdrObj.js module
+    gEnericHdrObj.gnrcHdrObj(postBody, genericHeaderObj)
 
     // //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
     // let toSplitField = postBody['fldArrToPostPost']
@@ -1070,9 +1070,9 @@ module.exports = {
           showSearchResults(rows)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
-            title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${loadedSqlTbl}>>)`,
+            title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
             searchResRows: searchResults,
-            loadedSqlTbl: loadedSqlTbl,
+            loadedSqlTbl: frmInptsObj.loadedSqlTbl,
             // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
           })
         })
