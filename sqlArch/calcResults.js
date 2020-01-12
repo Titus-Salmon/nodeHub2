@@ -108,7 +108,7 @@ module.exports = {
 
             if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
               //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
-              var wsDiscoVar = discountToApply
+              var wsDiscoVar = frmInptsObj.discountToApply
             } else {
               var wsDiscoVar = edlpDisco
             }
