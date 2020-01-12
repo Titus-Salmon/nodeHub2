@@ -506,7 +506,7 @@ module.exports = {
             //is different than new divided-to-uos edi cost, as determined in divideCostToUOS_WS_IMW())
 
             // console.log(`srcRsObj['upc'](${i})...srcRsObj['ediCostMod'](${i})==>${srcRsObj['upc']}...${srcRsObj['ediCostMod']}`)
-            if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
+            if (frmInptsObj.skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
               if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
                 srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if frmInptsObj.typeOfIMW = 'wholesale'
                 srcRsObj['charm'] = "" //set charm to empty if frmInptsObj.typeOfIMW = 'wholesale'
@@ -688,7 +688,7 @@ module.exports = {
             skuMismatchFlagOptionHandler()
             if (srcRsObj['charm'] !== "" && Math.round((srcRsObj['charm']) * 100) / 100 !== Math.round((srcRsObj['sibBasePrice']) * 100) / 100) { // only push results that have some
               //value for "charm" column, AND ALSO select only items whose updated price is different than the exist. price in cplt
-              if (skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
+              if (frmInptsObj.skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
                 if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
                   if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
                     if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
