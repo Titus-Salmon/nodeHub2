@@ -691,8 +691,8 @@ module.exports = {
               //value for "charm" column, AND ALSO select only items whose updated price is different than the exist. price in cplt
               if (frmInptsObj.skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
                 if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
-                  if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
-                    if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+                  if (frmInptsObj.deptFilterToApply !== null) { //if a valid dept filter option is entered,
+                    if (srcRsObj['dptNumber'] == frmInptsObj.deptFilterToApply) { //only push that dept into searchResults
                       searchResults.push(srcRsObj)
                       searchResultsForCSV.push(srcRsObj)
                       searchResultsForCSVreview.push(reviewObj)
@@ -704,8 +704,8 @@ module.exports = {
                   }
                 }
               } else {
-                if (deptFilterToApply !== null) { //if a valid dept filter option is entered,
-                  if (srcRsObj['dptNumber'] == deptFilterToApply) { //only push that dept into searchResults
+                if (frmInptsObj.deptFilterToApply !== null) { //if a valid dept filter option is entered,
+                  if (srcRsObj['dptNumber'] == frmInptsObj.deptFilterToApply) { //only push that dept into searchResults
                     searchResults.push(srcRsObj)
                     searchResultsForCSV.push(srcRsObj)
                     searchResultsForCSVreview.push(reviewObj)
