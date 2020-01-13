@@ -29,10 +29,31 @@ module.exports = {
     let genericHeaderObj = {} //provide empty object to populate with generic headers generated from genericHdrObj.js module
     gEnericHdrObj.gnrcHdrObj(postBody, genericHeaderObj)
 
+    //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
+    var i
+    var nejRows
+    var edlpRows
+
+    function skuMismatchFlagOptionHandler() { //Flag SKU mismatch & leave SKU blank for IMW if skuMismatchFlagOption = "yes"
+      if (nejRows[i][genericHeaderObj.cpltSKUHeader] !== nejRows[i][genericHeaderObj.ediSKUHeader]) {
+        if (frmInptsObj.skuMismatchOption == "yes") {
+          console.log(`frmInptsObj.skuMismatchOption==> ${frmInptsObj.skuMismatchOption}`)
+          srcRsObj['imwSKU'] = reviewObj['imwSKU'] = ""
+          srcRsObj['pf4'] = reviewObj['pf4'] = "skuMismatch"
+          console.log(`nejRows[${i}][genericHeaderObj.cpltSKUHeader]==> ${nejRows[i][genericHeaderObj.cpltSKUHeader]}`)
+          console.log(`nejRows[${i}][genericHeaderObj.ediSKUHeader]==> ${nejRows[i][genericHeaderObj.ediSKUHeader]}`)
+          console.log(`srcRsObj['imwSKU']==> ${srcRsObj['imwSKU']}`)
+          console.log(`srcRsObj['pf4']==> ${srcRsObj['pf4']}`)
+        }
+      }
+    }
+    // skuMismatchFlagOptionHandler()
+    //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
+
     function showSearchResults(rows) {
       console.log(`rows.length==>${rows.length}`)
-      let nejRows = rows[0] //targets 1st query on NEJ table
-      let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
+      nejRows = rows[0] //targets 1st query on NEJ table
+      edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
       // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
 
       console.log(`JSON.stringify(nejRows[0])==> ${JSON.stringify(nejRows[0])}`)
@@ -43,22 +64,22 @@ module.exports = {
         let srcRsObj = {}
         let reviewObj = {} //push data to this obj for review CSV
 
-        //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
-        function skuMismatchFlagOptionHandler() { //Flag SKU mismatch & leave SKU blank for IMW if skuMismatchFlagOption = "yes"
-          if (nejRows[i][genericHeaderObj.cpltSKUHeader] !== nejRows[i][genericHeaderObj.ediSKUHeader]) {
-            if (frmInptsObj.skuMismatchOption == "yes") {
-              console.log(`frmInptsObj.skuMismatchOption==> ${frmInptsObj.skuMismatchOption}`)
-              srcRsObj['imwSKU'] = reviewObj['imwSKU'] = ""
-              srcRsObj['pf4'] = reviewObj['pf4'] = "skuMismatch"
-              console.log(`nejRows[${i}][genericHeaderObj.cpltSKUHeader]==> ${nejRows[i][genericHeaderObj.cpltSKUHeader]}`)
-              console.log(`nejRows[${i}][genericHeaderObj.ediSKUHeader]==> ${nejRows[i][genericHeaderObj.ediSKUHeader]}`)
-              console.log(`srcRsObj['imwSKU']==> ${srcRsObj['imwSKU']}`)
-              console.log(`srcRsObj['pf4']==> ${srcRsObj['pf4']}`)
-            }
-          }
-        }
-        // skuMismatchFlagOptionHandler()
-        //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
+        // //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
+        // function skuMismatchFlagOptionHandler() { //Flag SKU mismatch & leave SKU blank for IMW if skuMismatchFlagOption = "yes"
+        //   if (nejRows[i][genericHeaderObj.cpltSKUHeader] !== nejRows[i][genericHeaderObj.ediSKUHeader]) {
+        //     if (frmInptsObj.skuMismatchOption == "yes") {
+        //       console.log(`frmInptsObj.skuMismatchOption==> ${frmInptsObj.skuMismatchOption}`)
+        //       srcRsObj['imwSKU'] = reviewObj['imwSKU'] = ""
+        //       srcRsObj['pf4'] = reviewObj['pf4'] = "skuMismatch"
+        //       console.log(`nejRows[${i}][genericHeaderObj.cpltSKUHeader]==> ${nejRows[i][genericHeaderObj.cpltSKUHeader]}`)
+        //       console.log(`nejRows[${i}][genericHeaderObj.ediSKUHeader]==> ${nejRows[i][genericHeaderObj.ediSKUHeader]}`)
+        //       console.log(`srcRsObj['imwSKU']==> ${srcRsObj['imwSKU']}`)
+        //       console.log(`srcRsObj['pf4']==> ${srcRsObj['pf4']}`)
+        //     }
+        //   }
+        // }
+        // // skuMismatchFlagOptionHandler()
+        // //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
 
         srcRsObj['invPK'] = reviewObj['invPK'] = nejRows[i]['invPK'] //populate srcRsObj & reviewObj with invPK from Catapult
         srcRsObj['invCPK'] = reviewObj['invCPK'] = nejRows[i]['invCPK'] //populate srcRsObj & reviewObj with invCPK from Catapult
