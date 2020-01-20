@@ -45,10 +45,11 @@ module.exports = {
 
         //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
         function skuMismatchFlagOptionHandler() { //Flag SKU mismatch & leave SKU blank for IMW if skuMismatchFlagOption = "yes"
+          //ACTUALLY, CATAPULT WONT UPDATE RECORD UNLESS SKU IS INCLUDED, SO CAN'T LEAVE SKU BLANK -t0d
           if (nejRows[i][genericHeaderObj.cpltSKUHeader] !== nejRows[i][genericHeaderObj.ediSKUHeader]) {
             if (frmInptsObj.skuMismatchOption == "yes") {
               console.log(`frmInptsObj.skuMismatchOption==> ${frmInptsObj.skuMismatchOption}`)
-              srcRsObj['imwSKU'] = reviewObj['imwSKU'] = ""
+              // srcRsObj['imwSKU'] = reviewObj['imwSKU'] = "" //ACTUALLY, CATAPULT WONT UPDATE RECORD UNLESS SKU IS INCLUDED, SO CAN'T LEAVE SKU BLANK -t0d
               srcRsObj['pf4'] = reviewObj['pf4'] = "skuMismatch"
               console.log(`nejRows[${i}][genericHeaderObj.cpltSKUHeader]==> ${nejRows[i][genericHeaderObj.cpltSKUHeader]}`)
               console.log(`nejRows[${i}][genericHeaderObj.ediSKUHeader]==> ${nejRows[i][genericHeaderObj.ediSKUHeader]}`)
