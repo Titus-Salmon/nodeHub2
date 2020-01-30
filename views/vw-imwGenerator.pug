@@ -18,6 +18,7 @@ html
 				script.
 					//- localStorage.clear()
 					var sanitized = !{imwProductVals}.replace(/(")|(\\)/g, "")
+					console.log(`sanitized==>${sanitized}`)
 					localStorage.setItem('imwProductVals_localStorage', sanitized)
 					console.log('localStorage from pug==>', localStorage)
 
