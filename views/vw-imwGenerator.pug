@@ -20,4 +20,9 @@ html
 			each thingy in imwProductVals
 				p= thingy
 
-			script(src='/jsModules_t0d/imwGenLocStorM0d.js')
+			script.
+				//- localStorage.clear()
+				localStorage.setItem('imwProductVals_localStorage', !{imwProductVals})
+				console.log('localStorage from pug==>', localStorage)
+
+		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
