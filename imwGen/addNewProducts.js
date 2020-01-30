@@ -35,9 +35,9 @@ module.exports = {
       var sanitizedLocStorAcc = locStorAccumulator.replace(sanitizerRegex1, "")
       console.log(`locStorAccumulator==> ${locStorAccumulator}`)
       //locStorAccSanitizer()
-      imwProductValues = `${sanitizedLocStorAcc} _ ${itemID} _ ${suppUnitID}`
+      imwProductValues = `${sanitizedLocStorAcc} _ ${itemID} , ${suppUnitID}`
     } else {
-      imwProductValues = `${itemID} _ ${suppUnitID}`
+      imwProductValues = `${itemID} , ${suppUnitID}`
     }
 
     res.render('vw-imwGenerator', { //render searchResults to vw-MySqlTableHub page
