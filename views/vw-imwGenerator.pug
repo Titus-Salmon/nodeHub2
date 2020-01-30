@@ -26,8 +26,8 @@ html
 
 			script.
 				//- localStorage.clear()
-				!{imwProductVals}.replace(/(")/g, "zzz")
-				localStorage.setItem('imwProductVals_localStorage', !{imwProductVals})
+				var sanitized = !{imwProductVals}.replace(/(")/g, "zzz")
+				localStorage.setItem('imwProductVals_localStorage', sanitized)
 				console.log('localStorage from pug==>', localStorage)
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
