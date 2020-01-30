@@ -24,8 +24,8 @@ html
 
 				script.
 					console.log("imwProductVals==>", !{imwProductVals})//- !{} is for unescaped string interpolation in Pug
-					var imwProdValSplit = !{imwProductVals}.split("_")
-					console.log(`imwProdValSplit==> ${imwProdValSplit}`)
+					//- var imwProdValSplit = !{imwProductVals}.split("_")
+					//- console.log(`imwProdValSplit==> ${imwProdValSplit}`)
 
 				label.input-label-1(for='itemListAccumulator') Item List Accumulator
 				input#itemListAccumulator.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductVals)
