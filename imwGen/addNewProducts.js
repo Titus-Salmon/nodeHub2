@@ -21,8 +21,13 @@ module.exports = {
     const postBody = req.body
     let itemID = postBody['itemIDPost']
     let suppUnitID = postBody['suppUnitIDPost']
+    let locStorAccumulator = postBody['locStorAccumulatorPost']
 
-    imwProductValues.push(itemID, suppUnitID)
+    if (locStorAccumulator !== undefined) {
+      imwProductValues.push(locStorAccumulator, itemID, suppUnitID)
+    } else {
+      imwProductValues.push(itemID, suppUnitID)
+    }
 
     res.render('vw-imwGenerator', { //render searchResults to vw-MySqlTableHub page
       title: `vw-imwGenerator`,
