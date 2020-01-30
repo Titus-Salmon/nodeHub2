@@ -1,1 +1,5 @@
-console.log(`imwProductVals==> ${imwProductVals}`)
+let addItem = document.getElementById('addItemButton')
+
+addItem.addEventListener('click', function () {
+
+})

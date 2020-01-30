@@ -22,10 +22,13 @@ html
 				//- 	localStorage.setItem('imwProductVals_localStorage', sanitized)
 				//- 	console.log('localStorage from pug==>', localStorage)
 
-				label.input-label-1(for='locStorAccumulator') Local Storage Accumulator
-				input#locStorAccumulator.input-unit-1(type='text', placeholder='enter data1', name='locStorAccumulatorPost', value=imwProductVals)
+				script.
+					console.log(`imwProductVals==> ${imwProductVals}`)
 
-			button#imwGeneratorBtn(type='submit', form='imwGenerator') Add Product(s) Accumulatively
+				label.input-label-1(for='itemListAccumulator') Item List Accumulator
+				input#itemListAccumulator.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductVals)
+
+			button#addItemButton(type='submit', form='imwGenerator') Add Product(s) Accumulatively
 
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
