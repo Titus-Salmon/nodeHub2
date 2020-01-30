@@ -23,23 +23,16 @@ module.exports = {
     let suppUnitID = postBody['suppUnitIDPost']
     let locStorAccumulator = postBody['locStorAccumulatorPost']
 
-    function locStorAccSanitizer() {
-      let sanitizerRegex1 = /["]/g
-      locStorAccumulator.replace(sanitizerRegex1, "")
-      console.log(`locStorAccumulator==> ${locStorAccumulator}`)
-    }
+    //function locStorAccSanitizer() {
+    let sanitizerRegex1 = /(")|(\\)/g
+    var sanitizedLocStorAcc = locStorAccumulator.replace(sanitizerRegex1, "")
+    console.log(`locStorAccumulator==> ${locStorAccumulator}`)
+    //}
 
-
-    // //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
-    // let toSplitField = postBodyData['fldArrToPostPost']
-    // let sanitizeColumnFields = /(\[)|(\])|(")/g
-    // let toSplitFieldReplace = toSplitField.replace(sanitizeColumnFields, "")
-    // let splitFieldResult = toSplitFieldReplace.split(',')
-    // //^//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
 
     if (locStorAccumulator !== undefined) {
-      locStorAccSanitizer()
-      imwProductValues = `${locStorAccumulator} _ ${itemID} _ ${suppUnitID}`
+      //locStorAccSanitizer()
+      imwProductValues = `${sanitizedLocStorAcc} _ ${itemID} _ ${suppUnitID}`
     } else {
       imwProductValues = `${itemID} _ ${suppUnitID}`
     }
