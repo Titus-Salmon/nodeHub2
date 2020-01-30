@@ -23,8 +23,18 @@ module.exports = {
     let suppUnitID = postBody['suppUnitIDPost']
     let locStorAccumulator = postBody['locStorAccumulatorPost']
 
+    let sanitizerRegex1 = /"/g
+    let locStorAccSanitized = locStorAccumulator.replace(sanitizerRegex1, "")
+
+    // //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
+    // let toSplitField = postBodyData['fldArrToPostPost']
+    // let sanitizeColumnFields = /(\[)|(\])|(")/g
+    // let toSplitFieldReplace = toSplitField.replace(sanitizeColumnFields, "")
+    // let splitFieldResult = toSplitFieldReplace.split(',')
+    // //^//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
+
     if (locStorAccumulator !== undefined) {
-      imwProductValues = `${locStorAccumulator} _ ${itemID} _ ${suppUnitID}`
+      imwProductValues = `${locStorAccSanitized} _ ${itemID} _ ${suppUnitID}`
     } else {
       imwProductValues = `${itemID} _ ${suppUnitID}`
     }
