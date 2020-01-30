@@ -17,16 +17,16 @@ module.exports = {
 
   addNewProducts: router.post('/addNewProducts', (req, res, next) => {
 
-    let imwProductValues = [] //clear searchResults from previous search
     const postBody = req.body
+    var imwProductValues
     let itemID = postBody['itemIDPost']
     let suppUnitID = postBody['suppUnitIDPost']
     let locStorAccumulator = postBody['locStorAccumulatorPost']
 
     if (locStorAccumulator !== undefined) {
-      imwProductValues.push(locStorAccumulator, itemID, suppUnitID)
+      imwProductValues = `${locStorAccumulator} ** ${itemID} ** ${suppUnitID}`
     } else {
-      imwProductValues.push(itemID, suppUnitID)
+      imwProductValues = `${itemID} ** ${suppUnitID}`
     }
 
     res.render('vw-imwGenerator', { //render searchResults to vw-MySqlTableHub page
