@@ -24,13 +24,16 @@ module.exports = {
     let locStorAccumulator = postBody['locStorAccumulatorPost']
 
     //function locStorAccSanitizer() {
-    let sanitizerRegex1 = /(")|(\\)/g
-    var sanitizedLocStorAcc = locStorAccumulator.replace(sanitizerRegex1, "")
-    console.log(`locStorAccumulator==> ${locStorAccumulator}`)
+    // let sanitizerRegex1 = /(")|(\\)/g
+    // var sanitizedLocStorAcc = locStorAccumulator.replace(sanitizerRegex1, "")
+    // console.log(`locStorAccumulator==> ${locStorAccumulator}`)
     //}
 
 
     if (locStorAccumulator !== undefined) {
+      let sanitizerRegex1 = /(")|(\\)/g
+      var sanitizedLocStorAcc = locStorAccumulator.replace(sanitizerRegex1, "")
+      console.log(`locStorAccumulator==> ${locStorAccumulator}`)
       //locStorAccSanitizer()
       imwProductValues = `${sanitizedLocStorAcc} _ ${itemID} _ ${suppUnitID}`
     } else {
