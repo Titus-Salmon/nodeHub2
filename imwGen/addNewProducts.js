@@ -31,7 +31,7 @@ module.exports = {
 
     res.render('vw-imwGenerator', { //render searchResults to vw-MySqlTableHub page
       title: `vw-imwGenerator`,
-      imwProductVals: JSON.stringify(imwProductValues),
+      imwProductVals: imwProductValues,
       // loadedSqlTbl: frmInptsObj.loadedSqlTbl,
       // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
     })
