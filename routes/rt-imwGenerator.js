@@ -40,7 +40,7 @@ const router = express.Router()
 //   calcResults
 // } = require('../sqlArch/calcResults')
 const {
-  imwGenerator
+  addNewProducts
 } = require('../imwGen/addNewProducts')
 
 
