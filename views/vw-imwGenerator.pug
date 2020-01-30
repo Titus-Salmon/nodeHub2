@@ -8,12 +8,12 @@ html
 		include vw-dashboard.pug
 
 		form#imwGenerator(action='/imwGenerator/addNewProducts' method='POST' accept-charset="UTF-8")
-      label.input-label-1(for='itemID') Item ID
+			label.input-label-1(for='itemID') Item ID
 			input#itemID.input-unit-1(type='text', placeholder='enter data1', name='itemIDPost', value='')
 
-      button#imwGeneratorBtn(type='submit', form='imwGenerator') Add Product(s) Accumulatively
+			button#imwGeneratorBtn(type='submit', form='imwGenerator') Add Product(s) Accumulatively
 
-    if imwProductVals !== undefined
-      each thingy in imwProductVals
-        p= thingy
+		if imwProductVals !== undefined
+			each thingy in imwProductVals
+				p= thingy
 
