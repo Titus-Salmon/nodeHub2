@@ -26,6 +26,7 @@ module.exports = {
     function locStorAccSanitizer() {
       let sanitizerRegex1 = /(")/g
       locStorAccumulator.replace(sanitizerRegex1, "")
+      console.log(`locStorAccumulator==> ${locStorAccumulator}`)
     }
 
 
