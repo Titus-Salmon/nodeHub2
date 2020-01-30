@@ -23,22 +23,20 @@ module.exports = {
     let suppUnitID = postBody['suppUnitIDPost']
     let locStorAccumulator = postBody['locStorAccumulatorPost']
 
-    //function locStorAccSanitizer() {
-    // let sanitizerRegex1 = /(")|(\\)/g
-    // var sanitizedLocStorAcc = locStorAccumulator.replace(sanitizerRegex1, "")
-    // console.log(`locStorAccumulator==> ${locStorAccumulator}`)
-    //}
-
-
-    if (locStorAccumulator !== undefined) {
-      let sanitizerRegex1 = /(")|(\\)/g
-      var sanitizedLocStorAcc = locStorAccumulator.replace(sanitizerRegex1, "")
-      console.log(`locStorAccumulator==> ${locStorAccumulator}`)
-      //locStorAccSanitizer()
-      imwProductValues = `${sanitizedLocStorAcc} _ ${itemID} , ${suppUnitID}`
-    } else {
-      imwProductValues = `${itemID} , ${suppUnitID}`
+    function locStorAccSanitizer() {
+      if (locStorAccumulator !== undefined) {
+        let sanitizerRegex1 = /(")|(\\)/g
+        var sanitizedLocStorAcc = locStorAccumulator.replace(sanitizerRegex1, "")
+        console.log(`locStorAccumulator==> ${locStorAccumulator}`)
+        //locStorAccSanitizer()
+        imwProductValues = `${sanitizedLocStorAcc} _ itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
+      } else {
+        imwProductValues = `itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
+      }
     }
+
+    locStorAccSanitizer()
+
 
     res.render('vw-imwGenerator', { //render searchResults to vw-MySqlTableHub page
       title: `vw-imwGenerator`,
