@@ -15,19 +15,25 @@ html
 			input#suppUnitID.input-unit-1(type='text', placeholder='enter data1', name='suppUnitIDPost', value='')
 
 			if imwProductVals !== undefined
+				script.
+					//- localStorage.clear()
+					var sanitized = !{imwProductVals}.replace(/(")|(\\)/g, "")
+					localStorage.setItem('imwProductVals_localStorage', sanitized)
+					console.log('localStorage from pug==>', localStorage)
+
 				label.input-label-1(for='locStorAccumulator') Local Storage Accumulator
 				input#locStorAccumulator.input-unit-1(type='text', placeholder='enter data1', name='locStorAccumulatorPost', value=imwProductVals)
 
 			button#imwGeneratorBtn(type='submit', form='imwGenerator') Add Product(s) Accumulatively
 
-		if imwProductVals !== undefined
-			//- each thingy in imwProductVals
-			//- 	p= thingy
+		//- if imwProductVals !== undefined
+		//- 	//- each thingy in imwProductVals
+		//- 	//- 	p= thingy
 
-			script.
-				//- localStorage.clear()
-				var sanitized = !{imwProductVals}.replace(/(")|(\\)/g, "")
-				localStorage.setItem('imwProductVals_localStorage', sanitized)
-				console.log('localStorage from pug==>', localStorage)
+		//- 	script.
+		//- 		//- localStorage.clear()
+		//- 		var sanitized = !{imwProductVals}.replace(/(")|(\\)/g, "")
+		//- 		localStorage.setItem('imwProductVals_localStorage', sanitized)
+		//- 		console.log('localStorage from pug==>', localStorage)
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
