@@ -24,7 +24,7 @@ module.exports = {
     let locStorAccumulator = postBody['locStorAccumulatorPost']
 
     function locStorAccSanitizer() {
-      let sanitizerRegex1 = /"/g
+      let sanitizerRegex1 = /(")/g
       locStorAccumulator.replace(sanitizerRegex1, "")
     }
 
