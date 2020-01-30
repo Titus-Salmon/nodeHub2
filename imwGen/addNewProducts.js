@@ -24,9 +24,9 @@ module.exports = {
     let locStorAccumulator = postBody['locStorAccumulatorPost']
 
     if (locStorAccumulator !== undefined) {
-      imwProductValues = `${locStorAccumulator} ** ${itemID} ** ${suppUnitID}`
+      imwProductValues = `${locStorAccumulator} _ ${itemID} _ ${suppUnitID}`
     } else {
-      imwProductValues = `${itemID} ** ${suppUnitID}`
+      imwProductValues = `${itemID} _ ${suppUnitID}`
     }
 
     res.render('vw-imwGenerator', { //render searchResults to vw-MySqlTableHub page
