@@ -433,7 +433,7 @@ module.exports = {
 
         // srcRsObj['numPkgs'] = "" //Number of Packages
 
-        srcRsObj['numPkgs'] = reviewObj['numPkgs'] = 1 //set numPkgs (for IMW) to 1 FOR EVERYTHING (CRITICAL)
+        // srcRsObj['numPkgs'] = reviewObj['numPkgs'] = 1 //set numPkgs (for IMW) to 1 FOR EVERYTHING (CRITICAL)
 
         srcRsObj['pf1'] = "" //Power Field 1 (today's date) - no, Tom says this should be pf5
         srcRsObj['pf2'] = "" //Power Field 2 (Supplier ID (EDI-VENDORNAME) again, for some reason)
