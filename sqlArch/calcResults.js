@@ -43,6 +43,26 @@ module.exports = {
         let srcRsObj = {}
         let reviewObj = {} //push data to this obj for review CSV
 
+        let oupNameVar = nejRows[i][genericHeaderObj.oupName] //define variable for oupName
+        oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+
+        function numPkgsHandler() {
+          if (oupNameSplit[0].toLowerCase().includes('cs')) { //handle numPkgs value for CS-#n items
+
+            if (oupNameSplit[1] == 1 || oupNameSplit[0].toLowerCase() == "case") {
+              reviewObj['numPkgs'] = srcRsObj['numPkgs'] = "INVALID # FOR CS-#N"
+              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = "INVALID # FOR CS-#N"
+            } else {
+              reviewObj['numPkgs'] = srcRsObj['numPkgs'] = oupNameSplit[1] //set numPkgs to numerical portion of CS-#n
+              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for CS-#n items
+            }
+
+          } else { //if item is not CASE item (i.e., it is EACH)
+            reviewObj['numPkgs'] = srcRsObj['numPkgs'] = 1 //set numPkgs to 1
+            reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
+          }
+        }
+
         //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
         function skuMismatchFlagOptionHandler() { //Flag SKU mismatch & leave SKU blank for IMW if skuMismatchFlagOption = "yes"
           //ACTUALLY, CATAPULT WONT UPDATE RECORD UNLESS SKU IS INCLUDED, SO CAN'T LEAVE SKU BLANK -t0d
@@ -72,16 +92,17 @@ module.exports = {
             var wsDiscoVar = frmInptsObj.edlpDisco
           }
           ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
-          let oupNameVar = nejRows[i][genericHeaderObj.oupName]
-          oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+          // let oupNameVar = nejRows[i][genericHeaderObj.oupName]
+          // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
           if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
             oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case' && oupNameSplit[0].toLowerCase() !== 'cs') {
             if (oupNameSplit[1] !== undefined) {
               reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
               //AND deduct any vendor discount from ediCost
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
+              reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
               //AND deduct any vendor discount from ediCost
-              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
+              // reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
+              numPkgsHandler()
             }
           } else {
             // console.log(`oupNameSplit[0].toLowerCase()==> ${oupNameSplit[0].toLowerCase()}`)
@@ -90,13 +111,14 @@ module.exports = {
               oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
               reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
               //AND deduct any vendor discount from ediCost
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
+              reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
               //AND deduct any vendor discount from ediCost
-              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
+              // reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
+              numPkgsHandler()
             } else {
               reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //divide ediCost by oupName non-parsed value
               //AND deduct any vendor discount from ediCost
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
+              reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
               //AND deduct any vendor discount from ediCost
               reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
             }
@@ -115,8 +137,8 @@ module.exports = {
             }
 
             ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
-            let oupNameVar = nejRows[i][genericHeaderObj.oupName]
-            oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+            // let oupNameVar = nejRows[i][genericHeaderObj.oupName]
+            // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
             if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
               oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case' && oupNameSplit[0].toLowerCase() !== 'cs') {
               if (oupNameSplit[1] !== undefined) {
@@ -130,10 +152,17 @@ module.exports = {
                   //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
-                  reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
-                  // console.log(`ediTstCst1TrRnd==> ${ediTstCst1TrRnd}`)
-                  // console.log(`cpltTstCst1TrRnd==> ${cpltTstCst1TrRnd}`)
-                  // console.log(`oupNameSplit[1]==> ${oupNameSplit[1]}`)
+
+                  numPkgsHandler()
+
+                  // if (oupNameSplit[0].toLowerCase().includes('cs')) { //handle numPkgs value for CS-#n items
+                  //   reviewObj['numPkgs'] = srcRsObj['numPkgs'] = oupNameSplit[1] //set numPkgs to numerical portion of CS-#n
+                  //   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for CS-#n items
+                  // } else { //if item is not CASE item (i.e., it is EACH)
+                  //   reviewObj['numPkgs'] = srcRsObj['numPkgs'] = 1 //set numPkgs to 1
+                  //   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
+                  // }
+
                 } else {
                   // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test1'
                 }
