@@ -46,10 +46,10 @@ module.exports = {
         let oupNameVar = nejRows[i][genericHeaderObj.oupName] //define variable for oupName
         oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
 
-        function numPkgsHandler() {
-          if (oupNameSplit[0].toLowerCase().includes('cs')) { //handle numPkgs value for CS-#n items
+        function numPkgsHandler_case() {
+          if (oupNameSplit[0].toLowerCase().includes('cs') || oupNameSplit[0].toLowerCase().includes('case')) { //handle numPkgs value for CS-#n items
 
-            if (oupNameSplit[1] == 1 || oupNameSplit[0].toLowerCase() == "case") {
+            if (oupNameSplit[1] <= 1) {
               reviewObj['numPkgs'] = srcRsObj['numPkgs'] = "INVALID # FOR CS-#N"
               reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = "INVALID # FOR CS-#N"
             } else {
@@ -58,8 +58,16 @@ module.exports = {
             }
 
           } else { //if item is not CASE item (i.e., it is EACH)
-            reviewObj['numPkgs'] = srcRsObj['numPkgs'] = 1 //set numPkgs to 1
-            reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
+            if (oupNameSplit[0].toLowerCase().includes('ea')) {
+              if (oupNameSplit[0].toLowerCase() == 'ea' || oupNameSplit[0].toLowerCase() == 'each') {
+                reviewObj['numPkgs'] = srcRsObj['numPkgs'] = 1 //set numPkgs to 1
+                reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for strictly 'ea' or 'each'
+              } else { //set numPkgs & csPkgMltpl for 'ea-#n' or 'each-#n'
+                reviewObj['numPkgs'] = srcRsObj['numPkgs'] = 1 //set numPkgs to 1
+                reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
+              }
+
+            }
           }
         }
 
@@ -95,14 +103,15 @@ module.exports = {
           // let oupNameVar = nejRows[i][genericHeaderObj.oupName]
           // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
           if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
-            oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case' && oupNameSplit[0].toLowerCase() !== 'cs') {
+            oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'cs' ||
+            oupNameSplit[0].toLowerCase().includes('case') && oupNameSplit[0].toLowerCase() !== 'case') {
             if (oupNameSplit[1] !== undefined) {
               reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
               //AND deduct any vendor discount from ediCost
               reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
               //AND deduct any vendor discount from ediCost
               // reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
-              numPkgsHandler()
+              numPkgsHandler_case()
             }
           } else {
             // console.log(`oupNameSplit[0].toLowerCase()==> ${oupNameSplit[0].toLowerCase()}`)
@@ -114,7 +123,7 @@ module.exports = {
               reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
               //AND deduct any vendor discount from ediCost
               // reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
-              numPkgsHandler()
+              numPkgsHandler_case()
             } else {
               reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //divide ediCost by oupName non-parsed value
               //AND deduct any vendor discount from ediCost
@@ -153,7 +162,7 @@ module.exports = {
                   reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
                   //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
 
-                  numPkgsHandler()
+                  numPkgsHandler_case()
 
                   // if (oupNameSplit[0].toLowerCase().includes('cs')) { //handle numPkgs value for CS-#n items
                   //   reviewObj['numPkgs'] = srcRsObj['numPkgs'] = oupNameSplit[1] //set numPkgs to numerical portion of CS-#n
