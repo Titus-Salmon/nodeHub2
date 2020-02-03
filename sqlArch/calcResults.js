@@ -49,7 +49,7 @@ module.exports = {
         function numPkgsHandler_case() {
           if (oupNameSplit[0].toLowerCase().includes('cs') || oupNameSplit[0].toLowerCase().includes('case')) { //handle numPkgs value for CS-#n items
 
-            if (oupNameSplit[1] <= 1) {
+            if (oupNameSplit[1] <= 1 || oupNameSplit[0].toLowerCase() == 'cs' || oupNameSplit[0].toLowerCase() == 'case') {
               reviewObj['numPkgs'] = srcRsObj['numPkgs'] = "INVALID # FOR CS-#N"
               reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = "INVALID # FOR CS-#N"
             } else {
