@@ -8,7 +8,7 @@ const sybaseDbName = process.env.SYBASE_DB_NAME
 const sybaseUserName = process.env.SYBASE_USER_NAME
 const sybasePW = process.env.SYBASE_PW
 
-const Sybase = require('sybase')
+const Sybase = require('sybase-plus')
 db = new Sybase(sybaseHost, '3000', sybaseDbName, sybaseUserName, sybasePW)
 
 module.exports = {
