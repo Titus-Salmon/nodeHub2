@@ -3,6 +3,13 @@ var router = express.Router();
 
 const odbc = require('odbc')
 const DSN = process.env.ODBC_CONN_STRING
+const sybaseHost = process.env.SYBASE_HOST
+const sybaseDbName = process.env.SYBASE_DB_NAME
+const sybaseUserName = process.env.SYBASE_USER_NAME
+const sybasePW = process.env.SYBASE_PW
+
+const Sybase = require('sybase')
+db = new Sybase(sybaseHost, port, sybaseDbName, sybaseUserName, sybasePW)
 
 module.exports = {
 	queryCatapultDB: router.post('/queryCatapultDB', (req, res, next) => {
@@ -27,24 +34,37 @@ module.exports = {
 			console.log('result.length~~~>', result.length)
 		}
 
-		odbc.connect(DSN, (error, connection) => {
-			connection.query(`${catapultDbQuery}`, (error, result) => {
-				if (error) {
-					console.error(error)
-				}
-				// console.log('result[0]==>', result[0])
-				// console.log('result==>', result)
-				console.log(`result==> ${result}`)
-				console.log(`JSON.stringify(result)==> ${JSON.stringify(result)}`)
-				console.log('result[\'columns\']==>', result['columns'])
-				// console.log('result[\'columns\'][0][\'name\']==>', result['columns'][0]['name'])
-				showCatapultTables(result)
+		db.connect(function (err) {
+			if (err) return console.log(err);
 
-				res.render('vw-catapultDbQuery', {
-					title: 'Catapult DB Query Results',
-					catapultTables: catapultTableArr
-				})
-			})
-		})
+			db.query(`${catapultDbQuery}`, function (err, data) {
+				if (err) console.log(err);
+
+				console.log(data);
+
+				db.disconnect();
+
+			});
+		});
+
+		// odbc.connect(DSN, (error, connection) => {
+		// 	connection.query(`${catapultDbQuery}`, (error, result) => {
+		// 		if (error) {
+		// 			console.error(error)
+		// 		}
+		// 		// console.log('result[0]==>', result[0])
+		// 		// console.log('result==>', result)
+		// 		console.log(`result==> ${result}`)
+		// 		console.log(`JSON.stringify(result)==> ${JSON.stringify(result)}`)
+		// 		console.log('result[\'columns\']==>', result['columns'])
+		// 		// console.log('result[\'columns\'][0][\'name\']==>', result['columns'][0]['name'])
+		// 		showCatapultTables(result)
+
+		// 		res.render('vw-catapultDbQuery', {
+		// 			title: 'Catapult DB Query Results',
+		// 			catapultTables: catapultTableArr
+		// 		})
+		// 	})
+		// })
 	})
 }
