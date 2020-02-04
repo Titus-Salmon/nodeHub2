@@ -9,7 +9,7 @@ const sybaseUserName = process.env.SYBASE_USER_NAME
 const sybasePW = process.env.SYBASE_PW
 
 const Sybase = require('sybase')
-db = new Sybase(sybaseHost, port, sybaseDbName, sybaseUserName, sybasePW)
+db = new Sybase(sybaseHost, '3000', sybaseDbName, sybaseUserName, sybasePW)
 
 module.exports = {
 	queryCatapultDB: router.post('/queryCatapultDB', (req, res, next) => {
