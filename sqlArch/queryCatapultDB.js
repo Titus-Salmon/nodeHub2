@@ -42,7 +42,7 @@ module.exports = {
 
 				console.log(data);
 
-				db.disconnect();
+				// db.disconnect();
 
 			});
 		});
