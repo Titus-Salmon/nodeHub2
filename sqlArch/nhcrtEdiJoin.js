@@ -52,6 +52,7 @@ module.exports = {
                 nhcrtEdiJoinObj['invLastcost'] = rows[i]['invLastcost']
 
                 for (let j = 0; j < Object.keys(rows[i]).length; j++) {
+                    //extract cost from EDI catalog (all catalogs have some '_cost' column, except kehe, which has '_tier3')
                     if (Object.keys(rows[i])[j].includes('_cost') || Object.keys(rows[i])[j].includes('_tier3')) {
                         nhcrtEdiJoinObj['ediCost'] = rows[i][`${Object.keys(rows[i])[j]}`]
                         // console.log(`nhcrtEdiJoinObj['ediCost']==>${nhcrtEdiJoinObj['ediCost']}`)
@@ -61,7 +62,8 @@ module.exports = {
                 nhcrtEdiJoinObj['sibBasePrice'] = rows[i]['sibBasePrice']
 
                 for (let j = 0; j < Object.keys(rows[i]).length; j++) {
-                    if (Object.keys(rows[i])[j].includes('_msrp') || Object.keys(rows[i])[j].includes('_tier3')) {
+                    //extract msrp from EDI catalog (all catalogs have some '_msrp' column)
+                    if (Object.keys(rows[i])[j].includes('_msrp')) {
                         nhcrtEdiJoinObj['ediPrice'] = rows[i][`${Object.keys(rows[i])[j]}`]
                         // console.log(`nhcrtEdiJoinObj['ediPrice']==>${nhcrtEdiJoinObj['ediPrice']}`)
                     }
