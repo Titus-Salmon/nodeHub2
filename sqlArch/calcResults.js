@@ -99,7 +99,7 @@ module.exports = {
           } else {
             var wsDiscoVar = frmInptsObj.edlpDisco
           }
-          ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+          ////v//handle "case" and "each" division/////////////////////////////////////////////////////////////////////////////////
           // let oupNameVar = nejRows[i][genericHeaderObj.oupName]
           // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
           if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
