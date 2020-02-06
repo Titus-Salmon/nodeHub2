@@ -149,7 +149,7 @@ module.exports = {
         }
 
         function divideCostOrNotRetail() {
-          if (formInputsObj.divideCostByEachOption == 'yes' && formInputsObj.divideCostByCaseOption == 'yes') {
+          if (frmInptsObj.divideCostByEachOption == 'yes' && frmInptsObj.divideCostByCaseOption == 'yes') {
             if (oupNameSplit[1] !== undefined) { //if there is something after 'EA' or 'CS' (i.e. #n)
               divideCostByOupNameSplit_1()
               numPkgsHandler_case()
@@ -164,7 +164,7 @@ module.exports = {
             }
           }
 
-          if (formInputsObj.divideCostByEachOption == 'no' && formInputsObj.divideCostByCaseOption == 'yes') {
+          if (frmInptsObj.divideCostByEachOption == 'no' && frmInptsObj.divideCostByCaseOption == 'yes') {
             if (!oupNameVar.trim().toLowerCase().includes('ea')) {
               divideCostToUnitRetail()
             } else {
@@ -173,7 +173,7 @@ module.exports = {
             }
           }
 
-          if (formInputsObj.divideCostByEachOption == 'yes' && formInputsObj.divideCostByCaseOption == 'no') {
+          if (frmInptsObj.divideCostByEachOption == 'yes' && frmInptsObj.divideCostByCaseOption == 'no') {
             if (!oupNameVar.trim().toLowerCase().includes('cs') && !oupNameVar.trim().toLowerCase().includes('case')) {
               divideCostToUnitRetail()
             } else {
@@ -182,14 +182,14 @@ module.exports = {
             }
           }
 
-          if (formInputsObj.divideCostByEachOption == 'no' && formInputsObj.divideCostByCaseOption == 'no') {
+          if (frmInptsObj.divideCostByEachOption == 'no' && frmInptsObj.divideCostByCaseOption == 'no') {
             divideCostBy_1()
             numPkgsHandler_case()
           }
         }
 
         function divideCostOrNotWholesale() {
-          if (formInputsObj.divideCostByEachOption == 'yes' && formInputsObj.divideCostByCaseOption == 'yes') {
+          if (frmInptsObj.divideCostByEachOption == 'yes' && frmInptsObj.divideCostByCaseOption == 'yes') {
             if (oupNameSplit[1] !== undefined) { //if there is something after 'EA' or 'CS' (i.e. #n)
               testCostDivideByOupNameSplit_1()
             } else {
@@ -202,7 +202,7 @@ module.exports = {
             }
           }
 
-          if (formInputsObj.divideCostByEachOption == 'no' && formInputsObj.divideCostByCaseOption == 'yes') {
+          if (frmInptsObj.divideCostByEachOption == 'no' && frmInptsObj.divideCostByCaseOption == 'yes') {
             if (!oupNameVar.trim().toLowerCase().includes('ea')) {
               divideCostToUnitWholesale()
             } else {
@@ -210,7 +210,7 @@ module.exports = {
             }
           }
 
-          if (formInputsObj.divideCostByEachOption == 'yes' && formInputsObj.divideCostByCaseOption == 'no') {
+          if (frmInptsObj.divideCostByEachOption == 'yes' && frmInptsObj.divideCostByCaseOption == 'no') {
             if (!oupNameVar.trim().toLowerCase().includes('cs') && !oupNameVar.trim().toLowerCase().includes('case')) {
               divideCostToUnitWholesale()
             } else {
@@ -218,7 +218,7 @@ module.exports = {
             }
           }
 
-          if (formInputsObj.divideCostByEachOption == 'no' && formInputsObj.divideCostByCaseOption == 'no') {
+          if (frmInptsObj.divideCostByEachOption == 'no' && frmInptsObj.divideCostByCaseOption == 'no') {
             testCostDivideBy_1()
           }
         }
