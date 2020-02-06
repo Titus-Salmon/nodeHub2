@@ -89,135 +89,189 @@ module.exports = {
         // skuMismatchFlagOptionHandler()
         //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
 
-        srcRsObj['invPK'] = reviewObj['invPK'] = nejRows[i]['invPK'] //populate srcRsObj & reviewObj with invPK from Catapult
-        srcRsObj['invCPK'] = reviewObj['invCPK'] = nejRows[i]['invCPK'] //populate srcRsObj & reviewObj with invCPK from Catapult
-
-        function divideCostToUOS_Rtl_IMW() {
+        function wsDiscoVarSetter() {
           if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
             //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
             var wsDiscoVar = frmInptsObj.discountToApply
           } else {
             var wsDiscoVar = frmInptsObj.edlpDisco
           }
-          ////v//handle "case" and "each" division/////////////////////////////////////////////////////////////////////////////////
-          // let oupNameVar = nejRows[i][genericHeaderObj.oupName]
-          // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
-          if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
-            oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'cs' ||
-            oupNameSplit[0].toLowerCase().includes('case') && oupNameSplit[0].toLowerCase() !== 'case') {
-            if (oupNameSplit[1] !== undefined) {
-              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
-              //AND deduct any vendor discount from ediCost
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
-              //AND deduct any vendor discount from ediCost
-              // reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
-              numPkgsHandler_case()
-            }
+        }
+
+        function divideCostByOupNameSplit_1() {
+          reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
+          //AND deduct any vendor discount from ediCost
+          reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
+          //AND deduct any vendor discount from ediCost
+        }
+
+        function divideCostByOupNameVar() {
+          reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //divide ediCost by oupName non-parsed value
+          //AND deduct any vendor discount from ediCost
+          reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
+          //AND deduct any vendor discount from ediCost
+          reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
+        }
+
+        function divideCostBy_1() {
+          reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
+          //AND deduct any vendor discount from ediCost
+          reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
+          //AND deduct any vendor discount from ediCost
+        }
+
+        function divideCostToUnitRetail() {
+          if (oupNameSplit[1] !== undefined) { //if there is something after 'EA' or 'CS' (i.e. #n)
+            divideCostByOupNameSplit_1()
+            numPkgsHandler_case()
           } else {
-            // console.log(`oupNameSplit[0].toLowerCase()==> ${oupNameSplit[0].toLowerCase()}`)
-            // console.log(`oupNameVar==> ${oupNameVar}`)
             if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
               oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
-              //AND deduct any vendor discount from ediCost
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
-              //AND deduct any vendor discount from ediCost
-              // reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
+              divideCostBy_1()
               numPkgsHandler_case()
             } else {
-              reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //divide ediCost by oupName non-parsed value
-              //AND deduct any vendor discount from ediCost
-              reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
-              //AND deduct any vendor discount from ediCost
-              reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
+              divideCostByOupNameVar()
             }
           }
-          ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
+        }
+
+        function divideCostToUnitWholesale() {
+          if (oupNameSplit[1] !== undefined) { //if there is something after 'EA' or 'CS' (i.e. #n)
+            testCostDivideByOupNameSplit_1()
+          } else {
+            if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
+              oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
+              testCostDivideBy_1()
+            } else {
+              testCostDivideByOupNameVar()
+            }
+          }
+        }
+
+        function divideCostOrNotRetail() {
+          if (formInputsObj.divideCostByEachOption == 'yes' && formInputsObj.divideCostByCaseOption == 'yes') {
+            if (oupNameSplit[1] !== undefined) { //if there is something after 'EA' or 'CS' (i.e. #n)
+              divideCostByOupNameSplit_1()
+              numPkgsHandler_case()
+            } else {
+              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
+                oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
+                divideCostBy_1()
+                numPkgsHandler_case()
+              } else {
+                divideCostByOupNameVar() // reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
+              }
+            }
+          }
+
+          if (formInputsObj.divideCostByEachOption == 'no' && formInputsObj.divideCostByCaseOption == 'yes') {
+            if (!oupNameVar.trim().toLowerCase().includes('ea')) {
+              divideCostToUnitRetail()
+            } else {
+              divideCostBy_1()
+              numPkgsHandler_case()
+            }
+          }
+
+          if (formInputsObj.divideCostByEachOption == 'yes' && formInputsObj.divideCostByCaseOption == 'no') {
+            if (!oupNameVar.trim().toLowerCase().includes('cs') && !oupNameVar.trim().toLowerCase().includes('case')) {
+              divideCostToUnitRetail()
+            } else {
+              divideCostBy_1()
+              numPkgsHandler_case()
+            }
+          }
+
+          if (formInputsObj.divideCostByEachOption == 'no' && formInputsObj.divideCostByCaseOption == 'no') {
+            divideCostBy_1()
+            numPkgsHandler_case()
+          }
+        }
+
+        function divideCostOrNotWholesale() {
+          if (formInputsObj.divideCostByEachOption == 'yes' && formInputsObj.divideCostByCaseOption == 'yes') {
+            if (oupNameSplit[1] !== undefined) { //if there is something after 'EA' or 'CS' (i.e. #n)
+              testCostDivideByOupNameSplit_1()
+            } else {
+              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
+                oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
+                testCostDivideBy_1()
+              } else {
+                testCostDivideByOupNameVar()
+              }
+            }
+          }
+
+          if (formInputsObj.divideCostByEachOption == 'no' && formInputsObj.divideCostByCaseOption == 'yes') {
+            if (!oupNameVar.trim().toLowerCase().includes('ea')) {
+              divideCostToUnitWholesale()
+            } else {
+              testCostDivideBy_1()
+            }
+          }
+
+          if (formInputsObj.divideCostByEachOption == 'yes' && formInputsObj.divideCostByCaseOption == 'no') {
+            if (!oupNameVar.trim().toLowerCase().includes('cs') && !oupNameVar.trim().toLowerCase().includes('case')) {
+              divideCostToUnitWholesale()
+            } else {
+              testCostDivideBy_1()
+            }
+          }
+
+          if (formInputsObj.divideCostByEachOption == 'no' && formInputsObj.divideCostByCaseOption == 'no') {
+            testCostDivideBy_1()
+          }
+        }
+
+        srcRsObj['invPK'] = reviewObj['invPK'] = nejRows[i]['invPK'] //populate srcRsObj & reviewObj with invPK from Catapult
+        srcRsObj['invCPK'] = reviewObj['invCPK'] = nejRows[i]['invCPK'] //populate srcRsObj & reviewObj with invCPK from Catapult
+
+        function divideCostToUOS_Rtl_IMW() {
+          wsDiscoVarSetter()
+          divideCostOrNotRetail()
+        }
+
+        function testCostDivideByOupNameSplit_1() {
+          let ediTestCost1 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]}` //apply vendor WS discount, if applicable
+          let ediTstCst1Tr = ediTestCost1.trim().replace(/"/g, '')
+          let ediTstCst1TrRnd = Math.round(ediTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+          let cpltTstCst1Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
+          let cpltTstCst1TrRnd = Math.round(cpltTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+
+          if (ediTstCst1TrRnd !== cpltTstCst1TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost
+            divideCostByOupNameSplit_1()
+            numPkgsHandler_case()
+          } else {}
+        }
+
+        function testCostDivideBy_1() {
+          let ediTestCost2 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1}` //apply vendor WS discount, if applicable
+          let ediTstCst2Tr = ediTestCost2.trim().replace(/"/g, '')
+          let ediTstCst2TrRnd = Math.round(ediTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+          let cpltTstCst2Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
+          let cpltTstCst2TrRnd = Math.round(cpltTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+          if (ediTstCst2TrRnd !== cpltTstCst2TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost  
+            divideCostBy_1()
+            reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
+          } else {}
+        }
+
+        function testCostDivideByOupNameVar() {
+          let ediTestCost3 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar}` //apply vendor WS discount, if applicable
+          let ediTestCost3Tr = ediTestCost3.trim().replace(/"/g, '')
+          let ediTestCost3TrRnd = Math.round(ediTestCost3Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+          let cpltTstCst3Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
+          let cpltTstCst3TrRnd = Math.round(cpltTstCst3Tr * 100) / 100 //converts the result to a number with just 2 decimal places
+          if (ediTestCost3TrRnd !== cpltTstCst3TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost
+            divideCostByOupNameVar()
+          } else {}
         }
 
         function divideCostToUOS_WS_IMW() {
           if (frmInptsObj.typeOfIMW.toLowerCase() == 'wholesale') {
 
-            if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
-              //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
-              var wsDiscoVar = frmInptsObj.discountToApply
-            } else {
-              var wsDiscoVar = frmInptsObj.edlpDisco
-            }
-
-            ////v//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
-            // let oupNameVar = nejRows[i][genericHeaderObj.oupName]
-            // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
-            if (oupNameSplit[0].toLowerCase().includes('ea') && oupNameSplit[0].toLowerCase() !== 'each' && oupNameSplit[0].toLowerCase() !== 'ea' ||
-              oupNameSplit[0].toLowerCase().includes('cs') && oupNameSplit[0].toLowerCase() !== 'case' && oupNameSplit[0].toLowerCase() !== 'cs') {
-              if (oupNameSplit[1] !== undefined) {
-                let ediTestCost1 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]}` //apply vendor WS discount, if applicable
-                let ediTstCst1Tr = ediTestCost1.trim().replace(/"/g, '')
-                let ediTstCst1TrRnd = Math.round(ediTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
-                let cpltTstCst1Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
-                let cpltTstCst1TrRnd = Math.round(cpltTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
-                if (ediTstCst1TrRnd !== cpltTstCst1TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost
-                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
-                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
-                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
-                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
-
-                  numPkgsHandler_case()
-
-                  // if (oupNameSplit[0].toLowerCase().includes('cs')) { //handle numPkgs value for CS-#n items
-                  //   reviewObj['numPkgs'] = srcRsObj['numPkgs'] = oupNameSplit[1] //set numPkgs to numerical portion of CS-#n
-                  //   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for CS-#n items
-                  // } else { //if item is not CASE item (i.e., it is EACH)
-                  //   reviewObj['numPkgs'] = srcRsObj['numPkgs'] = 1 //set numPkgs to 1
-                  //   reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
-                  // }
-
-                } else {
-                  // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test1'
-                }
-
-              }
-            } else {
-              if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
-                oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-                let ediTestCost2 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1}` //apply vendor WS discount, if applicable
-                let ediTstCst2Tr = ediTestCost2.trim().replace(/"/g, '')
-                let ediTstCst2TrRnd = Math.round(ediTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
-                let cpltTstCst2Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
-                let cpltTstCst2TrRnd = Math.round(cpltTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
-                if (ediTstCst2TrRnd !== cpltTstCst2TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost  
-                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
-                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
-                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
-                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
-                  reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 1 //set csPkgMltpl to 1 for just "EA", "EACH", "CS", or "CASE"
-                  // console.log(`ediTstCst2TrRnd==> ${ediTstCst2TrRnd}`)
-                  // console.log(`cpltTstCst2TrRnd==> ${cpltTstCst2TrRnd}`)
-                } else {
-                  // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test2'
-                }
-              } //divide ediCost by 1 for items with oupName value of just "each", "ea", "case", or "cs"
-              else {
-                let ediTestCost3 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar}` //apply vendor WS discount, if applicable
-                let ediTestCost3Tr = ediTestCost3.trim().replace(/"/g, '')
-                let ediTestCost3TrRnd = Math.round(ediTestCost3Tr * 100) / 100 //converts the result to a number with just 2 decimal places
-                let cpltTstCst3Tr = srcRsObj['cpltCost'].trim().replace(/"/g, '')
-                let cpltTstCst3TrRnd = Math.round(cpltTstCst3Tr * 100) / 100 //converts the result to a number with just 2 decimal places
-                if (ediTestCost3TrRnd !== cpltTstCst3TrRnd) { //only handle items where new edi cat cost not equal to exist. catapult cost
-                  reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //divide ediCost by oupName non-parsed value
-                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
-                  reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar) * 100) / 100 //change lastCost to ediCostMod for wholesale IMWs
-                  //AND apply wsDiscoVar to cost to account for ongoing discos as well as EDLP discos
-                  reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameVar //set csPkgMltpl to oupNameVar (since at this point, oupName should just be a number)
-                  // console.log(`ediTstCst3TrRnd==> ${ediTstCst3TrRnd}`)
-                  // console.log(`cpltTstCst3TrRnd==> ${cpltTstCst3TrRnd}`)
-                } else {
-                  // srcRsObj['ediCostMod'] = reviewObj['ediCostMod'] = 'test3'
-                }
-              }
-            }
-            ////^//handle "case" and "each" division//////////////////////////////////////////////////////////////////////////////////
-            //}
+            wsDiscoVarSetter()
+            divideCostOrNotWholesale()
           }
 
         }

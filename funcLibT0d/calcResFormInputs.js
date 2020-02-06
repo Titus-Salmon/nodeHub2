@@ -229,6 +229,11 @@ module.exports = {
     formInputsObj.formInput59 = formInputsObj.skuMismatchOption = Object.values(postBodyData)[59] //skuMismatchOptionPost
     console.log('formInputsObj.skuMismatchOption==>', formInputsObj.skuMismatchOption)
 
+    formInputsObj.formInput60 = formInputsObj.divideCostByEachOption = Object.values(postBodyData)[60] //divideCostByEachOptionPost
+    console.log('formInputsObj.divideCostByEachOption==>', formInputsObj.divideCostByEachOption)
+    formInputsObj.formInput61 = formInputsObj.divideCostByCaseOption = Object.values(postBodyData)[61] //divideCostByCaseOptionPost
+    console.log('formInputsObj.divideCostByCaseOption==>', formInputsObj.divideCostByCaseOption)
+
     formInputsObj.deptFilterToApply = null
 
     for (let k = 0; k < formInputsObj.deptFilterArr.length; k++) {

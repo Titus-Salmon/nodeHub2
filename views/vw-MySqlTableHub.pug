@@ -338,6 +338,18 @@ html
 					option(value='no') no
 					option(value='yes') yes
 
+			div(style="display:block")
+				label.input-label-1(for='divideCostByEachOption') Divide Cost by #n in EA-#n?
+				select#divideCostByEachOption.input-unit-1(name='divideCostByEachOptionPost')
+					option(value='no') no
+					option(value='yes') yes
+
+			div(style="display:block")
+				label.input-label-1(for='divideCostByCaseOption') Divide Cost by #n in CS-#n?
+				select#divideCostByCaseOption.input-unit-1(name='divideCostByCaseOptionPost')
+					option(value='no') no
+					option(value='yes') yes
+
 			//- div(style="display:block")
 			//- 	label.input-label-1(for='itemUnitValSwitch') Populate IMW with ItemUnitValues?
 			//- 	select#itemUnitValSwitch.input-unit-1(name='itemUnitValSwitchPost')
