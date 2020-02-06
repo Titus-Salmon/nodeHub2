@@ -232,6 +232,7 @@ module.exports = {
         }
 
         function testCostDivideByOupNameSplit_1() {
+          wsDiscoVarSetter()
           let ediTestCost1 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]}` //apply vendor WS discount, if applicable
           let ediTstCst1Tr = ediTestCost1.trim().replace(/"/g, '')
           let ediTstCst1TrRnd = Math.round(ediTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
@@ -245,6 +246,7 @@ module.exports = {
         }
 
         function testCostDivideBy_1() {
+          wsDiscoVarSetter()
           let ediTestCost2 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1}` //apply vendor WS discount, if applicable
           let ediTstCst2Tr = ediTestCost2.trim().replace(/"/g, '')
           let ediTstCst2TrRnd = Math.round(ediTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
@@ -257,6 +259,7 @@ module.exports = {
         }
 
         function testCostDivideByOupNameVar() {
+          wsDiscoVarSetter()
           let ediTestCost3 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar}` //apply vendor WS discount, if applicable
           let ediTestCost3Tr = ediTestCost3.trim().replace(/"/g, '')
           let ediTestCost3TrRnd = Math.round(ediTestCost3Tr * 100) / 100 //converts the result to a number with just 2 decimal places
