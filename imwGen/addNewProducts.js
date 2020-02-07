@@ -32,8 +32,8 @@ module.exports = {
 
     function itemListAccSanitizer2() {
       if (itemListAccumulator !== undefined) {
-        let sanitizerRegex1 = /(\\)|(\[)|(\])/g
-        sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
+        let sanitizerRegex3 = /(\\)|(\[)|(\])/g
+        sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex3, "")
         console.log(`sanitizedItemListAcc==> ${sanitizedItemListAcc}`)
       }
     }
@@ -59,10 +59,10 @@ module.exports = {
 
     // sanitizedItemListObjGenerator()
 
-    function unsanitizedItemListObjGen() {
+    function sanitizedItemListObjGenerator2() {
       if (itemListAccumulator !== undefined) {
         itemListAccSanitizer2()
-        imwProductArr.push(itemListAccumulator)
+        imwProductArr.push(sanitizedItemListAcc)
       }
       imwProductValObj['itemID'] = itemID
       imwProductValObj['suppUnitID'] = suppUnitID
@@ -70,7 +70,7 @@ module.exports = {
       console.log(`imwProductArr==> ${imwProductArr}`)
     }
 
-    unsanitizedItemListObjGen()
+    sanitizedItemListObjGenerator2()
 
     // function objectifyImwProductArr() {
     //   let objectifiedImwProdArr = []
