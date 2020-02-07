@@ -7,33 +7,27 @@ html
 	body
 		include vw-dashboard.pug
 
-		form#imwGenerator(action='/imwGenerator/addNewProducts' method='POST' accept-charset="UTF-8")
+		form#imwItemAdd(action='/imwGenerator/addNewProducts' method='POST' accept-charset="UTF-8")
 			label.input-label-1(for='itemID') Item ID
 			input#itemID.input-unit-1(type='text', placeholder='enter data1', name='itemIDPost', value='')
 
 			label.input-label-1(for='suppUnitID') Supplier Unit ID
 			input#suppUnitID.input-unit-1(type='text', placeholder='enter data1', name='suppUnitIDPost', value='')
 
-			//- if imwProductVals !== undefined
-				//- script.
-				//- 	//- localStorage.clear()
-				//- 	var sanitized = !{imwProductVals}.replace(/(")|(\\)/g, "")//- !{} is for unescaped string interpolation in Pug
-				//- 	console.log(`sanitized==>${sanitized}`)
-				//- 	localStorage.setItem('imwProductVals_localStorage', sanitized)
-				//- 	console.log('localStorage from pug==>', localStorage)
-
-				//- script.
-				//- 	console.log("imwProductVals==>", !{imwProductVals})
-				//- 	var imwProdValSplit = !{imwProductVals}.split("_")
-				//- 	console.log(`imwProdValSplit==> ${imwProdValSplit}`)
-
-				//- label.input-label-1(for='itemListAccumulator') Item List Accumulator
-				//- input#itemListAccumulator.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductVals)
 			if imwProductValObj !== undefined
 				label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
 				input#itemListAccumulatorObj.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductArr)
 
-			button#addItemButton(type='submit', form='imwGenerator') Add Product(s) Accumulatively
+			button#imwItemAddButton(type='submit', form='imwItemAdd') Add Product(s) Accumulatively
+
+		form#imwGenerator(action='/imwGenerator/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
+			label.input-label-1(for='productArray') Product Array for generating IMW
+			input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value='')
+
+			label.input-label-1(for='csv') filename:
+			input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
+
+			button#imwGeneratorButton(type='submit', form='imwGenerator') Generate IMW
 
 			if objectifiedImwProdArr !== undefined
 				div.rslt-tbl-1
