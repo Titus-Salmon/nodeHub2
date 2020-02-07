@@ -49,7 +49,7 @@ module.exports = {
       }
       imwProductValObj['itemID'] = itemID
       imwProductValObj['suppUnitID'] = suppUnitID
-      imwProductArr.push(imwProductValObj)
+      imwProductArr.push(JSON.parse(imwProductValObj))
       console.log(`imwProductArr==> ${imwProductArr}`)
     }
 
