@@ -14,7 +14,7 @@ html
 			label.input-label-1(for='suppUnitID') Supplier Unit ID
 			input#suppUnitID.input-unit-1(type='text', placeholder='enter data1', name='suppUnitIDPost', value='')
 
-			if imwProductVals !== undefined
+			//- if imwProductVals !== undefined
 				//- script.
 				//- 	//- localStorage.clear()
 				//- 	var sanitized = !{imwProductVals}.replace(/(")|(\\)/g, "")//- !{} is for unescaped string interpolation in Pug
@@ -22,30 +22,31 @@ html
 				//- 	localStorage.setItem('imwProductVals_localStorage', sanitized)
 				//- 	console.log('localStorage from pug==>', localStorage)
 
-				script.
-					console.log("imwProductVals==>", !{imwProductVals})
-					var imwProdValSplit = !{imwProductVals}.split("_")
-					console.log(`imwProdValSplit==> ${imwProdValSplit}`)
+				//- script.
+				//- 	console.log("imwProductVals==>", !{imwProductVals})
+				//- 	var imwProdValSplit = !{imwProductVals}.split("_")
+				//- 	console.log(`imwProdValSplit==> ${imwProdValSplit}`)
 
-				if imwProdValSplit !== undefined
-					div.rslt-tbl-1
-					table#resTbl
-						thead
-							tr
-								th Item ID
-								th Supplier Unit ID
-								
-						tbody#resTblBdy
-								each elmnt in imwProdValSplit
-									tr
-										td= elmnt
-										td= elmnt
-
-				label.input-label-1(for='itemListAccumulator') Item List Accumulator
-				input#itemListAccumulator.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductVals)
+				//- label.input-label-1(for='itemListAccumulator') Item List Accumulator
+				//- input#itemListAccumulator.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductVals)
+			if imwProductValObj !== undefined
+				label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
+				input#itemListAccumulatorObj.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorObjPost', value=imwProductValObj)
 
 			button#addItemButton(type='submit', form='imwGenerator') Add Product(s) Accumulatively
 
-			
+			//- if imwProdValSplit !== undefined
+			//- 	div.rslt-tbl-1
+			//- 	table#resTbl
+			//- 		thead
+			//- 			tr
+			//- 				th Item ID
+			//- 				th Supplier Unit ID
+							
+			//- 		tbody#resTblBdy
+			//- 				each elmnt in imwProdValSplit
+			//- 					tr
+			//- 						td= elmnt
+			//- 						td= elmnt
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')

@@ -15,31 +15,52 @@ module.exports = {
   addNewProducts: router.post('/addNewProducts', (req, res, next) => {
 
     const postBody = req.body
-    var imwProductValues
+    // var imwProductValues
     let itemID = postBody['itemIDPost']
     let suppUnitID = postBody['suppUnitIDPost']
     let itemListAccumulator = postBody['itemListAccumulatorPost']
+    // let itemListAccumulatorObj = postBody['itemListAccumulatorObjPost']
+    let imwProductValObj = {}
+    let imwProductArr = []
 
-    function itemListAccSanitizer() {
+    // function itemListAccSanitizer() {
+    //   if (itemListAccumulator !== undefined) {
+    //     let sanitizerRegex1 = /(")|(\\)/g
+    //     var sanitizeditemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
+    //     console.log(`itemListAccumulator==> ${itemListAccumulator}`)
+    //     //itemListAccSanitizer()
+    //     imwProductValues = `${sanitizeditemListAcc} _ itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
+    //     imwProductValObj = `${itemListAccumulatorObj}, {itemID: ${itemID}}`
+    //     imwProductValObj['itemID'] = itemID
+    //     imwProductValObj['suppUnitID'] = suppUnitID
+    //   } else {
+    //     imwProductValues = `itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
+    //     imwProductValObj['itemID'] = itemID
+    //     imwProductValObj['suppUnitID'] = suppUnitID
+    //   }
+    // }
+
+    // itemListAccSanitizer()
+
+    function itemListObjGenerator() {
       if (itemListAccumulator !== undefined) {
-        let sanitizerRegex1 = /(")|(\\)/g
-        var sanitizeditemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
-        console.log(`itemListAccumulator==> ${itemListAccumulator}`)
-        //itemListAccSanitizer()
-        imwProductValues = `${sanitizeditemListAcc} _ itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
-      } else {
-        imwProductValues = `itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
+        imwProductArr.push(itemListAccumulator)
       }
+      imwProductValObj['itemID'] = itemID
+      imwProductValObj['suppUnitID'] = suppUnitID
+      imwProductArr.push(imwProductValObj)
+      console.log(`imwProductArr==> ${imwProductArr}`)
     }
 
-    itemListAccSanitizer()
+    itemListObjGenerator()
 
 
     res.render('vw-imwGenerator', {
       title: `vw-imwGenerator`,
-      imwProductVals: JSON.stringify(imwProductValues),
+      // imwProductVals: JSON.stringify(imwProductValues),
       // loadedSqlTbl: frmInptsObj.loadedSqlTbl,
       // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
+      imwProductValObj: imwProductValObj
     })
 
   })
