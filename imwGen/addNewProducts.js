@@ -65,6 +65,7 @@ module.exports = {
     objectifyImwProductArr()
 
     console.log(`typeof imwProductArr==> ${typeof imwProductArr}`)
+    console.log(`imwProductArr==> ${imwProductArr}`)
 
     res.render('vw-imwGenerator', {
       title: `vw-imwGenerator`,
