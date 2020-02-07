@@ -73,7 +73,10 @@ module.exports = {
         let splitRegex1 = /(?<=}),(?={)/g
         let sanitizedItemListAccSPLIT = sanitizedItemListAcc.split(splitRegex1)
         console.log(`sanitizedItemListAccSPLIT==> ${sanitizedItemListAccSPLIT}`)
-        imwProductArr.push(sanitizedItemListAccSPLIT)
+        for (let i = 0; i < sanitizedItemListAccSPLIT.length; i++) {
+          console.log(`sanitizedItemListAccSPLIT[${i}]==> ${sanitizedItemListAccSPLIT[i]}`)
+          imwProductArr.push(sanitizedItemListAccSPLIT[i])
+        }
       }
       imwProductValObj['itemID'] = itemID
       imwProductValObj['suppUnitID'] = suppUnitID
