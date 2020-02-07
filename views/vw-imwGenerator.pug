@@ -32,5 +32,19 @@ html
 
 			button#addItemButton(type='submit', form='imwGenerator') Add Product(s) Accumulatively
 
+			if imwProdValSplit !== undefined
+				div.rslt-tbl-1
+				table#resTbl
+					thead
+						tr
+							th Item ID
+							th Supplier Unit ID
+							
+					tbody#resTblBdy
+						if searchResRows !== undefined
+							each elmnt in imwProdValSplit
+								tr
+									td= elmnt
+									td= elmnt
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')

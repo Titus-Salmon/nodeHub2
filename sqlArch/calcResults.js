@@ -86,7 +86,6 @@ module.exports = {
             }
           }
         }
-        // skuMismatchFlagOptionHandler()
         //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
 
         var wsDiscoVar
@@ -165,7 +164,6 @@ module.exports = {
               }
             }
           }
-
           if (frmInptsObj.divideCostByEachOption == 'no' && frmInptsObj.divideCostByCaseOption == 'yes') {
             if (!oupNameVar.trim().toLowerCase().includes('ea')) {
               divideCostToUnitRetail()
@@ -174,7 +172,6 @@ module.exports = {
               numPkgsHandler_case()
             }
           }
-
           if (frmInptsObj.divideCostByEachOption == 'yes' && frmInptsObj.divideCostByCaseOption == 'no') {
             if (!oupNameVar.trim().toLowerCase().includes('cs') && !oupNameVar.trim().toLowerCase().includes('case')) {
               divideCostToUnitRetail()
@@ -183,7 +180,6 @@ module.exports = {
               numPkgsHandler_case()
             }
           }
-
           if (frmInptsObj.divideCostByEachOption == 'no' && frmInptsObj.divideCostByCaseOption == 'no') {
             divideCostBy_1()
             numPkgsHandler_case()
@@ -203,7 +199,6 @@ module.exports = {
               }
             }
           }
-
           if (frmInptsObj.divideCostByEachOption == 'no' && frmInptsObj.divideCostByCaseOption == 'yes') {
             if (!oupNameVar.trim().toLowerCase().includes('ea')) {
               divideCostToUnitWholesale()
@@ -211,7 +206,6 @@ module.exports = {
               testCostDivideBy_1()
             }
           }
-
           if (frmInptsObj.divideCostByEachOption == 'yes' && frmInptsObj.divideCostByCaseOption == 'no') {
             if (!oupNameVar.trim().toLowerCase().includes('cs') && !oupNameVar.trim().toLowerCase().includes('case')) {
               divideCostToUnitWholesale()
@@ -219,7 +213,6 @@ module.exports = {
               testCostDivideBy_1()
             }
           }
-
           if (frmInptsObj.divideCostByEachOption == 'no' && frmInptsObj.divideCostByCaseOption == 'no') {
             testCostDivideBy_1()
           }
@@ -275,11 +268,9 @@ module.exports = {
 
         function divideCostToUOS_WS_IMW() {
           if (frmInptsObj.typeOfIMW.toLowerCase() == 'wholesale') {
-
             wsDiscoVarSetter()
             divideCostOrNotWholesale()
           }
-
         }
 
         function calcCharm(departmentMargin, lowerCutRqdRtl, lowerCutoffCharm1, lowerCutoffCharm2, lowerCutoffCharm3, lowerCutoffCharm4,
