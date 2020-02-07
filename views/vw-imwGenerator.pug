@@ -28,18 +28,18 @@ html
 					console.log(`imwProdValSplit==> ${imwProdValSplit}`)
 
 				if imwProdValSplit !== undefined
-				div.rslt-tbl-1
-				table#resTbl
-					thead
-						tr
-							th Item ID
-							th Supplier Unit ID
-							
-					tbody#resTblBdy
-							each elmnt in imwProdValSplit
-								tr
-									td= elmnt
-									td= elmnt
+					div.rslt-tbl-1
+					table#resTbl
+						thead
+							tr
+								th Item ID
+								th Supplier Unit ID
+								
+						tbody#resTblBdy
+								each elmnt in imwProdValSplit
+									tr
+										td= elmnt
+										td= elmnt
 
 				label.input-label-1(for='itemListAccumulator') Item List Accumulator
 				input#itemListAccumulator.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductVals)
