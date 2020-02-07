@@ -63,10 +63,11 @@ module.exports = {
 
     for (let i = 0; i < imwProductArr.length; i++) {
       console.log(`imwProductArr[${i}]==> ${imwProductArr[i]}`)
+      console.log(`JSON.stringify(imwProductArr[${i}])==> ${JSON.stringify(imwProductArr[i])}`)
       console.log(`imwProductArr[${i}]['itemID']==> ${imwProductArr[i]['itemID']}`)
     }
 
-    console.log(`objectifiedImwProdArr==> ${objectifiedImwProdArr}`)
+    // console.log(`objectifiedImwProdArr==> ${objectifiedImwProdArr}`)
 
     res.render('vw-imwGenerator', {
       title: `vw-imwGenerator`,
