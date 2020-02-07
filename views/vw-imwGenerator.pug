@@ -35,7 +35,7 @@ html
 
 			button#addItemButton(type='submit', form='imwGenerator') Add Product(s) Accumulatively
 
-			if imwProductArr !== undefined
+			if objectifiedImwProdArr !== undefined
 				div.rslt-tbl-1
 				table#resTbl
 					thead
@@ -44,9 +44,9 @@ html
 							th Supplier Unit ID
 							
 					tbody#resTblBdy
-							each elmnt in imwProductArr
+							each elmnt in objectifiedImwProdArr
 								tr
-									td= elmnt
-									td= elmnt
+									td= elmnt.itemID
+									td= elmnt.suppUnitID
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
