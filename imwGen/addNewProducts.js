@@ -66,6 +66,7 @@ module.exports = {
 
     console.log(`typeof imwProductArr==> ${typeof imwProductArr}`)
     console.log(`imwProductArr==> ${imwProductArr}`)
+    console.log(`typeof imwProductArr[0]==> ${typeof imwProductArr[0]}`)
 
     res.render('vw-imwGenerator', {
       title: `vw-imwGenerator`,
