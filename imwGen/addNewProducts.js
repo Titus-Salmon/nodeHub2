@@ -68,7 +68,7 @@ module.exports = {
       console.log(`imwProductArr[${i}]['itemID']==> ${imwProductArr[i]['itemID']}`)
     }
 
-    let testString = `{key: "value"}`
+    let testString = `{"key": "value"}`
     let parsedTestString = JSON.parse(testString)
     console.log(`parsedTestString==> ${parsedTestString}`)
 
