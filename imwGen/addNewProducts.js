@@ -51,14 +51,23 @@ module.exports = {
 
     itemListObjGenerator()
 
+    function objectifyImwProductArr() {
+      let objectifiedImwProdArr = []
+      for (let i = 0; i < imwProductArr.length; i++) {
+        let objectifiedImwProd = JSON.parse(imwProductArr[i])
+        objectifiedImwProdArr.push(objectifiedImwProd)
+      }
+    }
+
+    objectifyImwProductArr()
+
+    console.log(`objectifiedImwProdArr==> ${objectifiedImwProdArr}`)
 
     res.render('vw-imwGenerator', {
       title: `vw-imwGenerator`,
-      // imwProductVals: JSON.stringify(imwProductValues),
-      // loadedSqlTbl: frmInptsObj.loadedSqlTbl,
-      // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
       imwProductValObj: imwProductValObj,
-      imwProductArr: imwProductArr
+      imwProductArr: imwProductArr,
+      objectifiedImwProdArr: objectifiedImwProdArr
     })
 
   })
