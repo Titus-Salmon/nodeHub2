@@ -67,7 +67,7 @@ module.exports = {
     function sanitizedItemListObjGenerator2() {
       if (itemListAccumulator !== undefined) {
         itemListAccSanitizer2()
-        imwProductArr.push(sanitizedItemListAcc)
+        imwProductArr.push(sanitizedItemListAcc.split(','))
       }
       imwProductValObj['itemID'] = itemID
       imwProductValObj['suppUnitID'] = suppUnitID
