@@ -18,7 +18,7 @@ module.exports = {
     // var imwProductValues
     let itemID = postBody['itemIDPost']
     let suppUnitID = postBody['suppUnitIDPost']
-    let itemListAccumulator = postBody['itemListAccumulatorPost']
+    let itemListAccumulator = JSON.parse(postBody['itemListAccumulatorPost'])
     // let itemListAccumulatorObj = postBody['itemListAccumulatorObjPost']
     let imwProductValObj = {}
     let imwProductArr = []
