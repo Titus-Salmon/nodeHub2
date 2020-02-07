@@ -69,7 +69,7 @@ module.exports = {
       console.log('objectifiedItemsToAddArr from json2csv======>>', objectifiedItemsToAddArr)
       const parser = new Parser(opts);
       const csv = parser.parse(objectifiedItemsToAddArr);
-      csvContainer.push(csv);
+      // csvContainer.push(csv);
       console.log('csv_T0d=====>>', csv);
       fs.writeFile(process.cwd() + '/public/csv/' + req.body['csvPost'] + '.csv', csv, function (err) {
         if (err) throw err;
@@ -80,11 +80,15 @@ module.exports = {
     }
     //end csv generator //////////////////////////////////////////////////////////////////////////
 
-    res.render('vw-imwGenerator', {
-      title: `vw-imwGenerator`,
-      imwProductValObj: imwProductValObj,
-      imwProductArr: imwProductArr,
-      objectifiedImwProdArr: objectifiedImwProdArr
+    // res.render('vw-imwGenerator', {
+    //   title: `vw-imwGenerator`,
+    //   imwProductValObj: imwProductValObj,
+    //   imwProductArr: imwProductArr,
+    //   objectifiedImwProdArr: objectifiedImwProdArr
+    // })
+
+    res.render('vw-MySqlTableHub', {
+      title: `<<${process.cwd()}/public/csv/${req.body['csvPost']} SAVED>>`
     })
 
   })
