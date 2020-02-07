@@ -42,8 +42,8 @@ module.exports = {
         itemListAccSanitizer()
         imwProductArr.push(sanitizedItemListAcc)
       }
-      imwProductValObj['itemID'] = itemID
-      imwProductValObj['suppUnitID'] = suppUnitID
+      imwProductValObj['itemID'] = `'${itemID}'`
+      imwProductValObj['suppUnitID'] = `'${suppUnitID}'`
       imwProductValObjSanitizer()
       imwProductArr.push(sanitizedImwProductValObj)
       console.log(`imwProductArr==> ${imwProductArr}`)
