@@ -60,7 +60,8 @@ module.exports = {
       // imwProductVals: JSON.stringify(imwProductValues),
       // loadedSqlTbl: frmInptsObj.loadedSqlTbl,
       // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
-      imwProductValObj: imwProductValObj
+      imwProductValObj: imwProductValObj,
+      imwProductArr: imwProductArr
     })
 
   })
