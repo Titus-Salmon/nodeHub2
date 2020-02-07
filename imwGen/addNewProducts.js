@@ -15,11 +15,9 @@ module.exports = {
   addNewProducts: router.post('/addNewProducts', (req, res, next) => {
 
     const postBody = req.body
-    // var imwProductValues
     let itemID = postBody['itemIDPost']
     let suppUnitID = postBody['suppUnitIDPost']
     let itemListAccumulator = postBody['itemListAccumulatorPost']
-    // let itemListAccumulatorObj = postBody['itemListAccumulatorObjPost']
     let imwProductValObj = {}
     let imwProductArr = []
     var sanitizedItemListAcc
@@ -29,15 +27,6 @@ module.exports = {
         let sanitizerRegex1 = /(")|(\\)|(\[)|(\])/g
         sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
         console.log(`sanitizedItemListAcc==> ${sanitizedItemListAcc}`)
-
-        //   imwProductValues = `${sanitizeditemListAcc} _ itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
-        //   imwProductValObj = `${itemListAccumulatorObj}, {itemID: ${itemID}}`
-        //   imwProductValObj['itemID'] = itemID
-        //   imwProductValObj['suppUnitID'] = suppUnitID
-        // } else {
-        //   imwProductValues = `itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
-        //   imwProductValObj['itemID'] = itemID
-        //   imwProductValObj['suppUnitID'] = suppUnitID
       }
     }
 
@@ -47,8 +36,6 @@ module.exports = {
       sanitizedImwProductValObj = stringifiedImwProductValObj.replace(sanitizerRegex2, "")
       console.log(`sanitizedImwProductValObj==> ${sanitizedImwProductValObj}`)
     }
-
-    // itemListAccSanitizer()
 
     function itemListObjGenerator() {
       if (itemListAccumulator !== undefined) {
