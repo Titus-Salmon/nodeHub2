@@ -51,15 +51,20 @@ module.exports = {
 
     itemListObjGenerator()
 
-    function objectifyImwProductArr() {
-      let objectifiedImwProdArr = []
-      for (let i = 0; i < imwProductArr.length; i++) {
-        let objectifiedImwProd = JSON.parse(imwProductArr[i])
-        objectifiedImwProdArr.push(objectifiedImwProd)
-      }
-    }
+    // function objectifyImwProductArr() {
+    //   let objectifiedImwProdArr = []
+    //   for (let i = 0; i < imwProductArr.length; i++) {
+    //     let objectifiedImwProd = JSON.parse(imwProductArr[i])
+    //     objectifiedImwProdArr.push(objectifiedImwProd)
+    //   }
+    // }
 
-    objectifyImwProductArr()
+    // objectifyImwProductArr()
+
+    for (let i = 0; i < imwProductArr.length; i++) {
+      console.log(`imwProductArr[${i}]==> ${imwProductArr[i]}`)
+      console.log(`imwProductArr[${i}]['itemID']==> ${imwProductArr[i]['itemID']}`)
+    }
 
     console.log(`objectifiedImwProdArr==> ${objectifiedImwProdArr}`)
 
@@ -67,7 +72,7 @@ module.exports = {
       title: `vw-imwGenerator`,
       imwProductValObj: imwProductValObj,
       imwProductArr: imwProductArr,
-      objectifiedImwProdArr: objectifiedImwProdArr
+      // objectifiedImwProdArr: objectifiedImwProdArr
     })
 
   })
