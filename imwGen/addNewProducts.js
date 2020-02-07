@@ -66,7 +66,8 @@ module.exports = {
       }
       imwProductValObj['itemID'] = itemID
       imwProductValObj['suppUnitID'] = suppUnitID
-      imwProductArr.push(imwProductValObj)
+      let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
+      imwProductArr.push(stringifiedImwProductValObj)
       console.log(`imwProductArr==> ${imwProductArr}`)
     }
 
