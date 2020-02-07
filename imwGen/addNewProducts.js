@@ -33,7 +33,8 @@ module.exports = {
     function itemListAccSanitizer2() {
       if (itemListAccumulator !== undefined) {
         let sanitizerRegex3 = /(\\)|(\[)|(\])/g
-        sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex3, "")
+        let sanitizerRegex4 = /("")/g
+        sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex3, "").replace(sanitizerRegex4, `"`)
         console.log(`sanitizedItemListAcc==> ${sanitizedItemListAcc}`)
       }
     }
