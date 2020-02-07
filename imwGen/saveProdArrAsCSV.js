@@ -18,6 +18,8 @@ module.exports = {
     let productArray = postBody['productArrayPost']
     let objectifiedProductArray = []
 
+    console.log(`typeof productArray==> ${typeof productArray}`)
+
     function objectifyProductArr() {
       for (let i = 0; i < productArray.length; i++) {
         let objectifiedArrItem = JSON.parse(productArray[i])
