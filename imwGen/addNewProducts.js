@@ -26,7 +26,7 @@ module.exports = {
 
     function itemListAccSanitizer() {
       if (itemListAccumulator !== undefined) {
-        let sanitizerRegex1 = /(")|(\\)/g
+        let sanitizerRegex1 = /(")|(\\)|(\[)|(\])/g
         sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
         console.log(`itemListAccumulator==> ${itemListAccumulator}`)
 
