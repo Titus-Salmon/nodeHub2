@@ -22,7 +22,7 @@ html
 
 		form#imwGenerator(action='/imwGenerator/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
 			label.input-label-1(for='productArray') Product Array for generating IMW
-			input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value='')
+			input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
 
 			label.input-label-1(for='csv') filename:
 			input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
