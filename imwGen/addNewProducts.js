@@ -21,6 +21,7 @@ module.exports = {
     let imwProductValObj = {}
     let imwProductArr = []
     var sanitizedItemListAcc
+    let objectifiedImwProdArr = []
 
     // function itemListAccSanitizer() {
     //   if (itemListAccumulator !== undefined) {
@@ -79,7 +80,7 @@ module.exports = {
     sanitizedItemListObjGenerator2()
 
     function objectifyImwProductArr() {
-      let objectifiedImwProdArr = []
+      // let objectifiedImwProdArr = []
       for (let i = 0; i < imwProductArr.length; i++) {
         let objectifiedImwProd = JSON.parse(imwProductArr[i])
         objectifiedImwProdArr.push(objectifiedImwProd)
