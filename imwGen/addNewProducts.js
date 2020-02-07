@@ -22,13 +22,13 @@ module.exports = {
     let imwProductArr = []
     var sanitizedItemListAcc
 
-    function itemListAccSanitizer() {
-      if (itemListAccumulator !== undefined) {
-        let sanitizerRegex1 = /(")|(\\)|(\[)|(\])/g
-        sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
-        console.log(`sanitizedItemListAcc==> ${sanitizedItemListAcc}`)
-      }
-    }
+    // function itemListAccSanitizer() {
+    //   if (itemListAccumulator !== undefined) {
+    //     let sanitizerRegex1 = /(")|(\\)|(\[)|(\])/g
+    //     sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
+    //     console.log(`sanitizedItemListAcc==> ${sanitizedItemListAcc}`)
+    //   }
+    // }
 
     function itemListAccSanitizer2() {
       if (itemListAccumulator !== undefined) {
@@ -42,24 +42,24 @@ module.exports = {
       }
     }
 
-    function imwProductValObjSanitizer() {
-      let sanitizerRegex2 = /(")|(\\)/g
-      let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
-      sanitizedImwProductValObj = stringifiedImwProductValObj.replace(sanitizerRegex2, "")
-      console.log(`sanitizedImwProductValObj==> ${sanitizedImwProductValObj}`)
-    }
+    // function imwProductValObjSanitizer() {
+    //   let sanitizerRegex2 = /(")|(\\)/g
+    //   let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
+    //   sanitizedImwProductValObj = stringifiedImwProductValObj.replace(sanitizerRegex2, "")
+    //   console.log(`sanitizedImwProductValObj==> ${sanitizedImwProductValObj}`)
+    // }
 
-    function sanitizedItemListObjGenerator() {
-      if (itemListAccumulator !== undefined) {
-        itemListAccSanitizer()
-        imwProductArr.push(sanitizedItemListAcc)
-      }
-      imwProductValObj['itemID'] = itemID
-      imwProductValObj['suppUnitID'] = suppUnitID
-      imwProductValObjSanitizer()
-      imwProductArr.push(sanitizedImwProductValObj)
-      console.log(`imwProductArr==> ${imwProductArr}`)
-    }
+    // function sanitizedItemListObjGenerator() {
+    //   if (itemListAccumulator !== undefined) {
+    //     itemListAccSanitizer()
+    //     imwProductArr.push(sanitizedItemListAcc)
+    //   }
+    //   imwProductValObj['itemID'] = itemID
+    //   imwProductValObj['suppUnitID'] = suppUnitID
+    //   imwProductValObjSanitizer()
+    //   imwProductArr.push(sanitizedImwProductValObj)
+    //   console.log(`imwProductArr==> ${imwProductArr}`)
+    // }
 
     // sanitizedItemListObjGenerator()
 
@@ -78,27 +78,28 @@ module.exports = {
 
     sanitizedItemListObjGenerator2()
 
-    // function objectifyImwProductArr() {
-    //   let objectifiedImwProdArr = []
-    //   for (let i = 0; i < imwProductArr.length; i++) {
-    //     let objectifiedImwProd = JSON.parse(imwProductArr[i])
-    //     objectifiedImwProdArr.push(objectifiedImwProd)
-    //   }
-    // }
-
-    // objectifyImwProductArr()
-
-    for (let i = 0; i < imwProductArr.length; i++) {
-      console.log(`typeof imwProductArr[${i}]==> ${typeof imwProductArr[i]}`)
-      console.log(`imwProductArr[${i}]==> ${imwProductArr[i]}`)
-      console.log(`JSON.stringify(imwProductArr[${i}])==> ${JSON.stringify(imwProductArr[i])}`)
-      console.log(`imwProductArr[${i}]['itemID']==> ${imwProductArr[i]['itemID']}`)
+    function objectifyImwProductArr() {
+      let objectifiedImwProdArr = []
+      for (let i = 0; i < imwProductArr.length; i++) {
+        let objectifiedImwProd = JSON.parse(imwProductArr[i])
+        objectifiedImwProdArr.push(objectifiedImwProd)
+      }
+      console.log(`objectifiedImwProdArr==> ${objectifiedImwProdArr}`)
     }
 
-    let testString = `{"key": "value"}`
-    let parsedTestString = JSON.parse(testString)
-    console.log(`parsedTestString==> ${parsedTestString}`)
-    console.log(`parsedTestString.key==> ${parsedTestString.key}`)
+    objectifyImwProductArr()
+
+    // for (let i = 0; i < imwProductArr.length; i++) {
+    //   console.log(`typeof imwProductArr[${i}]==> ${typeof imwProductArr[i]}`)
+    //   console.log(`imwProductArr[${i}]==> ${imwProductArr[i]}`)
+    //   console.log(`JSON.stringify(imwProductArr[${i}])==> ${JSON.stringify(imwProductArr[i])}`)
+    //   console.log(`imwProductArr[${i}]['itemID']==> ${imwProductArr[i]['itemID']}`)
+    // }
+
+    // let testString = `{"key": "value"}`
+    // let parsedTestString = JSON.parse(testString)
+    // console.log(`parsedTestString==> ${parsedTestString}`)
+    // console.log(`parsedTestString.key==> ${parsedTestString.key}`)
 
     // console.log(`objectifiedImwProdArr==> ${objectifiedImwProdArr}`)
 
@@ -106,7 +107,7 @@ module.exports = {
       title: `vw-imwGenerator`,
       imwProductValObj: imwProductValObj,
       imwProductArr: imwProductArr,
-      // objectifiedImwProdArr: objectifiedImwProdArr
+      objectifiedImwProdArr: objectifiedImwProdArr
     })
 
   })
