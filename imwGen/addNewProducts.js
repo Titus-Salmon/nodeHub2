@@ -67,7 +67,12 @@ module.exports = {
     function sanitizedItemListObjGenerator2() {
       if (itemListAccumulator !== undefined) {
         itemListAccSanitizer2()
-        imwProductArr.push(sanitizedItemListAcc.split(','))
+        /* X(?=Y) 	Positive lookahead 	X if followed by Y
+         * (?<=Y)X 	Positive lookbehind 	X if after Y
+         * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
+        let splitRegex1 = /(?<=}),(?={)/g
+        let sanitizedItemListAccSPLIT = sanitizedItemListAcc.split(splitRegex1)
+        imwProductArr.push(sanitizedItemListAccSPLIT)
       }
       imwProductValObj['itemID'] = itemID
       imwProductValObj['suppUnitID'] = suppUnitID
