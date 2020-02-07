@@ -66,9 +66,9 @@ module.exports = {
     };
 
     try {
-      console.log('objectifiedProductArray from json2csv======>>', objectifiedProductArray)
+      console.log('objectifiedItemsToAddArr from json2csv======>>', objectifiedItemsToAddArr)
       const parser = new Parser(opts);
-      const csv = parser.parse(objectifiedProductArray);
+      const csv = parser.parse(objectifiedItemsToAddArr);
       csvContainer.push(csv);
       console.log('csv_T0d=====>>', csv);
       fs.writeFile(process.cwd() + '/public/csv/' + req.body['csvPost'] + '.csv', csv, function (err) {
