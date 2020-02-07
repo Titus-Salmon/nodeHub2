@@ -18,33 +18,34 @@ module.exports = {
     // var imwProductValues
     let itemID = postBody['itemIDPost']
     let suppUnitID = postBody['suppUnitIDPost']
-    let itemListAccumulator = JSON.parse(JSON.stringify(postBody['itemListAccumulatorPost']))
+    let itemListAccumulator = postBody['itemListAccumulatorPost']
     // let itemListAccumulatorObj = postBody['itemListAccumulatorObjPost']
     let imwProductValObj = {}
     let imwProductArr = []
+    var sanitizedItemListAcc
 
-    // function itemListAccSanitizer() {
-    //   if (itemListAccumulator !== undefined) {
-    //     let sanitizerRegex1 = /(")|(\\)/g
-    //     var sanitizeditemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
-    //     console.log(`itemListAccumulator==> ${itemListAccumulator}`)
-    //     //itemListAccSanitizer()
-    //     imwProductValues = `${sanitizeditemListAcc} _ itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
-    //     imwProductValObj = `${itemListAccumulatorObj}, {itemID: ${itemID}}`
-    //     imwProductValObj['itemID'] = itemID
-    //     imwProductValObj['suppUnitID'] = suppUnitID
-    //   } else {
-    //     imwProductValues = `itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
-    //     imwProductValObj['itemID'] = itemID
-    //     imwProductValObj['suppUnitID'] = suppUnitID
-    //   }
-    // }
+    function itemListAccSanitizer() {
+      if (itemListAccumulator !== undefined) {
+        let sanitizerRegex1 = /(")|(\\)/g
+        sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
+        console.log(`itemListAccumulator==> ${itemListAccumulator}`)
 
-    // itemListAccSanitizer()
+        //   imwProductValues = `${sanitizeditemListAcc} _ itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
+        //   imwProductValObj = `${itemListAccumulatorObj}, {itemID: ${itemID}}`
+        //   imwProductValObj['itemID'] = itemID
+        //   imwProductValObj['suppUnitID'] = suppUnitID
+        // } else {
+        //   imwProductValues = `itemID: '${itemID}' , suppUnitID: '${suppUnitID}'`
+        //   imwProductValObj['itemID'] = itemID
+        //   imwProductValObj['suppUnitID'] = suppUnitID
+      }
+    }
+
+    itemListAccSanitizer()
 
     function itemListObjGenerator() {
       if (itemListAccumulator !== undefined) {
-        imwProductArr.push(itemListAccumulator)
+        imwProductArr.push(sanitizedItemListAcc)
       }
       imwProductValObj['itemID'] = itemID
       imwProductValObj['suppUnitID'] = suppUnitID
