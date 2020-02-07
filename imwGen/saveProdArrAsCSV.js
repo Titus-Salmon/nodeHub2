@@ -15,15 +15,35 @@ module.exports = {
   saveProdArrAsCSV: router.post('/saveProdArrAsCSV', (req, res, next) => {
 
     const postBody = req.body
-    let productArray = postBody['productArrayPost']
-    let objectifiedProductArray = []
+    let itemsToAdd = postBody['productArrayPost']
+    let itemsToAddArr = []
+    let objectifiedItemsToAddArr = []
 
     console.log(`typeof productArray==> ${typeof productArray}`)
 
+    function itemsToAddArrayGenerator() {
+      // if (itemListAccumulator !== undefined) {
+      // itemListAccSanitizer()
+      /* X(?=Y) 	Positive lookahead 	X if followed by Y
+       * (?<=Y)X 	Positive lookbehind 	X if after Y
+       * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
+      let splitRegex1 = /(?<=}),(?={)/g
+      let itemsToAddSPLIT = itemsToAdd.split(splitRegex1)
+      for (let i = 0; i < itemsToAddSPLIT.length; i++) {
+        itemsToAddArr.push(itemsToAddSPLIT[i])
+      }
+      //}
+      // imwProductValObj['itemID'] = itemID
+      // imwProductValObj['suppUnitID'] = suppUnitID
+      // let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
+      // imwProductArr.push(stringifiedImwProductValObj)
+    }
+
     function objectifyProductArr() {
-      for (let i = 0; i < productArray.length; i++) {
-        let objectifiedArrItem = JSON.parse(productArray[i])
-        objectifiedProductArray.push(objectifiedArrItem)
+      itemsToAddArrayGenerator()
+      for (let i = 0; i < itemsToAddArr.length; i++) {
+        let objectifiedArrItem = JSON.parse(itemsToAddArr[i])
+        objectifiedItemsToAddArr.push(objectifiedArrItem)
       }
     }
 
