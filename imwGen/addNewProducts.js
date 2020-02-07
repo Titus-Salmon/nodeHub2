@@ -72,6 +72,7 @@ module.exports = {
          * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
         let splitRegex1 = /(?<=}),(?={)/g
         let sanitizedItemListAccSPLIT = sanitizedItemListAcc.split(splitRegex1)
+        console.log(`sanitizedItemListAccSPLIT==> ${sanitizedItemListAccSPLIT}`)
         imwProductArr.push(sanitizedItemListAccSPLIT)
       }
       imwProductValObj['itemID'] = itemID
