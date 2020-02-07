@@ -30,6 +30,14 @@ module.exports = {
       }
     }
 
+    function itemListAccSanitizer2() {
+      if (itemListAccumulator !== undefined) {
+        let sanitizerRegex1 = /(\\)|(\[)|(\])/g
+        sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
+        console.log(`sanitizedItemListAcc==> ${sanitizedItemListAcc}`)
+      }
+    }
+
     function imwProductValObjSanitizer() {
       let sanitizerRegex2 = /(")|(\\)/g
       let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
@@ -53,6 +61,7 @@ module.exports = {
 
     function unsanitizedItemListObjGen() {
       if (itemListAccumulator !== undefined) {
+        itemListAccSanitizer2()
         imwProductArr.push(itemListAccumulator)
       }
       imwProductValObj['itemID'] = itemID
