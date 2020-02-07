@@ -37,19 +37,31 @@ module.exports = {
       console.log(`sanitizedImwProductValObj==> ${sanitizedImwProductValObj}`)
     }
 
-    function itemListObjGenerator() {
+    function sanitizedItemListObjGenerator() {
       if (itemListAccumulator !== undefined) {
         itemListAccSanitizer()
         imwProductArr.push(sanitizedItemListAcc)
       }
-      imwProductValObj['itemID'] = `'${itemID}'`
-      imwProductValObj['suppUnitID'] = `'${suppUnitID}'`
+      imwProductValObj['itemID'] = itemID
+      imwProductValObj['suppUnitID'] = suppUnitID
       imwProductValObjSanitizer()
       imwProductArr.push(sanitizedImwProductValObj)
       console.log(`imwProductArr==> ${imwProductArr}`)
     }
 
-    itemListObjGenerator()
+    // sanitizedItemListObjGenerator()
+
+    function unsanitizedItemListObjGen() {
+      if (itemListAccumulator !== undefined) {
+        imwProductArr.push(itemListAccumulator)
+      }
+      imwProductValObj['itemID'] = itemID
+      imwProductValObj['suppUnitID'] = suppUnitID
+      imwProductArr.push(imwProductValObj)
+      console.log(`imwProductArr==> ${imwProductArr}`)
+    }
+
+    unsanitizedItemListObjGen()
 
     // function objectifyImwProductArr() {
     //   let objectifiedImwProdArr = []
