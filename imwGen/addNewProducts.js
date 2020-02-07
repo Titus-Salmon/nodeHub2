@@ -62,6 +62,7 @@ module.exports = {
     // objectifyImwProductArr()
 
     for (let i = 0; i < imwProductArr.length; i++) {
+      console.log(`typeof imwProductArr[${i}]==> ${typeof imwProductArr[i]}`)
       console.log(`imwProductArr[${i}]==> ${imwProductArr[i]}`)
       console.log(`JSON.stringify(imwProductArr[${i}])==> ${JSON.stringify(imwProductArr[i])}`)
       console.log(`imwProductArr[${i}]['itemID']==> ${imwProductArr[i]['itemID']}`)
