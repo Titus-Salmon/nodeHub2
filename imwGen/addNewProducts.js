@@ -71,6 +71,7 @@ module.exports = {
     let testString = `{"key": "value"}`
     let parsedTestString = JSON.parse(testString)
     console.log(`parsedTestString==> ${parsedTestString}`)
+    console.log(`parsedTestString.key==> ${parsedTestString.key}`)
 
     // console.log(`objectifiedImwProdArr==> ${objectifiedImwProdArr}`)
 
