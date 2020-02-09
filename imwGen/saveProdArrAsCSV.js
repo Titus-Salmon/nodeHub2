@@ -1,15 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
-// const mysql = require('mysql')
-
-// const connection = mysql.createConnection({
-//   host: process.env.RB_HOST,
-//   user: process.env.RB_USER,
-//   password: process.env.RB_PW,
-//   database: process.env.RB_DB,
-//   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
-// })
 
 module.exports = {
 
@@ -20,35 +11,49 @@ module.exports = {
     let itemsToAddArr = []
     let objectifiedItemsToAddArr = []
 
-    console.log(`typeof productArray==> ${typeof productArray}`)
+    console.log(`typeof itemsToAdd==> ${typeof itemsToAdd}`)
+
+    function itemsToAddSanitizer() {
+      if (itemsToAdd !== undefined) {
+        let sanitizerRegex1 = /(\\)|(\[)|(\])/g
+        let sanitizerRegex2 = /("")/g
+        let sanitizerRegex3 = /("{)/g
+        let sanitizerRegex4 = /(}")/g
+        sanitizeditemsToAdd = itemsToAdd.replace(sanitizerRegex1, "")
+          .replace(sanitizerRegex2, `"`).replace(sanitizerRegex3, `{`).replace(sanitizerRegex4, `}`)
+        console.log(`sanitizeditemsToAdd==> ${sanitizeditemsToAdd}`)
+      }
+    }
 
     function itemsToAddArrayGenerator() {
-      // if (itemListAccumulator !== undefined) {
-      // itemListAccSanitizer()
-      /* X(?=Y) 	Positive lookahead 	X if followed by Y
-       * (?<=Y)X 	Positive lookbehind 	X if after Y
-       * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
-      let splitRegex1 = /(?<=}),(?={)/g
-      let itemsToAddSPLIT = itemsToAdd.split(splitRegex1)
-      for (let i = 0; i < itemsToAddSPLIT.length; i++) {
-        itemsToAddArr.push(itemsToAddSPLIT[i])
+      if (itemsToAdd !== undefined) {
+        itemsToAddSanitizer()
+        /* X(?=Y) 	Positive lookahead 	X if followed by Y
+         * (?<=Y)X 	Positive lookbehind 	X if after Y
+         * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
+        let splitRegex1 = /(?<=}),(?={)/g
+        let itemsToAddSPLIT = sanitizeditemsToAdd.split(splitRegex1)
+        console.log(`sanitizeditemsToAdd==> ${sanitizeditemsToAdd}`)
+        console.log(`itemsToAddSPLIT==> ${itemsToAddSPLIT}`)
+        console.log(`itemsToAddSPLIT.length==> ${itemsToAddSPLIT.length}`)
+        for (let i = 0; i < itemsToAddSPLIT.length; i++) {
+          itemsToAddArr.push(itemsToAddSPLIT[i])
+        }
       }
-      //}
-      // imwProductValObj['itemID'] = itemID
-      // imwProductValObj['suppUnitID'] = suppUnitID
-      // let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
-      // imwProductArr.push(stringifiedImwProductValObj)
     }
 
     function objectifyProductArr() {
       itemsToAddArrayGenerator()
+      console.log(`itemsToAddArr.length==> ${itemsToAddArr.length}`)
       for (let i = 0; i < itemsToAddArr.length; i++) {
         let objectifiedArrItem = JSON.parse(itemsToAddArr[i])
         objectifiedItemsToAddArr.push(objectifiedArrItem)
+        console.log(`typeof objectifiedArrItem==> ${typeof objectifiedArrItem}`)
+        console.log(`objectifiedArrItem['itemID']==> ${objectifiedArrItem['itemID']}`)
       }
     }
 
-    objectifyProductArr()
+    // objectifyProductArr()
 
     //begin csv generator //////////////////////////////////////////////////////////////////////////
     const {
@@ -67,6 +72,7 @@ module.exports = {
     };
 
     try {
+      objectifyProductArr()
       console.log('objectifiedItemsToAddArr from json2csv======>>', objectifiedItemsToAddArr)
       const parser = new Parser(opts);
       const csv = parser.parse(objectifiedItemsToAddArr);
