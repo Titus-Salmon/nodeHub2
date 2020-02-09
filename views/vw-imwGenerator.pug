@@ -16,20 +16,20 @@ html
 
 			if imwProductValObj !== undefined
 				label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
-				input#itemListAccumulatorObj.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductArr)
+				input#itemListAccumulatorObj.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductArr_t0d)
 
 			button#imwItemAddButton(type='submit', form='imwItemAdd') Add Product(s) Accumulatively
 
 		form#imwGenerator(action='/imwGenerator/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
 			label.input-label-1(for='productArray') Product Array for generating IMW
-			input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
+			input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr_t0d)
 
 			label.input-label-1(for='csv') filename:
 			input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
 
 			button#imwGeneratorButton(type='submit', form='imwGenerator') Generate IMW
 
-			if objectifiedImwProdArr !== undefined
+			if objectifiedImwProdArr_t0d !== undefined
 				div.rslt-tbl-1
 				table#resTbl
 					thead
@@ -38,7 +38,7 @@ html
 							th Supplier Unit ID
 							
 					tbody#resTblBdy
-							each elmnt in objectifiedImwProdArr
+							each elmnt in objectifiedImwProdArr_t0d
 								tr
 									td= elmnt.itemID
 									td= elmnt.suppUnitID
