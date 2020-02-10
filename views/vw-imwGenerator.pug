@@ -7,6 +7,27 @@ html
 	body
 		include vw-dashboard.pug
 
+		form#addFromTbl(action='/imwGenerator/loadEDI_Table' method='POST' accept-charset="UTF-8")
+			label.input-label-1(for='tableName') Table to add products from:
+			input#tableName.input-unit-1(type='text', placeholder='enter data1', name='tableNamePost', value='')
+			button#tableNameButton(type='submit', form='addFromTbl') Display Table
+
+			if srsObjArr !== undefined
+				div.rslt-tbl-1
+				table#resTbl
+					thead
+						tr
+							th pk_t0d
+							th item_id
+							th supp_unit_id
+							
+					tbody#resTblBdy
+							each elmnt in srsObjArr
+								tr
+									td= elmnt.pk_t0d
+									td= elmnt.item_id
+									td= elmnt.supp_unit_id
+			
 		form#imwItemAdd(action='/imwGenerator/addNewProducts' method='POST' accept-charset="UTF-8")
 			label.input-label-1(for='itemID') Item ID
 			input#itemID.input-unit-1(type='text', placeholder='enter data1', name='itemIDPost', value='')
@@ -44,3 +65,4 @@ html
 									td= elmnt.suppUnitID
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
+		script(src='/jsModules_t0d/itemSelectM0d.js')

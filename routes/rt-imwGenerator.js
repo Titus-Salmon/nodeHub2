@@ -8,6 +8,9 @@ const {
 const {
   saveProdArrAsCSV
 } = require('../imwGen/saveProdArrAsCSV')
+const {
+  loadEDI_Table
+} = require('../imwGen/loadEDI_Table')
 
 
 
@@ -23,6 +26,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/addNewProducts', addNewProducts)
 router.post('/saveProdArrAsCSV', saveProdArrAsCSV)
+router.post('/loadEDI_Table', loadEDI_Table)
 
 
 module.exports = router;
