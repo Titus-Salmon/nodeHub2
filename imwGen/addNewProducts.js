@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-const itmlstaccsntzr = require('../funcLibT0d/itmLstAccSanitizer')
 // const mysql = require('mysql')
 
 // const connection = mysql.createConnection({
