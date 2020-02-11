@@ -1,15 +1,15 @@
 const express = require('express')
 const router = express.Router()
 
-// const mysql = require('mysql')
+const mysql = require('mysql')
 
-// const connection = mysql.createConnection({
-//   host: process.env.RB_HOST,
-//   user: process.env.RB_USER,
-//   password: process.env.RB_PW,
-//   database: process.env.RB_DB,
-//   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
-// })
+const connection = mysql.createConnection({
+  host: process.env.TEST_STUFF_T0D_HOST,
+  user: process.env.TEST_STUFF_T0D_USER,
+  password: process.env.TEST_STUFF_T0D_PW,
+  database: process.env.TEST_STUFF_T0D_DB,
+  multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+})
 
 module.exports = {
 
@@ -23,6 +23,45 @@ module.exports = {
     let imwProductArr = []
     var sanitizedItemListAcc
     let objectifiedImwProdArr = []
+
+    let tableName = postBody['tableNamePost']
+    let srsObjArr = []
+
+    function showSearchResults(rows) {
+      // let srsObj = {}
+      console.log(`rows.length==>${rows.length}`)
+      console.log(`rows==>${rows}`)
+      console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
+      for (let i = 0; i < rows.length; i++) {
+        let srsObj = {}
+        srsObj['pk_t0d'] = rows[i]['pk_t0d']
+        srsObj['item_id'] = rows[i]['item_id']
+        srsObj['supp_unit_id'] = rows[i]['supp_unit_id']
+        srsObjArr.push(srsObj)
+      }
+      // console.log(`srsObj==> ${srsObj}`)
+      // console.log(`JSON.stringify(srsObj)==> ${JSON.stringify(srsObj)}`)
+    }
+
+    function queryEDI_Table() {
+
+      connection.query(`SELECT * FROM ${tableName};`,
+        function (err, rows, fields) {
+          if (err) throw err
+          showSearchResults(rows)
+
+          res.render('vw-imwGenerator', {
+            title: `vw-imwGenerator`,
+            srsObjArr: srsObjArr,
+            imwProductValObj: imwProductValObj,
+            imwProductArr: imwProductArr,
+            objectifiedImwProdArr: objectifiedImwProdArr
+          })
+        })
+
+    }
+
+    // queryEDI_Table()
 
     function itemListAccSanitizer() {
       if (itemListAccumulator !== undefined) {
@@ -48,18 +87,30 @@ module.exports = {
           imwProductArr.push(sanitizedItemListAccSPLIT[i])
         }
       }
-      imwProductValObj['itemID'] = itemID
-      imwProductValObj['suppUnitID'] = suppUnitID
-      let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
-      imwProductArr.push(stringifiedImwProductValObj)
+      if (itemID !== '' || suppUnitID !== '') {
+        imwProductValObj['itemID'] = itemID
+        imwProductValObj['suppUnitID'] = suppUnitID
+        let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
+        imwProductArr.push(stringifiedImwProductValObj)
+      }
+
     }
 
     sanitizedItemListObjGenerator()
 
     function objectifyImwProductArr() {
       for (let i = 0; i < imwProductArr.length; i++) {
-        let objectifiedImwProd = JSON.parse(imwProductArr[i])
-        objectifiedImwProdArr.push(objectifiedImwProd)
+        if (imwProductArr.length > 0) {
+          console.log(`typeof imwProductArr[${i}]==> ${typeof imwProductArr[i]}`)
+          console.log(`imwProductArr[${i}]==> ${imwProductArr[i]}`)
+          if ((imwProductArr[i]) !== '' && typeof imwProductArr[i] == 'object') {
+            let objectifiedImwProd = JSON.parse(imwProductArr[i])
+            objectifiedImwProdArr.push(objectifiedImwProd)
+          } else {
+            let objectifiedImwProd = imwProductArr[i]
+            objectifiedImwProdArr.push(objectifiedImwProd)
+          }
+        }
       }
     }
 
@@ -69,12 +120,16 @@ module.exports = {
     console.log(`imwProductArr==> ${imwProductArr}`)
     console.log(`typeof imwProductArr[0]==> ${typeof imwProductArr[0]}`)
 
-    res.render('vw-imwGenerator', {
-      title: `vw-imwGenerator`,
-      imwProductValObj: imwProductValObj,
-      imwProductArr: imwProductArr,
-      objectifiedImwProdArr: objectifiedImwProdArr
-    })
+    if (tableName !== undefined && tableName !== '') {
+      queryEDI_Table()
+    } else {
+      res.render('vw-imwGenerator', {
+        title: `vw-imwGenerator`,
+        imwProductValObj: imwProductValObj,
+        imwProductArr: imwProductArr,
+        objectifiedImwProdArr: objectifiedImwProdArr
+      })
+    }
 
   })
 }

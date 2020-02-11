@@ -53,7 +53,10 @@ module.exports = {
 
           res.render('vw-imwGenerator', {
             title: `vw-imwGenerator`,
-            srsObjArr: srsObjArr
+            srsObjArr: srsObjArr,
+            // imwProductValObj: imwProductValObj,
+            // imwProductArr: imwProductArr,
+            // objectifiedImwProdArr: objectifiedImwProdArr
           })
         })
 
