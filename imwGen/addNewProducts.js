@@ -1,15 +1,15 @@
 const express = require('express')
 const router = express.Router()
 
-// const mysql = require('mysql')
+const mysql = require('mysql')
 
-// const connection = mysql.createConnection({
-//   host: process.env.RB_HOST,
-//   user: process.env.RB_USER,
-//   password: process.env.RB_PW,
-//   database: process.env.RB_DB,
-//   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
-// })
+const connection = mysql.createConnection({
+  host: process.env.TEST_STUFF_T0D_HOST,
+  user: process.env.TEST_STUFF_T0D_USER,
+  password: process.env.TEST_STUFF_T0D_PW,
+  database: process.env.TEST_STUFF_T0D_DB,
+  multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+})
 
 module.exports = {
 
@@ -19,10 +19,11 @@ module.exports = {
     let itemID = postBody['itemIDPost']
     let suppUnitID = postBody['suppUnitIDPost']
     let itemListAccumulator = postBody['itemListAccumulatorPost']
-    let imwProductValObj = {}
-    let imwProductArr = []
+    let imwProductValObj = {} //this holds product values (for one discrete product entry at a time) as an object;
+    //it gets stringified & pushed to imwProductArr
+    let imwProductArr = [] //this gets sent back to frontend input for itemListAccumulatorPost
     var sanitizedItemListAcc
-    let objectifiedImwProdArr = []
+    let objectifiedImwProdArr = [] //we objectify imwProductArr so it can be easily displayed in the DOM template
 
     function itemListAccSanitizer() {
       if (itemListAccumulator !== undefined) {
@@ -54,9 +55,10 @@ module.exports = {
       imwProductArr.push(stringifiedImwProductValObj)
     }
 
-    sanitizedItemListObjGenerator()
+    sanitizedItemListObjGenerator() //this sanitizes form input & creates an object from it, which is then stringified and 
+    //sent back to imwProductArr on the frontend itemListAccumulatorPost input
 
-    function objectifyImwProductArr() {
+    function objectifyImwProductArr() { //this objectifies imwProductArr for easy DOM template display
       for (let i = 0; i < imwProductArr.length; i++) {
         let objectifiedImwProd = JSON.parse(imwProductArr[i])
         objectifiedImwProdArr.push(objectifiedImwProd)
@@ -72,8 +74,8 @@ module.exports = {
     res.render('vw-imwGenerator', {
       title: `vw-imwGenerator`,
       imwProductValObj: imwProductValObj,
-      imwProductArr: imwProductArr,
-      objectifiedImwProdArr: objectifiedImwProdArr
+      imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
+      objectifiedImwProdArr: objectifiedImwProdArr //this is for DOM template display
     })
 
   })

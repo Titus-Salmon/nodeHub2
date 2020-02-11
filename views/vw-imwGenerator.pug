@@ -9,7 +9,7 @@ html
 
 		form#addFromTbl(action='/imwGenerator/loadEDI_Table' method='POST' accept-charset="UTF-8")
 			label.input-label-1(for='tableName') Table to add products from:
-			input#tableName.input-unit-1(type='text', placeholder='enter data1', name='tableNamePost', value='')
+			input#tableName.input-unit-1(type='text', placeholder='enter data1', name='tableNamePost', value=tableName)
 			button#tableNameButton(type='submit', form='addFromTbl') Display Table
 
 			if srsObjArr !== undefined
