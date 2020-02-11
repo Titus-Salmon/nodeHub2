@@ -39,29 +39,8 @@ module.exports = {
         srsObj['supp_unit_id'] = rows[i]['supp_unit_id']
         srsObjArr.push(srsObj)
       }
-      // console.log(`srsObj==> ${srsObj}`)
-      // console.log(`JSON.stringify(srsObj)==> ${JSON.stringify(srsObj)}`)
     }
 
-    function queryEDI_Table() {
-
-      connection.query(`SELECT * FROM ${tableName};`,
-        function (err, rows, fields) {
-          if (err) throw err
-          showSearchResults(rows)
-
-          res.render('vw-imwGenerator', {
-            title: `vw-imwGenerator`,
-            srsObjArr: srsObjArr,
-            imwProductValObj: imwProductValObj,
-            imwProductArr: imwProductArr,
-            objectifiedImwProdArr: objectifiedImwProdArr
-          })
-        })
-
-    }
-
-    // queryEDI_Table()
 
     function itemListAccSanitizer() {
       if (itemListAccumulator !== undefined) {
@@ -103,7 +82,7 @@ module.exports = {
         if (imwProductArr.length > 0) {
           console.log(`typeof imwProductArr[${i}]==> ${typeof imwProductArr[i]}`)
           console.log(`imwProductArr[${i}]==> ${imwProductArr[i]}`)
-          if ((imwProductArr[i]) !== '' && typeof imwProductArr[i] == 'object') {
+          if ((imwProductArr[i]) !== '' && typeof imwProductArr[i] == 'string') {
             let objectifiedImwProd = JSON.parse(imwProductArr[i])
             objectifiedImwProdArr.push(objectifiedImwProd)
           } else {
@@ -119,6 +98,23 @@ module.exports = {
     console.log(`typeof imwProductArr==> ${typeof imwProductArr}`)
     console.log(`imwProductArr==> ${imwProductArr}`)
     console.log(`typeof imwProductArr[0]==> ${typeof imwProductArr[0]}`)
+
+    function queryEDI_Table() {
+      connection.query(`SELECT * FROM ${tableName};`,
+        function (err, rows, fields) {
+          if (err) throw err
+          showSearchResults(rows)
+
+          res.render('vw-imwGenerator', {
+            title: `vw-imwGenerator`,
+            srsObjArr: srsObjArr,
+            imwProductValObj: imwProductValObj,
+            imwProductArr: imwProductArr,
+            objectifiedImwProdArr: objectifiedImwProdArr,
+            tableName: tableName
+          })
+        })
+    }
 
     if (tableName !== undefined && tableName !== '') {
       queryEDI_Table()
