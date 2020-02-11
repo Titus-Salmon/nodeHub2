@@ -25,6 +25,45 @@ module.exports = {
     var sanitizedItemListAcc
     let objectifiedImwProdArr = [] //we objectify imwProductArr so it can be easily displayed in the DOM template
 
+    let tableName = postBody['tableNamePost']
+
+    let srsObjArr = []
+
+    function showSearchResults(rows) {
+      console.log(`rows.length==>${rows.length}`)
+      console.log(`rows==>${rows}`)
+      console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
+      for (let i = 0; i < rows.length; i++) {
+        let srsObj = {}
+        srsObj['pk_t0d'] = rows[i]['pk_t0d']
+        srsObj['item_id'] = rows[i]['item_id']
+        srsObj['supp_unit_id'] = rows[i]['supp_unit_id']
+        srsObjArr.push(srsObj)
+        console.log(`srsObjArr==> ${srsObjArr}`)
+      }
+      // console.log(`srsObj==> ${srsObj}`)
+      // console.log(`JSON.stringify(srsObj)==> ${JSON.stringify(srsObj)}`)
+    }
+
+    // function queryEDI_Table() {
+    //   connection.query(`SELECT * FROM ${tableName};`,
+    //     function (err, rows, fields) {
+    //       if (err) throw err
+    //       showSearchResults(rows)
+    //       res.render('vw-imwGenerator', {
+    //         title: `vw-imwGenerator`,
+    //         imwProductValObj: imwProductValObj,
+    //         imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
+    //         objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
+    //         srsObjArr: srsObjArr,
+    //       })
+    //     })
+    // }
+
+    // if (tableName !== undefined && tableName !== '') {
+    //   queryEDI_Table()
+    // }
+
     function itemListAccSanitizer() {
       if (itemListAccumulator !== undefined) {
         let sanitizerRegex1 = /(\\)|(\[)|(\])/g
@@ -71,12 +110,47 @@ module.exports = {
     console.log(`imwProductArr==> ${imwProductArr}`)
     console.log(`typeof imwProductArr[0]==> ${typeof imwProductArr[0]}`)
 
-    res.render('vw-imwGenerator', {
-      title: `vw-imwGenerator`,
-      imwProductValObj: imwProductValObj,
-      imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
-      objectifiedImwProdArr: objectifiedImwProdArr //this is for DOM template display
-    })
+    function queryEDI_Table() {
+      connection.query(`SELECT * FROM ${tableName};`,
+        function (err, rows, fields) {
+          if (err) throw err
+          showSearchResults(rows)
+          res.render('vw-imwGenerator', {
+            title: `vw-imwGenerator`,
+            imwProductValObj: imwProductValObj,
+            imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
+            objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
+            srsObjArr: srsObjArr,
+          })
+        })
+    }
+
+    if (tableName !== undefined && tableName !== '') {
+      queryEDI_Table()
+      // res.render('vw-imwGenerator', {
+      //   title: `vw-imwGenerator`,
+      //   imwProductValObj: imwProductValObj,
+      //   imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
+      //   objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
+      //   srsObjArr: srsObjArr,
+      // })
+    } else {
+      res.render('vw-imwGenerator', {
+        title: `vw-imwGenerator`,
+        imwProductValObj: imwProductValObj,
+        imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
+        objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
+        srsObjArr: srsObjArr,
+      })
+    }
+
+    // res.render('vw-imwGenerator', {
+    //   title: `vw-imwGenerator`,
+    //   imwProductValObj: imwProductValObj,
+    //   imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
+    //   objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
+    //   srsObjArr: srsObjArr,
+    // })
 
   })
 }
