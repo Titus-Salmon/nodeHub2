@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const fs = require('fs')
 
+const sanitizerFuncs = require('../funcLibT0d/sanitizerFuncs')
+
 module.exports = {
 
   saveProdArrAsCSV: router.post('/saveProdArrAsCSV', (req, res, next) => {
@@ -13,51 +15,10 @@ module.exports = {
 
     console.log(`typeof itemsToAdd==> ${typeof itemsToAdd}`)
 
-    function itemsToAddSanitizer() {
-      if (itemsToAdd !== undefined) {
-        let sanitizerRegex1 = /(\\)|(\[)|(\])/g
-        let sanitizerRegex2 = /("")/g
-        let sanitizerRegex3 = /("{)/g
-        let sanitizerRegex4 = /(}")/g
-        sanitizeditemsToAdd = itemsToAdd.replace(sanitizerRegex1, "").replace(sanitizerRegex3, `{`).replace(sanitizerRegex4, `}`)
-        console.log(`sanitizeditemsToAdd==> ${sanitizeditemsToAdd}`)
-      }
-    }
-
-    function itemsToAddArrayGenerator() {
-      if (itemsToAdd !== undefined) {
-        itemsToAddSanitizer()
-        /* X(?=Y) 	Positive lookahead 	X if followed by Y
-         * (?<=Y)X 	Positive lookbehind 	X if after Y
-         * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
-        let splitRegex1 = /(?<=}),(?={)/g
-        let itemsToAddSPLIT = sanitizeditemsToAdd.split(splitRegex1)
-        console.log(`sanitizeditemsToAdd==> ${sanitizeditemsToAdd}`)
-        console.log(`itemsToAddSPLIT==> ${itemsToAddSPLIT}`)
-        console.log(`itemsToAddSPLIT.length==> ${itemsToAddSPLIT.length}`)
-        for (let i = 0; i < itemsToAddSPLIT.length; i++) {
-          itemsToAddArr.push(itemsToAddSPLIT[i])
-        }
-      }
-    }
-
     function objectifyProductArr() {
-      itemsToAddArrayGenerator()
-      console.log(`itemsToAddArr.length==> ${itemsToAddArr.length}`)
-      for (let i = 0; i < itemsToAddArr.length; i++) {
-        if ((itemsToAddArr[i]) !== '' && typeof itemsToAddArr[i] == 'string') {
-          let objectifiedArrItem = JSON.parse(itemsToAddArr[i])
-          objectifiedItemsToAddArr.push(objectifiedArrItem)
-          console.log(`typeof objectifiedArrItem==> ${typeof objectifiedArrItem}`)
-          console.log(`objectifiedArrItem['itemID']==> ${objectifiedArrItem['itemID']}`)
-        } else {
-          let objectifiedArrItem = itemsToAddArr[i]
-          objectifiedImwProdArr.push(objectifiedArrItem)
-        }
-      }
+      sanitizerFuncs.itemsToAddArrayGenerator(itemsToAdd, sanitizerFuncs.itemListAccSanitizer, itemsToAddArr)
+      sanitizerFuncs.objectifyImwProductArr(itemsToAddArr, objectifiedItemsToAddArr)
     }
-
-    // objectifyProductArr()
 
     //begin csv generator //////////////////////////////////////////////////////////////////////////
     const {
