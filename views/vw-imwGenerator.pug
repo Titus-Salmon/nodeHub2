@@ -21,6 +21,10 @@ html
 							th pk_t0d
 							th item_id
 							th supp_unit_id
+							th dept_name
+							th recpt_alias
+							th brand
+							th item_name
 							
 					tbody#resTblBdy
 							each elmnt in srsObjArr
@@ -28,12 +32,23 @@ html
 									td= elmnt.pk_t0d
 									td= elmnt.item_id
 									td= elmnt.supp_unit_id
+									td= elmnt.dept_name
+									td= elmnt.recpt_alias
+									td= elmnt.brand
+									td= elmnt.item_name
 
 			label.input-label-1(for='itemID') Item ID
-			input#itemID.input-unit-1(type='text', placeholder='enter data1', name='itemIDPost', value='')
-
+			input#itemID.input-unit-1(type='text', placeholder='enter data1', name='itemIDPost')
 			label.input-label-1(for='suppUnitID') Supplier Unit ID
-			input#suppUnitID.input-unit-1(type='text', placeholder='enter data1', name='suppUnitIDPost', value='')
+			input#suppUnitID.input-unit-1(type='text', placeholder='enter data1', name='suppUnitIDPost')
+			label.input-label-1(for='deptName') Departmane Name
+			input#deptName.input-unit-1(type='text', placeholder='enter data1', name='deptNamePost')
+			label.input-label-1(for='recptAlias') Receipt Alias
+			input#recptAlias.input-unit-1(type='text', placeholder='enter data1', name='recptAliasPost')
+			label.input-label-1(for='brand') Brand
+			input#brand.input-unit-1(type='text', placeholder='enter data1', name='brandPost')
+			label.input-label-1(for='itemName') Item Name
+			input#itemName.input-unit-1(type='text', placeholder='enter data1', name='itemNamePost')
 
 			if imwProductArr !== undefined && imwProductArr.length  > 0
 				label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
@@ -57,12 +72,20 @@ html
 						tr
 							th Item ID
 							th Supplier Unit ID
+							th Dept Name
+							th Receipt Alias
+							th Brand
+							th Item Name
 							
 					tbody#resTblBdy
 							each elmnt in objectifiedImwProdArr
 								tr
 									td= elmnt.itemID
 									td= elmnt.suppUnitID
+									td= elmnt.deptName
+									td= elmnt.recptAlias
+									td= elmnt.brand
+									td= elmnt.itemName
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
 		script(src='/jsModules_t0d/itemSelectM0d.js')

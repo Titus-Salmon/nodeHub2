@@ -3,29 +3,35 @@ const router = express.Router()
 
 const mysql = require('mysql')
 
-// const connection = mysql.createConnection({ //for home local testing
-//   host: process.env.TEST_STUFF_T0D_HOST,
-//   user: process.env.TEST_STUFF_T0D_USER,
-//   password: process.env.TEST_STUFF_T0D_PW,
-//   database: process.env.TEST_STUFF_T0D_DB,
-//   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
-// })
-
-const connection = mysql.createConnection({ //for work testing
-  host: process.env.NODEHUB_TEST1_HOST,
-  user: process.env.NODEHUB_TEST1_USER,
-  password: process.env.NODEHUB_TEST1_PW,
-  database: process.env.NODEHUB_TEST1_DB,
+const connection = mysql.createConnection({ //for home local testing
+  host: process.env.TEST_STUFF_T0D_HOST,
+  user: process.env.TEST_STUFF_T0D_USER,
+  password: process.env.TEST_STUFF_T0D_PW,
+  database: process.env.TEST_STUFF_T0D_DB,
   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
+
+// const connection = mysql.createConnection({ //for work testing
+//   host: process.env.NODEHUB_TEST1_HOST,
+//   user: process.env.NODEHUB_TEST1_USER,
+//   password: process.env.NODEHUB_TEST1_PW,
+//   database: process.env.NODEHUB_TEST1_DB,
+//   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+// })
 
 module.exports = {
 
   addNewProducts: router.post('/addNewProducts', (req, res, next) => {
 
     const postBody = req.body
+
     let itemID = postBody['itemIDPost']
     let suppUnitID = postBody['suppUnitIDPost']
+    let deptName = postBody['deptNamePost']
+    let recptAlias = postBody['recptAliasPost']
+    let brand = postBody['brandPost']
+    let itemName = postBody['itemNamePost']
+
     let itemListAccumulator = postBody['itemListAccumulatorPost']
     let imwProductValObj = {}
     let imwProductArr = []
@@ -45,6 +51,10 @@ module.exports = {
         srsObj['pk_t0d'] = rows[i]['pk_t0d']
         srsObj['item_id'] = rows[i]['item_id']
         srsObj['supp_unit_id'] = rows[i]['supp_unit_id']
+        srsObj['dept_name'] = rows[i]['dept_name']
+        srsObj['recpt_alias'] = rows[i]['recpt_alias']
+        srsObj['brand'] = rows[i]['brand']
+        srsObj['item_name'] = rows[i]['item_name']
         srsObjArr.push(srsObj)
       }
     }
@@ -74,9 +84,13 @@ module.exports = {
           imwProductArr.push(sanitizedItemListAccSPLIT[i])
         }
       }
-      if (itemID !== '' || suppUnitID !== '') {
+      if (itemID !== '' || suppUnitID !== '' || deptName !== '' || recptAlias !== '' || brand !== '' || itemName !== '') {
         imwProductValObj['itemID'] = itemID
         imwProductValObj['suppUnitID'] = suppUnitID
+        imwProductValObj['deptName'] = deptName
+        imwProductValObj['recptAlias'] = recptAlias
+        imwProductValObj['brand'] = brand
+        imwProductValObj['itemName'] = itemName
         let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
         imwProductArr.push(stringifiedImwProductValObj)
       }
