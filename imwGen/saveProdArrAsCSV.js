@@ -19,8 +19,7 @@ module.exports = {
         let sanitizerRegex2 = /("")/g
         let sanitizerRegex3 = /("{)/g
         let sanitizerRegex4 = /(}")/g
-        sanitizeditemsToAdd = itemsToAdd.replace(sanitizerRegex1, "")
-          .replace(sanitizerRegex2, `"`).replace(sanitizerRegex3, `{`).replace(sanitizerRegex4, `}`)
+        sanitizeditemsToAdd = itemsToAdd.replace(sanitizerRegex1, "").replace(sanitizerRegex3, `{`).replace(sanitizerRegex4, `}`)
         console.log(`sanitizeditemsToAdd==> ${sanitizeditemsToAdd}`)
       }
     }
@@ -46,10 +45,15 @@ module.exports = {
       itemsToAddArrayGenerator()
       console.log(`itemsToAddArr.length==> ${itemsToAddArr.length}`)
       for (let i = 0; i < itemsToAddArr.length; i++) {
-        let objectifiedArrItem = JSON.parse(itemsToAddArr[i])
-        objectifiedItemsToAddArr.push(objectifiedArrItem)
-        console.log(`typeof objectifiedArrItem==> ${typeof objectifiedArrItem}`)
-        console.log(`objectifiedArrItem['itemID']==> ${objectifiedArrItem['itemID']}`)
+        if ((itemsToAddArr[i]) !== '' && typeof itemsToAddArr[i] == 'string') {
+          let objectifiedArrItem = JSON.parse(itemsToAddArr[i])
+          objectifiedItemsToAddArr.push(objectifiedArrItem)
+          console.log(`typeof objectifiedArrItem==> ${typeof objectifiedArrItem}`)
+          console.log(`objectifiedArrItem['itemID']==> ${objectifiedArrItem['itemID']}`)
+        } else {
+          let objectifiedArrItem = itemsToAddArr[i]
+          objectifiedImwProdArr.push(objectifiedArrItem)
+        }
       }
     }
 
@@ -61,7 +65,7 @@ module.exports = {
     } = require('json2csv');
 
     const fields = [
-      "itemID", "suppUnitID"
+      "itemID", "suppUnitID", "deptName", "recptAlias", "brand", "itemName"
     ];
     const opts = {
       fields,

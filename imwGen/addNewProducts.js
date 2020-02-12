@@ -33,10 +33,11 @@ module.exports = {
     let itemName = postBody['itemNamePost']
 
     let itemListAccumulator = postBody['itemListAccumulatorPost']
-    let imwProductValObj = {}
-    let imwProductArr = []
+    let imwProductValObj = {} //this holds product values (for one discrete product entry at a time) as an object;
+    //it gets stringified & pushed to imwProductArr
+    let imwProductArr = [] //this gets sent back to frontend input for itemListAccumulatorPost
     var sanitizedItemListAcc
-    let objectifiedImwProdArr = []
+    let objectifiedImwProdArr = [] //we objectify imwProductArr so it can be easily displayed in the DOM template
 
     let tableName = postBody['tableNamePost']
     let srsObjArr = []
@@ -62,12 +63,18 @@ module.exports = {
 
     function itemListAccSanitizer() {
       if (itemListAccumulator !== undefined) {
+        console.log(`itemListAccumulator pre-regex==> ${itemListAccumulator}`)
         let sanitizerRegex1 = /(\\)|(\[)|(\])/g
-        let sanitizerRegex2 = /("")/g
+        // let sanitizerRegex2 = /("")/g couldn't use, because it replaced empty post data ("") with ", which broke
+        //objectifyImwProductArr() JSON.parse functionality
+        let sanitizerRegex2a = /("")(?=([^,])|([^:]))/g //X(?=Y) ==> "" if followed by any character that is NOT ,
+        let sanitizerRegex2b = /(?<=([^,])|([^:]))("")/g //(?<=Y)X ==> "" if after any character that is NOT ,
+        let sanitizerRegex2c = /(?<=([^,]))("")(?=([^,]))/g
+        // let sanitizerRegex2d = /(?<=([^:]))("")(?=([^:]))/g
+        let sanitizerRegex2d = /(?<=([^:]))("")/g
         let sanitizerRegex3 = /("{)/g
         let sanitizerRegex4 = /(}")/g
-        sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex1, "")
-          .replace(sanitizerRegex2, `"`).replace(sanitizerRegex3, `{`).replace(sanitizerRegex4, `}`)
+        sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex1, "").replace(sanitizerRegex3, `{`).replace(sanitizerRegex4, `}`)
         console.log(`sanitizedItemListAcc==> ${sanitizedItemListAcc}`)
       }
     }
@@ -84,22 +91,23 @@ module.exports = {
           imwProductArr.push(sanitizedItemListAccSPLIT[i])
         }
       }
-      if (itemID !== '' || suppUnitID !== '' || deptName !== '' || recptAlias !== '' || brand !== '' || itemName !== '') {
-        imwProductValObj['itemID'] = itemID
-        imwProductValObj['suppUnitID'] = suppUnitID
-        imwProductValObj['deptName'] = deptName
-        imwProductValObj['recptAlias'] = recptAlias
-        imwProductValObj['brand'] = brand
-        imwProductValObj['itemName'] = itemName
-        let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
-        imwProductArr.push(stringifiedImwProductValObj)
-      }
+      //if (itemID !== '' || suppUnitID !== '' || deptName !== '' || recptAlias !== '' || brand !== '' || itemName !== '') {
+      imwProductValObj['itemID'] = itemID
+      imwProductValObj['suppUnitID'] = suppUnitID
+      imwProductValObj['deptName'] = deptName
+      imwProductValObj['recptAlias'] = recptAlias
+      imwProductValObj['brand'] = brand
+      imwProductValObj['itemName'] = itemName
+      let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
+      imwProductArr.push(stringifiedImwProductValObj)
+      //}
 
     }
 
-    sanitizedItemListObjGenerator()
+    sanitizedItemListObjGenerator() //this sanitizes form input & creates an object from it, which is then stringified and 
+    //sent back to imwProductArr on the frontend itemListAccumulatorPost input
 
-    function objectifyImwProductArr() {
+    function objectifyImwProductArr() { //this objectifies imwProductArr for easy DOM template display
       for (let i = 0; i < imwProductArr.length; i++) {
         if (imwProductArr.length > 0) {
           console.log(`typeof imwProductArr[${i}]==> ${typeof imwProductArr[i]}`)
@@ -131,8 +139,8 @@ module.exports = {
             title: `vw-imwGenerator`,
             srsObjArr: srsObjArr,
             imwProductValObj: imwProductValObj,
-            imwProductArr: imwProductArr,
-            objectifiedImwProdArr: objectifiedImwProdArr,
+            imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
+            objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
             tableName: tableName
           })
         })
