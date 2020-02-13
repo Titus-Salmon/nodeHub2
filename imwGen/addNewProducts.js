@@ -28,19 +28,6 @@ module.exports = {
 
     const postBody = req.body
 
-    // let imwColumnNameArr = [
-    //   "pk_t0d", "item_id", "dept_id", "dept_name", "recpt_alias", "brand", "item_name", "size", "sugg_retail", "last_cost", "base_price",
-    //   "auto_discount", "disc_mult", "ideal_margin", "weight_profile", "tax1", "tax2", "tax3", "spec_tndr1", "spec_tndr2", "pos_prompt",
-    //   "location", "alternate_id", "alt_rcpt_alias", "pkg_qty", "supp_unit_id", "supplier_id", "unit", "num_pkgs", "dsd", "case_pk_mult",
-    //   "ovr", "category", "sub_category", "product_group", "product_flag", "rb_note", "edi_default", "powerfield_7", "temp_group", "onhand_qty",
-    //   "reorder_point", "mcl", "reorder_qty"
-    // ]
-
-    // for (let i = 0; i < imwColumnNameArr.length; i++) {
-    //   imwColumnNameArr[i] = postBody[`${imwColumnNameArr[i]}Post`]
-    //   console.log(`imwColumnNameArr[${i}]==> ${imwColumnNameArr[i]}`)
-    // }
-
     let itemID = postBody['itemIDPost']
     let deptID = postBody['deptIDPost']
     let deptName = postBody['deptNamePost']
@@ -94,6 +81,8 @@ module.exports = {
 
     let tableName = postBody['tableNamePost']
     let srsObjArr = []
+
+    let removeItem = postBody['removeItemPost']
 
     function showSearchResults(rows) {
       // let srsObj = {}
@@ -161,6 +150,37 @@ module.exports = {
     console.log(`typeof imwProductArr==> ${typeof imwProductArr}`)
     console.log(`imwProductArr==> ${imwProductArr}`)
     console.log(`typeof imwProductArr[0]==> ${typeof imwProductArr[0]}`)
+    console.log(`imwProductArr[0]==> ${imwProductArr[0]}`)
+    if (imwProductArr[0] !== undefined) {
+      console.log(`imwProductArr[0]==> ${imwProductArr[0]}`)
+      console.log(`JSON.parse(imwProductArr[0])==> ${JSON.parse(imwProductArr[0])}`)
+    }
+
+    function removeItemPrepper() {
+      console.log(`removeItem==> ${removeItem}`)
+      console.log(`typeof removeItem==> ${typeof removeItem}`)
+      let removeItemPrepperArr = []
+      // (?<=A)X(?=B) to yield: "X if after A and followed by B"
+      // let regexRemoveItem1 = /(?<=<td>).(?=<\/td>)/g
+      let regexRemoveItem1 = /(<\/td><td>)/g
+      let removeItemReplace = removeItem.replace(regexRemoveItem1, '</td>,<td>')
+      let removeItemSPLIT = removeItemReplace.split(',')
+      console.log(`removeItemSPLIT==> ${removeItemSPLIT}`)
+    }
+    if (removeItem !== undefined) {
+      removeItemPrepper()
+    }
+
+    function removeItemHandler() {
+      for (let i = 0; i < imwProductArr.length; i++) {
+        if (imwProductArr[i] == removeItem) {
+          imwProductArr.splice(i, 1)
+          console.log(`imwProductArr from removeItemHandler()==> ${imwProductArr}`)
+        }
+      }
+    }
+    removeItemHandler()
+
 
     function queryEDI_Table() {
       connection.query(`SELECT * FROM ${tableName};`,

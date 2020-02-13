@@ -1,7 +1,7 @@
-const resTblBdy = document.getElementById('resTblBdy')
+const resTblBdy_loadedTable = document.getElementById('resTblBdy_loadedTable')
 
-let tblCells = resTblBdy.getElementsByTagName('td'); //targets all cells in table
-let tblRows = resTblBdy.getElementsByTagName('tr'); //targets all rows in table
+let tblCellsLoadedTbl = resTblBdy_loadedTable.getElementsByTagName('td'); //targets all cells in table
+let tblRowsLoadedTbl = resTblBdy_loadedTable.getElementsByTagName('tr'); //targets all rows in table
 
 let itemIDm0d = document.getElementById('itemID')
 let deptIDm0d = document.getElementById('deptID')
@@ -55,16 +55,16 @@ let inputsArray = [
   prodFlagm0d, rbNotem0d, ediDefaultm0d, pwrfld7m0d, tmpGroupm0d, onhndQtym0d, reorderPtm0d, mclm0d, reorderQty
 ]
 
-console.log(`tblCells.length==> ${tblCells.length}`)
-console.log(`tblRows.length==> ${tblRows.length}`)
+console.log(`tblCellsLoadedTbl.length==> ${tblCellsLoadedTbl.length}`)
+console.log(`tblRowsLoadedTbl.length==> ${tblRowsLoadedTbl.length}`)
 
 function populateInputsWithClickedRowData() {
 
-  for (let m = 0; m < tblRows.length; m++) {
-    tblRows[m].addEventListener('click', function (event) {
+  for (let m = 0; m < tblRowsLoadedTbl.length; m++) {
+    tblRowsLoadedTbl[m].addEventListener('click', function (event) {
       for (let n = 0; n < inputsArray.length; n++) {
-        inputsArray[n].value = tblCells[(inputsArray.length * m) + (m + n + 1)].innerHTML
-        console.log(`inputsArray[n].value==> ${inputsArray[n].value}`)
+        inputsArray[n].value = tblCellsLoadedTbl[(inputsArray.length * m) + (m + n + 1)].innerHTML
+        console.log(`inputsArray[${n}].value==> ${inputsArray[n].value}`)
       }
     })
   }

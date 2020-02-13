@@ -39,7 +39,7 @@ html
 			div(style="display:block")
 				label.input-label-1(for='dbQuery') Enter Query for Rainbow DB
 				textarea#dbQuery.input-unit-1(name="dbQueryPost", cols="30", rows="1", wrap="soft") show tables;
-				button#crtTblBtn(type='submit', form='queryRBdb', style="display: block; float: left") QUERY Rainbow DB
+				button#crtTblBtn1(type='submit', form='queryRBdb', style="display: block; float: left") QUERY Rainbow DB
 		//- //^// queries RB DB - default query here is 'show tables;'
 
 		br
@@ -48,8 +48,8 @@ html
 		form#nhcrtDisplay(action='/MySqlTableHub/nhcrtDisplay' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='nhcrtDisplay') Enter NodeHub Catapult Results Table to Display
-				textarea#nhcrtDisplay.input-unit-1(name="nhcrtDisplayPost", cols="30", rows="1", wrap="soft") SELECT * FROM nhcrt_badger20191127;
-				button#crtTblBtn(type='submit', form='nhcrtDisplay', style="display: block; float: left") Display NHCRT
+				textarea#nhcrtDisplayTextArea.input-unit-1(name="nhcrtDisplayPost", cols="30", rows="1", wrap="soft") SELECT * FROM nhcrt_badger20191127;
+				button#crtTblBtn2(type='submit', form='nhcrtDisplay', style="display: block; float: left") Display NHCRT
 		//- //^// queries RB DB - default query here is 'SELECT * FROM ${nhcrtTableName};'
 
 		br
@@ -60,8 +60,8 @@ html
 				label.input-label-1(for='nhcrtEdiJoin') This query joins nhcrt & edi tables
 				//- textarea#nhcrtEdiJoin.input-unit-1(name="nhcrtEdiJoinPost", cols="30", rows="1", wrap="soft") SELECT DISTINCT nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, edi_table.* FROM ${nhcrtTableName} nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = edi_table.${ediPrefix_upc};
 				//- //^//ACTUALLY DON'T WANT 'DISTINCT' HERE, BECAUSE WANT TO CATCH ANY UPC&SKU MISMATCHES BETWEEN VENDOR CATALOG & CATAPULT.
-				textarea#nhcrtEdiJoin.input-unit-1(name="nhcrtEdiJoinPost", cols="30", rows="1", wrap="soft") SELECT nhcrt.ri_t0d, nhcrt.invPK, nhcrt.invCPK, nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.stoName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.sibIdealMargin, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, edi_table.* FROM ${nhcrtTableName} nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = edi_table.${ediPrefix_upc} ORDER BY nhcrt.ri_t0d;
-				button#crtTblBtn(type='submit', form='nhcrtEdiJoin', style="display: block; float: left") Display NHCRT/EDI joined tables
+				textarea#nhcrtEdiJoinTextArea.input-unit-1(name="nhcrtEdiJoinPost", cols="30", rows="1", wrap="soft") SELECT nhcrt.ri_t0d, nhcrt.invPK, nhcrt.invCPK, nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.stoName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.sibIdealMargin, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, edi_table.* FROM ${nhcrtTableName} nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = edi_table.${ediPrefix_upc} ORDER BY nhcrt.ri_t0d;
+				button#crtTblBtn3(type='submit', form='nhcrtEdiJoin', style="display: block; float: left") Display NHCRT/EDI joined tables
 		//- //^// joins nhcrt table to edi table
 
 		br

@@ -15,7 +15,7 @@ html
 
 			if srsObjArr !== undefined
 				div.rslt-tbl-1
-				table#resTbl
+				table#resTbl_loadedTable
 					thead
 						tr
 							th pk_t0d
@@ -63,7 +63,7 @@ html
 							th mcl
 							th reorder_qty
 							
-					tbody#resTblBdy
+					tbody#resTblBdy_loadedTable
 							each elmnt in srsObjArr
 								tr
 									td= elmnt.pk_t0d
@@ -202,11 +202,18 @@ html
 				label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
 				input#itemListAccumulatorObj.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductArr)
 
+				label.input-label-1(for='removeItem') Remove Item
+				input#removeItem.input-unit-1(type='text', placeholder='enter data1', name='removeItemPost')
+				button#imwItemRemoveButton(type='submit', form='imwItemAdd') Remove Item
+
 			button#imwItemAddButton(type='submit', form='imwItemAdd') Add Product(s) Accumulatively
 
 		form#imwGenerator(action='/imwGenerator/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
 			label.input-label-1(for='productArray') Product Array for generating IMW
 			input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
+
+			//- label.input-label-1(for='removeItem') Remove Item
+			//- input#removeItem.input-unit-1(type='text', placeholder='enter data1', name='removeItemPost')
 
 			label.input-label-1(for='csv') filename:
 			input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
@@ -215,7 +222,7 @@ html
 
 			if objectifiedImwProdArr !== undefined
 				div.rslt-tbl-1
-				table#resTbl
+				table#resTbl_itemsToAdd
 					thead
 						tr
 							//- th pk_t0d
@@ -263,7 +270,7 @@ html
 							th MCL
 							th Reorder Quantity
 							
-					tbody#resTblBdy
+					tbody#resTblBdy_itemsToAdd
 							each elmnt in objectifiedImwProdArr
 								tr
 									td= elmnt.itemID
@@ -312,3 +319,4 @@ html
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
 		script(src='/jsModules_t0d/itemSelectM0d.js')
+		script(src='/jsModules_t0d/removeItemM0d.js')

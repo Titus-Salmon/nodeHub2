@@ -69,7 +69,22 @@ module.exports = {
     imwProductValObj['mcl'] = mcl
     imwProductValObj['reorderQty'] = reorderQty
     let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
-    imwProductArr.push(stringifiedImwProductValObj)
+
+    function pushHandler() { //only push stringifiedImwProductValObj to imwProductArr if values for imwProductValObj aren't
+      //all empty
+      var push = false
+      for (let i = 0; i < Object.keys(imwProductValObj).length; i++) {
+        console.log(`typeof Object.values(imwProductValObj)==> ${typeof Object.values(imwProductValObj)}`)
+        if (Object.values(imwProductValObj)[i] !== '' && Object.values(imwProductValObj)[i] !== undefined && Object.values(imwProductValObj)[i] !== null) {
+          push = true
+          console.log(`push==> ${push}`)
+        }
+      }
+      if (push == true) {
+        imwProductArr.push(stringifiedImwProductValObj)
+      }
+    }
+    pushHandler()
   },
 
   objectifyImwProductArr: function (imwProductArr, objectifiedImwProdArr) { //this objectifies imwProductArr for easy DOM template display
