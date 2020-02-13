@@ -20,28 +20,102 @@ html
 						tr
 							th pk_t0d
 							th item_id
-							th supp_unit_id
+							th dept_id
 							th dept_name
 							th recpt_alias
 							th brand
 							th item_name
+							th size
+							th sugg_retail
+							th last_cost
+							th base_price
+							th auto_discount
+							th disc_mult
+							th ideal_margin
+							th weight_profile
+							th tax1
+							th tax2
+							th tax3
+							th spec_tndr1
+							th spec_tndr2
+							th pos_prompt
+							th location
+							th alternate_id
+							th alt_rcpt_alias
+							th pkg_qty
+							th supp_unit_id
+							th supplier_id
+							th unit
+							th num_pkgs
+							th dsd
+							th case_pk_mult
+							th ovr
+							th category
+							th sub_category
+							th product_group
+							th product_flag
+							th rb_note
+							th edi_default
+							th powerfield_7
+							th temp_group
+							th onhand_qty
+							th reorder_point
+							th mcl
+							th reorder_qty
 							
 					tbody#resTblBdy
 							each elmnt in srsObjArr
 								tr
 									td= elmnt.pk_t0d
 									td= elmnt.item_id
-									td= elmnt.supp_unit_id
+									td= elmnt.dept_id
 									td= elmnt.dept_name
 									td= elmnt.recpt_alias
 									td= elmnt.brand
 									td= elmnt.item_name
+									td= elmnt.size
+									td= elmnt.sugg_retail
+									td= elmnt.last_cost
+									td= elmnt.base_price
+									td= elmnt.auto_discount
+									td= elmnt.disc_mult
+									td= elmnt.ideal_margin
+									td= elmnt.weight_profile
+									td= elmnt.tax1
+									td= elmnt.tax2
+									td= elmnt.tax3
+									td= elmnt.spec_tndr1
+									td= elmnt.spec_tndr2
+									td= elmnt.pos_prompt
+									td= elmnt.location
+									td= elmnt.alternate_id
+									td= elmnt.alt_rcpt_alias
+									td= elmnt.pkg_qty
+									td= elmnt.supp_unit_id
+									td= elmnt.supplier_id
+									td= elmnt.unit
+									td= elmnt.num_pkgs
+									td= elmnt.dsd
+									td= elmnt.case_pk_mult
+									td= elmnt.ovr
+									td= elmnt.category
+									td= elmnt.sub_category
+									td= elmnt.product_group
+									td= elmnt.product_flag
+									td= elmnt.rb_note
+									td= elmnt.edi_default
+									td= elmnt.powerfield_7
+									td= elmnt.temp_group
+									td= elmnt.onhand_qty
+									td= elmnt.reorder_point
+									td= elmnt.mcl
+									td= elmnt.reorder_qty
 
 			label.input-label-1(for='itemID') Item ID
 			input#itemID.input-unit-1(type='text', placeholder='enter data1', name='itemIDPost')
-			label.input-label-1(for='suppUnitID') Supplier Unit ID
-			input#suppUnitID.input-unit-1(type='text', placeholder='enter data1', name='suppUnitIDPost')
-			label.input-label-1(for='deptName') Departmane Name
+			label.input-label-1(for='deptID') Department ID
+			input#deptID.input-unit-1(type='text', placeholder='enter data1', name='deptIDPost')
+			label.input-label-1(for='deptName') Department Name
 			input#deptName.input-unit-1(type='text', placeholder='enter data1', name='deptNamePost')
 			label.input-label-1(for='recptAlias') Receipt Alias
 			input#recptAlias.input-unit-1(type='text', placeholder='enter data1', name='recptAliasPost')
@@ -49,6 +123,80 @@ html
 			input#brand.input-unit-1(type='text', placeholder='enter data1', name='brandPost')
 			label.input-label-1(for='itemName') Item Name
 			input#itemName.input-unit-1(type='text', placeholder='enter data1', name='itemNamePost')
+			label.input-label-1(for='size') Size
+			input#size.input-unit-1(type='text', placeholder='enter data1', name='sizePost')
+			label.input-label-1(for='suggRtl') Suggested Retail
+			input#suggRtl.input-unit-1(type='text', placeholder='enter data1', name='suggRtlPost')
+			label.input-label-1(for='lastCost') Last Cost
+			input#lastCost.input-unit-1(type='text', placeholder='enter data1', name='lastCostPost')
+			label.input-label-1(for='basePrice') Base Price
+			input#basePrice.input-unit-1(type='text', placeholder='enter data1', name='basePricePost')
+			label.input-label-1(for='autoDisco') Auto Discount
+			input#autoDisco.input-unit-1(type='text', placeholder='enter data1', name='autoDiscoPost')
+			label.input-label-1(for='discoMult') Dicsount Multiplier
+			input#discoMult.input-unit-1(type='text', placeholder='enter data1', name='discoMultPost')
+			label.input-label-1(for='idealMarg') Ideal Margin
+			input#idealMarg.input-unit-1(type='text', placeholder='enter data1', name='idealMargPost')
+			label.input-label-1(for='weightProf') Weight Profile
+			input#weightProf.input-unit-1(type='text', placeholder='enter data1', name='weightProfPost')
+			label.input-label-1(for='tax1') Tax 1
+			input#tax1.input-unit-1(type='text', placeholder='enter data1', name='tax1Post')
+			label.input-label-1(for='tax2') Tax 2
+			input#tax2.input-unit-1(type='text', placeholder='enter data1', name='tax2Post')
+			label.input-label-1(for='tax3') Tax 3
+			input#tax3.input-unit-1(type='text', placeholder='enter data1', name='tax3Post')
+			label.input-label-1(for='specTndr1') Special Tender 1
+			input#specTndr1.input-unit-1(type='text', placeholder='enter data1', name='specTndr1Post')
+			label.input-label-1(for='specTndr2') Special Tender 2
+			input#specTndr2.input-unit-1(type='text', placeholder='enter data1', name='specTndr2Post')
+			label.input-label-1(for='posPrompt') POS Prompt
+			input#posPrompt.input-unit-1(type='text', placeholder='enter data1', name='posPromptPost')
+			label.input-label-1(for='location') Location
+			input#location.input-unit-1(type='text', placeholder='enter data1', name='locationPost')
+			label.input-label-1(for='altID') Alternate ID
+			input#altID.input-unit-1(type='text', placeholder='enter data1', name='altIDPost')
+			label.input-label-1(for='altRcptAlias') Alternate Receipt Alias
+			input#altRcptAlias.input-unit-1(type='text', placeholder='enter data1', name='altRcptAliasPost')
+			label.input-label-1(for='pkgQty') Package Quantity
+			input#pkgQty.input-unit-1(type='text', placeholder='enter data1', name='pkgQtyPost')
+			label.input-label-1(for='suppUnitID') Supplier Unit ID
+			input#suppUnitID.input-unit-1(type='text', placeholder='enter data1', name='suppUnitIDPost')
+			label.input-label-1(for='suppID') Supplier ID
+			input#suppID.input-unit-1(type='text', placeholder='enter data1', name='suppIDPost')
+			label.input-label-1(for='unit') Unit
+			input#unit.input-unit-1(type='text', placeholder='enter data1', name='unitPost')
+			label.input-label-1(for='numPkgs') Number of Packages
+			input#numPkgs.input-unit-1(type='text', placeholder='enter data1', name='numPkgsPost')
+			label.input-label-1(for='dsd') DSD
+			input#dsd.input-unit-1(type='text', placeholder='enter data1', name='dsdPost')
+			label.input-label-1(for='csPkMlt') Case Pack Multiplier
+			input#csPkMlt.input-unit-1(type='text', placeholder='enter data1', name='csPkMltPost')
+			label.input-label-1(for='ovr') Override
+			input#ovr.input-unit-1(type='text', placeholder='enter data1', name='ovrPost')
+			label.input-label-1(for='category') Category
+			input#category.input-unit-1(type='text', placeholder='enter data1', name='categoryPost')
+			label.input-label-1(for='subCtgry') Sub Category
+			input#subCtgry.input-unit-1(type='text', placeholder='enter data1', name='subCtgryPost')
+			label.input-label-1(for='prodGroup') Product Group
+			input#prodGroup.input-unit-1(type='text', placeholder='enter data1', name='prodGroupPost')
+			label.input-label-1(for='prodFlag') Product Flag
+			input#prodFlag.input-unit-1(type='text', placeholder='enter data1', name='prodFlagPost')
+			label.input-label-1(for='rbNote') RB Note
+			input#rbNote.input-unit-1(type='text', placeholder='enter data1', name='rbNotePost')
+			label.input-label-1(for='ediDefault') EDI Default
+			input#ediDefault.input-unit-1(type='text', placeholder='enter data1', name='ediDefaultPost')
+			label.input-label-1(for='pwrfld7') Power Field 7
+			input#pwrfld7.input-unit-1(type='text', placeholder='enter data1', name='pwrfld7Post')
+			label.input-label-1(for='tmpGroup') Temp Group
+			input#tmpGroup.input-unit-1(type='text', placeholder='enter data1', name='tmpGroupPost')
+			label.input-label-1(for='onhndQty') Onhand Quantity
+			input#onhndQty.input-unit-1(type='text', placeholder='enter data1', name='onhndQtyPost')
+			label.input-label-1(for='reorderPt') Reorder Point
+			input#reorderPt.input-unit-1(type='text', placeholder='enter data1', name='reorderPtPost')
+			label.input-label-1(for='mcl') MCL
+			input#mcl.input-unit-1(type='text', placeholder='enter data1', name='mclPost')
+			label.input-label-1(for='reorderQty') Reorder Quantity
+			input#reorderQty.input-unit-1(type='text', placeholder='enter data1', name='reorderQtyPost')
 
 			if imwProductArr !== undefined && imwProductArr.length  > 0
 				label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
@@ -70,22 +218,97 @@ html
 				table#resTbl
 					thead
 						tr
+							//- th pk_t0d
 							th Item ID
-							th Supplier Unit ID
-							th Dept Name
+							th Department ID
+							th Departmane Name
 							th Receipt Alias
 							th Brand
 							th Item Name
+							th Size
+							th Suggested Retail
+							th Last Cost
+							th Base Price
+							th Auto Discount
+							th Dicsount Multiplier
+							th Ideal Margin
+							th Weight Profile
+							th Tax 1
+							th Tax 2
+							th Tax 3
+							th Special Tender 1
+							th Special Tender 2
+							th POS Prompt
+							th Location
+							th Alternate ID
+							th Alternate Receipt Alias
+							th Package Quantity
+							th Supplier Unit ID
+							th Supplier ID
+							th Unit
+							th Number of Packages
+							th DSD
+							th Case Pack Multiplier
+							th Override
+							th Category
+							th Sub Category
+							th Product Group
+							th Product Flag
+							th RB Note
+							th EDI Default
+							th Power Field 7
+							th Temp Group
+							th Onhand Quantity
+							th Reorder Point
+							th MCL
+							th Reorder Quantity
 							
 					tbody#resTblBdy
 							each elmnt in objectifiedImwProdArr
 								tr
 									td= elmnt.itemID
-									td= elmnt.suppUnitID
+									td= elmnt.deptID
 									td= elmnt.deptName
 									td= elmnt.recptAlias
 									td= elmnt.brand
 									td= elmnt.itemName
+									td= elmnt.size
+									td= elmnt.suggRtl
+									td= elmnt.lastCost
+									td= elmnt.basePrice
+									td= elmnt.autoDisco
+									td= elmnt.discoMult
+									td= elmnt.idealMarg
+									td= elmnt.weightProf
+									td= elmnt.tax1
+									td= elmnt.tax2
+									td= elmnt.tax3
+									td= elmnt.specTndr1
+									td= elmnt.specTndr2
+									td= elmnt.posPrompt
+									td= elmnt.location
+									td= elmnt.altID
+									td= elmnt.altRcptAlias
+									td= elmnt.pkgQty
+									td= elmnt.suppUnitID
+									td= elmnt.suppID
+									td= elmnt.unit
+									td= elmnt.numPkgs
+									td= elmnt.dsd
+									td= elmnt.csPkMlt
+									td= elmnt.ovr
+									td= elmnt.category
+									td= elmnt.subCtgry
+									td= elmnt.prodGroup
+									td= elmnt.prodFlag
+									td= elmnt.rbNote
+									td= elmnt.ediDefault
+									td= elmnt.pwrfld7
+									td= elmnt.tmpGroup
+									td= elmnt.onhndQty
+									td= elmnt.reorderPt
+									td= elmnt.mcl
+									td= elmnt.reorderQty
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
 		script(src='/jsModules_t0d/itemSelectM0d.js')

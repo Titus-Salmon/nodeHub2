@@ -11,7 +11,9 @@ module.exports = {
   },
 
   sanitizedItemListObjGenerator: function (itemListAccumulator, itemListAccSanitizer, imwProductArr,
-    imwProductValObj, itemID, suppUnitID, deptName, recptAlias, brand, itemName) {
+    imwProductValObj, itemID, deptID, deptName, recptAlias, brand, itemName, size, suggRtl, lastCost, basePrice, autoDisco, discoMult, idealMarg,
+    weightProf, tax1, tax2, tax3, specTndr1, specTndr2, posPrompt, location, altID, altRcptAlias, pkgQty, suppUnitID, suppID, unit, numPkgs,
+    dsd, csPkMlt, ovr, category, subCtgry, prodGroup, prodFlag, rbNote, ediDefault, pwrfld7, tmpGroup, onhndQty, reorderPt, mcl, reorderQty) {
     if (itemListAccumulator !== undefined) {
       itemListAccSanitizer(itemListAccumulator)
       /* X(?=Y) 	Positive lookahead 	X if followed by Y
@@ -24,11 +26,48 @@ module.exports = {
       }
     }
     imwProductValObj['itemID'] = itemID
-    imwProductValObj['suppUnitID'] = suppUnitID
+    imwProductValObj['deptID'] = deptID
     imwProductValObj['deptName'] = deptName
     imwProductValObj['recptAlias'] = recptAlias
     imwProductValObj['brand'] = brand
     imwProductValObj['itemName'] = itemName
+    imwProductValObj['size'] = size
+    imwProductValObj['suggRtl'] = suggRtl
+    imwProductValObj['lastCost'] = lastCost
+    imwProductValObj['basePrice'] = basePrice
+    imwProductValObj['autoDisco'] = autoDisco
+    imwProductValObj['discoMult'] = discoMult
+    imwProductValObj['idealMarg'] = idealMarg
+    imwProductValObj['weightProf'] = weightProf
+    imwProductValObj['tax1'] = tax1
+    imwProductValObj['tax2'] = tax2
+    imwProductValObj['tax3'] = tax3
+    imwProductValObj['specTndr1'] = specTndr1
+    imwProductValObj['specTndr2'] = specTndr2
+    imwProductValObj['posPrompt'] = posPrompt
+    imwProductValObj['location'] = location
+    imwProductValObj['altID'] = altID
+    imwProductValObj['altRcptAlias'] = altRcptAlias
+    imwProductValObj['pkgQty'] = pkgQty
+    imwProductValObj['suppUnitID'] = suppUnitID
+    imwProductValObj['suppID'] = suppID
+    imwProductValObj['unit'] = unit
+    imwProductValObj['numPkgs'] = numPkgs
+    imwProductValObj['dsd'] = dsd
+    imwProductValObj['csPkMlt'] = csPkMlt
+    imwProductValObj['ovr'] = ovr
+    imwProductValObj['category'] = category
+    imwProductValObj['subCtgry'] = subCtgry
+    imwProductValObj['prodGroup'] = prodGroup
+    imwProductValObj['prodFlag'] = prodFlag
+    imwProductValObj['rbNote'] = rbNote
+    imwProductValObj['ediDefault'] = ediDefault
+    imwProductValObj['pwrfld7'] = pwrfld7
+    imwProductValObj['tmpGroup'] = tmpGroup
+    imwProductValObj['onhndQty'] = onhndQty
+    imwProductValObj['reorderPt'] = reorderPt
+    imwProductValObj['mcl'] = mcl
+    imwProductValObj['reorderQty'] = reorderQty
     let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
     imwProductArr.push(stringifiedImwProductValObj)
   },
