@@ -78,11 +78,11 @@ module.exports = {
             if (frmInptsObj.skuMismatchOption == "yes") {
               console.log(`frmInptsObj.skuMismatchOption==> ${frmInptsObj.skuMismatchOption}`)
               // srcRsObj['imwSKU'] = reviewObj['imwSKU'] = "" //ACTUALLY, CATAPULT WONT UPDATE RECORD UNLESS SKU IS INCLUDED, SO CAN'T LEAVE SKU BLANK -t0d
-              srcRsObj['pf4'] = reviewObj['pf4'] = "skuMismatch"
+              srcRsObj['pf7'] = reviewObj['pf7'] = "skuMismatch"
               console.log(`nejRows[${i}][genericHeaderObj.cpltSKUHeader]==> ${nejRows[i][genericHeaderObj.cpltSKUHeader]}`)
               console.log(`nejRows[${i}][genericHeaderObj.ediSKUHeader]==> ${nejRows[i][genericHeaderObj.ediSKUHeader]}`)
               console.log(`srcRsObj['imwSKU']==> ${srcRsObj['imwSKU']}`)
-              console.log(`srcRsObj['pf4']==> ${srcRsObj['pf4']}`)
+              console.log(`srcRsObj['pf7']==> ${srcRsObj['pf7']}`)
             }
           }
         }
