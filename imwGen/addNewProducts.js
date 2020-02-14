@@ -21,6 +21,12 @@ const connection = mysql.createConnection({ //for home local testing
 //   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 // })
 
+const objKeyArr = [
+  "itemID", "deptID", "deptName", "recptAlias", "brand", "itemName", "size", "suggRtl", "lastCost", "basePrice", "autoDisco",
+  "discoMult", "idealMarg", "weightProf", "tax1", "tax2", "tax3", "specTndr1", "specTndr2", "posPrompt", "location", "altID",
+  "altRcptAlias", "pkgQty", "suppUnitID", "suppID", "unit", "numPkgs", "dsd", "csPkMlt", "ovr", "category", "subCtgry", "prodGroup",
+  "prodFlag", "rbNote", "ediDefault", "pwrfld7", "tmpGroup", "onhndQty", "reorderPt", "mcl", "reorderQty"
+]
 
 module.exports = {
 
@@ -76,7 +82,7 @@ module.exports = {
     let imwProductValObj = {} //this holds product values (for one discrete product entry at a time) as an object;
     //it gets stringified & pushed to imwProductArr
     let imwProductArr = [] //this gets sent back to frontend input for itemListAccumulatorPost
-    // var sanitizedItemListAcc
+    // var sanitizedThing
     let objectifiedImwProdArr = [] //we objectify imwProductArr so it can be easily displayed in the DOM template
 
     let tableName = postBody['tableNamePost']
@@ -139,7 +145,7 @@ module.exports = {
       }
     }
 
-    sanitizerFuncs.sanitizedItemListObjGenerator(itemListAccumulator, sanitizerFuncs.itemListAccSanitizer,
+    sanitizerFuncs.sanitizedItemListObjGenerator(itemListAccumulator, sanitizerFuncs.thingSanitizer,
       imwProductArr, imwProductValObj, itemID, deptID, deptName, recptAlias, brand, itemName, size, suggRtl, lastCost, basePrice, autoDisco,
       discoMult, idealMarg, weightProf, tax1, tax2, tax3, specTndr1, specTndr2, posPrompt, location, altID, altRcptAlias, pkgQty, suppUnitID,
       suppID, unit, numPkgs, dsd, csPkMlt, ovr, category, subCtgry, prodGroup, prodFlag, rbNote, ediDefault, pwrfld7, tmpGroup, onhndQty,
@@ -156,24 +162,52 @@ module.exports = {
       console.log(`JSON.parse(imwProductArr[0])==> ${JSON.parse(imwProductArr[0])}`)
     }
 
+    var removeItemSPLIT
+    let removeItemSPLITsanArr = []
+    let removeItemSPLITsanArrObject = {}
+
     function removeItemPrepper() {
       console.log(`removeItem==> ${removeItem}`)
       console.log(`typeof removeItem==> ${typeof removeItem}`)
-      let removeItemPrepperArr = []
-      // (?<=A)X(?=B) to yield: "X if after A and followed by B"
-      // let regexRemoveItem1 = /(?<=<td>).(?=<\/td>)/g
       let regexRemoveItem1 = /(<\/td><td>)/g
       let removeItemReplace = removeItem.replace(regexRemoveItem1, '</td>,<td>')
-      let removeItemSPLIT = removeItemReplace.split(',')
+      removeItemSPLIT = removeItemReplace.split(',')
       console.log(`removeItemSPLIT==> ${removeItemSPLIT}`)
     }
+
+    function removeItemSPLITsanitizer() {
+      // let removeItemSPLITsanArr = []
+      let regexRemoveItem2 = /(<td>)|(<\/td>)/g
+      for (let i = 0; i < removeItemSPLIT.length; i++) {
+        let removeItemSPLITsan = removeItemSPLIT[i].replace(regexRemoveItem2, '')
+        removeItemSPLITsanArr.push(removeItemSPLITsan)
+      }
+      console.log(`removeItemSPLITsanArr==> ${removeItemSPLITsanArr}`)
+    }
+
+    function removeItemSPLITsanArrObjectifier() {
+      for (let i = 0; i < objKeyArr.length; i++) {
+        removeItemSPLITsanArrObject[`${objKeyArr[i]}`] = removeItemSPLITsanArr[i]
+      }
+      console.log(`removeItemSPLITsanArrObject==> ${removeItemSPLITsanArrObject}`)
+      console.log(`JSON.stringity(removeItemSPLITsanArrObject)==> ${JSON.stringify(removeItemSPLITsanArrObject)}`)
+    }
+
     if (removeItem !== undefined) {
       removeItemPrepper()
+      removeItemSPLITsanitizer()
+      removeItemSPLITsanArrObjectifier()
     }
 
     function removeItemHandler() {
       for (let i = 0; i < imwProductArr.length; i++) {
-        if (imwProductArr[i] == removeItem) {
+        sanitizerFuncs.thingSanitizer(imwProductArr[i])
+        console.log(`sanitizedThing from removeItemHandler==> ${sanitizedThing}`)
+        console.log(`JSON.stringify(sanitizedThing)==> ${JSON.stringify(sanitizedThing)}`)
+        console.log(`JSON.stringity(imwProductArr[i])==> ${JSON.stringify(imwProductArr[i])}`)
+        console.log(`removeItemSPLITsanArrObject==> ${removeItemSPLITsanArrObject}`)
+        console.log(`JSON.stringify(removeItemSPLITsanArrObject)==> ${JSON.stringify(removeItemSPLITsanArrObject)}`)
+        if (sanitizedThing == JSON.stringify(removeItemSPLITsanArrObject)) {
           imwProductArr.splice(i, 1)
           console.log(`imwProductArr from removeItemHandler()==> ${imwProductArr}`)
         }

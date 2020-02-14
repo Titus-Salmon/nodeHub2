@@ -16,7 +16,7 @@ module.exports = {
     console.log(`typeof itemsToAdd==> ${typeof itemsToAdd}`)
 
     function objectifyProductArr() {
-      sanitizerFuncs.itemsToAddArrayGenerator(itemsToAdd, sanitizerFuncs.itemListAccSanitizer, itemsToAddArr)
+      sanitizerFuncs.itemsToAddArrayGenerator(itemsToAdd, sanitizerFuncs.thingSanitizer, itemsToAddArr)
       sanitizerFuncs.objectifyImwProductArr(itemsToAddArr, objectifiedItemsToAddArr)
     }
 

@@ -1,28 +1,28 @@
 module.exports = {
-  itemListAccSanitizer: function (itemListAccumulator) {
-    if (itemListAccumulator !== undefined) {
-      console.log(`itemListAccumulator pre-regex==> ${itemListAccumulator}`)
+  thingSanitizer: function (thingToSanitize) {
+    if (thingToSanitize !== undefined) {
+      console.log(`thingToSanitize pre-regex==> ${thingToSanitize}`)
       let sanitizerRegex1 = /(\\)|(\[)|(\])/g
       let sanitizerRegex3 = /("{)/g
       let sanitizerRegex4 = /(}")/g
-      sanitizedItemListAcc = itemListAccumulator.replace(sanitizerRegex1, "").replace(sanitizerRegex3, `{`).replace(sanitizerRegex4, `}`)
-      console.log(`sanitizedItemListAcc==> ${sanitizedItemListAcc}`)
+      sanitizedThing = thingToSanitize.replace(sanitizerRegex1, "").replace(sanitizerRegex3, `{`).replace(sanitizerRegex4, `}`)
+      console.log(`sanitizedThing==> ${sanitizedThing}`)
     }
   },
 
-  sanitizedItemListObjGenerator: function (itemListAccumulator, itemListAccSanitizer, imwProductArr,
+  sanitizedItemListObjGenerator: function (thingToSanitize, thingSanitizer, imwProductArr,
     imwProductValObj, itemID, deptID, deptName, recptAlias, brand, itemName, size, suggRtl, lastCost, basePrice, autoDisco, discoMult, idealMarg,
     weightProf, tax1, tax2, tax3, specTndr1, specTndr2, posPrompt, location, altID, altRcptAlias, pkgQty, suppUnitID, suppID, unit, numPkgs,
     dsd, csPkMlt, ovr, category, subCtgry, prodGroup, prodFlag, rbNote, ediDefault, pwrfld7, tmpGroup, onhndQty, reorderPt, mcl, reorderQty) {
-    if (itemListAccumulator !== undefined) {
-      itemListAccSanitizer(itemListAccumulator)
+    if (thingToSanitize !== undefined) {
+      thingSanitizer(thingToSanitize)
       /* X(?=Y) 	Positive lookahead 	X if followed by Y
        * (?<=Y)X 	Positive lookbehind 	X if after Y
        * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
       let splitRegex1 = /(?<=}),(?={)/g
-      let sanitizedItemListAccSPLIT = sanitizedItemListAcc.split(splitRegex1)
-      for (let i = 0; i < sanitizedItemListAccSPLIT.length; i++) {
-        imwProductArr.push(sanitizedItemListAccSPLIT[i])
+      let sanitizedThingSPLIT = sanitizedThing.split(splitRegex1)
+      for (let i = 0; i < sanitizedThingSPLIT.length; i++) {
+        imwProductArr.push(sanitizedThingSPLIT[i])
       }
     }
     imwProductValObj['itemID'] = itemID
@@ -103,18 +103,18 @@ module.exports = {
     }
   },
 
-  itemsToAddArrayGenerator: function (itemsToAdd, itemListAccSanitizer, itemsToAddArr) {
+  itemsToAddArrayGenerator: function (itemsToAdd, thingSanitizer, itemsToAddArr) {
     if (itemsToAdd !== undefined) {
       // itemsToAddSanitizer()
-      itemListAccSanitizer(itemsToAdd)
+      thingSanitizer(itemsToAdd)
       /* X(?=Y) 	Positive lookahead 	X if followed by Y
        * (?<=Y)X 	Positive lookbehind 	X if after Y
        * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
 
       let splitRegex1 = /(?<=}),(?={)/g
-      let sanitizedItemListAccSPLIT = sanitizedItemListAcc.split(splitRegex1)
-      for (let i = 0; i < sanitizedItemListAccSPLIT.length; i++) {
-        itemsToAddArr.push(sanitizedItemListAccSPLIT[i])
+      let sanitizedThingSPLIT = sanitizedThing.split(splitRegex1)
+      for (let i = 0; i < sanitizedThingSPLIT.length; i++) {
+        itemsToAddArr.push(sanitizedThingSPLIT[i])
       }
     }
   }
