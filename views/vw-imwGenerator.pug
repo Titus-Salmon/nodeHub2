@@ -6,19 +6,72 @@ html
 
 	body
 		include vw-dashboard.pug
+
+		//- //v// creates empty imwCat mysql table
+		form#createImwCatTable(action='/imwGenerator/createImwCatTable' method='POST' accept-charset="UTF-8" style="display:block")
+			div(style="display:block")
+				label.input-label-1(for='crtImwCatTbl') Enter MySql imwCat Table Name to CREATE
+				input#crtImwCatTbl.input-unit-1(type='text', placeholder='enter data', name='tblNamePost', value='')
+
+				label.input-label-1(for='crtImwCatTblInput') Enter Table Headers (as csv) - default headers for imwCat (Inv. Maint. Wksht. Catalog) provided
+				input#crtImwCatTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='item_id,dept_id,dept_name,recpt_alias,brand,item_name,size,sugg_retail,last_cost,base_price,auto_discount,disc_mult,ideal_margin,weight_profile,tax1,tax2,tax3,spec_tndr1,spec_tndr2,pos_prompt,location,alternate_id,alt_rcpt_alias,pkg_qty,supp_unit_id,supplier_id,unit,num_pkgs,dsd,case_pk_mult,ovr,category,sub_category,product_group,product_flag,rb_note,edi_default,powerfield_7,temp_group,onhand_qty,reorder_point,mcl,reorder_qty')
+				button#crtImwCatTblBtn(type='submit', form='createImwCatTable', style="display: block") CREATE imwCat Table
+		//- //^// creates empty imwCat mysql table
+
+		br
+
+		form#populateTable(ref="populateTable" action='/imwGenerator/populateImwCatTable' method='POST' encType="multipart/form-data" accept-charset="UTF-8")
+			div(style="display:block")
+				label.input-label-1(for='popTbl') Populate Table
+				input#popTbl.input-unit-1(type='file', name='popTblPost')
+
+				label.input-label-1(for='popTblName') Table to Populate
+				input#popTblName.input-unit-1(type='text', name='popTblNamePost')
+
+				label.input-label-1(for='tblColName') Loaded Column Names
+				input#tblColName.input-unit-1(type='text', name='tblColNamePost', value=tableColNames)
+
+				button#popTblBtn(type='submit', form='populateTable', style="display: block") Populate Table
+
+		if sqlTablePopulated !== undefined
+			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
+
+		//- a(href=`/imwGenerator/?page=${n}`) #[n]
 			
 		form#imwItemAdd(action='/imwGenerator/addNewProducts' method='POST' accept-charset="UTF-8")
 
 			label.input-label-1(for='tableName') Table to add products from:
 			input#tableName.input-unit-1(type='text', placeholder='enter data1', name='tableNamePost', value=tableName)
-			button#tableNameButton(type='submit', form='imwItemAdd') Display Table
+			//- button#tableNameButton(type='submit', form='imwItemAdd') Display Table
+			
+			label.input-label-1(for='numQueryRes') Number of Results to Show
+			input#numQueryRes.input-unit-1(type='text', placeholder='enter data1', name='numQueryResPost', value=numQueryRes, required)
+			
+			if totalRows !== undefined
+				label.input-label-1(for='totalRows') Total Rows
+				input#totalRows.input-unit-1(type='text', placeholder='enter data1', name='totalRowsPost', value=totalRows)
+
+				label.input-label-1(for='numPages') Number of Pages
+				input#numPages.input-unit-1(type='text', placeholder='enter data1', name='numPagesPost', value=numPages)
+
+				label.input-label-1(for='offset') Offset
+				input#offset.input-unit-1(type='text', placeholder='enter data1', name='offsetPost', value=offset)
+
+				label.input-label-1(for='nextPage') Next Page
+				input#nextPage.input-unit-1(type='text', placeholder='enter data1', name='nextPagePost', value=numPages)
+
+				//- a(href='/imwGenerator/addNewProducts/?page=1') 1
+				//- a(href='/imwGenerator/addNewProducts/?page=2') 2
+				//- a(href='/imwGenerator/addNewProducts/?page=3') 3
+
+			button#imwItemAddButton(type='submit', form='imwItemAdd') Display Table
 
 			if srsObjArr !== undefined
 				div.rslt-tbl-1
 				table#resTbl_loadedTable
 					thead
 						tr
-							th pk_t0d
+							th ri_t0d
 							th item_id
 							th dept_id
 							th dept_name
@@ -66,7 +119,7 @@ html
 					tbody#resTblBdy_loadedTable
 							each elmnt in srsObjArr
 								tr
-									td= elmnt.pk_t0d
+									td= elmnt.ri_t0d
 									td= elmnt.item_id
 									td= elmnt.dept_id
 									td= elmnt.dept_name
@@ -225,7 +278,7 @@ html
 				table#resTbl_itemsToAdd
 					thead
 						tr
-							//- th pk_t0d
+							//- th ri_t0d
 							th Item ID
 							th Department ID
 							th Departmane Name
