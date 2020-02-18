@@ -31,7 +31,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/addNewProducts', addNewProducts)
-router.get('/addNewProducts', addNewProducts) //trying this for GET request when clicking anchor tags for pagination
+// router.get('/addNewProducts', addNewProducts) //trying this for GET request when clicking anchor tags for pagination
 router.post('/saveProdArrAsCSV', saveProdArrAsCSV)
 router.post('/loadEDI_Table', loadEDI_Table)
 router.post('/createImwCatTable', createImwCatTable)

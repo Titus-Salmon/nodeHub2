@@ -81,31 +81,31 @@ module.exports = {
     let mcl = postBody['mclPost']
     let reorderQty = postBody['reorderQtyPost']
 
-    let offset = postBody['offsetPost']
+    // let offset = postBody['offsetPost']
 
     let numQueryRes = postBody['numQueryResPost']
     console.log(`numQueryRes==> ${numQueryRes}`)
 
-    if (offset == undefined) {
-      offset = parseInt(numQueryRes)
-    } else {
-      offset = parseInt(offset) + parseInt(numQueryRes)
-    }
+    // if (offset == undefined) {
+    //   offset = parseInt(numQueryRes)
+    // } else {
+    //   offset = parseInt(offset) + parseInt(numQueryRes)
+    // }
 
-    let nextPageOffset = postBody['nextPageOffsetPost']
-    let prevPageOffset = postBody['prevPageOffsetPost']
+    // let nextPageOffset = postBody['nextPageOffsetPost']
+    // let prevPageOffset = postBody['prevPageOffsetPost']
 
-    if (nextPageOffset == undefined) {
-      nextPageOffset = parseInt(numQueryRes)
-    } else {
-      nextPageOffset = parseInt(nextPageOffset) + parseInt(numQueryRes)
-    }
+    // if (nextPageOffset == undefined) {
+    //   nextPageOffset = parseInt(numQueryRes)
+    // } else {
+    //   nextPageOffset = parseInt(nextPageOffset) + parseInt(numQueryRes)
+    // }
 
-    if (prevPageOffset == undefined) {
-      prevPageOffset = nextPageOffset - parseInt(numQueryRes)
-    } else {
-      prevPageOffset = nextPageOffset - parseInt(numQueryRes)
-    }
+    // if (prevPageOffset == undefined) {
+    //   prevPageOffset = nextPageOffset - parseInt(numQueryRes)
+    // } else {
+    //   prevPageOffset = nextPageOffset - parseInt(numQueryRes)
+    // }
 
     let itemListAccumulator = postBody['itemListAccumulatorPost']
     let imwProductValObj = {} //this holds product values (for one discrete product entry at a time) as an object;
@@ -119,19 +119,19 @@ module.exports = {
 
     let removeItem = postBody['removeItemPost']
 
-    let totalRowsArr = []
-    let totalRowsPost = postBody['totalRowsPost']
+    // let totalRowsArr = []
+    // let totalRowsPost = postBody['totalRowsPost']
 
-    if (totalRowsPost !== undefined) {
-      let numPages = totalRowsPost / numQueryRes
-      console.log(`numPages==> ${numPages}`)
-    }
+    // if (totalRowsPost !== undefined) {
+    //   let numPages = totalRowsPost / numQueryRes
+    //   console.log(`numPages==> ${numPages}`)
+    // }
 
 
     function showSearchResults(rows) {
       let countRows = rows[0]
       let totalRows = countRows[0]['COUNT(*)']
-      totalRowsArr.push(totalRows)
+      // totalRowsArr.push(totalRows)
       console.log(`totalRows==> ${totalRows}`)
       console.log(`countRows==> ${countRows}`)
       // console.log(`JSON.stringify(countRows)==> ${JSON.stringify(countRows)}`)
@@ -265,7 +265,7 @@ module.exports = {
     function queryEDI_Table() {
       //    SELECT * FROM someTable ORDER BY id DESC LIMIT 0,5
       connection.query(`SELECT COUNT(*) FROM ${tableName};
-      SELECT * FROM ${tableName} ORDER BY item_name LIMIT ${offset},${numQueryRes};`,
+      SELECT * FROM ${tableName} ORDER BY item_name LIMIT 0,${numQueryRes};`,
         function (err, rows, fields) {
           if (err) throw err
           showSearchResults(rows)
@@ -280,11 +280,11 @@ module.exports = {
             // newqueryForwardPosition: newqueryForwardPosition,
             // newqueryBackwardPosition: newqueryBackwardPosition,
             numQueryRes: numQueryRes,
-            totalRows: totalRowsArr[0],
-            numPages: Math.ceil(totalRowsArr[0] / numQueryRes),
-            offset: offset,
-            nextPageOffset: nextPageOffset,
-            prevPageOffset: prevPageOffset
+            // totalRows: totalRowsArr[0],
+            // numPages: Math.ceil(totalRowsArr[0] / numQueryRes),
+            // offset: offset,
+            // nextPageOffset: nextPageOffset,
+            // prevPageOffset: prevPageOffset
 
           })
         })
