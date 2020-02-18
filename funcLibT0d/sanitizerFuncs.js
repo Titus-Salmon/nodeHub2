@@ -74,7 +74,7 @@ module.exports = {
       //all empty
       var push = false
       for (let i = 0; i < Object.keys(imwProductValObj).length; i++) {
-        console.log(`typeof Object.values(imwProductValObj)==> ${typeof Object.values(imwProductValObj)}`)
+        // console.log(`typeof Object.values(imwProductValObj)==> ${typeof Object.values(imwProductValObj)}`)
         if (Object.values(imwProductValObj)[i] !== '' && Object.values(imwProductValObj)[i] !== undefined && Object.values(imwProductValObj)[i] !== null) {
           push = true
           console.log(`push==> ${push}`)

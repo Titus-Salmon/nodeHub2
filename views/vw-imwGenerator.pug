@@ -46,6 +46,16 @@ html
 			
 			button#imwItemAddButton(type='submit', form='imwItemAdd') Display Table
 
+			if pageLinkArray !== undefined
+				div.rslt-tbl-1
+				table#resTbl_pageLinks
+					thead
+						tr
+							each elmnt in pageLinkArray
+								th= Object.values(elmnt)
+								a(href=`/imwGenerator/addNewProducts?page=${Object.values(elmnt)}&tableName=${tableName}&numQueryRes=${numQueryRes}`) #{Object.values(elmnt)}
+
+
 			if srsObjArr !== undefined
 				div.rslt-tbl-1
 				table#resTbl_loadedTable
