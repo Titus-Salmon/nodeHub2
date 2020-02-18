@@ -34,8 +34,8 @@ module.exports = {
 
     const postBody = req.body
 
-    // console.log(`req.query==> ${req.query}`)
-    // console.log(`JSON.stringify(req.query)==> ${JSON.stringify(req.query)}`)
+    console.log(`req.query==> ${req.query}`)
+    console.log(`JSON.stringify(req.query)==> ${JSON.stringify(req.query)}`)
 
     let itemID = postBody['itemIDPost']
     let deptID = postBody['deptIDPost']
@@ -90,6 +90,21 @@ module.exports = {
       offset = parseInt(numQueryRes)
     } else {
       offset = parseInt(offset) + parseInt(numQueryRes)
+    }
+
+    let nextPageOffset = postBody['nextPageOffsetPost']
+    let prevPageOffset = postBody['prevPageOffsetPost']
+
+    if (nextPageOffset == undefined) {
+      nextPageOffset = parseInt(numQueryRes)
+    } else {
+      nextPageOffset = parseInt(nextPageOffset) + parseInt(numQueryRes)
+    }
+
+    if (prevPageOffset == undefined) {
+      prevPageOffset = nextPageOffset - parseInt(numQueryRes)
+    } else {
+      prevPageOffset = nextPageOffset - parseInt(numQueryRes)
     }
 
     let itemListAccumulator = postBody['itemListAccumulatorPost']
@@ -267,7 +282,9 @@ module.exports = {
             numQueryRes: numQueryRes,
             totalRows: totalRowsArr[0],
             numPages: Math.ceil(totalRowsArr[0] / numQueryRes),
-            offset: offset
+            offset: offset,
+            nextPageOffset: nextPageOffset,
+            prevPageOffset: prevPageOffset
 
           })
         })
@@ -283,26 +300,6 @@ module.exports = {
         objectifiedImwProdArr: objectifiedImwProdArr
       })
     }
-
-    // router.get('/addNewProducts', (req, res, next) => {
-    //   console.log(`req.query==> ${req.query}`)
-    //   console.log(`JSON.stringify(req.query)==> ${JSON.stringify(req.query)}`)
-
-    //   res.render('vw-imwGenerator', {
-    //     title: `vw-imwGenerator (GET request)`,
-    //     srsObjArr: srsObjArr,
-    //     imwProductValObj: imwProductValObj,
-    //     imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
-    //     objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
-    //     tableName: tableName,
-    //     // newqueryForwardPosition: newqueryForwardPosition,
-    //     // newqueryBackwardPosition: newqueryBackwardPosition,
-    //     totalRows: totalRowsArr[0],
-
-    //   })
-
-    // })
-
   }),
 
   // addNewProducts: router.get('/addNewProducts', (req, res, next) => {
