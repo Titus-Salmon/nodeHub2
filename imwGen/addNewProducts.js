@@ -94,7 +94,7 @@ module.exports = {
       // let srsObj = {}
       console.log(`rows.length==>${rows.length}`)
       console.log(`rows==>${rows}`)
-      console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
+      // console.log(`JSON.stringify(rows)==>${JSON.stringify(rows)}`)
       for (let i = 0; i < rows.length; i++) {
         let srsObj = {}
         srsObj['pk_t0d'] = rows[i]['pk_t0d']
@@ -153,14 +153,14 @@ module.exports = {
 
     sanitizerFuncs.objectifyImwProductArr(imwProductArr, objectifiedImwProdArr)
 
-    console.log(`typeof imwProductArr==> ${typeof imwProductArr}`)
-    console.log(`imwProductArr==> ${imwProductArr}`)
-    console.log(`typeof imwProductArr[0]==> ${typeof imwProductArr[0]}`)
-    console.log(`imwProductArr[0]==> ${imwProductArr[0]}`)
-    if (imwProductArr[0] !== undefined) {
-      console.log(`imwProductArr[0]==> ${imwProductArr[0]}`)
-      console.log(`JSON.parse(imwProductArr[0])==> ${JSON.parse(imwProductArr[0])}`)
-    }
+    // console.log(`typeof imwProductArr==> ${typeof imwProductArr}`)
+    // console.log(`imwProductArr==> ${imwProductArr}`)
+    // console.log(`typeof imwProductArr[0]==> ${typeof imwProductArr[0]}`)
+    // console.log(`imwProductArr[0]==> ${imwProductArr[0]}`)
+    // if (imwProductArr[0] !== undefined) {
+    //   console.log(`imwProductArr[0]==> ${imwProductArr[0]}`)
+    //   console.log(`JSON.parse(imwProductArr[0])==> ${JSON.parse(imwProductArr[0])}`)
+    // }
 
     var removeItemSPLIT
     let removeItemSPLITsanArr = []
@@ -209,7 +209,9 @@ module.exports = {
         console.log(`JSON.stringify(removeItemSPLITsanArrObject)==> ${JSON.stringify(removeItemSPLITsanArrObject)}`)
         if (sanitizedThing == JSON.stringify(removeItemSPLITsanArrObject)) {
           imwProductArr.splice(i, 1)
+          objectifiedImwProdArr.splice(i, 1)
           console.log(`imwProductArr from removeItemHandler()==> ${imwProductArr}`)
+          console.log(`objectifiedImwProdArr from removeItemHandler()==> ${objectifiedImwProdArr}`)
         }
       }
     }

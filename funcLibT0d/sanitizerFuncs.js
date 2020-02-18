@@ -1,12 +1,12 @@
 module.exports = {
   thingSanitizer: function (thingToSanitize) {
     if (thingToSanitize !== undefined) {
-      console.log(`thingToSanitize pre-regex==> ${thingToSanitize}`)
+      // console.log(`thingToSanitize pre-regex==> ${thingToSanitize}`)
       let sanitizerRegex1 = /(\\)|(\[)|(\])/g
       let sanitizerRegex3 = /("{)/g
       let sanitizerRegex4 = /(}")/g
       sanitizedThing = thingToSanitize.replace(sanitizerRegex1, "").replace(sanitizerRegex3, `{`).replace(sanitizerRegex4, `}`)
-      console.log(`sanitizedThing==> ${sanitizedThing}`)
+      // console.log(`sanitizedThing==> ${sanitizedThing}`)
     }
   },
 
@@ -74,10 +74,10 @@ module.exports = {
       //all empty
       var push = false
       for (let i = 0; i < Object.keys(imwProductValObj).length; i++) {
-        console.log(`typeof Object.values(imwProductValObj)==> ${typeof Object.values(imwProductValObj)}`)
+        // console.log(`typeof Object.values(imwProductValObj)==> ${typeof Object.values(imwProductValObj)}`)
         if (Object.values(imwProductValObj)[i] !== '' && Object.values(imwProductValObj)[i] !== undefined && Object.values(imwProductValObj)[i] !== null) {
           push = true
-          console.log(`push==> ${push}`)
+          // console.log(`push==> ${push}`)
         }
       }
       if (push == true) {
