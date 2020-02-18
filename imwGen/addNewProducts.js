@@ -255,7 +255,7 @@ module.exports = {
         console.log(`JSON.stringify(removeItemSPLITsanArrObject)==> ${JSON.stringify(removeItemSPLITsanArrObject)}`)
         if (sanitizedThing == JSON.stringify(removeItemSPLITsanArrObject)) {
           imwProductArr.splice(i, 1)
-          console.log(`imwProductArr from removeItemHandler()==> ${imwProductArr}`)
+          objectifiedImwProdArr.splice(i, 1) //need this to update tbody#resTblBdy_itemsToAdd table
         }
       }
     }
