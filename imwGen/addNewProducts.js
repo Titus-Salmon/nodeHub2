@@ -106,46 +106,13 @@ module.exports = {
 
     sanitizerFuncs.objectifyImwProductArr(imwProductArr, objectifiedImwProdArr)
 
-    // var remvItmSPLIT
     let removeItemSPLITsanArr = []
     let removeItemSPLITsanArrObject = {}
 
-    // function removeItemPrepper() {
-    //   let regexRemoveItem1 = /(<\/td><td>)/g
-    //   let removeItemReplace = removeItem.replace(regexRemoveItem1, '</td>,<td>')
-    //   removeItemSPLIT = removeItemReplace.split(',')
-    // }
-
-    // function removeItemSPLITsanitizer() {
-    //   let regexRemoveItem2 = /(<td>)|(<\/td>)/g
-    //   for (let i = 0; i < removeItemSPLIT.length; i++) {
-    //     let removeItemSPLITsan = removeItemSPLIT[i].replace(regexRemoveItem2, '')
-    //     removeItemSPLITsanArr.push(removeItemSPLITsan)
-    //   }
-    // }
-
-    // function removeItemSPLITsanArrObjectifier() {
-    //   for (let i = 0; i < objKeyArr.length; i++) {
-    //     removeItemSPLITsanArrObject[`${objKeyArr[i]}`] = removeItemSPLITsanArr[i]
-    //   }
-    // }
-
     if (removeItem !== undefined) {
       remvItem.removeItemPrepper(removeItem, removeItemSPLITsanArr)
-      // remvItem.removeItemSPLITsanitizer(remvItem.removeItemSPLIT, removeItemSPLITsanArr)
       remvItem.removeItemSPLITsanArrObjectifier(objKeyArr, removeItemSPLITsanArrObject, removeItemSPLITsanArr)
     }
-
-    // function removeItemHandler() {
-    //   for (let i = 0; i < imwProductArr.length; i++) {
-    //     sanitizerFuncs.thingSanitizer(imwProductArr[i])
-    //     if (sanitizedThing == JSON.stringify(removeItemSPLITsanArrObject)) {
-    //       imwProductArr.splice(i, 1)
-    //       objectifiedImwProdArr.splice(i, 1) //need this to update tbody#resTblBdy_itemsToAdd table
-    //     }
-    //   }
-    // }
-    // removeItemHandler()
 
     remvItem.removeItemHandler(imwProductArr, removeItemSPLITsanArrObject, objectifiedImwProdArr)
 
@@ -196,6 +163,10 @@ module.exports = {
 
     let offset = page * numQueryRes
 
+    let imwProductValObj = req.query.imwProductValObj
+    let imwProductArr = req.query.imwProductArr
+    let objectifiedImwProdArr = req.query.objectifiedImwProdArr
+
     let pageLinkArray = []
     let srsObjArr = []
 
@@ -210,9 +181,9 @@ module.exports = {
           res.render('vw-imwGenerator', {
             title: `vw-imwGenerator`,
             srsObjArr: srsObjArr,
-            // imwProductValObj: imwProductValObj,
-            // imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
-            // objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
+            imwProductValObj: imwProductValObj,
+            imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
+            objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
             tableName: tableName,
             numQueryRes: numQueryRes,
             pageLinkArray: pageLinkArray,

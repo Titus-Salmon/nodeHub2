@@ -53,7 +53,8 @@ html
 						tr
 							each elmnt in pageLinkArray
 								th= Object.values(elmnt)
-								a(href=`/imwGenerator/addNewProducts?page=${Object.values(elmnt)}&tableName=${tableName}&numQueryRes=${numQueryRes}`) #{Object.values(elmnt)}
+								a(href=`/imwGenerator/addNewProducts?page=${Object.values(elmnt)}&tableName=${tableName}&numQueryRes=${numQueryRes}
+								&imwProductValObj=${imwProductValObj}&imwProductArr=${imwProductArr}&objectifiedImwProdArr=${objectifiedImwProdArr}`) #{Object.values(elmnt)}
 
 
 			if srsObjArr !== undefined
