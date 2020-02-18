@@ -81,31 +81,9 @@ module.exports = {
     let mcl = postBody['mclPost']
     let reorderQty = postBody['reorderQtyPost']
 
-    // let offset = postBody['offsetPost']
-
     let numQueryRes = postBody['numQueryResPost']
     console.log(`numQueryRes==> ${numQueryRes}`)
 
-    // if (offset == undefined) {
-    //   offset = parseInt(numQueryRes)
-    // } else {
-    //   offset = parseInt(offset) + parseInt(numQueryRes)
-    // }
-
-    // let nextPageOffset = postBody['nextPageOffsetPost']
-    // let prevPageOffset = postBody['prevPageOffsetPost']
-
-    // if (nextPageOffset == undefined) {
-    //   nextPageOffset = parseInt(numQueryRes)
-    // } else {
-    //   nextPageOffset = parseInt(nextPageOffset) + parseInt(numQueryRes)
-    // }
-
-    // if (prevPageOffset == undefined) {
-    //   prevPageOffset = nextPageOffset - parseInt(numQueryRes)
-    // } else {
-    //   prevPageOffset = nextPageOffset - parseInt(numQueryRes)
-    // }
 
     let itemListAccumulator = postBody['itemListAccumulatorPost']
     let imwProductValObj = {} //this holds product values (for one discrete product entry at a time) as an object;
@@ -119,28 +97,13 @@ module.exports = {
 
     let removeItem = postBody['removeItemPost']
 
-    // let totalRowsArr = []
-    // let totalRowsPost = postBody['totalRowsPost']
-
-    // if (totalRowsPost !== undefined) {
-    //   let numPages = totalRowsPost / numQueryRes
-    //   console.log(`numPages==> ${numPages}`)
-    // }
-
 
     function showSearchResults(rows) {
+
       let countRows = rows[0]
       let totalRows = countRows[0]['COUNT(*)']
-      // totalRowsArr.push(totalRows)
-      console.log(`totalRows==> ${totalRows}`)
-      console.log(`countRows==> ${countRows}`)
-      // console.log(`JSON.stringify(countRows)==> ${JSON.stringify(countRows)}`)
-      // console.log(`countRows[0]['COUNT(*)']==> ${countRows[0]['COUNT(*)']}`)
       let displayRows = rows[1]
-      // let srsObj = {}
-      console.log(`displayRows.length==>${displayRows.length}`)
-      console.log(`displayRows==>${displayRows}`)
-      console.log(`JSON.stringify(displayRows)==>${JSON.stringify(displayRows)}`)
+
       for (let i = 0; i < displayRows.length; i++) {
         let srsObj = {}
         srsObj['ri_t0d'] = displayRows[i]['ri_t0d']
@@ -199,44 +162,28 @@ module.exports = {
 
     sanitizerFuncs.objectifyImwProductArr(imwProductArr, objectifiedImwProdArr)
 
-    console.log(`typeof imwProductArr==> ${typeof imwProductArr}`)
-    console.log(`imwProductArr==> ${imwProductArr}`)
-    console.log(`typeof imwProductArr[0]==> ${typeof imwProductArr[0]}`)
-    console.log(`imwProductArr[0]==> ${imwProductArr[0]}`)
-    if (imwProductArr[0] !== undefined) {
-      console.log(`imwProductArr[0]==> ${imwProductArr[0]}`)
-      console.log(`JSON.parse(imwProductArr[0])==> ${JSON.parse(imwProductArr[0])}`)
-    }
-
     var removeItemSPLIT
     let removeItemSPLITsanArr = []
     let removeItemSPLITsanArrObject = {}
 
     function removeItemPrepper() {
-      console.log(`removeItem==> ${removeItem}`)
-      console.log(`typeof removeItem==> ${typeof removeItem}`)
       let regexRemoveItem1 = /(<\/td><td>)/g
       let removeItemReplace = removeItem.replace(regexRemoveItem1, '</td>,<td>')
       removeItemSPLIT = removeItemReplace.split(',')
-      console.log(`removeItemSPLIT==> ${removeItemSPLIT}`)
     }
 
     function removeItemSPLITsanitizer() {
-      // let removeItemSPLITsanArr = []
       let regexRemoveItem2 = /(<td>)|(<\/td>)/g
       for (let i = 0; i < removeItemSPLIT.length; i++) {
         let removeItemSPLITsan = removeItemSPLIT[i].replace(regexRemoveItem2, '')
         removeItemSPLITsanArr.push(removeItemSPLITsan)
       }
-      console.log(`removeItemSPLITsanArr==> ${removeItemSPLITsanArr}`)
     }
 
     function removeItemSPLITsanArrObjectifier() {
       for (let i = 0; i < objKeyArr.length; i++) {
         removeItemSPLITsanArrObject[`${objKeyArr[i]}`] = removeItemSPLITsanArr[i]
       }
-      console.log(`removeItemSPLITsanArrObject==> ${removeItemSPLITsanArrObject}`)
-      console.log(`JSON.stringity(removeItemSPLITsanArrObject)==> ${JSON.stringify(removeItemSPLITsanArrObject)}`)
     }
 
     if (removeItem !== undefined) {
@@ -248,11 +195,6 @@ module.exports = {
     function removeItemHandler() {
       for (let i = 0; i < imwProductArr.length; i++) {
         sanitizerFuncs.thingSanitizer(imwProductArr[i])
-        console.log(`sanitizedThing from removeItemHandler==> ${sanitizedThing}`)
-        console.log(`JSON.stringify(sanitizedThing)==> ${JSON.stringify(sanitizedThing)}`)
-        console.log(`JSON.stringity(imwProductArr[i])==> ${JSON.stringify(imwProductArr[i])}`)
-        console.log(`removeItemSPLITsanArrObject==> ${removeItemSPLITsanArrObject}`)
-        console.log(`JSON.stringify(removeItemSPLITsanArrObject)==> ${JSON.stringify(removeItemSPLITsanArrObject)}`)
         if (sanitizedThing == JSON.stringify(removeItemSPLITsanArrObject)) {
           imwProductArr.splice(i, 1)
           objectifiedImwProdArr.splice(i, 1) //need this to update tbody#resTblBdy_itemsToAdd table
@@ -277,15 +219,7 @@ module.exports = {
             imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
             objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
             tableName: tableName,
-            // newqueryForwardPosition: newqueryForwardPosition,
-            // newqueryBackwardPosition: newqueryBackwardPosition,
             numQueryRes: numQueryRes,
-            // totalRows: totalRowsArr[0],
-            // numPages: Math.ceil(totalRowsArr[0] / numQueryRes),
-            // offset: offset,
-            // nextPageOffset: nextPageOffset,
-            // prevPageOffset: prevPageOffset
-
           })
         })
     }
@@ -301,24 +235,4 @@ module.exports = {
       })
     }
   }),
-
-  // addNewProducts: router.get('/addNewProducts', (req, res, next) => {
-  //   console.log(`req.query==> ${req.query}`)
-  //   console.log(`JSON.stringify(req.query)==> ${JSON.stringify(req.query)}`)
-
-  //   res.render('vw-imwGenerator', {
-  //     title: `vw-imwGenerator (GET request)`,
-  //     // srsObjArr: srsObjArr,
-  //     // imwProductValObj: imwProductValObj,
-  //     imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
-  //     objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
-  //     tableName: tableName,
-  //     // newqueryForwardPosition: newqueryForwardPosition,
-  //     // newqueryBackwardPosition: newqueryBackwardPosition,
-  //     // totalRows: totalRowsArr[0],
-
-  //   })
-
-  // }),
-
 }

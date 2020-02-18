@@ -35,38 +35,15 @@ html
 
 		if sqlTablePopulated !== undefined
 			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
-
-		//- a(href=`/imwGenerator/?page=${n}`) #[n]
 			
 		form#imwItemAdd(action='/imwGenerator/addNewProducts' method='POST' accept-charset="UTF-8")
 
 			label.input-label-1(for='tableName') Table to add products from:
 			input#tableName.input-unit-1(type='text', placeholder='enter data1', name='tableNamePost', value=tableName)
-			//- button#tableNameButton(type='submit', form='imwItemAdd') Display Table
 			
 			label.input-label-1(for='numQueryRes') Number of Results to Show
 			input#numQueryRes.input-unit-1(type='text', placeholder='enter data1', name='numQueryResPost', value=numQueryRes, required)
 			
-			//- if totalRows !== undefined
-			//- 	label.input-label-1(for='totalRows') Total Rows
-			//- 	input#totalRows.input-unit-1(type='text', placeholder='enter data1', name='totalRowsPost', value=totalRows)
-
-			//- 	label.input-label-1(for='numPages') Number of Pages
-			//- 	input#numPages.input-unit-1(type='text', placeholder='enter data1', name='numPagesPost', value=numPages)
-
-			//- 	label.input-label-1(for='offset') Offset
-			//- 	input#offset.input-unit-1(type='text', placeholder='enter data1', name='offsetPost', value=offset)
-
-				//- label.input-label-1(for='nextPageOffset') Next Page
-				//- input#nextPageOffset.input-unit-1(type='text', placeholder='enter data1', name='nextPageOffsetPost', value=nextPageOffset)
-
-				//- label.input-label-1(for='prevPageOffset') Previous Page
-				//- input#prevPageOffset.input-unit-1(type='text', placeholder='enter data1', name='prevPageOffsetPost', value=prevPageOffset)
-
-				a(href='/imwGenerator/addNewProducts?page=1') 1
-				a(href='/imwGenerator/addNewProducts?page=2') 2
-				a(href='/imwGenerator/addNewProducts?page=3') 3
-
 			button#imwItemAddButton(type='submit', form='imwItemAdd') Display Table
 
 			if srsObjArr !== undefined
@@ -267,9 +244,6 @@ html
 		form#imwGenerator(action='/imwGenerator/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
 			label.input-label-1(for='productArray') Product Array for generating IMW
 			input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
-
-			//- label.input-label-1(for='removeItem') Remove Item
-			//- input#removeItem.input-unit-1(type='text', placeholder='enter data1', name='removeItemPost')
 
 			label.input-label-1(for='csv') filename:
 			input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
