@@ -2,26 +2,27 @@ const express = require('express')
 const router = express.Router()
 
 const mysql = require('mysql')
+const querystring = require('querystring')
 
 const sanitizerFuncs = require('../funcLibT0d/sanitizerFuncs')
 const showSearchRes = require('../funcLibT0d/showSearchRes')
 const remvItem = require('../funcLibT0d/removeItem')
 
-const connection = mysql.createConnection({ //for home local testing
-  host: process.env.TEST_STUFF_T0D_HOST,
-  user: process.env.TEST_STUFF_T0D_USER,
-  password: process.env.TEST_STUFF_T0D_PW,
-  database: process.env.TEST_STUFF_T0D_DB,
-  multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
-})
-
-// const connection = mysql.createConnection({ //for work testing
-//   host: process.env.NODEHUB_TEST1_HOST,
-//   user: process.env.NODEHUB_TEST1_USER,
-//   password: process.env.NODEHUB_TEST1_PW,
-//   database: process.env.NODEHUB_TEST1_DB,
+// const connection = mysql.createConnection({ //for home local testing
+//   host: process.env.TEST_STUFF_T0D_HOST,
+//   user: process.env.TEST_STUFF_T0D_USER,
+//   password: process.env.TEST_STUFF_T0D_PW,
+//   database: process.env.TEST_STUFF_T0D_DB,
 //   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 // })
+
+const connection = mysql.createConnection({ //for work testing
+  host: process.env.NODEHUB_TEST1_HOST,
+  user: process.env.NODEHUB_TEST1_USER,
+  password: process.env.NODEHUB_TEST1_PW,
+  database: process.env.NODEHUB_TEST1_DB,
+  multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+})
 
 const objKeyArr = [
   "itemID", "deptID", "deptName", "recptAlias", "brand", "itemName", "size", "suggRtl", "lastCost", "basePrice", "autoDisco",
@@ -153,19 +154,29 @@ module.exports = {
 
   addNewProducts: router.get(`/addNewProducts`, (req, res, next) => {
     console.log(`req.query==> ${req.query}`)
+
+    console.log(`encodeURIComponent(req.query)==> ${decodeURIComponent(req.query)}`)
+
     console.log(`JSON.stringify(req.query)==> ${JSON.stringify(req.query)}`)
     console.log(`req.query.page==> ${req.query.page}`)
     console.log(`req.query.tableName==> ${req.query.tableName}`)
     console.log(`req.query.numQueryRes==> ${req.query.numQueryRes}`)
-    let page = req.query.page
-    let tableName = req.query.tableName
-    let numQueryRes = req.query.numQueryRes
+
+    let page = decodeURIComponent(req.query.page)
+    let tableName = decodeURIComponent(req.query.tableName)
+    let numQueryRes = decodeURIComponent(req.query.numQueryRes)
 
     let offset = page * numQueryRes
 
-    let imwProductValObj = req.query.imwProductValObj
-    let imwProductArr = req.query.imwProductArr
+    let imwProductValObj = decodeURIComponent(req.query.imwProductValObj)
+    let imwProductArr = decodeURIComponent(req.query.imwProductArr)
+
+    console.log(`imwProductArr from GET==> ${imwProductArr}`)
+    console.log(`typeof imwProductArr from GET==> ${typeof imwProductArr}`)
+    console.log(`JSON.stringify(imwProductArr) from GET==> ${JSON.stringify(imwProductArr)}`)
     let objectifiedImwProdArr = req.query.objectifiedImwProdArr
+    console.log(`objectifiedImwProdArr from GET==> ${objectifiedImwProdArr}`)
+    console.log(`JSON.stringify(objectifiedImwProdArr) from GET==> ${JSON.stringify(objectifiedImwProdArr)}`)
 
     let pageLinkArray = []
     let srsObjArr = []
@@ -179,7 +190,7 @@ module.exports = {
           showSearchRes.showSearchRes(rows, numQueryRes, pageLinkArray, srsObjArr)
 
           res.render('vw-imwGenerator', {
-            title: `vw-imwGenerator`,
+            title: `vw-imwGenerator from GET`,
             srsObjArr: srsObjArr,
             imwProductValObj: imwProductValObj,
             imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost

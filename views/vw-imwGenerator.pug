@@ -54,9 +54,8 @@ html
 							each elmnt in pageLinkArray
 								th= Object.values(elmnt)
 								a(href=`/imwGenerator/addNewProducts?page=${Object.values(elmnt)}&tableName=${tableName}&numQueryRes=${numQueryRes}
-								&imwProductValObj=${imwProductValObj}&imwProductArr=${imwProductArr}&objectifiedImwProdArr=${objectifiedImwProdArr}`) #{Object.values(elmnt)}
-
-
+								&imwProductValObj=${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) #{Object.values(elmnt)}
+						
 			if srsObjArr !== undefined
 				div.rslt-tbl-1
 				table#resTbl_loadedTable
