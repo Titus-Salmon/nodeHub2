@@ -3,11 +3,19 @@ const router = express.Router()
 
 const mysql = require('mysql')
 
-const connection = mysql.createConnection({
-  host: process.env.TEST_STUFF_T0D_HOST,
-  user: process.env.TEST_STUFF_T0D_USER,
-  password: process.env.TEST_STUFF_T0D_PW,
-  database: process.env.TEST_STUFF_T0D_DB,
+// const connection = mysql.createConnection({ //for home testing
+//   host: process.env.TEST_STUFF_T0D_HOST,
+//   user: process.env.TEST_STUFF_T0D_USER,
+//   password: process.env.TEST_STUFF_T0D_PW,
+//   database: process.env.TEST_STUFF_T0D_DB,
+//   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+// })
+
+const connection = mysql.createConnection({ //for work testing
+  host: process.env.NODEHUB_TEST1_HOST,
+  user: process.env.NODEHUB_TEST1_USER,
+  password: process.env.NODEHUB_TEST1_PW,
+  database: process.env.NODEHUB_TEST1_DB,
   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
 
