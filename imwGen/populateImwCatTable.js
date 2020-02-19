@@ -18,7 +18,7 @@ const connection = mysql.createConnection({ //for work testing
   user: process.env.NODEHUB_TEST1_USER,
   password: process.env.NODEHUB_TEST1_PW,
   database: process.env.NODEHUB_TEST1_DB,
-  debug: true
+  debug: true,
   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
 
