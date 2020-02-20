@@ -1,5 +1,5 @@
 module.exports = {
-  showSearchRes: function (rows, numQueryRes, pageLinkArray, srsObjArr) {
+  showSearchRes: function (rows, numQueryRes, pageLinkArray, srsObjArr, numPagesPlaceholder) {
 
     let countRows = rows[0]
     let totalRows = countRows[0]['COUNT(*)']
@@ -7,6 +7,7 @@ module.exports = {
 
     let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
     console.log(`numPages==> ${numPages}`)
+    numPagesPlaceholder.push(numPages)
 
     // let pageLinkObj = {}
     for (let j = 0; j < numPages; j++) {

@@ -8,21 +8,21 @@ const sanitizerFuncs = require('../funcLibT0d/sanitizerFuncs')
 const showSearchRes = require('../funcLibT0d/showSearchRes')
 const remvItem = require('../funcLibT0d/removeItem')
 
-// const connection = mysql.createConnection({ //for home local testing
-//   host: process.env.TEST_STUFF_T0D_HOST,
-//   user: process.env.TEST_STUFF_T0D_USER,
-//   password: process.env.TEST_STUFF_T0D_PW,
-//   database: process.env.TEST_STUFF_T0D_DB,
-//   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
-// })
-
-const connection = mysql.createConnection({ //for work testing
-  host: process.env.NODEHUB_TEST1_HOST,
-  user: process.env.NODEHUB_TEST1_USER,
-  password: process.env.NODEHUB_TEST1_PW,
-  database: process.env.NODEHUB_TEST1_DB,
+const connection = mysql.createConnection({ //for home local testing
+  host: process.env.TEST_STUFF_T0D_HOST,
+  user: process.env.TEST_STUFF_T0D_USER,
+  password: process.env.TEST_STUFF_T0D_PW,
+  database: process.env.TEST_STUFF_T0D_DB,
   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
+
+// const connection = mysql.createConnection({ //for work testing
+//   host: process.env.NODEHUB_TEST1_HOST,
+//   user: process.env.NODEHUB_TEST1_USER,
+//   password: process.env.NODEHUB_TEST1_PW,
+//   database: process.env.NODEHUB_TEST1_DB,
+//   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+// })
 
 const objKeyArr = [
   "itemID", "deptID", "deptName", "recptAlias", "brand", "itemName", "size", "suggRtl", "lastCost", "basePrice", "autoDisco",
@@ -98,6 +98,12 @@ module.exports = {
     let removeItem = postBody['removeItemPost']
 
     let pageLinkArray = []
+    let numPagesPlaceholder = [] //holds the value for total number of pages; should only be one value
+
+    let currentPage = parseInt(postBody['currentPagePost'])
+    if (currentPage == undefined || isNaN(currentPage) == true) {
+      currentPage = 0
+    }
 
     sanitizerFuncs.sanitizedItemListObjGenerator(itemListAccumulator, sanitizerFuncs.thingSanitizer,
       imwProductArr, imwProductValObj, itemID, deptID, deptName, recptAlias, brand, itemName, size, suggRtl, lastCost, basePrice, autoDisco,
@@ -118,14 +124,18 @@ module.exports = {
     remvItem.removeItemHandler(imwProductArr, removeItemSPLITsanArrObject, objectifiedImwProdArr)
 
 
+    console.log(`currentPage from POST==> ${currentPage}`)
+
+    let offsetPost = currentPage * numQueryRes
+
+
     function queryEDI_Table() {
       //    SELECT * FROM someTable ORDER BY id DESC LIMIT 0,5
       connection.query(`SELECT COUNT(*) FROM ${tableName};
-      SELECT * FROM ${tableName} ORDER BY item_name LIMIT 0,${numQueryRes};`,
+      SELECT * FROM ${tableName} ORDER BY item_name LIMIT ${offsetPost},${numQueryRes};`,
         function (err, rows, fields) {
           if (err) throw err
-          // showSearchResults(rows)
-          showSearchRes.showSearchRes(rows, numQueryRes, pageLinkArray, srsObjArr)
+          showSearchRes.showSearchRes(rows, numQueryRes, pageLinkArray, srsObjArr, numPagesPlaceholder)
 
           res.render('vw-imwGenerator', {
             title: `vw-imwGenerator`,
@@ -136,12 +146,17 @@ module.exports = {
             tableName: tableName,
             numQueryRes: numQueryRes,
             pageLinkArray: pageLinkArray,
+            currentPage: currentPage,
+            numberOfPages: numPagesPlaceholder[0],
+            lastPage: numPagesPlaceholder[0] - 1,
+            firstPage: 0
           })
         })
     }
 
     if (tableName !== undefined && tableName !== '') {
       queryEDI_Table()
+      console.log(`numPages from queryEDI_Table() POST==> ${showSearchRes.showSearchRes.numPages}`)
     } else {
       res.render('vw-imwGenerator', {
         title: `vw-imwGenerator`,
@@ -162,7 +177,7 @@ module.exports = {
     console.log(`req.query.tableName==> ${req.query.tableName}`)
     console.log(`req.query.numQueryRes==> ${req.query.numQueryRes}`)
 
-    let page = decodeURIComponent(req.query.page)
+    let page = parseInt(decodeURIComponent(req.query.page))
     let tableName = decodeURIComponent(req.query.tableName)
     let numQueryRes = decodeURIComponent(req.query.numQueryRes)
 
@@ -174,12 +189,24 @@ module.exports = {
     console.log(`imwProductArr from GET==> ${imwProductArr}`)
     console.log(`typeof imwProductArr from GET==> ${typeof imwProductArr}`)
     console.log(`JSON.stringify(imwProductArr) from GET==> ${JSON.stringify(imwProductArr)}`)
-    let objectifiedImwProdArr = req.query.objectifiedImwProdArr
-    console.log(`objectifiedImwProdArr from GET==> ${objectifiedImwProdArr}`)
-    console.log(`JSON.stringify(objectifiedImwProdArr) from GET==> ${JSON.stringify(objectifiedImwProdArr)}`)
+
+    // var objectifiedImwProdArr
+
+    // if (imwProductArr !== '') {
+    //   objectifiedImwProdArr = JSON.parse(imwProductArr) //try this to solve
+    // }
+
+
+    // console.log(`objectifiedImwProdArr from GET==> ${objectifiedImwProdArr}`)
+    // console.log(`typeof objectifiedImwProdArr from GET==> ${typeof objectifiedImwProdArr}`)
+    // console.log(`JSON.stringify(objectifiedImwProdArr) from GET==> ${JSON.stringify(objectifiedImwProdArr)}`)
 
     let pageLinkArray = []
+    let numPagesPlaceholder = [] //holds the value for total number of pages; should only be one value
     let srsObjArr = []
+
+    let currentPage = page
+    console.log(`currentPage from GET==> ${currentPage}`)
 
     function queryEDI_Table_GET() {
       //    SELECT * FROM someTable ORDER BY id DESC LIMIT 0,5
@@ -187,17 +214,21 @@ module.exports = {
       SELECT * FROM ${tableName} ORDER BY item_name LIMIT ${offset},${numQueryRes};`,
         function (err, rows, fields) {
           if (err) throw err
-          showSearchRes.showSearchRes(rows, numQueryRes, pageLinkArray, srsObjArr)
+          showSearchRes.showSearchRes(rows, numQueryRes, pageLinkArray, srsObjArr, numPagesPlaceholder)
 
           res.render('vw-imwGenerator', {
             title: `vw-imwGenerator from GET`,
             srsObjArr: srsObjArr,
             imwProductValObj: imwProductValObj,
             imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
-            objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
+            // objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
             tableName: tableName,
             numQueryRes: numQueryRes,
             pageLinkArray: pageLinkArray,
+            currentPage: currentPage,
+            numberOfPages: numPagesPlaceholder[0],
+            lastPage: numPagesPlaceholder[0] - 1,
+            firstPage: 0
           })
         })
     }

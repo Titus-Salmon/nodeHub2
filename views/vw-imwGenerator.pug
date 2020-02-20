@@ -47,15 +47,32 @@ html
 			button#imwItemAddButton(type='submit', form='imwItemAdd') Display Table
 
 			if pageLinkArray !== undefined
-				div.rslt-tbl-1
-				table#resTbl_pageLinks
-					thead
-						tr
-							each elmnt in pageLinkArray
-								th= Object.values(elmnt)
-								a(href=`/imwGenerator/addNewProducts?page=${Object.values(elmnt)}&tableName=${tableName}&numQueryRes=${numQueryRes}
-								&imwProductValObj=${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) #{Object.values(elmnt)}
-						
+				//- div.rslt-tbl-1
+				//- table#resTbl_pageLinks
+				//- 	thead
+				//- 		tr
+				//- 			each elmnt in pageLinkArray
+				//- 				th= Object.values(elmnt)
+				//- 				a(href=`/imwGenerator/addNewProducts?page=${Object.values(elmnt)}&tableName=${tableName}&numQueryRes=${numQueryRes}
+				//- 				&imwProductValObj=${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) #{Object.values(elmnt)}
+
+				p TOTAL PAGES: #{lastPage}
+				label.input-label-1(for='currentPage') Current Page
+				input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
+
+				if currentPage != 0
+					a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+					${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) FIRST PAGE
+
+					a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+					${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) PREV
+
+				a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+				${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) NEXT
+
+				a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+				${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) LAST PAGE
+
 			if srsObjArr !== undefined
 				div.rslt-tbl-1
 				table#resTbl_loadedTable
