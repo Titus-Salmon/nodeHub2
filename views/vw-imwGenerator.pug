@@ -6,75 +6,196 @@ html
 
 	body
 		include vw-dashboard.pug
+		div.input-field-1
+			//- //v// creates empty imwCat mysql table
+			form#createImwCatTable(action='/imwGenerator/createImwCatTable' method='POST' accept-charset="UTF-8" style="display:block")
+				div(style="display:block")
+					label.input-label-1(for='crtImwCatTbl') Enter MySql imwCat Table Name to CREATE
+					input#crtImwCatTbl.input-unit-1(type='text', placeholder='enter data', name='tblNamePost', value='')
 
-		//- //v// creates empty imwCat mysql table
-		form#createImwCatTable(action='/imwGenerator/createImwCatTable' method='POST' accept-charset="UTF-8" style="display:block")
-			div(style="display:block")
-				label.input-label-1(for='crtImwCatTbl') Enter MySql imwCat Table Name to CREATE
-				input#crtImwCatTbl.input-unit-1(type='text', placeholder='enter data', name='tblNamePost', value='')
+					label.input-label-1(for='crtImwCatTblInput') Enter Table Headers (as csv) - default headers for imwCat (Inv. Maint. Wksht. Catalog) provided
+					input#crtImwCatTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='item_id,dept_id,dept_name,recpt_alias,brand,item_name,size,sugg_retail,last_cost,base_price,auto_discount,disc_mult,ideal_margin,weight_profile,tax1,tax2,tax3,spec_tndr1,spec_tndr2,pos_prompt,location,alternate_id,alt_rcpt_alias,pkg_qty,supp_unit_id,supplier_id,unit,num_pkgs,dsd,case_pk_mult,ovr,category,sub_category,product_group,product_flag,rb_note,edi_default,powerfield_7,temp_group,onhand_qty,reorder_point,mcl,reorder_qty')
+					button#crtImwCatTblBtn(type='submit', form='createImwCatTable', style="display: block") CREATE imwCat Table
+			//- //^// creates empty imwCat mysql table
 
-				label.input-label-1(for='crtImwCatTblInput') Enter Table Headers (as csv) - default headers for imwCat (Inv. Maint. Wksht. Catalog) provided
-				input#crtImwCatTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='item_id,dept_id,dept_name,recpt_alias,brand,item_name,size,sugg_retail,last_cost,base_price,auto_discount,disc_mult,ideal_margin,weight_profile,tax1,tax2,tax3,spec_tndr1,spec_tndr2,pos_prompt,location,alternate_id,alt_rcpt_alias,pkg_qty,supp_unit_id,supplier_id,unit,num_pkgs,dsd,case_pk_mult,ovr,category,sub_category,product_group,product_flag,rb_note,edi_default,powerfield_7,temp_group,onhand_qty,reorder_point,mcl,reorder_qty')
-				button#crtImwCatTblBtn(type='submit', form='createImwCatTable', style="display: block") CREATE imwCat Table
-		//- //^// creates empty imwCat mysql table
+			br
 
-		br
+			form#populateTable(ref="populateTable" action='/imwGenerator/populateImwCatTable' method='POST' encType="multipart/form-data" accept-charset="UTF-8")
+				div(style="display:block")
+					label.input-label-1(for='popTbl') Populate Table
+					input#popTbl.input-unit-1(type='file', name='popTblPost')
 
-		form#populateTable(ref="populateTable" action='/imwGenerator/populateImwCatTable' method='POST' encType="multipart/form-data" accept-charset="UTF-8")
-			div(style="display:block")
-				label.input-label-1(for='popTbl') Populate Table
-				input#popTbl.input-unit-1(type='file', name='popTblPost')
+					label.input-label-1(for='popTblName') Table to Populate
+					input#popTblName.input-unit-1(type='text', name='popTblNamePost')
 
-				label.input-label-1(for='popTblName') Table to Populate
-				input#popTblName.input-unit-1(type='text', name='popTblNamePost')
+					label.input-label-1(for='tblColName') Loaded Column Names
+					input#tblColName.input-unit-1(type='text', name='tblColNamePost', value=tableColNames)
 
-				label.input-label-1(for='tblColName') Loaded Column Names
-				input#tblColName.input-unit-1(type='text', name='tblColNamePost', value=tableColNames)
+					button#popTblBtn(type='submit', form='populateTable', style="display: block") Populate Table
 
-				button#popTblBtn(type='submit', form='populateTable', style="display: block") Populate Table
+			if sqlTablePopulated !== undefined
+				p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
+				
+			form#imwItemAdd(action='/imwGenerator/addNewProducts' method='POST' accept-charset="UTF-8")
 
-		if sqlTablePopulated !== undefined
-			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
-			
-		form#imwItemAdd(action='/imwGenerator/addNewProducts' method='POST' accept-charset="UTF-8")
+				if pageLinkArray !== undefined
+					p TOTAL PAGES: #{lastPage}
+					label.input-label-1(for='currentPage') Current Page
+					input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 
-			label.input-label-1(for='tableName') Table to add products from:
-			input#tableName.input-unit-1(type='text', placeholder='enter data1', name='tableNamePost', value=tableName)
-			
-			label.input-label-1(for='numQueryRes') Number of Results to Show
-			input#numQueryRes.input-unit-1(type='text', placeholder='enter data1', name='numQueryResPost', value=numQueryRes, required)
-			
-			button#imwItemAddButton(type='submit', form='imwItemAdd') Display Table
+				label.input-label-1(for='tableName') Table to add products from:
+				input#tableName.input-unit-1(type='text', placeholder='enter data1', name='tableNamePost', value=tableName)
+				
+				label.input-label-1(for='numQueryRes') Number of Results to Show
+				input#numQueryRes.input-unit-1(type='text', placeholder='enter data1', name='numQueryResPost', value=numQueryRes, required)
+				
+				button#imwItemAddButton(type='submit', form='imwItemAdd') Display Table
 
-			if pageLinkArray !== undefined
-				//- div.rslt-tbl-1
-				//- table#resTbl_pageLinks
-				//- 	thead
-				//- 		tr
-				//- 			each elmnt in pageLinkArray
-				//- 				th= Object.values(elmnt)
-				//- 				a(href=`/imwGenerator/addNewProducts?page=${Object.values(elmnt)}&tableName=${tableName}&numQueryRes=${numQueryRes}
-				//- 				&imwProductValObj=${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) #{Object.values(elmnt)}
+				label.input-label-1(for='itemID') Item ID
+				input#itemID.input-unit-1(type='text', placeholder='enter data1', name='itemIDPost')
+				label.input-label-1(for='deptID') Department ID
+				input#deptID.input-unit-1(type='text', placeholder='enter data1', name='deptIDPost')
+				label.input-label-1(for='deptName') Department Name
+				input#deptName.input-unit-1(type='text', placeholder='enter data1', name='deptNamePost')
+				label.input-label-1(for='recptAlias') Receipt Alias
+				input#recptAlias.input-unit-1(type='text', placeholder='enter data1', name='recptAliasPost')
+				label.input-label-1(for='brand') Brand
+				input#brand.input-unit-1(type='text', placeholder='enter data1', name='brandPost')
+				label.input-label-1(for='itemName') Item Name
+				input#itemName.input-unit-1(type='text', placeholder='enter data1', name='itemNamePost')
+				label.input-label-1(for='size') Size
+				input#size.input-unit-1(type='text', placeholder='enter data1', name='sizePost')
+				label.input-label-1(for='suggRtl') Suggested Retail
+				input#suggRtl.input-unit-1(type='text', placeholder='enter data1', name='suggRtlPost')
+				label.input-label-1(for='lastCost') Last Cost
+				input#lastCost.input-unit-1(type='text', placeholder='enter data1', name='lastCostPost')
+				label.input-label-1(for='basePrice') Base Price
+				input#basePrice.input-unit-1(type='text', placeholder='enter data1', name='basePricePost')
+				label.input-label-1(for='autoDisco') Auto Discount
+				input#autoDisco.input-unit-1(type='text', placeholder='enter data1', name='autoDiscoPost')
+				label.input-label-1(for='discoMult') Dicsount Multiplier
+				input#discoMult.input-unit-1(type='text', placeholder='enter data1', name='discoMultPost')
+				label.input-label-1(for='idealMarg') Ideal Margin
+				input#idealMarg.input-unit-1(type='text', placeholder='enter data1', name='idealMargPost')
+				label.input-label-1(for='weightProf') Weight Profile
+				input#weightProf.input-unit-1(type='text', placeholder='enter data1', name='weightProfPost')
+				label.input-label-1(for='tax1') Tax 1
+				input#tax1.input-unit-1(type='text', placeholder='enter data1', name='tax1Post')
+				label.input-label-1(for='tax2') Tax 2
+				input#tax2.input-unit-1(type='text', placeholder='enter data1', name='tax2Post')
+				label.input-label-1(for='tax3') Tax 3
+				input#tax3.input-unit-1(type='text', placeholder='enter data1', name='tax3Post')
+				label.input-label-1(for='specTndr1') Special Tender 1
+				input#specTndr1.input-unit-1(type='text', placeholder='enter data1', name='specTndr1Post')
+				label.input-label-1(for='specTndr2') Special Tender 2
+				input#specTndr2.input-unit-1(type='text', placeholder='enter data1', name='specTndr2Post')
+				label.input-label-1(for='posPrompt') POS Prompt
+				input#posPrompt.input-unit-1(type='text', placeholder='enter data1', name='posPromptPost')
+				label.input-label-1(for='location') Location
+				input#location.input-unit-1(type='text', placeholder='enter data1', name='locationPost')
+				label.input-label-1(for='altID') Alternate ID
+				input#altID.input-unit-1(type='text', placeholder='enter data1', name='altIDPost')
+				label.input-label-1(for='altRcptAlias') Alternate Receipt Alias
+				input#altRcptAlias.input-unit-1(type='text', placeholder='enter data1', name='altRcptAliasPost')
+				label.input-label-1(for='pkgQty') Package Quantity
+				input#pkgQty.input-unit-1(type='text', placeholder='enter data1', name='pkgQtyPost')
+				label.input-label-1(for='suppUnitID') Supplier Unit ID
+				input#suppUnitID.input-unit-1(type='text', placeholder='enter data1', name='suppUnitIDPost')
+				label.input-label-1(for='suppID') Supplier ID
+				input#suppID.input-unit-1(type='text', placeholder='enter data1', name='suppIDPost')
+				label.input-label-1(for='unit') Unit
+				input#unit.input-unit-1(type='text', placeholder='enter data1', name='unitPost')
+				label.input-label-1(for='numPkgs') Number of Packages
+				input#numPkgs.input-unit-1(type='text', placeholder='enter data1', name='numPkgsPost')
+				label.input-label-1(for='dsd') DSD
+				input#dsd.input-unit-1(type='text', placeholder='enter data1', name='dsdPost')
+				label.input-label-1(for='csPkMlt') Case Pack Multiplier
+				input#csPkMlt.input-unit-1(type='text', placeholder='enter data1', name='csPkMltPost')
+				label.input-label-1(for='ovr') Override
+				input#ovr.input-unit-1(type='text', placeholder='enter data1', name='ovrPost')
+				label.input-label-1(for='category') Category
+				input#category.input-unit-1(type='text', placeholder='enter data1', name='categoryPost')
+				label.input-label-1(for='subCtgry') Sub Category
+				input#subCtgry.input-unit-1(type='text', placeholder='enter data1', name='subCtgryPost')
+				label.input-label-1(for='prodGroup') Product Group
+				input#prodGroup.input-unit-1(type='text', placeholder='enter data1', name='prodGroupPost')
+				label.input-label-1(for='prodFlag') Product Flag
+				input#prodFlag.input-unit-1(type='text', placeholder='enter data1', name='prodFlagPost')
+				label.input-label-1(for='rbNote') RB Note
+				input#rbNote.input-unit-1(type='text', placeholder='enter data1', name='rbNotePost')
+				label.input-label-1(for='ediDefault') EDI Default
+				input#ediDefault.input-unit-1(type='text', placeholder='enter data1', name='ediDefaultPost')
+				label.input-label-1(for='pwrfld7') Power Field 7
+				input#pwrfld7.input-unit-1(type='text', placeholder='enter data1', name='pwrfld7Post')
+				label.input-label-1(for='tmpGroup') Temp Group
+				input#tmpGroup.input-unit-1(type='text', placeholder='enter data1', name='tmpGroupPost')
+				label.input-label-1(for='onhndQty') Onhand Quantity
+				input#onhndQty.input-unit-1(type='text', placeholder='enter data1', name='onhndQtyPost')
+				label.input-label-1(for='reorderPt') Reorder Point
+				input#reorderPt.input-unit-1(type='text', placeholder='enter data1', name='reorderPtPost')
+				label.input-label-1(for='mcl') MCL
+				input#mcl.input-unit-1(type='text', placeholder='enter data1', name='mclPost')
+				label.input-label-1(for='reorderQty') Reorder Quantity
+				input#reorderQty.input-unit-1(type='text', placeholder='enter data1', name='reorderQtyPost')
 
-				p TOTAL PAGES: #{lastPage}
-				label.input-label-1(for='currentPage') Current Page
-				input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
+				if imwProductArr !== undefined && imwProductArr.length  > 0
+					label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
+					input#itemListAccumulatorObj.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductArr)
 
-				if currentPage != 0
-					a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-					${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) FIRST PAGE
+					label.input-label-1(for='removeItem') Remove Item
+					input#removeItem.input-unit-1(type='text', placeholder='enter data1', name='removeItemPost')
+					button#imwItemRemoveButton(type='submit', form='imwItemAdd') Remove Item
 
-					a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-					${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) PREV
+				button#imwItemAddButton(type='submit', form='imwItemAdd') Add Product(s) Accumulatively
 
-				a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-				${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) NEXT
+			//- if pageLinkArray !== undefined
+			//- 		p TOTAL PAGES: #{lastPage}
+			//- 		label.input-label-1(for='currentPage') Current Page
+			//- 		input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 
-				a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-				${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) LAST PAGE
+			//- 		if currentPage != 0
+			//- 			a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+			//- 			${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) FIRST PAGE
 
-			if srsObjArr !== undefined
-				div.rslt-tbl-1
+			//- 			a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+			//- 			${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) PREV
+
+			//- 		a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+			//- 		${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) NEXT
+
+			//- 		a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+			//- 		${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) LAST PAGE
+
+			form#imwGenerator(action='/imwGenerator/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
+				label.input-label-1(for='productArray') Product Array for generating IMW
+				input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
+
+				label.input-label-1(for='csv') filename:
+				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
+
+				button#imwGeneratorButton(type='submit', form='imwGenerator') Generate IMW
+
+		if srsObjArr !== undefined
+			div.rslt-tbl-1
+
+				if pageLinkArray !== undefined
+					p TOTAL PAGES: #{lastPage}
+					label.input-label-1(for='currentPage') Current Page: #{currentPage}
+					//- input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
+
+					if currentPage != 0
+						a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) FIRST PAGE
+
+						a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) PREV
+
+					a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+					${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) NEXT
+
+					a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+					${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) LAST PAGE
+
 				table#resTbl_loadedTable
 					thead
 						tr
@@ -171,114 +292,18 @@ html
 									td= elmnt.mcl
 									td= elmnt.reorder_qty
 
-			label.input-label-1(for='itemID') Item ID
-			input#itemID.input-unit-1(type='text', placeholder='enter data1', name='itemIDPost')
-			label.input-label-1(for='deptID') Department ID
-			input#deptID.input-unit-1(type='text', placeholder='enter data1', name='deptIDPost')
-			label.input-label-1(for='deptName') Department Name
-			input#deptName.input-unit-1(type='text', placeholder='enter data1', name='deptNamePost')
-			label.input-label-1(for='recptAlias') Receipt Alias
-			input#recptAlias.input-unit-1(type='text', placeholder='enter data1', name='recptAliasPost')
-			label.input-label-1(for='brand') Brand
-			input#brand.input-unit-1(type='text', placeholder='enter data1', name='brandPost')
-			label.input-label-1(for='itemName') Item Name
-			input#itemName.input-unit-1(type='text', placeholder='enter data1', name='itemNamePost')
-			label.input-label-1(for='size') Size
-			input#size.input-unit-1(type='text', placeholder='enter data1', name='sizePost')
-			label.input-label-1(for='suggRtl') Suggested Retail
-			input#suggRtl.input-unit-1(type='text', placeholder='enter data1', name='suggRtlPost')
-			label.input-label-1(for='lastCost') Last Cost
-			input#lastCost.input-unit-1(type='text', placeholder='enter data1', name='lastCostPost')
-			label.input-label-1(for='basePrice') Base Price
-			input#basePrice.input-unit-1(type='text', placeholder='enter data1', name='basePricePost')
-			label.input-label-1(for='autoDisco') Auto Discount
-			input#autoDisco.input-unit-1(type='text', placeholder='enter data1', name='autoDiscoPost')
-			label.input-label-1(for='discoMult') Dicsount Multiplier
-			input#discoMult.input-unit-1(type='text', placeholder='enter data1', name='discoMultPost')
-			label.input-label-1(for='idealMarg') Ideal Margin
-			input#idealMarg.input-unit-1(type='text', placeholder='enter data1', name='idealMargPost')
-			label.input-label-1(for='weightProf') Weight Profile
-			input#weightProf.input-unit-1(type='text', placeholder='enter data1', name='weightProfPost')
-			label.input-label-1(for='tax1') Tax 1
-			input#tax1.input-unit-1(type='text', placeholder='enter data1', name='tax1Post')
-			label.input-label-1(for='tax2') Tax 2
-			input#tax2.input-unit-1(type='text', placeholder='enter data1', name='tax2Post')
-			label.input-label-1(for='tax3') Tax 3
-			input#tax3.input-unit-1(type='text', placeholder='enter data1', name='tax3Post')
-			label.input-label-1(for='specTndr1') Special Tender 1
-			input#specTndr1.input-unit-1(type='text', placeholder='enter data1', name='specTndr1Post')
-			label.input-label-1(for='specTndr2') Special Tender 2
-			input#specTndr2.input-unit-1(type='text', placeholder='enter data1', name='specTndr2Post')
-			label.input-label-1(for='posPrompt') POS Prompt
-			input#posPrompt.input-unit-1(type='text', placeholder='enter data1', name='posPromptPost')
-			label.input-label-1(for='location') Location
-			input#location.input-unit-1(type='text', placeholder='enter data1', name='locationPost')
-			label.input-label-1(for='altID') Alternate ID
-			input#altID.input-unit-1(type='text', placeholder='enter data1', name='altIDPost')
-			label.input-label-1(for='altRcptAlias') Alternate Receipt Alias
-			input#altRcptAlias.input-unit-1(type='text', placeholder='enter data1', name='altRcptAliasPost')
-			label.input-label-1(for='pkgQty') Package Quantity
-			input#pkgQty.input-unit-1(type='text', placeholder='enter data1', name='pkgQtyPost')
-			label.input-label-1(for='suppUnitID') Supplier Unit ID
-			input#suppUnitID.input-unit-1(type='text', placeholder='enter data1', name='suppUnitIDPost')
-			label.input-label-1(for='suppID') Supplier ID
-			input#suppID.input-unit-1(type='text', placeholder='enter data1', name='suppIDPost')
-			label.input-label-1(for='unit') Unit
-			input#unit.input-unit-1(type='text', placeholder='enter data1', name='unitPost')
-			label.input-label-1(for='numPkgs') Number of Packages
-			input#numPkgs.input-unit-1(type='text', placeholder='enter data1', name='numPkgsPost')
-			label.input-label-1(for='dsd') DSD
-			input#dsd.input-unit-1(type='text', placeholder='enter data1', name='dsdPost')
-			label.input-label-1(for='csPkMlt') Case Pack Multiplier
-			input#csPkMlt.input-unit-1(type='text', placeholder='enter data1', name='csPkMltPost')
-			label.input-label-1(for='ovr') Override
-			input#ovr.input-unit-1(type='text', placeholder='enter data1', name='ovrPost')
-			label.input-label-1(for='category') Category
-			input#category.input-unit-1(type='text', placeholder='enter data1', name='categoryPost')
-			label.input-label-1(for='subCtgry') Sub Category
-			input#subCtgry.input-unit-1(type='text', placeholder='enter data1', name='subCtgryPost')
-			label.input-label-1(for='prodGroup') Product Group
-			input#prodGroup.input-unit-1(type='text', placeholder='enter data1', name='prodGroupPost')
-			label.input-label-1(for='prodFlag') Product Flag
-			input#prodFlag.input-unit-1(type='text', placeholder='enter data1', name='prodFlagPost')
-			label.input-label-1(for='rbNote') RB Note
-			input#rbNote.input-unit-1(type='text', placeholder='enter data1', name='rbNotePost')
-			label.input-label-1(for='ediDefault') EDI Default
-			input#ediDefault.input-unit-1(type='text', placeholder='enter data1', name='ediDefaultPost')
-			label.input-label-1(for='pwrfld7') Power Field 7
-			input#pwrfld7.input-unit-1(type='text', placeholder='enter data1', name='pwrfld7Post')
-			label.input-label-1(for='tmpGroup') Temp Group
-			input#tmpGroup.input-unit-1(type='text', placeholder='enter data1', name='tmpGroupPost')
-			label.input-label-1(for='onhndQty') Onhand Quantity
-			input#onhndQty.input-unit-1(type='text', placeholder='enter data1', name='onhndQtyPost')
-			label.input-label-1(for='reorderPt') Reorder Point
-			input#reorderPt.input-unit-1(type='text', placeholder='enter data1', name='reorderPtPost')
-			label.input-label-1(for='mcl') MCL
-			input#mcl.input-unit-1(type='text', placeholder='enter data1', name='mclPost')
-			label.input-label-1(for='reorderQty') Reorder Quantity
-			input#reorderQty.input-unit-1(type='text', placeholder='enter data1', name='reorderQtyPost')
+		//- div.input-field-1
+		//- 	form#imwGenerator(action='/imwGenerator/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
+		//- 		label.input-label-1(for='productArray') Product Array for generating IMW
+		//- 		input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
 
-			if imwProductArr !== undefined && imwProductArr.length  > 0
-				label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
-				input#itemListAccumulatorObj.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductArr)
+		//- 		label.input-label-1(for='csv') filename:
+		//- 		input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
 
-				label.input-label-1(for='removeItem') Remove Item
-				input#removeItem.input-unit-1(type='text', placeholder='enter data1', name='removeItemPost')
-				button#imwItemRemoveButton(type='submit', form='imwItemAdd') Remove Item
+		//- 		button#imwGeneratorButton(type='submit', form='imwGenerator') Generate IMW
 
-			button#imwItemAddButton(type='submit', form='imwItemAdd') Add Product(s) Accumulatively
-
-		form#imwGenerator(action='/imwGenerator/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
-			label.input-label-1(for='productArray') Product Array for generating IMW
-			input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
-
-			label.input-label-1(for='csv') filename:
-			input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
-
-			button#imwGeneratorButton(type='submit', form='imwGenerator') Generate IMW
-
-			if objectifiedImwProdArr !== undefined
-				div.rslt-tbl-1
+		if objectifiedImwProdArr !== undefined
+			div.rslt-tbl-1
 				table#resTbl_itemsToAdd
 					thead
 						tr

@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  /* padding: 50px; */
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
@@ -20,7 +20,7 @@ label {
 
 .input-field-1 {
   float: left;
-  margin-left: 3rem;
+  /* margin-left: 3rem; */
 }
 
 .input-field-noFloat {
@@ -34,6 +34,7 @@ label {
 
 .input-label-1 {
   font-weight: bold;
+  max-width: 150px;
 }
 
 /* .rslt-tbl-1 {
@@ -43,7 +44,7 @@ label {
 
 .rslt-tbl-1 {
   float: left;
-  margin-left: 3rem;
+  /* margin-left: 3rem; */
   max-width: 1000px;
 }
 
