@@ -35,16 +35,31 @@ html
 
 			if sqlTablePopulated !== undefined
 				p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
-				
+					
 			form#imwItemAdd(action='/imwGenerator/addNewProducts' method='POST' accept-charset="UTF-8")
 
 				if pageLinkArray !== undefined
-					p TOTAL PAGES: #{lastPage}
-					label.input-label-1(for='currentPage') Current Page
-					input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
+					div.pagination-1
+						//- p(style="font-weight:bold; margin:0") TOTAL PAGES: #{lastPage}
+						label.input-label-1(for='currentPage') Current Page (of #{lastPage})
+						input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 
+						if currentPage != 0
+							a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+							${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) FIRST PAGE
+
+							a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+							${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) PREV
+
+						a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) NEXT
+
+						a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) LAST PAGE
+
+			
 				label.input-label-1(for='tableName') Table to add products from:
-				input#tableName.input-unit-1(type='text', placeholder='enter data1', name='tableNamePost', value=tableName)
+				input#tableName.input-unit-1(type='text', placeholder='enter data1', name='tableNamePost', value=tableName, required)
 				
 				label.input-label-1(for='numQueryRes') Number of Results to Show
 				input#numQueryRes.input-unit-1(type='text', placeholder='enter data1', name='numQueryResPost', value=numQueryRes, required)
@@ -139,112 +154,87 @@ html
 				input#reorderQty.input-unit-1(type='text', placeholder='enter data1', name='reorderQtyPost')
 
 				if imwProductArr !== undefined && imwProductArr.length  > 0
-					label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
-					input#itemListAccumulatorObj.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductArr)
-
-					label.input-label-1(for='removeItem') Remove Item
-					input#removeItem.input-unit-1(type='text', placeholder='enter data1', name='removeItemPost')
-					button#imwItemRemoveButton(type='submit', form='imwItemAdd') Remove Item
-
-				button#imwItemAddButton(type='submit', form='imwItemAdd') Add Product(s) Accumulatively
-
-			//- if pageLinkArray !== undefined
-			//- 		p TOTAL PAGES: #{lastPage}
-			//- 		label.input-label-1(for='currentPage') Current Page
-			//- 		input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
-
-			//- 		if currentPage != 0
-			//- 			a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-			//- 			${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) FIRST PAGE
-
-			//- 			a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-			//- 			${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) PREV
-
-			//- 		a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-			//- 		${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) NEXT
-
-			//- 		a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-			//- 		${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) LAST PAGE
+					div.horiz-1-abs
+						label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
+						input#itemListAccumulatorObj.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', value=imwProductArr)
+					
+						label.input-label-1(for='removeItem') Remove Item
+						input#removeItem.input-unit-1(type='text', placeholder='enter data1', name='removeItemPost')
+						button#imwItemRemoveButton(type='submit', form='imwItemAdd') Remove Item
+				
+						button#imwItemAddButton(type='submit', form='imwItemAdd') Add Product(s) Accumulatively
+				else
+					div.horiz-1-abs
+						label.input-label-1(for='itemListAccumulatorObj') Item List Accumulator Object
+						input#itemListAccumulatorObj.input-unit-1(type='text', placeholder='enter data1', name='itemListAccumulatorPost', disabled)
+					
+						label.input-label-1(for='removeItem') Remove Item
+						input#removeItem.input-unit-1(type='text', placeholder='enter data1', name='removeItemPost', disabled)
+						button#imwItemRemoveButton(type='submit', form='imwItemAdd') Remove Item
+				
+						button#imwItemAddButton(type='submit', form='imwItemAdd') Add Product(s) Accumulatively
 
 			form#imwGenerator(action='/imwGenerator/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
-				label.input-label-1(for='productArray') Product Array for generating IMW
-				input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
+				div.horiz-2-abs
+					label.input-label-1(for='productArray') Product Array for generating IMW
+					input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
+				div.horiz-3-abs
+					label.input-label-1(for='csv') filename:
+					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
 
-				label.input-label-1(for='csv') filename:
-				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
+					button#imwGeneratorButton(type='submit', form='imwGenerator') Generate IMW
 
-				button#imwGeneratorButton(type='submit', form='imwGenerator') Generate IMW
-
-		if srsObjArr !== undefined
-			div.rslt-tbl-1
-
-				if pageLinkArray !== undefined
-					p TOTAL PAGES: #{lastPage}
-					label.input-label-1(for='currentPage') Current Page: #{currentPage}
-					//- input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
-
-					if currentPage != 0
-						a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-						${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) FIRST PAGE
-
-						a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-						${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) PREV
-
-					a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-					${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) NEXT
-
-					a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-					${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) LAST PAGE
-
-				table#resTbl_loadedTable
-					thead
-						tr
-							th ri_t0d
-							th item_id
-							th dept_id
-							th dept_name
-							th recpt_alias
-							th brand
-							th item_name
-							th size
-							th sugg_retail
-							th last_cost
-							th base_price
-							th auto_discount
-							th disc_mult
-							th ideal_margin
-							th weight_profile
-							th tax1
-							th tax2
-							th tax3
-							th spec_tndr1
-							th spec_tndr2
-							th pos_prompt
-							th location
-							th alternate_id
-							th alt_rcpt_alias
-							th pkg_qty
-							th supp_unit_id
-							th supplier_id
-							th unit
-							th num_pkgs
-							th dsd
-							th case_pk_mult
-							th ovr
-							th category (pf1)
-							th sub_category (pf2)
-							th product_group (pf3)
-							th product_flag (pf4)
-							th rb_note (pf5)
-							th edi_default (pf6)
-							th powerfield_7 (pf7)
-							th temp_group (pf8)
-							th onhand_qty
-							th reorder_point
-							th mcl
-							th reorder_qty
-							
-					tbody#resTblBdy_loadedTable
+			div.rslt-tbl-1-absolute
+				if srsObjArr !== undefined
+					table#resTbl_loadedTable
+						thead
+							tr
+								th ri_t0d
+								th item_id
+								th dept_id
+								th dept_name
+								th recpt_alias
+								th brand
+								th item_name
+								th size
+								th sugg_retail
+								th last_cost
+								th base_price
+								th auto_discount
+								th disc_mult
+								th ideal_margin
+								th weight_profile
+								th tax1
+								th tax2
+								th tax3
+								th spec_tndr1
+								th spec_tndr2
+								th pos_prompt
+								th location
+								th alternate_id
+								th alt_rcpt_alias
+								th pkg_qty
+								th supp_unit_id
+								th supplier_id
+								th unit
+								th num_pkgs
+								th dsd
+								th case_pk_mult
+								th ovr
+								th category (pf1)
+								th sub_category (pf2)
+								th product_group (pf3)
+								th product_flag (pf4)
+								th rb_note (pf5)
+								th edi_default (pf6)
+								th powerfield_7 (pf7)
+								th temp_group (pf8)
+								th onhand_qty
+								th reorder_point
+								th mcl
+								th reorder_qty
+								
+						tbody#resTblBdy_loadedTable
 							each elmnt in srsObjArr
 								tr
 									td= elmnt.ri_t0d
@@ -292,112 +282,101 @@ html
 									td= elmnt.mcl
 									td= elmnt.reorder_qty
 
-		//- div.input-field-1
-		//- 	form#imwGenerator(action='/imwGenerator/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
-		//- 		label.input-label-1(for='productArray') Product Array for generating IMW
-		//- 		input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
-
-		//- 		label.input-label-1(for='csv') filename:
-		//- 		input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
-
-		//- 		button#imwGeneratorButton(type='submit', form='imwGenerator') Generate IMW
-
-		if objectifiedImwProdArr !== undefined
-			div.rslt-tbl-1
-				table#resTbl_itemsToAdd
-					thead
-						tr
-							//- th ri_t0d
-							th Item ID
-							th Department ID
-							th Departmane Name
-							th Receipt Alias
-							th Brand
-							th Item Name
-							th Size
-							th Suggested Retail
-							th Last Cost
-							th Base Price
-							th Auto Discount
-							th Dicsount Multiplier
-							th Ideal Margin
-							th Weight Profile
-							th Tax 1
-							th Tax 2
-							th Tax 3
-							th Special Tender 1
-							th Special Tender 2
-							th POS Prompt
-							th Location
-							th Alternate ID
-							th Alternate Receipt Alias
-							th Package Quantity
-							th Supplier Unit ID
-							th Supplier ID
-							th Unit
-							th Number of Packages
-							th DSD
-							th Case Pack Multiplier
-							th Override
-							th Category
-							th Sub Category
-							th Product Group
-							th Product Flag
-							th RB Note
-							th EDI Default
-							th Power Field 7
-							th Temp Group
-							th Onhand Quantity
-							th Reorder Point
-							th MCL
-							th Reorder Quantity
-							
-					tbody#resTblBdy_itemsToAdd
-							each elmnt in objectifiedImwProdArr
+					if objectifiedImwProdArr !== undefined
+						table#resTbl_itemsToAdd
+							thead
 								tr
-									td= elmnt.itemID
-									td= elmnt.deptID
-									td= elmnt.deptName
-									td= elmnt.recptAlias
-									td= elmnt.brand
-									td= elmnt.itemName
-									td= elmnt.size
-									td= elmnt.suggRtl
-									td= elmnt.lastCost
-									td= elmnt.basePrice
-									td= elmnt.autoDisco
-									td= elmnt.discoMult
-									td= elmnt.idealMarg
-									td= elmnt.weightProf
-									td= elmnt.tax1
-									td= elmnt.tax2
-									td= elmnt.tax3
-									td= elmnt.specTndr1
-									td= elmnt.specTndr2
-									td= elmnt.posPrompt
-									td= elmnt.location
-									td= elmnt.altID
-									td= elmnt.altRcptAlias
-									td= elmnt.pkgQty
-									td= elmnt.suppUnitID
-									td= elmnt.suppID
-									td= elmnt.unit
-									td= elmnt.numPkgs
-									td= elmnt.dsd
-									td= elmnt.csPkMlt
-									td= elmnt.ovr
-									td= elmnt.category
-									td= elmnt.subCtgry
-									td= elmnt.prodGroup
-									td= elmnt.prodFlag
-									td= elmnt.rbNote
-									td= elmnt.ediDefault
-									td= elmnt.pwrfld7
-									td= elmnt.tmpGroup
-									td= elmnt.onhndQty
-									td= elmnt.reorderPt
-									td= elmnt.mcl
-									td= elmnt.reorderQty
+									//- th ri_t0d
+									th Item ID
+									th Department ID
+									th Departmane Name
+									th Receipt Alias
+									th Brand
+									th Item Name
+									th Size
+									th Suggested Retail
+									th Last Cost
+									th Base Price
+									th Auto Discount
+									th Dicsount Multiplier
+									th Ideal Margin
+									th Weight Profile
+									th Tax 1
+									th Tax 2
+									th Tax 3
+									th Special Tender 1
+									th Special Tender 2
+									th POS Prompt
+									th Location
+									th Alternate ID
+									th Alternate Receipt Alias
+									th Package Quantity
+									th Supplier Unit ID
+									th Supplier ID
+									th Unit
+									th Number of Packages
+									th DSD
+									th Case Pack Multiplier
+									th Override
+									th Category
+									th Sub Category
+									th Product Group
+									th Product Flag
+									th RB Note
+									th EDI Default
+									th Power Field 7
+									th Temp Group
+									th Onhand Quantity
+									th Reorder Point
+									th MCL
+									th Reorder Quantity
+									
+							tbody#resTblBdy_itemsToAdd
+									each elmnt in objectifiedImwProdArr
+										tr
+											td= elmnt.itemID
+											td= elmnt.deptID
+											td= elmnt.deptName
+											td= elmnt.recptAlias
+											td= elmnt.brand
+											td= elmnt.itemName
+											td= elmnt.size
+											td= elmnt.suggRtl
+											td= elmnt.lastCost
+											td= elmnt.basePrice
+											td= elmnt.autoDisco
+											td= elmnt.discoMult
+											td= elmnt.idealMarg
+											td= elmnt.weightProf
+											td= elmnt.tax1
+											td= elmnt.tax2
+											td= elmnt.tax3
+											td= elmnt.specTndr1
+											td= elmnt.specTndr2
+											td= elmnt.posPrompt
+											td= elmnt.location
+											td= elmnt.altID
+											td= elmnt.altRcptAlias
+											td= elmnt.pkgQty
+											td= elmnt.suppUnitID
+											td= elmnt.suppID
+											td= elmnt.unit
+											td= elmnt.numPkgs
+											td= elmnt.dsd
+											td= elmnt.csPkMlt
+											td= elmnt.ovr
+											td= elmnt.category
+											td= elmnt.subCtgry
+											td= elmnt.prodGroup
+											td= elmnt.prodFlag
+											td= elmnt.rbNote
+											td= elmnt.ediDefault
+											td= elmnt.pwrfld7
+											td= elmnt.tmpGroup
+											td= elmnt.onhndQty
+											td= elmnt.reorderPt
+											td= elmnt.mcl
+											td= elmnt.reorderQty
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
 		script(src='/jsModules_t0d/itemSelectM0d.js')
