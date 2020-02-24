@@ -11,9 +11,10 @@ module.exports = {
   },
 
   sanitizedItemListObjGenerator: function (thingToSanitize, thingSanitizer, imwProductArr,
-    imwProductValObj, itemID, deptID, deptName, recptAlias, brand, itemName, size, suggRtl, lastCost, basePrice, autoDisco, discoMult, idealMarg,
-    weightProf, tax1, tax2, tax3, specTndr1, specTndr2, posPrompt, location, altID, altRcptAlias, pkgQty, suppUnitID, suppID, unit, numPkgs,
-    dsd, csPkMlt, ovr, category, subCtgry, prodGroup, prodFlag, rbNote, ediDefault, pwrfld7, tmpGroup, onhndQty, reorderPt, mcl, reorderQty) {
+    imwProductValObj, itemID, deptID, deptName, recptAlias, brand, itemName, size, suggRtl, lastCost, basePrice, autoDisco,
+    idealMarg, weightProf, tax1, tax2, tax3, specTndr1, specTndr2, posPrompt, location, altID, altRcptAlias, pkgQty, suppUnitID,
+    suppID, unit, numPkgs, category, subCtgry, prodGroup, prodFlag, rbNote, ediDefault, pwrfld7, tmpGroup, onhndQty,
+    reorderPt, mcl, reorderQty, memo, flrRsn, dsd, discoMult, csPkMlt, ovr) {
     if (thingToSanitize !== undefined) {
       thingSanitizer(thingToSanitize)
       /* X(?=Y) 	Positive lookahead 	X if followed by Y
@@ -36,7 +37,7 @@ module.exports = {
     imwProductValObj['lastCost'] = lastCost
     imwProductValObj['basePrice'] = basePrice
     imwProductValObj['autoDisco'] = autoDisco
-    imwProductValObj['discoMult'] = discoMult
+
     imwProductValObj['idealMarg'] = idealMarg
     imwProductValObj['weightProf'] = weightProf
     imwProductValObj['tax1'] = tax1
@@ -53,9 +54,7 @@ module.exports = {
     imwProductValObj['suppID'] = suppID
     imwProductValObj['unit'] = unit
     imwProductValObj['numPkgs'] = numPkgs
-    imwProductValObj['dsd'] = dsd
-    imwProductValObj['csPkMlt'] = csPkMlt
-    imwProductValObj['ovr'] = ovr
+
     imwProductValObj['category'] = category
     imwProductValObj['subCtgry'] = subCtgry
     imwProductValObj['prodGroup'] = prodGroup
@@ -68,6 +67,16 @@ module.exports = {
     imwProductValObj['reorderPt'] = reorderPt
     imwProductValObj['mcl'] = mcl
     imwProductValObj['reorderQty'] = reorderQty
+
+    imwProductValObj['memo'] = memo
+    imwProductValObj['flrRsn'] = flrRsn
+
+    imwProductValObj['dsd'] = dsd
+    imwProductValObj['discoMult'] = discoMult
+    imwProductValObj['csPkMlt'] = csPkMlt
+    imwProductValObj['ovr'] = ovr
+
+
     let stringifiedImwProductValObj = JSON.stringify(imwProductValObj)
 
     function pushHandler() { //only push stringifiedImwProductValObj to imwProductArr if values for imwProductValObj aren't

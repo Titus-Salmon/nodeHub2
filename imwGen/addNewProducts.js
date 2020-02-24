@@ -25,10 +25,14 @@ const connection = mysql.createConnection({ //for home local testing
 // })
 
 const objKeyArr = [
+  // "itemID", "deptID", "deptName", "recptAlias", "brand", "itemName", "size", "suggRtl", "lastCost", "basePrice", "autoDisco",
+  // "discoMult", "idealMarg", "weightProf", "tax1", "tax2", "tax3", "specTndr1", "specTndr2", "posPrompt", "location", "altID",
+  // "altRcptAlias", "pkgQty", "suppUnitID", "suppID", "unit", "numPkgs", "dsd", "csPkMlt", "ovr", "category", "subCtgry", "prodGroup",
+  // "prodFlag", "rbNote", "ediDefault", "pwrfld7", "tmpGroup", "onhndQty", "reorderPt", "mcl", "reorderQty"
   "itemID", "deptID", "deptName", "recptAlias", "brand", "itemName", "size", "suggRtl", "lastCost", "basePrice", "autoDisco",
-  "discoMult", "idealMarg", "weightProf", "tax1", "tax2", "tax3", "specTndr1", "specTndr2", "posPrompt", "location", "altID",
-  "altRcptAlias", "pkgQty", "suppUnitID", "suppID", "unit", "numPkgs", "dsd", "csPkMlt", "ovr", "category", "subCtgry", "prodGroup",
-  "prodFlag", "rbNote", "ediDefault", "pwrfld7", "tmpGroup", "onhndQty", "reorderPt", "mcl", "reorderQty"
+  "idealMarg", "weightProf", "tax1", "tax2", "tax3", "specTndr1", "specTndr2", "posPrompt", "location", "altID", "altRcptAlias",
+  "pkgQty", "suppUnitID", "suppID", "unit", "numPkgs", "category", "subCtgry", "prodGroup", "prodFlag", "rbNote", "ediDefault",
+  "pwrfld7", "tmpGroup", "onhndQty", "reorderPt", "mcl", "reorderQty", "memo", "flrRsn", "dsd", "discoMult", "csPkMlt", "ovr"
 ]
 
 module.exports = {
@@ -48,7 +52,6 @@ module.exports = {
     let lastCost = postBody['lastCostPost']
     let basePrice = postBody['basePricePost']
     let autoDisco = postBody['autoDiscoPost']
-    let discoMult = postBody['discoMultPost']
     let idealMarg = postBody['idealMargPost']
     let weightProf = postBody['weightProfPost']
     let tax1 = postBody['tax1Post']
@@ -65,9 +68,6 @@ module.exports = {
     let suppID = postBody['suppIDPost']
     let unit = postBody['unitPost']
     let numPkgs = postBody['numPkgsPost']
-    let dsd = postBody['dsdPost']
-    let csPkMlt = postBody['csPkMltPost']
-    let ovr = postBody['ovrPost']
     let category = postBody['categoryPost']
     let subCtgry = postBody['subCtgryPost']
     let prodGroup = postBody['prodGroupPost']
@@ -80,6 +80,16 @@ module.exports = {
     let reorderPt = postBody['reorderPtPost']
     let mcl = postBody['mclPost']
     let reorderQty = postBody['reorderQtyPost']
+
+    let memo = postBody['memoPost']
+    let flrRsn = postBody['flrRsnPost']
+
+    let dsd = postBody['dsdPost']
+    let discoMult = postBody['discoMultPost']
+    let csPkMlt = postBody['csPkMltPost']
+    let ovr = postBody['ovrPost']
+
+
 
     let numQueryRes = parseInt(postBody['numQueryResPost'])
     console.log(`numQueryRes==> ${numQueryRes}`)
@@ -107,9 +117,9 @@ module.exports = {
 
     sanitizerFuncs.sanitizedItemListObjGenerator(itemListAccumulator, sanitizerFuncs.thingSanitizer,
       imwProductArr, imwProductValObj, itemID, deptID, deptName, recptAlias, brand, itemName, size, suggRtl, lastCost, basePrice, autoDisco,
-      discoMult, idealMarg, weightProf, tax1, tax2, tax3, specTndr1, specTndr2, posPrompt, location, altID, altRcptAlias, pkgQty, suppUnitID,
-      suppID, unit, numPkgs, dsd, csPkMlt, ovr, category, subCtgry, prodGroup, prodFlag, rbNote, ediDefault, pwrfld7, tmpGroup, onhndQty,
-      reorderPt, mcl, reorderQty)
+      idealMarg, weightProf, tax1, tax2, tax3, specTndr1, specTndr2, posPrompt, location, altID, altRcptAlias, pkgQty, suppUnitID,
+      suppID, unit, numPkgs, category, subCtgry, prodGroup, prodFlag, rbNote, ediDefault, pwrfld7, tmpGroup, onhndQty,
+      reorderPt, mcl, reorderQty, memo, flrRsn, dsd, discoMult, csPkMlt, ovr)
 
     sanitizerFuncs.objectifyImwProductArr(imwProductArr, objectifiedImwProdArr)
 

@@ -14,7 +14,8 @@ html
 					input#crtImwCatTbl.input-unit-1(type='text', placeholder='enter data', name='tblNamePost', value='')
 
 					label.input-label-1(for='crtImwCatTblInput') Enter Table Headers (as csv) - default headers for imwCat (Inv. Maint. Wksht. Catalog) provided
-					input#crtImwCatTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='item_id,dept_id,dept_name,recpt_alias,brand,item_name,size,sugg_retail,last_cost,base_price,auto_discount,disc_mult,ideal_margin,weight_profile,tax1,tax2,tax3,spec_tndr1,spec_tndr2,pos_prompt,location,alternate_id,alt_rcpt_alias,pkg_qty,supp_unit_id,supplier_id,unit,num_pkgs,dsd,case_pk_mult,ovr,category,sub_category,product_group,product_flag,rb_note,edi_default,powerfield_7,temp_group,onhand_qty,reorder_point,mcl,reorder_qty')
+					//- input#crtImwCatTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='item_id,dept_id,dept_name,recpt_alias,brand,item_name,size,sugg_retail,last_cost,base_price,auto_discount,disc_mult,ideal_margin,weight_profile,tax1,tax2,tax3,spec_tndr1,spec_tndr2,pos_prompt,location,alternate_id,alt_rcpt_alias,pkg_qty,supp_unit_id,supplier_id,unit,num_pkgs,dsd,case_pk_mult,ovr,category,sub_category,product_group,product_flag,rb_note,edi_default,powerfield_7,temp_group,onhand_qty,reorder_point,mcl,reorder_qty')
+					input#crtImwCatTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='item_id,dept_id,dept_name,recpt_alias,brand,item_name,size,sugg_retail,last_cost,base_price,auto_discount,ideal_margin,weight_profile,tax1,tax2,tax3,spec_tndr1,spec_tndr2,pos_prompt,location,alternate_id,alt_rcpt_alias,pkg_qty,supp_unit_id,supplier_id,unit,num_pkgs,category,sub_category,product_group,product_flag,rb_note,edi_default,powerfield_7,temp_group,onhand_qty,reorder_point,mcl,reorder_qty,memo,flrRsn,dsd,disc_mult,case_pk_mult,ovr')
 					button#crtImwCatTblBtn(type='submit', form='createImwCatTable', style="display: block") CREATE imwCat Table
 			//- //^// creates empty imwCat mysql table
 
@@ -64,7 +65,7 @@ html
 				label.input-label-1(for='numQueryRes') Number of Results to Show
 				input#numQueryRes.input-unit-1(type='text', placeholder='enter data1', name='numQueryResPost', value=numQueryRes, required)
 				
-				button#imwItemAddButton(type='submit', form='imwItemAdd') Display Table
+				button#displayTableButton(type='submit', form='imwItemAdd') Display Table
 
 				label.input-label-1(for='itemID') Item ID
 				input#itemID.input-unit-1(type='text', placeholder='enter data1', name='itemIDPost')
@@ -88,8 +89,6 @@ html
 				input#basePrice.input-unit-1(type='text', placeholder='enter data1', name='basePricePost')
 				label.input-label-1(for='autoDisco') Auto Discount
 				input#autoDisco.input-unit-1(type='text', placeholder='enter data1', name='autoDiscoPost')
-				label.input-label-1(for='discoMult') Dicsount Multiplier
-				input#discoMult.input-unit-1(type='text', placeholder='enter data1', name='discoMultPost')
 				label.input-label-1(for='idealMarg') Ideal Margin
 				input#idealMarg.input-unit-1(type='text', placeholder='enter data1', name='idealMargPost')
 				label.input-label-1(for='weightProf') Weight Profile
@@ -122,12 +121,6 @@ html
 				input#unit.input-unit-1(type='text', placeholder='enter data1', name='unitPost')
 				label.input-label-1(for='numPkgs') Number of Packages
 				input#numPkgs.input-unit-1(type='text', placeholder='enter data1', name='numPkgsPost')
-				label.input-label-1(for='dsd') DSD
-				input#dsd.input-unit-1(type='text', placeholder='enter data1', name='dsdPost')
-				label.input-label-1(for='csPkMlt') Case Pack Multiplier
-				input#csPkMlt.input-unit-1(type='text', placeholder='enter data1', name='csPkMltPost')
-				label.input-label-1(for='ovr') Override
-				input#ovr.input-unit-1(type='text', placeholder='enter data1', name='ovrPost')
 				label.input-label-1(for='category') Category
 				input#category.input-unit-1(type='text', placeholder='enter data1', name='categoryPost')
 				label.input-label-1(for='subCtgry') Sub Category
@@ -152,6 +145,21 @@ html
 				input#mcl.input-unit-1(type='text', placeholder='enter data1', name='mclPost')
 				label.input-label-1(for='reorderQty') Reorder Quantity
 				input#reorderQty.input-unit-1(type='text', placeholder='enter data1', name='reorderQtyPost')
+
+				label.input-label-1(for='memo') Memo
+				input#memo.input-unit-1(type='text', placeholder='enter data1', name='memoPost')
+				label.input-label-1(for='flrRsn') Failure Reason
+				input#flrRsn.input-unit-1(type='text', placeholder='enter data1', name='flrRsnPost')
+
+				label.input-label-1(for='dsd') DSD
+				input#dsd.input-unit-1(type='text', placeholder='enter data1', name='dsdPost')
+				label.input-label-1(for='discoMult') Dicsount Multiplier
+				input#discoMult.input-unit-1(type='text', placeholder='enter data1', name='discoMultPost')
+				label.input-label-1(for='csPkMlt') Case Pack Multiplier
+				input#csPkMlt.input-unit-1(type='text', placeholder='enter data1', name='csPkMltPost')
+				label.input-label-1(for='ovr') Override
+				input#ovr.input-unit-1(type='text', placeholder='enter data1', name='ovrPost')
+
 
 				if imwProductArr !== undefined && imwProductArr.length  > 0
 					div.horiz-1-abs
@@ -189,7 +197,6 @@ html
 					table#resTbl_loadedTable
 						thead
 							tr
-								th ri_t0d
 								th item_id
 								th dept_id
 								th dept_name
@@ -201,7 +208,6 @@ html
 								th last_cost
 								th base_price
 								th auto_discount
-								th disc_mult
 								th ideal_margin
 								th weight_profile
 								th tax1
@@ -218,26 +224,28 @@ html
 								th supplier_id
 								th unit
 								th num_pkgs
-								th dsd
-								th case_pk_mult
-								th ovr
-								th category (pf1)
-								th sub_category (pf2)
-								th product_group (pf3)
-								th product_flag (pf4)
-								th rb_note (pf5)
-								th edi_default (pf6)
-								th powerfield_7 (pf7)
-								th temp_group (pf8)
+								th category
+								th sub_category
+								th product_group
+								th product_flag
+								th rb_note
+								th edi_default
+								th powerfield_7
+								th temp_group
 								th onhand_qty
 								th reorder_point
 								th mcl
 								th reorder_qty
+								th memo
+								th flrRsn
+								th dsd
+								th disc_mult
+								th case_pk_mult
+								th ovr
 								
 						tbody#resTblBdy_loadedTable
 							each elmnt in srsObjArr
 								tr
-									td= elmnt.ri_t0d
 									td= elmnt.item_id
 									td= elmnt.dept_id
 									td= elmnt.dept_name
@@ -249,7 +257,6 @@ html
 									td= elmnt.last_cost
 									td= elmnt.base_price
 									td= elmnt.auto_discount
-									td= elmnt.disc_mult
 									td= elmnt.ideal_margin
 									td= elmnt.weight_profile
 									td= elmnt.tax1
@@ -266,9 +273,6 @@ html
 									td= elmnt.supplier_id
 									td= elmnt.unit
 									td= elmnt.num_pkgs
-									td= elmnt.dsd
-									td= elmnt.case_pk_mult
-									td= elmnt.ovr
 									td= elmnt.category
 									td= elmnt.sub_category
 									td= elmnt.product_group
@@ -281,6 +285,12 @@ html
 									td= elmnt.reorder_point
 									td= elmnt.mcl
 									td= elmnt.reorder_qty
+									td= elmnt.memo
+									td= elmnt.flrRsn
+									td= elmnt.dsd
+									td= elmnt.disc_mult
+									td= elmnt.case_pk_mult
+									td= elmnt.ovr
 
 					if objectifiedImwProdArr !== undefined
 						table#resTbl_itemsToAdd
@@ -298,7 +308,6 @@ html
 									th Last Cost
 									th Base Price
 									th Auto Discount
-									th Dicsount Multiplier
 									th Ideal Margin
 									th Weight Profile
 									th Tax 1
@@ -315,9 +324,6 @@ html
 									th Supplier ID
 									th Unit
 									th Number of Packages
-									th DSD
-									th Case Pack Multiplier
-									th Override
 									th Category
 									th Sub Category
 									th Product Group
@@ -330,6 +336,15 @@ html
 									th Reorder Point
 									th MCL
 									th Reorder Quantity
+									th Memo
+									th Failure Reason
+									th DSD
+									th Disco Mult
+									th Case Pack Multiplier
+									th Override
+
+
+									
 									
 							tbody#resTblBdy_itemsToAdd
 									each elmnt in objectifiedImwProdArr
@@ -344,8 +359,7 @@ html
 											td= elmnt.suggRtl
 											td= elmnt.lastCost
 											td= elmnt.basePrice
-											td= elmnt.autoDisco
-											td= elmnt.discoMult
+											td= elmnt.autoDisco	
 											td= elmnt.idealMarg
 											td= elmnt.weightProf
 											td= elmnt.tax1
@@ -362,9 +376,6 @@ html
 											td= elmnt.suppID
 											td= elmnt.unit
 											td= elmnt.numPkgs
-											td= elmnt.dsd
-											td= elmnt.csPkMlt
-											td= elmnt.ovr
 											td= elmnt.category
 											td= elmnt.subCtgry
 											td= elmnt.prodGroup
@@ -377,6 +388,14 @@ html
 											td= elmnt.reorderPt
 											td= elmnt.mcl
 											td= elmnt.reorderQty
+											td= elmnt.memo
+											td= elmnt.flrRsn
+											td= elmnt.dsd
+											td= elmnt.discoMult
+											td= elmnt.csPkMlt
+											td= elmnt.ovr
+
+											
 
 		//- script(src='/jsModules_t0d/imwGenLocStorM0d.js')
 		script(src='/jsModules_t0d/itemSelectM0d.js')
