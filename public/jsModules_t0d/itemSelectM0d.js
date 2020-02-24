@@ -69,8 +69,6 @@ function populateInputsWithClickedRowData() {
   for (let m = 0; m < tblRowsLoadedTbl.length; m++) {
     tblRowsLoadedTbl[m].addEventListener('click', function (event) {
       for (let n = 0; n < inputsArray.length; n++) {
-        // inputsArray[n].value = tblCellsLoadedTbl[(inputsArray.length * m) + (m + n + 1)].innerHTML
-        // inputsArray[n].value = tblCellsLoadedTbl[(inputsArray.length * m) + (m + n)].innerHTML
         inputsArray[n].value = tblCellsLoadedTbl[(inputsArray.length * m) + (n)].innerHTML
         //(inputsArray.length * m) gives you value of starting cell number per row (m)
         //add (n) to this to iterate through each cell of that particular row (m)
