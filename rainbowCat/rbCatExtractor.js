@@ -23,10 +23,9 @@ module.exports = {
     let mySqlQuery = `${rainbowCatQuery}`
 
     connection.query(mySqlQuery, function (err, rows, fields) {
-      if (err) {
-        console.log(`err.stack==> ${err.stack}`)
-        throw err
-      }
+      // if (err) {
+      //   throw err
+      // }
       console.log('rows==>', rows)
       ongDiscoExtractor(rows)
 
@@ -34,6 +33,10 @@ module.exports = {
       //   title: `Extracted data from Heroku rainbow--cat <<${ongDisco}>>`,
       //   ongDisco: ongDisco
       // })
+    }).on('error', function () {
+      res.render('vw-rainbowCatTableHub', {
+        title: `THIS IS LIKELY A ECONNRESETERROR`
+      })
     }).on('end', function () {
       res.render('vw-MysqlTableHub', {
         title: `Extracted data from Heroku rainbow--cat <<${ongDisco}>>`,
