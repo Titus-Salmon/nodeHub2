@@ -27,6 +27,11 @@ module.exports = {
       console.log('rows==>', rows)
       ongDiscoExtractor(rows)
 
+      // res.render('vw-MysqlTableHub', {
+      //   title: `Extracted data from Heroku rainbow--cat <<${ongDisco}>>`,
+      //   ongDisco: ongDisco
+      // })
+    }).on('end', function () {
       res.render('vw-MysqlTableHub', {
         title: `Extracted data from Heroku rainbow--cat <<${ongDisco}>>`,
         ongDisco: ongDisco
