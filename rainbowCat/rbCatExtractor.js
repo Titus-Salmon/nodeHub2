@@ -23,7 +23,10 @@ module.exports = {
     let mySqlQuery = `${rainbowCatQuery}`
 
     connection.query(mySqlQuery, function (err, rows, fields) {
-      if (err) throw err
+      if (err) {
+        console.log(`err.stack==> ${err.stack}`)
+        throw err
+      }
       console.log('rows==>', rows)
       ongDiscoExtractor(rows)
 
