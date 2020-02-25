@@ -26,8 +26,12 @@ module.exports = {
       // if (err) {
       //   throw err
       // }
-      console.log('rows==>', rows)
-      ongDiscoExtractor(rows)
+
+      if (rows !== undefined) {
+        console.log('rows==>', rows)
+        ongDiscoExtractor(rows)
+      }
+
 
       // res.render('vw-MysqlTableHub', {
       //   title: `Extracted data from Heroku rainbow--cat <<${ongDisco}>>`,
