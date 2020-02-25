@@ -24,7 +24,7 @@ module.exports = {
 
     connection.query(mySqlQuery, function (err, rows, fields) {
       if (err) {
-        console.log(`err.stack==> ${err.stack}`)
+        // console.log(`err.stack==> ${err.stack}`)
         throw err
       }
       console.log('rows==>', rows)
