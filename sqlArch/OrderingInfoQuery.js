@@ -124,6 +124,8 @@ module.exports = {
         }
 
         catapultResArr.push(catapultResObj)
+        console.log(`catapultResObj==> ${catapultResObj}`)
+        console.log(`JSON.stringify(catapultResObj)==> ${JSON.stringify(catapultResObj)}`)
       }
       console.log('result.length~~~>', result.length)
     }
