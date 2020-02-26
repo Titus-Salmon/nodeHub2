@@ -38,10 +38,8 @@ module.exports = {
       //   ongDisco: ongDisco
       // })
     }).on('error', function () {
-      on('end', function () {
-        res.render('vw-MysqlTableHub', {
-          title: `THIS IS LIKELY AN ECONNRESETERROR`
-        })
+      res.render('vw-rainbowCatTableHub', {
+        title: `THIS IS LIKELY A ECONNRESETERROR`
       })
     }).on('end', function () {
       res.render('vw-MysqlTableHub', {
