@@ -79,10 +79,7 @@ module.exports = {
           catapultResObj['ORD_OUP_CFK'] = result[i]['ORD_OUP_CFK']
         }
 
-
-        console.log(`result[i]['ORD_Timestamp']==> ${result[i]['ORD_Timestamp']}`)
-        console.log(`unescape(result[i]['ORD_Timestamp'])==> ${unescape(result[i]['ORD_Timestamp'])}`)
-        catapultResObj['ORD_Timestamp'] = unescape(result[i]['ORD_Timestamp'])
+        catapultResObj['ORD_TimeStamp'] = unescape(result[i]['ORD_TimeStamp'])
 
         if (typeof result[i]['ORD_DSDItem'] == 'string') {
           catapultResObj['ORD_DSDItem'] = result[i]['ORD_DSDItem'].trim()
@@ -124,8 +121,6 @@ module.exports = {
         }
 
         catapultResArr.push(catapultResObj)
-        console.log(`catapultResObj==> ${catapultResObj}`)
-        console.log(`JSON.stringify(catapultResObj)==> ${JSON.stringify(catapultResObj)}`)
       }
       console.log('result.length~~~>', result.length)
     }
