@@ -54,7 +54,9 @@ module.exports = {
                 for (let j = 0; j < Object.keys(rows[i]).length; j++) {
                     //extract cost from EDI catalog (all catalogs have some '_cost' column, except kehe, which has '_tier3')
                     //!Object.keys(rows[i])[j].includes('_case_cost') will EXCLUDE '_case_cost' columns (such as cw_case_cost for Charlotte's Web)
-                    if (Object.keys(rows[i])[j].includes('_cost') && !Object.keys(rows[i])[j].includes('_case_cost') || Object.keys(rows[i])[j].includes('_tier3')) {
+                    if (Object.keys(rows[i])[j].includes('_cost') && !Object.keys(rows[i])[j].includes('_case_cost') &&
+                        !Object.keys(rows[i])[j].includes('_display_cost') || Object.keys(rows[i])[j].includes('_tier3')) { //exclude _display_cost columns
+                        //from Jack N Jill
                         nhcrtEdiJoinObj['ediCost'] = rows[i][`${Object.keys(rows[i])[j]}`]
                         // console.log(`nhcrtEdiJoinObj['ediCost']==>${nhcrtEdiJoinObj['ediCost']}`)
                     }
