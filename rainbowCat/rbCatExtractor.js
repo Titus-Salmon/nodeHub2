@@ -31,10 +31,18 @@ module.exports = {
         throw err
       }
     }).on('end', function () {
-      res.render('vw-MysqlTableHub', {
-        title: `Extracted data from Heroku rainbow--cat <<${ongDisco}>>`,
-        ongDisco: ongDisco
-      })
+
+      if (ongDisco == undefined) {
+        console.log(`err==> ${err}`)
+        res.render('vw-rainbowCatTableHub', {
+          title: `THERE WAS LIKELY AN ECONNRESET ERROR TRY EXTRACTING DATA AGAIN`
+        })
+      } else {
+        res.render('vw-MysqlTableHub', {
+          title: `Extracted data from Heroku rainbow--cat <<${ongDisco}>>`,
+          ongDisco: ongDisco
+        })
+      }
     })
   })
 }
