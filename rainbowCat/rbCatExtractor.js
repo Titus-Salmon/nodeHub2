@@ -28,14 +28,7 @@ module.exports = {
         ongDiscoExtractor(rows)
       }
       if (err) {
-        res.render('vw-MysqlTableHub', {
-          title: `THIS IS LIKELY A ECONNRESETERROR`
-        })
-      } else {
-        res.render('vw-MysqlTableHub', {
-          title: `Extracted data from Heroku rainbow--cat <<${ongDisco}>>`,
-          ongDisco: ongDisco
-        })
+        throw err
       }
     }).on('end', function () {
       res.render('vw-MysqlTableHub', {
