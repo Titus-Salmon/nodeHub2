@@ -829,7 +829,8 @@ module.exports = {
     function queryNhcrtEdiJoinTable() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
       //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
-      connection.query(`SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader}, ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
+      connection.query(`SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
+      ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
       SELECT * FROM rb_edlp_data;`,
         function (err, rows, fields) {
           if (err) throw err

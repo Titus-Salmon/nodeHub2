@@ -219,7 +219,8 @@ module.exports = {
     console.log(`currentPage from GET==> ${currentPage}`)
 
     function queryEDI_Table_GET() {
-      //    SELECT * FROM someTable ORDER BY id DESC LIMIT 0,5
+      //The COUNT(*) function returns the number of rows in a result set returned by a SELECT statement.
+      //The COUNT(*) returns the number of rows including duplicate, non-NULL and NULL rows.
       connection.query(`SELECT COUNT(*) FROM ${tableName};
       SELECT * FROM ${tableName} ORDER BY item_name LIMIT ${offset},${numQueryRes};`,
         function (err, rows, fields) {
