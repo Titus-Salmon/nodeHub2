@@ -840,7 +840,7 @@ module.exports = {
       SELECT * FROM rb_edlp_data;`,
         function (err, rows, fields) {
           if (err) throw err
-          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj)
+          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResults)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
@@ -861,7 +861,7 @@ module.exports = {
       SELECT * FROM rb_edlp_data;`,
         function (err, rows, fields) {
           if (err) throw err
-          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj)
+          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResults)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
