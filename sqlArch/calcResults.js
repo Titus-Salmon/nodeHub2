@@ -5,6 +5,7 @@ const mysql = require('mysql')
 const gEnericHdrObj = require('../funcLibT0d/genericHdrObj')
 const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')
 const paginPost = require('../funcLibT0d/paginPost')
+const showSearchResults = require('../funcLibT0d/showSearchResults')
 
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
@@ -839,7 +840,7 @@ module.exports = {
       SELECT * FROM rb_edlp_data;`,
         function (err, rows, fields) {
           if (err) throw err
-          showSearchResults(rows)
+          showSearchResults.showSearchResults(rows)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
@@ -860,7 +861,7 @@ module.exports = {
       SELECT * FROM rb_edlp_data;`,
         function (err, rows, fields) {
           if (err) throw err
-          showSearchResults(rows)
+          showSearchResults.showSearchResults(rows)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
