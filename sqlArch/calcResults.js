@@ -4,6 +4,7 @@ const mysql = require('mysql')
 
 const gEnericHdrObj = require('../funcLibT0d/genericHdrObj')
 const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')
+const paginPost = require('../funcLibT0d/paginPost')
 
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
@@ -825,12 +826,16 @@ module.exports = {
       console.log('calcResults says: searchResultsForCSVreview[0] from showSearchResults()==>', searchResultsForCSVreview[0])
     }
 
+    let paginPostObj = {}
+    paginPost.paginPost(postBody, paginPostObj)
+
 
     function queryNhcrtEdiJoinTable() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
       //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
       connection.query(`SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
-      ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
+      ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader} 
+      LIMIT ${paginPostObj['offsetPost']},${paginPostObj['numQueryRes']};
       SELECT * FROM rb_edlp_data;`,
         function (err, rows, fields) {
           if (err) throw err
@@ -840,6 +845,8 @@ module.exports = {
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
             searchResRows: searchResults,
             loadedSqlTbl: frmInptsObj.loadedSqlTbl,
+            numQueryRes: paginPostObj.numQueryRes,
+            currentPage: paginPostObj.currentPage,
             // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
           })
         })

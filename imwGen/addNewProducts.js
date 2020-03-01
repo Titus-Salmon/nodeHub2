@@ -7,6 +7,7 @@ const querystring = require('querystring')
 const sanitizerFuncs = require('../funcLibT0d/sanitizerFuncs')
 const showSearchRes = require('../funcLibT0d/showSearchRes')
 const remvItem = require('../funcLibT0d/removeItem')
+const paginPost = require('../funcLibT0d/paginPost')
 
 const connection = mysql.createConnection({ //for home local testing
   host: process.env.TEST_STUFF_T0D_HOST,
@@ -91,8 +92,8 @@ module.exports = {
 
 
 
-    let numQueryRes = parseInt(postBody['numQueryResPost'])
-    console.log(`numQueryRes==> ${numQueryRes}`)
+    // let numQueryRes = parseInt(postBody['numQueryResPost'])
+    // console.log(`numQueryRes==> ${numQueryRes}`)
 
 
     let itemListAccumulator = postBody['itemListAccumulatorPost']
@@ -110,10 +111,10 @@ module.exports = {
     let pageLinkArray = []
     let numPagesPlaceholder = [] //holds the value for total number of pages; should only be one value
 
-    let currentPage = parseInt(postBody['currentPagePost'])
-    if (currentPage == undefined || isNaN(currentPage) == true) {
-      currentPage = 0
-    }
+    // let currentPage = parseInt(postBody['currentPagePost'])
+    // if (currentPage == undefined || isNaN(currentPage) == true) {
+    //   currentPage = 0
+    // }
 
     sanitizerFuncs.sanitizedItemListObjGenerator(itemListAccumulator, sanitizerFuncs.thingSanitizer,
       imwProductArr, imwProductValObj, itemID, deptID, deptName, recptAlias, brand, itemName, size, suggRtl, lastCost, basePrice, autoDisco,
@@ -134,15 +135,18 @@ module.exports = {
     remvItem.removeItemHandler(imwProductArr, removeItemSPLITsanArrObject, objectifiedImwProdArr)
 
 
-    console.log(`currentPage from POST==> ${currentPage}`)
+    // console.log(`currentPage from POST==> ${currentPage}`)
 
-    let offsetPost = currentPage * numQueryRes
-
+    // let offsetPost = currentPage * numQueryRes
+    // let paginPostObjArr = []
+    let paginPostObj = {}
+    paginPost.paginPost(postBody, paginPostObj)
+    console.log(`JSON.stringify(paginPostObj)==> ${JSON.stringify(paginPostObj)}`)
 
     function queryEDI_Table() {
       //    SELECT * FROM someTable ORDER BY id DESC LIMIT 0,5
       connection.query(`SELECT COUNT(*) FROM ${tableName};
-      SELECT * FROM ${tableName} ORDER BY item_name LIMIT ${offsetPost},${numQueryRes};`,
+      SELECT * FROM ${tableName} ORDER BY item_name LIMIT ${paginPostObj['offsetPost']},${paginPostObj['numQueryRes']};`,
         function (err, rows, fields) {
           if (err) throw err
           showSearchRes.showSearchRes(rows, numQueryRes, pageLinkArray, srsObjArr, numPagesPlaceholder)
@@ -154,9 +158,9 @@ module.exports = {
             imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
             objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
             tableName: tableName,
-            numQueryRes: numQueryRes,
+            numQueryRes: paginPostObj.numQueryRes,
             pageLinkArray: pageLinkArray,
-            currentPage: currentPage,
+            currentPage: paginPostObj.currentPage,
             numberOfPages: numPagesPlaceholder[0],
             lastPage: numPagesPlaceholder[0] - 1,
             firstPage: 0
