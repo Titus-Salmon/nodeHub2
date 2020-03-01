@@ -1,5 +1,5 @@
 module.exports = {
-  showSearchResults: function (rows, genericHeaderObj, frmInptsObj, searchResults) {
+  showSearchResults: function (rows, genericHeaderObj, frmInptsObj, searchResults, searchResultsForCSVreview) {
     console.log(`rows.length==>${rows.length}`)
     let nejRows = rows[0] //targets 1st query on NEJ table
     let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
