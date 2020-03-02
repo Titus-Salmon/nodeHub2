@@ -64,7 +64,7 @@ module.exports = {
           let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
 
           let countRows = rows[3]
-          console.log(`countRows from calaResults.js==> ${countRows}`)
+          console.log(`JSON.stringify(countRows) from calaResults.js==> ${JSON.stringify(countRows)}`)
           let totalRows = countRows[0]['COUNT(*)']
 
           console.log(`totalRows from calcResults.js==> ${totalRows}`)
