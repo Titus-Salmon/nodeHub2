@@ -37,7 +37,7 @@ module.exports = {
     let pageLinkArray = []
     let numPagesPlaceholder = []
 
-    let paginPostObj = {}
+    // let paginPostObj = {}
     // paginPost.paginPost(postBody, paginPostObj, pageLinkArray, numPagesPlaceholder, totalRows)
 
     function queryNejTablePaginated() {
@@ -66,6 +66,7 @@ module.exports = {
           let countRows = rows[3]
           let totalRows = countRows[0]['COUNT(*)']
 
+          let paginPostObj = {}
           paginPost.paginPost(postBody, paginPostObj, pageLinkArray, numPagesPlaceholder, totalRows)
 
           // let displayRows = nejRowsPagin
