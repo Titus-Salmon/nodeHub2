@@ -64,7 +64,9 @@ module.exports = {
           let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
 
           let countRows = rows[3]
+          console.log(`countRows from calaResults.js==> ${countRows}`)
           let totalRows = countRows[0]['COUNT(*)']
+
           console.log(`totalRows from calcResults.js==> ${totalRows}`)
 
           let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
