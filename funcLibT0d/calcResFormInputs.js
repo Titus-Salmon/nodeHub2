@@ -143,9 +143,9 @@ module.exports = {
     // formInputsObj.formInputObj0 = formInput0 (damage control revert1)
     formInputsObj.formInput1 = Object.values(postBodyData)[1] //fldArrToPostPost
 
-    formInputsObj.formInput2 = Object.values(postBodyData)[2] = postBodyData['paginPostOptionPost'] //paginPostOptionPost
-    formInputsObj.formInput3 = Object.values(postBodyData)[3] = postBodyData['currentPagePost'] //currentPagePost
-    formInputsObj.formInput4 = Object.values(postBodyData)[4] = postBodyData['numQueryResPost'] //numQueryResPost
+    formInputsObj.formInput2 = Object.values(postBodyData)[2] = formInputsObj.paginPostOption = postBodyData['paginPostOptionPost'] //paginPostOptionPost
+    formInputsObj.formInput3 = Object.values(postBodyData)[3] = formInputsObj.currentPage = postBodyData['currentPagePost'] //currentPagePost
+    formInputsObj.formInput4 = Object.values(postBodyData)[4] = formInputsObj.numQueryRes = postBodyData['numQueryResPost'] //numQueryResPost
 
     formInputsObj.formInput2 = Object.values(postBodyData)[5] = formInputsObj.beerAlcMargin = postBodyData['beerAlcMargPost'] //beerAlcMargPost
     formInputsObj.formInput3 = Object.values(postBodyData)[6] = formInputsObj.bodyCareMargin = postBodyData['bodyCareMargPost'] //bodyCareMargPost
