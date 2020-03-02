@@ -46,15 +46,15 @@ module.exports = {
     // let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
 
     // let searchResults = [] //clear searchResults from previous search
-    // let searchResultsNonPag = []
-    // let searchResultsPag = []
-    // let srcRsCSV_Pag = []
-    // let srcRsCSV_nonPag = []
-    // // searchResultsForCSV = []
-    // let srcRsCSVrvwPag = []
-    // let srcRsCSVrvw_nonPag = []
-    // // searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad/Nathan
-    // csvContainer = []
+    let searchResultsNonPag = []
+    let searchResultsPag = []
+    let srcRsCSV_Pag = []
+    let srcRsCSV_nonPag = []
+    // searchResultsForCSV = []
+    let srcRsCSVrvwPag = []
+    let srcRsCSVrvw_nonPag = []
+    // searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad/Nathan
+    csvContainer = []
     const postBody = req.body
 
     let frmInptsObj = {} //provide empty object to populate with form inputs & values generated from calcResFormInputs.js module
@@ -109,14 +109,6 @@ module.exports = {
           let nejRowsPagin = rows[0] //targets 1st query on NEJ table
           let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
           let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
-
-          let searchResultsNonPag = []
-          let searchResultsPag = []
-          let srcRsCSV_Pag = []
-          let srcRsCSV_nonPag = []
-          let srcRsCSVrvwPag = []
-          let srcRsCSVrvw_nonPag = []
-          csvContainer = []
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
             edlpRows, nejRowsNonPagin)
