@@ -95,7 +95,11 @@ module.exports = {
             pageLinkArray: pageLinkArray,
             numberOfPages: numPagesPlaceholder[0],
             lastPage: numPagesPlaceholder[0] - 1,
-            firstPage: 0
+            firstPage: 0,
+            tableName: frmInptsObj.formInput0,
+            formInputsObj: formInputsObj,
+            genericHeaderObj: genericHeaderObj,
+            searchResultsPag: searchResultsPag
             // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
           })
         })
