@@ -37,8 +37,8 @@ module.exports = {
     let pageLinkArray = []
     let numPagesPlaceholder = []
 
-    // let paginPostObj = {}
-    // paginPost.paginPost(postBody, paginPostObj, pageLinkArray, numPagesPlaceholder, totalRows)
+    let paginPostObj = {}
+    paginPost.paginPost(postBody, paginPostObj, pageLinkArray, numPagesPlaceholder)
 
     function queryNejTablePaginated() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
@@ -66,21 +66,16 @@ module.exports = {
           let countRows = rows[3]
           let totalRows = countRows[0]['COUNT(*)']
 
-          let paginPostObj = {}
-          paginPost.paginPost(postBody, paginPostObj, pageLinkArray, numPagesPlaceholder, totalRows)
+          let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
+          console.log(`numPages==> ${numPages}`)
+          numPagesPlaceholder.push(numPages)
 
-          // let displayRows = nejRowsPagin
-
-          // let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
-          // console.log(`numPages==> ${numPages}`)
-          // numPagesPlaceholder.push(numPages)
-
-          // // let pageLinkObj = {}
-          // for (let j = 0; j < numPages; j++) {
-          //   let pageLinkObj = {}
-          //   pageLinkObj[`page${j}`] = j
-          //   pageLinkArray.push(pageLinkObj)
-          // }
+          // let pageLinkObj = {}
+          for (let j = 0; j < numPages; j++) {
+            let pageLinkObj = {}
+            pageLinkObj[`page${j}`] = j
+            pageLinkArray.push(pageLinkObj)
+          }
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
             edlpRows, nejRowsNonPagin)
@@ -94,8 +89,8 @@ module.exports = {
             loadedSqlTbl: frmInptsObj.loadedSqlTbl,
             numQueryRes: paginPostObj.numQueryRes,
             currentPage: paginPostObj.currentPage,
-            pageLinkArray: paginPostObj.pageLinkArray,
-            numberOfPages: paginPostObj.numPagesPlaceholder[0],
+            pageLinkArray: pageLinkArray,
+            numberOfPages: numPagesPlaceholder[0],
             lastPage: numPagesPlaceholder[0] - 1,
             firstPage: 0
             // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
