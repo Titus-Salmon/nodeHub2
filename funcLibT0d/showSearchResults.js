@@ -1,11 +1,12 @@
 module.exports = {
   showSearchResults: function (rows, genericHeaderObj, frmInptsObj, searchResults, searchResultsForCSV,
     searchResultsForCSVreview, edlpRows, nejRowsToggle) {
+
     console.log(`rows.length==>${rows.length}`)
-    // let nejRows = rows[0] //targets 1st query on NEJ table
-    // let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
-    // // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
-    // let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
+    let nejRows = rows[0] //targets 1st query on NEJ table
+    let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
+    // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
+    let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
 
     console.log(`JSON.stringify(nejRowsToggle[0])==> ${JSON.stringify(nejRowsToggle[0])}`)
     console.log(`JSON.stringify(edlpRows[0])==> ${JSON.stringify(edlpRows[0])}`)

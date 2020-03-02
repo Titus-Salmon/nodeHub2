@@ -19,10 +19,12 @@ module.exports = {
 
   calcResults: router.post('/calcResults', (req, res, next) => {
 
-    let nejRowsPagin = rows[0] //targets 1st query on NEJ table
+    var nejRowsPagin
+    // let nejRowsPagin = rows[0] //targets 1st query on NEJ table
     let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
     // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
-    let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
+    var nejRowsNonPagin
+    // let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
 
     // let searchResults = [] //clear searchResults from previous search
     let searchResultsNonPag = []
