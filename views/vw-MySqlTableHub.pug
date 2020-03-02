@@ -151,9 +151,21 @@ html
 			//- select#paginPostOption.input-unit-1(name='paginPostOptionPost')
 			//- 	option(value='no') no
 			//- 	option(value='yes') yes
+
+			if pageLinkArray !== undefined
+					div.pagination-1
+						//- p(style="font-weight:bold; margin:0") TOTAL PAGES: #{lastPage}
+						label.input-label-1(for='currentPage') Current Page (of #{lastPage})
+						input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
+
+						if currentPage != 0
+							a(href=`/MySqlTableHub/calcResults?page=${firstPage}&numQueryRes=${numQueryRes}`) FIRST PAGE
+							a(href=`/MySqlTableHub/calcResults?page=${currentPage-1}&numQueryRes=${numQueryRes}`) PREV
+						a(href=`/MySqlTableHub/calcResults?page=${currentPage+1}&numQueryRes=${numQueryRes}`) NEXT
+						a(href=`/MySqlTableHub/calcResults?page=${lastPage}&numQueryRes=${numQueryRes}`) LAST PAGE
 			
-			label.input-label-1(for='currentPage') Current Page
-			input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
+			//- label.input-label-1(for='currentPage') Current Page
+			//- input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 
 			label.input-label-1(for='numQueryRes') Number of Results to Show
 			input#numQueryRes.input-unit-1(type='text', placeholder='enter data1', name='numQueryResPost', value=numQueryRes, required)

@@ -1,5 +1,5 @@
 module.exports = {
-  paginPost: function (postBodyData, paginPostObjData) {
+  paginPost: function (postBodyData, paginPostObjData, pageLinkArray, numPagesPlaceholder) {
     // paginPostObjDataArr = []
     // paginPostObjData = {}
     currentPage = parseInt(postBodyData['currentPagePost'])
@@ -15,5 +15,18 @@ module.exports = {
     paginPostObjData['offsetPost'] = offsetPost
     console.log(`JSON.stringify(paginPostObjData) from paginPost==> ${JSON.stringify(paginPostObjData)}`)
     // paginPostObjDataArr.push(paginPostObjData)
+
+    let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
+    console.log(`numPages==> ${numPages}`)
+    numPagesPlaceholder.push(numPages)
+
+    // let pageLinkObj = {}
+    for (let j = 0; j < numPages; j++) {
+      let pageLinkObj = {}
+      pageLinkObj[`page${j}`] = j
+      pageLinkArray.push(pageLinkObj)
+    }
+
+
   }
 }
