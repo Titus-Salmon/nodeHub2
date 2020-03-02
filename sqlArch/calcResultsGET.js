@@ -37,6 +37,8 @@ module.exports = {
     let srcRsCSV_PagGET = decodeURIComponent(req.query.srcRsCSV_Pag)
     let srcRsCSVrvwPagGET = decodeURIComponent(req.query.srcRsCSVrvwPag)
 
+    let paginPostObjGET = decodeURIComponent(req.query.paginPostObj)
+
     // let imwProductValObj = decodeURIComponent(req.query.imwProductValObj)
     // let imwProductArr = decodeURIComponent(req.query.imwProductArr)
 
@@ -58,7 +60,7 @@ module.exports = {
         //4th query is for getting COUNT (# of total rows)
         `SELECT * FROM ${tableName} GROUP BY ${genericHeaderObjGET.upcHeader},
       ${genericHeaderObjGET.invLastcostHeader} ORDER BY ${genericHeaderObjGET.upcHeader} 
-      LIMIT ${paginPostObj['offsetPost']},${paginPostObj['numQueryRes']};
+      LIMIT ${paginPostObjGET['offsetPost']},${paginPostObjGET['numQueryRes']};
 
       SELECT * FROM rb_edlp_data;
       
