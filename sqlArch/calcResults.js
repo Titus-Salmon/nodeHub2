@@ -21,7 +21,7 @@ module.exports = {
 
     var nejRowsPagin
     // let nejRowsPagin = rows[0] //targets 1st query on NEJ table
-    var edlpRows
+    // var edlpRows
     // let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
     // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
     var nejRowsNonPagin
