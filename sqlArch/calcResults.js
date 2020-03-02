@@ -19,12 +19,30 @@ module.exports = {
 
   calcResults: router.post('/calcResults', (req, res, next) => {
 
-    var nejRowsPagin
+    // function baseQuery() {
+    //   connection.query( //1st query is pagination query; 2nd query is getting EDLP data; 3rd query is non-paginated query
+    //     `SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
+    //   ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader} 
+    //   LIMIT ${paginPostObj['offsetPost']},${paginPostObj['numQueryRes']};
+
+    //   SELECT * FROM rb_edlp_data;
+
+    //   SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
+    //   ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};`,
+
+    //     function (err, rows, fields) {
+    //       if (err) throw err
+
+    //       console.log(`rows.length from baseQuery==> ${rows.length}`)
+
+    //       let nejRowsPagin = rows[0] //targets 1st query on NEJ table
+    //       let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
+    //       let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
+    //     })
+    // }
+
     // let nejRowsPagin = rows[0] //targets 1st query on NEJ table
-    // var edlpRows
     // let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
-    // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
-    var nejRowsNonPagin
     // let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
 
     // let searchResults = [] //clear searchResults from previous search
@@ -88,11 +106,15 @@ module.exports = {
         function (err, rows, fields) {
           if (err) throw err
 
+          let nejRowsPagin = rows[0] //targets 1st query on NEJ table
+          let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
+          let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
+
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
-            nejRowsNonPagin)
+            edlpRows, nejRowsNonPagin)
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
-            nejRowsPagin)
+            edlpRows, nejRowsPagin)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
