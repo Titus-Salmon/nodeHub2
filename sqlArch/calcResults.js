@@ -99,7 +99,8 @@ module.exports = {
             tableName: frmInptsObj.formInput0,
             formInputsObj: frmInptsObj,
             genericHeaderObj: genericHeaderObj,
-            searchResultsPag: searchResultsPag
+            searchResultsPag: searchResultsPag,
+            paginPostObj: paginPostObj
             // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
           })
         })
