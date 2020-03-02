@@ -159,10 +159,10 @@ html
 						input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 
 						if currentPage != 0
-							a(href=`/MySqlTableHub/calcResults?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}`) FIRST PAGE
-							a(href=`/MySqlTableHub/calcResults?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}`) PREV
-						a(href=`/MySqlTableHub/calcResults?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}`) NEXT
-						a(href=`/MySqlTableHub/calcResults?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}`) LAST PAGE
+							a(href=`/MySqlTableHub/calcResults?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}&genericHeaderObj=${genericHeaderObj}`) FIRST PAGE
+							a(href=`/MySqlTableHub/calcResults?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}&genericHeaderObj=${genericHeaderObj}`) PREV
+						a(href=`/MySqlTableHub/calcResults?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}&genericHeaderObj=${genericHeaderObj}`) NEXT
+						a(href=`/MySqlTableHub/calcResults?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}&genericHeaderObj=${genericHeaderObj}`) LAST PAGE
 			
 			//- label.input-label-1(for='currentPage') Current Page
 			//- input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
