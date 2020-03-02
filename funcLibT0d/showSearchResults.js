@@ -1,19 +1,21 @@
 module.exports = {
-  showSearchResults: function (rows, genericHeaderObj, frmInptsObj, searchResults, searchResultsForCSVreview) {
+  showSearchResults: function (rows, genericHeaderObj, frmInptsObj, searchResults, searchResultsForCSV,
+    searchResultsForCSVreview, edlpRows, nejRowsToggle) {
     console.log(`rows.length==>${rows.length}`)
-    let nejRows = rows[0] //targets 1st query on NEJ table
-    let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
-    // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
+    // let nejRows = rows[0] //targets 1st query on NEJ table
+    // let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
+    // // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
+    // let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
 
-    console.log(`JSON.stringify(nejRows[0])==> ${JSON.stringify(nejRows[0])}`)
+    console.log(`JSON.stringify(nejRowsToggle[0])==> ${JSON.stringify(nejRowsToggle[0])}`)
     console.log(`JSON.stringify(edlpRows[0])==> ${JSON.stringify(edlpRows[0])}`)
 
-    for (let i = 0; i < nejRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
+    for (let i = 0; i < nejRowsToggle.length; i++) { //Add searched-for table entries from db to searchResults array, for
       //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
       let srcRsObj = {}
       let reviewObj = {} //push data to this obj for review CSV
 
-      let oupNameVar = nejRows[i][genericHeaderObj.oupName] //define variable for oupName
+      let oupNameVar = nejRowsToggle[i][genericHeaderObj.oupName] //define variable for oupName
       oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
 
       function numPkgsHandler_case() {
@@ -44,13 +46,13 @@ module.exports = {
       //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
       function skuMismatchFlagOptionHandler() { //Flag SKU mismatch & leave SKU blank for IMW if skuMismatchFlagOption = "yes"
         //ACTUALLY, CATAPULT WONT UPDATE RECORD UNLESS SKU IS INCLUDED, SO CAN'T LEAVE SKU BLANK -t0d
-        if (nejRows[i][genericHeaderObj.cpltSKUHeader] !== nejRows[i][genericHeaderObj.ediSKUHeader]) {
+        if (nejRowsToggle[i][genericHeaderObj.cpltSKUHeader] !== nejRowsToggle[i][genericHeaderObj.ediSKUHeader]) {
           if (frmInptsObj.skuMismatchOption == "yes") {
             console.log(`frmInptsObj.skuMismatchOption==> ${frmInptsObj.skuMismatchOption}`)
             // srcRsObj['imwSKU'] = reviewObj['imwSKU'] = "" //ACTUALLY, CATAPULT WONT UPDATE RECORD UNLESS SKU IS INCLUDED, SO CAN'T LEAVE SKU BLANK -t0d
             srcRsObj['pf7'] = reviewObj['pf7'] = "skuMismatch"
-            console.log(`nejRows[${i}][genericHeaderObj.cpltSKUHeader]==> ${nejRows[i][genericHeaderObj.cpltSKUHeader]}`)
-            console.log(`nejRows[${i}][genericHeaderObj.ediSKUHeader]==> ${nejRows[i][genericHeaderObj.ediSKUHeader]}`)
+            console.log(`nejRowsToggle[${i}][genericHeaderObj.cpltSKUHeader]==> ${nejRowsToggle[i][genericHeaderObj.cpltSKUHeader]}`)
+            console.log(`nejRowsToggle[${i}][genericHeaderObj.ediSKUHeader]==> ${nejRowsToggle[i][genericHeaderObj.ediSKUHeader]}`)
             console.log(`srcRsObj['imwSKU']==> ${srcRsObj['imwSKU']}`)
             console.log(`srcRsObj['pf7']==> ${srcRsObj['pf7']}`)
           }
@@ -188,8 +190,8 @@ module.exports = {
         }
       }
 
-      srcRsObj['invPK'] = reviewObj['invPK'] = nejRows[i]['invPK'] //populate srcRsObj & reviewObj with invPK from Catapult
-      srcRsObj['invCPK'] = reviewObj['invCPK'] = nejRows[i]['invCPK'] //populate srcRsObj & reviewObj with invCPK from Catapult
+      srcRsObj['invPK'] = reviewObj['invPK'] = nejRowsToggle[i]['invPK'] //populate srcRsObj & reviewObj with invPK from Catapult
+      srcRsObj['invCPK'] = reviewObj['invCPK'] = nejRowsToggle[i]['invCPK'] //populate srcRsObj & reviewObj with invCPK from Catapult
 
       function divideCostToUOS_Rtl_IMW() {
         wsDiscoVarSetter()
@@ -371,11 +373,11 @@ module.exports = {
         srcRsObj['appldMrgn'] = reviewObj['appldMrgn'] = departmentMargin * 100
       }
 
-      srcRsObj['ri_t0d'] = nejRows[i][genericHeaderObj.primarykeyHeader] //for every row returned from sql query of NEJ table,
+      srcRsObj['ri_t0d'] = nejRowsToggle[i][genericHeaderObj.primarykeyHeader] //for every row returned from sql query of NEJ table,
       //populate search results onject (srcRsObj) with corresponding primary key mapped to a key of 'ri_t0d' 
-      srcRsObj['upc'] = nejRows[i][genericHeaderObj.upcHeader] //Item ID
+      srcRsObj['upc'] = nejRowsToggle[i][genericHeaderObj.upcHeader] //Item ID
       // console.log('calcResults says: srcRsObj[\'upc\']~~~>', srcRsObj['upc'])
-      reviewObj['upc'] = nejRows[i][genericHeaderObj.upcHeader] //Item ID
+      reviewObj['upc'] = nejRowsToggle[i][genericHeaderObj.upcHeader] //Item ID
 
 
       //v//EDLP HANDLER///////////////////////////////////////////////////////////////////////////////////////
@@ -390,7 +392,7 @@ module.exports = {
       }
       //^//EDLP HANDLER///////////////////////////////////////////////////////////////////////////////////////
 
-      srcRsObj['cpltCost'] = reviewObj['cpltCost'] = nejRows[i][genericHeaderObj.invLastcostHeader]
+      srcRsObj['cpltCost'] = reviewObj['cpltCost'] = nejRowsToggle[i][genericHeaderObj.invLastcostHeader]
 
       srcRsObj['deptID'] = "" //Department ID
       srcRsObj['deptName'] = "" //Department Name
@@ -398,11 +400,11 @@ module.exports = {
       srcRsObj['brand'] = "" //Brand
 
       if (frmInptsObj.typeOfIMW.toLowerCase() == 'new') {
-        if (nejRows[i][genericHeaderObj.nameHeader].includes(',')) { //remove any commas from item names, so csv isn't horked
-          var cleanedName = nejRows[i][genericHeaderObj.nameHeader].replace(',', '')
+        if (nejRowsToggle[i][genericHeaderObj.nameHeader].includes(',')) { //remove any commas from item names, so csv isn't horked
+          var cleanedName = nejRowsToggle[i][genericHeaderObj.nameHeader].replace(',', '')
           srcRsObj['itemName'] = cleanedName
         } else {
-          srcRsObj['itemName'] = nejRows[i][genericHeaderObj.nameHeader]
+          srcRsObj['itemName'] = nejRowsToggle[i][genericHeaderObj.nameHeader]
         }
       } else {
         srcRsObj['itemName'] = "" //Item Name
@@ -411,7 +413,7 @@ module.exports = {
       srcRsObj['size'] = "" //Size
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       //v//20191122 moved SUGGESTED RETAIL to pf8 & now populating the IMW sugstdRtl column with RB charm price
-      // srcRsObj['sugstdRtl'] = nejRows[i][genericHeaderObj.msrpHeader] //Suggested Retail
+      // srcRsObj['sugstdRtl'] = nejRowsToggle[i][genericHeaderObj.msrpHeader] //Suggested Retail
       //TODO: May need to change this to srcRsObj['sugstdRtl'] = srcRsObj['charm'] (will have to declare it in calcCharm() function,
       //where you are actually calculating srcRsObj['charm']. I don't think this is a good idea AT ALL, especially given the fact
       //that Catapult specifically defines suggested retail as MSRP, so the way you're currently doing it is the correct way.
@@ -422,7 +424,7 @@ module.exports = {
       srcRsObj['autoDiscount'] = "" //Auto Discount
 
       // srcRsObj['idealMarg'] = "" //Ideal Margin
-      srcRsObj['idealMarg'] = nejRows[i][genericHeaderObj.sibIdealMarginHeader] //set idealMarg to what it actually is in Catapult
+      srcRsObj['idealMarg'] = nejRowsToggle[i][genericHeaderObj.sibIdealMarginHeader] //set idealMarg to what it actually is in Catapult
 
       srcRsObj['wtPrfl'] = "" //Weight Profile
       srcRsObj['tax1'] = "" //Tax1
@@ -435,10 +437,10 @@ module.exports = {
       srcRsObj['altID'] = "" //Alternate ID
       srcRsObj['altRcptAlias'] = "" //Alternate Receipt Alias
       srcRsObj['pkgQnt'] = "" //Package Quantity
-      srcRsObj['cpltSKU'] = nejRows[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
-      reviewObj['cpltSKU'] = nejRows[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
-      srcRsObj['ediSKU'] = nejRows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
-      reviewObj['ediSKU'] = nejRows[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
+      srcRsObj['cpltSKU'] = nejRowsToggle[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
+      reviewObj['cpltSKU'] = nejRowsToggle[i][genericHeaderObj.cpltSKUHeader] //Supplier Unit ID
+      srcRsObj['ediSKU'] = nejRowsToggle[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
+      reviewObj['ediSKU'] = nejRowsToggle[i][genericHeaderObj.ediSKUHeader] //Supplier Unit ID
 
       if (frmInptsObj.skuToggle.toLowerCase() == 'edi') { //provide option to choose which SKU (EDI vs Catapult) to populate IMW with
         srcRsObj['imwSKU'] = reviewObj['imwSKU'] = srcRsObj['ediSKU']
@@ -452,14 +454,14 @@ module.exports = {
         srcRsObj['skuMismatch'] = reviewObj['skuMismatch'] = ''
       }
 
-      srcRsObj['splrID'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
+      srcRsObj['splrID'] = nejRowsToggle[i][genericHeaderObj.rbSupplierHeader] //Supplier ID (EDI-VENDORNAME)
       srcRsObj['unit'] = "" //Unit
 
-      srcRsObj['oupName'] = nejRows[i][genericHeaderObj.oupName] //oupName from catapult
-      reviewObj['oupName'] = nejRows[i][genericHeaderObj.oupName] //oupName from catapult
+      srcRsObj['oupName'] = nejRowsToggle[i][genericHeaderObj.oupName] //oupName from catapult
+      reviewObj['oupName'] = nejRowsToggle[i][genericHeaderObj.oupName] //oupName from catapult
 
-      srcRsObj['stoName'] = nejRows[i][genericHeaderObj.stoName] //stoName from catapult
-      reviewObj['stoName'] = nejRows[i][genericHeaderObj.stoName] //stoName from catapult
+      srcRsObj['stoName'] = nejRowsToggle[i][genericHeaderObj.stoName] //stoName from catapult
+      reviewObj['stoName'] = nejRowsToggle[i][genericHeaderObj.stoName] //stoName from catapult
 
       // srcRsObj['numPkgs'] = "" //Number of Packages
 
@@ -478,7 +480,7 @@ module.exports = {
       }
       if (frmInptsObj.typeOfIMW.toLowerCase() == 'retail') {
         srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + " RTL UPDT (pf5)" //Power Field 5 - today's date
-        srcRsObj['pf8'] = `ACTUAL MSRP: ${nejRows[i][genericHeaderObj.msrpHeader]}` //Suggested Retail //Power Field 8 - this will target the ACTUAL MSRP
+        srcRsObj['pf8'] = `ACTUAL MSRP: ${nejRowsToggle[i][genericHeaderObj.msrpHeader]}` //Suggested Retail //Power Field 8 - this will target the ACTUAL MSRP
       }
       if (frmInptsObj.typeOfIMW.toLowerCase() == 'new') {
         srcRsObj['pf5'] = new Date().toISOString().split('T', 1)[0] + " NEW ITEM UPDT (pf5)" //Power Field 5 - today's date
@@ -486,8 +488,8 @@ module.exports = {
       }
       //^//provide different update messages, based on what type of update you're doing (i.e. ws IMW, retail IMW, new item IMW)
 
-      srcRsObj['pf6'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
-      reviewObj['pf6'] = nejRows[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
+      srcRsObj['pf6'] = nejRowsToggle[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
+      reviewObj['pf6'] = nejRowsToggle[i][genericHeaderObj.rbSupplierHeader] //Power Field 6 //EDI-VENDORNAME INCLUDE in save2CSVreview export data
       srcRsObj['pf7'] = "" //Power Field 7
       // srcRsObj['pf8'] = "" //Power Field 8
 
@@ -507,40 +509,40 @@ module.exports = {
       srcRsObj['ovr'] = reviewObj['ovr'] = 1 //20191224 set ovr (for IMW) to 1 FOR EVERYTHING per MaryKate's request
       //this WILL give buyers the option to override to buy "eaches" for items vendors sell to us in "cases"
 
-      srcRsObj['name'] = nejRows[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
-      reviewObj['name'] = nejRows[i][genericHeaderObj.nameHeader]
+      srcRsObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
+      reviewObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader]
 
       //v//this should get set as the value from edi catalog & never changed 
-      reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRows[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
+      reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRowsToggle[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
       //^//this should get set as the value from edi catalog & never changed 
 
 
       if (frmInptsObj.typeOfIMW.toLowerCase() == 'retail') { //only apply this if running retail
         //v//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
-        reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = nejRows[i][genericHeaderObj.ediCostHeader] //NEED TO CHECK
+        reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = nejRowsToggle[i][genericHeaderObj.ediCostHeader] //NEED TO CHECK
         //^//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
       }
 
 
-      if (nejRows[i][genericHeaderObj.ediCostHeaderItemCost] == "") { //generate blankEdiCostUPC entry to flag any margin report item_cost
+      if (nejRowsToggle[i][genericHeaderObj.ediCostHeaderItemCost] == "") { //generate blankEdiCostUPC entry to flag any margin report item_cost
         //values that are blank. This will then appear in the retail review worksheet under column name blankEdiCost. THESE ITEMS NEED
         //TO BE INVESTIGATED TO SEE IF SKUs ARE INACCURATE, OR WHATEVER ELSE IS GOING ON
-        reviewObj['blankEdiCostUPC'] = srcRsObj['blankEdiCostUPC'] = nejRows[i][genericHeaderObj.upcHeader]
+        reviewObj['blankEdiCostUPC'] = srcRsObj['blankEdiCostUPC'] = nejRowsToggle[i][genericHeaderObj.upcHeader]
       }
 
-      srcRsObj['ediPrice'] = nejRows[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
-      reviewObj['ediPrice'] = nejRows[i][genericHeaderObj.msrpHeader] //INCLUDE in save2CSVreview export data
+      srcRsObj['ediPrice'] = nejRowsToggle[i][genericHeaderObj.msrpHeader] //INCLUDE in csv to export data
+      reviewObj['ediPrice'] = nejRowsToggle[i][genericHeaderObj.msrpHeader] //INCLUDE in save2CSVreview export data
 
-      srcRsObj['sibBasePrice'] = nejRows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in csv to export data
-      reviewObj['sibBasePrice'] = nejRows[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in save2CSVreview export data
+      srcRsObj['sibBasePrice'] = nejRowsToggle[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in csv to export data
+      reviewObj['sibBasePrice'] = nejRowsToggle[i][genericHeaderObj.sibBasePriceHeader] //INCLUDE in save2CSVreview export data
 
       srcRsObj['globalMargin'] = frmInptsObj.globalMargin //do not include in csv to export data
 
-      srcRsObj['dptName'] = nejRows[i][genericHeaderObj.rbDeptHeader]
-      reviewObj['dptName'] = nejRows[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
+      srcRsObj['dptName'] = nejRowsToggle[i][genericHeaderObj.rbDeptHeader]
+      reviewObj['dptName'] = nejRowsToggle[i][genericHeaderObj.rbDeptHeader] //INCLUDE in save2CSVreview export data 
 
-      srcRsObj['dptNumber'] = nejRows[i][genericHeaderObj.rbDeptIDHeader]
-      reviewObj['dptNumber'] = nejRows[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
+      srcRsObj['dptNumber'] = nejRowsToggle[i][genericHeaderObj.rbDeptIDHeader]
+      reviewObj['dptNumber'] = nejRowsToggle[i][genericHeaderObj.rbDeptIDHeader] //INCLUDE in save2CSVreview export data
 
       for (let m = 0; m < frmInptsObj.deptFilterArr.length; m++) {
         if (srcRsObj['dptNumber'] == Object.keys(frmInptsObj.deptFilterArr[m])) {
@@ -549,11 +551,11 @@ module.exports = {
         }
       }
 
-      srcRsObj['sibIdealMargin'] = nejRows[i][genericHeaderObj.sibIdealMarginHeader]
-      reviewObj['sibIdealMargin'] = nejRows[i][genericHeaderObj.sibIdealMarginHeader] //INCLUDE in save2CSVreview export data
+      srcRsObj['sibIdealMargin'] = nejRowsToggle[i][genericHeaderObj.sibIdealMarginHeader]
+      reviewObj['sibIdealMargin'] = nejRowsToggle[i][genericHeaderObj.sibIdealMarginHeader] //INCLUDE in save2CSVreview export data
 
-      srcRsObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader]
-      reviewObj['sale_flag'] = nejRows[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data
+      srcRsObj['sale_flag'] = nejRowsToggle[i][genericHeaderObj.saleFlagHeader]
+      reviewObj['sale_flag'] = nejRowsToggle[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data
 
       srcRsObj['discountToApply'] = frmInptsObj.discountToApply * 100
       reviewObj['discountToApply'] = frmInptsObj.discountToApply * 100 //INCLUDE in save2CSVreview export data
@@ -567,7 +569,7 @@ module.exports = {
 
           // console.log(`srcRsObj['upc'](${i})...srcRsObj['ediCostMod'](${i})==>${srcRsObj['upc']}...${srcRsObj['ediCostMod']}`)
           if (frmInptsObj.skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
-            if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
+            if (nejRowsToggle[i][genericHeaderObj.cpltSKUHeader] == nejRowsToggle[i][genericHeaderObj.ediSKUHeader]) {
               srcRsObj['sugstdRtl'] = "" //set sugstdRtl to empty if frmInptsObj.typeOfIMW = 'wholesale'
               srcRsObj['charm'] = "" //set charm to empty if frmInptsObj.typeOfIMW = 'wholesale'
               if (frmInptsObj.deptFilterToApply !== null) { //if a valid dept filter option is entered,
@@ -750,7 +752,7 @@ module.exports = {
           if (srcRsObj['charm'] !== "" && Math.round((srcRsObj['charm']) * 100) / 100 !== Math.round((srcRsObj['sibBasePrice']) * 100) / 100) { // only push results that have some
             //value for "charm" column, AND ALSO select only items whose updated price is different than the exist. price in cplt
             if (frmInptsObj.skuOveride.toLowerCase() == 'matchonly') { //option for including or excluding matching catapult/edi SKUs
-              if (nejRows[i][genericHeaderObj.cpltSKUHeader] == nejRows[i][genericHeaderObj.ediSKUHeader]) {
+              if (nejRowsToggle[i][genericHeaderObj.cpltSKUHeader] == nejRowsToggle[i][genericHeaderObj.ediSKUHeader]) {
                 if (frmInptsObj.deptFilterToApply !== null) { //if a valid dept filter option is entered,
                   if (srcRsObj['dptNumber'] == frmInptsObj.deptFilterToApply) { //only push that dept into searchResults
                     searchResults.push(srcRsObj)

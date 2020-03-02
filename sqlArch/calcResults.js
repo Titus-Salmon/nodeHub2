@@ -19,9 +19,20 @@ module.exports = {
 
   calcResults: router.post('/calcResults', (req, res, next) => {
 
-    let searchResults = [] //clear searchResults from previous search
-    searchResultsForCSV = []
-    searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad/Nathan
+    let nejRowsPagin = rows[0] //targets 1st query on NEJ table
+    let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
+    // let rainbowCatRows = rows[2] //targets 3rd query on rcth (rainbow--cat table hub) table
+    let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
+
+    // let searchResults = [] //clear searchResults from previous search
+    let searchResultsNonPag = []
+    let searchResultsPag = []
+    let srcRsCSV_Pag = []
+    let srcRsCSV_nonPag = []
+    // searchResultsForCSV = []
+    let srcRsCSVrvwPag = []
+    let srcRsCSVrvw_nonPag = []
+    // searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad/Nathan
     csvContainer = []
     const postBody = req.body
 
@@ -45,6 +56,7 @@ module.exports = {
       SELECT * FROM rb_edlp_data;`,
         function (err, rows, fields) {
           if (err) throw err
+
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResults, searchResultsForCSVreview)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
@@ -60,17 +72,28 @@ module.exports = {
     function queryNejTablePaginated() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
       //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
-      connection.query(`SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
+      connection.query( //1st query is pagination query; 2nd query is getting EDLP data; 3rd query is non-paginated query
+        `SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
       ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader} 
       LIMIT ${paginPostObj['offsetPost']},${paginPostObj['numQueryRes']};
-      SELECT * FROM rb_edlp_data;`,
+
+      SELECT * FROM rb_edlp_data;
+      
+      SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
+      ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};`,
+
         function (err, rows, fields) {
           if (err) throw err
-          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResults, searchResultsForCSVreview)
+
+          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
+            edlpRows, nejRowsNonPagin)
+
+          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
+            edlpRows, nejRowsPagin)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
-            searchResRows: searchResults,
+            searchResRows: searchResultsPag,
             loadedSqlTbl: frmInptsObj.loadedSqlTbl,
             numQueryRes: paginPostObj.numQueryRes,
             currentPage: paginPostObj.currentPage,

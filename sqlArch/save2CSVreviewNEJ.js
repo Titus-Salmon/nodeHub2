@@ -6,8 +6,8 @@ module.exports = {
 
   save2CSVreviewNEJ: router.post('/save2CSVreviewNEJ', (req, res, next) => {
 
-    console.log('searchResultsForCSV[0][\'P_K\']', searchResultsForCSV[0]['P_K'])
-    console.log('Object.keys(searchResultsForCSV[0])', Object.keys(searchResultsForCSV[0]))
+    console.log('srcRsCSV_nonPag[0][\'P_K\']', srcRsCSV_nonPag[0]['P_K'])
+    console.log('Object.keys(srcRsCSV_nonPag[0])', Object.keys(srcRsCSV_nonPag[0]))
 
     //begin csv generator //////////////////////////////////////////////////////////////////////////
     const {
@@ -28,9 +28,9 @@ module.exports = {
     };
 
     try {
-      console.log('searchResultsForCSV from json2csv======>>', searchResultsForCSV)
+      console.log('srcRsCSV_nonPag from json2csv======>>', srcRsCSV_nonPag)
       const parser = new Parser(opts);
-      const csv = parser.parse(searchResultsForCSV);
+      const csv = parser.parse(srcRsCSV_nonPag);
       csvContainer.push(csv);
       console.log('csv_T0d=====>>', csv);
       fs.writeFile(process.cwd() + '/public/csv/' + req.body['csvPost'] + '.csv', csv, function (err) {
