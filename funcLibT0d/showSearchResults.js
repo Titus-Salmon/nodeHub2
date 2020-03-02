@@ -1,6 +1,6 @@
 module.exports = {
   showSearchResults: function (rows, genericHeaderObj, frmInptsObj, searchResults, searchResultsForCSV,
-    searchResultsForCSVreview, edlpRows, nejRowsToggle) {
+    searchResultsForCSVreview, nejRowsToggle) {
 
     console.log(`rows.length==>${rows.length}`)
     let nejRows = rows[0] //targets 1st query on NEJ table

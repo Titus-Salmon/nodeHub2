@@ -89,10 +89,10 @@ module.exports = {
           if (err) throw err
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
-            edlpRows, nejRowsNonPagin)
+            nejRowsNonPagin)
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
-            edlpRows, nejRowsPagin)
+            nejRowsPagin)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
