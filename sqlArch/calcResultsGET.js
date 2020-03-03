@@ -36,6 +36,7 @@ module.exports = {
     // let invLastcostHeaderGET = decodeURIComponent(req.query.invLastcostHeader)
 
     let formInputsObjGET = JSON.parse(decodeURIComponent(req.query.formInputsObj_stringified))
+    console.log(`formInputsObjGET==> ${formInputsObjGET}`)
     let genericHeaderObjGET = JSON.parse(decodeURIComponent(req.query.genericHeaderObj_stringified))
     console.log(`genericHeaderObjGET==> ${genericHeaderObjGET}`)
     console.log(`JSON.stringify(genericHeaderObjGET)==> ${JSON.stringify(genericHeaderObjGET)}`)
