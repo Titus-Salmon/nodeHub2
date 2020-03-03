@@ -33,17 +33,21 @@ module.exports = {
     let offset = page * numQueryRes
 
     // let upcHeaderGET = decodeURIComponent(req.query.upcHeader)
-    let invLastcostHeaderGET = decodeURIComponent(req.query.invLastcostHeader)
+    // let invLastcostHeaderGET = decodeURIComponent(req.query.invLastcostHeader)
 
-    let formInputsObjGET = decodeURIComponent(req.query.formInputsObj)
+    let formInputsObjGET = JSON.parse(decodeURIComponent(req.query.formInputsObj_stringified))
     let genericHeaderObjGET = JSON.parse(decodeURIComponent(req.query.genericHeaderObj_stringified))
     console.log(`genericHeaderObjGET==> ${genericHeaderObjGET}`)
     console.log(`JSON.stringify(genericHeaderObjGET)==> ${JSON.stringify(genericHeaderObjGET)}`)
     console.log(`genericHeaderObjGET.upcHeader==> ${genericHeaderObjGET.upcHeader}`)
 
-    let searchResultsPagGET = decodeURIComponent(req.query.searchResultsPag)
-    let srcRsCSV_PagGET = decodeURIComponent(req.query.srcRsCSV_Pag)
-    let srcRsCSVrvwPagGET = decodeURIComponent(req.query.srcRsCSVrvwPag)
+    let searchResultsPagGET = decodeURIComponent(req.query.searchResultsPag_stringified)
+    let searchResultsPagGETarr = searchResultsPagGET.split(',')
+    console.log(`searchResultsPagGETarr==> ${searchResultsPagGETarr}`)
+    let srcRsCSV_PagGET = decodeURIComponent(req.query.srcRsCSV_Pag_stringified)
+    let srcRsCSV_PagGETarr = srcRsCSV_PagGET.split(',')
+    let srcRsCSVrvwPagGET = decodeURIComponent(req.query.srcRsCSVrvwPag_stringified)
+    let srcRsCSVrvwPagGETarr = srcRsCSVrvwPagGET.split(',')
 
     let paginPostObjGET = decodeURIComponent(req.query.paginPostObj)
 
@@ -67,13 +71,13 @@ module.exports = {
       connection.query( //1st query is pagination query; 2nd query is getting EDLP data; 3rd query is non-paginated query;
         //4th query is for getting COUNT (# of total rows)
         `SELECT * FROM ${tableName} GROUP BY ${genericHeaderObjGET.upcHeader},
-      ${invLastcostHeaderGET} ORDER BY ${genericHeaderObjGET.upcHeader} 
+      ${genericHeaderObjGET.invLastcostHeader} ORDER BY ${genericHeaderObjGET.upcHeader} 
       LIMIT ${offset},${numQueryRes};
 
       SELECT * FROM rb_edlp_data;
       
       SELECT * FROM ${tableName} GROUP BY ${genericHeaderObjGET.upcHeader},
-      ${invLastcostHeaderGET} ORDER BY ${genericHeaderObjGET.upcHeader};
+      ${genericHeaderObjGET.invLastcostHeader} ORDER BY ${genericHeaderObjGET.upcHeader};
       
       SELECT COUNT(*) FROM ${tableName};`,
         function (err, rows, fields) {
@@ -90,8 +94,8 @@ module.exports = {
           // showSearchResults.showSearchResults(rows, genericHeaderObjGET, formInputsObjGET, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
           //   edlpRows, nejRowsNonPagin)
 
-          showSearchResults.showSearchResults(rows, genericHeaderObjGET, formInputsObjGET, searchResultsPagGET, srcRsCSV_PagGET,
-            srcRsCSVrvwPagGET, edlpRows, nejRowsPagin)
+          showSearchResults.showSearchResults(rows, genericHeaderObjGET, formInputsObjGET, searchResultsPagGETarr, srcRsCSV_PagGETarr,
+            srcRsCSVrvwPagGETarr, edlpRows, nejRowsPagin)
 
           res.render('vw-imwGenerator', {
             title: `vw-imwGenerator from GET`,

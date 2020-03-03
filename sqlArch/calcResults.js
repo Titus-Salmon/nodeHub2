@@ -101,9 +101,11 @@ module.exports = {
             upcHeader: genericHeaderObj.upcHeader,
             invLastcostHeader: genericHeaderObj.invLastcostHeader,
             searchResultsPag: searchResultsPag,
+            searchResultsPag_stringified: JSON.stringify(searchResultsPag),
             offsetPost: paginPostObj.offsetPost,
             offsetPost: paginPostObj.offsetPost,
-            genericHeaderObj_stringified: JSON.stringify(genericHeaderObj)
+            genericHeaderObj_stringified: JSON.stringify(genericHeaderObj),
+            formInputsObj_stringified: JSON.stringify(formInputsObj)
             // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
           })
         })
