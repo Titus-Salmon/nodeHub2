@@ -17,6 +17,11 @@ const connection = mysql.createConnection({
 
 module.exports = {
   calcResultsGET: router.get('/calcResults', (req, res, next) => {
+
+    let searchResultsPagGETarr = [] //clear searchResultsPag from previous search
+    srcRsCSV_PagGETarr = []
+    srcRsCSVrvwPagGETarr = []
+
     console.log(`req.query==> ${req.query}`)
 
     console.log(`encodeURIComponent(req.query)==> ${decodeURIComponent(req.query)}`)
@@ -43,13 +48,13 @@ module.exports = {
     console.log(`JSON.stringify(genericHeaderObjGET)==> ${JSON.stringify(genericHeaderObjGET)}`)
     console.log(`genericHeaderObjGET.upcHeader==> ${genericHeaderObjGET.upcHeader}`)
 
-    let searchResultsPagGET = decodeURIComponent(req.query.searchResultsPag_stringified)
-    let searchResultsPagGETarr = searchResultsPagGET.split(',')
-    console.log(`searchResultsPagGETarr==> ${searchResultsPagGETarr}`)
-    let srcRsCSV_PagGET = decodeURIComponent(req.query.srcRsCSV_Pag_stringified)
-    let srcRsCSV_PagGETarr = srcRsCSV_PagGET.split(',')
-    let srcRsCSVrvwPagGET = decodeURIComponent(req.query.srcRsCSVrvwPag_stringified)
-    let srcRsCSVrvwPagGETarr = srcRsCSVrvwPagGET.split(',')
+    // let searchResultsPagGET = decodeURIComponent(req.query.searchResultsPag_stringified)
+    // let searchResultsPagGETarr = searchResultsPagGET.split(',')
+    // console.log(`searchResultsPagGETarr==> ${searchResultsPagGETarr}`)
+    // let srcRsCSV_PagGET = decodeURIComponent(req.query.srcRsCSV_Pag_stringified)
+    // let srcRsCSV_PagGETarr = srcRsCSV_PagGET.split(',')
+    // let srcRsCSVrvwPagGET = decodeURIComponent(req.query.srcRsCSVrvwPag_stringified)
+    // let srcRsCSVrvwPagGETarr = srcRsCSVrvwPagGET.split(',')
 
     let paginPostObjGET = decodeURIComponent(req.query.paginPostObj)
 

@@ -45,22 +45,45 @@ html
 						label.input-label-1(for='currentPage') Current Page (of #{lastPage})
 						input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 
+						//- if currentPage != 0
+						//- 	a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						//- 	${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}
+						//- 	&searchResultsPag_stringified=${searchResultsPag_stringified}`) FIRST PAGE
+
+						//- 	a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						//- 	${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}
+						//- 	&searchResultsPag_stringified=${searchResultsPag_stringified}`) PREV
+
+						//- a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						//- ${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}
+						//- &searchResultsPag_stringified=${searchResultsPag_stringified}`) NEXT
+
+						//- a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						//- ${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}
+						//- &searchResultsPag_stringified=${searchResultsPag_stringified}`) LAST PAGE
+
+
+						//- if currentPage != 0
+						//- 	a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						//- 	${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) FIRST PAGE
+
+						//- 	a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						//- 	${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) PREV
+
+						//- a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						//- ${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) NEXT
+
+						//- a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
+						//- ${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}`) LAST PAGE
+
 						if currentPage != 0
-							a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-							${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}
-							&searchResultsPag_stringified=${searchResultsPag_stringified}`) FIRST PAGE
+							a(href=`/imwGenerator/addNewProducts?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductArr=${encodeURIComponent(imwProductArr)}`) FIRST PAGE
 
-							a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-							${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}
-							&searchResultsPag_stringified=${searchResultsPag_stringified}`) PREV
+							a(href=`/imwGenerator/addNewProducts?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductArr=${encodeURIComponent(imwProductArr)}`) PREV
 
-						a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-						${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}
-						&searchResultsPag_stringified=${searchResultsPag_stringified}`) NEXT
+						a(href=`/imwGenerator/addNewProducts?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductArr=${encodeURIComponent(imwProductArr)}`) NEXT
 
-						a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductValObj=
-						${imwProductValObj}&imwProductArr=${encodeURIComponent(imwProductArr)}&objectifiedImwProdArr=${objectifiedImwProdArr}
-						&searchResultsPag_stringified=${searchResultsPag_stringified}`) LAST PAGE
+						a(href=`/imwGenerator/addNewProducts?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&imwProductArr=${encodeURIComponent(imwProductArr)}`) LAST PAGE
 
 			
 				label.input-label-1(for='tableName') Table to add products from:

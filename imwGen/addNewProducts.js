@@ -143,6 +143,9 @@ module.exports = {
     paginPost.paginPost(postBody, paginPostObj)
     console.log(`JSON.stringify(paginPostObj)==> ${JSON.stringify(paginPostObj)}`)
 
+    console.log(`imwProductValObj from addNewProducts.js POST==> ${imwProductValObj}`)
+    console.log(`JSON.stringify(imwProductValObj) from addNewProducts.js POST==> ${JSON.stringify(imwProductValObj)}`)
+
     function queryEDI_Table() {
       //    SELECT * FROM someTable ORDER BY id DESC LIMIT 0,5
       connection.query(`SELECT COUNT(*) FROM ${tableName};
@@ -198,6 +201,10 @@ module.exports = {
     let offset = page * numQueryRes
 
     let imwProductValObj = decodeURIComponent(req.query.imwProductValObj)
+    console.log(`imwProductValObj from addNewProducts.js GET==> ${imwProductValObj}`)
+    console.log(`JSON.stringify(imwProductValObj) from addNewProducts.js GET==> ${JSON.stringify(imwProductValObj)}`)
+    console.log(`typeof imwProductValObj from addNewProducts.js GET==> ${typeof imwProductValObj}`)
+
     let imwProductArr = decodeURIComponent(req.query.imwProductArr)
 
     console.log(`imwProductArr from GET==> ${imwProductArr}`)
