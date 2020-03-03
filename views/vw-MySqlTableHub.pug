@@ -135,16 +135,18 @@ html
 
 
 		
-		script.
-			//- if (formInputsObj !== undefined) {if (localStorage.setItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(formInputsObj))}}				
-			//- console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
-			//- console.log(`JSON.stringify(localStorage) from vw-MySqlTableHub.pug==> ${JSON.stringify(localStorage)}`)
-			if (formInputsObj !== undefined) {console.log(`formInputsObj==> ${formInputsObj}`)}
-				//- console.log(`formInputsObj==> ${formInputsObj}`)
-				//- console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
+		//- script.
+		//- 	//- if (formInputsObj !== undefined) {if (localStorage.setItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(formInputsObj))}}				
+		//- 	//- console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
+		//- 	//- console.log(`JSON.stringify(localStorage) from vw-MySqlTableHub.pug==> ${JSON.stringify(localStorage)}`)
+		//- 	if (formInputsObj !== undefined) {}
+		//- 		console.log(`formInputsObj==> ${formInputsObj}`)
+		//- 		console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
 
-		
 
+		if formInputsObj !== undefined
+			script.
+				console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
 
 		//- //v//***%%currently editing%% NEED TO DEAL WITH THIS - update or delete (currently has old url info from rbRetailCalculator*********************
 		form#retailCalcUniversal(action='/MySqlTableHub/calcResults' method='POST' accept-charset="UTF-8")
