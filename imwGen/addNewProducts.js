@@ -184,7 +184,7 @@ module.exports = {
   addNewProducts: router.get(`/addNewProducts`, (req, res, next) => {
     console.log(`req.query==> ${req.query}`)
 
-    console.log(`encodeURIComponent(req.query)==> ${decodeURIComponent(req.query)}`)
+    console.log(`decodeURIComponent(req.query)==> ${decodeURIComponent(req.query)}`)
 
     console.log(`JSON.stringify(req.query)==> ${JSON.stringify(req.query)}`)
     console.log(`req.query.page==> ${req.query.page}`)

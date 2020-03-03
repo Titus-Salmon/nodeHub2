@@ -30,6 +30,9 @@ module.exports = {
 
     let offset = page * numQueryRes
 
+    let upcHeaderGET = decodeURIComponent(req.query.upcHeader)
+    let invLastcostHeaderGET = decodeURIComponent(req.query.invLastcostHeader)
+
     let formInputsObjGET = decodeURIComponent(req.query.formInputsObj)
     let genericHeaderObjGET = decodeURIComponent(req.query.genericHeaderObj)
     console.log(`genericHeaderObjGET==> ${genericHeaderObjGET}`)
@@ -61,14 +64,14 @@ module.exports = {
       //The COUNT(*) returns the number of rows including duplicate, non-NULL and NULL rows.
       connection.query( //1st query is pagination query; 2nd query is getting EDLP data; 3rd query is non-paginated query;
         //4th query is for getting COUNT (# of total rows)
-        `SELECT * FROM ${tableName} GROUP BY ${genericHeaderObjGET.upcHeader},
-      ${genericHeaderObjGET.invLastcostHeader} ORDER BY ${genericHeaderObjGET.upcHeader} 
-      LIMIT ${paginPostObjGET['offsetPost']},${paginPostObjGET['numQueryRes']};
+        `SELECT * FROM ${tableName} GROUP BY ${upcHeaderGET},
+      ${invLastcostHeaderGET} ORDER BY ${upcHeaderGET} 
+      LIMIT ${offset},${numQueryRes};
 
       SELECT * FROM rb_edlp_data;
       
-      SELECT * FROM ${tableName} GROUP BY ${genericHeaderObjGET.upcHeader},
-      ${genericHeaderObjGET.invLastcostHeader} ORDER BY ${genericHeaderObjGET.upcHeader};
+      SELECT * FROM ${tableName} GROUP BY ${upcHeaderGET},
+      ${invLastcostHeaderGET} ORDER BY ${upcHeaderGET};
       
       SELECT COUNT(*) FROM ${tableName};`,
         function (err, rows, fields) {
