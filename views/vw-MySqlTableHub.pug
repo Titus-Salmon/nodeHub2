@@ -144,11 +144,20 @@ html
 		//- 		console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
 
 
-		if formInputsObj_stringified !== undefined
+		//- if formInputsObj_stringified !== undefined
+		//- 	script.
+		//- 		console.log(`formInputsObj_stringified==> ${!{formInputsObj_stringified}}`)
+		//- 		console.log(`JSON.stringify(formInputsObj_stringified)==> ${JSON.stringify(!{formInputsObj_stringified})}`)
+		//- 		if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{formInputsObj_stringified}))}
+					
+		//- 		console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
+		//- 		console.log(`JSON.stringify(localStorage) from vw-MySqlTableHub.pug==> ${JSON.stringify(localStorage)}`)
+
+		if formInputsObj !== undefined
 			script.
-				console.log(`formInputsObj_stringified==> ${!{formInputsObj_stringified}}`)
-				console.log(`JSON.stringify(formInputsObj_stringified)==> ${JSON.stringify(!{formInputsObj_stringified})}`)
-				if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{formInputsObj_stringified}))}
+				console.log(`formInputsObj==> ${!{formInputsObj}}`)
+				console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(!{formInputsObj})}`)
+				if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{formInputsObj}))}
 					
 				console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
 				console.log(`JSON.stringify(localStorage) from vw-MySqlTableHub.pug==> ${JSON.stringify(localStorage)}`)
