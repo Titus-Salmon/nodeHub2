@@ -156,7 +156,7 @@ html
 
 				console.log(`genericHeaderObj_stringified==> ${!{genericHeaderObj_stringified}}`)
 				console.log(`JSON.stringify(genericHeaderObj_stringified)==> ${JSON.stringify(!{genericHeaderObj_stringified})}`)
-				if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{genericHeaderObj_stringified}))}
+				if (localStorage.getItem('genericHeaderObj_stringified') == undefined) {localStorage.setItem('genericHeaderObj_stringified', JSON.stringify(!{genericHeaderObj_stringified}))}
 
 		script.
 			console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
