@@ -144,14 +144,16 @@ html
 		//- 		console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
 
 
-		if formInputsObj_stringified !== undefined
+		//- script.
+		//- 	localStorage.clear()
+
+		if formInputsObj_stringified !== undefined && genericHeaderObj_stringified !== undefined
 			script.
+				localStorage.clear()
 				console.log(`formInputsObj_stringified==> ${!{formInputsObj_stringified}}`)
 				console.log(`JSON.stringify(formInputsObj_stringified)==> ${JSON.stringify(!{formInputsObj_stringified})}`)
 				if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{formInputsObj_stringified}))}
 
-		if genericHeaderObj_stringified !== undefined
-			script.
 				console.log(`genericHeaderObj_stringified==> ${!{genericHeaderObj_stringified}}`)
 				console.log(`JSON.stringify(genericHeaderObj_stringified)==> ${JSON.stringify(!{genericHeaderObj_stringified})}`)
 				if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{genericHeaderObj_stringified}))}
