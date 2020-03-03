@@ -83,7 +83,7 @@ module.exports = {
           //   edlpRows, nejRowsNonPagin)
 
           showSearchResults.showSearchResults(rows, genericHeaderObjGET, formInputsObjGET, searchResultsPagGET, srcRsCSV_PagGET,
-            srcRsCSVrvwPag, edlpRows, nejRowsPagin)
+            srcRsCSVrvwPagGET, edlpRows, nejRowsPagin)
 
           res.render('vw-imwGenerator', {
             title: `vw-imwGenerator from GET`,
