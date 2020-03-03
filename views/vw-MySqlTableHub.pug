@@ -159,10 +159,14 @@ html
 						input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 
 						if currentPage != 0
-							a(href=`/MySqlTableHub/calcResults?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}&upcHeader=${upcHeader}&invLastcostHeader=${invLastcostHeader}`) FIRST PAGE
-							a(href=`/MySqlTableHub/calcResults?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}&upcHeader=${upcHeader}&invLastcostHeader=${invLastcostHeader}`) PREV
-						a(href=`/MySqlTableHub/calcResults?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}&upcHeader=${upcHeader}&invLastcostHeader=${invLastcostHeader}`) NEXT
-						a(href=`/MySqlTableHub/calcResults?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}&upcHeader=${upcHeader}&invLastcostHeader=${invLastcostHeader}`) LAST PAGE
+							a(href=`/MySqlTableHub/calcResults?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}
+							&upcHeader=${upcHeader}&invLastcostHeader=${invLastcostHeader}&genericHeaderObj_stringified=${genericHeaderObj_stringified}`) FIRST PAGE
+							a(href=`/MySqlTableHub/calcResults?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}
+							&upcHeader=${upcHeader}&invLastcostHeader=${invLastcostHeader}&genericHeaderObj_stringified=${genericHeaderObj_stringified}`) PREV
+						a(href=`/MySqlTableHub/calcResults?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}
+						&upcHeader=${upcHeader}&invLastcostHeader=${invLastcostHeader}&genericHeaderObj_stringified=${genericHeaderObj_stringified}`) NEXT
+						a(href=`/MySqlTableHub/calcResults?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}&formInputsObj=${formInputsObj}
+						&upcHeader=${upcHeader}&invLastcostHeader=${invLastcostHeader}&genericHeaderObj_stringified=${genericHeaderObj_stringified}`) LAST PAGE
 			
 			//- label.input-label-1(for='currentPage') Current Page
 			//- input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)

@@ -103,6 +103,7 @@ module.exports = {
             searchResultsPag: searchResultsPag,
             offsetPost: paginPostObj.offsetPost,
             offsetPost: paginPostObj.offsetPost,
+            genericHeaderObj_stringified: JSON.stringify(genericHeaderObj)
             // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
           })
         })
