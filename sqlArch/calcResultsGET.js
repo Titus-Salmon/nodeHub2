@@ -5,6 +5,8 @@ const mysql = require('mysql')
 // const gEnericHdrObj = require('../funcLibT0d/genericHdrObj')
 // const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')
 
+const showSearchResults = require('../funcLibT0d/showSearchResults')
+
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
   user: process.env.RB_USER,

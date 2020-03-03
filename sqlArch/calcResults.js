@@ -101,7 +101,8 @@ module.exports = {
             upcHeader: genericHeaderObj.upcHeader,
             invLastcostHeader: genericHeaderObj.invLastcostHeader,
             searchResultsPag: searchResultsPag,
-            paginPostObj: paginPostObj
+            offsetPost: paginPostObj.offsetPost,
+            offsetPost: paginPostObj.offsetPost,
             // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
           })
         })
