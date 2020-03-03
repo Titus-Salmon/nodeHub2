@@ -156,7 +156,7 @@ html
 		if formInputsObj !== undefined
 			script.
 				console.log(`formInputsObj==> ${formInputsObj}`)
-				console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(!{formInputsObj})}`)
+				console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
 				if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{formInputsObj}))}
 					
 				console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
