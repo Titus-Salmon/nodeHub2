@@ -157,7 +157,7 @@ html
 			script.
 				console.log(`formInputsObj==> ${formInputsObj}`)
 				console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
-				if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{formInputsObj}))}
+				if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(formInputsObj))}
 					
 				console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
 				console.log(`JSON.stringify(localStorage) from vw-MySqlTableHub.pug==> ${JSON.stringify(localStorage)}`)
