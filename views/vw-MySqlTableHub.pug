@@ -136,7 +136,7 @@ html
 
 		
 		script.
-			if formInputsObj !== undefined
+			if formInputsObj
 				if localStorage.setItem('formInputsObj_locStor') == undefined
 					localStorage.setItem('formInputsObj_locStor', !{formInputsObj})
 			console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
