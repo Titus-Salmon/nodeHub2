@@ -32,6 +32,7 @@ module.exports = {
 
     let formInputsObjGET = decodeURIComponent(req.query.formInputsObj)
     let genericHeaderObjGET = decodeURIComponent(req.query.genericHeaderObj)
+    console.log(`genericHeaderObjGET.upcHeader==> ${genericHeaderObjGET.upcHeader}`)
 
     let searchResultsPagGET = decodeURIComponent(req.query.searchResultsPag)
     let srcRsCSV_PagGET = decodeURIComponent(req.query.srcRsCSV_Pag)
