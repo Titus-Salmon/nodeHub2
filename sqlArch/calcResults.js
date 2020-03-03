@@ -105,7 +105,7 @@ module.exports = {
             offsetPost: paginPostObj.offsetPost,
             offsetPost: paginPostObj.offsetPost,
             genericHeaderObj_stringified: JSON.stringify(genericHeaderObj),
-            formInputsObj_stringified: JSON.stringify(formInputsObj)
+            formInputsObj_stringified: JSON.stringify(frmInptsObj)
             // ongDsc: ongDsc //use to populate value for "%Discount to Apply" field
           })
         })
