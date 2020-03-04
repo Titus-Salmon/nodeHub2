@@ -74,7 +74,7 @@ module.exports = {
       SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
       ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
       
-      SELECT COUNT(*) FROM ${frmInptsObj.formInput0} GROUP BY ${gnrcHdrObjCche.upcHeader};`,
+      SELECT COUNT(*) FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader};`,
 
         function (err, rows, fields) {
           if (err) throw err
