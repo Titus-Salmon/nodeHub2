@@ -2,20 +2,8 @@ const express = require('express')
 const router = express.Router()
 const mysql = require('mysql')
 
-const NodeCache = require('node-cache')
-// const formInputsObjCache = new NodeCache()
-// const genericHeaderObjCache = new NodeCache()
-
 const formInputsObjCache = require('../nodeCacheStuff/cache1')
 const genericHeaderObjCache = require('../nodeCacheStuff/cache1')
-
-// const {
-//   formInputsObjCache,
-//   genericHeaderObjCache
-// } = require('../nodeCacheStuff/cache1')
-
-// const gEnericHdrObj = require('../funcLibT0d/genericHdrObj')
-// const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')
 
 const showSearchResults = require('../funcLibT0d/showSearchResults')
 
@@ -30,8 +18,9 @@ const connection = mysql.createConnection({
 module.exports = {
   calcResultsGET: router.get('/calcResults', (req, res, next) => {
 
-    console.log(`JSON.stringify(formInputsObjCache) from GET==> ${JSON.stringify(formInputsObjCache)}`)
-    console.log(`JSON.stringify(genericHeaderObjCache) from GET==> ${JSON.stringify(genericHeaderObjCache)}`)
+    // console.log(`JSON.stringify(formInputsObjCache) from GET==> ${JSON.stringify(formInputsObjCache)}`)
+    // console.log(`JSON.stringify(genericHeaderObjCache) from GET==> ${JSON.stringify(genericHeaderObjCache)}`)
+    console.log(`formInputsObjCache['data']['formInputsObjCache_key']['v'] from GET==> ${formInputsObjCache['data']['formInputsObjCache_key']['v']}`)
 
     let searchResultsPagGETarr = [] //clear searchResultsPag from previous search
     srcRsCSV_PagGETarr = []
@@ -52,16 +41,7 @@ module.exports = {
 
     let offset = page * numQueryRes
 
-    // console.log(`req.query.formInputsObj_stringified==> ${req.query.formInputsObj_stringified}`)
-    // let formInputsObjGET = JSON.parse(decodeURIComponent(req.query.formInputsObj_stringified))
-    // console.log(`formInputsObjGET==> ${formInputsObjGET}`)
-    // let genericHeaderObjGET = JSON.parse(decodeURIComponent(req.query.genericHeaderObj_stringified))
-    // console.log(`genericHeaderObjGET==> ${genericHeaderObjGET}`)
-    // console.log(`JSON.stringify(genericHeaderObjGET)==> ${JSON.stringify(genericHeaderObjGET)}`)
-    // console.log(`genericHeaderObjGET.upcHeader==> ${genericHeaderObjGET.upcHeader}`)
-
     let paginPostObjGET = decodeURIComponent(req.query.paginPostObj)
-
 
     let pageLinkArray = []
     let numPagesPlaceholder = [] //holds the value for total number of pages; should only be one value
