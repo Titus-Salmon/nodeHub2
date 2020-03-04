@@ -43,22 +43,8 @@ module.exports = {
 
     let offset = page * numQueryRes
 
-    // let paginPostObjGET = decodeURIComponent(req.query.paginPostObj)
-
     let pageLinkArray = []
     let numPagesPlaceholder = [] //holds the value for total number of pages; should only be one value
-    // let srsObjArr = []
-
-    // let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
-    // console.log(`numPages==> ${numPages}`)
-    // numPagesPlaceholder.push(numPages)
-
-    // // let pageLinkObj = {}
-    // for (let j = 0; j < numPages; j++) {
-    //   let pageLinkObj = {}
-    //   pageLinkObj[`page${j}`] = j
-    //   pageLinkArray.push(pageLinkObj)
-    // }
 
     let currentPage = page
     console.log(`currentPage from GET==> ${currentPage}`)
@@ -77,7 +63,7 @@ module.exports = {
       SELECT * FROM ${tableName} GROUP BY ${gnrcHdrObjCche.upcHeader},
       ${gnrcHdrObjCche.invLastcostHeader} ORDER BY ${gnrcHdrObjCche.upcHeader};
       
-      SELECT COUNT(*) FROM ${tableName};`,
+      SELECT COUNT(*) FROM ${tableName} GROUP BY ${gnrcHdrObjCche.upcHeader};`,
         function (err, rows, fields) {
           if (err) throw err
 
