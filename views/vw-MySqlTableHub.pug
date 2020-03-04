@@ -134,44 +134,21 @@ html
 		//-/^// NEW STUFF FOR MySqlTableHub*********************************************************************************************************
 
 
-		
-		//- script.
-		//- 	//- if (formInputsObj !== undefined) {if (localStorage.setItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(formInputsObj))}}				
-		//- 	//- console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
-		//- 	//- console.log(`JSON.stringify(localStorage) from vw-MySqlTableHub.pug==> ${JSON.stringify(localStorage)}`)
-		//- 	if (formInputsObj !== undefined) {}
-		//- 		console.log(`formInputsObj==> ${formInputsObj}`)
-		//- 		console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
-
-
-		//- script.
-		//- 	localStorage.clear()
-
-		if formInputsObj_stringified !== undefined && genericHeaderObj_stringified !== undefined
-			script.
-				localStorage.clear()
-				console.log(`formInputsObj_stringified==> ${!{formInputsObj_stringified}}`)
-				console.log(`JSON.stringify(formInputsObj_stringified)==> ${JSON.stringify(!{formInputsObj_stringified})}`)
-				if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{formInputsObj_stringified}))}
-
-				console.log(`genericHeaderObj_stringified==> ${!{genericHeaderObj_stringified}}`)
-				console.log(`JSON.stringify(genericHeaderObj_stringified)==> ${JSON.stringify(!{genericHeaderObj_stringified})}`)
-				if (localStorage.getItem('genericHeaderObj_locStor') == undefined) {localStorage.setItem('genericHeaderObj_locStor', JSON.stringify(!{genericHeaderObj_stringified}))}
-
-		script.
-			console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
-			console.log(`JSON.stringify(localStorage) from vw-MySqlTableHub.pug==> ${JSON.stringify(localStorage)}`)
-
-		//- if formInputsObj !== undefined
+		//- if formInputsObj_stringified !== undefined && genericHeaderObj_stringified !== undefined
 		//- 	script.
-		//- 		console.log(`formInputsObj==> ${formInputsObj}`)
-		//- 		console.log(`JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
-		//- 		if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(formInputsObj))}
-					
-		//- 		console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
-		//- 		console.log(`JSON.stringify(localStorage) from vw-MySqlTableHub.pug==> ${JSON.stringify(localStorage)}`)
+		//- 		localStorage.clear()
+		//- 		console.log(`formInputsObj_stringified==> ${!{formInputsObj_stringified}}`)
+		//- 		console.log(`JSON.stringify(formInputsObj_stringified)==> ${JSON.stringify(!{formInputsObj_stringified})}`)
+		//- 		if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{formInputsObj_stringified}))}
 
-		
+		//- 		console.log(`genericHeaderObj_stringified==> ${!{genericHeaderObj_stringified}}`)
+		//- 		console.log(`JSON.stringify(genericHeaderObj_stringified)==> ${JSON.stringify(!{genericHeaderObj_stringified})}`)
+		//- 		if (localStorage.getItem('genericHeaderObj_locStor') == undefined) {localStorage.setItem('genericHeaderObj_locStor', JSON.stringify(!{genericHeaderObj_stringified}))}
+
+		//- script.
+		//- 	console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
+		//- 	console.log(`JSON.stringify(localStorage) from vw-MySqlTableHub.pug==> ${JSON.stringify(localStorage)}`)
+
 		form#retailCalcUniversal(action='/MySqlTableHub/calcResults' method='POST' accept-charset="UTF-8")
 
 			if sqlTableCreated !== undefined
@@ -195,18 +172,10 @@ html
 						input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 
 						if currentPage != 0
-							a(href=`/MySqlTableHub/calcResults?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}
-							&formInputsObj_stringified=${encodeURIComponent(formInputsObj_stringified)}
-							&genericHeaderObj_stringified=${encodeURIComponent(genericHeaderObj_stringified)}`) FIRST PAGE
-							a(href=`/MySqlTableHub/calcResults?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}
-							&formInputsObj_stringified=${encodeURIComponent(formInputsObj_stringified)}
-							&genericHeaderObj_stringified=${encodeURIComponent(genericHeaderObj_stringified)}`) PREV
-						a(href=`/MySqlTableHub/calcResults?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}
-						&formInputsObj_stringified=${encodeURIComponent(formInputsObj_stringified)}
-						&genericHeaderObj_stringified=${encodeURIComponent(genericHeaderObj_stringified)}`) NEXT
-						a(href=`/MySqlTableHub/calcResults?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}
-						&formInputsObj_stringified=${encodeURIComponent(formInputsObj_stringified)}
-						&genericHeaderObj_stringified=${encodeURIComponent(genericHeaderObj_stringified)}`) LAST PAGE
+							a(href=`/MySqlTableHub/calcResults?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}`) FIRST PAGE
+							a(href=`/MySqlTableHub/calcResults?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}`) PREV
+						a(href=`/MySqlTableHub/calcResults?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}`) NEXT
+						a(href=`/MySqlTableHub/calcResults?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}`) LAST PAGE
 			
 			//- label.input-label-1(for='currentPage') Current Page
 			//- input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
