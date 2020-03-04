@@ -90,6 +90,7 @@ module.exports = {
             // imwProductValObj: imwProductValObj,
             // imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
             // objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
+            searchResRows: searchResultsPagGETarr,
             tableName: tableName,
             numQueryRes: numQueryRes,
             pageLinkArray: pageLinkArray,
