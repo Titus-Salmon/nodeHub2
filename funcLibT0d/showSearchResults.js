@@ -793,8 +793,8 @@ module.exports = {
       }
 
     }
-    console.log('calcResults says: searchResults[0] from showSearchResults()==>', searchResults[0])
-    // console.log('calcResults says: searchResultsForCSV from showSearchResults()==>', searchResultsForCSV)
-    console.log('calcResults says: searchResultsForCSVreview[0] from showSearchResults()==>', searchResultsForCSVreview[0])
+    console.log('showSearchResults says: searchResults[0] from showSearchResults()==>', searchResults[0])
+    // console.log('showSearchResults says: searchResultsForCSV from showSearchResults()==>', searchResultsForCSV)
+    console.log('showSearchResults says: searchResultsForCSVreview[0] from showSearchResults()==>', searchResultsForCSVreview[0])
   }
 }
