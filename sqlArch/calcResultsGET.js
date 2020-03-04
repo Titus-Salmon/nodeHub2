@@ -18,10 +18,11 @@ const connection = mysql.createConnection({
 module.exports = {
   calcResultsGET: router.get('/calcResults', (req, res, next) => {
 
-    // console.log(`JSON.stringify(formInputsObjCache) from GET==> ${JSON.stringify(formInputsObjCache)}`)
-    // console.log(`JSON.stringify(genericHeaderObjCache) from GET==> ${JSON.stringify(genericHeaderObjCache)}`)
     console.log(`formInputsObjCache['data']['formInputsObjCache_key']['v'] from GET==> ${formInputsObjCache['data']['formInputsObjCache_key']['v']}`)
     console.log(`JSON.stringify(formInputsObjCache['data']['formInputsObjCache_key']['v']) from GET==> ${JSON.stringify(formInputsObjCache['data']['formInputsObjCache_key']['v'])}`)
+
+    let frmInptsObjCche = formInputsObjCache['data']['formInputsObjCache_key']['v']
+    let gnrcHdrObjCche = genericHeaderObjCache['data']['genericHeaderObjCache_key']['v']
 
     let searchResultsPagGETarr = [] //clear searchResultsPag from previous search
     srcRsCSV_PagGETarr = []
@@ -80,7 +81,7 @@ module.exports = {
           // showSearchResults.showSearchResults(rows, genericHeaderObjGET, formInputsObjGET, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
           //   edlpRows, nejRowsNonPagin)
 
-          showSearchResults.showSearchResults(rows, genericHeaderObjGET, formInputsObjGET, searchResultsPagGETarr, srcRsCSV_PagGETarr,
+          showSearchResults.showSearchResults(rows, gnrcHdrObjCche, frmInptsObjCche, searchResultsPagGETarr, srcRsCSV_PagGETarr,
             srcRsCSVrvwPagGETarr, edlpRows, nejRowsPagin)
 
           res.render('vw-imwGenerator', {
