@@ -3,8 +3,11 @@ const router = express.Router()
 const mysql = require('mysql')
 
 const NodeCache = require('node-cache')
-const formInputsObjCache = new NodeCache()
-const genericHeaderObjCache = new NodeCache()
+// const formInputsObjCache = new NodeCache()
+// const genericHeaderObjCache = new NodeCache()
+
+import formInputsObjCache from './calcResults'
+import genericHeaderObjCache from './calcResults'
 
 // const gEnericHdrObj = require('../funcLibT0d/genericHdrObj')
 // const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')
