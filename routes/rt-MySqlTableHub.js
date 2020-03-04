@@ -39,9 +39,9 @@ const {
 const {
   calcResults
 } = require('../sqlArch/calcResults')
-const {
-  calcResultsGET
-} = require('../sqlArch/calcResultsGET')
+// const {
+//   calcResultsGET
+// } = require('../sqlArch/calcResultsGET')
 
 
 
@@ -66,7 +66,7 @@ router.post('/save2CSVreviewNEJ', save2CSVreviewNEJ)
 router.post('/saveIMW_CSV', saveIMW_CSV)
 router.post('/loadTable_MySqlHub', loadTable_MySqlHub)
 router.post('/calcResults', calcResults)
-router.get('/calcResults', calcResultsGET)
+router.get('/calcResults', calcResults)
 
 
 module.exports = router;
