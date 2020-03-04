@@ -2,6 +2,10 @@ const express = require('express')
 const router = express.Router()
 const mysql = require('mysql')
 
+const NodeCache = require('node-cache')
+const formInputsObjCache = new NodeCache()
+const genericHeaderObjCache = new NodeCache()
+
 // const gEnericHdrObj = require('../funcLibT0d/genericHdrObj')
 // const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')
 
@@ -17,6 +21,9 @@ const connection = mysql.createConnection({
 
 module.exports = {
   calcResultsGET: router.get('/calcResults', (req, res, next) => {
+
+    console.log(`JSON.stringify(formInputsObjCache) from GET==> ${JSON.stringify(formInputsObjCache)}`)
+    console.log(`JSON.stringify(genericHeaderObjCache) from GET==> ${JSON.stringify(genericHeaderObjCache)}`)
 
     let searchResultsPagGETarr = [] //clear searchResultsPag from previous search
     srcRsCSV_PagGETarr = []
@@ -37,33 +44,16 @@ module.exports = {
 
     let offset = page * numQueryRes
 
-    // let upcHeaderGET = decodeURIComponent(req.query.upcHeader)
-    // let invLastcostHeaderGET = decodeURIComponent(req.query.invLastcostHeader)
-
-    console.log(`req.query.formInputsObj_stringified==> ${req.query.formInputsObj_stringified}`)
-    let formInputsObjGET = JSON.parse(decodeURIComponent(req.query.formInputsObj_stringified))
-    console.log(`formInputsObjGET==> ${formInputsObjGET}`)
-    let genericHeaderObjGET = JSON.parse(decodeURIComponent(req.query.genericHeaderObj_stringified))
-    console.log(`genericHeaderObjGET==> ${genericHeaderObjGET}`)
-    console.log(`JSON.stringify(genericHeaderObjGET)==> ${JSON.stringify(genericHeaderObjGET)}`)
-    console.log(`genericHeaderObjGET.upcHeader==> ${genericHeaderObjGET.upcHeader}`)
-
-    // let searchResultsPagGET = decodeURIComponent(req.query.searchResultsPag_stringified)
-    // let searchResultsPagGETarr = searchResultsPagGET.split(',')
-    // console.log(`searchResultsPagGETarr==> ${searchResultsPagGETarr}`)
-    // let srcRsCSV_PagGET = decodeURIComponent(req.query.srcRsCSV_Pag_stringified)
-    // let srcRsCSV_PagGETarr = srcRsCSV_PagGET.split(',')
-    // let srcRsCSVrvwPagGET = decodeURIComponent(req.query.srcRsCSVrvwPag_stringified)
-    // let srcRsCSVrvwPagGETarr = srcRsCSVrvwPagGET.split(',')
+    // console.log(`req.query.formInputsObj_stringified==> ${req.query.formInputsObj_stringified}`)
+    // let formInputsObjGET = JSON.parse(decodeURIComponent(req.query.formInputsObj_stringified))
+    // console.log(`formInputsObjGET==> ${formInputsObjGET}`)
+    // let genericHeaderObjGET = JSON.parse(decodeURIComponent(req.query.genericHeaderObj_stringified))
+    // console.log(`genericHeaderObjGET==> ${genericHeaderObjGET}`)
+    // console.log(`JSON.stringify(genericHeaderObjGET)==> ${JSON.stringify(genericHeaderObjGET)}`)
+    // console.log(`genericHeaderObjGET.upcHeader==> ${genericHeaderObjGET.upcHeader}`)
 
     let paginPostObjGET = decodeURIComponent(req.query.paginPostObj)
 
-    // let imwProductValObj = decodeURIComponent(req.query.imwProductValObj)
-    // let imwProductArr = decodeURIComponent(req.query.imwProductArr)
-
-    // console.log(`imwProductArr from GET==> ${imwProductArr}`)
-    // console.log(`typeof imwProductArr from GET==> ${typeof imwProductArr}`)
-    // console.log(`JSON.stringify(imwProductArr) from GET==> ${JSON.stringify(imwProductArr)}`)
 
     let pageLinkArray = []
     let numPagesPlaceholder = [] //holds the value for total number of pages; should only be one value
