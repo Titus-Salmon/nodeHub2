@@ -1,5 +1,5 @@
 module.exports = {
-  paginPost: function (postBodyData, paginPostObjData, pageLinkArray, numPagesPlaceholder) {
+  paginPost: function (postBodyData, paginPostObjData) {
     // paginPostObjDataArr = []
     // paginPostObjData = {}
     currentPage = parseInt(postBodyData['currentPagePost'])

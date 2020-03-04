@@ -43,11 +43,22 @@ module.exports = {
 
     let offset = page * numQueryRes
 
-    let paginPostObjGET = decodeURIComponent(req.query.paginPostObj)
+    // let paginPostObjGET = decodeURIComponent(req.query.paginPostObj)
 
     let pageLinkArray = []
     let numPagesPlaceholder = [] //holds the value for total number of pages; should only be one value
     // let srsObjArr = []
+
+    // let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
+    // console.log(`numPages==> ${numPages}`)
+    // numPagesPlaceholder.push(numPages)
+
+    // // let pageLinkObj = {}
+    // for (let j = 0; j < numPages; j++) {
+    //   let pageLinkObj = {}
+    //   pageLinkObj[`page${j}`] = j
+    //   pageLinkArray.push(pageLinkObj)
+    // }
 
     let currentPage = page
     console.log(`currentPage from GET==> ${currentPage}`)
@@ -75,6 +86,22 @@ module.exports = {
           let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
 
           let countRows = rows[3]
+
+          console.log(`JSON.stringify(countRows) from calaResultsGET.js==> ${JSON.stringify(countRows)}`)
+          let totalRows = countRows[0]['COUNT(*)']
+
+          console.log(`totalRows from calcResultsGET.js==> ${totalRows}`)
+
+          let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
+          console.log(`numPages==> ${numPages}`)
+          numPagesPlaceholder.push(numPages)
+
+          // let pageLinkObj = {}
+          for (let j = 0; j < numPages; j++) {
+            let pageLinkObj = {}
+            pageLinkObj[`page${j}`] = j
+            pageLinkArray.push(pageLinkObj)
+          }
 
           // showSearchRes.showSearchRes(rows, numQueryRes, pageLinkArray, srsObjArr, numPagesPlaceholder)
 

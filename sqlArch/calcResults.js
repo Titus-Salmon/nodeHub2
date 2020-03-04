@@ -58,7 +58,7 @@ module.exports = {
     let numPagesPlaceholder = []
 
     let paginPostObj = {}
-    paginPost.paginPost(postBody, paginPostObj, pageLinkArray, numPagesPlaceholder)
+    paginPost.paginPost(postBody, paginPostObj)
 
     function queryNejTablePaginated() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
