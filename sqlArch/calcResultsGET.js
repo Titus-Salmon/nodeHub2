@@ -84,11 +84,11 @@ module.exports = {
           showSearchResults.showSearchResults(rows, gnrcHdrObjCche, frmInptsObjCche, searchResultsPagGETarr, srcRsCSV_PagGETarr,
             srcRsCSVrvwPagGETarr, edlpRows, nejRowsPagin)
 
-          res.render('vw-imwGenerator', {
-            title: `vw-imwGenerator from GET`,
-            srsObjArr: srsObjArr,
-            imwProductValObj: imwProductValObj,
-            imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
+          res.render('vw-MySqlTableHub', {
+            title: `vw-MySqlTableHub from GET`,
+            // srsObjArr: srsObjArr,
+            // imwProductValObj: imwProductValObj,
+            // imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
             // objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
             tableName: tableName,
             numQueryRes: numQueryRes,
