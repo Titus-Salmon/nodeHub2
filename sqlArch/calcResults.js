@@ -8,10 +8,12 @@ const paginPost = require('../funcLibT0d/paginPost')
 const showSearchResults = require('../funcLibT0d/showSearchResults')
 
 // const NodeCache = require('node-cache')
-const {
-  formInputsObjCache,
-  genericHeaderObjCache
-} = require('../nodeCacheStuff/cache1')
+const formInputsObjCache = require('../nodeCacheStuff/cache1')
+const genericHeaderObjCache = require('../nodeCacheStuff/cache1')
+// const {
+//   formInputsObjCache,
+//   genericHeaderObjCache
+// } = require('../nodeCacheStuff/cache1')
 // genericHeaderObjCache = new NodeCache()
 
 const connection = mysql.createConnection({
