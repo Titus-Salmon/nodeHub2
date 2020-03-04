@@ -49,12 +49,14 @@ module.exports = {
     // const formInputsObjCache = new NodeCache()
     formInputsObjCache.set('formInputsObjCache_key', frmInptsObj)
     console.log(`formInputsObjCache from POST==> ${formInputsObjCache}`)
+    console.log(`JSON.stringify(formInputsObjCache) from POST==> ${JSON.stringify(formInputsObjCache)}`)
 
     let genericHeaderObj = {} //provide empty object to populate with generic headers generated from genericHdrObj.js module
     gEnericHdrObj.gnrcHdrObj(postBody, genericHeaderObj)
     // const genericHeaderObjCache = new NodeCache()
     genericHeaderObjCache.set('genericHeaderObjCache_key', genericHeaderObj)
     console.log(`genericHeaderObjCache from POST==> ${genericHeaderObjCache}`)
+    console.log(`JSON.stringify(genericHeaderObjCache) from POST==> ${JSON.stringify(genericHeaderObjCache)}`)
 
     let pageLinkArray = []
     let numPagesPlaceholder = []
