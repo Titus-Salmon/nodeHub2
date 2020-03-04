@@ -21,7 +21,7 @@ module.exports = {
     // console.log(`JSON.stringify(formInputsObjCache) from GET==> ${JSON.stringify(formInputsObjCache)}`)
     // console.log(`JSON.stringify(genericHeaderObjCache) from GET==> ${JSON.stringify(genericHeaderObjCache)}`)
     console.log(`formInputsObjCache['data']['formInputsObjCache_key']['v'] from GET==> ${formInputsObjCache['data']['formInputsObjCache_key']['v']}`)
-    console.log(`JSON.stringify(formInputsObjCache['data']['formInputsObjCache_key']['v']) from GET==> ${JSON.stringify(formInputsObjCache['data']['formInputsObjCache_key']['v']})`)
+    console.log(`JSON.stringify(formInputsObjCache['data']['formInputsObjCache_key']['v']) from GET==> ${JSON.stringify(formInputsObjCache['data']['formInputsObjCache_key']['v'])}`)
 
     let searchResultsPagGETarr = [] //clear searchResultsPag from previous search
     srcRsCSV_PagGETarr = []
