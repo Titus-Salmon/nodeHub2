@@ -57,14 +57,14 @@ module.exports = {
       //The COUNT(*) returns the number of rows including duplicate, non-NULL and NULL rows.
       connection.query( //1st query is pagination query; 2nd query is getting EDLP data; 3rd query is non-paginated query;
         //4th query is for getting COUNT (# of total rows)
-        `SELECT * FROM ${tableName} GROUP BY ${genericHeaderObjGET.upcHeader},
-      ${genericHeaderObjGET.invLastcostHeader} ORDER BY ${genericHeaderObjGET.upcHeader} 
+        `SELECT * FROM ${tableName} GROUP BY ${gnrcHdrObjCche.upcHeader},
+      ${gnrcHdrObjCche.invLastcostHeader} ORDER BY ${gnrcHdrObjCche.upcHeader} 
       LIMIT ${offset},${numQueryRes};
 
       SELECT * FROM rb_edlp_data;
       
-      SELECT * FROM ${tableName} GROUP BY ${genericHeaderObjGET.upcHeader},
-      ${genericHeaderObjGET.invLastcostHeader} ORDER BY ${genericHeaderObjGET.upcHeader};
+      SELECT * FROM ${tableName} GROUP BY ${gnrcHdrObjCche.upcHeader},
+      ${gnrcHdrObjCche.invLastcostHeader} ORDER BY ${gnrcHdrObjCche.upcHeader};
       
       SELECT COUNT(*) FROM ${tableName};`,
         function (err, rows, fields) {

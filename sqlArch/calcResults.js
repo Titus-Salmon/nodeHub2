@@ -7,14 +7,8 @@ const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')
 const paginPost = require('../funcLibT0d/paginPost')
 const showSearchResults = require('../funcLibT0d/showSearchResults')
 
-// const NodeCache = require('node-cache')
 const formInputsObjCache = require('../nodeCacheStuff/cache1')
 const genericHeaderObjCache = require('../nodeCacheStuff/cache1')
-// const {
-//   formInputsObjCache,
-//   genericHeaderObjCache
-// } = require('../nodeCacheStuff/cache1')
-// genericHeaderObjCache = new NodeCache()
 
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
@@ -36,9 +30,6 @@ module.exports = {
     srcRsCSVrvw_nonPag = [] //why does this break if instantiated with "let"? A question for another time...
     csvContainer = [] //why does this break if instantiated with "let"? A question for another time...
     const postBody = req.body
-
-    // const formInputsObjCache = new NodeCache()
-    // const genericHeaderObjCache = new NodeCache()
 
     formInputsObjCacheChecker = formInputsObjCache.get('formInputsObjCache_key');
     if (formInputsObjCacheChecker !== undefined) {
