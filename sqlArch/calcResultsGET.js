@@ -6,8 +6,10 @@ const NodeCache = require('node-cache')
 // const formInputsObjCache = new NodeCache()
 // const genericHeaderObjCache = new NodeCache()
 
-import formInputsObjCache from './calcResults'
-import genericHeaderObjCache from './calcResults'
+const {
+  formInputsObjCache,
+  genericHeaderObjCache
+} = require('../nodeCacheStuff/cache1')
 
 // const gEnericHdrObj = require('../funcLibT0d/genericHdrObj')
 // const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')

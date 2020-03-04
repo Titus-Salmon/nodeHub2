@@ -7,9 +7,12 @@ const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')
 const paginPost = require('../funcLibT0d/paginPost')
 const showSearchResults = require('../funcLibT0d/showSearchResults')
 
-const NodeCache = require('node-cache')
-exports.formInputsObjCache = new NodeCache()
-exports.genericHeaderObjCache = new NodeCache()
+// const NodeCache = require('node-cache')
+const {
+  formInputsObjCache,
+  genericHeaderObjCache
+} = require('../nodeCacheStuff/cache1')
+// genericHeaderObjCache = new NodeCache()
 
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
