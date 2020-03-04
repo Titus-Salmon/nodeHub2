@@ -9,6 +9,7 @@ const showSearchResults = require('../funcLibT0d/showSearchResults')
 
 const formInputsObjCache = require('../nodeCacheStuff/cache1')
 const genericHeaderObjCache = require('../nodeCacheStuff/cache1')
+const totalRowsCache = require('../nodeCacheStuff/cache1')
 
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
@@ -38,6 +39,10 @@ module.exports = {
     genericHeaderObjCacheChecker = genericHeaderObjCache.get('genericHeaderObjCache_key');
     if (genericHeaderObjCacheChecker !== undefined) {
       genericHeaderObjCache.del('genericHeaderObjCache_key')
+    }
+    totalRowsCacheChecker = totalRowsCache.get('totalRowsCache_key');
+    if (totalRowsCacheChecker !== undefined) {
+      totalRowsCache.del('totalRowsCache_key')
     }
 
     let frmInptsObj = {} //provide empty object to populate with form inputs & values generated from calcResFormInputs.js module
@@ -74,7 +79,7 @@ module.exports = {
       SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
       ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
       
-      SELECT COUNT(*) FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader};`,
+      SELECT COUNT(*) FROM ${frmInptsObj.formInput0};`,
 
         function (err, rows, fields) {
           if (err) throw err
@@ -85,9 +90,18 @@ module.exports = {
 
           let countRows = rows[3]
           console.log(`JSON.stringify(countRows) from calaResults.js==> ${JSON.stringify(countRows)}`)
-          let totalRows = countRows[0]['COUNT(*)']
 
-          console.log(`totalRows from calcResults.js==> ${totalRows}`)
+          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
+            edlpRows, nejRowsNonPagin)
+
+          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
+            edlpRows, nejRowsPagin)
+
+          // let totalRows = countRows[0]['COUNT(*)'] / 7 //must divide by 7 to
+          let totalRows = searchResultsNonPag.length //use length of non-paginated results from showSearchResults for total 3 of rows,
+          //since countRows[0]['COUNT(*)'] gives 7x the actual number of rows (7 stores)
+          totalRowsCache.set('totalRowsCache_key', totalRows)
+          console.log(`totalRowsCache from POST==> ${totalRowsCache}`)
 
           let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
           console.log(`numPages==> ${numPages}`)
@@ -100,11 +114,11 @@ module.exports = {
             pageLinkArray.push(pageLinkObj)
           }
 
-          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
-            edlpRows, nejRowsNonPagin)
+          // showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
+          //   edlpRows, nejRowsNonPagin)
 
-          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
-            edlpRows, nejRowsPagin)
+          // showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
+          //   edlpRows, nejRowsPagin)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,

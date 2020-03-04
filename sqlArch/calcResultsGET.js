@@ -4,6 +4,7 @@ const mysql = require('mysql')
 
 const formInputsObjCache = require('../nodeCacheStuff/cache1')
 const genericHeaderObjCache = require('../nodeCacheStuff/cache1')
+const totalRowsCache = require('../nodeCacheStuff/cache1')
 
 const showSearchResults = require('../funcLibT0d/showSearchResults')
 
@@ -23,6 +24,7 @@ module.exports = {
 
     let frmInptsObjCche = formInputsObjCache['data']['formInputsObjCache_key']['v']
     let gnrcHdrObjCche = genericHeaderObjCache['data']['genericHeaderObjCache_key']['v']
+    let totlRwsCche = totalRowsCache['data']['totalRowsCache_key']['v']
 
     let searchResultsPagGETarr = [] //clear searchResultsPag from previous search
     srcRsCSV_PagGETarr = []
@@ -74,7 +76,7 @@ module.exports = {
           let countRows = rows[3]
 
           console.log(`JSON.stringify(countRows) from calaResultsGET.js==> ${JSON.stringify(countRows)}`)
-          let totalRows = countRows[0]['COUNT(*)']
+          let totalRows = totlRwsCche
 
           console.log(`totalRows from calcResultsGET.js==> ${totalRows}`)
 
