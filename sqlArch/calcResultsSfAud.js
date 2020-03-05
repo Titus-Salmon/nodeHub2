@@ -62,7 +62,8 @@ module.exports = {
         console.log(`nisfRows[${i}]['SM'] ** nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['SM']} ** ${nisfRows[i]['invOnhand']}`)
 
         if (nisfRows[i]['stoName'] == 'Indiana') {
-          if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['IND'] == '-') {
+          if ((parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['IND'] == '-') ||
+            (parseInt(nisfRows[i]['invOnhand']) <= 0 && nisfRows[i]['IND'] == 'IN')) {
             console.log(`nisfRows[${i}]['invOnhand'] (IND)==> ${nisfRows[i]['invOnhand']}`)
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
@@ -75,7 +76,8 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Saint Matthews') {
-          if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['SM'] == '-') {
+          if ((parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['SM'] == '-') ||
+            (parseInt(nisfRows[i]['invOnhand']) <= 0 && nisfRows[i]['SM'] == 'SM')) {
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
@@ -87,7 +89,8 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Middletown') {
-          if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['MT'] == '-') {
+          if ((parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['MT'] == '-') ||
+            (parseInt(nisfRows[i]['invOnhand']) <= 0 && nisfRows[i]['MT'] == 'MT')) {
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
@@ -99,7 +102,8 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Springhurst') {
-          if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['SH'] == '-') {
+          if ((parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['SH'] == '-') ||
+            (parseInt(nisfRows[i]['invOnhand']) <= 0 && nisfRows[i]['SH'] == 'SH')) {
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
@@ -111,7 +115,8 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Gardiner Lane') {
-          if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['GL'] == '-') {
+          if ((parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['GL'] == '-') ||
+            (parseInt(nisfRows[i]['invOnhand']) <= 0 && nisfRows[i]['GL'] == 'GL')) {
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
