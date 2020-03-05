@@ -28,16 +28,6 @@ module.exports = {
     console.log('calcResultsSfAud says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
     console.log('calcResultsSfAud says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
 
-    //v//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
-    let toSplitField = postBody['fldArrToPostPost']
-    console.log('calcResultsSfAud says: toSplitField before replace==>', toSplitField)
-    let sanitizeColumnFields = /(\[)|(\])|(")/g
-    let toSplitFieldReplace = toSplitField.replace(sanitizeColumnFields, "")
-    console.log('calcResultsSfAud says: toSplitFieldReplace after replace==>', toSplitFieldReplace)
-    let splitFieldResult = toSplitFieldReplace.split(',')
-    console.log('calcResultsSfAud says: splitFieldResult==>', splitFieldResult)
-    //^//sanitize table column header post results from #retailCalcUniversal form ('Search Loaded Table')
-
     let formInput0 = Object.values(postBody)[0] = loadedSqlTbl = postBody['tblNameToPostPost'] //tblNameToPostPost
     console.log('formInput0==>', formInput0)
 
@@ -52,15 +42,6 @@ module.exports = {
 
       for (let i = 0; i < nisfRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
-        // let srcRsObj = {}
-        // let reviewObj = {} //push data to this obj for review CSV
-
-        // console.log(`nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['invOnhand']}`)
-        // console.log(`typeof nisfRows[${i}]['invOnhand']==> ${typeof nisfRows[i]['invOnhand']}`)
-        // console.log(`typeof parseInt(nisfRows[${i}]['invOnhand'])==> ${typeof parseInt(nisfRows[i]['invOnhand'])}`)
-
-        // console.log(`nisfRows[${i}]['IND'] ** nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['IND']} ** ${nisfRows[i]['invOnhand']}`)
-        // console.log(`nisfRows[${i}]['SM'] ** nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['SM']} ** ${nisfRows[i]['invOnhand']}`)
 
         let parsedInvVal = parseInt(nisfRows[i]['invOnhand'])
 
@@ -74,6 +55,8 @@ module.exports = {
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+            srcRsObj['invMismatchSFdata'] = nisfRows[i]['IN']
+            srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
 
             searchResults.push(srcRsObj)
           }
@@ -88,6 +71,8 @@ module.exports = {
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+            srcRsObj['invMismatchSFdata'] = nisfRows[i]['SM']
+            srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
 
             searchResults.push(srcRsObj)
           }
@@ -102,6 +87,8 @@ module.exports = {
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+            srcRsObj['invMismatchSFdata'] = nisfRows[i]['MT']
+            srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
 
             searchResults.push(srcRsObj)
           }
@@ -116,6 +103,8 @@ module.exports = {
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+            srcRsObj['invMismatchSFdata'] = nisfRows[i]['SH']
+            srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
 
             searchResults.push(srcRsObj)
           }
@@ -130,6 +119,8 @@ module.exports = {
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+            srcRsObj['invMismatchSFdata'] = nisfRows[i]['GL']
+            srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
 
             searchResults.push(srcRsObj)
           }
