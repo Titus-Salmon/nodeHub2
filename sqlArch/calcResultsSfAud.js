@@ -54,6 +54,9 @@ module.exports = {
         let srcRsObj = {}
         let reviewObj = {} //push data to this obj for review CSV
 
+        console.log(`nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['invOnhand']}`)
+        console.log(`typeof nisfRows[${i}]['invOnhand']==> ${typeof nisfRows[i]['invOnhand']}`)
+
         if (nisfRows[i]['stoName'] == 'Indiana') {
           if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['IND'] == '-') {
             console.log(`nisfRows[${i}]['invOnhand'] (IND)==> ${nisfRows[i]['invOnhand']}`)
