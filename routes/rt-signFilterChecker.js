@@ -52,6 +52,9 @@ const {
 const {
   calcResultsSfAud
 } = require('../sqlArch/calcResultsSfAud')
+const {
+  loadTable_signFilterChecker
+} = require('../sqlArch/loadTable_signFilterChecker')
 
 
 
@@ -82,6 +85,7 @@ router.get('/calcResults', calcResultsGET)
 
 
 router.post('/calcResultsSfAud', calcResultsSfAud)
+router.post('/loadTable_signFilterChecker', loadTable_signFilterChecker)
 
 
 module.exports = router;
