@@ -14,7 +14,7 @@ module.exports = {
 
   calcResultsSfAud: router.post('/calcResultsSfAud', (req, res, next) => {
 
-    let searchResults = [] //clear searchResults from previous search
+    searchResults = [] //clear searchResults from previous search
     console.log('calcResultsSfAud says: searchResults from router.post level===>', searchResults)
     searchResultsForCSV = []
     searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
