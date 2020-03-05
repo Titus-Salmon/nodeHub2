@@ -58,7 +58,8 @@ module.exports = {
         // console.log(`typeof nisfRows[${i}]['invOnhand']==> ${typeof nisfRows[i]['invOnhand']}`)
         // console.log(`typeof parseInt(nisfRows[${i}]['invOnhand'])==> ${typeof parseInt(nisfRows[i]['invOnhand'])}`)
 
-        console.log(`nisfRows[${i}]['IND'] ** nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['IND']} ** ${nisfRows[i]['invOnhand']}`)
+        // console.log(`nisfRows[${i}]['IND'] ** nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['IND']} ** ${nisfRows[i]['invOnhand']}`)
+        console.log(`nisfRows[${i}]['SM'] ** nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['SM']} ** ${nisfRows[i]['invOnhand']}`)
 
         if (nisfRows[i]['stoName'] == 'Indiana') {
           if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['IND'] == '-') {
