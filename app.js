@@ -18,6 +18,7 @@ const MySqlTableHubRouter = require('./routes/rt-MySqlTableHub') //t0d
 const rainbowCatTableHubRouter = require('./routes/rt-rainbowCatTableHub') //t0d
 // const v_InventoryMaster_queryRouter = require('./routes/rt-v_InventoryMaster_query') //t0d
 const imwGeneratorRouter = require('./routes/rt-imwGenerator') //t0d
+const signFilterCheckerRouter = require('./routes/rt-signFilterChecker') //t0d
 
 var app = express();
 
@@ -48,6 +49,7 @@ app.use('/MySqlTableHub', MySqlTableHubRouter) //t0d
 app.use('/rainbowCatTableHub', rainbowCatTableHubRouter) //t0d
 // app.use('/v_InventoryMaster_query', v_InventoryMaster_queryRouter) //t0d
 app.use('/imwGenerator', imwGeneratorRouter) //t0d
+app.use('/signFilterChecker', signFilterCheckerRouter) //t0d
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

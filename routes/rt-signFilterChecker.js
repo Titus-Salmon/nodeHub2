@@ -24,9 +24,9 @@ const {
 const {
   nhcrtEdiJoin
 } = require('../sqlArch/nhcrtEdiJoin')
-// const {
-//   nhcrtInfraSF_Join
-// } = require('../sqlArch/nhcrtInfraSF_Join')
+const {
+  nhcrtInfraSF_Join
+} = require('../sqlArch/nhcrtInfraSF_Join')
 const {
   save2CSVnhcrtEdiJoin
 } = require('../sqlArch/save2CSVnhcrtEdiJoin')
@@ -50,8 +50,8 @@ const {
 
 
 router.get('/', function (req, res, next) {
-  res.render('vw-MySqlTableHub', {
-    title: 'vw-MySqlTableHub',
+  res.render('vw-signFilterChecker', {
+    title: 'vw-signFilterChecker',
     // username: req.user.name,
     // userEmail: req.user.email,
     // userEmail_stringified: JSON.stringify(req.user.email),
@@ -64,7 +64,7 @@ router.post('/populateRBtable', populateRBtable)
 router.post('/queryRBdb', queryRBdb)
 router.post('/nhcrtDisplay', nhcrtDisplay)
 router.post('/nhcrtEdiJoin', nhcrtEdiJoin)
-// router.post('/nhcrtInfraSF_Join', nhcrtInfraSF_Join)
+router.post('/nhcrtInfraSF_Join', nhcrtInfraSF_Join)
 router.post('/save2CSVnhcrtEdiJoin', save2CSVnhcrtEdiJoin)
 router.post('/save2CSVreviewNEJ', save2CSVreviewNEJ)
 router.post('/saveIMW_CSV', saveIMW_CSV)
