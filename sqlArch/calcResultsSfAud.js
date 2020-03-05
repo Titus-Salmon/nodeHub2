@@ -56,11 +56,14 @@ module.exports = {
 
         if (nisfRows[i]['stoName'] == 'Indiana') {
           if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['IND'] == '-') {
+            console.log(`nisfRows[${i}]['invOnhand'] (IND)==> ${nisfRows[i]['invOnhand']}`)
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+
+            searchResults.push(srcRsObj)
           }
         }
 
@@ -71,6 +74,8 @@ module.exports = {
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+
+            searchResults.push(srcRsObj)
           }
         }
 
@@ -81,6 +86,8 @@ module.exports = {
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+
+            searchResults.push(srcRsObj)
           }
         }
 
@@ -91,6 +98,8 @@ module.exports = {
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+
+            searchResults.push(srcRsObj)
           }
         }
 
@@ -101,10 +110,12 @@ module.exports = {
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+
+            searchResults.push(srcRsObj)
           }
         }
 
-        searchResults.push(srcRsObj)
+        // searchResults.push(srcRsObj)
 
       }
       console.log(`JSON.stringify(searchResults)==> ${JSON.stringify(searchResults)}`)
