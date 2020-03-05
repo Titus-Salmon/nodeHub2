@@ -130,7 +130,7 @@ module.exports = {
       // res.send(rows)
       nhcrtInfraSF(rows)
 
-      res.render('vw-nhcrtInfraSF_Join', {
+      res.render('vw-signFilterChecker', {
         title: 'NodeHub CRT Joined on InfraSF Table Query Results',
         nhcrtInfraSF_Join: nhcrtInfraSF_JoinArr
       })
