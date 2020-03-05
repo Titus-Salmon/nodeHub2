@@ -56,9 +56,10 @@ module.exports = {
 
         console.log(`nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['invOnhand']}`)
         console.log(`typeof nisfRows[${i}]['invOnhand']==> ${typeof nisfRows[i]['invOnhand']}`)
+        console.log(`typeof parseInt(nisfRows[${i}]['invOnhand'])==> ${typeof parseInt(nisfRows[i]['invOnhand'])}`)
 
         if (nisfRows[i]['stoName'] == 'Indiana') {
-          if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['IND'] == '-') {
+          if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['IND'] == '-') {
             console.log(`nisfRows[${i}]['invOnhand'] (IND)==> ${nisfRows[i]['invOnhand']}`)
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
@@ -71,7 +72,7 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Saint Matthews') {
-          if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['SM'] == '-') {
+          if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['SM'] == '-') {
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
@@ -83,7 +84,7 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Middletown') {
-          if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['MT'] == '-') {
+          if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['MT'] == '-') {
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
@@ -95,7 +96,7 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Springhurst') {
-          if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['SH'] == '-') {
+          if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['SH'] == '-') {
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
@@ -107,7 +108,7 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Gardiner Lane') {
-          if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['GL'] == '-') {
+          if (parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['GL'] == '-') {
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
