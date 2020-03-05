@@ -55,7 +55,7 @@ module.exports = {
             srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
             srcRsObj['invMismatchName'] = nisfRows[i]['invName']
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
-            srcRsObj['invMismatchSFdata'] = nisfRows[i]['IN']
+            srcRsObj['invMismatchSFdata'] = nisfRows[i]['IND']
             srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
 
             searchResults.push(srcRsObj)
@@ -136,7 +136,7 @@ module.exports = {
 
     function queryNisfJoinTable() {
       //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
-      connection.query(`SELECT * FROM ${formInput0} ORDER BY ri_t0d;`, function (err, rows, fields) {
+      connection.query(`SELECT * FROM ${formInput0} ORDER BY stoName;`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
 
