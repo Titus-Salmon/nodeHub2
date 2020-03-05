@@ -107,7 +107,7 @@ module.exports = {
         searchResults.push(srcRsObj)
 
       }
-      console.log(`searchResults==> ${searchResults}`)
+      console.log(`JSON.stringify(searchResults)==> ${JSON.stringify(searchResults)}`)
     }
 
 
