@@ -48,6 +48,7 @@ module.exports = {
       // let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
 
       console.log(`JSON.stringify(nisfRows[0])==> ${JSON.stringify(nisfRows[0])}`)
+      console.log(`nisfRows.length==> ${nisfRows.length}`)
 
       for (let i = 0; i < nisfRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
@@ -61,9 +62,11 @@ module.exports = {
         // console.log(`nisfRows[${i}]['IND'] ** nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['IND']} ** ${nisfRows[i]['invOnhand']}`)
         // console.log(`nisfRows[${i}]['SM'] ** nisfRows[${i}]['invOnhand']==> ${nisfRows[i]['SM']} ** ${nisfRows[i]['invOnhand']}`)
 
+        let parsedInvVal = parseInt(nisfRows[i]['invOnhand'])
+
         if (nisfRows[i]['stoName'] == 'Indiana') {
-          if ((parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['IND'] == '-') ||
-            (parseInt(nisfRows[i]['invOnhand']) <= 0 && nisfRows[i]['IND'] == 'IN')) {
+          if ((parsedInvVal > 0 && nisfRows[i]['IND'] == '-') ||
+            (parsedInvVal <= 0 && nisfRows[i]['IND'] == 'IN')) {
             let srcRsObj = {}
             console.log(`nisfRows[${i}]['invOnhand'] (IND)==> ${nisfRows[i]['invOnhand']}`)
             srcRsObj['ri_t0d'] = i
@@ -77,8 +80,8 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Saint Matthews') {
-          if ((parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['SM'] == '-') ||
-            (parseInt(nisfRows[i]['invOnhand']) <= 0 && nisfRows[i]['SM'] == 'SM')) {
+          if ((parsedInvVal > 0 && nisfRows[i]['SM'] == '-') ||
+            (parsedInvVal <= 0 && nisfRows[i]['SM'] == 'SM')) {
             let srcRsObj = {}
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
@@ -91,8 +94,8 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Middletown') {
-          if ((parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['MT'] == '-') ||
-            (parseInt(nisfRows[i]['invOnhand']) <= 0 && nisfRows[i]['MT'] == 'MT')) {
+          if ((parsedInvVal > 0 && nisfRows[i]['MT'] == '-') ||
+            (parsedInvVal <= 0 && nisfRows[i]['MT'] == 'MT')) {
             let srcRsObj = {}
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
@@ -105,8 +108,8 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Springhurst') {
-          if ((parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['SH'] == '-') ||
-            (parseInt(nisfRows[i]['invOnhand']) <= 0 && nisfRows[i]['SH'] == 'SH')) {
+          if ((parsedInvVal > 0 && nisfRows[i]['SH'] == '-') ||
+            (parsedInvVal <= 0 && nisfRows[i]['SH'] == 'SH')) {
             let srcRsObj = {}
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
@@ -119,8 +122,8 @@ module.exports = {
         }
 
         if (nisfRows[i]['stoName'] == 'Gardiner Lane') {
-          if ((parseInt(nisfRows[i]['invOnhand']) > 0 && nisfRows[i]['GL'] == '-') ||
-            (parseInt(nisfRows[i]['invOnhand']) <= 0 && nisfRows[i]['GL'] == 'GL')) {
+          if ((parsedInvVal > 0 && nisfRows[i]['GL'] == '-') ||
+            (parsedInvVal <= 0 && nisfRows[i]['GL'] == 'GL')) {
             let srcRsObj = {}
             srcRsObj['ri_t0d'] = i
             srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
