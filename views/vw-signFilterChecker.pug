@@ -51,7 +51,7 @@ html
 		form#nhcrtInfraSF_Join(action='/signFilterChecker/nhcrtInfraSF_Join' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='nhcrtInfraSF_Join') This query joins nhcrt & InfraSF tables
-				textarea#nhcrtInfraSF_JoinTextArea.input-unit-1(name="nhcrtInfraSF_JoinPost", cols="30", rows="1", wrap="soft") SELECT nhcrt.ri_t0d, nhcrt.invPK, nhcrt.invCPK, nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.stoName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.sibIdealMargin, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, infra_sf_table.* FROM ${nhcrtTableName} nhcrt JOIN ${infra_sf_tableName} infra_sf_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = infra_sf_table.infra_upc ORDER BY nhcrt.ri_t0d;
+				textarea#nhcrtInfraSF_JoinTextArea.input-unit-1(name="nhcrtInfraSF_JoinPost", cols="30", rows="1", wrap="soft") SELECT nhcrt.*, infra_sf_table.* FROM ${nhcrtTableName} nhcrt JOIN ${infra_sf_tableName} infra_sf_table ON nhcrt.invScanCode WHERE nhcrt.invScanCode = infra_sf_table.infra_upc ORDER BY nhcrt.ri_t0d;
 				button#crtTblBtn3(type='submit', form='nhcrtInfraSF_Join', style="display: block; float: left") Display nhcrtInfraSF joined tables
 		//- //^// joins nhcrt table to edi table
 

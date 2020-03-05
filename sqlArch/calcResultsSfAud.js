@@ -54,6 +54,10 @@ module.exports = {
         let srcRsObj = {}
         let reviewObj = {} //push data to this obj for review CSV
 
+        if (nisfRows[i]['stoName'] == 'Indiana') {
+
+        }
+
       }
     }
 
