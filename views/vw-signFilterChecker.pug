@@ -125,21 +125,6 @@ html
 		//-/^// NEW STUFF FOR signFilterChecker*********************************************************************************************************
 
 
-		//- if formInputsObj_stringified !== undefined && genericHeaderObj_stringified !== undefined
-		//- 	script.
-		//- 		localStorage.clear()
-		//- 		console.log(`formInputsObj_stringified==> ${!{formInputsObj_stringified}}`)
-		//- 		console.log(`JSON.stringify(formInputsObj_stringified)==> ${JSON.stringify(!{formInputsObj_stringified})}`)
-		//- 		if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{formInputsObj_stringified}))}
-
-		//- 		console.log(`genericHeaderObj_stringified==> ${!{genericHeaderObj_stringified}}`)
-		//- 		console.log(`JSON.stringify(genericHeaderObj_stringified)==> ${JSON.stringify(!{genericHeaderObj_stringified})}`)
-		//- 		if (localStorage.getItem('genericHeaderObj_locStor') == undefined) {localStorage.setItem('genericHeaderObj_locStor', JSON.stringify(!{genericHeaderObj_stringified}))}
-
-		//- script.
-		//- 	console.log(`localStorage from vw-signFilterChecker.pug==> ${localStorage}`)
-		//- 	console.log(`JSON.stringify(localStorage) from vw-signFilterChecker.pug==> ${JSON.stringify(localStorage)}`)
-
 		form#retailCalcUniversal(action='/signFilterChecker/calcResults' method='POST' accept-charset="UTF-8")
 
 			if sqlTableCreated !== undefined
@@ -280,8 +265,4 @@ html
 									//- input#mrgVl.input-unit-1(type='number', placeholder='0', name='mrgVldPost', value='')
 
 
-		//- script(src='/javascripts/modules/sortTableM0d.js')
-		//- script(src='/javascripts/modules/tblHiliteM0d.js')
-		//- script(src='/javascripts/modules/dateCalcM0d.js')
-		//- script(src='/javascripts/modules/editDBM0d.js')
 		script(src='/javascripts/modules/adminM0d.js')

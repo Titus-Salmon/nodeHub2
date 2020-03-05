@@ -28,6 +28,9 @@ const {
   nhcrtInfraSF_Join
 } = require('../sqlArch/nhcrtInfraSF_Join')
 const {
+  save2CSVreviewSfAud
+} = require('../sqlArch/save2CSVreviewSfAud')
+const {
   save2CSVnhcrtEdiJoin
 } = require('../sqlArch/save2CSVnhcrtEdiJoin')
 const {
@@ -66,6 +69,7 @@ router.post('/nhcrtDisplay', nhcrtDisplay)
 router.post('/nhcrtEdiJoin', nhcrtEdiJoin)
 router.post('/nhcrtInfraSF_Join', nhcrtInfraSF_Join)
 router.post('/save2CSVnhcrtEdiJoin', save2CSVnhcrtEdiJoin)
+router.post('/save2CSVreviewSfAud', save2CSVreviewSfAud)
 router.post('/save2CSVreviewNEJ', save2CSVreviewNEJ)
 router.post('/saveIMW_CSV', saveIMW_CSV)
 router.post('/loadTable_MySqlHub', loadTable_MySqlHub)
