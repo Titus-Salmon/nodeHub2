@@ -73,11 +73,11 @@ html
 		//- //v// creates empty nhcrtInfraSF_Join mysql table
 		form#createNhcrtEdiTable(action='/signFilterChecker/createRBtable' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
-				label.input-label-1(for='crtNhcrtEdiTbl') Enter MySql nej Table Name to CREATE
+				label.input-label-1(for='crtNhcrtEdiTbl') Enter MySql nisf Table Name to CREATE
 				input#crtNhcrtEdiTbl.input-unit-1(type='text', placeholder='enter data', name='tblNamePost', value='')
 
 				label.input-label-1(for='crtNhcrtEdiInput') Enter Table Headers (as csv) - default headers for nhcrtInfraSF_Join provided
-				input#crtNhcrtEdiInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='invPK,invCPK,invScanCode,ordSupplierStockNumber,ediSKU,invName,invSize,invReceiptAlias,posTimeStamp,invDateCreated,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastcost,ediCost,sibBasePrice,ediPrice,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4')
+				input#crtNhcrtEdiInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='invPK,invCPK,invScanCode,invName,ordSupplierStockNumber,invSize,invReceiptAlias,posTimeStamp,invDateCreated,invEmpFkCreatedBy,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastreceived,invLastsold,invLastcost,sibBasePrice,invOnhand,invOnorder,invIntransit,pi1Description,pi2Description,pi3Description,pi4Description,invPowerField3,invPowerField4,Dept,Brand,Product,Size,SalePrice,EDLP,RBPrice,percentOff,GL,IND,MT,SH,SM,Stores')
 				button#crtNhcrtEdiBtn(type='submit', form='createNhcrtEdiTable', style="display: block; float: left") CREATE nhcrtInfraSF_Join Table
 		//- //^// creates empty mysql table
 
