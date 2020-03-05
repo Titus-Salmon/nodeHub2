@@ -55,8 +55,56 @@ module.exports = {
         let reviewObj = {} //push data to this obj for review CSV
 
         if (nisfRows[i]['stoName'] == 'Indiana') {
-
+          if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['IND'] == '-') {
+            srcRsObj['ri_t0d'] = i
+            srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
+            srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
+            srcRsObj['invMismatchName'] = nisfRows[i]['invName']
+            srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+          }
         }
+
+        if (nisfRows[i]['stoName'] == 'Saint Matthews') {
+          if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['SM'] == '-') {
+            srcRsObj['ri_t0d'] = i
+            srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
+            srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
+            srcRsObj['invMismatchName'] = nisfRows[i]['invName']
+            srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+          }
+        }
+
+        if (nisfRows[i]['stoName'] == 'Middletown') {
+          if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['MT'] == '-') {
+            srcRsObj['ri_t0d'] = i
+            srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
+            srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
+            srcRsObj['invMismatchName'] = nisfRows[i]['invName']
+            srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+          }
+        }
+
+        if (nisfRows[i]['stoName'] == 'Springhurst') {
+          if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['SH'] == '-') {
+            srcRsObj['ri_t0d'] = i
+            srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
+            srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
+            srcRsObj['invMismatchName'] = nisfRows[i]['invName']
+            srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+          }
+        }
+
+        if (nisfRows[i]['stoName'] == 'Gardiner Lane') {
+          if (nisfRows[i]['invOnhand'] > 0 && nisfRows[i]['GL'] == '-') {
+            srcRsObj['ri_t0d'] = i
+            srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
+            srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
+            srcRsObj['invMismatchName'] = nisfRows[i]['invName']
+            srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+          }
+        }
+
+        searchResults.push(srcRsObj)
 
       }
     }
@@ -69,7 +117,7 @@ module.exports = {
         if (err) throw err
         showSearchResults(rows)
 
-        res.render('vw-signFilterChecker', { //render searchResults to vw-MySqlTableHub page
+        res.render('vw-nisfResults', { //render searchResults to vw-MySqlTableHub page
           title: 'sfAud (using nisf table)',
           searchResRows: searchResults,
           loadedSqlTbl: loadedSqlTbl
