@@ -49,6 +49,10 @@ const {
   calcResultsGET
 } = require('../sqlArch/calcResultsGET')
 
+const {
+  calcResultsSfAud
+} = require('../sqlArch/calcResultsSfAud')
+
 
 
 
@@ -75,6 +79,9 @@ router.post('/saveIMW_CSV', saveIMW_CSV)
 router.post('/loadTable_MySqlHub', loadTable_MySqlHub)
 router.post('/calcResults', calcResults)
 router.get('/calcResults', calcResultsGET)
+
+
+router.post('/calcResultsSfAud', calcResultsSfAud)
 
 
 module.exports = router;
