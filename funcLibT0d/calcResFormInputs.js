@@ -132,7 +132,7 @@ module.exports = {
     console.log(`formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]==> ${formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]}`)
     console.log(`formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]['dfltMrg']==> ${formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]['dfltMrg']}`)
 
-    console.log(`calcResFormInputs says: formInputsObj==> ${formInputsObj}`)
+    console.log(`calcResFormInputs says: JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
 
     console.log('calcResFormInputs says: postBodyData==>', postBodyData)
     console.log('calcResFormInputs says: postBodyData[\'fldArrToPostPost\']==>', postBodyData['fldArrToPostPost'])
