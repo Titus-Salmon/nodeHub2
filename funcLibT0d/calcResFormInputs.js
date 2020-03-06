@@ -132,9 +132,11 @@ module.exports = {
     console.log(`formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]==> ${formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]}`)
     console.log(`formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]['dfltMrg']==> ${formInputsObj.deptFilterArr[0][Object.keys(formInputsObj.deptFilterArr[0])]['dfltMrg']}`)
 
-    console.log('calcResults says: postBodyData==>', postBodyData)
-    console.log('calcResults says: postBodyData[\'fldArrToPostPost\']==>', postBodyData['fldArrToPostPost'])
-    console.log('calcResults says: postBodyData[\'fldArrToPostPost\'][0]==>', postBodyData['fldArrToPostPost'][0])
+    console.log(`calcResFormInputs says: formInputsObj==> ${formInputsObj}`)
+
+    console.log('calcResFormInputs says: postBodyData==>', postBodyData)
+    console.log('calcResFormInputs says: postBodyData[\'fldArrToPostPost\']==>', postBodyData['fldArrToPostPost'])
+    console.log('calcResFormInputs says: postBodyData[\'fldArrToPostPost\'][0]==>', postBodyData['fldArrToPostPost'][0])
 
     //v//create variables for form POST data from #retailCalcUniversal form ('Search Loaded Table')
     // let formInput0 = Object.values(postBodyData)[0] = loadedSqlTbl = postBodyData['tblNameToPostPost'] //tblNameToPostPost (damage control revert1)
