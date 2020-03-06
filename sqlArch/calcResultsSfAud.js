@@ -57,6 +57,7 @@ module.exports = {
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
             srcRsObj['invMismatchSFdata'] = nisfRows[i]['IND']
             srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
+            srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
 
             searchResults.push(srcRsObj)
           }
@@ -73,6 +74,7 @@ module.exports = {
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
             srcRsObj['invMismatchSFdata'] = nisfRows[i]['SM']
             srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
+            srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
 
             searchResults.push(srcRsObj)
           }
@@ -89,6 +91,7 @@ module.exports = {
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
             srcRsObj['invMismatchSFdata'] = nisfRows[i]['MT']
             srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
+            srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
 
             searchResults.push(srcRsObj)
           }
@@ -105,6 +108,7 @@ module.exports = {
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
             srcRsObj['invMismatchSFdata'] = nisfRows[i]['SH']
             srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
+            srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
 
             searchResults.push(srcRsObj)
           }
@@ -121,6 +125,7 @@ module.exports = {
             srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
             srcRsObj['invMismatchSFdata'] = nisfRows[i]['GL']
             srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
+            srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
 
             searchResults.push(srcRsObj)
           }
