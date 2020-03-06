@@ -246,5 +246,6 @@ module.exports = {
     }
 
     console.log(`formInputsObj.deptFilterToApply==> ${formInputsObj.deptFilterToApply}`)
+    console.log(`calcResFormInputs says: JSON.stringify(formInputsObj)==> ${JSON.stringify(formInputsObj)}`)
   }
 }
