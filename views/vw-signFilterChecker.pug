@@ -137,6 +137,20 @@ html
 				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
 
 		button#searchDB(type='submit', form='retailCalcUniversal', style="display: block; float: left") Search Loaded Table
+
+		form#calcResultsSfAud2(action='/signFilterChecker/calcResultsSfAud2' method='POST' accept-charset="UTF-8")
+
+			if sqlTableCreated !== undefined
+
+				input#tblColumnNames.input-unit-1(type='text', placeholder='enter data', name='tblColumnNamesPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.basicColumnNames)
+				input#tblPopulated.input-unit-1(type='text', placeholder='enter data', name='tblPopulatedPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.tableName)
+			if loadedTable !== undefined
+
+				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
+				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
+
+		button#searchDB(type='submit', form='calcResultsSfAud2', style="display: block; float: left") Search Loaded Table
+
 		br
 		br
 		button.adminButton#saveCSV(type="submit" form="saveCSVPost") Save Results as CSV - Inv Mnt Wksht (for WS, Retail, or New Item Update)
