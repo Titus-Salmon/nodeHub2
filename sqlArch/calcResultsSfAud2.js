@@ -60,16 +60,16 @@ module.exports = {
           srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
           srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
 
-          if ('2020-03-07' > nisfRows[i]['invLastreceived'] > '2019-12-07') {
+          if ('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-12-07' > nisfRows[i]['invLastreceived'] > '2019-09-07') {
+          if ('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-09-07' > nisfRows[i]['invLastreceived'] > '2019-06-07') {
+          if ('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-06-07' > nisfRows[i]['invLastreceived'] > '2019-03-07') {
+          if ('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
@@ -93,16 +93,16 @@ module.exports = {
           srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
           srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
 
-          if ('2020-03-07' > nisfRows[i]['invLastreceived'] > '2019-12-07') {
+          if ('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-12-07' > nisfRows[i]['invLastreceived'] > '2019-09-07') {
+          if ('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-09-07' > nisfRows[i]['invLastreceived'] > '2019-06-07') {
+          if ('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-06-07' > nisfRows[i]['invLastreceived'] > '2019-03-07') {
+          if ('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
@@ -126,16 +126,16 @@ module.exports = {
           srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
           srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
 
-          if ('2020-03-07' > nisfRows[i]['invLastreceived'] > '2019-12-07') {
+          if ('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-12-07' > nisfRows[i]['invLastreceived'] > '2019-09-07') {
+          if ('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-09-07' > nisfRows[i]['invLastreceived'] > '2019-06-07') {
+          if ('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-06-07' > nisfRows[i]['invLastreceived'] > '2019-03-07') {
+          if ('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
@@ -159,16 +159,16 @@ module.exports = {
           srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
           srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
 
-          if ('2020-03-07' > nisfRows[i]['invLastreceived'] > '2019-12-07') {
+          if ('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-12-07' > nisfRows[i]['invLastreceived'] > '2019-09-07') {
+          if ('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-09-07' > nisfRows[i]['invLastreceived'] > '2019-06-07') {
+          if ('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-06-07' > nisfRows[i]['invLastreceived'] > '2019-03-07') {
+          if ('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
@@ -192,16 +192,16 @@ module.exports = {
           srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
           srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
 
-          if ('2020-03-07' > nisfRows[i]['invLastreceived'] > '2019-12-07') {
+          if ('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-12-07' > nisfRows[i]['invLastreceived'] > '2019-09-07') {
+          if ('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-09-07' > nisfRows[i]['invLastreceived'] > '2019-06-07') {
+          if ('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
           }
-          if ('2019-06-07' > nisfRows[i]['invLastreceived'] > '2019-03-07') {
+          if ('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
