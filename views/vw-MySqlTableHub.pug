@@ -165,6 +165,11 @@ html
 			//- 	option(value='no') no
 			//- 	option(value='yes') yes
 
+			if pageLinkArray == undefined
+				div.pagination-1(style="display: none")
+						label.input-label-1(for='currentPage') Current Page (of #)
+						input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
+
 			if pageLinkArray !== undefined
 					div.pagination-1
 						//- p(style="font-weight:bold; margin:0") TOTAL PAGES: #{lastPage}
