@@ -62,18 +62,33 @@ module.exports = {
 
           if ('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['IND'] == 'IN') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut0_3'
+            }
           }
           if ('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['IND'] == 'IN') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut3_6'
+            }
           }
           if ('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['IND'] == 'IN') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut6_9'
+            }
           }
           if ('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['IND'] == 'IN') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut9_12'
+            }
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
             srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['IND'] == 'IN') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut12plus'
+            }
           }
 
           searchResults.push(srcRsObj)
@@ -95,18 +110,33 @@ module.exports = {
 
           if ('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['SM'] == 'SM') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut0_3'
+            }
           }
           if ('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['SM'] == 'SM') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut3_6'
+            }
           }
           if ('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['SM'] == 'SM') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut6_9'
+            }
           }
           if ('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['SM'] == 'SM') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut9_12'
+            }
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
             srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['SM'] == 'SM') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut12plus'
+            }
           }
 
           searchResults.push(srcRsObj)
@@ -128,18 +158,33 @@ module.exports = {
 
           if ('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['MT'] == 'MT') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut0_3'
+            }
           }
           if ('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['MT'] == 'MT') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut3_6'
+            }
           }
           if ('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['MT'] == 'MT') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut6_9'
+            }
           }
           if ('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['MT'] == 'MT') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut9_12'
+            }
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
             srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['MT'] == 'MT') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut12plus'
+            }
           }
 
           searchResults.push(srcRsObj)
@@ -161,18 +206,33 @@ module.exports = {
 
           if ('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['SH'] == 'SH') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut0_3'
+            }
           }
           if ('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['SH'] == 'SH') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut3_6'
+            }
           }
           if ('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['SH'] == 'SH') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut6_9'
+            }
           }
           if ('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['SH'] == 'SH') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut9_12'
+            }
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
             srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['SH'] == 'SH') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut12plus'
+            }
           }
 
           searchResults.push(srcRsObj)
@@ -194,18 +254,33 @@ module.exports = {
 
           if ('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['GL'] == 'GL') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut0_3'
+            }
           }
           if ('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['GL'] == 'GL') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut3_6'
+            }
           }
           if ('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['GL'] == 'GL') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut6_9'
+            }
           }
           if ('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['GL'] == 'GL') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut9_12'
+            }
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
             srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
+            if (nisfRows[i]['GL'] == 'GL') {
+              srcRsObj['Comments1'] = 'SFsaysStockedBut12plus'
+            }
           }
 
           searchResults.push(srcRsObj)
