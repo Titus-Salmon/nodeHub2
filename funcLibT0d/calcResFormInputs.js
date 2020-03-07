@@ -219,7 +219,18 @@ module.exports = {
     formInputsObj.formInput54 = Object.values(postBodyData)[54] = formInputsObj.edlpDisco = postBodyData['edlpDiscoPost'] //edlpDiscoPost
 
     // formInputsObj.formInput53 = Object.values(postBodyData)[53] //wsDiffResultsPost
-
+    console.log(`Object.values(postBodyData)[49]==> ${Object.values(postBodyData)[49]}`)
+    console.log(`Object.values(postBodyData)[50]==> ${Object.values(postBodyData)[50]}`)
+    console.log(`Object.values(postBodyData)[51]==> ${Object.values(postBodyData)[51]}`)
+    console.log(`Object.values(postBodyData)[52]==> ${Object.values(postBodyData)[52]}`)
+    console.log(`Object.values(postBodyData)[53]==> ${Object.values(postBodyData)[53]}`)
+    console.log(`Object.values(postBodyData)[54]==> ${Object.values(postBodyData)[54]}`)
+    console.log(`Object.values(postBodyData)[55]==> ${Object.values(postBodyData)[55]}`)
+    console.log(`Object.values(postBodyData)[57]==> ${Object.values(postBodyData)[56]}`)
+    console.log(`Object.values(postBodyData)[58]==> ${Object.values(postBodyData)[57]}`)
+    console.log(`Object.values(postBodyData)[59]==> ${Object.values(postBodyData)[58]}`)
+    console.log(`Object.values(postBodyData)[60]==> ${Object.values(postBodyData)[59]}`)
+    console.log(`Object.values(postBodyData)[61]==> ${Object.values(postBodyData)[60]}`)
     // formInputsObj.formInput55 = Object.values(postBodyData)[55] = formInputsObj.typeOfIMW //typeOfIMWPost
     formInputsObj.typeOfIMW = Object.values(postBodyData)[55] //typeOfIMWPost
     console.log('formInputsObj.typeOfIMW==>', formInputsObj.typeOfIMW)
