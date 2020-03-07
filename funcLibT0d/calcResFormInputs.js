@@ -220,25 +220,34 @@ module.exports = {
 
     // formInputsObj.formInput53 = Object.values(postBodyData)[53] //wsDiffResultsPost
 
-    formInputsObj.formInput55 = Object.values(postBodyData)[55] = formInputsObj.typeOfIMW //typeOfIMWPost
+    // formInputsObj.formInput55 = Object.values(postBodyData)[55] = formInputsObj.typeOfIMW //typeOfIMWPost
+    formInputsObj.typeOfIMW = Object.values(postBodyData)[55] //typeOfIMWPost
     console.log('formInputsObj.typeOfIMW==>', formInputsObj.typeOfIMW)
-    formInputsObj.formInput56 = Object.values(postBodyData)[56] = formInputsObj.skuOveride //skuOveridePost
+    // formInputsObj.formInput56 = Object.values(postBodyData)[56] = formInputsObj.skuOveride //skuOveridePost
+    formInputsObj.skuOveride = Object.values(postBodyData)[56] //skuOveridePost
     console.log('formInputsObj.skuOveride==>', formInputsObj.skuOveride)
-    formInputsObj.formInput57 = Object.values(postBodyData)[57] = formInputsObj.deptFilter //deptFilterPost
+    // formInputsObj.formInput57 = Object.values(postBodyData)[57] = formInputsObj.deptFilter //deptFilterPost
+    formInputsObj.deptFilter = Object.values(postBodyData)[57] //deptFilterPost
     console.log('formInputsObj.deptFilter==>', formInputsObj.deptFilter)
     // formInputsObj.deptFilter = deptFilter
-    formInputsObj.formInput58 = Object.values(postBodyData)[58] = formInputsObj.edlpSwitch //edlpSwitchPost
+    // formInputsObj.formInput58 = Object.values(postBodyData)[58] = formInputsObj.edlpSwitch //edlpSwitchPost
+    formInputsObj.edlpSwitch = Object.values(postBodyData)[58] //edlpSwitchPost
     console.log('formInputsObj.edlpSwitch==>', formInputsObj.edlpSwitch)
-    formInputsObj.formInput59 = Object.values(postBodyData)[59] = formInputsObj.skuToggle //skuTogglePost
+    // formInputsObj.formInput59 = Object.values(postBodyData)[59] = formInputsObj.skuToggle
+    formInputsObj.skuToggle = Object.values(postBodyData)[59] //skuTogglePost
     console.log('formInputsObj.skuToggle==>', formInputsObj.skuToggle)
-    formInputsObj.formInput60 = Object.values(postBodyData)[60] = formInputsObj.ediTblName //ediTblNamePost
+    // formInputsObj.formInput60 = Object.values(postBodyData)[60] = formInputsObj.ediTblName //ediTblNamePost
+    formInputsObj.ediTblName = Object.values(postBodyData)[60] //ediTblNamePost
     console.log('formInputsObj.ediTblName==>', formInputsObj.ediTblName)
-    formInputsObj.formInput61 = Object.values(postBodyData)[61] = formInputsObj.skuMismatchOption //skuMismatchOptionPost
+    // formInputsObj.formInput61 = Object.values(postBodyData)[61] = formInputsObj.skuMismatchOption //skuMismatchOptionPost
+    formInputsObj.skuMismatchOption = Object.values(postBodyData)[61]
     console.log('formInputsObj.skuMismatchOption==>', formInputsObj.skuMismatchOption)
 
-    formInputsObj.formInput62 = Object.values(postBodyData)[62] = formInputsObj.divideCostByEachOption //divideCostByEachOptionPost
+    // formInputsObj.formInput62 = Object.values(postBodyData)[62] = formInputsObj.divideCostByEachOption //divideCostByEachOptionPost
+    formInputsObj.divideCostByEachOption = Object.values(postBodyData)[62] //divideCostByEachOptionPost
     console.log('formInputsObj.divideCostByEachOption==>', formInputsObj.divideCostByEachOption)
-    formInputsObj.formInput63 = Object.values(postBodyData)[63] = formInputsObj.divideCostByCaseOption //divideCostByCaseOptionPost
+    // formInputsObj.formInput63 = Object.values(postBodyData)[63] = formInputsObj.divideCostByCaseOption //divideCostByCaseOptionPost
+    formInputsObj.divideCostByCaseOption = Object.values(postBodyData)[63] //divideCostByCaseOptionPost
     console.log('formInputsObj.divideCostByCaseOption==>', formInputsObj.divideCostByCaseOption)
 
     formInputsObj.deptFilterToApply = null
