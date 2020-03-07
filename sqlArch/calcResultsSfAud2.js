@@ -62,28 +62,18 @@ module.exports = {
 
           if ('2020-03-07' > nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd0_3'] = ''
           }
           if ('2019-12-07' > nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd3_6'] = ''
           }
           if ('2019-09-07' > nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd6_9'] = ''
           }
           if ('2019-06-07' > nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd9_12'] = ''
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
             srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd12plus'] = ''
           }
 
           searchResults.push(srcRsObj)
@@ -105,28 +95,18 @@ module.exports = {
 
           if ('2020-03-07' > nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd0_3'] = ''
           }
           if ('2019-12-07' > nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd3_6'] = ''
           }
           if ('2019-09-07' > nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd6_9'] = ''
           }
           if ('2019-06-07' > nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd9_12'] = ''
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
             srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd12plus'] = ''
           }
 
           searchResults.push(srcRsObj)
@@ -148,28 +128,18 @@ module.exports = {
 
           if ('2020-03-07' > nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd0_3'] = ''
           }
           if ('2019-12-07' > nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd3_6'] = ''
           }
           if ('2019-09-07' > nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd6_9'] = ''
           }
           if ('2019-06-07' > nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd9_12'] = ''
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
             srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd12plus'] = ''
           }
 
           searchResults.push(srcRsObj)
@@ -191,28 +161,18 @@ module.exports = {
 
           if ('2020-03-07' > nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd0_3'] = ''
           }
           if ('2019-12-07' > nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd3_6'] = ''
           }
           if ('2019-09-07' > nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd6_9'] = ''
           }
           if ('2019-06-07' > nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd9_12'] = ''
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
             srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd12plus'] = ''
           }
 
           searchResults.push(srcRsObj)
@@ -234,28 +194,18 @@ module.exports = {
 
           if ('2020-03-07' > nisfRows[i]['invLastreceived'] > '2019-12-07') {
             srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd0_3'] = ''
           }
           if ('2019-12-07' > nisfRows[i]['invLastreceived'] > '2019-09-07') {
             srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd3_6'] = ''
           }
           if ('2019-09-07' > nisfRows[i]['invLastreceived'] > '2019-06-07') {
             srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd6_9'] = ''
           }
           if ('2019-06-07' > nisfRows[i]['invLastreceived'] > '2019-03-07') {
             srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd9_12'] = ''
           }
           if ('2019-03-07' > nisfRows[i]['invLastreceived']) {
             srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
-          } else {
-            srcRsObj['LastRecd12plus'] = ''
           }
 
           searchResults.push(srcRsObj)
