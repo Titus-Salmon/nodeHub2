@@ -62,77 +62,6 @@ module.exports = {
 
               srcRsObj['Comments2'] = shouldBeStockedOrNot
 
-              // if (nisfRows[i]['invLastreceived'] < '2020-03-05' && nisfRows[i]['invLastreceived'] > '2019-12-05') {
-              //   if (nisfRows[i]['invLastsold'] < '2020-03-05' && nisfRows[i]['invLastsold'] > '2019-12-05') {
-              //     srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
-              //     if (nisfRows[i][inStockCode] !== '-') {
-              //       srcRsObj['Comments1'] = 'SFsaysStockedBut0_3'
-              //     }
-              //     if (nisfRows[i][inStockCode] == '-') {
-              //       srcRsObj['Comments1'] = 'SFsaysNOTStockedBut0_3'
-              //       if (parsedInvVal > 0) {
-              //         srcRsObj['Comments1'] = 'SFsaysNOTStockedButInInv'
-              //       }
-              //     }
-              //   }
-              // }
-              // if (nisfRows[i]['invLastreceived'] < '2019-12-05' && nisfRows[i]['invLastreceived'] > '2019-09-05') {
-              //   if (nisfRows[i]['invLastsold'] < '2019-12-05' && nisfRows[i]['invLastsold'] > '2019-09-05') {
-              //     srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
-              //     if (nisfRows[i][inStockCode] !== '-') {
-              //       srcRsObj['Comments1'] = 'SFsaysStockedBut3_6'
-              //     }
-              //     if (nisfRows[i][inStockCode] == '-') {
-              //       srcRsObj['Comments1'] = 'SFsaysNOTStockedBut3_6'
-              //       if (parsedInvVal > 0) {
-              //         srcRsObj['Comments1'] = 'SFsaysNOTStockedButInInv'
-              //       }
-              //     }
-              //   }
-              // }
-              // if (nisfRows[i]['invLastreceived'] < '2019-09-05' && nisfRows[i]['invLastreceived'] > '2019-06-05') {
-              //   if (nisfRows[i]['invLastsold'] < '2019-09-05' && nisfRows[i]['invLastsold'] > '2019-06-05') {
-              //     srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
-              //     if (nisfRows[i][inStockCode] !== '-') {
-              //       srcRsObj['Comments1'] = 'SFsaysStockedBut6_9'
-              //     }
-              //     if (nisfRows[i][inStockCode] == '-') {
-              //       srcRsObj['Comments1'] = 'SFsaysNOTStockedBut6_9'
-              //       if (parsedInvVal > 0) {
-              //         srcRsObj['Comments1'] = 'SFsaysNOTStockedButInInv'
-              //       }
-              //     }
-              //   }
-              // }
-              // if (nisfRows[i]['invLastreceived'] < '2019-06-05' && nisfRows[i]['invLastreceived'] > '2019-03-05') {
-              //   if (nisfRows[i]['invLastsold'] < '2019-06-05' && nisfRows[i]['invLastsold'] > '2019-03-05') {
-              //     srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
-              //     if (nisfRows[i][inStockCode] !== '-') {
-              //       srcRsObj['Comments1'] = 'SFsaysStockedBut9_12'
-              //     }
-              //     if (nisfRows[i][inStockCode] == '-') {
-              //       srcRsObj['Comments1'] = 'SFsaysNOTStockedBut9_12'
-              //       if (parsedInvVal > 0) {
-              //         srcRsObj['Comments1'] = 'SFsaysNOTStockedButInInv'
-              //       }
-              //     }
-              //   }
-              // }
-              // if ('2019-03-05' > nisfRows[i]['invLastreceived']) {
-              //   if ('2019-03-05' > nisfRows[i]['invLastsold']) {
-              //     srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
-              //     if (nisfRows[i][inStockCode] !== '-') {
-              //       srcRsObj['Comments1'] = 'SFsaysStockedBut3_6'
-              //     }
-              //     if (nisfRows[i][inStockCode] == '-') {
-              //       srcRsObj['Comments1'] = 'SFsaysNOTStockedBut3_6'
-              //       if (parsedInvVal > 0) {
-              //         srcRsObj['Comments1'] = 'SFsaysNOTStockedButInInv'
-              //       }
-              //     }
-              //   }
-              // }
-
               if (('2020-03-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-05') ||
                 ('2020-03-05' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-12-05')) {
                 srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
@@ -185,7 +114,7 @@ module.exports = {
                   }
                 }
               }
-              if (('2019-03-05' > nisfRows[i]['invLastreceived']) ||
+              if (('2019-03-05' > nisfRows[i]['invLastreceived']) &&
                 ('2019-03-05' > nisfRows[i]['invLastsold'])) {
                 srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
                 if (nisfRows[i][inStockCode] !== '-') {
