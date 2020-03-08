@@ -134,28 +134,34 @@ module.exports = {
           if (nisfRows[i][inStockCode] == '-') {
             if (nisfRows[i]['invLastsold'] == '' || nisfRows[i]['invLastsold'] == undefined) {
               sfAud3Results('NO LAST SOLD DATA')
-            } else {
-              if (nisfRows[i]['invLastsold'] > '2019-03-05') {
-                sfAud3Results('SHOULD_be_stocked')
-              }
-              if (nisfRows[i]['invLastreceived'] > '2019-03-05') {
-                sfAud3Results('SHOULD_be_stocked')
-              }
-              if (parsedInvVal > 0) {
-                sfAud3Results('SHOULD_be_stocked')
-              }
             }
+            if (nisfRows[i]['invLastreceived'] == '' || nisfRows[i]['invLastreceived'] == undefined) {
+              sfAud3Results('NO LAST RECD DATA')
+            }
+            if (nisfRows[i]['invLastsold'] > '2019-03-05') {
+              sfAud3Results('SHOULD_be_stocked')
+            }
+            if (nisfRows[i]['invLastreceived'] > '2019-03-05') {
+              sfAud3Results('SHOULD_be_stocked')
+            }
+            if (parsedInvVal > 0) {
+              sfAud3Results('SHOULD_be_stocked')
+            }
+
 
           }
 
           if (nisfRows[i][inStockCode] !== '-') {
             if (nisfRows[i]['invLastsold'] == '' || nisfRows[i]['invLastsold'] == undefined) {
               sfAud3Results('NO LAST SOLD DATA')
-            } else {
-              if (nisfRows[i]['invLastsold'] < '2019-03-05' && nisfRows[i]['invLastreceived'] < '2019-03-05' && parsedInvVal <= 0) {
-                sfAud3Results('should_NOT_be_stocked')
-              }
             }
+            if (nisfRows[i]['invLastreceived'] == '' || nisfRows[i]['invLastreceived'] == undefined) {
+              sfAud3Results('NO LAST RECD DATA')
+            }
+            if (nisfRows[i]['invLastsold'] < '2019-03-05' && nisfRows[i]['invLastreceived'] < '2019-03-05' && parsedInvVal <= 0) {
+              sfAud3Results('should_NOT_be_stocked')
+            }
+
 
           }
         }
