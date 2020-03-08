@@ -132,7 +132,7 @@ module.exports = {
           }
 
           if (nisfRows[i][inStockCode] == '-') {
-            if ((nisfRows[i]['invLastsold'] == '' || nisfRows[i]['invLastsold'] == undefined) ||
+            if ((nisfRows[i]['invLastsold'] == '' || nisfRows[i]['invLastsold'] == undefined) &&
               (nisfRows[i]['invLastreceived'] == '' || nisfRows[i]['invLastreceived'] == undefined)) {
               sfAud3Results('NO LAST SOLD/RECD DATA')
             }
@@ -150,7 +150,7 @@ module.exports = {
           }
 
           if (nisfRows[i][inStockCode] !== '-') {
-            if ((nisfRows[i]['invLastsold'] == '' || nisfRows[i]['invLastsold'] == undefined) ||
+            if ((nisfRows[i]['invLastsold'] == '' || nisfRows[i]['invLastsold'] == undefined) &&
               (nisfRows[i]['invLastreceived'] == '' || nisfRows[i]['invLastreceived'] == undefined)) {
               sfAud3Results('NO LAST SOLD/RECD DATA')
             }
