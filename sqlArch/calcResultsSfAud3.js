@@ -12,21 +12,21 @@ const connection = mysql.createConnection({
 
 module.exports = {
 
-  calcResultsSfAud2: router.post('/calcResultsSfAud2', (req, res, next) => {
+  calcResultsSfAud3: router.post('/calcResultsSfAud3', (req, res, next) => {
 
     searchResults = [] //clear searchResults from previous search
-    console.log('calcResultsSfAud2 says: searchResults from router.post level===>', searchResults)
+    console.log('calcResultsSfAud3 says: searchResults from router.post level===>', searchResults)
     searchResultsForCSV = []
     searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
-    console.log('calcResultsSfAud2 says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
+    console.log('calcResultsSfAud3 says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
     csvContainer = []
-    console.log('calcResultsSfAud2 says: csvContainer from router.post level===>', csvContainer)
+    console.log('calcResultsSfAud3 says: csvContainer from router.post level===>', csvContainer)
 
 
     const postBody = req.body
-    console.log('calcResultsSfAud2 says: postBody==>', postBody)
-    console.log('calcResultsSfAud2 says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
-    console.log('calcResultsSfAud2 says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
+    console.log('calcResultsSfAud3 says: postBody==>', postBody)
+    console.log('calcResultsSfAud3 says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
+    console.log('calcResultsSfAud3 says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
 
     let formInput0 = Object.values(postBody)[0] = loadedSqlTbl = postBody['tblNameToPostPost'] //tblNameToPostPost
     console.log('formInput0==>', formInput0)
