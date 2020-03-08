@@ -130,18 +130,18 @@ module.exports = {
             }
           }
 
-          if ((nisfRows[i][inStockCode] == '-') && (nisfRows[i]['invLastsold'] > '2019-03-05') ||
-            (nisfRows[i][inStockCode] == '-') && (nisfRows[i]['invLastreceived'] > '2019-03-05') ||
-            (nisfRows[i][inStockCode] == '-') && (parsedInvVal > 0)) { // if SF says not stocked, but
+          if ((nisfRows[i][inStockCode] == '-') && (nisfRows[i]['invLastsold'] > '2019-03-05') && (nisfRows[i]['stoName'] == storeName) ||
+            (nisfRows[i][inStockCode] == '-') && (nisfRows[i]['invLastreceived'] > '2019-03-05') && (nisfRows[i]['stoName'] == storeName) ||
+            (nisfRows[i][inStockCode] == '-') && (parsedInvVal > 0) && (nisfRows[i]['stoName'] == storeName)) { // if SF says not stocked, but
             //(1)was sold in the past year OR
             //(2)was received in the past year OR
             //(3)has positive inventory
             sfAud3Results('SHOULD_be_stocked')
           }
 
-          if ((nisfRows[i][inStockCode] !== '-') && (nisfRows[i]['invLastsold'] < '2019-03-05') ||
-            (nisfRows[i][inStockCode] !== '-') && (nisfRows[i]['invLastreceived'] < '2019-03-05') ||
-            (nisfRows[i][inStockCode] !== '-') && (parsedInvVal <= 0)) { // if SF says not stocked, but
+          if ((nisfRows[i][inStockCode] !== '-') && (nisfRows[i]['invLastsold'] < '2019-03-05') && (nisfRows[i]['stoName'] == storeName) ||
+            (nisfRows[i][inStockCode] !== '-') && (nisfRows[i]['invLastreceived'] < '2019-03-05') && (nisfRows[i]['stoName'] == storeName) ||
+            (nisfRows[i][inStockCode] !== '-') && (parsedInvVal <= 0) && (nisfRows[i]['stoName'] == storeName)) { // if SF says not stocked, but
             //(1)was NOT sold in the past year OR
             //(2)was NOT received in the past year OR
             //(3)has 0 or negative inventory
