@@ -155,6 +155,10 @@ module.exports = {
               sfAud3Results('NO LAST SOLD/RECD DATA')
             }
             if (nisfRows[i]['invLastsold'] < '2019-03-05' && nisfRows[i]['invLastreceived'] < '2019-03-05' && parsedInvVal <= 0) {
+              if ((nisfRows[i]['invLastsold'] == '' && nisfRows[i]['invLastreceived'] == '') ||
+                (nisfRows[i]['invLastsold'] == undefined && nisfRows[i]['invLastreceived'] == undefined))
+                sfAud3Results('NO LAST SOLD/RECD DATA')
+            } else {
               sfAud3Results('should_NOT_be_stocked')
             }
 
