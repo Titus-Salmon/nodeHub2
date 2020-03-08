@@ -61,7 +61,7 @@ module.exports = {
 
               srcRsObj['Comments2'] = shouldBeStockedOrNot
 
-              if (('2020-03-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-05') ||
+              if (('2020-03-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-05') &&
                 ('2020-03-05' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-12-05')) {
                 srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
                 if (nisfRows[i][inStockCode] !== '-') {
@@ -74,7 +74,7 @@ module.exports = {
                   }
                 }
               }
-              if (('2019-12-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-05') ||
+              if (('2019-12-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-05') &&
                 ('2019-12-05' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-09-05')) {
                 srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
                 if (nisfRows[i][inStockCode] !== '-') {
@@ -87,7 +87,7 @@ module.exports = {
                   }
                 }
               }
-              if (('2019-09-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-05') ||
+              if (('2019-09-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-05') &&
                 ('2019-09-05' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-06-05')) {
                 srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
                 if (nisfRows[i][inStockCode] !== '-') {
@@ -100,7 +100,7 @@ module.exports = {
                   }
                 }
               }
-              if (('2019-06-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-05') ||
+              if (('2019-06-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-05') &&
                 ('2019-06-05' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-03-05')) {
                 srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
                 if (nisfRows[i][inStockCode] !== '-') {
@@ -113,7 +113,7 @@ module.exports = {
                   }
                 }
               }
-              if (('2019-03-05' > nisfRows[i]['invLastreceived']) ||
+              if (('2019-03-05' > nisfRows[i]['invLastreceived']) &&
                 ('2019-03-05' > nisfRows[i]['invLastsold'])) {
                 srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
                 if (nisfRows[i][inStockCode] !== '-') {
