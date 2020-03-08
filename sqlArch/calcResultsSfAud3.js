@@ -43,7 +43,7 @@ module.exports = {
       for (let i = 0; i < nisfRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
 
-        function sfAud3(storeName, inStockCode) { //i.e. storeName = 'Indiana', inStockCode = 'IND'
+        function sfAud3(storeName, inStockCode) { //i.e. storeName = 'Indiana', inStockCode = inStockCode
           let parsedInvVal = parseInt(nisfRows[i]['invOnhand'])
 
           function sfAud3Results(shouldBeStockedOrNot) {
@@ -61,65 +61,65 @@ module.exports = {
 
               srcRsObj['Comments2'] = shouldBeStockedOrNot
 
-              if (('2020-03-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-07') ||
-                ('2020-03-07' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-12-07')) {
+              if (('2020-03-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-12-05') ||
+                ('2020-03-05' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-12-05')) {
                 srcRsObj['LastRecd0_3'] = nisfRows[i]['invLastreceived']
-                if (nisfRows[i]['IND'] == 'IN') {
+                if (nisfRows[i][inStockCode] !== '-') {
                   srcRsObj['Comments1'] = 'SFsaysStockedBut0_3'
                 }
-                if (nisfRows[i]['IND'] == '-') {
+                if (nisfRows[i][inStockCode] == '-') {
                   srcRsObj['Comments1'] = 'SFsaysNOTStockedBut0_3'
                   if (parsedInvVal > 0) {
                     srcRsObj['Comments1'] = 'SFsaysNOTStockedButInInv'
                   }
                 }
               }
-              if (('2019-12-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-07') ||
-                ('2019-12-07' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-09-07')) {
+              if (('2019-12-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-09-05') ||
+                ('2019-12-05' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-09-05')) {
                 srcRsObj['LastRecd3_6'] = nisfRows[i]['invLastreceived']
-                if (nisfRows[i]['IND'] == 'IN') {
+                if (nisfRows[i][inStockCode] !== '-') {
                   srcRsObj['Comments1'] = 'SFsaysStockedBut3_6'
                 }
-                if (nisfRows[i]['IND'] == '-') {
+                if (nisfRows[i][inStockCode] == '-') {
                   srcRsObj['Comments1'] = 'SFsaysNOTStockedBut3_6'
                   if (parsedInvVal > 0) {
                     srcRsObj['Comments1'] = 'SFsaysNOTStockedButInInv'
                   }
                 }
               }
-              if (('2019-09-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-07') ||
-                ('2019-09-07' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-06-07')) {
+              if (('2019-09-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-06-05') ||
+                ('2019-09-05' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-06-05')) {
                 srcRsObj['LastRecd6_9'] = nisfRows[i]['invLastreceived']
-                if (nisfRows[i]['IND'] == 'IN') {
+                if (nisfRows[i][inStockCode] !== '-') {
                   srcRsObj['Comments1'] = 'SFsaysStockedBut6_9'
                 }
-                if (nisfRows[i]['IND'] == '-') {
+                if (nisfRows[i][inStockCode] == '-') {
                   srcRsObj['Comments1'] = 'SFsaysNOTStockedBut6_9'
                   if (parsedInvVal > 0) {
                     srcRsObj['Comments1'] = 'SFsaysNOTStockedButInInv'
                   }
                 }
               }
-              if (('2019-06-07' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-07') ||
-                ('2019-06-07' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-03-07')) {
+              if (('2019-06-05' > nisfRows[i]['invLastreceived'] && nisfRows[i]['invLastreceived'] > '2019-03-05') ||
+                ('2019-06-05' > nisfRows[i]['invLastsold'] && nisfRows[i]['invLastsold'] > '2019-03-05')) {
                 srcRsObj['LastRecd9_12'] = nisfRows[i]['invLastreceived']
-                if (nisfRows[i]['IND'] == 'IN') {
+                if (nisfRows[i][inStockCode] !== '-') {
                   srcRsObj['Comments1'] = 'SFsaysStockedBut9_12'
                 }
-                if (nisfRows[i]['IND'] == '-') {
+                if (nisfRows[i][inStockCode] == '-') {
                   srcRsObj['Comments1'] = 'SFsaysNOTStockedBut9_12'
                   if (parsedInvVal > 0) {
                     srcRsObj['Comments1'] = 'SFsaysNOTStockedButInInv'
                   }
                 }
               }
-              if (('2019-03-07' > nisfRows[i]['invLastreceived']) ||
-                ('2019-03-07' > nisfRows[i]['invLastsold'])) {
+              if (('2019-03-05' > nisfRows[i]['invLastreceived']) ||
+                ('2019-03-05' > nisfRows[i]['invLastsold'])) {
                 srcRsObj['LastRecd12plus'] = nisfRows[i]['invLastreceived']
-                if (nisfRows[i]['IND'] == 'IN') {
+                if (nisfRows[i][inStockCode] !== '-') {
                   srcRsObj['Comments1'] = 'SFsaysStockedBut12plus'
                 }
-                if (nisfRows[i]['IND'] == '-') {
+                if (nisfRows[i][inStockCode] == '-') {
                   srcRsObj['Comments1'] = 'SFsaysNOTStockedBut12plus'
                   if (parsedInvVal > 0) {
                     srcRsObj['Comments1'] = 'SFsaysNOTStockedButInInv'
@@ -150,7 +150,7 @@ module.exports = {
 
         }
 
-        sfAud3('Indiana', 'IND')
+        sfAud3('Indiana', inStockCode)
         sfAud3('Saint Matthews', 'SM')
         sfAud3('Middletown', 'MT')
         sfAud3('Springhurst', 'SH')
