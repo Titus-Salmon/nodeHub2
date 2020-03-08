@@ -150,7 +150,7 @@ module.exports = {
 
         }
 
-        sfAud3('Indiana', inStockCode)
+        sfAud3('Indiana', 'IND')
         sfAud3('Saint Matthews', 'SM')
         sfAud3('Middletown', 'MT')
         sfAud3('Springhurst', 'SH')
