@@ -110,6 +110,9 @@ module.exports = {
             srcRsCSVrvwPagGETarr, edlpRows, nejRowsPagin)
 
           console.log(`searchResultsPagGETarr from GET--> ${searchResultsPagGETarr}`)
+          for (let i = 0; i < searchResultsPagGETarr.length; i++) {
+            console.log(`JSON.stringify(searchResultsPagGETarr[${i}]) from GET++> ${searchResultsPagGETarr[i]}`)
+          }
 
           console.log(`nejRowsPagin.length==> ${nejRowsPagin.length}`)
           console.log(`JSON.stringify(nejRowsPagin) from GET~~> ${JSON.stringify(nejRowsPagin)}`)
