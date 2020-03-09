@@ -95,12 +95,6 @@ module.exports = {
             pageLinkArray.push(pageLinkObj)
           }
 
-          console.log(`pageLinkArray.length from GERT==> ${pageLinkArray.length}`)
-          for (let i = 0; i < pageLinkArray.length; i++) {
-            console.log(`JSON.stringify(pageLinkArray[${i}]) from GET==> ${JSON.stringify(pageLinkArray[i])}`)
-          }
-
-
           // showSearchRes.showSearchRes(rows, numQueryRes, pageLinkArray, srsObjArr, numPagesPlaceholder)
 
           // showSearchResults.showSearchResults(rows, genericHeaderObjGET, formInputsObjGET, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
