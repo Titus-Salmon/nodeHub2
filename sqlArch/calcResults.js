@@ -99,6 +99,7 @@ module.exports = {
 
           // let totalRows = countRows[0]['COUNT(*)'] / 7 //must divide by 7 to
           let totalRows = searchResultsNonPag.length //use length of non-paginated results from showSearchResults for total # of rows,
+          console.log(`totalRows==> ${totalRows}`)
           //since countRows[0]['COUNT(*)'] gives 7x the actual number of rows (7 stores)
           totalRowsCache.set('totalRowsCache_key', totalRows)
           console.log(`JSON.stringify(totalRowsCache) from POST==> ${JSON.stringify(totalRowsCache)}`)
