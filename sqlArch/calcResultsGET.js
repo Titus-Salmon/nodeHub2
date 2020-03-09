@@ -95,9 +95,9 @@ module.exports = {
             pageLinkArray.push(pageLinkObj)
           }
 
-          console.log(`pageLinkArray.length==> ${pageLinkArray.length}`)
+          console.log(`pageLinkArray.length from GERT==> ${pageLinkArray.length}`)
           for (let i = 0; i < pageLinkArray.length; i++) {
-            console.log(`JSON.stringify(pageLinkArray[${i}])==> ${JSON.stringify(pageLinkArray[i])}`)
+            console.log(`JSON.stringify(pageLinkArray[${i}]) from GET==> ${JSON.stringify(pageLinkArray[i])}`)
           }
 
 
