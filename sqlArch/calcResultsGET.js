@@ -53,6 +53,9 @@ module.exports = {
     console.log(`currentPage from GET==> ${currentPage}`)
 
     function queryEDI_Table_GET() {
+      console.log(`1st query from GET==> SELECT * FROM ${tableName} GROUP BY ${gnrcHdrObjCche.upcHeader},
+      ${gnrcHdrObjCche.invLastcostHeader} ORDER BY ${gnrcHdrObjCche.upcHeader} 
+      LIMIT ${offset},${numQueryRes};`)
       //The COUNT(*) function returns the number of rows in a result set returned by a SELECT statement.
       //The COUNT(*) returns the number of rows including duplicate, non-NULL and NULL rows.
       connection.query( //1st query is pagination query; 2nd query is getting EDLP data; 3rd query is non-paginated query;
