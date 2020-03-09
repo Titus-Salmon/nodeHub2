@@ -111,6 +111,7 @@ module.exports = {
 
           console.log(`searchResultsPagGETarr from GET--> ${searchResultsPagGETarr}`)
 
+          console.log(`nejRowsPagin.length==> ${nejRowsPagin.length}`)
           console.log(`JSON.stringify(nejRowsPagin) from GET~~> ${JSON.stringify(nejRowsPagin)}`)
 
           res.render('vw-MySqlTableHub', {
