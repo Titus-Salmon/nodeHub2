@@ -103,6 +103,8 @@ module.exports = {
           showSearchResults.showSearchResults(rows, gnrcHdrObjCche, frmInptsObjCche, searchResultsPagGETarr, srcRsCSV_PagGETarr,
             srcRsCSVrvwPagGETarr, edlpRows, nejRowsPagin)
 
+          console.log(`searchResultsPagGETarr from GET==> ${searchResultsPagGETarr}`)
+
           res.render('vw-MySqlTableHub', {
             title: `vw-MySqlTableHub from GET`,
             // srsObjArr: srsObjArr,
