@@ -33,15 +33,15 @@ module.exports = {
     const postBody = req.body
 
     formInputsObjCacheChecker = formInputsObjCache.get('formInputsObjCache_key');
-    if (formInputsObjCacheChecker !== undefined) {
+    if (formInputsObjCacheChecker !== undefined) { //clear formInputsObjCache_key if it exists
       formInputsObjCache.del('formInputsObjCache_key')
     }
     genericHeaderObjCacheChecker = genericHeaderObjCache.get('genericHeaderObjCache_key');
-    if (genericHeaderObjCacheChecker !== undefined) {
+    if (genericHeaderObjCacheChecker !== undefined) { //clear genericHeaderObjCache_key if it exists
       genericHeaderObjCache.del('genericHeaderObjCache_key')
     }
     totalRowsCacheChecker = totalRowsCache.get('totalRowsCache_key');
-    if (totalRowsCacheChecker !== undefined) {
+    if (totalRowsCacheChecker !== undefined) { //clear totalRowsCache_key if it exists
       totalRowsCache.del('totalRowsCache_key')
     }
 
@@ -98,10 +98,10 @@ module.exports = {
             edlpRows, nejRowsPagin)
 
           // let totalRows = countRows[0]['COUNT(*)'] / 7 //must divide by 7 to
-          let totalRows = searchResultsNonPag.length //use length of non-paginated results from showSearchResults for total 3 of rows,
+          let totalRows = searchResultsNonPag.length //use length of non-paginated results from showSearchResults for total # of rows,
           //since countRows[0]['COUNT(*)'] gives 7x the actual number of rows (7 stores)
           totalRowsCache.set('totalRowsCache_key', totalRows)
-          console.log(`totalRowsCache from POST==> ${totalRowsCache}`)
+          console.log(`JSON.stringify(totalRowsCache) from POST==> ${JSON.stringify(totalRowsCache)}`)
 
           let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
           console.log(`numPages==> ${numPages}`)
