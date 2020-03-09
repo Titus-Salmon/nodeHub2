@@ -111,7 +111,7 @@ module.exports = {
 
           console.log(`searchResultsPagGETarr from GET--> ${searchResultsPagGETarr}`)
           for (let i = 0; i < searchResultsPagGETarr.length; i++) {
-            console.log(`JSON.stringify(searchResultsPagGETarr[${i}]) from GET++> ${searchResultsPagGETarr[i]}`)
+            console.log(`JSON.stringify(searchResultsPagGETarr[${i}]) from GET++> ${JSON.stringify(searchResultsPagGETarr[i])}`)
           }
 
           console.log(`nejRowsPagin.length==> ${nejRowsPagin.length}`)
