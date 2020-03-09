@@ -25,6 +25,7 @@ module.exports = {
     let frmInptsObjCche = formInputsObjCache['data']['formInputsObjCache_key']['v']
     let gnrcHdrObjCche = genericHeaderObjCache['data']['genericHeaderObjCache_key']['v']
     let totlRwsCche = totalRowsCache['data']['totalRowsCache_key']['v']
+    console.log(`totlRwsCche==> ${totlRwsCche}`)
 
     let searchResultsPagGETarr = [] //clear searchResultsPag from previous search
     srcRsCSV_PagGETarr = []
