@@ -7,6 +7,7 @@ const cAlcRsFrmInputs = require('../funcLibT0d/calcResFormInputs')
 const paginPost = require('../funcLibT0d/paginPost')
 const showSearchResults = require('../funcLibT0d/showSearchResults')
 
+const cacheMain = require('../nodeCacheStuff/cache1')
 const formInputsObjCache = require('../nodeCacheStuff/cache1')
 const genericHeaderObjCache = require('../nodeCacheStuff/cache1')
 const totalRowsCache = require('../nodeCacheStuff/cache1')
@@ -31,6 +32,11 @@ module.exports = {
     srcRsCSVrvw_nonPag = [] //why does this break if instantiated with "let"? A question for another time...
     csvContainer = [] //why does this break if instantiated with "let"? A question for another time...
     const postBody = req.body
+
+    searchResultsNonPagCacheChecker = cacheMain.get('searchResultsNonPagCache_key')
+    if (searchResultsNonPagCacheChecker !== undefined) { //clear srcRsObjCache_key if it exists
+      cacheMain.del('searchResultsNonPagCache_key')
+    }
 
     formInputsObjCacheChecker = formInputsObjCache.get('formInputsObjCache_key');
     if (formInputsObjCacheChecker !== undefined) { //clear formInputsObjCache_key if it exists
@@ -93,6 +99,8 @@ module.exports = {
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
             edlpRows, nejRowsNonPagin)
+          cacheMain.set('searchResultsNonPagCache_key', searchResultsNonPag)
+          console.log(`JSON.stringify(cacheMain)==> ${JSON.stringify(cacheMain)}`)
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
             edlpRows, nejRowsPagin)
