@@ -17,7 +17,7 @@ module.exports = {
         let mySqlQuery = `DROP TABLE ${tableName};`
 
         if (tableName.toLowerCase().includes('nej') || tableName.toLowerCase().includes('nhcrt') ||
-            tableName.toLowerCase().includes('nisf') || tableName.toLowerCase().includes('portInfra')) {
+            tableName.toLowerCase().includes('nisf') || tableName.toLowerCase().includes('portinfra')) {
             connection.query(mySqlQuery, (error, response) => {
                 console.log(`error==>${error}` || `response==>${response}`)
             }).on('end', function () {
