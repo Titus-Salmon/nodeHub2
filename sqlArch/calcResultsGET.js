@@ -73,7 +73,10 @@ module.exports = {
         console.log(`JSON.stringify(pageLinkArray[${i}])==> ${JSON.stringify(pageLinkArray[i])}`)
       }
 
-      searchResultsPagGETarr.push(allSearchResultsFromCache)
+      for (let i = 0; i < searchResultsPagGETarr.length; i++) {
+        searchResultsPagGETarr.push(allSearchResultsFromCache[i])
+      }
+
       console.log(`searchResultsPagGETarr.length from GET==> ${searchResultsPagGETarr.length}`)
       console.log(`searchResultsPagGETarr from GET==> ${searchResultsPagGETarr}`)
 
