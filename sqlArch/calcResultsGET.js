@@ -73,7 +73,7 @@ module.exports = {
         console.log(`JSON.stringify(pageLinkArray[${i}])==> ${JSON.stringify(pageLinkArray[i])}`)
       }
 
-      for (let i = 0; i < allSearchResultsFromCache.length; i++) {
+      for (let i = 0; i < numQueryRes; i++) {
         if (allSearchResultsFromCache[i + offset] !== undefined) {
           searchResultsPagGETarr.push(allSearchResultsFromCache[i + offset])
         }
