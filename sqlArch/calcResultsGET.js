@@ -20,15 +20,16 @@ const connection = mysql.createConnection({
 module.exports = {
   calcResultsGET: router.get('/calcResults', (req, res, next) => {
 
-    console.log(`formInputsObjCache['data']['formInputsObjCache_key']['v'] from GET==> ${formInputsObjCache['data']['formInputsObjCache_key']['v']}`)
-    console.log(`JSON.stringify(formInputsObjCache['data']['formInputsObjCache_key']['v']) from GET==> ${JSON.stringify(formInputsObjCache['data']['formInputsObjCache_key']['v'])}`)
+    //console.log(`formInputsObjCache['data']['formInputsObjCache_key']['v'] from GET==> ${formInputsObjCache['data']['formInputsObjCache_key']['v']}`)
+    //console.log(`JSON.stringify(formInputsObjCache['data']['formInputsObjCache_key']['v']) from GET==> ${JSON.stringify(formInputsObjCache['data']['formInputsObjCache_key']['v'])}`)
 
     let frmInptsObjCche = formInputsObjCache['data']['formInputsObjCache_key']['v']
     let gnrcHdrObjCche = genericHeaderObjCache['data']['genericHeaderObjCache_key']['v']
     let totlRwsCche = totalRowsCache['data']['totalRowsCache_key']['v']
-    console.log(`totlRwsCche==> ${totlRwsCche}`)
+    //console.log(`totlRwsCche==> ${totlRwsCche}`)
 
     let allSearchResultsFromCache = cacheMain['data']['searchResultsNonPagCache_key']['v']
+    console.log(`allSearchResultsFromCache from GET==> ${allSearchResultsFromCache}`)
 
     searchResultsPagGETarr = [] //clear searchResultsPag from previous search
     srcRsCSV_PagGETarr = []
