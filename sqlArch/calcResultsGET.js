@@ -72,6 +72,7 @@ module.exports = {
       }
 
       searchResultsPagGETarr.push(allSearchResultsFromCache)
+      console.log(`searchResultsPagGETarr from GET==> ${searchResultsPagGETarr}`)
 
       res.render('vw-MySqlTableHub', {
         title: `vw-MySqlTableHub from GET`,
