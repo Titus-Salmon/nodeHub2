@@ -29,6 +29,7 @@ module.exports = {
     //console.log(`totlRwsCche==> ${totlRwsCche}`)
 
     let allSearchResultsFromCache = cacheMain['data']['searchResultsNonPagCache_key']['v']
+    console.log(`allSearchResultsFromCache.length from GET==> ${allSearchResultsFromCache.length}`)
     console.log(`allSearchResultsFromCache from GET==> ${allSearchResultsFromCache}`)
 
     searchResultsPagGETarr = [] //clear searchResultsPag from previous search
