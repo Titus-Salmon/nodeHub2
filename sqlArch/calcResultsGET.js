@@ -74,7 +74,9 @@ module.exports = {
       }
 
       for (let i = 0; i < allSearchResultsFromCache.length; i++) {
-        searchResultsPagGETarr.push(allSearchResultsFromCache[i])
+        if (allSearchResultsFromCache[i + offset] !== undefined) {
+          searchResultsPagGETarr.push(allSearchResultsFromCache[i + offset])
+        }
       }
 
       console.log(`searchResultsPagGETarr.length from GET==> ${searchResultsPagGETarr.length}`)
