@@ -72,6 +72,7 @@ module.exports = {
       }
 
       searchResultsPagGETarr.push(allSearchResultsFromCache)
+      console.log(`searchResultsPagGETarr.length from GET==> ${searchResultsPagGETarr.length}`)
       console.log(`searchResultsPagGETarr from GET==> ${searchResultsPagGETarr}`)
 
       for (let i = 0; i < searchResultsPagGETarr.length; i++) {
