@@ -113,5 +113,6 @@ label {
   left: 200px;
   max-width: 1000px;
   z-index: 1;
-  background-color: coral;
+  background-color: white;
+  border-style: solid;
 }
