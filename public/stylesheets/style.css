@@ -111,7 +111,7 @@ label {
   position: absolute;
   top: 330px;
   left: 200px;
-  max-width: 1000px;
+  /* max-width: 1000px; */
   z-index: 1;
   background-color: white;
   border-style: solid;
