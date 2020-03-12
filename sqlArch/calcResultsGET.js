@@ -74,6 +74,10 @@ module.exports = {
       searchResultsPagGETarr.push(allSearchResultsFromCache)
       console.log(`searchResultsPagGETarr from GET==> ${searchResultsPagGETarr}`)
 
+      for (let i = 0; i < searchResultsPagGETarr.length; i++) {
+        console.log(`JSON.stringify(searchResultsPagGETarr[${i}]) from GET++> ${JSON.stringify(searchResultsPagGETarr[i])}`)
+      }
+
       res.render('vw-MySqlTableHub', {
         title: `vw-MySqlTableHub from GET`,
         // srsObjArr: srsObjArr,
