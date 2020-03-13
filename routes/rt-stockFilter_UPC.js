@@ -62,7 +62,7 @@ const {
   loadTable_signFilterChecker
 } = require('../sqlArch/loadTable_signFilterChecker')
 const {
-  stockFilter_UPC
+  calcResStockFilter_UPC
 } = require('../sqlArch/calcResStockFilter_UPC')
 
 
@@ -97,7 +97,7 @@ router.post('/calcResultsSfAud', calcResultsSfAud)
 router.post('/calcResultsSfAud2', calcResultsSfAud2)
 router.post('/calcResultsSfAud3', calcResultsSfAud3)
 router.post('/loadTable_signFilterChecker', loadTable_signFilterChecker)
-router.post('/stockFilter_UPC', stockFilter_UPC)
+router.post('/calcResStockFilter_UPC', calcResStockFilter_UPC)
 
 
 module.exports = router;
