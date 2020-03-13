@@ -151,7 +151,7 @@ html
 
 		button(type='submit', form='calcResultsSfAud2', style="display: block; float: left") sfAud2
 
-		form#calcResultsSfAud3(action='/signFilterChecker/calcResultsSfAud3' method='POST' accept-charset="UTF-8")
+		form#calcResStockFilter_UPC(action='/stockFilter_UPC/calcResStockFilter_UPC' method='POST' accept-charset="UTF-8")
 
 			if sqlTableCreated !== undefined
 
@@ -162,7 +162,7 @@ html
 				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
 				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
 
-		button(type='submit', form='calcResultsSfAud3', style="display: block; float: left") sfAud3
+		button(type='submit', form='calcResStockFilter_UPC', style="display: block; float: left") sfAud3
 
 		br
 		br

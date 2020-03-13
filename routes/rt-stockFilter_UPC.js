@@ -61,13 +61,16 @@ const {
 const {
   loadTable_signFilterChecker
 } = require('../sqlArch/loadTable_signFilterChecker')
+const {
+  stockFilter_UPC
+} = require('../sqlArch/calcResStockFilter_UPC')
 
 
 
 
 router.get('/', function (req, res, next) {
-  res.render('vw-signFilterChecker', {
-    title: 'vw-signFilterChecker',
+  res.render('vw-stockFilter_UPC', {
+    title: 'vw-stockFilter_UPC',
     // username: req.user.name,
     // userEmail: req.user.email,
     // userEmail_stringified: JSON.stringify(req.user.email),
@@ -94,6 +97,7 @@ router.post('/calcResultsSfAud', calcResultsSfAud)
 router.post('/calcResultsSfAud2', calcResultsSfAud2)
 router.post('/calcResultsSfAud3', calcResultsSfAud3)
 router.post('/loadTable_signFilterChecker', loadTable_signFilterChecker)
+router.post('/stockFilter_UPC', stockFilter_UPC)
 
 
 module.exports = router;

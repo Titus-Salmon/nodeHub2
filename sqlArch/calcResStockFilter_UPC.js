@@ -12,21 +12,21 @@ const connection = mysql.createConnection({
 
 module.exports = {
 
-  stockFilter_UPC: router.post('/stockFilter_UPC', (req, res, next) => {
+  calcResStockFilter_UPC: router.post('/calcResStockFilter_UPC', (req, res, next) => {
 
     searchResults = [] //clear searchResults from previous search
-    console.log('stockFilter_UPC says: searchResults from router.post level===>', searchResults)
+    console.log('calcResStockFilter_UPC says: searchResults from router.post level===>', searchResults)
     searchResultsForCSV = []
     searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
-    console.log('stockFilter_UPC says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
+    console.log('calcResStockFilter_UPC says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
     csvContainer = []
-    console.log('stockFilter_UPC says: csvContainer from router.post level===>', csvContainer)
+    console.log('calcResStockFilter_UPC says: csvContainer from router.post level===>', csvContainer)
 
 
     const postBody = req.body
-    console.log('stockFilter_UPC says: postBody==>', postBody)
-    console.log('stockFilter_UPC says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
-    console.log('stockFilter_UPC says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
+    console.log('calcResStockFilter_UPC says: postBody==>', postBody)
+    console.log('calcResStockFilter_UPC says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
+    console.log('calcResStockFilter_UPC says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
 
     let formInput0 = Object.values(postBody)[0] = loadedSqlTbl = postBody['tblNameToPostPost'] //tblNameToPostPost
     console.log('formInput0==>', formInput0)
@@ -51,7 +51,7 @@ module.exports = {
       console.log(`nhcrtRows.length==> ${nhcrtRows.length}`)
 
       for (let i = 0; i < nhcrtRows.length; i++) {
-        function stockFilter_UPC(storeName, storeAbbrev) {
+        function calcResStockFilter_UPC(storeName, storeAbbrev) {
           if (nhcrtRows[i]['stoName'] == storeName) {
 
             let rsltsObj = {}
@@ -69,11 +69,11 @@ module.exports = {
           }
           searchResults.push(rsltsObj)
         }
-        stockFilter_UPC('Indiana', 'IND')
-        stockFilter_UPC('Saint Matthews', 'SM')
-        stockFilter_UPC('Middletown', 'MT')
-        stockFilter_UPC('Springhurst', 'SH')
-        stockFilter_UPC('Gardiner Lane', 'GL')
+        calcResStockFilter_UPC('Indiana', 'IND')
+        calcResStockFilter_UPC('Saint Matthews', 'SM')
+        calcResStockFilter_UPC('Middletown', 'MT')
+        calcResStockFilter_UPC('Springhurst', 'SH')
+        calcResStockFilter_UPC('Gardiner Lane', 'GL')
       }
 
 
@@ -231,7 +231,7 @@ module.exports = {
         if (err) throw err
         showSearchResults(rows)
 
-        res.render('vw-stockFilter_UPC', { //render searchResults to vw-MySqlTableHub page
+        res.render('vw-calcResStockFilter_UPC', { //render searchResults to vw-MySqlTableHub page
           title: 'stockFilter_UP (using nhcrt table)',
           searchResRows: searchResults,
           loadedSqlTbl: loadedSqlTbl
