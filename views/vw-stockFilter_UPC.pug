@@ -183,7 +183,7 @@ html
 			//- 		input#csvReviewHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value="upc, sku, name, pf2, pf3, cost, charm, edlp_flag, sale_flag")
 
 
-    div.rslt-tbl-1
+		div.rslt-tbl-1
 			table#resTbl
 				label.input-label-1(for='ldSqlTbl') Loaded Sql Table:
 				input#ldSqlTbl.input-unit-1(type='text', placeholder='loaded sql table', name='ldSqlTblPost', value=loadedSqlTbl)
@@ -196,11 +196,11 @@ html
 						th IND Comments1
 						th SM UPCs
 						th SM Comments1
-            th MT UPCs
+						th MT UPCs
 						th MT Comments1
-            th SH UPCs
+						th SH UPCs
 						th SH Comments1
-            th GL UPCs
+						th GL UPCs
 						th GL Comments1
 
 
@@ -209,16 +209,16 @@ html
 						each elmnt in searchResRows
 							tr
 								td= elmnt.ri_t0d
-                td= elmnt.IND_UPCs
-                td= elmnt.IND_Comments1
-                td= elmnt.SM_UPCs
-                td= elmnt.SM_Comments1
-                td= elmnt.MT_UPCs
-                td= elmnt.MT_Comments1
-                td= elmnt.SH_UPCs
-                td= elmnt.SH_Comments1
-                td= elmnt.GL_UPCs
-                td= elmnt.GL_Comments1
+								td= elmnt.IND_UPCs
+								td= elmnt.IND_Comments1
+								td= elmnt.SM_UPCs
+								td= elmnt.SM_Comments1
+								td= elmnt.MT_UPCs
+								td= elmnt.MT_Comments1
+								td= elmnt.SH_UPCs
+								td= elmnt.SH_Comments1
+								td= elmnt.GL_UPCs
+								td= elmnt.GL_Comments1
 
 		//- div.rslt-tbl-1
 		//- 	table#resTbl
