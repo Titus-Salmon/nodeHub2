@@ -38,7 +38,8 @@ module.exports = {
     console.log(`todaysDate==> ${todaysDate}`)
 
     let oneYearAgoRaw = todaysDateRaw.setFullYear(todaysDateRaw.getFullYear() - 1)
-    let oneYearAgoRaw_split = oneYearAgoRaw.split('T')
+    let oneYearAgoRaw_iso = oneYearAgoRaw.toISOString()
+    let oneYearAgoRaw_split = oneYearAgoRaw_iso.split('T')
     let oneYearAgo = oneYearAgoRaw_split[0]
     console.log(`oneYearAgo==> ${oneYearAgo}`)
 
