@@ -237,7 +237,7 @@ module.exports = {
         if (err) throw err
         showSearchResults(rows)
 
-        res.render('vw-calcResStockFilter_UPC', { //render searchResults to vw-MySqlTableHub page
+        res.render('vw-stockFilter_UPC', { //render searchResults to vw-MySqlTableHub page
           title: 'stockFilter_UP (using nhcrt table)',
           searchResRows: searchResults,
           loadedSqlTbl: loadedSqlTbl
