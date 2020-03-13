@@ -59,8 +59,8 @@ const {
   calcResultsSfAud3
 } = require('../sqlArch/calcResultsSfAud3')
 const {
-  loadTable_signFilterChecker
-} = require('../sqlArch/loadTable_signFilterChecker')
+  loadTable_calcResStockFilter_UPC
+} = require('../sqlArch/loadTable_calcResStockFilter_UPC')
 const {
   calcResStockFilter_UPC
 } = require('../sqlArch/calcResStockFilter_UPC')
@@ -96,7 +96,7 @@ router.get('/calcResults', calcResultsGET)
 router.post('/calcResultsSfAud', calcResultsSfAud)
 router.post('/calcResultsSfAud2', calcResultsSfAud2)
 router.post('/calcResultsSfAud3', calcResultsSfAud3)
-router.post('/loadTable_signFilterChecker', loadTable_signFilterChecker)
+router.post('/loadTable_calcResStockFilter_UPC', loadTable_calcResStockFilter_UPC)
 router.post('/calcResStockFilter_UPC', calcResStockFilter_UPC)
 
 
