@@ -37,9 +37,12 @@ module.exports = {
     let todaysDate = todaysDateRaw_split[0]
     console.log(`todaysDate==> ${todaysDate}`)
 
-    let oneYearAgoRaw = todaysDateRaw.setFullYear(todaysDateRaw.getFullYear() - 1)
-    console.log(`oneYearAgoRaw==> ${oneYearAgoRaw}`)
-    let oneYearAgoRaw_iso = oneYearAgoRaw.toISOString()
+    let oneYearAgoRaw_pre = todaysDateRaw
+    oneYearAgoRaw_pre.setFullYear(todaysDateRaw.getFullYear() - 1)
+
+    // let oneYearAgoRaw = todaysDateRaw.setFullYear(todaysDateRaw.getFullYear() - 1)
+    // console.log(`oneYearAgoRaw==> ${oneYearAgoRaw}`)
+    let oneYearAgoRaw_iso = oneYearAgoRaw_pre.toISOString()
     let oneYearAgoRaw_split = oneYearAgoRaw_iso.split('T')
     let oneYearAgo = oneYearAgoRaw_split[0]
     console.log(`oneYearAgo==> ${oneYearAgo}`)
