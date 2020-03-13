@@ -71,9 +71,9 @@ module.exports = {
             } else {
               rsltsObj[`${storeAbbrev}_Comments1`] = 'NOTstocked'
             }
-
+            searchResults.push(rsltsObj)
           }
-          searchResults.push(rsltsObj)
+
         }
         calcResStockFilter_UPC('Indiana', 'IND')
         calcResStockFilter_UPC('Saint Matthews', 'SM')
