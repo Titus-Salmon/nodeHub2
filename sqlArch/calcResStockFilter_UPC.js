@@ -31,8 +31,9 @@ module.exports = {
     let formInput0 = Object.values(postBody)[0] = loadedSqlTbl = postBody['tblNameToPostPost'] //tblNameToPostPost
     console.log('formInput0==>', formInput0)
 
-    let todaysDateRaw = new Date().toISOString()
-    let todaysDateRaw_split = todaysDateRaw.split('T')
+    let todaysDateRaw = new Date()
+    let todaysDateRaw_iso = todaysDateRaw.toISOString()
+    let todaysDateRaw_split = todaysDateRaw_iso.split('T')
     let todaysDate = todaysDateRaw_split[0]
     console.log(`todaysDate==> ${todaysDate}`)
 
