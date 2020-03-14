@@ -80,10 +80,38 @@ module.exports = {
                 nhcrtRows[i]['invLastsold'] > oneYearAgo ||
                 nhcrtRows[i]['invOnhand'] > 0) {
                 rsltsObj[`${storeAbbrev}_stocked`] = nhcrtRows[i]['invScanCode']
-                `srcRs${storeAbbrev}stocked`.push(rsltsObj)
+                if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                  srcRsINDstocked.push(rsltsObj)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                  srcRsSMstocked.push(rsltsObj)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                  srcRsMTstocked.push(rsltsObj)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                  srcRsSHstocked.push(rsltsObj)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                  srcRsGLstocked.push(rsltsObj)
+                }
               } else {
                 rsltsObj[`${storeAbbrev}_NOTstocked`] = nhcrtRows[i]['invScanCode']
-                `srcRs${storeAbbrev}_NOTstocked`.push(rsltsObj)
+                if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                  srcRsIND_NOTstocked.push(rsltsObj)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                  srcRsSM_NOTstocked.push(rsltsObj)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                  srcRsMT_NOTstocked.push(rsltsObj)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                  srcRsSH_NOTstocked.push(rsltsObj)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                  srcRsGL_NOTstocked.push(rsltsObj)
+                }
               }
               // searchResults.push(rsltsObj)
             }
