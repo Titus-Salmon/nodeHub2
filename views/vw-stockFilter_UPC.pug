@@ -242,61 +242,105 @@ html
 							tr
 								td= elmnt.ri_t0d
 								td= elmnt.IND_NOTstocked
+
 		div.rslt-tbl-1
 			table
 				thead
 					tr
 						th ri_t0d
 						th SMstocked
-						th SM_NOTstocked
 				tbody
 					if srcRsSMstocked !== undefined
 						each elmnt in srcRsSMstocked
 							tr
 								td= elmnt.ri_t0d
 								td= elmnt.SMstocked
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th ri_t0d
+						th SM_NOTstocked
+				tbody
+					if srcRsSM_NOTstocked !== undefined
+						each elmnt in srcRsSM_NOTstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.SM_NOTstocked
+
 		div.rslt-tbl-1
 			table
 				thead
 					tr
 						th ri_t0d
 						th MTstocked
-						th MT_NOTstocked
 				tbody
 					if srcRsMTstocked !== undefined
 						each elmnt in srcRsMTstocked
 							tr
 								td= elmnt.ri_t0d
 								td= elmnt.MTstocked
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th ri_t0d
+						th MT_NOTstocked
+				tbody
+					if srcRsMT_NOTstocked !== undefined
+						each elmnt in srcRsMT_NOTstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.MT_NOTstocked
+
 		div.rslt-tbl-1
 			table
 				thead
 					tr
 						th ri_t0d
 						th SHstocked
-						th SH_NOTstocked
 				tbody
 					if srcRsSHstocked !== undefined
 						each elmnt in srcRsSHstocked
 							tr
 								td= elmnt.ri_t0d
 								td= elmnt.SHstocked
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th ri_t0d
+						th SH_NOTstocked
+				tbody
+					if srcRsSH_NOTstocked !== undefined
+						each elmnt in srcRsSH_NOTstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.SH_NOTstocked
+
 		div.rslt-tbl-1
 			table
 				thead
 					tr
 						th ri_t0d
 						th GLstocked
-						th GL_NOTstocked
 				tbody
 					if srcRsGLstocked !== undefined
 						each elmnt in srcRsGLstocked
 							tr
 								td= elmnt.ri_t0d
 								td= elmnt.GLstocked
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th ri_t0d
+						th GL_NOTstocked
+				tbody
+					if srcRsGL_NOTstocked !== undefined
+						each elmnt in srcRsGL_NOTstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.GL_NOTstocked
 
 		script(src='/javascripts/modules/adminM0d.js')
