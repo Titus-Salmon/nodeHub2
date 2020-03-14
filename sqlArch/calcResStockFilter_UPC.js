@@ -73,9 +73,9 @@ module.exports = {
               if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
                 nhcrtRows[i]['invLastsold'] > oneYearAgo ||
                 nhcrtRows[i]['invOnhand'] > 0) {
-                rsltsObj[`${storeAbbrev}_Comments1`] = 'stocked'
+                rsltsObj[`${storeAbbrev}_stocked`] = nhcrtRows[i]['invScanCode']
               } else {
-                rsltsObj[`${storeAbbrev}_Comments1`] = 'NOTstocked'
+                rsltsObj[`${storeAbbrev}_NOTstocked`] = nhcrtRows[i]['invScanCode']
               }
               searchResults.push(rsltsObj)
             }
