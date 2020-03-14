@@ -47,6 +47,9 @@ module.exports = {
     let oneYearAgo = oneYearAgoRaw_split[0]
     console.log(`oneYearAgo==> ${oneYearAgo}`)
 
+    let storeNameArr = ['Indiana', 'Saint Matthews', 'Middletown', 'Springhurst', 'Gardiner Lane']
+    let storeAbbrevArr = ['IND', 'SM', 'MT', 'SH', 'GL']
+
 
     function showSearchResults(rows) {
 
@@ -57,29 +60,34 @@ module.exports = {
       console.log(`nhcrtRows.length==> ${nhcrtRows.length}`)
 
       for (let i = 0; i < nhcrtRows.length; i++) {
-        function calcResStockFilter_UPC(storeName, storeAbbrev) {
-          if (nhcrtRows[i]['stoName'] == storeName) {
+        for (let j = 0; j < storeNameArr.length; j++) {
 
-            let rsltsObj = {}
-            rsltsObj['ri_t0d'] = i
-            rsltsObj[`${storeAbbrev}_UPCs`] = nhcrtRows[i]['invScanCode']
+          storeName = storeNameArr[j]
+          storeAbbrev = storeAbbrevArr[j]
 
-            if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
-              nhcrtRows[i]['invLastsold'] > oneYearAgo ||
-              nhcrtRows[i]['invOnhand'] > 0) {
-              rsltsObj[`${storeAbbrev}_Comments1`] = 'stocked'
-            } else {
-              rsltsObj[`${storeAbbrev}_Comments1`] = 'NOTstocked'
+          function calcResStockFilter_UPC(storeName, storeAbbrev) {
+            if (nhcrtRows[i]['stoName'] == storeName) {
+              let rsltsObj = {}
+              rsltsObj['ri_t0d'] = i
+              rsltsObj[`${storeAbbrev}_UPCs`] = nhcrtRows[i]['invScanCode']
+              if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
+                nhcrtRows[i]['invLastsold'] > oneYearAgo ||
+                nhcrtRows[i]['invOnhand'] > 0) {
+                rsltsObj[`${storeAbbrev}_Comments1`] = 'stocked'
+              } else {
+                rsltsObj[`${storeAbbrev}_Comments1`] = 'NOTstocked'
+              }
+              searchResults.push(rsltsObj)
             }
-            searchResults.push(rsltsObj)
           }
-
+          calcResStockFilter_UPC(storeName, storeAbbrev)
         }
-        calcResStockFilter_UPC('Indiana', 'IND')
-        calcResStockFilter_UPC('Saint Matthews', 'SM')
-        calcResStockFilter_UPC('Middletown', 'MT')
-        calcResStockFilter_UPC('Springhurst', 'SH')
-        calcResStockFilter_UPC('Gardiner Lane', 'GL')
+
+        // calcResStockFilter_UPC('Indiana', 'IND')
+        // calcResStockFilter_UPC('Saint Matthews', 'SM')
+        // calcResStockFilter_UPC('Middletown', 'MT')
+        // calcResStockFilter_UPC('Springhurst', 'SH')
+        // calcResStockFilter_UPC('Gardiner Lane', 'GL')
       }
 
 
