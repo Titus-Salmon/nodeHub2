@@ -65,6 +65,18 @@ module.exports = {
 
       let nhcrtRows = rows
 
+      // for (let i = 0; i < nhcrtRows.length; i++) {
+      //   if (nhcrtRows[i]['stoName'] == 'Indiana') {
+      //     let rsltsObj = {}
+      //     rsltsObj['ri_t0d'] = i
+      //     if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
+      //       nhcrtRows[i]['invLastsold'] > oneYearAgo ||
+      //       nhcrtRows[i]['invOnhand'] > 0) {
+      //       rsltsObj[`INstocked`] = nhcrtRows[i]['invScanCode']
+      //     }
+      //   }
+      // }
+
       for (let i = 0; i < nhcrtRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
 
@@ -79,7 +91,7 @@ module.exports = {
               if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
                 nhcrtRows[i]['invLastsold'] > oneYearAgo ||
                 nhcrtRows[i]['invOnhand'] > 0) {
-                rsltsObj[`${storeAbbrev}_stocked`] = nhcrtRows[i]['invScanCode']
+                rsltsObj[`${storeAbbrev}stocked`] = nhcrtRows[i]['invScanCode']
                 if (nhcrtRows[i]['stoName'] == 'Indiana') {
                   srcRsINDstocked.push(rsltsObj)
                 }
