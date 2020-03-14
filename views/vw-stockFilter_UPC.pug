@@ -224,13 +224,23 @@ html
 					tr
 						th ri_t0d
 						th INDstocked
-						th IND_NOTstocked
 				tbody
 					if srcRsINDstocked !== undefined
 						each elmnt in srcRsINDstocked
 							tr
 								td= elmnt.ri_t0d
 								td= elmnt.INDstocked
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th ri_t0d
+						th IND_NOTstocked
+				tbody
+					if srcRsIND_NOTstocked !== undefined
+						each elmnt in srcRsIND_NOTstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.IND_NOTstocked
 		div.rslt-tbl-1
 			table
