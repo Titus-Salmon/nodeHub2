@@ -183,12 +183,43 @@ html
 			//- 		input#csvReviewHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value="upc, sku, name, pf2, pf3, cost, charm, edlp_flag, sale_flag")
 
 
+		//- div.rslt-tbl-1
+		//- 	table#resTbl
+		//- 		label.input-label-1(for='ldSqlTbl') Loaded Sql Table:
+		//- 		input#ldSqlTbl.input-unit-1(type='text', placeholder='loaded sql table', name='ldSqlTblPost', value=loadedSqlTbl)
+		//- 		thead
+		//- 			tr
+		//- 				th ri_t0d
+		//- 				th INDstocked
+		//- 				th IND_NOTstocked
+		//- 				th SMstocked
+		//- 				th SM_NOTstocked
+		//- 				th MTstocked
+		//- 				th MT_NOTstocked
+		//- 				th SHstocked
+		//- 				th SH_NOTstocked
+		//- 				th GLstocked
+		//- 				th GL_NOTstocked
+
+
+		//- 		tbody#resTblBdy
+		//- 			if searchResRows !== undefined
+		//- 				each elmnt in searchResRows
+		//- 					tr
+		//- 						td= elmnt.ri_t0d
+		//- 						td= elmnt.INDstocked
+		//- 						td= elmnt.IND_NOTstocked
+		//- 						td= elmnt.SMstocked
+		//- 						td= elmnt.SM_NOTstocked
+		//- 						td= elmnt.MTstocked
+		//- 						td= elmnt.MT_NOTstocked
+		//- 						td= elmnt.SHstocked
+		//- 						td= elmnt.SH_NOTstocked
+		//- 						td= elmnt.GLstocked
+		//- 						td= elmnt.GL_NOTstocked
+
 		div.rslt-tbl-1
-			table#resTbl
-				label.input-label-1(for='ldSqlTbl') Loaded Sql Table:
-				input#ldSqlTbl.input-unit-1(type='text', placeholder='loaded sql table', name='ldSqlTblPost', value=loadedSqlTbl)
-				button#editDB(style="display: inline-block") Edit Selection
-				button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
+			table
 				thead
 					tr
 						th ri_t0d
@@ -202,128 +233,66 @@ html
 						th SH_NOTstocked
 						th GLstocked
 						th GL_NOTstocked
-
-
-				tbody#resTblBdy
-					if searchResRows !== undefined
-						each elmnt in searchResRows
+				tbody
+					if srcRsINDstocked !== undefined
+						each elmnt in srcRsINDstocked
 							tr
 								td= elmnt.ri_t0d
 								td= elmnt.INDstocked
 								td= elmnt.IND_NOTstocked
+					if srcRsIND_NOTstocked !== undefined
+						each elmnt in srcRsIND_NOTstocked
+							tr
+								td= elmnt.ri_t0d
+								td= elmnt.INDstocked
+								td= elmnt.IND_NOTstocked
+					if srcRsSMstocked !== undefined
+						each elmnt in srcRsSMstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.SMstocked
 								td= elmnt.SM_NOTstocked
+					if srcRsSMs_NOTtocked !== undefined
+						each elmnt in srcRsSM_NOTstocked
+							tr
+								td= elmnt.ri_t0d
+								td= elmnt.SMstocked
+								td= elmnt.SM_NOTstocked
+					if srcRsMTstocked !== undefined
+						each elmnt in srcRsMTstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.MTstocked
 								td= elmnt.MT_NOTstocked
+					if srcRsMT_NOTstocked !== undefined
+						each elmnt in srcRsMT_NOTstocked
+							tr
+								td= elmnt.ri_t0d
+								td= elmnt.MTstocked
+								td= elmnt.MT_NOTstocked
+					if srcRsSHstocked !== undefined
+						each elmnt in srcRsSHstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.SHstocked
 								td= elmnt.SH_NOTstocked
+					if srcRsSH_NOTstocked !== undefined
+						each elmnt in srcRsSH_NOTstocked
+							tr
+								td= elmnt.ri_t0d
+								td= elmnt.SHstocked
+								td= elmnt.SH_NOTstocked
+					if srcRsGLstocked !== undefined
+						each elmnt in srcRsGLstocked
+							tr
+								td= elmnt.ri_t0d
+								td= elmnt.GLstocked
+								td= elmnt.GL_NOTstocked
+					if srcRsGL_NOTstocked !== undefined
+						each elmnt in srcRsGL_NOTstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.GLstocked
 								td= elmnt.GL_NOTstocked
 
-		//- div.rslt-tbl-1
-		//- 	table#resTbl
-		//- 		label.input-label-1(for='ldSqlTbl') Loaded Sql Table:
-		//- 		input#ldSqlTbl.input-unit-1(type='text', placeholder='loaded sql table', name='ldSqlTblPost', value=loadedSqlTbl)
-		//- 		button#editDB(style="display: inline-block") Edit Selection
-		//- 		button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
-		//- 		thead
-		//- 			tr
-		//- 				th ri_t0d
-		//- 				th invPK
-		//- 				th invCPK
-		//- 				th invScanCode
-		//- 				th invName
-		//- 				th ordSupplierStockNumber
-		//- 				th invSize
-		//- 				th invReceiptAlias
-		//- 				th posTimeStamp
-		//- 				th invDateCreated
-		//- 				th invEmpFkCreatedBy
-		//- 				th ordQuantityInOrderUnit
-		//- 				th oupName
-		//- 				th stoName
-		//- 				th brdName
-		//- 				th dptName
-		//- 				th dptNumber
-		//- 				th sibIdealMargin
-		//- 				th venCompanyname
-		//- 				th invLastreceived
-		//- 				th invLastsold
-		//- 				th invLastcost
-		//- 				th sibBasePrice
-		//- 				th invOnhand
-		//- 				th invOnorder
-		//- 				th invIntransit
-		//- 				th pi1Description
-		//- 				th pi2Description
-		//- 				th pi3Description
-		//- 				th pi4Description
-		//- 				th invPowerField3
-		//- 				th invPowerField4
-		//- 				th Dept
-		//- 				th Brand
-		//- 				th Product
-		//- 				th Size
-		//- 				th SalePrice
-		//- 				th EDLP
-		//- 				th RBPrice
-		//- 				th percentOff
-		//- 				th GL
-		//- 				th IND
-		//- 				th MT
-		//- 				th SH
-		//- 				th SM
-		//- 				th Stores
-
-
-		//- 		tbody#resTblBdy
-		//- 			if nhcrtInfraSF_Join !== undefined
-		//- 				each elmnt in nhcrtInfraSF_Join
-		//- 					tr
-		//- 						td= elmnt.ri_t0d
-		//- 						td= elmnt.invPK
-		//- 						td= elmnt.invCPK
-		//- 						td= elmnt.invScanCode
-		//- 						td= elmnt.invName
-		//- 						td= elmnt.ordSupplierStockNumber
-		//- 						td= elmnt.invSize
-		//- 						td= elmnt.invReceiptAlias
-		//- 						td= elmnt.posTimeStamp
-		//- 						td= elmnt.invDateCreated
-		//- 						td= elmnt.invEmpFkCreatedBy
-		//- 						td= elmnt.ordQuantityInOrderUnit
-		//- 						td= elmnt.oupName
-		//- 						td= elmnt.stoName
-		//- 						td= elmnt.brdName
-		//- 						td= elmnt.dptName
-		//- 						td= elmnt.dptNumber
-		//- 						td= elmnt.sibIdealMargin
-		//- 						td= elmnt.venCompanyname
-		//- 						td= elmnt.invLastreceived
-		//- 						td= elmnt.invLastsold
-		//- 						td= elmnt.invLastcost
-		//- 						td= elmnt.sibBasePrice
-		//- 						td= elmnt.invOnhand
-		//- 						td= elmnt.invOnorder
-		//- 						td= elmnt.invIntransit
-		//- 						td= elmnt.pi1Description
-		//- 						td= elmnt.pi2Description
-		//- 						td= elmnt.pi3Description
-		//- 						td= elmnt.pi4Description
-		//- 						td= elmnt.invPowerField3
-		//- 						td= elmnt.invPowerField4
-		//- 						td= elmnt.Dept
-		//- 						td= elmnt.Brand
-		//- 						td= elmnt.Product
-		//- 						td= elmnt.Size
-		//- 						td= elmnt.SalePrice
-		//- 						td= elmnt.EDLP
-		//- 						td= elmnt.RBPrice
-		//- 						td= elmnt.percentOff
-		//- 						td= elmnt.GL
-		//- 						td= elmnt.IND
-		//- 						td= elmnt.MT
-		//- 						td= elmnt.SH
-		//- 						td= elmnt.SM
-		//- 						td= elmnt.Stores
 		script(src='/javascripts/modules/adminM0d.js')
