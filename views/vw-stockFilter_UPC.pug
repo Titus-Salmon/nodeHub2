@@ -225,14 +225,6 @@ html
 						th ri_t0d
 						th INDstocked
 						th IND_NOTstocked
-						th SMstocked
-						th SM_NOTstocked
-						th MTstocked
-						th MT_NOTstocked
-						th SHstocked
-						th SH_NOTstocked
-						th GLstocked
-						th GL_NOTstocked
 				tbody
 					if srcRsINDstocked !== undefined
 						each elmnt in srcRsINDstocked
@@ -240,14 +232,61 @@ html
 								td= elmnt.ri_t0d
 								td= elmnt.INDstocked
 								td= elmnt.IND_NOTstocked
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th ri_t0d
+						th SMstocked
+						th SM_NOTstocked
+				tbody
+					if srcRsSMstocked !== undefined
+						each elmnt in srcRsSMstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.SMstocked
 								td= elmnt.SM_NOTstocked
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th ri_t0d
+						th MTstocked
+						th MT_NOTstocked
+				tbody
+					if srcRsMTstocked !== undefined
+						each elmnt in srcRsMTstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.MTstocked
 								td= elmnt.MT_NOTstocked
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th ri_t0d
+						th SHstocked
+						th SH_NOTstocked
+				tbody
+					if srcRsSHstocked !== undefined
+						each elmnt in srcRsSHstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.SHstocked
 								td= elmnt.SH_NOTstocked
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th ri_t0d
+						th GLstocked
+						th GL_NOTstocked
+				tbody
+					if srcRsGLstocked !== undefined
+						each elmnt in srcRsGLstocked
+							tr
+								td= elmnt.ri_t0d
 								td= elmnt.GLstocked
 								td= elmnt.GL_NOTstocked
-					
 
 		script(src='/javascripts/modules/adminM0d.js')
