@@ -122,34 +122,8 @@ html
 		if sqlTablePopulated !== undefined
 			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
 
-		//-/^// NEW STUFF FOR signFilterChecker*********************************************************************************************************
+		//-*********************************************************************************************************
 
-
-		form#retailCalcUniversal(action='/signFilterChecker/calcResultsSfAud' method='POST' accept-charset="UTF-8")
-
-			if sqlTableCreated !== undefined
-
-				input#tblColumnNames.input-unit-1(type='text', placeholder='enter data', name='tblColumnNamesPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.basicColumnNames)
-				input#tblPopulated.input-unit-1(type='text', placeholder='enter data', name='tblPopulatedPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.tableName)
-			if loadedTable !== undefined
-
-				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
-				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-
-		button(type='submit', form='retailCalcUniversal', style="display: block; float: left") sfAud
-
-		form#calcResultsSfAud2(action='/signFilterChecker/calcResultsSfAud2' method='POST' accept-charset="UTF-8")
-
-			if sqlTableCreated !== undefined
-
-				input#tblColumnNames.input-unit-1(type='text', placeholder='enter data', name='tblColumnNamesPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.basicColumnNames)
-				input#tblPopulated.input-unit-1(type='text', placeholder='enter data', name='tblPopulatedPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.tableName)
-			if loadedTable !== undefined
-
-				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
-				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-
-		button(type='submit', form='calcResultsSfAud2', style="display: block; float: left") sfAud2
 
 		form#calcResStockFilter_UPC(action='/stockFilter_UPC/calcResStockFilter_UPC' method='POST' accept-charset="UTF-8")
 
@@ -170,7 +144,6 @@ html
 		form#saveCSVPost(action='/signFilterChecker/saveIMW_CSV' method='POST' accept-charset='UTF-8')
 			label.input-label-1(for='csv') filename:
 				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				//- input#typeOfIMW.input-unit-1(type='text', placeholder='Type if IMW', name='typeOfIMWPost', value='')
 			if loadedTable !== undefined
 				label.input-label-1(for='csvHeaders') CSV headers:
 					input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
@@ -178,45 +151,6 @@ html
 		form#saveCSVreviewPost(action='/signFilterChecker/save2CSVreviewNEJ' method='POST' accept-charset='UTF-8')
 			label.input-label-1(for='csvReview') filename:
 				input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-			//- if loadedTable !== undefined
-			//- 	label.input-label-1(for='csvReviewHeaders') CSV Review headers:
-			//- 		input#csvReviewHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value="upc, sku, name, pf2, pf3, cost, charm, edlp_flag, sale_flag")
-
-
-		//- div.rslt-tbl-1
-		//- 	table#resTbl
-		//- 		label.input-label-1(for='ldSqlTbl') Loaded Sql Table:
-		//- 		input#ldSqlTbl.input-unit-1(type='text', placeholder='loaded sql table', name='ldSqlTblPost', value=loadedSqlTbl)
-		//- 		thead
-		//- 			tr
-		//- 				th ri_t0d
-		//- 				th INDstocked
-		//- 				th IND_NOTstocked
-		//- 				th SMstocked
-		//- 				th SM_NOTstocked
-		//- 				th MTstocked
-		//- 				th MT_NOTstocked
-		//- 				th SHstocked
-		//- 				th SH_NOTstocked
-		//- 				th GLstocked
-		//- 				th GL_NOTstocked
-
-
-		//- 		tbody#resTblBdy
-		//- 			if searchResRows !== undefined
-		//- 				each elmnt in searchResRows
-		//- 					tr
-		//- 						td= elmnt.ri_t0d
-		//- 						td= elmnt.INDstocked
-		//- 						td= elmnt.IND_NOTstocked
-		//- 						td= elmnt.SMstocked
-		//- 						td= elmnt.SM_NOTstocked
-		//- 						td= elmnt.MTstocked
-		//- 						td= elmnt.MT_NOTstocked
-		//- 						td= elmnt.SHstocked
-		//- 						td= elmnt.SH_NOTstocked
-		//- 						td= elmnt.GLstocked
-		//- 						td= elmnt.GL_NOTstocked
 
 		div.rslt-tbl-1
 			table
