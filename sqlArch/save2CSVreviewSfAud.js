@@ -15,11 +15,14 @@ module.exports = {
     } = require('json2csv')
 
     const fields = [
-      "ri_t0d", "invPK", "invCPK", "invScanCode", "invName", "ordSupplierStockNumber", "invSize", "invReceiptAlias", "posTimeStamp", "invDateCreated",
-      "invEmpFkCreatedBy", "ordQuantityInOrderUnit", "oupName", "stoName", "brdName", "dptName", "dptNumber", "sibIdealMargin", "venCompanyname",
-      "invLastreceived", "invLastsold", "invLastcost", "sibBasePrice", "invOnhand", "invOnorder", "invIntransit", "pi1Description", "pi2Description",
-      "pi3Description", "pi4Description", "invPowerField3", "invPowerField4", "Dept", "Brand", "Product", "Size", "SalePrice", "EDLP", "RBPrice",
-      "percentOff", "GL", "IND", "MT", "SH", "SM", "Stores"
+      // "ri_t0d", "invPK", "invCPK", "invScanCode", "invName", "ordSupplierStockNumber", "invSize", "invReceiptAlias", "posTimeStamp", "invDateCreated",
+      // "invEmpFkCreatedBy", "ordQuantityInOrderUnit", "oupName", "stoName", "brdName", "dptName", "dptNumber", "sibIdealMargin", "venCompanyname",
+      // "invLastreceived", "invLastsold", "invLastcost", "sibBasePrice", "invOnhand", "invOnorder", "invIntransit", "pi1Description", "pi2Description",
+      // "pi3Description", "pi4Description", "invPowerField3", "invPowerField4", "Dept", "Brand", "Product", "Size", "SalePrice", "EDLP", "RBPrice",
+      // "percentOff", "GL", "IND", "MT", "SH", "SM", "Stores"
+      'ri_t0d', 'invMismatchUPC', 'invMismatchSKU', 'invMismatchName', 'invMismatchStore', 'invMismatchSFdata', 'invMismatchCPLTdata',
+      'invMismatchLastRecd', 'invMismatchLastSold', 'LastRecd0_3', 'LastRecd3_6', 'LastRecd6_9', 'LastRecd9_12', 'LastRecd12plus', 'Comments1',
+      'Comments2'
     ]
 
     const opts = {
