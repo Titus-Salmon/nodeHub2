@@ -8,7 +8,7 @@ html
 
 	div(style="display:block")
 		form#nhcrtEdiCSVPost(action='/signFilterChecker/save2CSVreviewSfAud' method='POST' accept-charset='UTF-8')
-			if nhcrtInfraSF_Join !== undefined
+			if searchResRows !== undefined
 				label.input-label-1(for='csv') filename:
 					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
 				//- label.input-label-1(for='csvHeaders') CSV Headers
