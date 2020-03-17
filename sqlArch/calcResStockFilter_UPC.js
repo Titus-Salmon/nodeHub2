@@ -124,7 +124,7 @@ module.exports = {
               srcRsSHstocked, srcRsSH_NOTstocked, srcRsGLstocked, srcRsGL_NOTstocked)
             cacheMainStockFilter.set('searchResultsCache_key', searchResults)
             let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
-            console.log(`JSON.stringify(searchResultsCache[0])==> ${JSON.stringify(searchResultsCache[0]}`)
+            console.log(`JSON.stringify(searchResultsCache[0])==> ${JSON.stringify(searchResultsCache[0])}`)
           }
           calcResStockFilter_UPC(storeName, storeAbbrev)
         }
