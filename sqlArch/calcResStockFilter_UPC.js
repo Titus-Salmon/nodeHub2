@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const mysql = require('mysql')
 
+const cacheMainStockFilter = require('../nodeCacheStuff/cache1')
+
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
   user: process.env.RB_USER,
@@ -13,6 +15,11 @@ const connection = mysql.createConnection({
 module.exports = {
 
   calcResStockFilter_UPC: router.post('/calcResStockFilter_UPC', (req, res, next) => {
+
+    searchResultsCacheChecker = cacheMainStockFilter.get('searchResultsCache_key');
+    if (searchResultsCacheChecker !== undefined) { //clear searchResultsCache_key if it exists
+      cacheMainStockFilter.del('searchResultsCache_key')
+    }
 
     srcRsINDstocked = []
     srcRsIND_NOTstocked = []
@@ -115,23 +122,15 @@ module.exports = {
             }
             searchResults.push(srcRsINDstocked, srcRsIND_NOTstocked, srcRsSMstocked, srcRsSM_NOTstocked, srcRsMTstocked, srcRsMT_NOTstocked,
               srcRsSHstocked, srcRsSH_NOTstocked, srcRsGLstocked, srcRsGL_NOTstocked)
+            cacheMainStockFilter.set('searchResultsCache_key', searchResults)
+            let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
+            console.log(`searchResultsCache==> ${searchResultsCache}`)
           }
           calcResStockFilter_UPC(storeName, storeAbbrev)
         }
       }
       // console.log(`JSON.stringify(searchResults)==> ${JSON.stringify(searchResults)}`)
     }
-
-    // srcRsINDstocked = []
-    // srcRsIND_NOTstocked = []
-    // srcRsSMstocked = []
-    // srcRsSM_NOTstocked = []
-    // srcRsMTstocked = []
-    // srcRsMT_NOTstocked = []
-    // srcRsSHstocked = []
-    // srcRsSH_NOTstocked = []
-    // srcRsGLstocked = []
-    // srcRsGL_NOTstocked = []
 
 
     function queryNhcrtTable() {

@@ -3,11 +3,15 @@ var router = express.Router();
 
 const fs = require('fs')
 
+const cacheMainStockFilter = require('../nodeCacheStuff/cache1')
+
 module.exports = {
   save2CSVstockfilter: router.post('/save2CSVstockfilter', (req, res, next) => {
 
-    console.log(`req.body['csvDataPost'][0]==>${req.body['csvDataPost'][0]}`)
-    console.log(`JSON.parse(req.body['csvDataPost'])==>${JSON.parse(req.body['csvDataPost'])}`)
+    // console.log(`req.body['csvDataPost'][0]==>${req.body['csvDataPost'][0]}`)
+    // console.log(`JSON.parse(req.body['csvDataPost'])==>${JSON.parse(req.body['csvDataPost'])}`)
+
+    let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
 
     //begin csv generator //////////////////////////////////////////////////////////////////////////
     const {
