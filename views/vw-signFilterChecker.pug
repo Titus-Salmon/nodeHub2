@@ -122,72 +122,24 @@ html
 		if sqlTablePopulated !== undefined
 			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
 
-		//-/^// NEW STUFF FOR signFilterChecker*********************************************************************************************************
-
-
-		form#retailCalcUniversal(action='/signFilterChecker/calcResultsSfAud' method='POST' accept-charset="UTF-8")
-
-			if sqlTableCreated !== undefined
-
-				input#tblColumnNames.input-unit-1(type='text', placeholder='enter data', name='tblColumnNamesPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.basicColumnNames)
-				input#tblPopulated.input-unit-1(type='text', placeholder='enter data', name='tblPopulatedPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.tableName)
-			if loadedTable !== undefined
-
-				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
-				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-
-		button(type='submit', form='retailCalcUniversal', style="display: block; float: left") sfAud
-
-		form#calcResultsSfAud2(action='/signFilterChecker/calcResultsSfAud2' method='POST' accept-charset="UTF-8")
-
-			if sqlTableCreated !== undefined
-
-				input#tblColumnNames.input-unit-1(type='text', placeholder='enter data', name='tblColumnNamesPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.basicColumnNames)
-				input#tblPopulated.input-unit-1(type='text', placeholder='enter data', name='tblPopulatedPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.tableName)
-			if loadedTable !== undefined
-
-				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
-				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-
-		button(type='submit', form='calcResultsSfAud2', style="display: block; float: left") sfAud2
+		//-*********************************************************************************************************
 
 		form#calcResultsSfAud3(action='/signFilterChecker/calcResultsSfAud3' method='POST' accept-charset="UTF-8")
-
 			if sqlTableCreated !== undefined
-
 				input#tblColumnNames.input-unit-1(type='text', placeholder='enter data', name='tblColumnNamesPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.basicColumnNames)
 				input#tblPopulated.input-unit-1(type='text', placeholder='enter data', name='tblPopulatedPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.tableName)
 			if loadedTable !== undefined
-
 				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
 				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-
 		button(type='submit', form='calcResultsSfAud3', style="display: block; float: left") sfAud3
 
 		br
 		br
-		button.adminButton#saveCSV(type="submit" form="saveCSVPost") Save Results as CSV - Inv Mnt Wksht (for WS, Retail, or New Item Update)
-		form#saveCSVPost(action='/signFilterChecker/saveIMW_CSV' method='POST' accept-charset='UTF-8')
-			label.input-label-1(for='csv') filename:
-				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				//- input#typeOfIMW.input-unit-1(type='text', placeholder='Type if IMW', name='typeOfIMWPost', value='')
-			if loadedTable !== undefined
-				label.input-label-1(for='csvHeaders') CSV headers:
-					input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-		button.adminButton#saveCSVreview(type="submit" form="saveCSVreviewPost") Save Results as CSV - Retail Price Review
-		form#saveCSVreviewPost(action='/signFilterChecker/save2CSVreviewNEJ' method='POST' accept-charset='UTF-8')
-			label.input-label-1(for='csvReview') filename:
-				input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-			//- if loadedTable !== undefined
-			//- 	label.input-label-1(for='csvReviewHeaders') CSV Review headers:
-			//- 		input#csvReviewHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value="upc, sku, name, pf2, pf3, cost, charm, edlp_flag, sale_flag")
 
 		div.rslt-tbl-1
 			table#resTbl
 				label.input-label-1(for='ldSqlTbl') Loaded Sql Table:
 				input#ldSqlTbl.input-unit-1(type='text', placeholder='loaded sql table', name='ldSqlTblPost', value=loadedSqlTbl)
-				button#editDB(style="display: inline-block") Edit Selection
-				button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
 				thead
 					tr
 						th ri_t0d
@@ -288,8 +240,6 @@ html
 								td= elmnt.SH
 								td= elmnt.SM
 								td= elmnt.Stores
-									//- label.input-label-1(for='mrgnVl') margin value
-									//- input#mrgVl.input-unit-1(type='number', placeholder='0', name='mrgVldPost', value='')
 
 
 		script(src='/javascripts/modules/adminM0d.js')

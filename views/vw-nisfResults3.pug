@@ -11,8 +11,6 @@ html
 			if searchResRows !== undefined
 				label.input-label-1(for='csv') filename:
 					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				//- label.input-label-1(for='csvHeaders') CSV Headers
-				//- 	input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', value='ri_t0d,invScanCode,ordSupplierStockNumber,invName,invSize,invReceiptAlias,posTimeStamp,invDateCreated,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastcost,sibBasePrice,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4,ediCost')
 				label.input-label-1(for='csvData') CSV Body data
 					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=searchResRows)
 				button#saveCSVSfAud(type="submit" form="save2CSVreviewSfAud") Save Results as CSV - sfAud
@@ -60,9 +58,6 @@ html
 								td= elmnt.Comments1
 								td= elmnt.Comments2
 
-
-//- testing for clone
-//- change made from home computer
 
 
 
