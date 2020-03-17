@@ -120,15 +120,22 @@ module.exports = {
               }
               // searchResults.push(rsltsObj)
             }
-            searchResults.push(srcRsINDstocked, srcRsIND_NOTstocked, srcRsSMstocked, srcRsSM_NOTstocked, srcRsMTstocked, srcRsMT_NOTstocked,
-              srcRsSHstocked, srcRsSH_NOTstocked, srcRsGLstocked, srcRsGL_NOTstocked)
-            cacheMainStockFilter.set('searchResultsCache_key', searchResults)
-            let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
-            console.log(`JSON.stringify(searchResultsCache[0])==> ${JSON.stringify(searchResultsCache[0])}`)
+            // searchResults.push(srcRsINDstocked, srcRsIND_NOTstocked, srcRsSMstocked, srcRsSM_NOTstocked, srcRsMTstocked, srcRsMT_NOTstocked,
+            //   srcRsSHstocked, srcRsSH_NOTstocked, srcRsGLstocked, srcRsGL_NOTstocked)
+            // cacheMainStockFilter.set('searchResultsCache_key', searchResults)
+            // let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
+            // console.log(`JSON.stringify(searchResultsCache[0])==> ${JSON.stringify(searchResultsCache[0])}`)
           }
           calcResStockFilter_UPC(storeName, storeAbbrev)
         }
       }
+
+      searchResults.push(srcRsINDstocked, srcRsIND_NOTstocked, srcRsSMstocked, srcRsSM_NOTstocked, srcRsMTstocked, srcRsMT_NOTstocked,
+        srcRsSHstocked, srcRsSH_NOTstocked, srcRsGLstocked, srcRsGL_NOTstocked)
+      cacheMainStockFilter.set('searchResultsCache_key', searchResults)
+      let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
+      console.log(`JSON.stringify(searchResultsCache[0])==> ${JSON.stringify(searchResultsCache[0])}`)
+
       // console.log(`JSON.stringify(searchResults)==> ${JSON.stringify(searchResults)}`)
     }
 
