@@ -26,12 +26,12 @@ module.exports = {
     srcRsGL_NOTstocked = []
 
     searchResults = [] //clear searchResults from previous search
-    console.log('calcResStockFilter_UPC says: searchResults from router.post level===>', searchResults)
+    // console.log('calcResStockFilter_UPC says: searchResults from router.post level===>', searchResults)
     searchResultsForCSV = []
     searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
-    console.log('calcResStockFilter_UPC says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
+    // console.log('calcResStockFilter_UPC says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
     csvContainer = []
-    console.log('calcResStockFilter_UPC says: csvContainer from router.post level===>', csvContainer)
+    // console.log('calcResStockFilter_UPC says: csvContainer from router.post level===>', csvContainer)
 
 
     const postBody = req.body
@@ -119,7 +119,7 @@ module.exports = {
           calcResStockFilter_UPC(storeName, storeAbbrev)
         }
       }
-      console.log(`JSON.stringify(searchResults)==> ${JSON.stringify(searchResults)}`)
+      // console.log(`JSON.stringify(searchResults)==> ${JSON.stringify(searchResults)}`)
     }
 
     // srcRsINDstocked = []
