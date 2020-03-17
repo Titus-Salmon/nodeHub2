@@ -51,8 +51,6 @@ module.exports = {
     let oneYearAgoRaw_pre = todaysDateRaw
     oneYearAgoRaw_pre.setFullYear(todaysDateRaw.getFullYear() - 1)
 
-    // let oneYearAgoRaw = todaysDateRaw.setFullYear(todaysDateRaw.getFullYear() - 1)
-    // console.log(`oneYearAgoRaw==> ${oneYearAgoRaw}`)
     let oneYearAgoRaw_iso = oneYearAgoRaw_pre.toISOString()
     let oneYearAgoRaw_split = oneYearAgoRaw_iso.split('T')
     let oneYearAgo = oneYearAgoRaw_split[0]
@@ -64,18 +62,6 @@ module.exports = {
     function showSearchResults(rows) {
 
       let nhcrtRows = rows
-
-      // for (let i = 0; i < nhcrtRows.length; i++) {
-      //   if (nhcrtRows[i]['stoName'] == 'Indiana') {
-      //     let rsltsObj = {}
-      //     rsltsObj['ri_t0d'] = i
-      //     if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
-      //       nhcrtRows[i]['invLastsold'] > oneYearAgo ||
-      //       nhcrtRows[i]['invOnhand'] > 0) {
-      //       rsltsObj[`INstocked`] = nhcrtRows[i]['invScanCode']
-      //     }
-      //   }
-      // }
 
       for (let i = 0; i < nhcrtRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
@@ -127,6 +113,8 @@ module.exports = {
               }
               // searchResults.push(rsltsObj)
             }
+            searchResults.push(srcRsINDstocked, srcRsIND_NOTstocked, srcRsSMstocked, srcRsSM_NOTstocked, srcRsMTstocked, srcRsMT_NOTstocked,
+              srcRsSHstocked, srcRsSH_NOTstocked, srcRsGLstocked, srcRsGL_NOTstocked)
           }
           calcResStockFilter_UPC(storeName, storeAbbrev)
         }
@@ -134,37 +122,16 @@ module.exports = {
       console.log(`JSON.stringify(searchResults)==> ${JSON.stringify(searchResults)}`)
     }
 
-
-    // function showSearchResults(rows) {
-
-    //   let nhcrtRows = rows
-
-    //   for (let i = 0; i < nhcrtRows.length; i++) {
-    //     for (let j = 0; j < storeNameArr.length; j++) {
-
-    //       storeName = storeNameArr[j]
-    //       storeAbbrev = storeAbbrevArr[j]
-
-    //       function calcResStockFilter_UPC(storeName, storeAbbrev) {
-    //         if (nhcrtRows[i]['stoName'] == storeName) {
-    //           let rsltsObj = {}
-    //           rsltsObj['ri_t0d'] = i
-    //           rsltsObj[`${storeAbbrev}_UPCs`] = nhcrtRows[i]['invScanCode']
-    //           if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
-    //             nhcrtRows[i]['invLastsold'] > oneYearAgo ||
-    //             nhcrtRows[i]['invOnhand'] > 0) {
-    //             rsltsObj[`${storeAbbrev}_stocked`] = nhcrtRows[i]['invScanCode']
-    //           } else {
-    //             rsltsObj[`${storeAbbrev}_NOTstocked`] = nhcrtRows[i]['invScanCode']
-    //           }
-    //           searchResults.push(rsltsObj)
-    //         }
-    //       }
-    //       calcResStockFilter_UPC(storeName, storeAbbrev)
-    //     }
-    //   }
-    //   console.log(`JSON.stringify(searchResults)==> ${JSON.stringify(searchResults)}`)
-    // }
+    // srcRsINDstocked = []
+    // srcRsIND_NOTstocked = []
+    // srcRsSMstocked = []
+    // srcRsSM_NOTstocked = []
+    // srcRsMTstocked = []
+    // srcRsMT_NOTstocked = []
+    // srcRsSHstocked = []
+    // srcRsSH_NOTstocked = []
+    // srcRsGLstocked = []
+    // srcRsGL_NOTstocked = []
 
 
     function queryNhcrtTable() {

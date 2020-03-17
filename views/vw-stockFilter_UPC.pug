@@ -140,17 +140,26 @@ html
 
 		br
 		br
-		button.adminButton#saveCSV(type="submit" form="saveCSVPost") Save Results as CSV - Inv Mnt Wksht (for WS, Retail, or New Item Update)
-		form#saveCSVPost(action='/signFilterChecker/saveIMW_CSV' method='POST' accept-charset='UTF-8')
-			label.input-label-1(for='csv') filename:
-				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-			if loadedTable !== undefined
-				label.input-label-1(for='csvHeaders') CSV headers:
-					input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-		button.adminButton#saveCSVreview(type="submit" form="saveCSVreviewPost") Save Results as CSV - Retail Price Review
-		form#saveCSVreviewPost(action='/signFilterChecker/save2CSVreviewNEJ' method='POST' accept-charset='UTF-8')
-			label.input-label-1(for='csvReview') filename:
-				input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+		//- button.adminButton#saveCSV(type="submit" form="saveCSVPost") Save Results as CSV - Inv Mnt Wksht (for WS, Retail, or New Item Update)
+		//- form#saveCSVPost(action='/signFilterChecker/saveIMW_CSV' method='POST' accept-charset='UTF-8')
+		//- 	label.input-label-1(for='csv') filename:
+		//- 		input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+		//- 	if loadedTable !== undefined
+		//- 		label.input-label-1(for='csvHeaders') CSV headers:
+		//- 			input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
+		//- button.adminButton#saveCSVreview(type="submit" form="saveCSVreviewPost") Save Results as CSV - Retail Price Review
+		//- form#saveCSVreviewPost(action='/signFilterChecker/save2CSVreviewNEJ' method='POST' accept-charset='UTF-8')
+		//- 	label.input-label-1(for='csvReview') filename:
+		//- 		input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+
+		div(style="display:block")
+		form#save2CSVstockfilter(action='/stockFilter_UPC/save2CSVstockfilter' method='POST' accept-charset='UTF-8')
+			if searchResRows !== undefined
+				label.input-label-1(for='csv') filename:
+					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+				label.input-label-1(for='csvData') CSV Body data
+					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=searchResRows)
+				button#saveCSVstockfilter(type="submit" form="save2CSVstockfilter") Save Results as CSV - stockFilter
 
 		div.rslt-tbl-1
 			table
