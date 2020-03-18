@@ -10,6 +10,7 @@ module.exports = {
 
     let csvDataPostparsed = JSON.parse(req.body['csvDataPost'])
     console.log(`csvDataPostparsed[0]==> ${csvDataPostparsed[0]}`)
+    console.log(`JSON.stringify(csvDataPostparsed[0])==> ${JSON.stringify(csvDataPostparsed[0])}`)
     console.log(`csvDataPostparsed[0][0]==> ${csvDataPostparsed[0][0]}`)
     console.log(`csvDataPostparsed[0][0]['ri_t0d']==> ${csvDataPostparsed[0][0]['ri_t0d']}`)
     console.log(`JSON.stringify(csvDataPostparsed[0][0])==> ${JSON.stringify(csvDataPostparsed[0][0])}`)
