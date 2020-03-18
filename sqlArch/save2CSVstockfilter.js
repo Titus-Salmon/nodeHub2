@@ -39,7 +39,7 @@ module.exports = {
       const parser = new Parser(opts);
       console.log(`req.body['csvDataPost'][0]==>${req.body['csvDataPost'][0]}`)
       // const csv = parser.parse(JSON.parse(req.body['csvDataPost']))
-      const csv = parser.parse(JSON.parse(csvDataPostparsed[0]))
+      const csv = parser.parse(csvDataPostparsed[0])
 
       // console.log(`JSON.stringify(req.body['csvDataPost'][0])-->${JSON.stringify(req.body['csvDataPost'][0])}`)
       // console.log(`req.body['csvPost']-->${req.body['csvPost']}`)
