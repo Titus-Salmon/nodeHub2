@@ -8,14 +8,16 @@ const cacheMainStockFilter = require('../nodeCacheStuff/cache1')
 module.exports = {
   save2CSVstockfilter: router.post('/save2CSVstockfilter', (req, res, next) => {
 
-    let csvDataPostparsed = JSON.parse(req.body['csvDataPost'])
-    console.log(`csvDataPostparsed==> ${csvDataPostparsed}`)
-    console.log(`JSON.parse(csvDataPostparsed)==> ${JSON.parse(csvDataPostparsed)}`)
-    console.log(`csvDataPostparsed[0]==> ${csvDataPostparsed[0]}`)
-    console.log(`JSON.stringify(csvDataPostparsed[0])==> ${JSON.stringify(csvDataPostparsed[0])}`)
-    console.log(`csvDataPostparsed[0][0]==> ${csvDataPostparsed[0][0]}`)
-    console.log(`csvDataPostparsed[0][0]['ri_t0d']==> ${csvDataPostparsed[0][0]['ri_t0d']}`)
-    console.log(`JSON.stringify(csvDataPostparsed[0][0])==> ${JSON.stringify(csvDataPostparsed[0][0])}`)
+    console.log(`req.body['csvDataPost']==> ${req.body['csvDataPost']}`)
+
+    // let csvDataPostparsed = JSON.parse(req.body['csvDataPost'])
+    // console.log(`csvDataPostparsed==> ${csvDataPostparsed}`)
+    // console.log(`JSON.parse(csvDataPostparsed)==> ${JSON.parse(csvDataPostparsed)}`)
+    // console.log(`csvDataPostparsed[0]==> ${csvDataPostparsed[0]}`)
+    // console.log(`JSON.stringify(csvDataPostparsed[0])==> ${JSON.stringify(csvDataPostparsed[0])}`)
+    // console.log(`csvDataPostparsed[0][0]==> ${csvDataPostparsed[0][0]}`)
+    // console.log(`csvDataPostparsed[0][0]['ri_t0d']==> ${csvDataPostparsed[0][0]['ri_t0d']}`)
+    // console.log(`JSON.stringify(csvDataPostparsed[0][0])==> ${JSON.stringify(csvDataPostparsed[0][0])}`)
 
     // console.log(`JSON.stringify(req.body['csvDataPost'])==>${JSON.stringify(req.body['csvDataPost'])}`)
 
