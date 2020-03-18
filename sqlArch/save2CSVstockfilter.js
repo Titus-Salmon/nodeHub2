@@ -27,7 +27,8 @@ module.exports = {
       // 'ri_t0d', 'invMismatchUPC', 'invMismatchSKU', 'invMismatchName', 'invMismatchStore', 'invMismatchSFdata', 'invMismatchCPLTdata',
       // 'invMismatchLastRecd', 'invMismatchLastSold', 'LastRecd0_3', 'LastRecd3_6', 'LastRecd6_9', 'LastRecd9_12', 'LastRecd12plus', 'Comments1',
       // 'Comments2'
-      `${srcRsINDstocked['ri_t0d']}`, `${srcRsINDstocked['INDstocked']}`
+      // `${srcRsINDstocked['ri_t0d']}`, `${srcRsINDstocked['INDstocked']}`
+      'ri_t0d', 'INDstocked'
     ]
 
     const opts = {
