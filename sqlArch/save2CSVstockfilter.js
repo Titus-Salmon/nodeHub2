@@ -10,6 +10,7 @@ module.exports = {
 
     console.log(`req.body['csvDataPost'][0]==>${req.body['csvDataPost'][0]}`)
     console.log(`JSON.parse(req.body['csvDataPost'])==>${JSON.parse(req.body['csvDataPost'])}`)
+    console.log(`JSON.stringify(req.body['csvDataPost'])==>${JSON.stringify(req.body['csvDataPost'])}`)
 
     // let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
 
