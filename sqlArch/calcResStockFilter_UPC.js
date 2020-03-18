@@ -133,6 +133,7 @@ module.exports = {
       searchResults.push(srcRsINDstocked.toString(), srcRsIND_NOTstocked.toString(), srcRsSMstocked.toString(), srcRsSM_NOTstocked.toString(),
         srcRsMTstocked.toString(), srcRsMT_NOTstocked.toString(), srcRsSHstocked.toString(), srcRsSH_NOTstocked.toString(),
         srcRsGLstocked.toString(), srcRsGL_NOTstocked.toString())
+      searchResultsSplit = searchResults.split(',')
       console.log(`searchResults[0]==> ${searchResults[0]}`)
       console.log(`JSON.stringify(searchResults[0])==> ${JSON.stringify(searchResults[0])}`)
       // cacheMainStockFilter.set('searchResultsCache_key', searchResults)
@@ -150,7 +151,7 @@ module.exports = {
 
         res.render('vw-stockFilter_UPC', { //render searchResults to vw-MySqlTableHub page
           title: 'stockFilter_UP (using nhcrt table)',
-          searchResRows: searchResults,
+          searchResRows: searchResultsSplit,
           loadedSqlTbl: loadedSqlTbl,
           srcRsINDstocked: srcRsINDstocked,
           srcRsIND_NOTstocked: srcRsIND_NOTstocked,
