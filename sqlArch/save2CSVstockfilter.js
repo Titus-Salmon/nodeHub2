@@ -9,6 +9,8 @@ module.exports = {
   save2CSVstockfilter: router.post('/save2CSVstockfilter', (req, res, next) => {
 
     console.log(`req.body['csvDataPost']==> ${req.body['csvDataPost']}`)
+    console.log(`JSON.stringify(req.body['csvDataPost'])==> ${JSON.stringify(req.body['csvDataPost'])}`)
+    console.log(`JSON.parse(req.body['csvDataPost'])==> ${JSON.parse(req.body['csvDataPost'])}`)
 
     // let csvDataPostparsed = JSON.parse(req.body['csvDataPost'])
     // console.log(`csvDataPostparsed==> ${csvDataPostparsed}`)
@@ -44,9 +46,9 @@ module.exports = {
     try {
       const parser = new Parser(opts);
       console.log(`req.body['csvDataPost'][0]==>${req.body['csvDataPost'][0]}`)
-      // const csv = parser.parse(JSON.parse(req.body['csvDataPost']))
+      const csv = parser.parse(JSON.parse(req.body['csvDataPost']))
       // const csv = parser.parse(csvDataPostparsed[0])
-      const csv = parser.parse(csvDataPostparsed)
+      // const csv = parser.parse(csvDataPostparsed)
 
       // console.log(`JSON.stringify(req.body['csvDataPost'][0])-->${JSON.stringify(req.body['csvDataPost'][0])}`)
       // console.log(`req.body['csvPost']-->${req.body['csvPost']}`)

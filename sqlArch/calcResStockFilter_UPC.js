@@ -131,8 +131,8 @@ module.exports = {
       }
 
       searchResults.push(srcRsINDstocked.toString(), srcRsIND_NOTstocked.toString(), srcRsSMstocked.toString(), srcRsSM_NOTstocked.toString(),
-        srcRsMTstocked.toString(), srcRsMT_NOTstocked.toString(), srcRsSHstocked.toString(), srcRsSH_NOTstocked.toString(), srcRsGLstocked,
-        srcRsGL_NOTstocked.toString())
+        srcRsMTstocked.toString(), srcRsMT_NOTstocked.toString(), srcRsSHstocked.toString(), srcRsSH_NOTstocked.toString(),
+        srcRsGLstocked.toString(), srcRsGL_NOTstocked.toString())
       console.log(`searchResults[0]==> ${searchResults[0]}`)
       console.log(`JSON.stringify(searchResults[0])==> ${JSON.stringify(searchResults[0])}`)
       // cacheMainStockFilter.set('searchResultsCache_key', searchResults)
