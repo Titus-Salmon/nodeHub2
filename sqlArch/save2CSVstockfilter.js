@@ -10,10 +10,11 @@ module.exports = {
 
     let csvDataPostparsed = JSON.parse(req.body['csvDataPost'])
     console.log(`csvDataPostparsed[0]==> ${csvDataPostparsed[0]}`)
+    console.log(`csvDataPostparsed[0][0]==> ${csvDataPostparsed[0][0]}`)
 
-    console.log(`req.body['csvDataPost'][0]==>${req.body['csvDataPost'][0]}`)
-    console.log(`JSON.parse(req.body['csvDataPost'])==>${JSON.parse(req.body['csvDataPost'])}`)
-    console.log(`JSON.stringify(req.body['csvDataPost'][0][0])==>${JSON.stringify(req.body['csvDataPost'][0][0])}`)
+    // console.log(`req.body['csvDataPost'][0]==>${req.body['csvDataPost'][0]}`)
+    // console.log(`JSON.parse(req.body['csvDataPost'])==>${JSON.parse(req.body['csvDataPost'])}`)
+    // console.log(`JSON.stringify(req.body['csvDataPost'][0][0])==>${JSON.stringify(req.body['csvDataPost'][0][0])}`)
     console.log(`JSON.stringify(req.body['csvDataPost'])==>${JSON.stringify(req.body['csvDataPost'])}`)
 
     // let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
