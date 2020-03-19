@@ -68,6 +68,11 @@ module.exports = {
 
     let saniRegex1 = /(\[)|(\])/g
 
+    /* X(?=Y) 	Positive lookahead 	X if followed by Y
+     * (?<=Y)X 	Positive lookbehind 	X if after Y
+     * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
+    let splitRegex1 = /(?<=}),(?={)/g
+
     function showSearchResults(rows) {
 
       let nhcrtRows = rows
@@ -158,7 +163,7 @@ module.exports = {
         srcRsGLstockedSani, srcRsGL_NOTstockedSani)
 
       let searchResultsToString = searchResults.toString()
-      searchResultsSplit = searchResultsToString.split(',')
+      searchResultsSplit = searchResultsToString.split(splitRegex1)
       console.log(`searchResultsSplit.length==> ${searchResultsSplit.length}`)
       console.log(`searchResultsSplit[0]==> ${searchResultsSplit[0]}`)
       console.log(`searchResultsSplit==> ${searchResultsSplit}`)
