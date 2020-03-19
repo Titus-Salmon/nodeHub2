@@ -168,8 +168,8 @@ module.exports = {
       console.log(`searchResultsSplit[0]==> ${searchResultsSplit[0]}`)
       console.log(`typeof searchResultsSplit[0]==> ${typeof searchResultsSplit[0]}`)
       console.log(`searchResultsSplit==> ${searchResultsSplit}`)
-      console.log(`searchResults[0]==> ${searchResults[0]}`)
-      console.log(`JSON.stringify(searchResults[0])==> ${JSON.stringify(searchResults[0])}`)
+      // console.log(`searchResults[0]==> ${searchResults[0]}`)
+      // console.log(`JSON.stringify(searchResults[0])==> ${JSON.stringify(searchResults[0])}`)
       // cacheMainStockFilter.set('searchResultsCache_key', searchResults)
       // let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
       // console.log(`JSON.stringify(searchResultsCache[0])==> ${JSON.stringify(searchResultsCache[0])}`)
