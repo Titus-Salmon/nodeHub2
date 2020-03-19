@@ -154,11 +154,11 @@ html
 
 		div(style="display:block")
 		form#save2CSVstockfilter(action='/stockFilter_UPC/save2CSVstockfilter' method='POST' accept-charset='UTF-8')
-			if searchResRows !== undefined
+			if searchResultsSplitParsedArr !== undefined
 				label.input-label-1(for='csv') filename:
 					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
 				label.input-label-1(for='csvData') CSV Body data
-					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=searchResRows)
+					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=searchResultsSplitParsedArr)
 				button#saveCSVstockfilter(type="submit" form="save2CSVstockfilter") Save Results as CSV - stockFilter
 
 		div.rslt-tbl-1

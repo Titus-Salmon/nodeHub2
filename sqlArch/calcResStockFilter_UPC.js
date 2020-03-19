@@ -209,7 +209,7 @@ module.exports = {
           srcRsSH_NOTstocked: srcRsSH_NOTstocked,
           srcRsGLstocked: srcRsGLstocked,
           srcRsGL_NOTstocked: srcRsGL_NOTstocked,
-
+          searchResultsSplitParsedArr: searchResultsSplitParsedArr
         })
       })
     }
