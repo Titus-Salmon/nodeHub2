@@ -130,6 +130,8 @@ module.exports = {
         }
       }
 
+      console.log(`srcRsINDstocked==> ${srcRsINDstocked}`)
+
       searchResults.push(srcRsINDstocked.toString(), srcRsIND_NOTstocked.toString(), srcRsSMstocked.toString(), srcRsSM_NOTstocked.toString(),
         srcRsMTstocked.toString(), srcRsMT_NOTstocked.toString(), srcRsSHstocked.toString(), srcRsSH_NOTstocked.toString(),
         srcRsGLstocked.toString(), srcRsGL_NOTstocked.toString())
