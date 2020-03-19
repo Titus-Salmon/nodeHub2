@@ -136,6 +136,8 @@ module.exports = {
       let searchResultsToString = searchResults.toString()
       searchResultsSplit = searchResultsToString.split(',')
       console.log(`searchResultsSplit.length==> ${searchResultsSplit.length}`)
+      console.log(`searchResultsSplit[0]==> ${searchResultsSplit[0]}`)
+      console.log(`searchResultsSplit==> ${searchResultsSplit}`)
       console.log(`searchResults[0]==> ${searchResults[0]}`)
       console.log(`JSON.stringify(searchResults[0])==> ${JSON.stringify(searchResults[0])}`)
       // cacheMainStockFilter.set('searchResultsCache_key', searchResults)
