@@ -175,7 +175,8 @@ module.exports = {
       for (let k = 0; k < searchResultsSplit; k++) {
         searchResultsSplitParsedArr.push(JSON.parse(searchResultsSplit[k]))
       }
-      console.log(`searchResultsSplitParsedArr[0]['ri_t0d']==> ${searchResultsSplitParsedArr[0]['ri_t0d']}`)
+      // console.log(`searchResultsSplitParsedArr[0]['ri_t0d']==> ${searchResultsSplitParsedArr[0]['ri_t0d']}`)
+      console.log(`searchResultsSplitParsedArr==> ${searchResultsSplitParsedArr}`)
 
       // console.log(`searchResultsSplit==> ${searchResultsSplit}`)
       // console.log(`searchResults[0]==> ${searchResults[0]}`)
