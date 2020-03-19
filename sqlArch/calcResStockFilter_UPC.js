@@ -34,6 +34,9 @@ module.exports = {
 
     searchResults = [] //clear searchResults from previous search
     // console.log('calcResStockFilter_UPC says: searchResults from router.post level===>', searchResults)
+
+    searchResultsSplitParsedArr = []
+
     searchResultsForCSV = []
     searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
     // console.log('calcResStockFilter_UPC says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
@@ -170,9 +173,9 @@ module.exports = {
       console.log(`typeof JSON.parse(searchResultsSplit[0])==> ${typeof JSON.parse(searchResultsSplit[0])}`)
 
       for (let k = 0; k < searchResultsSplit; k++) {
-        JSON.parse(searchResultsSplit[k])
+        searchResultsSplitParsedArr.push(JSON.parse(searchResultsSplit[k]))
       }
-      console.log(`searchResultsSplit[0]['ri_t0d']==> ${searchResultsSplit[0]['ri_t0d']}`)
+      console.log(`searchResultsSplitParsedArr[0]['ri_t0d']==> ${searchResultsSplitParsedArr[0]['ri_t0d']}`)
 
       // console.log(`searchResultsSplit==> ${searchResultsSplit}`)
       // console.log(`searchResults[0]==> ${searchResults[0]}`)
