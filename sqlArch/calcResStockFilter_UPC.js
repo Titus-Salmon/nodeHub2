@@ -168,6 +168,12 @@ module.exports = {
       console.log(`searchResultsSplit[0]==> ${searchResultsSplit[0]}`)
       console.log(`typeof searchResultsSplit[0]==> ${typeof searchResultsSplit[0]}`)
       console.log(`typeof JSON.parse(searchResultsSplit[0])==> ${typeof JSON.parse(searchResultsSplit[0])}`)
+
+      for (let k = 0; k < searchResultsSplit; k++) {
+        JSON.parse(searchResultsSplit[k])
+      }
+      console.log(`searchResultsSplit[0]['ri_t0d']==> ${searchResultsSplit[0]['ri_t0d']}`)
+
       // console.log(`searchResultsSplit==> ${searchResultsSplit}`)
       // console.log(`searchResults[0]==> ${searchResults[0]}`)
       // console.log(`JSON.stringify(searchResults[0])==> ${JSON.stringify(searchResults[0])}`)
