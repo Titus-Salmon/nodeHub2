@@ -131,6 +131,10 @@ module.exports = {
       }
 
       console.log(`srcRsINDstocked==> ${srcRsINDstocked}`)
+      console.log(`JSON.stringify(srcRsINDstocked)==> ${JSON.stringify(srcRsINDstocked)}`)
+      console.log(`typeof JSON.stringify(srcRsINDstocked)==> ${typeof JSON.stringify(srcRsINDstocked)}`)
+      let JSONstringifySrcRsINDstocked = JSON.stringify(srcRsINDstocked)
+      console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
 
       searchResults.push(srcRsINDstocked.toString(), srcRsIND_NOTstocked.toString(), srcRsSMstocked.toString(), srcRsSM_NOTstocked.toString(),
         srcRsMTstocked.toString(), srcRsMT_NOTstocked.toString(), srcRsSHstocked.toString(), srcRsSH_NOTstocked.toString(),
