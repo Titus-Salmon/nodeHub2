@@ -138,16 +138,16 @@ module.exports = {
       let JSONstringifySrcRsINDstocked = JSON.stringify(srcRsINDstocked)
       console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
 
-      srcRsINDstockedSani = srcRsINDstocked.replace(saniRegex1, "")
-      srcRsIND_NOTstockedSani = srcRsIND_NOTstocked.replace(saniRegex1, "")
-      srcRsSMstockedSani = srcRsSMstocked.replace(saniRegex1, "")
-      srcRsSM_NOTstockedSani = srcRsSM_NOTstocked.replace(saniRegex1, "")
-      srcRsMTstockedSani = srcRsMTstocked.replace(saniRegex1, "")
-      srcRsMT_NOTstockedSani = srcRsMT_NOTstocked.replace(saniRegex1, "")
-      srcRsSHstockedSani = srcRsSHstocked.replace(saniRegex1, "")
-      srcRsSH_NOTstockedSani = srcRsSH_NOTstocked.replace(saniRegex1, "")
-      srcRsGLstockedSani = srcRsGLstocked.replace(saniRegex1, "")
-      srcRsGL_NOTstockedSani = srcRsGL_NOTstocked.replace(saniRegex1, "")
+      srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "")
+      srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "")
+      srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "")
+      srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "")
+      srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "")
+      srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "")
+      srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "")
+      srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "")
+      srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "")
+      srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "")
 
       // searchResults.push(srcRsINDstocked.toString(), srcRsIND_NOTstocked.toString(), srcRsSMstocked.toString(), srcRsSM_NOTstocked.toString(),
       //   srcRsMTstocked.toString(), srcRsMT_NOTstocked.toString(), srcRsSHstocked.toString(), srcRsSH_NOTstocked.toString(),
