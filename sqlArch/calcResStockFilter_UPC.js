@@ -66,6 +66,8 @@ module.exports = {
     let storeNameArr = ['Indiana', 'Saint Matthews', 'Middletown', 'Springhurst', 'Gardiner Lane']
     let storeAbbrevArr = ['IND', 'SM', 'MT', 'SH', 'GL']
 
+    let saniRegex1 = /(\[)|(\])/g
+
     function showSearchResults(rows) {
 
       let nhcrtRows = rows
@@ -136,9 +138,25 @@ module.exports = {
       let JSONstringifySrcRsINDstocked = JSON.stringify(srcRsINDstocked)
       console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
 
-      searchResults.push(srcRsINDstocked.toString(), srcRsIND_NOTstocked.toString(), srcRsSMstocked.toString(), srcRsSM_NOTstocked.toString(),
-        srcRsMTstocked.toString(), srcRsMT_NOTstocked.toString(), srcRsSHstocked.toString(), srcRsSH_NOTstocked.toString(),
-        srcRsGLstocked.toString(), srcRsGL_NOTstocked.toString())
+      srcRsINDstockedSani = srcRsINDstocked.replace(saniRegex1, "")
+      srcRsIND_NOTstockedSani = srcRsIND_NOTstocked.replace(saniRegex1, "")
+      srcRsSMstockedSani = srcRsSMstocked.replace(saniRegex1, "")
+      srcRsSM_NOTstockedSani = srcRsSM_NOTstocked.replace(saniRegex1, "")
+      srcRsMTstockedSani = srcRsMTstocked.replace(saniRegex1, "")
+      srcRsMT_NOTstockedSani = srcRsMT_NOTstocked.replace(saniRegex1, "")
+      srcRsSHstockedSani = srcRsSHstocked.replace(saniRegex1, "")
+      srcRsSH_NOTstockedSani = srcRsSH_NOTstocked.replace(saniRegex1, "")
+      srcRsGLstockedSani = srcRsGLstocked.replace(saniRegex1, "")
+      srcRsGL_NOTstockedSani = srcRsGL_NOTstocked.replace(saniRegex1, "")
+
+      // searchResults.push(srcRsINDstocked.toString(), srcRsIND_NOTstocked.toString(), srcRsSMstocked.toString(), srcRsSM_NOTstocked.toString(),
+      //   srcRsMTstocked.toString(), srcRsMT_NOTstocked.toString(), srcRsSHstocked.toString(), srcRsSH_NOTstocked.toString(),
+      //   srcRsGLstocked.toString(), srcRsGL_NOTstocked.toString())
+
+      searchResults.push(srcRsINDstockedSani, srcRsIND_NOTstockedSani, srcRsSMstockedSani, srcRsSM_NOTstockedSani,
+        srcRsMTstockedSani, srcRsMT_NOTstockedSani, srcRsSHstockedSani, srcRsSH_NOTstockedSani,
+        srcRsGLstockedSani, srcRsGL_NOTstockedSani)
+
       let searchResultsToString = searchResults.toString()
       searchResultsSplit = searchResultsToString.split(',')
       console.log(`searchResultsSplit.length==> ${searchResultsSplit.length}`)
