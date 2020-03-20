@@ -51,6 +51,11 @@ module.exports = {
                 } else {
                     catapultResObj['invReceiptAlias'] = result[i]['INV_ReceiptAlias']
                 }
+                if (typeof result[i]['inv_default'] == 'string') {
+                    catapultResObj['invDefault'] = result[i]['inv_default'].trim()
+                } else {
+                    catapultResObj['invDefault'] = result[i]['inv_default']
+                }
                 catapultResObj['posTimeStamp'] = unescape(result[i]['POS_TimeStamp'])
                 catapultResObj['invDateCreated'] = result[i]['INV_DateCreated']
                 catapultResObj['invEmpFkCreatedBy'] = result[i]['INV_EMP_FK_CreatedBy']
