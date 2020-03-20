@@ -132,7 +132,7 @@ module.exports = {
 
                 catapultResArr.push(catapultResObj)
             }
-            console.log('result.length~~~>', result.length)
+            // console.log(`result.length~~~> ${result.length}`)
         }
 
         odbc.connect(DSN, (error, connection) => {
@@ -140,10 +140,10 @@ module.exports = {
                 if (error) {
                     console.error(error)
                 }
-                console.log('result==>', result)
-                // console.log('result[0]==>', result[0])
-                // console.log('result[\'columns\'][2]==>', result['columns'][2])
-                // console.log('result.length~~~>', result.length)
+                console.log(`result.length~~~> ${result.length}`)
+                // console.log('result==>', result)
+                console.log(`result[0]==> ${result[0]}`)
+                console.log(`result['columns'][2]==> ${result['columns'][2]}`)
                 showcatapultResults(result)
 
                 res.render('vw-v_InventoryMaster_query2', { //render searchResults to vw-retailCalcPassport page
