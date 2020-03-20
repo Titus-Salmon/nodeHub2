@@ -141,9 +141,9 @@ module.exports = {
                     console.error(error)
                 }
                 console.log(`result.length~~~> ${result.length}`)
-                // console.log('result==>', result)
-                console.log(`JSON.stringify(result[0])==> ${JSON.stringify(result[0])}`)
-                console.log(`JSON.stringify(result['columns'][2])==> ${JSON.stringify(result['columns'][2])}`)
+                console.log('JSON.stringify(result)==>', JSON.stringify(result))
+                // console.log(`JSON.stringify(result[0])==> ${JSON.stringify(result[0])}`)
+                // console.log(`JSON.stringify(result['columns'][2])==> ${JSON.stringify(result['columns'][2])}`)
                 showcatapultResults(result)
 
                 res.render('vw-v_InventoryMaster_query2', { //render searchResults to vw-retailCalcPassport page
