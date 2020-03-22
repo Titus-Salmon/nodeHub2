@@ -468,9 +468,10 @@ module.exports = {
 
       // srcRsObj['numPkgs'] = reviewObj['numPkgs'] = 1 //set numPkgs (for IMW) to 1 FOR EVERYTHING (CRITICAL)
 
-      srcRsObj['pf1'] = "" //Power Field 1 (today's date) - no, Tom says this should be pf5
-      srcRsObj['pf2'] = "" //Power Field 2 (Supplier ID (EDI-VENDORNAME) again, for some reason)
-      reviewObj['pf2'] = "" //Power Field 2 (Supplier ID (EDI-VENDORNAME) again, for some reason)
+      srcRsObj['pf1'] = `${nejRowsToggle[i][genericHeaderObj.pi1Description]}` //Power Field 1 SPINS category
+      reviewObj['pf1'] = `${nejRowsToggle[i][genericHeaderObj.pi1Description]}` //Power Field 1 SPINS category
+      srcRsObj['pf2'] = `${nejRowsToggle[i][genericHeaderObj.pi2Description]}` //Power Field 1 SPINS sub-category
+      reviewObj['pf2'] = `${nejRowsToggle[i][genericHeaderObj.pi2Description]}` //Power Field 1 SPINS sub-category
       srcRsObj['pf3'] = "" //Power Field 3 try to get department margin
       // reviewObj['pf3'] = //Power Field 3 revealAppliedMarg()
       srcRsObj['pf4'] = "" //Power Field 4
