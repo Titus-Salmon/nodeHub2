@@ -83,7 +83,7 @@ module.exports = {
       SELECT * FROM rb_edlp_data;
       
       SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
-      ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.upcHeader};
+      ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.pi1Description} ASC, ${genericHeaderObj.pi2Description} ASC;
       
       SELECT COUNT(*) FROM ${frmInptsObj.formInput0};`,
 

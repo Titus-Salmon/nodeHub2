@@ -71,6 +71,12 @@ module.exports = {
       if (splitFieldResult[i] == 'stoName') { //targets Catapult nhcrt stoName column
         genHeadObj.stoName = splitFieldResult[i]
       }
+      if (splitFieldResult[i] == 'pi1Description') { //targets Catapult nhcrt stoName column
+        genHeadObj.pi1Description = splitFieldResult[i]
+      }
+      if (splitFieldResult[i] == 'pi2Description') { //targets Catapult nhcrt stoName column
+        genHeadObj.pi2Description = splitFieldResult[i]
+      }
     }
 
     console.log('calcResults says: genHeadObj==>', genHeadObj)
