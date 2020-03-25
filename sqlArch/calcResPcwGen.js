@@ -120,6 +120,7 @@ module.exports = {
                 rsltsObj['PL1PromptForPrice'] = 0
                 let reqdRtl = nhcrtRows[i]['sibBasePrice'] - (nhcrtRows[i]['sibBasePrice'] * salePct)
                 let dptNumber = nhcrtRows[i]['dptNumber']
+                console.log(`dptNumber==> ${dptNumber}`)
                 if (dptNumber == '152' || dptNumber == '9' || dptNumber == '176' || dptNumber == '177' || dptNumber == '13' ||
                   dptNumber == '12' || dptNumber == '158' || dptNumber == '151' || dptNumber == '157') {
                   powerVsCharm = 'charm'
