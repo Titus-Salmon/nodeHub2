@@ -244,8 +244,12 @@ module.exports = {
         showSearchResults(rows)
 
         res.render('vw-pcwGen', { //render searchResults to vw-MySqlTableHub page
-          title: 'stockFilter_UP (using nhcrt table)',
-          searchResRows: searchResultsSplit,
+          title: 'pcwGen (using nhcrt table)',
+          searchResRowsIND: searchResultsIND_Split,
+          searchResRowsSM: searchResultsSM_Split,
+          searchResRowsMT: searchResultsMT_Split,
+          searchResRowsSH: searchResultsSH_Split,
+          searchResRowsGL: searchResultsGL_Split,
           loadedSqlTbl: loadedSqlTbl,
           srcRsINDstocked: srcRsINDstocked,
           // srcRsIND_NOTstocked: srcRsIND_NOTstocked,
