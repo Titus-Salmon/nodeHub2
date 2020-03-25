@@ -146,7 +146,6 @@ module.exports = {
                           rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
                           return rsltsObj['PL1AdjustedPrice']
                         }
-                        i
                         if (reqdRtl % 1 < .50) {
                           rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
                           return rsltsObj['PL1AdjustedPrice']
