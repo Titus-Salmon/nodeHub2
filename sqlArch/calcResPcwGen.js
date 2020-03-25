@@ -127,6 +127,7 @@ module.exports = {
                 } else {
                   powerVsCharm = 'power'
                 }
+                console.log(`powerVsCharm==> ${powerVsCharm}`)
                 if (powerVsCharm == 'charm') {
                   if (reqdRtl % 1 < .10 && reqdRtl % 1 > 0) { //change charm price to (#-1).99 if req'd rtl is #.00 -> #.10
                     dbl0Or10CharmResult = reqdRtl - reqdRtl % 1 - .01
