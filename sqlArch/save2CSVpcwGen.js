@@ -20,11 +20,15 @@ module.exports = {
     } = require('json2csv')
 
     const fields = [
+      // 'ItemID', 'ReceiptAlias', 'ItemTagsQty', 'ShelfLabelsQty', 'SignsQty', 'PL1PromptForPrice', 'PL1AdjustedPrice', 'PL1AutoDiscount',
+      // 'PL1CountTowardsQtyOnly', 'PL1NoManualDiscounts', 'PL2PromptForPrice', 'PL2AdjustedPrice', 'PL2AutoDiscount', 'PL2CountTowardsQtyOnly',
+      // 'PL2NoManualDiscounts', 'PL3PromptForPrice', 'PL3AdjustedPrice', 'PL3AutoDiscount', 'PL3CountTowardsQtyOnly', 'PL3NoManualDiscounts',
+      // 'PL4PromptForPrice', 'PL4AdjustedPrice', 'PL4AutoDiscount', 'PL4CountTowardsQtyOnly', 'PL4NoManualDiscounts', 'PL1PricingDivider',
+      // 'PL2PricingDivider', 'PL3PricingDivider', 'PL4PricingDivider'
       'ItemID', 'ReceiptAlias', 'ItemTagsQty', 'ShelfLabelsQty', 'SignsQty', 'PL1PromptForPrice', 'PL1AdjustedPrice', 'PL1AutoDiscount',
       'PL1CountTowardsQtyOnly', 'PL1NoManualDiscounts', 'PL2PromptForPrice', 'PL2AdjustedPrice', 'PL2AutoDiscount', 'PL2CountTowardsQtyOnly',
       'PL2NoManualDiscounts', 'PL3PromptForPrice', 'PL3AdjustedPrice', 'PL3AutoDiscount', 'PL3CountTowardsQtyOnly', 'PL3NoManualDiscounts',
-      'PL4PromptForPrice', 'PL4AdjustedPrice', 'PL4AutoDiscount', 'PL4CountTowardsQtyOnly', 'PL4NoManualDiscounts', 'PL1PricingDivider',
-      'PL2PricingDivider', 'PL3PricingDivider', 'PL4PricingDivider'
+      'PL4PromptForPrice', 'PL4AdjustedPrice', 'PL4AutoDiscount', 'PL4CountTowardsQtyOnly', 'PL4NoManualDiscounts'
     ]
 
     const opts = {

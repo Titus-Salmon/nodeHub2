@@ -292,10 +292,10 @@ module.exports = {
                 rsltsObj['PL4AutoDiscount'] = ''
                 rsltsObj['PL4CountTowardsQtyOnly'] = 0
                 rsltsObj['PL4NoManualDiscounts'] = 0
-                rsltsObj['PL1PricingDivider'] = ''
-                rsltsObj['PL2PricingDivider'] = ''
-                rsltsObj['PL3PricingDivider'] = ''
-                rsltsObj['PL4PricingDivider'] = ''
+                // rsltsObj['PL1PricingDivider'] = ''
+                // rsltsObj['PL2PricingDivider'] = ''
+                // rsltsObj['PL3PricingDivider'] = ''
+                // rsltsObj['PL4PricingDivider'] = ''
                 if (nhcrtRows[i]['stoName'] == 'Indiana') {
                   srcRsINDstocked.push(rsltsObj)
                 }
