@@ -114,10 +114,10 @@ module.exports = {
                 nhcrtRows[i]['invOnhand'] > 0) {
                 rsltsObj['ItemID'] = nhcrtRows[i]['invScanCode']
                 rsltsObj['ReceiptAlias'] = nhcrtRows[i]['invReceiptAlias']
-                rsltsObj['ItemTagsQty'] = 0
-                rsltsObj['ShelfLabelsQty'] = 0
+                rsltsObj['ItemTagsQty'] = "0"
+                rsltsObj['ShelfLabelsQty'] = "0"
                 rsltsObj['SignsQty'] = 1
-                rsltsObj['PL1PromptForPrice'] = 0
+                rsltsObj['PL1PromptForPrice'] = "0"
                 let reqdRtl = nhcrtRows[i]['sibBasePrice'] - (nhcrtRows[i]['sibBasePrice'] * salePct)
                 let dptNumber = nhcrtRows[i]['dptNumber']
                 console.log(`dptNumber==> ${dptNumber}`)
@@ -274,28 +274,28 @@ module.exports = {
                 }
 
                 // rsltsObj['PL1AdjustedPrice'] = nhcrtRows[i]['sibBasePrice'] - (nhcrtRows[i]['sibBasePrice'] * salePct) //need to charm this
-                rsltsObj['PL1AutoDiscount'] = 'Rainbow Blossom sale Price'
-                rsltsObj['PL1CountTowardsQtyOnly'] = 0
-                rsltsObj['PL1NoManualDiscounts'] = 0
-                rsltsObj['PL2PromptForPrice'] = 0
-                rsltsObj['PL2AdjustedPrice'] = 0
-                rsltsObj['PL2AutoDiscount'] = 'Rainbow Blossom sale Price'
-                rsltsObj['PL2CountTowardsQtyOnly'] = 0
-                rsltsObj['PL2NoManualDiscounts'] = 0
-                rsltsObj['PL3PromptForPrice'] = 0
-                rsltsObj['PL3AdjustedPrice'] = 0
-                rsltsObj['PL3AutoDiscount'] = 'Rainbow Blossom sale Price'
-                rsltsObj['PL3CountTowardsQtyOnly'] = 0
-                rsltsObj['PL3NoManualDiscounts'] = 0
-                rsltsObj['PL4PromptForPrice'] = 0
-                rsltsObj['PL4AdjustedPrice'] = 0
-                rsltsObj['PL4AutoDiscount'] = ''
-                rsltsObj['PL4CountTowardsQtyOnly'] = 0
-                rsltsObj['PL4NoManualDiscounts'] = 0
-                // rsltsObj['PL1PricingDivider'] = ''
-                // rsltsObj['PL2PricingDivider'] = ''
-                // rsltsObj['PL3PricingDivider'] = ''
-                // rsltsObj['PL4PricingDivider'] = ''
+                rsltsObj['PL1AutoDiscount'] = "Rainbow Blossom sale Price"
+                rsltsObj['PL1CountTowardsQtyOnly'] = "0"
+                rsltsObj['PL1NoManualDiscounts'] = "0"
+                rsltsObj['PL2PromptForPrice'] = "0"
+                rsltsObj['PL2AdjustedPrice'] = "0"
+                rsltsObj['PL2AutoDiscount'] = "Rainbow Blossom sale Price"
+                rsltsObj['PL2CountTowardsQtyOnly'] = "0"
+                rsltsObj['PL2NoManualDiscounts'] = "0"
+                rsltsObj['PL3PromptForPrice'] = "0"
+                rsltsObj['PL3AdjustedPrice'] = "0"
+                rsltsObj['PL3AutoDiscount'] = "Rainbow Blossom sale Price"
+                rsltsObj['PL3CountTowardsQtyOnly'] = "0"
+                rsltsObj['PL3NoManualDiscounts'] = "0"
+                rsltsObj['PL4PromptForPrice'] = "0"
+                rsltsObj['PL4AdjustedPrice'] = "0"
+                rsltsObj['PL4AutoDiscount'] = ""
+                rsltsObj['PL4CountTowardsQtyOnly'] = "0"
+                rsltsObj['PL4NoManualDiscounts'] = "0"
+                rsltsObj['PL1PricingDivider'] = ""
+                rsltsObj['PL2PricingDivider'] = ""
+                rsltsObj['PL3PricingDivider'] = ""
+                rsltsObj['PL4PricingDivider'] = ""
                 if (nhcrtRows[i]['stoName'] == 'Indiana') {
                   srcRsINDstocked.push(rsltsObj)
                 }
