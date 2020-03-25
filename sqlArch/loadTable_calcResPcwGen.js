@@ -10,9 +10,9 @@ const connection = mysql.createConnection({
 })
 
 module.exports = {
-  loadTable_calcResStockFilter_UPC: router.post('/loadTable_calcResStockFilter_UPC', (req, res, next) => {
+  loadTable_calcResPcwGen: router.post('/loadTable_calcResPcwGen', (req, res, next) => {
 
-    console.log('req.body from /loadTable_calcResStockFilter_UPC ==> ', req.body)
+    console.log('req.body from /loadTable_calcResPcwGen ==> ', req.body)
     console.log('req.body.length', req.body.length)
     console.log('Object.keys(req.body).length==>', Object.keys(req.body).length)
     let loadErrors = []
@@ -32,8 +32,8 @@ module.exports = {
         console.log('error=====>>', error)
         loadErrors.push(error.code)
         console.log('loadErrors==>', loadErrors)
-        res.render('vw-calcResStockFilter_UPC', {
-          title: `**ERROR** vw-calcResStockFilter_UPC with table headers for <<${tableNameToLoad}>> loaded **ERROR**`,
+        res.render('vw-pcwGen', {
+          title: `**ERROR** vw-pcwGen with table headers for <<${tableNameToLoad}>> loaded **ERROR**`,
           loadedTable: {
             tableNameToLoad: tableNameToLoad,
             tableLoadError: loadErrors,
@@ -41,7 +41,7 @@ module.exports = {
           },
         })
       } else {
-        console.log(`the following querie(s) have been successfully performed from loadTable_calcResStockFilter_UPC.js:
+        console.log(`the following querie(s) have been successfully performed from loadTable_calcResPcwGen.js:
         (1) SHOW COLUMNS FROM ${tableNameToLoad};
         This gives a response.length of ==> ${response.length}
         >>Here is that entire response:
@@ -50,8 +50,8 @@ module.exports = {
         for (let i = 0; i < response.length; i++) {
           FieldArray.push(response[i]['Field'])
         }
-        res.render('vw-stockFilter_UPC', {
-          title: `vw-stockFilter_UPC with table headers for <<${tableNameToLoad}>> loaded`,
+        res.render('vw-pcwGen', {
+          title: `vw-pcwGen with table headers for <<${tableNameToLoad}>> loaded`,
           loadedTable: {
             tableNameToLoad: tableNameToLoad,
             tableLoadError: loadErrors,
