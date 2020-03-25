@@ -20,6 +20,7 @@ const rainbowCatTableHubRouter = require('./routes/rt-rainbowCatTableHub') //t0d
 const imwGeneratorRouter = require('./routes/rt-imwGenerator') //t0d
 const signFilterCheckerRouter = require('./routes/rt-signFilterChecker') //t0d
 const stockFilter_UPCRouter = require('./routes/rt-stockFilter_UPC') //t0d
+const pcwGenRouter = require('./routes/rt-pcwGen') //t0d
 
 var app = express();
 
@@ -52,6 +53,7 @@ app.use('/rainbowCatTableHub', rainbowCatTableHubRouter) //t0d
 app.use('/imwGenerator', imwGeneratorRouter) //t0d
 app.use('/signFilterChecker', signFilterCheckerRouter) //t0d
 app.use('/stockFilter_UPC', stockFilter_UPCRouter) //t0d
+app.use('/pcwGen', pcwGenRouter) //t0d
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
