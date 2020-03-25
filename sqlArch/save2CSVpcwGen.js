@@ -20,10 +20,11 @@ module.exports = {
     } = require('json2csv')
 
     const fields = [
-      // 'ri_t0d', 'INDstocked', 'ri_t0d', 'IND_NOTstocked', 'ri_t0d', 'SMstocked', 'ri_t0d', 'SM_NOTstocked', 'ri_t0d', 'MTstocked',
-      // 'ri_t0d', 'MT_NOTstocked', 'ri_t0d', 'SHstocked', 'ri_t0d', 'SH_NOTstocked', 'ri_t0d', 'GLstocked', 'ri_t0d', 'GL_NOTstocked'
-      'INDstocked', 'IND_NOTstocked', 'SMstocked', 'SM_NOTstocked', 'MTstocked',
-      'MT_NOTstocked', 'SHstocked', 'SH_NOTstocked', 'GLstocked', 'GL_NOTstocked'
+      'ItemID', 'ReceiptAlias', 'ItemTagsQty', 'ShelfLabelsQty', 'SignsQty', 'PL1PromptForPrice', 'PL1AdjustedPrice', 'PL1AutoDiscount',
+      'PL1CountTowardsQtyOnly', 'PL1NoManualDiscounts', 'PL2PromptForPrice', 'PL2AdjustedPrice', 'PL2AutoDiscount', 'PL2CountTowardsQtyOnly',
+      'PL2NoManualDiscounts', 'PL3PromptForPrice', 'PL3AdjustedPrice', 'PL3AutoDiscount', 'PL3CountTowardsQtyOnly', 'PL3NoManualDiscounts',
+      'PL4PromptForPrice', 'PL4AdjustedPrice', 'PL4AutoDiscount', 'PL4CountTowardsQtyOnly', 'PL4NoManualDiscounts', 'PL1PricingDivider',
+      'PL2PricingDivider', 'PL3PricingDivider', 'PL4PricingDivider'
     ]
 
     const opts = {
