@@ -168,45 +168,45 @@ html
 			if searchResultsIND_SplitParsedArr !== undefined
 				label.input-label-1(for='csv') filename:
 					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				label.input-label-1(for='csvData') CSV Body data
+				label.input-label-1(for='csvData') CSV Body data - IND
 					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=searchResultsIND_SplitParsedArr)
-				button#saveCSVstockfilter(type="submit" form="save2CSVpcwGenIND") Save Results as CSV - stockFilter
+				button#saveCSVpcwGen(type="submit" form="save2CSVpcwGenIND") Save Results as CSV - pcwGen
 
 		div(style="display:block")
 		form#save2CSVpcwGenSM(action='/pcwGen/save2CSVpcwGen' method='POST' accept-charset='UTF-8')
 			if searchResultsSM_SplitParsedArr !== undefined
 				label.input-label-1(for='csv') filename:
 					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				label.input-label-1(for='csvData') CSV Body data
+				label.input-label-1(for='csvData') CSV Body data - SM
 					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=searchResultsSM_SplitParsedArr)
-				button#saveCSVstockfilter(type="submit" form="save2CSVpcwGenSM") Save Results as CSV - stockFilter
+				button#saveCSVpcwGen(type="submit" form="save2CSVpcwGenSM") Save Results as CSV - pcwGen
 
 		div(style="display:block")
 		form#save2CSVpcwGenMT(action='/pcwGen/save2CSVpcwGen' method='POST' accept-charset='UTF-8')
 			if searchResultsMT_SplitParsedArr !== undefined
 				label.input-label-1(for='csv') filename:
 					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				label.input-label-1(for='csvData') CSV Body data
+				label.input-label-1(for='csvData') CSV Body data - MT
 					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=searchResultsMT_SplitParsedArr)
-				button#saveCSVstockfilter(type="submit" form="save2CSVpcwGenMT") Save Results as CSV - stockFilter
+				button#saveCSVpcwGen(type="submit" form="save2CSVpcwGenMT") Save Results as CSV - pcwGen
 
 		div(style="display:block")
 		form#save2CSVpcwGenSH(action='/pcwGen/save2CSVpcwGen' method='POST' accept-charset='UTF-8')
 			if searchResultsSH_SplitParsedArr !== undefined
 				label.input-label-1(for='csv') filename:
 					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				label.input-label-1(for='csvData') CSV Body data
+				label.input-label-1(for='csvData') CSV Body data - SH
 					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=searchResultsSH_SplitParsedArr)
-				button#saveCSVstockfilter(type="submit" form="save2CSVpcwGenSH") Save Results as CSV - stockFilter
+				button#saveCSVpcwGen(type="submit" form="save2CSVpcwGenSH") Save Results as CSV - pcwGen
 
 		div(style="display:block")
 		form#save2CSVpcwGenGL(action='/pcwGen/save2CSVpcwGen' method='POST' accept-charset='UTF-8')
 			if searchResultsGL_SplitParsedArr !== undefined
 				label.input-label-1(for='csv') filename:
 					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				label.input-label-1(for='csvData') CSV Body data
+				label.input-label-1(for='csvData') CSV Body data - GL
 					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=searchResultsGL_SplitParsedArr)
-				button#saveCSVstockfilter(type="submit" form="save2CSVpcwGenGL") Save Results as CSV - stockFilter
+				button#saveCSVpcwGen(type="submit" form="save2CSVpcwGenGL") Save Results as CSV - pcwGen
 
 		div.rslt-tbl-1
 			table
