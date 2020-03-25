@@ -130,58 +130,69 @@ module.exports = {
                   if (reqdRtl % 1 < .10 && reqdRtl % 1 > 0) { //change charm price to (#-1).99 if req'd rtl is #.00 -> #.10
                     dbl0Or10CharmResult = reqdRtl - reqdRtl % 1 - .01
                     rsltsObj['PL1AdjustedPrice'] = dbl0Or10CharmResult
-                    return rsltsObj['PL1AdjustedPrice']
+                    // return rsltsObj['PL1AdjustedPrice']
                   } else {
                     if (reqdRtl > 0) {
                       if (reqdRtl < 10) {
                         if (reqdRtl % 1 < .20) {
                           rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .29
-                          return rsltsObj['PL1AdjustedPrice']
+                          // return rsltsObj['PL1AdjustedPrice']
+                        } else {
+                          if (reqdRtl % 1 < .30) {
+                            rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .29
+                            // return rsltsObj['PL1AdjustedPrice']
+                          } else {
+                            if (reqdRtl % 1 < .40) {
+                              rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
+                              // return rsltsObj['PL1AdjustedPrice']
+                            } else {
+                              if (reqdRtl % 1 < .50) {
+                                rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
+                                // return rsltsObj['PL1AdjustedPrice']
+                              } else {
+                                if (reqdRtl % 1 < .60) {
+                                  rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
+                                  // return rsltsObj['PL1AdjustedPrice']
+                                } else {
+                                  if (reqdRtl % 1 < .70) {
+                                    rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
+                                    // return rsltsObj['PL1AdjustedPrice']
+                                  } else {
+                                    if (reqdRtl % 1 < .80) {
+                                      rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
+                                      // return rsltsObj['PL1AdjustedPrice']
+                                    } else {
+                                      if (reqdRtl % 1 > .80) {
+                                        rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .99
+                                        // return rsltsObj['PL1AdjustedPrice']
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
-                        if (reqdRtl % 1 < .30) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .29
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 < .40) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 < .50) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 < .60) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 < .70) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 < .80) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 > .80) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .99
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
+
                       } else {
                         if (reqdRtl % 1 <= .35) { //bump anything from #.10 to #.35 ==> #.29
                           rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .29
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 <= .55) { //bump anything from #.36 to #.55 ==> #.49
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 <= .855) { //bump anything from #.56 to #.85 ==> #.99
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .99
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 > .856) { //bump anything from #.85+ and higher ==> #.99
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .99
-                          return rsltsObj['PL1AdjustedPrice']
+                          // return rsltsObj['PL1AdjustedPrice']
+                        } else {
+                          if (reqdRtl % 1 <= .55) { //bump anything from #.36 to #.55 ==> #.49
+                            rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
+                            // return rsltsObj['PL1AdjustedPrice']
+                          } else {
+                            if (reqdRtl % 1 <= .855) { //bump anything from #.56 to #.85 ==> #.99
+                              rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .99
+                              // return rsltsObj['PL1AdjustedPrice']
+                            } else {
+                              if (reqdRtl % 1 > .856) { //bump anything from #.85+ and higher ==> #.99
+                                rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .99
+                                // return rsltsObj['PL1AdjustedPrice']
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -190,60 +201,71 @@ module.exports = {
                   if (reqdRtl % 1 < .10 && reqdRtl % 1 > 0) { //change charm price to (#-1).99 if req'd rtl is #.00 -> #.10
                     dbl0Or10CharmResult = reqdRtl - reqdRtl % 1 - .01
                     rsltsObj['PL1AdjustedPrice'] = dbl0Or10CharmResult
-                    return rsltsObj['PL1AdjustedPrice']
+                    // return rsltsObj['PL1AdjustedPrice']
                   } else {
                     if (reqdRtl > 0) {
                       if (reqdRtl < 2) {
                         if (reqdRtl % 1 < .20) {
                           rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .19
-                          return rsltsObj['PL1AdjustedPrice']
+                          // return rsltsObj['PL1AdjustedPrice']
+                        } else {
+                          if (reqdRtl % 1 < .30) {
+                            rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .29
+                            // return rsltsObj['PL1AdjustedPrice']
+                          } else {
+                            if (reqdRtl % 1 < .40) {
+                              rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .39
+                              // return rsltsObj['PL1AdjustedPrice']
+                            } else {
+                              if (reqdRtl % 1 < .50) {
+                                rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
+                                // return rsltsObj['PL1AdjustedPrice']
+                              } else {
+                                if (reqdRtl % 1 < .60) {
+                                  rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .59
+                                  // return rsltsObj['PL1AdjustedPrice']
+                                } else {
+                                  if (reqdRtl % 1 < .70) {
+                                    rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
+                                    // return rsltsObj['PL1AdjustedPrice']
+                                  } else {
+                                    if (reqdRtl % 1 < .80) {
+                                      rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
+                                      // return rsltsObj['PL1AdjustedPrice']
+                                    } else {
+                                      if (reqdRtl % 1 > .80) {
+                                        rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .99
+                                        // return rsltsObj['PL1AdjustedPrice']
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
-                        if (reqdRtl % 1 < .30) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .29
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 < .40) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .39
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        i
-                        if (reqdRtl % 1 < .50) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 < .60) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .59
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 < .70) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 < .80) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 > .80) {
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .99
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
+
                       } else {
                         if (reqdRtl % 1 <= .35) { //bump anything from #.10 to #.35 ==> #.29
                           rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .29
-                          return rsltsObj['PL1AdjustedPrice']
+                          // return rsltsObj['PL1AdjustedPrice']
+                        } else {
+                          if (reqdRtl % 1 <= .55) { //bump anything from #.36 to #.55 ==> #.49
+                            rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
+                            // return rsltsObj['PL1AdjustedPrice']
+                          } else {
+                            if (reqdRtl % 1 <= .855) { //bump anything from #.56 to #.85 ==> #.99
+                              rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
+                              // return rsltsObj['PL1AdjustedPrice']
+                            } else {
+                              if (reqdRtl % 1 > .856) { //bump anything from #.85+ and higher ==> #.99
+                                rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .99
+                                // return rsltsObj['PL1AdjustedPrice']
+                              }
+                            }
+                          }
                         }
-                        if (reqdRtl % 1 <= .55) { //bump anything from #.36 to #.55 ==> #.49
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .49
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 <= .855) { //bump anything from #.56 to #.85 ==> #.99
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .79
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
-                        if (reqdRtl % 1 > .856) { //bump anything from #.85+ and higher ==> #.99
-                          rsltsObj['PL1AdjustedPrice'] = reqdRtl - (reqdRtl % 1) + .99
-                          return rsltsObj['PL1AdjustedPrice']
-                        }
+
                       }
                     }
                   }
