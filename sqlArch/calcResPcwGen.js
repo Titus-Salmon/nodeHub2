@@ -16,11 +16,6 @@ module.exports = {
 
   calcResPcwGen: router.post('/calcResPcwGen', (req, res, next) => {
 
-    // searchResultsCacheChecker = cacheMainStockFilter.get('searchResultsCache_key');
-    // if (searchResultsCacheChecker !== undefined) { //clear searchResultsCache_key if it exists
-    //   cacheMainStockFilter.del('searchResultsCache_key')
-    // }
-
     srcRsINDstocked = []
     // srcRsIND_NOTstocked = []
     srcRsSMstocked = []
@@ -32,29 +27,17 @@ module.exports = {
     srcRsGLstocked = []
     // srcRsGL_NOTstocked = []
 
-    searchResults = [] //clear searchResults from previous search
-    // console.log('calcResPcwGen says: searchResults from router.post level===>', searchResults)
-
     searchResultsIND = []
     searchResultsSM = []
     searchResultsMT = []
     searchResultsSH = []
     searchResultsGL = []
 
-    // searchResultsSplitParsedArr = []
-
     searchResultsIND_SplitParsedArr = []
     searchResultsSM_SplitParsedArr = []
     searchResultsMT_SplitParsedArr = []
     searchResultsSH_SplitParsedArr = []
     searchResultsGL_SplitParsedArr = []
-
-    // searchResultsForCSV = []
-    // searchResultsForCSVreview = [] //this is for holding data to generate your review excel sheet for Andrea & Brad
-    // console.log('calcResPcwGen says: searchResultsForCSV from router.post level===>', searchResultsForCSV)
-    // csvContainer = []
-    // console.log('calcResPcwGen says: csvContainer from router.post level===>', csvContainer)
-
 
     const postBody = req.body
     console.log('calcResPcwGen says: postBody==>', postBody)
@@ -65,9 +48,6 @@ module.exports = {
     console.log('formInput0==>', formInput0)
 
     let salePct = postBody['salePctPost']
-    // let headline = postBody['headlinePost']
-    // let startDate = postBody['startDatePost']
-    // let endDate = postBody['endDatePost']
 
     let todaysDateRaw = new Date()
     let todaysDateRaw_iso = todaysDateRaw.toISOString()
@@ -102,13 +82,10 @@ module.exports = {
         for (let j = 0; j < storeNameArr.length; j++) {
 
           storeName = storeNameArr[j]
-          storeAbbrev = storeAbbrevArr[j]
 
-          function calcResPcwGen(storeName, storeAbbrev) {
+          function calcResPcwGen(storeName) {
             if (nhcrtRows[i]['stoName'] == storeName) {
               let rsltsObj = {}
-              // rsltsObj['ri_t0d'] = i
-              // rsltsObj[`${storeAbbrev}_UPCs`] = nhcrtRows[i]['invScanCode']
               if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
                 nhcrtRows[i]['invLastsold'] > oneYearAgo ||
                 nhcrtRows[i]['invOnhand'] > 0) {
@@ -338,7 +315,7 @@ module.exports = {
               }
             }
           }
-          calcResPcwGen(storeName, storeAbbrev)
+          calcResPcwGen(storeName)
         }
       }
 
@@ -358,12 +335,6 @@ module.exports = {
       // srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "")
       srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "")
       // srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "")
-
-      // searchResults.push(srcRsINDstockedSani, srcRsIND_NOTstockedSani, srcRsSMstockedSani, srcRsSM_NOTstockedSani,
-      //   srcRsMTstockedSani, srcRsMT_NOTstockedSani, srcRsSHstockedSani, srcRsSH_NOTstockedSani,
-      //   srcRsGLstockedSani, srcRsGL_NOTstockedSani)
-
-      // searchResults.push(srcRsINDstockedSani, srcRsSMstockedSani, srcRsMTstockedSani, srcRsSHstockedSani, srcRsGLstockedSani)
 
       searchResultsIND.push(srcRsINDstockedSani)
       searchResultsSM.push(srcRsSMstockedSani)
@@ -441,7 +412,6 @@ module.exports = {
           // srcRsSH_NOTstocked: srcRsSH_NOTstocked,
           srcRsGLstocked: srcRsGLstocked,
           // srcRsGL_NOTstocked: srcRsGL_NOTstocked,
-          // searchResultsSplitParsedArr: searchResultsSplitParsedArr,
           searchResultsIND_SplitParsedArr: searchResultsIND_SplitParsedArr,
           searchResultsSM_SplitParsedArr: searchResultsSM_SplitParsedArr,
           searchResultsMT_SplitParsedArr: searchResultsMT_SplitParsedArr,
