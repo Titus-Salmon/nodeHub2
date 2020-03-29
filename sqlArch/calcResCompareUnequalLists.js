@@ -65,22 +65,26 @@ module.exports = {
             rsltObjLongerMatch[`match`] = `short${i}\/long${j}match==><l${i}>${shorterTable[i]['column_one']}<s${j}>${longerTable[j]['column_one']}`
             longerTableMatcher.push(rsltObjLongerMatch)
             shorterTableMatcher.push(rsltObjShorterMatch)
-            longerTable.splice(j, 1)
-            shorterTable.splice(i, 1)
+            longerTable.splice(j, 1, 'longerPlaceholder')
+            shorterTable.splice(i, 1, 'shorterPlaceholder')
           }
         }
       }
 
       for (let k = 0; k < longerTable.length; k++) {
         let rsltObjLongerMiss = {}
-        rsltObjLongerMiss[`miss`] = `longerMiss==>${longerTable[k]['column_one']}`
-        longerTableMisser.push(rsltObjLongerMiss)
+        if (longerTable[k] !== 'longerPlaceholder') {
+          rsltObjLongerMiss[`miss`] = `longerMiss==>${longerTable[k]['column_one']}`
+          longerTableMisser.push(rsltObjLongerMiss)
+        }
       }
 
       for (let m = 0; m < shorterTable.length; m++) {
         let rsltObjShorterMiss = {}
-        rsltObjShorterMiss[`miss`] = `shorterMiss==>${shorterTable[m]['column_one']}`
-        shorterTableMisser.push(rsltObjShorterMiss)
+        if (shorterTable[m] !== 'shorterPlaceholder') {
+          rsltObjShorterMiss[`miss`] = `shorterMiss==>${shorterTable[m]['column_one']}`
+          shorterTableMisser.push(rsltObjShorterMiss)
+        }
       }
 
       console.log(`tableArows.length2==> ${tableArows.length}`)
