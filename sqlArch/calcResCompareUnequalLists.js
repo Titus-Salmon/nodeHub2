@@ -63,8 +63,8 @@ module.exports = {
 
 
     function queryCompareListsTable() {
-      connection.query(`SELECT * FROM ${tableA} SORT BY column1;
-      SELECT * FROM ${tableB} SORT BY column1;`, function (err, rows, fields) {
+      connection.query(`SELECT * FROM ${tableA} SORT BY 'column1';
+      SELECT * FROM ${tableB} SORT BY 'column1';`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
 
