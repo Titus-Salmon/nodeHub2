@@ -108,6 +108,9 @@ html
 						each elmnt in listMatcher
 							tr
 								td= elmnt.match
+					if listMisser !== undefined
+						each elmnt in listMisser
+							tr
 								td= elmnt.miss
 
 		//- div.rslt-tbl-1(style="margin-left: 10px")

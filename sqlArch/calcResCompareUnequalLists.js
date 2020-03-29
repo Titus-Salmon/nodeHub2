@@ -30,11 +30,15 @@ module.exports = {
     // longerTableMatcher = []
     // shorterTableMatcher = []
     listMatcher = []
+    listMisser = []
 
     function showSearchResults(rows) {
 
       let tableArows = rows[0]
+      console.log(`typeof tableArows==> ${typeof tableArows}`)
+      console.log(`tableArows.length==> ${tableArows.length}`)
       let tableBrows = rows[1]
+      console.log(`tableBrows.length==> ${tableBrows.length}`)
       var longerTable, shorterTable
 
       if (tableArows.length > tableBrows.length) {
@@ -46,26 +50,35 @@ module.exports = {
       }
 
       for (let i = 0; i < longerTable.length; i++) {
-        let rsltObj = {}
+        let rsltObjMatch = {}
         for (let j = 0; j < shorterTable.length; j++) {
           if (longerTable[i]['column_one'] == shorterTable[j]['column_one']) {
-            rsltObj[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
-            listMatcher.push(rsltObj)
-          } else {
-            // for (let k = 0; k < listMatcher.length; k++) {
-            //   if (!listMatcher[k]['miss']) {
-            //     rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
-            //   } else {
-            //     if (listMatcher[k]['miss'] !== `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`) {
-            //       rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
-            //     }
-            //   }
-            // }
-            rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
-            listMatcher.push(rsltObj)
+            rsltObjMatch[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
+            listMatcher.push(rsltObjMatch)
           }
         }
       }
+
+      //
+      //need to pop array element out if it has been caught as a miss
+      //pop out of where?
+
+      for (let p = 0; p < listMisser.length; p++) {
+        if (listMisser[p]['miss'] !== )
+      }
+
+      for (let m = 0; m < longerTable.length; m++) {
+        let rsltObjMiss = {}
+        for (let n = 0; n < shorterTable.length; n++) {
+          if (longerTable[m]['column_one'] !== shorterTable[n]['column_one']) {
+            rsltObjMiss[`miss`] = `long${m}\/short${n}miss==><l${i}>${longerTable[m]['column_one']}<s${n}>${shorterTable[n]['column_one']}`
+            listMisser.push(rsltObjMiss)
+          }
+        }
+      }
+
+
+
       console.log(`listMatcher[0]==> ${listMatcher[0]}`)
       console.log(`JSON.stringify(listMatcher[0])==> ${JSON.stringify(listMatcher[0])}`)
     }
@@ -82,6 +95,7 @@ module.exports = {
         res.render('vw-compareUnequalLists', { //render searchResults to vw-MySqlTableHub page
           title: 'compareUnequalLists',
           listMatcher: listMatcher,
+          listMisser: listMisser,
         })
       })
     }
