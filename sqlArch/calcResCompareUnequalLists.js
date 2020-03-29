@@ -106,8 +106,8 @@ module.exports = {
 
 
 
-      console.log(`listMatcher[0]==> ${listMatcher[0]}`)
-      console.log(`JSON.stringify(listMatcher[0])==> ${JSON.stringify(listMatcher[0])}`)
+      console.log(`longerTableMatcher[0]==> ${longerTableMatcher[0]}`)
+      console.log(`JSON.stringify(longerTableMatcher[0])==> ${JSON.stringify(longerTableMatcher[0])}`)
     }
 
 
