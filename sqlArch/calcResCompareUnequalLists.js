@@ -48,11 +48,11 @@ module.exports = {
       for (let i = 0; i < longerTable.length; i++) {
         let rsltObj = {}
         for (let j = 0; j < shorterTable.length; j++) {
-          if (longerTable[i]['column1'] == shorterTable[j]['column1']) {
-            rsltObj[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column1']}<s${j}>${shorterTable[j]['column1']}`
+          if (longerTable[i]['column_one'] == shorterTable[j]['column_one']) {
+            rsltObj[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
             listMatcher.push(rsltObj)
           } else {
-            rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column1']}<s${j}>${shorterTable[j]['column1']}`
+            rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
             return listMatcher.push(rsltObj)
           }
         }
