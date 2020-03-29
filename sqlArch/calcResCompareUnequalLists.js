@@ -56,13 +56,13 @@ module.exports = {
       console.log(`longerTable.length1==> ${longerTable.length}`)
       console.log(`shorterTable.length1==> ${shorterTable.length}`)
 
-      for (let i = 0; i < longerTable.length; i++) {
+      for (let i = 0; i < shorterTable.length; i++) {
         let rsltObjLongerMatch = {}
         let rsltObjShorterMatch = {}
-        for (let j = 0; j < shorterTable.length; j++) {
-          if (longerTable[i]['column_one'] == shorterTable[j]['column_one']) {
-            rsltObjLongerMatch[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
-            rsltObjShorterMatch[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
+        for (let j = 0; j < longerTable.length; j++) {
+          if (shorterTable[i]['column_one'] == longerTable[j]['column_one']) {
+            rsltObjShorterMatch[`match`] = `short${i}\/long${j}match==><l${i}>${shorterTable[i]['column_one']}<s${j}>${longerTable[j]['column_one']}`
+            rsltObjLongerMatch[`match`] = `short${i}\/long${j}match==><l${i}>${shorterTable[i]['column_one']}<s${j}>${longerTable[j]['column_one']}`
             longerTableMatcher.push(rsltObjLongerMatch)
             shorterTableMatcher.push(rsltObjShorterMatch)
             longerTable.splice(i, 1)
