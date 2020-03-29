@@ -77,7 +77,7 @@ module.exports = {
         longerTableMisser.push(rsltObjLongerMiss)
       }
 
-      for (let m = 0; m < longerTable.length; m++) {
+      for (let m = 0; m < shorterTable.length; m++) {
         let rsltObjShorterMiss = {}
         rsltObjShorterMiss[`miss`] = shorterTable[m]['column_one']
         shorterTableMisser.push(rsltObjShorterMiss)
