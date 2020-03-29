@@ -65,8 +65,8 @@ module.exports = {
             rsltObjLongerMatch[`match`] = `short${i}\/long${j}match==><l${i}>${shorterTable[i]['column_one']}<s${j}>${longerTable[j]['column_one']}`
             longerTableMatcher.push(rsltObjLongerMatch)
             shorterTableMatcher.push(rsltObjShorterMatch)
-            longerTable.splice(i, 1)
-            shorterTable.splice(j, 1)
+            longerTable.splice(j, 1)
+            shorterTable.splice(i, 1)
           }
         }
       }
