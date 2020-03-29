@@ -51,14 +51,15 @@ module.exports = {
           if (longerTable[i]['column_one'] == shorterTable[j]['column_one']) {
             rsltObj[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
             listMatcher.push(rsltObj)
-          } else {
-            rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
-            for (let k = 0; k < listMatcher.length; k++) {
-              if (listMatcher[k]['miss'] !== rsltObj[`miss`]) {
-                listMatcher.push(rsltObj)
-              }
-            }
           }
+          // else {
+          //   rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
+          //   for (let k = 0; k < listMatcher.length; k++) {
+          //     if (listMatcher[k]['miss'] !== rsltObj[`miss`]) {
+          //       listMatcher.push(rsltObj)
+          //     }
+          //   }
+          // }
         }
       }
       console.log(`listMatcher[0]==> ${listMatcher[0]}`)
