@@ -36,9 +36,9 @@ module.exports = {
 
       let tableArows = rows[0]
       console.log(`typeof tableArows==> ${typeof tableArows}`)
-      console.log(`tableArows.length==> ${tableArows.length}`)
+      console.log(`tableArows.length1==> ${tableArows.length}`)
       let tableBrows = rows[1]
-      console.log(`tableBrows.length==> ${tableBrows.length}`)
+      console.log(`tableBrows.length1==> ${tableBrows.length}`)
       var longerTable, shorterTable
 
       if (tableArows.length > tableBrows.length) {
@@ -55,9 +55,14 @@ module.exports = {
           if (longerTable[i]['column_one'] == shorterTable[j]['column_one']) {
             rsltObjMatch[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
             listMatcher.push(rsltObjMatch)
+            longerTable.splice(i, 1)
+            shorterTable.splice(j, 1)
           }
         }
       }
+
+      console.log(`tableArows.length2==> ${tableArows.length}`)
+      console.log(`tableBrows.length2==> ${tableBrows.length}`)
 
       //
       //need to pop array element out if it has been caught as a miss
