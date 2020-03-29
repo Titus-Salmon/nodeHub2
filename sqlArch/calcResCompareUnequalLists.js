@@ -63,6 +63,7 @@ module.exports = {
         }
       }
       console.log(`listMatcher[0]==> ${listMatcher[0]}`)
+      console.log(`JSON.stringify(listMatcher[0])==> ${JSON.stringify(listMatcher[0])}`)
     }
 
 
