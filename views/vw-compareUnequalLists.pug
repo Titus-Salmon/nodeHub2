@@ -101,15 +101,25 @@ html
 			table
 				thead
 					tr
-						th match
-						th miss
+						th match (longer table)
+						th match (shorter table)
+						th miss (longer table)
+						th miss (shorter table)
 				tbody
-					if listMatcher !== undefined
-						each elmnt in listMatcher
+					if longerTableMatcher !== undefined
+						each elmnt in longerTableMatcher
 							tr
 								td= elmnt.match
-					if listMisser !== undefined
-						each elmnt in listMisser
+					if shorterTableMatcher !== undefined
+						each elmnt in shorterTableMatcher
+							tr
+								td= elmnt.match
+					if longerTableMisser !== undefined
+						each elmnt in longerTableMisser
+							tr
+								td= elmnt.miss
+					if shorterTableMisser !== undefined
+						each elmnt in shorterTableMisser
 							tr
 								td= elmnt.miss
 

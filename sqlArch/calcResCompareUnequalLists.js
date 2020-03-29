@@ -27,10 +27,14 @@ module.exports = {
 
     // listAmatcher = []
     // listBmatcher = []
-    // longerTableMatcher = []
-    // shorterTableMatcher = []
-    listMatcher = []
-    listMisser = []
+    longerTableMatcher = []
+    shorterTableMatcher = []
+
+    longerTableMisser = []
+    shorterTableMisser = []
+
+    // listMatcher = []
+    // listMisser = []
 
     function showSearchResults(rows) {
 
@@ -49,20 +53,41 @@ module.exports = {
         shorterTable = tableArows
       }
 
+      console.log(`longerTable.length1==> ${longerTable.length}`)
+      console.log(`shorterTable.length1==> ${shorterTable.length}`)
+
       for (let i = 0; i < longerTable.length; i++) {
-        let rsltObjMatch = {}
+        let rsltObjLongerMatch = {}
+        let rsltObjShorterMatch = {}
         for (let j = 0; j < shorterTable.length; j++) {
           if (longerTable[i]['column_one'] == shorterTable[j]['column_one']) {
-            rsltObjMatch[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
-            listMatcher.push(rsltObjMatch)
+            rsltObjLongerMatch[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
+            rsltObjShorterMatch[`match`] = `long${i}\/short${j}match==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
+            longerTableMatcher.push(rsltObjLongerMatch)
+            shorterTableMatcher.push(rsltObjShorterMatch)
             longerTable.splice(i, 1)
             shorterTable.splice(j, 1)
           }
         }
       }
 
+      for (let k = 0; k < longerTable.length; k++) {
+        let rsltObjLongerMiss = {}
+        rsltObjLongerMiss[`miss`] = longerTable[k]['column_one']
+        longerTableMisser.push(rsltObjLongerMiss)
+      }
+
+      for (let m = 0; m < longerTable.length; m++) {
+        let rsltObjShorterMiss = {}
+        rsltObjShorterMiss[`miss`] = ShorterTable[m]['column_one']
+        shorterTableMisser.push(rsltObjShorterMiss)
+      }
+
       console.log(`tableArows.length2==> ${tableArows.length}`)
       console.log(`tableBrows.length2==> ${tableBrows.length}`)
+
+      console.log(`longerTable.length2==> ${longerTable.length}`)
+      console.log(`shorterTable.length2==> ${shorterTable.length}`)
 
       //
       //need to pop array element out if it has been caught as a miss
@@ -96,8 +121,12 @@ module.exports = {
 
         res.render('vw-compareUnequalLists', { //render searchResults to vw-MySqlTableHub page
           title: 'compareUnequalLists',
-          listMatcher: listMatcher,
-          listMisser: listMisser,
+          // listMatcher: listMatcher,
+          // listMisser: listMisser,
+          longerTableMatcher: longerTableMatcher,
+          shorterTableMatcher: shorterTableMatcher,
+          longerTableMisser: longerTableMisser,
+          shorterTableMisser: shorterTableMisser,
         })
       })
     }
