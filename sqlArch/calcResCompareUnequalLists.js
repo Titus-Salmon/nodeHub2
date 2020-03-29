@@ -63,19 +63,16 @@ module.exports = {
       //need to pop array element out if it has been caught as a miss
       //pop out of where?
 
-      for (let p = 0; p < listMisser.length; p++) {
-        if (listMisser[p]['miss'] !== )
-      }
 
-      for (let m = 0; m < longerTable.length; m++) {
-        let rsltObjMiss = {}
-        for (let n = 0; n < shorterTable.length; n++) {
-          if (longerTable[m]['column_one'] !== shorterTable[n]['column_one']) {
-            rsltObjMiss[`miss`] = `long${m}\/short${n}miss==><l${i}>${longerTable[m]['column_one']}<s${n}>${shorterTable[n]['column_one']}`
-            listMisser.push(rsltObjMiss)
-          }
-        }
-      }
+      // for (let m = 0; m < longerTable.length; m++) {
+      //   let rsltObjMiss = {}
+      //   for (let n = 0; n < shorterTable.length; n++) {
+      //     if (longerTable[m]['column_one'] !== shorterTable[n]['column_one']) {
+      //       rsltObjMiss[`miss`] = `long${m}\/short${n}miss==><l${i}>${longerTable[m]['column_one']}<s${n}>${shorterTable[n]['column_one']}`
+      //       listMisser.push(rsltObjMiss)
+      //     }
+      //   }
+      // }
 
 
 
