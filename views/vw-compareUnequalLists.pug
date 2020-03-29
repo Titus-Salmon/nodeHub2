@@ -26,7 +26,7 @@ html
 		//- 			p= thing
 		//- //- //^// loads table column names for specified table
 
-		form#compareUnequalLists(action='/compareUnequalLists/calcResCompareUnequalLists')
+		form#compareUnequalLists(action='/compareUnequalLists/calcResCompareUnequalLists' method='POST' accept-charset="UTF-8")
 			label.input-label-1(for='tableA') TableA Name
 			input#tableA.input-unit-1(type='text', name='tableAPost')
 
