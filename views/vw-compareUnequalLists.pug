@@ -102,26 +102,70 @@ html
 				thead
 					tr
 						th match (longer table)
-						th match (shorter table)
-						th miss (longer table)
-						th miss (shorter table)
 				tbody
 					if longerTableMatcher !== undefined
 						each elmnt in longerTableMatcher
 							tr
 								td= elmnt.match
+
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th match (shorter table)
+				tbody
 					if shorterTableMatcher !== undefined
 						each elmnt in shorterTableMatcher
 							tr
 								td= elmnt.match
+
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th miss (longer table)
+				tbody
 					if longerTableMisser !== undefined
 						each elmnt in longerTableMisser
 							tr
 								td= elmnt.miss
+
+		div.rslt-tbl-1
+			table
+				thead
+					tr
+						th miss (shorter table)
+				tbody
 					if shorterTableMisser !== undefined
 						each elmnt in shorterTableMisser
 							tr
 								td= elmnt.miss
+
+		//- div.rslt-tbl-1
+		//- 	table
+		//- 		thead
+		//- 			tr
+		//- 				th match (longer table)
+		//- 				th match (shorter table)
+		//- 				th miss (longer table)
+		//- 				th miss (shorter table)
+		//- 		tbody
+		//- 			if longerTableMatcher !== undefined
+		//- 				each elmnt in longerTableMatcher
+		//- 					tr
+		//- 						td= elmnt.match
+		//- 			if shorterTableMatcher !== undefined
+		//- 				each elmnt in shorterTableMatcher
+		//- 					tr
+		//- 						td= elmnt.match
+		//- 			if longerTableMisser !== undefined
+		//- 				each elmnt in longerTableMisser
+		//- 					tr
+		//- 						td= elmnt.miss
+		//- 			if shorterTableMisser !== undefined
+		//- 				each elmnt in shorterTableMisser
+		//- 					tr
+		//- 						td= elmnt.miss
 
 		//- div.rslt-tbl-1(style="margin-left: 10px")
 		//- 	table
