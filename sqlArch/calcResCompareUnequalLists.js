@@ -54,8 +54,9 @@ module.exports = {
           } else {
             // rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
             for (let k = 0; k < listMatcher.length; k++) {
+              rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
               if (listMatcher[k]['miss'] !== rsltObj[`miss`]) {
-                rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
+                // rsltObj[`miss`] = `long${i}\/short${j}miss==><l${i}>${longerTable[i]['column_one']}<s${j}>${shorterTable[j]['column_one']}`
                 listMatcher.push(rsltObj)
               }
             }
