@@ -55,15 +55,11 @@ module.exports = {
     cAlcRsFrmInputs.clcRsFrmInpts(postBody, frmInptsObj)
     // const formInputsObjCache = new NodeCache()
     formInputsObjCache.set('formInputsObjCache_key', frmInptsObj)
-    //console.log(`formInputsObjCache from POST==> ${formInputsObjCache}`)
-    //console.log(`JSON.stringify(formInputsObjCache) from POST==> ${JSON.stringify(formInputsObjCache)}`)
 
     let genericHeaderObj = {} //provide empty object to populate with generic headers generated from genericHdrObj.js module
     gEnericHdrObj.gnrcHdrObj(postBody, genericHeaderObj)
     // const genericHeaderObjCache = new NodeCache()
     genericHeaderObjCache.set('genericHeaderObjCache_key', genericHeaderObj)
-    //console.log(`genericHeaderObjCache from POST==> ${genericHeaderObjCache}`)
-    //console.log(`JSON.stringify(genericHeaderObjCache) from POST==> ${JSON.stringify(genericHeaderObjCache)}`)
 
     let pageLinkArray = []
     let numPagesPlaceholder = []
@@ -105,12 +101,10 @@ module.exports = {
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
             edlpRows, nejRowsPagin)
 
-          // let totalRows = countRows[0]['COUNT(*)'] / 7 //must divide by 7 to
           let totalRows = searchResultsNonPag.length //use length of non-paginated results from showSearchResults for total # of rows,
           console.log(`totalRows==> ${totalRows}`)
           //since countRows[0]['COUNT(*)'] gives 7x the actual number of rows (7 stores)
           totalRowsCache.set('totalRowsCache_key', totalRows)
-          //console.log(`JSON.stringify(totalRowsCache) from POST==> ${JSON.stringify(totalRowsCache)}`)
 
           let numPages = Math.ceil(totalRows / numQueryRes) //round up to account for fractions of pages (i.e. 22.3 pages ==> 23 pages)
           console.log(`numPages==> ${numPages}`)
@@ -122,12 +116,6 @@ module.exports = {
             pageLinkObj[`page${j}`] = j
             pageLinkArray.push(pageLinkObj)
           }
-
-          // showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
-          //   edlpRows, nejRowsNonPagin)
-
-          // showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
-          //   edlpRows, nejRowsPagin)
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
