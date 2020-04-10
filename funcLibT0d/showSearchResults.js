@@ -602,10 +602,7 @@ module.exports = {
             }
           }
         }
-      } else {
-        // if (edlpSwitch == 'no') {
-
-        // }
+      } else { //if typeOfIMW = retail
         //v//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for frmInptsObj.globalMargin
         if (frmInptsObj.formInput0.includes('edi_')) {
           calcCharm(frmInptsObj.globalMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad,
