@@ -612,139 +612,143 @@ module.exports = {
         }
         //^//need to run calcCharm for edi catalogs, thus there will be no rb_dept_id key; use value input for frmInptsObj.globalMargin
 
-        if (srcRsObj['dptNumber'] == '54') { //Beer & Alcohol
-          //apply Department margin to calculate charm pricing
-          calcCharm(frmInptsObj.beerAlcMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.beerAlcMargin)
+        if (srcRsObj['dptNumber'] !== '999999') { //ignore deptNumber 999999 (RB_DISCONTINUED)
+          if (srcRsObj['dptNumber'] == '54') { //Beer & Alcohol
+            //apply Department margin to calculate charm pricing
+            calcCharm(frmInptsObj.beerAlcMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.beerAlcMargin)
+          }
+          if (srcRsObj['dptNumber'] == '152') { //Body Care
+            calcCharm(frmInptsObj.bodyCareMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.bodyCareMargin)
+          }
+          if (srcRsObj['dptNumber'] == '9') { //Books
+            calcCharm(frmInptsObj.booksMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.booksMargin)
+          }
+          if (srcRsObj['dptNumber'] == '19') { //Bulk
+            calcCharm(frmInptsObj.bulkMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.bulkMargin)
+          }
+          if (srcRsObj['dptNumber'] == '30') { //Bulk & Herb Prepack
+            calcCharm(frmInptsObj.bulkHrbPrpkMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.bulkHrbPrpkMargin)
+          }
+          if (srcRsObj['dptNumber'] == '175') { //CBD - Grocery
+            calcCharm(frmInptsObj.cbdGrocMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.cbdGrocMargin)
+          }
+          if (srcRsObj['dptNumber'] == '176') { //CBD - Supplements
+            calcCharm(frmInptsObj.cbdSuppMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.cbdSuppMargin)
+          }
+          if (srcRsObj['dptNumber'] == '177') { //CBD - Topicals
+            calcCharm(frmInptsObj.cbdTopMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.cbdTopMargin)
+          }
+          if (srcRsObj['dptNumber'] == '148') { //Consignments
+            calcCharm(frmInptsObj.consignMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.consignMargin)
+          }
+          if (srcRsObj['dptNumber'] == '18') { //Frozen
+            calcCharm(frmInptsObj.frozenMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.frozenMargin)
+          }
+          if (srcRsObj['dptNumber'] == '150') { //General Merchandise
+            calcCharm(frmInptsObj.genMerchMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.genMerchMargin)
+          }
+          if (srcRsObj['dptNumber'] == '13') { //Gift Items
+            calcCharm(frmInptsObj.giftMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.giftMargin)
+          }
+          if (srcRsObj['dptNumber'] == '62') { //Grab & Go
+            calcCharm(frmInptsObj.grabGoMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.grabGoMargin)
+          }
+          if (srcRsObj['dptNumber'] == '25') { //Grocery
+            calcCharm(frmInptsObj.grocMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.grocMargin)
+          }
+          if (srcRsObj['dptNumber'] == '179') { //Grocery - Local
+            calcCharm(frmInptsObj.grocLocMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.grocLocMargin)
+          }
+          if (srcRsObj['dptNumber'] == '38') { //Grocery - Local Meat
+            calcCharm(frmInptsObj.grocLcMtMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.grocLcMtMargin)
+          }
+          if (srcRsObj['dptNumber'] == '12') { //HBA - had this as 17 & was causing hba items not to get charm applied
+            calcCharm(frmInptsObj.hbaMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.hbaMargin)
+          }
+          if (srcRsObj['dptNumber'] == '158') { //Herbs & Homeopathic
+            calcCharm(frmInptsObj.herbsHomeoMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.herbsHomeoMargin)
+          }
+          if (srcRsObj['dptNumber'] == '80') { //LifeBar
+            calcCharm(frmInptsObj.lfBrMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.lfBrMargin)
+          }
+          if (srcRsObj['dptNumber'] == '151') { //Other
+            calcCharm(frmInptsObj.otherMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.otherMargin)
+          }
+          if (srcRsObj['dptNumber'] == '155') { //Refrigerated
+            calcCharm(frmInptsObj.refrigMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
+              frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
+              frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
+            revealAppliedMarg(frmInptsObj.refrigMargin)
+          }
+          if (srcRsObj['dptNumber'] == '157') { //Vitamins & Supplements
+            calcCharm(frmInptsObj.vitSuppMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
+              frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
+              frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
+            revealAppliedMarg(frmInptsObj.vitSuppMargin)
+          }
         }
-        if (srcRsObj['dptNumber'] == '152') { //Body Care
-          calcCharm(frmInptsObj.bodyCareMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
-            frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
-            frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
-          revealAppliedMarg(frmInptsObj.bodyCareMargin)
-        }
-        if (srcRsObj['dptNumber'] == '9') { //Books
-          calcCharm(frmInptsObj.booksMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
-            frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
-            frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
-          revealAppliedMarg(frmInptsObj.booksMargin)
-        }
-        if (srcRsObj['dptNumber'] == '19') { //Bulk
-          calcCharm(frmInptsObj.bulkMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.bulkMargin)
-        }
-        if (srcRsObj['dptNumber'] == '30') { //Bulk & Herb Prepack
-          calcCharm(frmInptsObj.bulkHrbPrpkMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.bulkHrbPrpkMargin)
-        }
-        if (srcRsObj['dptNumber'] == '175') { //CBD - Grocery
-          calcCharm(frmInptsObj.cbdGrocMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.cbdGrocMargin)
-        }
-        if (srcRsObj['dptNumber'] == '176') { //CBD - Supplements
-          calcCharm(frmInptsObj.cbdSuppMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
-            frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
-            frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
-          revealAppliedMarg(frmInptsObj.cbdSuppMargin)
-        }
-        if (srcRsObj['dptNumber'] == '177') { //CBD - Topicals
-          calcCharm(frmInptsObj.cbdTopMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
-            frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
-            frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
-          revealAppliedMarg(frmInptsObj.cbdTopMargin)
-        }
-        if (srcRsObj['dptNumber'] == '148') { //Consignments
-          calcCharm(frmInptsObj.consignMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.consignMargin)
-        }
-        if (srcRsObj['dptNumber'] == '18') { //Frozen
-          calcCharm(frmInptsObj.frozenMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.frozenMargin)
-        }
-        if (srcRsObj['dptNumber'] == '150') { //General Merchandise
-          calcCharm(frmInptsObj.genMerchMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.genMerchMargin)
-        }
-        if (srcRsObj['dptNumber'] == '13') { //Gift Items
-          calcCharm(frmInptsObj.giftMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
-            frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
-            frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
-          revealAppliedMarg(frmInptsObj.giftMargin)
-        }
-        if (srcRsObj['dptNumber'] == '62') { //Grab & Go
-          calcCharm(frmInptsObj.grabGoMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.grabGoMargin)
-        }
-        if (srcRsObj['dptNumber'] == '25') { //Grocery
-          calcCharm(frmInptsObj.grocMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.grocMargin)
-        }
-        if (srcRsObj['dptNumber'] == '179') { //Grocery - Local
-          calcCharm(frmInptsObj.grocLocMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.grocLocMargin)
-        }
-        if (srcRsObj['dptNumber'] == '38') { //Grocery - Local Meat
-          calcCharm(frmInptsObj.grocLcMtMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.grocLcMtMargin)
-        }
-        if (srcRsObj['dptNumber'] == '12') { //HBA - had this as 17 & was causing hba items not to get charm applied
-          calcCharm(frmInptsObj.hbaMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
-            frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
-            frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
-          revealAppliedMarg(frmInptsObj.hbaMargin)
-        }
-        if (srcRsObj['dptNumber'] == '158') { //Herbs & Homeopathic
-          calcCharm(frmInptsObj.herbsHomeoMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
-            frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
-            frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
-          revealAppliedMarg(frmInptsObj.herbsHomeoMargin)
-        }
-        if (srcRsObj['dptNumber'] == '80') { //LifeBar
-          calcCharm(frmInptsObj.lfBrMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.lfBrMargin)
-        }
-        if (srcRsObj['dptNumber'] == '151') { //Other
-          calcCharm(frmInptsObj.otherMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
-            frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
-            frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
-          revealAppliedMarg(frmInptsObj.otherMargin)
-        }
-        if (srcRsObj['dptNumber'] == '155') { //Refrigerated
-          calcCharm(frmInptsObj.refrigMargin, frmInptsObj.lowerCutRqdRtlBrad, frmInptsObj.lowerCutoffCharm1Brad, frmInptsObj.lowerCutoffCharm2Brad, frmInptsObj.lowerCutoffCharm3Brad,
-            frmInptsObj.lowerCutoffCharm4Brad, frmInptsObj.lowerCutoffCharm5Brad, frmInptsObj.lowerCutoffCharm6Brad, frmInptsObj.lowerCutoffCharm7Brad, frmInptsObj.upperCharmRqdRtlBrad,
-            frmInptsObj.defaultCharm1Brad, frmInptsObj.defaultCharm2Brad, frmInptsObj.defaultCharm3Brad, frmInptsObj.defaultCharm4Brad)
-          revealAppliedMarg(frmInptsObj.refrigMargin)
-        }
-        if (srcRsObj['dptNumber'] == '157') { //Vitamins & Supplements
-          calcCharm(frmInptsObj.vitSuppMargin, frmInptsObj.lowerCutRqdRtlAndrea, frmInptsObj.lowerCutoffCharm1Andrea, frmInptsObj.lowerCutoffCharm2Andrea, frmInptsObj.lowerCutoffCharm3Andrea,
-            frmInptsObj.lowerCutoffCharm4Andrea, frmInptsObj.lowerCutoffCharm5Andrea, frmInptsObj.lowerCutoffCharm6Andrea, frmInptsObj.lowerCutoffCharm7Andrea, frmInptsObj.upperCharmRqdRtlAndrea,
-            frmInptsObj.defaultCharm1Andrea, frmInptsObj.defaultCharm2Andrea, frmInptsObj.defaultCharm3Andrea, frmInptsObj.defaultCharm4Andrea)
-          revealAppliedMarg(frmInptsObj.vitSuppMargin)
-        }
+
+
 
         function populateResultsObj_Rtl() {
           skuMismatchFlagOptionHandler()
