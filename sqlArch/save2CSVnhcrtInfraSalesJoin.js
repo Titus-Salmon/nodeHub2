@@ -17,7 +17,7 @@ module.exports = {
     const fields = [
       "ri_t0d", "invPK", "invCPK", "invScanCode", "ordSupplierStockNumber", "invName", "invSize", "invReceiptAlias", "posTimeStamp",
       "invDateCreated", "ordQuantityInOrderUnit", "oupName", "stoName", "brdName", "dptName", "dptNumber", "sibIdealMargin", "venCompanyname", "invLastcost",
-      "sibBasePrice", "pi1Description", "pi2Description", "pi3Description", "invPowerField3", "invPowerField4", "infra_sales"
+      "sibBasePrice", "pi1Description", "pi2Description", "pi3Description", "invPowerField3", "invPowerField4", "infra_sale"
     ]
 
     const opts = {
