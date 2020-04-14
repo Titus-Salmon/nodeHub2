@@ -24,9 +24,12 @@ const {
 const {
   save2CSVpcwGen
 } = require('../sqlArch/save2CSVpcwGen')
+// const {
+//   loadTable_calcResPcwGen
+// } = require('../sqlArch/loadTable_calcResPcwGen')
 const {
-  loadTable_calcResPcwGen
-} = require('../sqlArch/loadTable_calcResPcwGen')
+  loadTable_calcResPcwGenINFRA
+} = require('../sqlArch/loadTable_calcResPcwGenINFRA')
 const {
   calcResPcwGenINFRA
 } = require('../sqlArch/calcResPcwGenINFRA')
@@ -49,7 +52,8 @@ router.post('/populateRBtable', populateRBtable)
 router.post('/queryRBdb', queryRBdb)
 router.post('/nhcrtDisplay', nhcrtDisplay)
 router.post('/save2CSVpcwGen', save2CSVpcwGen)
-router.post('/loadTable_calcResPcwGen', loadTable_calcResPcwGen)
+// router.post('/loadTable_calcResPcwGen', loadTable_calcResPcwGen)
+router.post('/loadTable_calcResPcwGenINFRA', loadTable_calcResPcwGenINFRA)
 router.post('/calcResPcwGenINFRA', calcResPcwGenINFRA)
 
 
