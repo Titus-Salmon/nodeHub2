@@ -66,6 +66,16 @@ html
 
 		br
 
+		//- //v// joins nhcrt table to edi table
+		form#nhcrtInfraSalesJoin(action='/MySqlTableHub/nhcrtInfraSalesJoin' method='POST' accept-charset="UTF-8" style="display:block")
+			div(style="display:block")
+				label.input-label-1(for='nhcrtEdiJoin') This query joins nhcrt & infraSales tables
+				textarea#nhcrtInfraSalesJoinTextArea.input-unit-1(name="nhcrtInfraSalesJoinPost", cols="30", rows="1", wrap="soft") SELECT nhcrt.ri_t0d, nhcrt.invPK, nhcrt.invCPK, nhcrt.invScanCode, nhcrt.ordSupplierStockNumber, nhcrt.invName, nhcrt.invSize, nhcrt.invReceiptAlias, nhcrt.posTimeStamp, nhcrt.invDateCreated, nhcrt.ordQuantityInOrderUnit, nhcrt.oupName, nhcrt.stoName, nhcrt.brdName, nhcrt.dptName, nhcrt.dptNumber, nhcrt.sibIdealMargin, nhcrt.venCompanyname, nhcrt.invLastcost, nhcrt.sibBasePrice, nhcrt.pi1Description, nhcrt.pi2Description, nhcrt.pi3Description, nhcrt.invPowerField3, nhcrt.invPowerField4, infraSalesTable.* FROM ${nhcrtTableName} nhcrt JOIN ${infraSalesTableName} infraSalesTable ON nhcrt.invScanCode WHERE nhcrt.invScanCode = infraSalesTable.${infraSalesTable_prefix_upc} ORDER BY nhcrt.pi1Description, nhcrt.pi2Description;
+				button#crtTblBtn4(type='submit', form='nhcrtInfraSalesJoin', style="display: block; float: left") Display NHCRT/infraSales joined tables
+		//- //^// joins nhcrt table to edi table
+
+		br
+
 		//- //v// creates empty nhcrt mysql table
 		form#createNhcrtTable(action='/MySqlTableHub/createRBtable' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
@@ -172,17 +182,17 @@ html
 					input#currentPageDummy.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value='0')
 
 			if pageLinkArray !== undefined
-					div.pagination-1
-						//- p(style="font-weight:bold; margin:0") TOTAL PAGES: #{lastPage}
-						label.input-label-1(for='currentPage') Current Page (of #{lastPage})
-						input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
+				div.pagination-1
+					//- p(style="font-weight:bold; margin:0") TOTAL PAGES: #{lastPage}
+					label.input-label-1(for='currentPage') Current Page (of #{lastPage})
+					input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 
-						if currentPage != 0
-							a(href=`/MySqlTableHub/calcResults?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}`) FIRST PAGE
-							a(href=`/MySqlTableHub/calcResults?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}`) PREV
-						a(href=`/MySqlTableHub/calcResults?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}`) NEXT
-						a(href=`/MySqlTableHub/calcResults?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}`) LAST PAGE
-			
+					if currentPage != 0
+						a(href=`/MySqlTableHub/calcResults?page=${firstPage}&tableName=${tableName}&numQueryRes=${numQueryRes}`) FIRST PAGE
+						a(href=`/MySqlTableHub/calcResults?page=${currentPage-1}&tableName=${tableName}&numQueryRes=${numQueryRes}`) PREV
+					a(href=`/MySqlTableHub/calcResults?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}`) NEXT
+					a(href=`/MySqlTableHub/calcResults?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}`) LAST PAGE
+
 			//- label.input-label-1(for='currentPage') Current Page
 			//- input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 

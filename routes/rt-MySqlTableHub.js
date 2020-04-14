@@ -24,12 +24,18 @@ const {
 const {
   nhcrtEdiJoin
 } = require('../sqlArch/nhcrtEdiJoin')
+const {
+  nhcrtInfraSalesJoin
+} = require('../sqlArch/nhcrtInfraSalesJoin')
 // const {
 //   nhcrtInfraSF_Join
 // } = require('../sqlArch/nhcrtInfraSF_Join')
 const {
   save2CSVnhcrtEdiJoin
 } = require('../sqlArch/save2CSVnhcrtEdiJoin')
+const {
+  save2CSVnhcrtInfraSalesJoin
+} = require('../sqlArch/save2CSVnhcrtInfraSalesJoin')
 const {
   save2CSVreviewNEJ
 } = require('../sqlArch/save2CSVreviewNEJ')
@@ -64,8 +70,10 @@ router.post('/populateRBtable', populateRBtable)
 router.post('/queryRBdb', queryRBdb)
 router.post('/nhcrtDisplay', nhcrtDisplay)
 router.post('/nhcrtEdiJoin', nhcrtEdiJoin)
+router.post('/nhcrtInfraSalesJoin', nhcrtInfraSalesJoin)
 // router.post('/nhcrtInfraSF_Join', nhcrtInfraSF_Join)
 router.post('/save2CSVnhcrtEdiJoin', save2CSVnhcrtEdiJoin)
+router.post('/save2CSVnhcrtInfraSalesJoin', save2CSVnhcrtInfraSalesJoin)
 router.post('/save2CSVreviewNEJ', save2CSVreviewNEJ)
 router.post('/saveIMW_CSV', saveIMW_CSV)
 router.post('/loadTable_MySqlHub', loadTable_MySqlHub)
