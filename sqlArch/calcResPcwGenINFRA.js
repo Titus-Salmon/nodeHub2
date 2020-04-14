@@ -177,7 +177,7 @@ module.exports = {
       console.log(`searchResultsIND_Split.length==> ${searchResultsIND_Split.length}`)
       console.log(`searchResultsIND_Split[0]==> ${searchResultsIND_Split[0]}`)
       console.log(`typeof searchResultsIND_Split[0]==> ${typeof searchResultsIND_Split[0]}`)
-      console.log(`typeof JSON.parse(searchResultsIND_Split[0])==> ${typeof JSON.parse(searchResultsIND_Split[0])}`)
+      // console.log(`typeof JSON.parse(searchResultsIND_Split[0])==> ${typeof JSON.parse(searchResultsIND_Split[0])}`)
 
       for (let k = 0; k < searchResultsIND_Split.length; k++) {
         let searchResultsIND_SplitParsed = JSON.parse(searchResultsIND_Split[k])
