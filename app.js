@@ -21,6 +21,7 @@ const imwGeneratorRouter = require('./routes/rt-imwGenerator') //t0d
 const signFilterCheckerRouter = require('./routes/rt-signFilterChecker') //t0d
 const stockFilter_UPCRouter = require('./routes/rt-stockFilter_UPC') //t0d
 const pcwGenRouter = require('./routes/rt-pcwGen') //t0d
+const pcwGenINFRARouter = require('./routes/rt-pcwGenINFRA') //t0d
 const compareUnequalListsRouter = require('./routes/rt-compareUnequalLists') //t0d
 
 var app = express();
@@ -55,6 +56,7 @@ app.use('/imwGenerator', imwGeneratorRouter) //t0d
 app.use('/signFilterChecker', signFilterCheckerRouter) //t0d
 app.use('/stockFilter_UPC', stockFilter_UPCRouter) //t0d
 app.use('/pcwGen', pcwGenRouter) //t0d
+app.use('/pcwGenINFRA', pcwGenINFRARouter) //t0d
 app.use('/compareUnequalLists', compareUnequalListsRouter) //t0d
 
 // catch 404 and forward to error handler

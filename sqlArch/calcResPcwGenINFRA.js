@@ -4,7 +4,7 @@ const mysql = require('mysql')
 
 // const cacheMainStockFilter = require('../nodeCacheStuff/cache1')
 
-const charmAndPowerCalc = require('../funcLibT0d/charmAndPowerCalc')
+// const charmAndPowerCalc = require('../funcLibT0d/charmAndPowerCalc')
 
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
 
 module.exports = {
 
-  calcResPcwGen: router.post('/calcResPcwGen', (req, res, next) => {
+  calcResPcwGenINFRA: router.post('/calcResPcwGenINFRA', (req, res, next) => {
 
     srcRsINDstocked = []
     // srcRsIND_NOTstocked = []
@@ -42,9 +42,9 @@ module.exports = {
     searchResultsGL_SplitParsedArr = []
 
     const postBody = req.body
-    console.log('calcResPcwGen says: postBody==>', postBody)
-    console.log('calcResPcwGen says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
-    console.log('calcResPcwGen says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
+    console.log('calcResPcwGenINFRA says: postBody==>', postBody)
+    console.log('calcResPcwGenINFRA says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
+    console.log('calcResPcwGenINFRA says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
 
     let formInput0 = Object.values(postBody)[0] = loadedSqlTbl = postBody['tblNameToPostPost'] //tblNameToPostPost
     console.log('formInput0==>', formInput0)
@@ -76,41 +76,45 @@ module.exports = {
 
     function showSearchResults(rows) {
 
-      let nhcrtRows = rows
+      let nhcrtInfraSalesRows = rows
 
-      for (let i = 0; i < nhcrtRows.length; i++) {
+      for (let i = 0; i < nhcrtInfraSalesRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
 
           storeName = storeNameArr[j]
 
-          function calcResPcwGen(storeName) {
-            if (nhcrtRows[i]['stoName'] == storeName) {
+          function calcResPcwGenINFRA(storeName) {
+            if (nhcrtInfraSalesRows[i]['stoName'] == storeName) {
               let rsltsObj = {}
-              if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
-                nhcrtRows[i]['invLastsold'] > oneYearAgo ||
-                nhcrtRows[i]['invOnhand'] > 0) {
-                rsltsObj['ItemID'] = nhcrtRows[i]['invScanCode']
-                rsltsObj['ReceiptAlias'] = nhcrtRows[i]['invReceiptAlias']
+              if (nhcrtInfraSalesRows[i]['invLastreceived'] > oneYearAgo ||
+                nhcrtInfraSalesRows[i]['invLastsold'] > oneYearAgo ||
+                nhcrtInfraSalesRows[i]['invOnhand'] > 0) {
+                rsltsObj['ItemID'] = nhcrtInfraSalesRows[i]['invScanCode']
+                rsltsObj['ReceiptAlias'] = nhcrtInfraSalesRows[i]['invReceiptAlias']
                 rsltsObj['ItemTagsQty'] = "0"
                 rsltsObj['ShelfLabelsQty'] = "0"
                 rsltsObj['SignsQty'] = "1"
                 rsltsObj['PL1PromptForPrice'] = "0"
-                let reqdRtl = nhcrtRows[i]['sibBasePrice'] - (nhcrtRows[i]['sibBasePrice'] * salePct)
-                let dptNumber = nhcrtRows[i]['dptNumber']
-                console.log(`dptNumber==> ${dptNumber}`)
+                // let reqdRtl = nhcrtInfraSalesRows[i]['sibBasePrice'] - (nhcrtInfraSalesRows[i]['sibBasePrice'] * salePct)
+                // let dptNumber = nhcrtInfraSalesRows[i]['dptNumber']
+                // console.log(`dptNumber==> ${dptNumber}`)
 
-                charmAndPowerCalc.charmAndPowerCalc(dptNumber, rsltsObj, reqdRtl)
+                // charmAndPowerCalc.charmAndPowerCalc(dptNumber, rsltsObj, reqdRtl)
+
+                rsltsObj['PL1AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
 
                 rsltsObj['PL1AutoDiscount'] = "Rainbow Blossom sale Price"
                 rsltsObj['PL1CountTowardsQtyOnly'] = "0"
                 rsltsObj['PL1NoManualDiscounts'] = "0"
                 rsltsObj['PL2PromptForPrice'] = "0"
-                rsltsObj['PL2AdjustedPrice'] = "0"
+                // rsltsObj['PL2AdjustedPrice'] = "0"
+                rsltsObj['PL2AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
                 rsltsObj['PL2AutoDiscount'] = "Rainbow Blossom sale Price"
                 rsltsObj['PL2CountTowardsQtyOnly'] = "0"
                 rsltsObj['PL2NoManualDiscounts'] = "0"
                 rsltsObj['PL3PromptForPrice'] = "0"
-                rsltsObj['PL3AdjustedPrice'] = "0"
+                // rsltsObj['PL3AdjustedPrice'] = "0"
+                rsltsObj['PL3AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
                 rsltsObj['PL3AutoDiscount'] = "Rainbow Blossom sale Price"
                 rsltsObj['PL3CountTowardsQtyOnly'] = "0"
                 rsltsObj['PL3NoManualDiscounts'] = "0"
@@ -123,25 +127,25 @@ module.exports = {
                 rsltsObj['PL2PricingDivider'] = ""
                 rsltsObj['PL3PricingDivider'] = ""
                 rsltsObj['PL4PricingDivider'] = ""
-                if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                if (nhcrtInfraSalesRows[i]['stoName'] == 'Indiana') {
                   srcRsINDstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                if (nhcrtInfraSalesRows[i]['stoName'] == 'Saint Matthews') {
                   srcRsSMstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                if (nhcrtInfraSalesRows[i]['stoName'] == 'Middletown') {
                   srcRsMTstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                if (nhcrtInfraSalesRows[i]['stoName'] == 'Springhurst') {
                   srcRsSHstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                if (nhcrtInfraSalesRows[i]['stoName'] == 'Gardiner Lane') {
                   srcRsGLstocked.push(rsltsObj)
                 }
               }
             }
           }
-          calcResPcwGen(storeName)
+          calcResPcwGenINFRA(storeName)
         }
       }
 
@@ -221,7 +225,7 @@ module.exports = {
         showSearchResults(rows)
 
         res.render('vw-pcwGenINFRA', { //render searchResults to vw-MySqlTableHub page
-          title: 'pcwGenINFRA (using nhcrt table)',
+          title: 'pcwGenINFRA (using nhcrtInfraSales table)',
           searchResRowsIND: searchResultsIND_Split,
           searchResRowsSM: searchResultsSM_Split,
           searchResRowsMT: searchResultsMT_Split,

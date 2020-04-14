@@ -28,15 +28,15 @@ const {
   loadTable_calcResPcwGen
 } = require('../sqlArch/loadTable_calcResPcwGen')
 const {
-  calcResPcwGen
-} = require('../sqlArch/calcResPcwGen')
+  calcResPcwGenINFRA
+} = require('../sqlArch/calcResPcwGenINFRA')
 
 
 
 
 router.get('/', function (req, res, next) {
-  res.render('vw-pcwGen', {
-    title: 'vw-pcwGen',
+  res.render('vw-pcwGenINFRA', {
+    title: 'vw-pcwGenINFRA',
     // username: req.user.name,
     // userEmail: req.user.email,
     // userEmail_stringified: JSON.stringify(req.user.email),
@@ -50,7 +50,7 @@ router.post('/queryRBdb', queryRBdb)
 router.post('/nhcrtDisplay', nhcrtDisplay)
 router.post('/save2CSVpcwGen', save2CSVpcwGen)
 router.post('/loadTable_calcResPcwGen', loadTable_calcResPcwGen)
-router.post('/calcResPcwGen', calcResPcwGen)
+router.post('/calcResPcwGenINFRA', calcResPcwGenINFRA)
 
 
 module.exports = router;
