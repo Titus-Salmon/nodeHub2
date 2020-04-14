@@ -167,10 +167,15 @@ module.exports = {
       // srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "")
 
       searchResultsIND.push(srcRsINDstockedSani)
+      console.log(`searchResultsIND.length==> ${searchResultsIND.length}`)
       searchResultsSM.push(srcRsSMstockedSani)
+      console.log(`searchResultsSM.length==> ${searchResultsSM.length}`)
       searchResultsMT.push(srcRsMTstockedSani)
+      console.log(`searchResultsMT.length==> ${searchResultsMT.length}`)
       searchResultsSH.push(srcRsSHstockedSani)
+      console.log(`searchResultsSH.length==> ${searchResultsSH.length}`)
       searchResultsGL.push(srcRsGLstockedSani)
+      console.log(`searchResultsGL.length==> ${searchResultsGL.length}`)
 
       let searchResultsIND_ToString = searchResultsIND.toString()
       searchResultsIND_Split = searchResultsIND_ToString.split(splitRegex1)
