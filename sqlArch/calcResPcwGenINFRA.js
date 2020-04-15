@@ -135,88 +135,93 @@ module.exports = {
 
           }
         }
+        calcResPcwGenINFRA_mod('Indiana')
+        calcResPcwGenINFRA_mod('Saint Matthews')
+        calcResPcwGenINFRA_mod('Middletown')
+        calcResPcwGenINFRA_mod('Springhurst')
+        calcResPcwGenINFRA_mod('Gardiner Lane')
       }
 
-      for (let i = 0; i < nhcrtInfraSalesRows.length; i++) {
-        for (let j = 0; j < storeNameArr.length; j++) {
+      // for (let i = 0; i < nhcrtInfraSalesRows.length; i++) {
+      //   for (let j = 0; j < storeNameArr.length; j++) {
 
-          storeName = storeNameArr[j]
+      //     storeName = storeNameArr[j]
 
-          function calcResPcwGenINFRA(storeName) {
-            if (nhcrtInfraSalesRows[i]['stoName'] == storeName) {
-              let rsltsObj = {}
-              // if (nhcrtInfraSalesRows[i]['invLastreceived'] > oneYearAgo ||
-              //   nhcrtInfraSalesRows[i]['invLastsold'] > oneYearAgo ||
-              //   nhcrtInfraSalesRows[i]['invOnhand'] > 0) {
-              rsltsObj['ItemID'] = nhcrtInfraSalesRows[i]['invScanCode']
-              rsltsObj['ReceiptAlias'] = nhcrtInfraSalesRows[i]['invReceiptAlias']
-              rsltsObj['ItemTagsQty'] = "0"
-              rsltsObj['ShelfLabelsQty'] = "0"
-              if (nhcrtInfraSalesRows[i]['invLastreceived'] > oneYearAgo ||
-                nhcrtInfraSalesRows[i]['invLastsold'] > oneYearAgo ||
-                nhcrtInfraSalesRows[i]['invOnhand'] > 0) {
-                rsltsObj['SignsQty'] = "1"
-              } else {
-                rsltsObj['SignsQty'] = "0"
-              }
-              // rsltsObj['SignsQty'] = "1"
-              rsltsObj['PL1PromptForPrice'] = "0"
-              // let reqdRtl = nhcrtInfraSalesRows[i]['sibBasePrice'] - (nhcrtInfraSalesRows[i]['sibBasePrice'] * salePct)
-              // let dptNumber = nhcrtInfraSalesRows[i]['dptNumber']
-              // console.log(`dptNumber==> ${dptNumber}`)
+      //     function calcResPcwGenINFRA(storeName) {
+      //       if (nhcrtInfraSalesRows[i]['stoName'] == storeName) {
+      //         let rsltsObj = {}
+      //         // if (nhcrtInfraSalesRows[i]['invLastreceived'] > oneYearAgo ||
+      //         //   nhcrtInfraSalesRows[i]['invLastsold'] > oneYearAgo ||
+      //         //   nhcrtInfraSalesRows[i]['invOnhand'] > 0) {
+      //         rsltsObj['ItemID'] = nhcrtInfraSalesRows[i]['invScanCode']
+      //         rsltsObj['ReceiptAlias'] = nhcrtInfraSalesRows[i]['invReceiptAlias']
+      //         rsltsObj['ItemTagsQty'] = "0"
+      //         rsltsObj['ShelfLabelsQty'] = "0"
+      //         if (nhcrtInfraSalesRows[i]['invLastreceived'] > oneYearAgo ||
+      //           nhcrtInfraSalesRows[i]['invLastsold'] > oneYearAgo ||
+      //           nhcrtInfraSalesRows[i]['invOnhand'] > 0) {
+      //           rsltsObj['SignsQty'] = "1"
+      //         } else {
+      //           rsltsObj['SignsQty'] = "0"
+      //         }
+      //         // rsltsObj['SignsQty'] = "1"
+      //         rsltsObj['PL1PromptForPrice'] = "0"
+      //         // let reqdRtl = nhcrtInfraSalesRows[i]['sibBasePrice'] - (nhcrtInfraSalesRows[i]['sibBasePrice'] * salePct)
+      //         // let dptNumber = nhcrtInfraSalesRows[i]['dptNumber']
+      //         // console.log(`dptNumber==> ${dptNumber}`)
 
-              // charmAndPowerCalc.charmAndPowerCalc(dptNumber, rsltsObj, reqdRtl)
+      //         // charmAndPowerCalc.charmAndPowerCalc(dptNumber, rsltsObj, reqdRtl)
 
-              rsltsObj['PL1AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
+      //         rsltsObj['PL1AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
 
-              rsltsObj['PL1AutoDiscount'] = "Rainbow Blossom sale Price"
-              rsltsObj['PL1CountTowardsQtyOnly'] = "0"
-              rsltsObj['PL1NoManualDiscounts'] = "0"
-              rsltsObj['PL2PromptForPrice'] = "0"
-              // rsltsObj['PL2AdjustedPrice'] = "0"
-              rsltsObj['PL2AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
-              rsltsObj['PL2AutoDiscount'] = "Rainbow Blossom sale Price"
-              rsltsObj['PL2CountTowardsQtyOnly'] = "0"
-              rsltsObj['PL2NoManualDiscounts'] = "0"
-              rsltsObj['PL3PromptForPrice'] = "0"
-              // rsltsObj['PL3AdjustedPrice'] = "0"
-              rsltsObj['PL3AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
-              rsltsObj['PL3AutoDiscount'] = "Rainbow Blossom sale Price"
-              rsltsObj['PL3CountTowardsQtyOnly'] = "0"
-              rsltsObj['PL3NoManualDiscounts'] = "0"
-              rsltsObj['PL4PromptForPrice'] = "0"
-              rsltsObj['PL4AdjustedPrice'] = "0"
-              rsltsObj['PL4AutoDiscount'] = ""
-              rsltsObj['PL4CountTowardsQtyOnly'] = "0"
-              rsltsObj['PL4NoManualDiscounts'] = "0"
-              rsltsObj['PL1PricingDivider'] = ""
-              rsltsObj['PL2PricingDivider'] = ""
-              rsltsObj['PL3PricingDivider'] = ""
-              rsltsObj['PL4PricingDivider'] = ""
-              if (nhcrtInfraSalesRows[i]['stoName'] == 'Indiana') {
-                srcRsINDstocked.push(rsltsObj)
-              }
-              if (nhcrtInfraSalesRows[i]['stoName'] == 'Saint Matthews') {
-                srcRsSMstocked.push(rsltsObj)
-              }
-              if (nhcrtInfraSalesRows[i]['stoName'] == 'Middletown') {
-                srcRsMTstocked.push(rsltsObj)
-              }
-              if (nhcrtInfraSalesRows[i]['stoName'] == 'Springhurst') {
-                srcRsSHstocked.push(rsltsObj)
-              }
-              if (nhcrtInfraSalesRows[i]['stoName'] == 'Gardiner Lane') {
-                srcRsGLstocked.push(rsltsObj)
-              }
-              //}
-            }
-          }
-          calcResPcwGenINFRA(storeName)
-        }
-      }
+      //         rsltsObj['PL1AutoDiscount'] = "Rainbow Blossom sale Price"
+      //         rsltsObj['PL1CountTowardsQtyOnly'] = "0"
+      //         rsltsObj['PL1NoManualDiscounts'] = "0"
+      //         rsltsObj['PL2PromptForPrice'] = "0"
+      //         // rsltsObj['PL2AdjustedPrice'] = "0"
+      //         rsltsObj['PL2AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
+      //         rsltsObj['PL2AutoDiscount'] = "Rainbow Blossom sale Price"
+      //         rsltsObj['PL2CountTowardsQtyOnly'] = "0"
+      //         rsltsObj['PL2NoManualDiscounts'] = "0"
+      //         rsltsObj['PL3PromptForPrice'] = "0"
+      //         // rsltsObj['PL3AdjustedPrice'] = "0"
+      //         rsltsObj['PL3AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
+      //         rsltsObj['PL3AutoDiscount'] = "Rainbow Blossom sale Price"
+      //         rsltsObj['PL3CountTowardsQtyOnly'] = "0"
+      //         rsltsObj['PL3NoManualDiscounts'] = "0"
+      //         rsltsObj['PL4PromptForPrice'] = "0"
+      //         rsltsObj['PL4AdjustedPrice'] = "0"
+      //         rsltsObj['PL4AutoDiscount'] = ""
+      //         rsltsObj['PL4CountTowardsQtyOnly'] = "0"
+      //         rsltsObj['PL4NoManualDiscounts'] = "0"
+      //         rsltsObj['PL1PricingDivider'] = ""
+      //         rsltsObj['PL2PricingDivider'] = ""
+      //         rsltsObj['PL3PricingDivider'] = ""
+      //         rsltsObj['PL4PricingDivider'] = ""
+      //         if (nhcrtInfraSalesRows[i]['stoName'] == 'Indiana') {
+      //           srcRsINDstocked.push(rsltsObj)
+      //         }
+      //         if (nhcrtInfraSalesRows[i]['stoName'] == 'Saint Matthews') {
+      //           srcRsSMstocked.push(rsltsObj)
+      //         }
+      //         if (nhcrtInfraSalesRows[i]['stoName'] == 'Middletown') {
+      //           srcRsMTstocked.push(rsltsObj)
+      //         }
+      //         if (nhcrtInfraSalesRows[i]['stoName'] == 'Springhurst') {
+      //           srcRsSHstocked.push(rsltsObj)
+      //         }
+      //         if (nhcrtInfraSalesRows[i]['stoName'] == 'Gardiner Lane') {
+      //           srcRsGLstocked.push(rsltsObj)
+      //         }
+      //         //}
+      //       }
+      //     }
+      //     calcResPcwGenINFRA(storeName)
+      //   }
+      // }
 
-      console.log(`srcRsINDstocked==> ${srcRsINDstocked}`)
-      console.log(`JSON.stringify(srcRsINDstocked)==> ${JSON.stringify(srcRsINDstocked)}`)
+      // console.log(`srcRsINDstocked==> ${srcRsINDstocked}`)
+      // console.log(`JSON.stringify(srcRsINDstocked)==> ${JSON.stringify(srcRsINDstocked)}`)
       console.log(`typeof JSON.stringify(srcRsINDstocked)==> ${typeof JSON.stringify(srcRsINDstocked)}`)
       let JSONstringifySrcRsINDstocked = JSON.stringify(srcRsINDstocked)
       console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
