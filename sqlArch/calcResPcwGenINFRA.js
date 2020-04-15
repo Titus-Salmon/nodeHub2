@@ -79,6 +79,65 @@ module.exports = {
       let nhcrtInfraSalesRows = rows
 
       for (let i = 0; i < nhcrtInfraSalesRows.length; i++) {
+        function calcResPcwGenINFRA_mod(storeName) {
+          if (nhcrtInfraSalesRows[i]['stoName'] == storeName) {
+            let rsltsObj = {}
+            rsltsObj['ItemID'] = nhcrtInfraSalesRows[i]['invScanCode']
+            rsltsObj['ReceiptAlias'] = nhcrtInfraSalesRows[i]['invReceiptAlias']
+            rsltsObj['ItemTagsQty'] = "0"
+            rsltsObj['ShelfLabelsQty'] = "0"
+            if (nhcrtInfraSalesRows[i]['invLastreceived'] > oneYearAgo ||
+              nhcrtInfraSalesRows[i]['invLastsold'] > oneYearAgo ||
+              nhcrtInfraSalesRows[i]['invOnhand'] > 0) {
+              rsltsObj['SignsQty'] = "1"
+            } else {
+              rsltsObj['SignsQty'] = "0"
+            }
+            rsltsObj['PL1AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
+            rsltsObj['PL1AutoDiscount'] = "Rainbow Blossom sale Price"
+            rsltsObj['PL1CountTowardsQtyOnly'] = "0"
+            rsltsObj['PL1NoManualDiscounts'] = "0"
+            rsltsObj['PL2PromptForPrice'] = "0"
+            rsltsObj['PL2AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
+            rsltsObj['PL2AutoDiscount'] = "Rainbow Blossom sale Price"
+            rsltsObj['PL2CountTowardsQtyOnly'] = "0"
+            rsltsObj['PL2NoManualDiscounts'] = "0"
+            rsltsObj['PL3PromptForPrice'] = "0"
+            rsltsObj['PL3AdjustedPrice'] = `${nhcrtInfraSalesRows[i]['infra_sale']}`
+            rsltsObj['PL3AutoDiscount'] = "Rainbow Blossom sale Price"
+            rsltsObj['PL3CountTowardsQtyOnly'] = "0"
+            rsltsObj['PL3NoManualDiscounts'] = "0"
+            rsltsObj['PL4PromptForPrice'] = "0"
+            rsltsObj['PL4AdjustedPrice'] = "0"
+            rsltsObj['PL4AutoDiscount'] = ""
+            rsltsObj['PL4CountTowardsQtyOnly'] = "0"
+            rsltsObj['PL4NoManualDiscounts'] = "0"
+            rsltsObj['PL1PricingDivider'] = ""
+            rsltsObj['PL2PricingDivider'] = ""
+            rsltsObj['PL3PricingDivider'] = ""
+            rsltsObj['PL4PricingDivider'] = ""
+
+            if (storeName == 'Indiana') {
+              srcRsINDstocked.push(rsltsObj)
+            }
+            if (storeName == 'Saint Matthews') {
+              srcRsSMstocked.push(rsltsObj)
+            }
+            if (storeName == 'Middletown') {
+              srcRsMTstocked.push(rsltsObj)
+            }
+            if (storeName == 'Springhurst') {
+              srcRsSHstocked.push(rsltsObj)
+            }
+            if (storeName == 'Gardiner Lane') {
+              srcRsGLstocked.push(rsltsObj)
+            }
+
+          }
+        }
+      }
+
+      for (let i = 0; i < nhcrtInfraSalesRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
 
           storeName = storeNameArr[j]
