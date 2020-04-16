@@ -30,9 +30,12 @@ const {
 const {
   loadTable_calcResStockFilter_UPC
 } = require('../sqlArch/loadTable_calcResStockFilter_UPC')
+// const {
+//   calcResStockFilter_UPC
+// } = require('../sqlArch/calcResStockFilter_UPC')
 const {
-  calcResStockFilter_UPC
-} = require('../sqlArch/calcResStockFilter_UPC')
+  calcResSFupc_W_rbInvUpdater
+} = require('../sqlArch/calcResSFupc_W_rbInvUpdater')
 
 
 
