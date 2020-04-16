@@ -175,6 +175,7 @@ module.exports = {
         if (err) throw err
         showSearchResults(rows)
         console.log(`searchResultsSplit[0] called from queryNhcrtTable==> ${searchResultsSplit[0]}`)
+        console.log(`JSON.stringify(srcRsINDstocked[0]) called from queryNhcrtTable==> ${JSON.stringify(srcRsINDstocked[0])}`)
 
         res.render('vw-sfUPC_w_RBinvUpdater', { //render searchResults to vw-MySqlTableHub page
           title: 'vw-sfUPC_w_RBinvUpdater (using nhcrt table)',
