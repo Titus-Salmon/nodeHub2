@@ -77,6 +77,7 @@ module.exports = {
     function showSearchResults(rows) {
 
       let nhcrtInfraSalesRows = rows
+      console.log(`rows.length==> ${rows.length}`)
 
       for (let i = 0; i < nhcrtInfraSalesRows.length; i++) {
         function calcResPcwGenINFRA_mod() {
