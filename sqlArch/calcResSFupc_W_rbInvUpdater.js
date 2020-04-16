@@ -134,8 +134,8 @@ module.exports = {
         }
       }
 
-      console.log(`srcRsINDstocked==> ${srcRsINDstocked}`)
-      console.log(`JSON.stringify(srcRsINDstocked)==> ${JSON.stringify(srcRsINDstocked)}`)
+      // console.log(`srcRsINDstocked==> ${srcRsINDstocked}`)
+      // console.log(`JSON.stringify(srcRsINDstocked)==> ${JSON.stringify(srcRsINDstocked)}`)
       console.log(`typeof JSON.stringify(srcRsINDstocked)==> ${typeof JSON.stringify(srcRsINDstocked)}`)
       let JSONstringifySrcRsINDstocked = JSON.stringify(srcRsINDstocked)
       console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
