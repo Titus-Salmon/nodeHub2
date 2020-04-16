@@ -27,9 +27,12 @@ const {
 const {
   loadTable_MySqlHub
 } = require('../sqlArch/loadTable_MySqlHub')
+// const {
+//   loadTable_calcResStockFilter_UPC
+// } = require('../sqlArch/loadTable_calcResStockFilter_UPC')
 const {
-  loadTable_calcResStockFilter_UPC
-} = require('../sqlArch/loadTable_calcResStockFilter_UPC')
+  loadTable_calcResSFupc_W_rbInvUpdater
+} = require('../sqlArch/loadTable_calcResSFupc_W_rbInvUpdater')
 // const {
 //   calcResStockFilter_UPC
 // } = require('../sqlArch/calcResStockFilter_UPC')
@@ -55,7 +58,8 @@ router.post('/populateRBtable', populateRBtable)
 router.post('/queryRBdb', queryRBdb)
 router.post('/nhcrtDisplay', nhcrtDisplay)
 router.post('/save2CSVstockfilter', save2CSVstockfilter)
-router.post('/loadTable_calcResStockFilter_UPC', loadTable_calcResStockFilter_UPC)
+// router.post('/loadTable_calcResStockFilter_UPC', loadTable_calcResStockFilter_UPC)
+router.post('/loadTable_calcResSFupc_W_rbInvUpdater', loadTable_calcResSFupc_W_rbInvUpdater)
 // router.post('/calcResStockFilter_UPC', calcResStockFilter_UPC)
 router.post('/calcResSFupc_W_rbInvUpdater', calcResSFupc_W_rbInvUpdater)
 
