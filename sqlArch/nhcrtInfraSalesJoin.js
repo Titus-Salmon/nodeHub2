@@ -21,7 +21,7 @@ module.exports = {
     function displayNhcrtInfraSales(rows) {
       for (let i = 0; i < rows.length; i++) {
         let nhcrtInfraSalesJoinObj = {}
-        nhcrtInfraSalesJoinObj['ri_t0d'] = rows[i]['ri_t0d']
+        nhcrtInfraSalesJoinObj['ri_t0d'] = i + 1
         nhcrtInfraSalesJoinObj['invPK'] = rows[i]['invPK']
         nhcrtInfraSalesJoinObj['invCPK'] = rows[i]['invCPK']
         nhcrtInfraSalesJoinObj['invScanCode'] = rows[i]['invScanCode']
