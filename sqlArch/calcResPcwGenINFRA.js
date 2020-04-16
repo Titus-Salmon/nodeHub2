@@ -143,6 +143,12 @@ module.exports = {
         calcResPcwGenINFRA_mod()
       }
 
+      console.log(`srcRsINDstocked.length==> ${srcRsINDstocked.length}`)
+      console.log(`srcRsSMstocked.length==> ${srcRsSMstocked.length}`)
+      console.log(`srcRsMTstocked.length==> ${srcRsMTstocked.length}`)
+      console.log(`srcRsSHstocked.length==> ${srcRsSHstocked.length}`)
+      console.log(`srcRsGLstocked.length==> ${srcRsGLstocked.length}`)
+
       // for (let i = 0; i < nhcrtInfraSalesRows.length; i++) {
       //   for (let j = 0; j < storeNameArr.length; j++) {
 
