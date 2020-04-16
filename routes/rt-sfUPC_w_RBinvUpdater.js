@@ -41,8 +41,8 @@ const {
 
 
 router.get('/', function (req, res, next) {
-  res.render('vw-stockFilter_UPC', {
-    title: 'vw-stockFilter_UPC',
+  res.render('vw-sfUPC_w_RBInvUpdater', {
+    title: 'vw-sfUPC_w_RBInvUpdater',
     // username: req.user.name,
     // userEmail: req.user.email,
     // userEmail_stringified: JSON.stringify(req.user.email),
