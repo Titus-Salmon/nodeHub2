@@ -174,9 +174,10 @@ module.exports = {
       connection.query(`SELECT * FROM ${formInput0}`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
+        console.log(`searchResultsSplit[0] called from queryNhcrtTable==> ${searchResultsSplit[0]}`)
 
-        res.render('vw-stockFilter_UPC', { //render searchResults to vw-MySqlTableHub page
-          title: 'stockFilter_UP (using nhcrt table)',
+        res.render('vw-sfUPC_w_RBinvUpdater', { //render searchResults to vw-MySqlTableHub page
+          title: 'vw-sfUPC_w_RBinvUpdater (using nhcrt table)',
           searchResRows: searchResultsSplit,
           loadedSqlTbl: loadedSqlTbl,
           srcRsINDstocked: srcRsINDstocked,
