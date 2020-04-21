@@ -11,6 +11,8 @@ module.exports = {
     const queryCatapultDBPostBody = req.body
     // let catapultDbQuery = queryCatapultDBPostBody['rbInvUpdtrPost']
 
+    console.log(`queryCatapultDBPostBody['rbInvUpdtrPost']==> ${queryCatapultDBPostBody['rbInvUpdtrPost']}`)
+
     let catapultDbQuery = `SELECT INV_PK, INV_CPK, INV_ScanCode, ORD_SupplierStockNumber, INV_Name, INV_Size, INV_ReceiptAlias, inv_default,
     convert(varchar(10), POS_TimeStamp, 120), INV_DateCreated, INV_EMP_FK_CreatedBy, ord_quantityinorderunit, oup_name, sto_name, brd_name,
     dpt_name, dpt_number, SIB_IdealMargin, ven_companyname, convert(varchar(10), inv_lastreceived, 120), convert(varchar(10), inv_lastsold, 120),
@@ -150,7 +152,7 @@ module.exports = {
           console.error(error)
         }
         console.log(`result.length~~~> ${result.length}`)
-        showcatapultResults(result)
+        // showcatapultResults(result)
 
         res.render('vw-v_InventoryMaster_query2', {
           title: 'vw-v_InventoryMaster_query2',
