@@ -20,7 +20,7 @@ module.exports = {
     INV_PowerField1, INV_PowerField2, INV_PowerField3, INV_PowerField4 FROM catapult.ecrs.v_InventoryMaster WHERE trim(INV_ScanCode)
     IN (${queryCatapultDBPostBody['rbInvUpdtrPost']}) AND trim(dpt_number) != '999999' ORDER BY PI1_Description, PI2_Description `
 
-    console.log(`catapultDbQuery==> ${catapultDbQuery}`)
+    // console.log(`catapultDbQuery==> ${catapultDbQuery}`)
 
     let catapultResArr = []
 
