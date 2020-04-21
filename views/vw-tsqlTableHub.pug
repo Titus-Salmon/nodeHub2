@@ -5,8 +5,8 @@ html
 
 	body
 		h3 #{title}
-		script.
-			console.log('locstor from retailCalcUniversal_brandTargeting==>', localStorage)
+		//- script.
+		//- 	console.log('locstor from retailCalcUniversal_brandTargeting==>', localStorage)
 		include vw-dashboard.pug
 		//- div(style='display:block; margin:0 0 2.5rem 2.5rem')
 		//- 	a(href="/users/logout") Logout
@@ -14,30 +14,30 @@ html
 		//- h3(style="margin-top: 0")= title
 		hr
 
-		if wsDiff !== undefined
-			- console.log('vw-retailCalcUniversal_brandTargeting.pug says: wsDiff from wholesaleDiff.js==>', wsDiff)
+		//- if wsDiff !== undefined
+		//- 	- console.log('vw-retailCalcUniversal_brandTargeting.pug says: wsDiff from wholesaleDiff.js==>', wsDiff)
 
-		div(style="display:block")
-			form#loadTable(action='/retailCalcUniversal_brandTargeting/loadTableUniversal_brandTargeting' method='POST' accept-charset="UTF-8")
-				label.input-label-1(for='ldTblName') Table Name to Load
-				input.input-unit-1(type='text', placeholder='enter data1', name='ldTblNamePost', value='')
+		//- div(style="display:block")
+		//- 	form#loadTable(action='/retailCalcUniversal_brandTargeting/loadTableUniversal_brandTargeting' method='POST' accept-charset="UTF-8")
+		//- 		label.input-label-1(for='ldTblName') Table Name to Load
+		//- 		input.input-unit-1(type='text', placeholder='enter data1', name='ldTblNamePost', value='')
 
-				label.input-label-1(for='wsDiffResults') WS Diff Results
-				input.input-unit-1(type='text', name='wsDiffResultsLoadTblPost' value=wsDiff)
+		//- 		label.input-label-1(for='wsDiffResults') WS Diff Results
+		//- 		input.input-unit-1(type='text', name='wsDiffResultsLoadTblPost' value=wsDiff)
 
-				button(type='submit', form='loadTable') Load Table
+		//- 		button(type='submit', form='loadTable') Load Table
 
-		if loadedTable !== undefined
-			- console.log('vw-retailCalcUniversal_brandTargeting.pug says \'loadedTable\' object===>', loadedTable)
+		//- if loadedTable !== undefined
+		//- 	- console.log('vw-retailCalcUniversal_brandTargeting.pug says \'loadedTable\' object===>', loadedTable)
 
-			input.input-unit-1(type='text', placeholder='enter data2', name='loadedTblNamePost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
-			input.input-unit-1(type='text', placeholder='enter data', name='ldTblFieldsPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-			p= 'Loaded Table: ' + loadedTable.tableNameToLoad
-			p Errors:
-			if loadedTable.tableLoadError.length > 0
-				each thing in loadedTable.tableLoadError
-					- console.log('thing==>', thing)
-					p= thing
+		//- 	input.input-unit-1(type='text', placeholder='enter data2', name='loadedTblNamePost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
+		//- 	input.input-unit-1(type='text', placeholder='enter data', name='ldTblFieldsPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
+		//- 	p= 'Loaded Table: ' + loadedTable.tableNameToLoad
+		//- 	p Errors:
+		//- 	if loadedTable.tableLoadError.length > 0
+		//- 		each thing in loadedTable.tableLoadError
+		//- 			- console.log('thing==>', thing)
+		//- 			p= thing
 
 		div(style="display:block")
 			form#queryInvMasterTable(action='/tsqlTableHub/queryInvMasterTable' method='POST' accept-charset="UTF-8" style="display:block")
@@ -45,6 +45,13 @@ html
 					label.input-label-1(for='tblQry') Enter Query for Catapult v_InventoryMaster
 					textarea#tblQry.input-unit-1(name="tblQryPost", cols="30", rows="1", wrap="soft") SELECT INV_PK, INV_CPK, INV_ScanCode, ORD_SupplierStockNumber, INV_Name, INV_Size, INV_ReceiptAlias, inv_default, convert(varchar(10), POS_TimeStamp, 120), INV_DateCreated, INV_EMP_FK_CreatedBy, ord_quantityinorderunit, oup_name, sto_name, brd_name, dpt_name, dpt_number, SIB_IdealMargin, ven_companyname, convert(varchar(10), inv_lastreceived, 120), convert(varchar(10), inv_lastsold, 120), inv_lastcost, SIB_BasePrice, inv_onhand, inv_onorder, inv_intransit, PI1_Description, PI2_Description, PI3_Description, PI4_Description, INV_PowerField1, INV_PowerField2, INV_PowerField3, INV_PowerField4 FROM catapult.ecrs.v_InventoryMaster WHERE trim(ven_companyname) IN ('EDI-ALOE') AND trim(dpt_number) != '999999' ORDER BY PI1_Description, PI2_Description 
 					button(type='submit', form='queryInvMasterTable', style="display: block; float: left") QUERY v_InventoryMaster
+
+		div(style="display:block")
+			form#rbInvUpdaterTsql(action='/tsqlTableHub/rbInvUpdaterTsql' method='POST' accept-charset="UTF-8" style="display:block")
+				div(style="display:block")
+					label.input-label-1(for='rbInvUpdtr') rb_inventory UPC array to POST
+					input#rbInvUpdtr.input-unit-1(type='text' name="rbInvUpdtrPost", value=rb_inv_UPCs)
+					button(type='submit', form='rbInvUpdaterTsql', style="display: block; float: left") POST rb_inventory UPC array
 
 		div(style="display:block")
 			form#saveCSVreviewPost(action='/tsqlTableHub/save2CSV' method='POST' accept-charset='UTF-8')
@@ -134,302 +141,295 @@ html
 			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
 
 
-		form#retailCalcUniversal(action='/retailCalcUniversal_brandTargeting/results' method='POST' accept-charset="UTF-8")
+		//- form#retailCalcUniversal(action='/retailCalcUniversal_brandTargeting/results' method='POST' accept-charset="UTF-8")
 
-			if sqlTableCreated !== undefined
+		//- 	if sqlTableCreated !== undefined
 
-				input#tblColumnNames.input-unit-1(type='text', placeholder='enter data', name='tblColumnNamesPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.basicColumnNames)
-				input#tblPopulated.input-unit-1(type='text', placeholder='enter data', name='tblPopulatedPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.tableName)
-			if loadedTable !== undefined
+		//- 		input#tblColumnNames.input-unit-1(type='text', placeholder='enter data', name='tblColumnNamesPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.basicColumnNames)
+		//- 		input#tblPopulated.input-unit-1(type='text', placeholder='enter data', name='tblPopulatedPost', readonly, style="background-color:#c2d6d6", value=sqlTableCreated.tableName)
+		//- 	if loadedTable !== undefined
 
-				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
-				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
+		//- 		input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
+		//- 		input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
 
-			label.input-label-1(for='beerAlcMarg') Beer & Alcohol Margin
-			input#beerAlcMarg.input-unit-1(type='number', placeholder='.20', step='.01', name='beerAlcMargPost', value='.20')
+		//- 	label.input-label-1(for='beerAlcMarg') Beer & Alcohol Margin
+		//- 	input#beerAlcMarg.input-unit-1(type='number', placeholder='.20', step='.01', name='beerAlcMargPost', value='.20')
 
-			label.input-label-1(for='bodyCareMarg') Body Care Margin
-			input#bodyCareMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='bodyCareMargPost', value='.45')
+		//- 	label.input-label-1(for='bodyCareMarg') Body Care Margin
+		//- 	input#bodyCareMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='bodyCareMargPost', value='.45')
 
-			label.input-label-1(for='booksMarg') Books Margin
-			input#booksMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='booksMargPost', value='.40')
+		//- 	label.input-label-1(for='booksMarg') Books Margin
+		//- 	input#booksMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='booksMargPost', value='.40')
 
-			label.input-label-1(for='bulkMarg') Bulk Margin
-			input#bulkMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='bulkMargPost', value='.45')
+		//- 	label.input-label-1(for='bulkMarg') Bulk Margin
+		//- 	input#bulkMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='bulkMargPost', value='.45')
 
-			label.input-label-1(for='bulkHrbPrpkMarg') Bulk & Herb Prepack Margin
-			input#bulkHrbPrpkMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='bulkHrbPrpkMargPost', value='.45')
+		//- 	label.input-label-1(for='bulkHrbPrpkMarg') Bulk & Herb Prepack Margin
+		//- 	input#bulkHrbPrpkMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='bulkHrbPrpkMargPost', value='.45')
 
-			label.input-label-1(for='cbdGrocMarg') CBD - Grocery Margin
-			input#cbdGrocMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='cbdGrocMargPost', value='.45')
+		//- 	label.input-label-1(for='cbdGrocMarg') CBD - Grocery Margin
+		//- 	input#cbdGrocMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='cbdGrocMargPost', value='.45')
 
-			label.input-label-1(for='cbdSuppMarg') CBD - Supplements Margin
-			input#cbdSuppMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='cbdSuppMargPost', value='.50')
+		//- 	label.input-label-1(for='cbdSuppMarg') CBD - Supplements Margin
+		//- 	input#cbdSuppMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='cbdSuppMargPost', value='.50')
 
-			label.input-label-1(for='cbdTopMarg') CBD - Topicals Margin
-			input#cbdTopMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='cbdTopMargPost', value='.45')
+		//- 	label.input-label-1(for='cbdTopMarg') CBD - Topicals Margin
+		//- 	input#cbdTopMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='cbdTopMargPost', value='.45')
 
-			label.input-label-1(for='consignMarg') Consignments Margin
-			input#consignMarg.input-unit-1(type='number', placeholder='.20', step='.01', name='consignMargPost', value='.20')
+		//- 	label.input-label-1(for='consignMarg') Consignments Margin
+		//- 	input#consignMarg.input-unit-1(type='number', placeholder='.20', step='.01', name='consignMargPost', value='.20')
 
-			label.input-label-1(for='frozenMarg') Frozen Margin
-			input#frozenMarg.input-unit-1(type='number', placeholder='.38', step='.01', name='frozenMargPost', value='.38')
+		//- 	label.input-label-1(for='frozenMarg') Frozen Margin
+		//- 	input#frozenMarg.input-unit-1(type='number', placeholder='.38', step='.01', name='frozenMargPost', value='.38')
 
-			label.input-label-1(for='genMerchMarg') General Merchandise Margin
-			input#genMerchMarg.input-unit-1(type='number', placeholder='.38', step='.01', name='genMerchMargPost', value='.38')
+		//- 	label.input-label-1(for='genMerchMarg') General Merchandise Margin
+		//- 	input#genMerchMarg.input-unit-1(type='number', placeholder='.38', step='.01', name='genMerchMargPost', value='.38')
 
-			label.input-label-1(for='grabGoMarg') Grab & Go Margin
-			input#grabGoMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='grabGoMargPost', value='.33')
+		//- 	label.input-label-1(for='grabGoMarg') Grab & Go Margin
+		//- 	input#grabGoMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='grabGoMargPost', value='.33')
 
-			label.input-label-1(for='giftMarg') Gift Items Margin
-			input#giftMarg.input-unit-1(type='number', placeholder='.50', step='.01', name='giftMargPost', value='.50')
+		//- 	label.input-label-1(for='giftMarg') Gift Items Margin
+		//- 	input#giftMarg.input-unit-1(type='number', placeholder='.50', step='.01', name='giftMargPost', value='.50')
 
-			label.input-label-1(for='grocMarg') Grocery Margin
-			input#grocMarg.input-unit-1(type='number', placeholder='.38', step='.01', name='grocMargPost', value='.38')
+		//- 	label.input-label-1(for='grocMarg') Grocery Margin
+		//- 	input#grocMarg.input-unit-1(type='number', placeholder='.38', step='.01', name='grocMargPost', value='.38')
 
-			label.input-label-1(for='grocLocMarg') Grocery - Local Margin
-			input#grocLocMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='grocLocMargPost', value='.33')
+		//- 	label.input-label-1(for='grocLocMarg') Grocery - Local Margin
+		//- 	input#grocLocMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='grocLocMargPost', value='.33')
 
-			label.input-label-1(for='grocLcMtMarg') Grocery - Local Meat Margin
-			input#grocLcMtMarg.input-unit-1(type='number', placeholder='.25', step='.01', name='grocLcMtMargPost', value='.25')
+		//- 	label.input-label-1(for='grocLcMtMarg') Grocery - Local Meat Margin
+		//- 	input#grocLcMtMarg.input-unit-1(type='number', placeholder='.25', step='.01', name='grocLcMtMargPost', value='.25')
 
-			label.input-label-1(for='hbaMarg') HBA Margin
-			input#hbaMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='hbaMargPost', value='.45')
+		//- 	label.input-label-1(for='hbaMarg') HBA Margin
+		//- 	input#hbaMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='hbaMargPost', value='.45')
 
-			label.input-label-1(for='herbsHomeoMarg') Herbs & Homeo Margin
-			input#herbsHomeoMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='herbsHomeoMargPost', value='.40')
+		//- 	label.input-label-1(for='herbsHomeoMarg') Herbs & Homeo Margin
+		//- 	input#herbsHomeoMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='herbsHomeoMargPost', value='.40')
 
-			label.input-label-1(for='lfBrMarg') LifeBar Margin
-			input#lfBrMarg.input-unit-1(type='number', placeholder='0', step='.01', name='lfBrMargPost', value='0')
+		//- 	label.input-label-1(for='lfBrMarg') LifeBar Margin
+		//- 	input#lfBrMarg.input-unit-1(type='number', placeholder='0', step='.01', name='lfBrMargPost', value='0')
 
-			label.input-label-1(for='otherMarg') Other Margin
-			input#otherMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='otherMargPost', value='.45')
+		//- 	label.input-label-1(for='otherMarg') Other Margin
+		//- 	input#otherMarg.input-unit-1(type='number', placeholder='.45', step='.01', name='otherMargPost', value='.45')
 
-			label.input-label-1(for='produceMarg') Produce Margin
-			input#produceMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='produceMargPost', value='.33')
+		//- 	label.input-label-1(for='produceMarg') Produce Margin
+		//- 	input#produceMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='produceMargPost', value='.33')
 
-			label.input-label-1(for='prodCSAMarg') Produce - CSA Margin
-			input#prodCSAMarg.input-unit-1(type='number', placeholder='0', step='.01', name='prodCSAMargPost', value='0')
+		//- 	label.input-label-1(for='prodCSAMarg') Produce - CSA Margin
+		//- 	input#prodCSAMarg.input-unit-1(type='number', placeholder='0', step='.01', name='prodCSAMargPost', value='0')
 
-			label.input-label-1(for='prodFlorMarg') Produce - Floral Margin
-			input#prodFlorMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='prodFlorMargPost', value='.33')
+		//- 	label.input-label-1(for='prodFlorMarg') Produce - Floral Margin
+		//- 	input#prodFlorMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='prodFlorMargPost', value='.33')
 
-			label.input-label-1(for='prodLocMarg') Produce - Local Margin
-			input#prodLocMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='prodLocMargPost', value='.33')
+		//- 	label.input-label-1(for='prodLocMarg') Produce - Local Margin
+		//- 	input#prodLocMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='prodLocMargPost', value='.33')
 
-			label.input-label-1(for='prodPkgMarg') Produce - Packaged Margin
-			input#prodPkgMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='prodPkgMargPost', value='.33')
+		//- 	label.input-label-1(for='prodPkgMarg') Produce - Packaged Margin
+		//- 	input#prodPkgMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='prodPkgMargPost', value='.33')
 
-			label.input-label-1(for='prodPlantsMarg') Produce - Plants Margin
-			input#prodPlantsMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='prodPlantsMargPost', value='.33')
+		//- 	label.input-label-1(for='prodPlantsMarg') Produce - Plants Margin
+		//- 	input#prodPlantsMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='prodPlantsMargPost', value='.33')
 
-			label.input-label-1(for='prodPrepMarg') Produce - Prepared Margin
-			input#prodPrepMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='prodPrepMargPost', value='.40')
+		//- 	label.input-label-1(for='prodPrepMarg') Produce - Prepared Margin
+		//- 	input#prodPrepMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='prodPrepMargPost', value='.40')
 
-			label.input-label-1(for='prodSldBrMarg') Salad Bar Margin
-			input#prodSldBrMarg.input-unit-1(type='number', placeholder='.50', step='.01', name='prodSldBrMargPost', value='.50')
+		//- 	label.input-label-1(for='prodSldBrMarg') Salad Bar Margin
+		//- 	input#prodSldBrMarg.input-unit-1(type='number', placeholder='.50', step='.01', name='prodSldBrMargPost', value='.50')
 
-			label.input-label-1(for='wlnsPrctTipsMarg') Wellness Pract Tips Margin
-			input#wlnsPrctTipsMarg.input-unit-1(type='number', placeholder='0', step='.01', name='wlnsPrctTipsMargPost', value='0')
+		//- 	label.input-label-1(for='wlnsPrctTipsMarg') Wellness Pract Tips Margin
+		//- 	input#wlnsPrctTipsMarg.input-unit-1(type='number', placeholder='0', step='.01', name='wlnsPrctTipsMargPost', value='0')
 
-			label.input-label-1(for='wlnsPrctMarg') Wellness Pract Tips Margin
-			input#wlnsPrctMarg.input-unit-1(type='number', placeholder='0', step='.01', name='wlnsPrctMargPost', value='0')
+		//- 	label.input-label-1(for='wlnsPrctMarg') Wellness Pract Tips Margin
+		//- 	input#wlnsPrctMarg.input-unit-1(type='number', placeholder='0', step='.01', name='wlnsPrctMargPost', value='0')
 
-			label.input-label-1(for='refrigMarg') Refrigerated Margin
-			input#refrigMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='refrigMargPost', value='.33')
+		//- 	label.input-label-1(for='refrigMarg') Refrigerated Margin
+		//- 	input#refrigMarg.input-unit-1(type='number', placeholder='.33', step='.01', name='refrigMargPost', value='.33')
 
-			label.input-label-1(for='vitSuppMarg') Vit & Supp Margin
-			input#vitSuppMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='vitSuppMargPost', value='.40')
+		//- 	label.input-label-1(for='vitSuppMarg') Vit & Supp Margin
+		//- 	input#vitSuppMarg.input-unit-1(type='number', placeholder='.40', step='.01', name='vitSuppMargPost', value='.40')
 
-			label.input-label-1(for='globalMarg') Global Margin to Apply
-			input#globalMarg.input-unit-1(type='number', placeholder='enter margin as decimal', step='.01', name='globalMargPost', value=null)
+		//- 	label.input-label-1(for='globalMarg') Global Margin to Apply
+		//- 	input#globalMarg.input-unit-1(type='number', placeholder='enter margin as decimal', step='.01', name='globalMargPost', value=null)
 
-			label.input-label-1(for='lowerCutRqdRtlAndrea') ANDREA Lower Cutoff Req'd Rtl
-			input#lowerCutRqdRtlAndrea.input-unit-1(type='number', placeholder='10', step='.01', name='lowerCutRqdRtlAndreaPost', value='10')
+		//- 	label.input-label-1(for='lowerCutRqdRtlAndrea') ANDREA Lower Cutoff Req'd Rtl
+		//- 	input#lowerCutRqdRtlAndrea.input-unit-1(type='number', placeholder='10', step='.01', name='lowerCutRqdRtlAndreaPost', value='10')
 
-			label.input-label-1(for='lowerCutRqdRtlBrad') BRAD Lower Cutoff Req'd Rtl
-			input#lowerCutRqdRtlBrad.input-unit-1(type='number', placeholder='2', step='.01', name='lowerCutRqdRtlBradPost', value='2')
+		//- 	label.input-label-1(for='lowerCutRqdRtlBrad') BRAD Lower Cutoff Req'd Rtl
+		//- 	input#lowerCutRqdRtlBrad.input-unit-1(type='number', placeholder='2', step='.01', name='lowerCutRqdRtlBradPost', value='2')
 
-			label.input-label-1(for='lowerCutoffCharm1Andrea') ANDREA Lower Cutoff Charm 1
-			input#lowerCutoffCharm1Andrea.input-unit-1(type='number', placeholder='.29', step='.01', name='lowerCutoffCharm1AndreaPost', value='.29')
+		//- 	label.input-label-1(for='lowerCutoffCharm1Andrea') ANDREA Lower Cutoff Charm 1
+		//- 	input#lowerCutoffCharm1Andrea.input-unit-1(type='number', placeholder='.29', step='.01', name='lowerCutoffCharm1AndreaPost', value='.29')
 
-			label.input-label-1(for='lowerCutoffCharm1Brad') BRAD Lower Cutoff Charm 1
-			input#lowerCutoffCharm1Brad.input-unit-1(type='number', placeholder='.19', step='.01', name='lowerCutoffCharm1BradPost', value='.19')
+		//- 	label.input-label-1(for='lowerCutoffCharm1Brad') BRAD Lower Cutoff Charm 1
+		//- 	input#lowerCutoffCharm1Brad.input-unit-1(type='number', placeholder='.19', step='.01', name='lowerCutoffCharm1BradPost', value='.19')
 
-			label.input-label-1(for='lowerCutoffCharm2Andrea') ANDREA Lower Cutoff Charm 2
-			input#lowerCutoffCharm2Andrea.input-unit-1(type='number', placeholder='.29', step='.01', name='lowerCutoffCharm2AndreaPost', value='.29')
+		//- 	label.input-label-1(for='lowerCutoffCharm2Andrea') ANDREA Lower Cutoff Charm 2
+		//- 	input#lowerCutoffCharm2Andrea.input-unit-1(type='number', placeholder='.29', step='.01', name='lowerCutoffCharm2AndreaPost', value='.29')
 
-			label.input-label-1(for='lowerCutoffCharm2Brad') BRAD Lower Cutoff Charm 2
-			input#lowerCutoffCharm2Brad.input-unit-1(type='number', placeholder='.29', step='.01', name='lowerCutoffCharm2BradPost', value='.29')
+		//- 	label.input-label-1(for='lowerCutoffCharm2Brad') BRAD Lower Cutoff Charm 2
+		//- 	input#lowerCutoffCharm2Brad.input-unit-1(type='number', placeholder='.29', step='.01', name='lowerCutoffCharm2BradPost', value='.29')
 
-			label.input-label-1(for='lowerCutoffCharm3Andrea') ANDREA Lower Cutoff Charm 3
-			input#lowerCutoffCharm3Andrea.input-unit-1(type='number', placeholder='.49', step='.01', name='lowerCutoffCharm3AndreaPost', value='.49')
+		//- 	label.input-label-1(for='lowerCutoffCharm3Andrea') ANDREA Lower Cutoff Charm 3
+		//- 	input#lowerCutoffCharm3Andrea.input-unit-1(type='number', placeholder='.49', step='.01', name='lowerCutoffCharm3AndreaPost', value='.49')
 
-			label.input-label-1(for='lowerCutoffCharm3Brad') BRAD Lower Cutoff Charm 3
-			input#lowerCutoffCharm3Brad.input-unit-1(type='number', placeholder='.39', step='.01', name='lowerCutoffCharm3BradPost', value='.39')
+		//- 	label.input-label-1(for='lowerCutoffCharm3Brad') BRAD Lower Cutoff Charm 3
+		//- 	input#lowerCutoffCharm3Brad.input-unit-1(type='number', placeholder='.39', step='.01', name='lowerCutoffCharm3BradPost', value='.39')
 
-			label.input-label-1(for='lowerCutoffCharm4Andrea') ANDREA Lower Cutoff Charm 4
-			input#lowerCutoffCharm4Andrea.input-unit-1(type='number', placeholder='.49', step='.01', name='lowerCutoffCharm4AndreaPost', value='.49')
+		//- 	label.input-label-1(for='lowerCutoffCharm4Andrea') ANDREA Lower Cutoff Charm 4
+		//- 	input#lowerCutoffCharm4Andrea.input-unit-1(type='number', placeholder='.49', step='.01', name='lowerCutoffCharm4AndreaPost', value='.49')
 
-			label.input-label-1(for='lowerCutoffCharm4Brad') BRAD Lower Cutoff Charm 4
-			input#lowerCutoffCharm4Brad.input-unit-1(type='number', placeholder='.49', step='.01', name='lowerCutoffCharm4BradPost', value='.49')
+		//- 	label.input-label-1(for='lowerCutoffCharm4Brad') BRAD Lower Cutoff Charm 4
+		//- 	input#lowerCutoffCharm4Brad.input-unit-1(type='number', placeholder='.49', step='.01', name='lowerCutoffCharm4BradPost', value='.49')
 
-			label.input-label-1(for='lowerCutoffCharm5Andrea') ANDREA Lower Cutoff Charm 5
-			input#lowerCutoffCharm5Andrea.input-unit-1(type='number', placeholder='.79', step='.01', name='lowerCutoffCharm5AndreaPost', value='.79')
+		//- 	label.input-label-1(for='lowerCutoffCharm5Andrea') ANDREA Lower Cutoff Charm 5
+		//- 	input#lowerCutoffCharm5Andrea.input-unit-1(type='number', placeholder='.79', step='.01', name='lowerCutoffCharm5AndreaPost', value='.79')
 
-			label.input-label-1(for='lowerCutoffCharm5Brad') BRAD Lower Cutoff Charm 5
-			input#lowerCutoffCharm5Brad.input-unit-1(type='number', placeholder='.59', step='.01', name='lowerCutoffCharm5BradPost', value='.59')
+		//- 	label.input-label-1(for='lowerCutoffCharm5Brad') BRAD Lower Cutoff Charm 5
+		//- 	input#lowerCutoffCharm5Brad.input-unit-1(type='number', placeholder='.59', step='.01', name='lowerCutoffCharm5BradPost', value='.59')
 
-			label.input-label-1(for='lowerCutoffCharm6Andrea') ANDREA Lower Cutoff Charm 6
-			input#lowerCutoffCharm6Andrea.input-unit-1(type='number', placeholder='.79', step='.01', name='lowerCutoffCharm6AndreaPost', value='.79')
+		//- 	label.input-label-1(for='lowerCutoffCharm6Andrea') ANDREA Lower Cutoff Charm 6
+		//- 	input#lowerCutoffCharm6Andrea.input-unit-1(type='number', placeholder='.79', step='.01', name='lowerCutoffCharm6AndreaPost', value='.79')
 
-			label.input-label-1(for='lowerCutoffCharm6Brad') BRAD Lower Cutoff Charm 6
-			input#lowerCutoffCharm6Brad.input-unit-1(type='number', placeholder='.79', step='.01', name='lowerCutoffCharm6BradPost', value='.79')
+		//- 	label.input-label-1(for='lowerCutoffCharm6Brad') BRAD Lower Cutoff Charm 6
+		//- 	input#lowerCutoffCharm6Brad.input-unit-1(type='number', placeholder='.79', step='.01', name='lowerCutoffCharm6BradPost', value='.79')
 
-			label.input-label-1(for='lowerCutoffCharm7Andrea') ANDREA Lower Cutoff Charm 7
-			input#lowerCutoffCharm7Andrea.input-unit-1(type='number', placeholder='.99', step='.01', name='lowerCutoffCharm7AndreaPost', value='.99')
+		//- 	label.input-label-1(for='lowerCutoffCharm7Andrea') ANDREA Lower Cutoff Charm 7
+		//- 	input#lowerCutoffCharm7Andrea.input-unit-1(type='number', placeholder='.99', step='.01', name='lowerCutoffCharm7AndreaPost', value='.99')
 
-			label.input-label-1(for='lowerCutoffCharm7Brad') BRAD Lower Cutoff Charm 7
-			input#lowerCutoffCharm7Brad.input-unit-1(type='number', placeholder='.99', step='.01', name='lowerCutoffCharm7BradPost', value='.99')
+		//- 	label.input-label-1(for='lowerCutoffCharm7Brad') BRAD Lower Cutoff Charm 7
+		//- 	input#lowerCutoffCharm7Brad.input-unit-1(type='number', placeholder='.99', step='.01', name='lowerCutoffCharm7BradPost', value='.99')
 
-			label.input-label-1(for='upperCharmRqdRtlAndrea') ANDREA Upper Charm Cutoff
-			input#upperCharmRqdRtlAndrea.input-unit-1(type='number', placeholder='9999', name='upperCharmRqdRtlAndreaPost', value='9999')
+		//- 	label.input-label-1(for='upperCharmRqdRtlAndrea') ANDREA Upper Charm Cutoff
+		//- 	input#upperCharmRqdRtlAndrea.input-unit-1(type='number', placeholder='9999', name='upperCharmRqdRtlAndreaPost', value='9999')
 
-			label.input-label-1(for='upperCharmRqdRtlBrad') BRAD Upper Charm Cutoff
-			input#upperCharmRqdRtlBrad.input-unit-1(type='number', placeholder='12', name='upperCharmRqdRtlBradPost', value='12')
+		//- 	label.input-label-1(for='upperCharmRqdRtlBrad') BRAD Upper Charm Cutoff
+		//- 	input#upperCharmRqdRtlBrad.input-unit-1(type='number', placeholder='12', name='upperCharmRqdRtlBradPost', value='12')
 
-			label.input-label-1(for='defaultCharm1Andrea') ANDREA Default Charm1
-			input#defaultCharm1Andrea.input-unit-1(type='number', placeholder='.49', step='.01', name='defaultCharm1AndreaPost', value='.49')
+		//- 	label.input-label-1(for='defaultCharm1Andrea') ANDREA Default Charm1
+		//- 	input#defaultCharm1Andrea.input-unit-1(type='number', placeholder='.49', step='.01', name='defaultCharm1AndreaPost', value='.49')
 
-			label.input-label-1(for='defaultCharm1Brad') BRAD Default Charm1
-			input#defaultCharm1Brad.input-unit-1(type='number', placeholder='.29', step='.01', name='defaultCharm1BradPost', value='.29')
+		//- 	label.input-label-1(for='defaultCharm1Brad') BRAD Default Charm1
+		//- 	input#defaultCharm1Brad.input-unit-1(type='number', placeholder='.29', step='.01', name='defaultCharm1BradPost', value='.29')
 
-			label.input-label-1(for='defaultCharm2Andrea') ANDREA Default Charm2
-			input#defaultCharm2Andrea.input-unit-1(type='number', placeholder='.49', step='.01', name='defaultCharm2AndreaPost', value='.49')
+		//- 	label.input-label-1(for='defaultCharm2Andrea') ANDREA Default Charm2
+		//- 	input#defaultCharm2Andrea.input-unit-1(type='number', placeholder='.49', step='.01', name='defaultCharm2AndreaPost', value='.49')
 
-			label.input-label-1(for='defaultCharm2Brad') BRAD Default Charm2
-			input#defaultCharm2Brad.input-unit-1(type='number', placeholder='.49', step='.01', name='defaultCharm2BradPost', value='.49')
+		//- 	label.input-label-1(for='defaultCharm2Brad') BRAD Default Charm2
+		//- 	input#defaultCharm2Brad.input-unit-1(type='number', placeholder='.49', step='.01', name='defaultCharm2BradPost', value='.49')
 
-			label.input-label-1(for='defaultCharm3Andrea') ANDREA Default Charm3
-			input#defaultCharm3Andrea.input-unit-1(type='number', placeholder='.99', step='.01', name='defaultCharm3AndreaPost', value='.99')
+		//- 	label.input-label-1(for='defaultCharm3Andrea') ANDREA Default Charm3
+		//- 	input#defaultCharm3Andrea.input-unit-1(type='number', placeholder='.99', step='.01', name='defaultCharm3AndreaPost', value='.99')
 
-			label.input-label-1(for='defaultCharm3Brad') BRAD Default Charm3
-			input#defaultCharm3Brad.input-unit-1(type='number', placeholder='.79', step='.01', name='defaultCharm3BradPost', value='.79')
+		//- 	label.input-label-1(for='defaultCharm3Brad') BRAD Default Charm3
+		//- 	input#defaultCharm3Brad.input-unit-1(type='number', placeholder='.79', step='.01', name='defaultCharm3BradPost', value='.79')
 
-			label.input-label-1(for='defaultCharm4Andrea') ANDREA Default Charm4
-			input#defaultCharm4Andrea.input-unit-1(type='number', placeholder='.99', step='.01', name='defaultCharm4AndreaPost', value='.99')
+		//- 	label.input-label-1(for='defaultCharm4Andrea') ANDREA Default Charm4
+		//- 	input#defaultCharm4Andrea.input-unit-1(type='number', placeholder='.99', step='.01', name='defaultCharm4AndreaPost', value='.99')
 
-			label.input-label-1(for='defaultCharm4Brad') BRAD Default Charm4
-			input#defaultCharm4Brad.input-unit-1(type='number', placeholder='.99', step='.01', name='defaultCharm4BradPost', value='.99')
-
-			label.input-label-1(for='discountToApply') % Discount To Apply (as decimal)
-			input#defaultCharm4Brad.input-unit-1(type='number', placeholder='0', step='.01', name='discountToApplyPost', value='0')
-
-			input#prKy.input-unit-1(type='text', placeholder='enter data', name='prKyPost', value='', style="display: none")
-
-			label.input-label-1(for='upc') UPC
-			input#upc.input-unit-1(type='text', placeholder='enter data', name='upcPost', value='')
-
-			label.input-label-1(for='sku') SKU
-			input#sku.input-unit-1(type='text', placeholder='enter data', name='skuPost', value='')
-
-			label.input-label-1(for='descr') Description
-			input#descr.input-unit-1(type='text', placeholder='enter data', name='descrPost', value='')
-
-			label.input-label-1(for='updtWS') Updted WS
-			input#updtWS.input-unit-1(type='text', placeholder='enter data', name='updtWSPost', value='')
-
-			label.input-label-1(for='rbMarg') RB Margin
-			input#rbMarg.input-unit-1(type='text', placeholder='enter data', name='rbMargPost', value='')
-
-			label.input-label-1(for='rtlReqd') Retail Required
-			input#rtlReqd.input-unit-1(type='text', placeholder='enter data', name='rtlReqdPost', value='')
-
-			label.input-label-1(for='msrp') MSRP
-			input#msrp.input-unit-1(type='text', placeholder='enter data', name='msrpPost', value='')
-
-
-			div(style="display:block")
-				label.input-label-1(for='wsDiffResults') WS Diff Results
-				input#wsDiffResults.input-unit-1(type='text', name='wsDiffResultsPost' value=wsDiff)
-
-			//- input#typeOfIMW.input-unit-1(type='text', placeholder='Type of IMW', name='typeOfIMWPost', value='')
-			select#typeOfIMW.input-unit-1(name='typeOfIMPost')
-				option(value='wholesale') Wholesale Update IMW
-				option(value='retail') Retail Update IMW
-				option(value='new') New Item(s) IMW
-
-			input#tableToJoin.input-unit-1(type='text', placeholder='enter table to join', name='tableToJoinPost', value="")
-
-		button#searchDB(type='submit', form='retailCalcUniversal', style="display: block; float: left") Search Loaded Table
-		br
-		br
-		button.adminButton#saveCSV(type="submit" form="saveCSVPost") Save Results as CSV - Inv Mnt Wksht (for WS, Retail, or New Item Update)
-		form#saveCSVPost(action='/retailCalcUniversal_brandTargeting/saveCSV' method='POST' accept-charset='UTF-8')
-			label.input-label-1(for='csv') filename:
-				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				//- input#typeOfIMW.input-unit-1(type='text', placeholder='Type if IMW', name='typeOfIMWPost', value='')
-			if loadedTable !== undefined
-				label.input-label-1(for='csvHeaders') CSV headers:
-					input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
-		button.adminButton#saveCSVreview(type="submit" form="saveCSVreviewPost") Save Results as CSV - Retail Price Review
-		form#saveCSVreviewPost(action='/retailCalcUniversal_brandTargeting/saveCSVreview' method='POST' accept-charset='UTF-8')
-			label.input-label-1(for='csv') filename:
-				input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-			if loadedTable !== undefined
-				label.input-label-1(for='csvReviewHeaders') CSV Review headers:
-					input#csvReviewHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value="upc, sku, name, pf2, pf3, cost, charm, edlp_flag, sale_flag")
-
-		div.rslt-tbl-1
-			table#resTbl
-				label.input-label-1(for='ldSqlTbl') Loaded Sql Table:
-				input#ldSqlTbl.input-unit-1(type='text', placeholder='loaded sql table', name='ldSqlTblPost', value=loadedSqlTbl)
-				button#editDB(style="display: inline-block") Edit Selection
-				button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
-				thead
-					tr
-						th ri_t0d
-						th Primary Key
-						th UPC
-						th SKU
-						th Description
-						th Updated WS
-						th Global Margin
-						th Retail Required
-						th Charm Price
-						th MSRP
-						th rb_dept
-						th rb_dept_id
-						th rb_dept_margin
-						th wsDiff
-						th Appld Disco
-
-
-				tbody#resTblBdy
-					if searchResRows !== undefined
-						each elmnt in searchResRows
-							tr
-								td= elmnt.ri_t0d
-								td= elmnt.P_K
-								td= elmnt.upc
-								td= elmnt.sku
-								td= elmnt.name
-								td= elmnt.cost
-								td= elmnt.globalMargin
-								td= elmnt.reqdRetail
-								td= elmnt.charm
-								td= elmnt.msrp
-								td= elmnt.rb_dept
-								td= elmnt.rb_dept_id
-								td= elmnt.rb_dept_margin
-								td= elmnt.wsDiff_t0d
-								td= elmnt.discountToApply
-									//- label.input-label-1(for='mrgnVl') margin value
-									//- input#mrgVl.input-unit-1(type='number', placeholder='0', name='mrgVldPost', value='')
-
-
-		//- script(src='/javascripts/modules/sortTableM0d.js')
-		//- script(src='/javascripts/modules/tblHiliteM0d.js')
-		//- script(src='/javascripts/modules/dateCalcM0d.js')
-		//- script(src='/javascripts/modules/editDBM0d.js')
+		//- 	label.input-label-1(for='defaultCharm4Brad') BRAD Default Charm4
+		//- 	input#defaultCharm4Brad.input-unit-1(type='number', placeholder='.99', step='.01', name='defaultCharm4BradPost', value='.99')
+
+		//- 	label.input-label-1(for='discountToApply') % Discount To Apply (as decimal)
+		//- 	input#defaultCharm4Brad.input-unit-1(type='number', placeholder='0', step='.01', name='discountToApplyPost', value='0')
+
+		//- 	input#prKy.input-unit-1(type='text', placeholder='enter data', name='prKyPost', value='', style="display: none")
+
+		//- 	label.input-label-1(for='upc') UPC
+		//- 	input#upc.input-unit-1(type='text', placeholder='enter data', name='upcPost', value='')
+
+		//- 	label.input-label-1(for='sku') SKU
+		//- 	input#sku.input-unit-1(type='text', placeholder='enter data', name='skuPost', value='')
+
+		//- 	label.input-label-1(for='descr') Description
+		//- 	input#descr.input-unit-1(type='text', placeholder='enter data', name='descrPost', value='')
+
+		//- 	label.input-label-1(for='updtWS') Updted WS
+		//- 	input#updtWS.input-unit-1(type='text', placeholder='enter data', name='updtWSPost', value='')
+
+		//- 	label.input-label-1(for='rbMarg') RB Margin
+		//- 	input#rbMarg.input-unit-1(type='text', placeholder='enter data', name='rbMargPost', value='')
+
+		//- 	label.input-label-1(for='rtlReqd') Retail Required
+		//- 	input#rtlReqd.input-unit-1(type='text', placeholder='enter data', name='rtlReqdPost', value='')
+
+		//- 	label.input-label-1(for='msrp') MSRP
+		//- 	input#msrp.input-unit-1(type='text', placeholder='enter data', name='msrpPost', value='')
+
+
+		//- 	div(style="display:block")
+		//- 		label.input-label-1(for='wsDiffResults') WS Diff Results
+		//- 		input#wsDiffResults.input-unit-1(type='text', name='wsDiffResultsPost' value=wsDiff)
+
+		//- 	//- input#typeOfIMW.input-unit-1(type='text', placeholder='Type of IMW', name='typeOfIMWPost', value='')
+		//- 	select#typeOfIMW.input-unit-1(name='typeOfIMPost')
+		//- 		option(value='wholesale') Wholesale Update IMW
+		//- 		option(value='retail') Retail Update IMW
+		//- 		option(value='new') New Item(s) IMW
+
+		//- 	input#tableToJoin.input-unit-1(type='text', placeholder='enter table to join', name='tableToJoinPost', value="")
+
+		//- button#searchDB(type='submit', form='retailCalcUniversal', style="display: block; float: left") Search Loaded Table
+		//- br
+		//- br
+		//- button.adminButton#saveCSV(type="submit" form="saveCSVPost") Save Results as CSV - Inv Mnt Wksht (for WS, Retail, or New Item Update)
+		//- form#saveCSVPost(action='/retailCalcUniversal_brandTargeting/saveCSV' method='POST' accept-charset='UTF-8')
+		//- 	label.input-label-1(for='csv') filename:
+		//- 		input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+		//- 		//- input#typeOfIMW.input-unit-1(type='text', placeholder='Type if IMW', name='typeOfIMWPost', value='')
+		//- 	if loadedTable !== undefined
+		//- 		label.input-label-1(for='csvHeaders') CSV headers:
+		//- 			input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
+		//- button.adminButton#saveCSVreview(type="submit" form="saveCSVreviewPost") Save Results as CSV - Retail Price Review
+		//- form#saveCSVreviewPost(action='/retailCalcUniversal_brandTargeting/saveCSVreview' method='POST' accept-charset='UTF-8')
+		//- 	label.input-label-1(for='csv') filename:
+		//- 		input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+		//- 	if loadedTable !== undefined
+		//- 		label.input-label-1(for='csvReviewHeaders') CSV Review headers:
+		//- 			input#csvReviewHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value="upc, sku, name, pf2, pf3, cost, charm, edlp_flag, sale_flag")
+
+		//- div.rslt-tbl-1
+		//- 	table#resTbl
+		//- 		label.input-label-1(for='ldSqlTbl') Loaded Sql Table:
+		//- 		input#ldSqlTbl.input-unit-1(type='text', placeholder='loaded sql table', name='ldSqlTblPost', value=loadedSqlTbl)
+		//- 		button#editDB(style="display: inline-block") Edit Selection
+		//- 		button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
+		//- 		thead
+		//- 			tr
+		//- 				th ri_t0d
+		//- 				th Primary Key
+		//- 				th UPC
+		//- 				th SKU
+		//- 				th Description
+		//- 				th Updated WS
+		//- 				th Global Margin
+		//- 				th Retail Required
+		//- 				th Charm Price
+		//- 				th MSRP
+		//- 				th rb_dept
+		//- 				th rb_dept_id
+		//- 				th rb_dept_margin
+		//- 				th wsDiff
+		//- 				th Appld Disco
+
+
+		//- 		tbody#resTblBdy
+		//- 			if searchResRows !== undefined
+		//- 				each elmnt in searchResRows
+		//- 					tr
+		//- 						td= elmnt.ri_t0d
+		//- 						td= elmnt.P_K
+		//- 						td= elmnt.upc
+		//- 						td= elmnt.sku
+		//- 						td= elmnt.name
+		//- 						td= elmnt.cost
+		//- 						td= elmnt.globalMargin
+		//- 						td= elmnt.reqdRetail
+		//- 						td= elmnt.charm
+		//- 						td= elmnt.msrp
+		//- 						td= elmnt.rb_dept
+		//- 						td= elmnt.rb_dept_id
+		//- 						td= elmnt.rb_dept_margin
+		//- 						td= elmnt.wsDiff_t0d
+		//- 						td= elmnt.discountToApply
+
 		script(src='/javascripts/modules/adminM0d.js')

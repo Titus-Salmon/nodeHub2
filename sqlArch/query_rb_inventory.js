@@ -20,7 +20,7 @@ module.exports = {
 
     function show_rb_inv_UPCs(rows) {
       for (let i = 0; i < rows.length; i++) {
-        rb_inv_UPCs.push(rows[i]['inv_upc'])
+        rb_inv_UPCs.push(`${rows[i]['inv_upc']}`)
       }
       console.log('rows.length~~~>', rows.length)
     }
