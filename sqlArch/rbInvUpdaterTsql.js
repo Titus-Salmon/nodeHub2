@@ -166,6 +166,46 @@ module.exports = {
           catapultResults: catapultResArr
         })
       })
+    }).on('end', function () {
+      console.log("END")
+
+      //begin csv generator //////////////////////////////////////////////////////////////////////////
+      const {
+        Parser
+      } = require('json2csv')
+
+      const fields = [
+        "invPK", "invScanCode", "invName", "invSize", "invReceiptAlias", "posTimeStamp", "invDateCreated", "invEmpFkCreatedBy", "ordQuantityInOrderUnit", "oupName",
+        "stoName", "brdName", "dptName", "dptNumber", "venCompanyname", "invLastreceived", "invLastsold", "invLastcost", "sibBasePrice", "invOnhand", "invOnorder", "invIntransit",
+        "pi1Description", "pi2Description", "pi3Description", "invPowerField3", "invPowerField4"
+      ]
+
+      const opts = {
+        fields
+      }
+
+      try {
+        console.log('catapultResArr[0] from json2csv======>>', catapultResArr[0])
+        const parser = new Parser(opts);
+        const csv = parser.parse(catapultResArr);
+        // csvContainer.push(csv);
+        // console.log(`req.body-->${req.body}`)
+        console.log(`JSON.stringify(req.body)-->${JSON.stringify(req.body)}`)
+        console.log(`req.body['csvPost']-->${req.body['csvPost']}`)
+        console.log('csv.length=====>>', csv.length);
+        fs.writeFile(process.cwd() + '/public/csv-to-insert/' + 'rb_inv_nhcrt.csv', csv, function (err) {
+          if (err) throw err;
+          console.log('~~~~~>>rb_inv_nhcrt.csvsaved<<~~~~~')
+        })
+      } catch (err) {
+        console.error(err);
+      }
+      //end csv generator //////////////////////////////////////////////////////////////////////////
+
+      res.render('vw-v_InventoryMaster_query', { //render searchResults to vw-dbEditPassport page
+        title: 'CSV Saved'
+      })
+
     })
   })
 }
