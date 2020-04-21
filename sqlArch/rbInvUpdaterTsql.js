@@ -11,11 +11,13 @@ module.exports = {
     const queryCatapultDBPostBody = req.body
     // let catapultDbQuery = queryCatapultDBPostBody['rbInvUpdtrPost']
 
-    console.log(`queryCatapultDBPostBody['rbInvUpdtrPost']==> ${queryCatapultDBPostBody['rbInvUpdtrPost']}`)
+    // console.log(`queryCatapultDBPostBody['rbInvUpdtrPost']==> ${queryCatapultDBPostBody['rbInvUpdtrPost']}`)
     console.log(`typeof queryCatapultDBPostBody['rbInvUpdtrPost']==> ${typeof queryCatapultDBPostBody['rbInvUpdtrPost']}`)
 
     let saniRegex1 = /(\[)|(\])/g
     rb_inv_UPCsani = queryCatapultDBPostBody['rbInvUpdtrPost'].replace(saniRegex1, "")
+    console.log(`rb_inv_UPCsani==> ${rb_inv_UPCsani} <==rb_inv_UPCsani`)
+    console.log(`typeof rb_inv_UPCsani==> ${typeof rb_inv_UPCsani}`)
 
     let catapultDbQuery = `SELECT INV_PK, INV_CPK, INV_ScanCode, ORD_SupplierStockNumber, INV_Name, INV_Size, INV_ReceiptAlias, inv_default,
     convert(varchar(10), POS_TimeStamp, 120), INV_DateCreated, INV_EMP_FK_CreatedBy, ord_quantityinorderunit, oup_name, sto_name, brd_name,
