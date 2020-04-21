@@ -199,7 +199,7 @@ module.exports = {
         }
         //end csv generator //////////////////////////////////////////////////////////////////////////
 
-        res.render('vw-v_InventoryMaster_query', { //render searchResults to vw-dbEditPassport page
+        res.render('vw-rbInvUpdater', { //render searchResults to vw-dbEditPassport page
           title: 'CSV Saved'
         })
 
