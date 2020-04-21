@@ -24,6 +24,7 @@ const sfUPC_w_RBinvUpdaterRouter = require('./routes/rt-sfUPC_w_RBinvUpdater') /
 const pcwGenRouter = require('./routes/rt-pcwGen') //t0d
 const pcwGenINFRARouter = require('./routes/rt-pcwGenINFRA') //t0d
 const compareUnequalListsRouter = require('./routes/rt-compareUnequalLists') //t0d
+const rbInvUpdaterRouter = require('./routes/rt-rbInvUpdater') //t0d
 
 var app = express();
 
@@ -60,6 +61,7 @@ app.use('/sfUPC_w_RBinvUpdater', sfUPC_w_RBinvUpdaterRouter) //t0d
 app.use('/pcwGen', pcwGenRouter) //t0d
 app.use('/pcwGenINFRA', pcwGenINFRARouter) //t0d
 app.use('/compareUnequalLists', compareUnequalListsRouter) //t0d
+app.use('/rbInvUpdater', rbInvUpdaterRouter) //t0d
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
