@@ -161,10 +161,10 @@ module.exports = {
         console.log(`result.length~~~> ${result.length}`)
         showcatapultResults(result)
 
-        res.render('vw-v_InventoryMaster_query2', {
-          title: 'vw-v_InventoryMaster_query2',
-          catapultResults: catapultResArr
-        })
+        // res.render('vw-v_InventoryMaster_query2', {
+        //   title: 'vw-v_InventoryMaster_query2',
+        //   catapultResults: catapultResArr
+        // })
       })
     }).on('end', function () {
       console.log("END")
