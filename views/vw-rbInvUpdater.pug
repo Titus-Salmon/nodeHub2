@@ -15,5 +15,35 @@ html
 				button#crtTblBtn1(type='submit', form='query_rb_inventory', style="display: block; float: left") QUERY Rainbow DB
 		//- //^// queries RB DB
 
-	
+		br
+
+		//- //v// creates empty nhcrt mysql table
+		form#createNhcrtTable(action='/rbInvUpdater/createNhcrtRbInvTable' method='POST' accept-charset="UTF-8" style="display:block")
+			div(style="display:block")
+				label.input-label-1(for='crtNhcrtTbl') Enter MySql nhcrtRbInv Table Name to CREATE
+				input#crtNhcrtTbl.input-unit-1(type='text', placeholder='enter data', name='tblNamePost', value='nhcrtRbInv')
+
+				label.input-label-1(for='crtNhcrtTblInput') Enter Table Headers (as csv) - default headers for nhcrt (Node Hub Catalog Results Table) provided
+				input#crtNhcrtTblInput.input-unit-1(type='text', placeholder='enter data', name='crtTblPost', value='invPK,invCPK,invScanCode,invName,ordSupplierStockNumber,invSize,invReceiptAlias,posTimeStamp,invDateCreated,invEmpFkCreatedBy,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastreceived,invLastsold,invLastcost,sibBasePrice,invOnhand,invOnorder,invIntransit,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4')
+				button#crtNhcrtTblBtn(type='submit', form='createNhcrtTable', style="display: block") CREATE NHCRT Table
+		//- //^// creates empty mysql table
+
+		br
+
+		form#populateTable(ref="populateTable" action='/MySqlTableHub/populateRBTable' method='POST' encType="multipart/form-data" accept-charset="UTF-8")
+			div(style="display:block")
+				label.input-label-1(for='popTbl') Populate Table
+				input#popTbl.input-unit-1(type='file', name='popTblPost')
+
+				label.input-label-1(for='popTblName') Table to Populate
+				input#popTblName.input-unit-1(type='text', name='popTblNamePost')
+
+				label.input-label-1(for='tblColName') Loaded Column Names
+				input#tblColName.input-unit-1(type='text', name='tblColNamePost', value=tableColNames)
+
+				button#popTblBtn(type='submit', form='populateTable', style="display: block") Populate Table
+
+		if sqlTablePopulated !== undefined
+			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
+
 		script(src='/javascripts/modules/adminM0d.js')

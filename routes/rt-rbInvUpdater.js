@@ -9,12 +9,18 @@ const router = express.Router()
 // const {
 //   createRBtable
 // } = require('../sqlArch/createRBtable')
+const {
+  createNhcrtRbInvTable
+} = require('../sqlArch/createNhcrtRbInvTable')
 // const {
 //   deleteRBtable
 // } = require('../sqlArch/deleteRBtable')
 // const {
 //   populateRBtable
 // } = require('../sqlArch/populateRBtable')
+const {
+  populateNhcrtRbInvTable
+} = require('../sqlArch/populateNhcrtRbInvTable')
 const {
   query_rb_inventory
 } = require('../sqlArch/query_rb_inventory')
@@ -62,8 +68,10 @@ router.get('/', function (req, res, next) {
 });
 
 // router.post('/createRBtable', createRBtable)
+router.post('/createNhcrtRbInvTable', createNhcrtRbInvTable)
 // router.post('/deleteRBtable', deleteRBtable)
 // router.post('/populateRBtable', populateRBtable)
+router.post('/populateNhcrtRbInvTable', populateNhcrtRbInvTable)
 router.post('/query_rb_inventory', query_rb_inventory)
 // router.post('/nhcrtDisplay', nhcrtDisplay)
 // router.post('/nhcrtEdiJoin', nhcrtEdiJoin)
