@@ -22,7 +22,7 @@ module.exports = {
       columnNames.push(columnName)
     }
 
-    let mySqlQuery = `DROP TABLE IF EXISTS ${tablename};
+    let mySqlQuery = `DROP TABLE IF EXISTS ${tableName};
     CREATE TABLE ${tableName} (ri_t0d int NOT NULL AUTO_INCREMENT, ${columnNames}, PRIMARY KEY (ri_t0d));`
 
     connection.query(mySqlQuery, (error, response) => {
