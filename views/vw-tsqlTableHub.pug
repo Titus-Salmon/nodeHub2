@@ -53,6 +53,8 @@ html
 					input#rbInvUpdtr.input-unit-1(type='text' name="rbInvUpdtrPost", value=rb_inv_UPCs)
 					button(type='submit', form='rbInvUpdaterTsql', style="display: block; float: left") POST rb_inventory UPC array
 
+		br
+
 		div(style="display:block")
 			form#saveCSVreviewPost(action='/tsqlTableHub/save2CSV' method='POST' accept-charset='UTF-8')
 				if catapultTables !== undefined

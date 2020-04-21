@@ -21,6 +21,11 @@ const {
 const {
   v_InventoryMasterQuery
 } = require('../sqlArch/v_InventoryMasterQuery')
+
+const {
+  rbInvUpdaterTsql
+} = require('../sqlArch/rbInvUpdaterTsql')
+
 const {
   OrderingInfoQuery
 } = require('../sqlArch/OrderingInfoQuery')
@@ -75,6 +80,9 @@ router.post('/deleteTsqlTable', deleteTsqlTableSimple)
 router.post('/queryCatapultDB', queryCatapultDB)
 router.post('/populateTsqlTable', populateTsqlTable)
 router.post('/queryInvMasterTable', v_InventoryMasterQuery)
+
+router.post('/rbInvUpdaterTsql', rbInvUpdaterTsql)
+
 router.post('/queryOrderingInfoTable', OrderingInfoQuery)
 router.post('/save2CSV', save2CSV)
 
