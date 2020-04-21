@@ -17,7 +17,7 @@ module.exports = {
     let saniRegex1 = /(\[)|(\])/g
     let saniRegex2 = /\"/g
     rb_inv_UPCsani = queryCatapultDBPostBody['rbInvUpdtrPost'].replace(saniRegex1, "").replace(saniRegex2, "'")
-    console.log(`rb_inv_UPCsani==> ${rb_inv_UPCsani} <==rb_inv_UPCsani`)
+    // console.log(`rb_inv_UPCsani==> ${rb_inv_UPCsani} <==rb_inv_UPCsani`)
     console.log(`typeof rb_inv_UPCsani==> ${typeof rb_inv_UPCsani}`)
 
     let catapultDbQuery = `SELECT INV_PK, INV_CPK, INV_ScanCode, ORD_SupplierStockNumber, INV_Name, INV_Size, INV_ReceiptAlias, inv_default,
@@ -161,11 +161,6 @@ module.exports = {
         console.log(`result.length~~~> ${result.length}`)
         showcatapultResults(result)
 
-        // res.render('vw-v_InventoryMaster_query2', {
-        //   title: 'vw-v_InventoryMaster_query2',
-        //   catapultResults: catapultResArr
-        // })
-
         //begin csv generator //////////////////////////////////////////////////////////////////////////
         const {
           Parser
@@ -186,10 +181,8 @@ module.exports = {
           console.log('catapultResArr[0] from json2csv======>>', catapultResArr[0])
           const parser = new Parser(opts);
           const csv = parser.parse(catapultResArr);
-          // csvContainer.push(csv);
-          // console.log(`req.body-->${req.body}`)
-          console.log(`JSON.stringify(req.body)-->${JSON.stringify(req.body)}`)
-          console.log(`req.body['csvPost']-->${req.body['csvPost']}`)
+          // console.log(`JSON.stringify(req.body)-->${JSON.stringify(req.body)}`)
+          // console.log(`req.body['csvPost']-->${req.body['csvPost']}`)
           console.log('csv.length=====>>', csv.length);
           fs.writeFile(process.cwd() + '/public/csv-to-insert/' + 'rb_inv_nhcrt.csv', csv, function (err) {
             if (err) throw err;
