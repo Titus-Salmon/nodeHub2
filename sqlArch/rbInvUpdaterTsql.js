@@ -15,7 +15,8 @@ module.exports = {
     console.log(`typeof queryCatapultDBPostBody['rbInvUpdtrPost']==> ${typeof queryCatapultDBPostBody['rbInvUpdtrPost']}`)
 
     let saniRegex1 = /(\[)|(\])/g
-    rb_inv_UPCsani = queryCatapultDBPostBody['rbInvUpdtrPost'].replace(saniRegex1, "")
+    let saniRegex1 = /\"/g
+    rb_inv_UPCsani = queryCatapultDBPostBody['rbInvUpdtrPost'].replace(saniRegex1, "").replace(saniRegex2, "'")
     console.log(`rb_inv_UPCsani==> ${rb_inv_UPCsani} <==rb_inv_UPCsani`)
     console.log(`typeof rb_inv_UPCsani==> ${typeof rb_inv_UPCsani}`)
 
