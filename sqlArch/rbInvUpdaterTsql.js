@@ -12,6 +12,7 @@ module.exports = {
     // let catapultDbQuery = queryCatapultDBPostBody['rbInvUpdtrPost']
 
     console.log(`queryCatapultDBPostBody['rbInvUpdtrPost']==> ${queryCatapultDBPostBody['rbInvUpdtrPost']}`)
+    console.log(`typeof queryCatapultDBPostBody['rbInvUpdtrPost']==> ${typeof queryCatapultDBPostBody['rbInvUpdtrPost']}`)
 
     let saniRegex1 = /(\[)|(\])/g
     rb_inv_UPCsani = queryCatapultDBPostBody['rbInvUpdtrPost'].replace(saniRegex1, "")
@@ -21,7 +22,7 @@ module.exports = {
     dpt_name, dpt_number, SIB_IdealMargin, ven_companyname, convert(varchar(10), inv_lastreceived, 120), convert(varchar(10), inv_lastsold, 120),
     inv_lastcost, SIB_BasePrice, inv_onhand, inv_onorder, inv_intransit, PI1_Description, PI2_Description, PI3_Description, PI4_Description,
     INV_PowerField1, INV_PowerField2, INV_PowerField3, INV_PowerField4 FROM catapult.ecrs.v_InventoryMaster WHERE trim(INV_ScanCode)
-    IN (${rb_inv_UPCsani}) AND trim(dpt_number) != '999999' ORDER BY PI1_Description, PI2_Description `
+    IN (${rb_inv_UPCsani}) AND trim(dpt_number) != '999999' ORDER BY PI1_Description, PI2_Description`
 
     // console.log(`catapultDbQuery==> ${catapultDbQuery}`)
 
@@ -149,19 +150,19 @@ module.exports = {
       }
     }
 
-    odbc.connect(DSN, (error, connection) => {
-      connection.query(`${catapultDbQuery}`, (error, result) => {
-        if (error) {
-          console.error(error)
-        }
-        console.log(`result.length~~~> ${result.length}`)
-        showcatapultResults(result)
+    // odbc.connect(DSN, (error, connection) => {
+    //   connection.query(`${catapultDbQuery}`, (error, result) => {
+    //     if (error) {
+    //       console.error(error)
+    //     }
+    //     console.log(`result.length~~~> ${result.length}`)
+    //     showcatapultResults(result)
 
-        res.render('vw-v_InventoryMaster_query2', {
-          title: 'vw-v_InventoryMaster_query2',
-          catapultResults: catapultResArr
-        })
-      })
-    })
+    //     res.render('vw-v_InventoryMaster_query2', {
+    //       title: 'vw-v_InventoryMaster_query2',
+    //       catapultResults: catapultResArr
+    //     })
+    //   })
+    // })
   })
 }
