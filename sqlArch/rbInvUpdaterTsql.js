@@ -153,19 +153,19 @@ module.exports = {
       }
     }
 
-    // odbc.connect(DSN, (error, connection) => {
-    //   connection.query(`${catapultDbQuery}`, (error, result) => {
-    //     if (error) {
-    //       console.error(error)
-    //     }
-    //     console.log(`result.length~~~> ${result.length}`)
-    //     showcatapultResults(result)
+    odbc.connect(DSN, (error, connection) => {
+      connection.query(`${catapultDbQuery}`, (error, result) => {
+        if (error) {
+          console.error(error)
+        }
+        console.log(`result.length~~~> ${result.length}`)
+        showcatapultResults(result)
 
-    //     res.render('vw-v_InventoryMaster_query2', {
-    //       title: 'vw-v_InventoryMaster_query2',
-    //       catapultResults: catapultResArr
-    //     })
-    //   })
-    // })
+        res.render('vw-v_InventoryMaster_query2', {
+          title: 'vw-v_InventoryMaster_query2',
+          catapultResults: catapultResArr
+        })
+      })
+    })
   })
 }
