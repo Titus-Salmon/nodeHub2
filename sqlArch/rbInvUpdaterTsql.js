@@ -165,8 +165,6 @@ module.exports = {
         //   title: 'vw-v_InventoryMaster_query2',
         //   catapultResults: catapultResArr
         // })
-      }).then(function () {
-        console.log("END")
 
         //begin csv generator //////////////////////////////////////////////////////////////////////////
         const {
@@ -206,6 +204,10 @@ module.exports = {
         })
 
       })
+
+
+
+
     })
   })
 }
