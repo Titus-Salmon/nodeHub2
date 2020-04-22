@@ -210,52 +210,52 @@ module.exports = {
       UPDATE rb_inventory_titus_20200415
       SET inv_in_stock = '1'
       WHERE trim(inv_upc)
-      IN (${INDstockedUPCstring});
+      IN (${srcRsINDstockedSani});
       
       UPDATE rb_inventory_titus_20200415
       SET inv_in_stock = '0'
       WHERE trim(inv_upc)
-      IN (${IND_NOTStockedUPCstring});
+      IN (${srcRsIND_NOTstockedSani});
       
       UPDATE rb_inventory_titus_20200415
       SET inv_sm_stock = '1'
       WHERE trim(inv_upc)
-      IN (${SMstockedUPCstring});
+      IN (${srcRsSMstockedSani});
       
       UPDATE rb_inventory_titus_20200415
       SET inv_sm_stock = '0'
       WHERE trim(inv_upc)
-      IN (${SM_NOTStockedUPCstring});
+      IN (${srcRsSM_NOTstockedSani});
       
       UPDATE rb_inventory_titus_20200415
       SET inv_mt_stock = '1'
       WHERE trim(inv_upc)
-      IN (${MTstockedUPCstring});
+      IN (${srcRsMTstockedSani});
       
       UPDATE rb_inventory_titus_20200415
       SET inv_mt_stock = '0'
       WHERE trim(inv_upc)
-      IN (${MT_NOTStockedUPCstring});
+      IN (${srcRsMT_NOTstockedSani});
       
       UPDATE rb_inventory_titus_20200415
       SET inv_sh_stock = '1'
       WHERE trim(inv_upc)
-      IN (${SHstockedUPCstring});
+      IN (${srcRsSHstockedSani});
       
       UPDATE rb_inventory_titus_20200415
       SET inv_sh_stock = '0'
       WHERE trim(inv_upc)
-      IN (${SH_NOTStockedUPCstring});
+      IN (${srcRsSH_NOTstockedSani});
       
       UPDATE rb_inventory_titus_20200415
       SET inv_gl_stock = '1'
       WHERE trim(inv_upc)
-      IN (${GLstockedUPCstring});
+      IN (${srcRsGLstockedSani});
       
       UPDATE rb_inventory_titus_20200415
       SET inv_gl_stock = '0'
       WHERE trim(inv_upc)
-      IN (${GL_NOTStockedUPCstring});`, function (err, rows, fields) {
+      IN (${srcRsGL_NOTstockedSani});`, function (err, rows, fields) {
         if (err) throw err
 
         res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
@@ -275,6 +275,6 @@ module.exports = {
         })
       })
     }
-    // update_rb_inventory()
+    update_rb_inventory()
   })
 }
