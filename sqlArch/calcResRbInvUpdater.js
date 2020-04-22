@@ -177,8 +177,10 @@ module.exports = {
       connection.query(`SELECT * FROM ${tableName}`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
-        console.log(`searchResultsSplit[0] called from queryNhcrtTable==> ${searchResultsSplit[0]}`)
-        console.log(`JSON.stringify(srcRsINDstocked[0]) called from queryNhcrtTable==> ${JSON.stringify(srcRsINDstocked[0])}`)
+        // console.log(`searchResultsSplit[0] called from queryNhcrtTable==> ${searchResultsSplit[0]}`)
+        // console.log(`JSON.stringify(srcRsINDstocked[0]) called from queryNhcrtTable==> ${JSON.stringify(srcRsINDstocked[0])}`)
+
+        console.log(`srcRsINDstocked[0] called from queryNhcrtTable==> ${srcRsINDstocked[0]}`)
 
         // res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
         //   title: 'vw-rbInvUpdater (using nhcrtRbInv table)',
