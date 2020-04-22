@@ -46,4 +46,12 @@ html
 		if sqlTablePopulated !== undefined
 			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
 
+		br
+
+		form#rbInvUpdate(action='/rbInvUpdater/calcResRbInvUpdater' method='POST' accept-charset="UTF-8")
+			div(style="display:block")
+				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value='nhcrtRbInv')
+		button#updateRbInv(type='submit', form='rbInvUpdate', style="display: block; float: left") Update rb_inventory Table
+		
+		
 		script(src='/javascripts/modules/adminM0d.js')

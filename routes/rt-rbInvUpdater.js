@@ -54,6 +54,9 @@ const {
 // const {
 //   calcResultsGET
 // } = require('../sqlArch/calcResultsGET')
+const {
+  calcResRbInvUpdater
+} = require('../sqlArch/calcResRbInvUpdater')
 
 
 
@@ -83,6 +86,7 @@ router.post('/query_rb_inventory', query_rb_inventory)
 // router.post('/loadTable_MySqlHub', loadTable_MySqlHub)
 // router.post('/calcResults', calcResults)
 // router.get('/calcResults', calcResultsGET)
+router.get('/calcResRbInvUpdater', calcResRbInvUpdater)
 
 
 module.exports = router;
