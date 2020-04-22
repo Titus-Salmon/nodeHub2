@@ -144,18 +144,18 @@ module.exports = {
       // let JSONstringifySrcRsINDstocked = JSON.stringify(srcRsINDstocked)
       // console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
 
-      // srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // console.log(`typeof srcRsINDstockedSani==> ${typeof srcRsINDstockedSani}`)
-      // console.log(`srcRsINDstockedSani==> ${srcRsINDstockedSani}`)
-      // srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      console.log(`typeof srcRsINDstockedSani==> ${typeof srcRsINDstockedSani}`)
+      console.log(`srcRsINDstockedSani==> ${srcRsINDstockedSani}`)
+      srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
 
       // searchResults.push(srcRsINDstockedSani, srcRsIND_NOTstockedSani, srcRsSMstockedSani, srcRsSM_NOTstockedSani,
       //   srcRsMTstockedSani, srcRsMT_NOTstockedSani, srcRsSHstockedSani, srcRsSH_NOTstockedSani,
@@ -180,45 +180,87 @@ module.exports = {
       connection.query(`SELECT * FROM ${tableName}`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
-        // console.log(`searchResultsSplit[0] called from queryNhcrtTable==> ${searchResultsSplit[0]}`)
-        // console.log(`JSON.stringify(srcRsINDstocked[0]) called from queryNhcrtTable==> ${JSON.stringify(srcRsINDstocked[0])}`)
 
         console.log(`srcRsINDstocked[0] called from queryNhcrtTable==> ${srcRsINDstocked[0]}`)
 
-        // res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
-        //   title: 'vw-rbInvUpdater (using nhcrtRbInv table)',
-        //   searchResRows: searchResultsSplit,
-        //   // loadedSqlTbl: loadedSqlTbl,
-        //   srcRsINDstocked: srcRsINDstocked,
-        //   srcRsIND_NOTstocked: srcRsIND_NOTstocked,
-        //   srcRsSMstocked: srcRsSMstocked,
-        //   srcRsSM_NOTstocked: srcRsSM_NOTstocked,
-        //   srcRsMTstocked: srcRsMTstocked,
-        //   srcRsMT_NOTstocked: srcRsMT_NOTstocked,
-        //   srcRsSHstocked: srcRsSHstocked,
-        //   srcRsSH_NOTstocked: srcRsSH_NOTstocked,
-        //   srcRsGLstocked: srcRsGLstocked,
-        //   srcRsGL_NOTstocked: srcRsGL_NOTstocked,
-        //   searchResultsSplitParsedArr: searchResultsSplitParsedArr
-        // })
+        connection.query(`
+        UPDATE rb_inventory_titus_20200415
+        SET inv_in_stock = '1'
+        WHERE trim(inv_upc)
+        IN (${srcRsINDstockedSani})
+        
+        SET inv_in_stock = '0'
+        WHERE trim(inv_upc)
+        IN (${srcRsIND_NOTstockedSani})
+        
+        SET inv_sm_stock = '1'
+        WHERE trim(inv_upc)
+        IN (${srcRsSMstockedSani})
+        
+        SET inv_sm_stock = '0'
+        WHERE trim(inv_upc)
+        IN (${srcRsSM_NOTstockedSani})
+        
+        SET inv_mt_stock = '1'
+        WHERE trim(inv_upc)
+        IN (${srcRsMTstockedSani})
+        
+        SET inv_mt_stock = '0'
+        WHERE trim(inv_upc)
+        IN (${srcRsMT_NOTstockedSani})
+        
+        SET inv_sh_stock = '1'
+        WHERE trim(inv_upc)
+        IN (${srcRsSHstockedSani})
+        
+        SET inv_sh_stock = '0'
+        WHERE trim(inv_upc)
+        IN (${srcRsSH_NOTstockedSani})
+        
+        SET inv_gl_stock = '1'
+        WHERE trim(inv_upc)
+        IN (${srcRsGLstockedSani})
+        
+        SET inv_gl_stock = '0'
+        WHERE trim(inv_upc)
+        IN (${srcRsGL_NOTstockedSani});`, function (err, rows, fields) {
+          if (err) throw err
+
+          res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
+            title: 'vw-rbInvUpdater ==>> rb_inventory_titus_20200415 updated',
+            // searchResRows: searchResultsSplit,
+            // srcRsINDstocked: srcRsINDstocked,
+            // srcRsIND_NOTstocked: srcRsIND_NOTstocked,
+            // srcRsSMstocked: srcRsSMstocked,
+            // srcRsSM_NOTstocked: srcRsSM_NOTstocked,
+            // srcRsMTstocked: srcRsMTstocked,
+            // srcRsMT_NOTstocked: srcRsMT_NOTstocked,
+            // srcRsSHstocked: srcRsSHstocked,
+            // srcRsSH_NOTstocked: srcRsSH_NOTstocked,
+            // srcRsGLstocked: srcRsGLstocked,
+            // srcRsGL_NOTstocked: srcRsGL_NOTstocked,
+            // searchResultsSplitParsedArr: searchResultsSplitParsedArr
+          })
+        })
+
       })
     }
     queryNhcrtTable()
 
     function update_rb_inventory() {
 
-      srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      console.log(`typeof srcRsINDstockedSani==> ${typeof srcRsINDstockedSani}`)
-      console.log(`srcRsINDstockedSani==> ${srcRsINDstockedSani}`)
-      srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      // srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      // console.log(`typeof srcRsINDstockedSani==> ${typeof srcRsINDstockedSani}`)
+      // console.log(`srcRsINDstockedSani==> ${srcRsINDstockedSani}`)
+      // srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      // srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      // srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      // srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      // srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      // srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      // srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      // srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      // srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
 
       connection.query(`
       UPDATE rb_inventory_titus_20200415
@@ -280,6 +322,6 @@ module.exports = {
         })
       })
     }
-    update_rb_inventory()
+    // update_rb_inventory()
   })
 }
