@@ -187,40 +187,49 @@ module.exports = {
         UPDATE rb_inventory_titus_20200415
         SET inv_in_stock = '1'
         WHERE trim(inv_upc)
-        IN (${srcRsINDstockedSani})
+        IN (${srcRsINDstockedSani});
         
+        UPDATE rb_inventory_titus_20200415
         SET inv_in_stock = '0'
         WHERE trim(inv_upc)
-        IN (${srcRsIND_NOTstockedSani})
+        IN (${srcRsIND_NOTstockedSani});
         
+        UPDATE rb_inventory_titus_20200415
         SET inv_sm_stock = '1'
         WHERE trim(inv_upc)
-        IN (${srcRsSMstockedSani})
+        IN (${srcRsSMstockedSani});
         
+        UPDATE rb_inventory_titus_20200415
         SET inv_sm_stock = '0'
         WHERE trim(inv_upc)
-        IN (${srcRsSM_NOTstockedSani})
+        IN (${srcRsSM_NOTstockedSani});
         
+        UPDATE rb_inventory_titus_20200415
         SET inv_mt_stock = '1'
         WHERE trim(inv_upc)
-        IN (${srcRsMTstockedSani})
+        IN (${srcRsMTstockedSani});
         
+        UPDATE rb_inventory_titus_20200415
         SET inv_mt_stock = '0'
         WHERE trim(inv_upc)
-        IN (${srcRsMT_NOTstockedSani})
+        IN (${srcRsMT_NOTstockedSani});
         
+        UPDATE rb_inventory_titus_20200415
         SET inv_sh_stock = '1'
         WHERE trim(inv_upc)
-        IN (${srcRsSHstockedSani})
+        IN (${srcRsSHstockedSani});
         
+        UPDATE rb_inventory_titus_20200415
         SET inv_sh_stock = '0'
         WHERE trim(inv_upc)
-        IN (${srcRsSH_NOTstockedSani})
+        IN (${srcRsSH_NOTstockedSani});
         
+        UPDATE rb_inventory_titus_20200415
         SET inv_gl_stock = '1'
         WHERE trim(inv_upc)
-        IN (${srcRsGLstockedSani})
+        IN (${srcRsGLstockedSani});
         
+        UPDATE rb_inventory_titus_20200415
         SET inv_gl_stock = '0'
         WHERE trim(inv_upc)
         IN (${srcRsGL_NOTstockedSani});`, function (err, rows, fields) {
