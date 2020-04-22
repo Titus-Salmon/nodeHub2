@@ -70,11 +70,12 @@ module.exports = {
     let storeAbbrevArr = ['IND', 'SM', 'MT', 'SH', 'GL']
 
     let saniRegex1 = /(\[)|(\])/g
+    let saniRegex2 = /"/g
 
-    /* X(?=Y) 	Positive lookahead 	X if followed by Y
-     * (?<=Y)X 	Positive lookbehind 	X if after Y
-     * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
-    let splitRegex1 = /(?<=}),(?={)/g
+    // /* X(?=Y) 	Positive lookahead 	X if followed by Y
+    //  * (?<=Y)X 	Positive lookbehind 	X if after Y
+    //  * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
+    // let splitRegex1 = /(?<=}),(?={)/g
 
     function showSearchResults(rows) {
 
@@ -134,39 +135,41 @@ module.exports = {
         }
       }
 
+      console.log(`srcRsINDstocked[0]==> ${srcRsINDstocked[0]}`)
+      console.log(`typeof srcRsINDstocked[0]==> ${typeof srcRsINDstocked[0]}`)
       // console.log(`srcRsINDstocked==> ${srcRsINDstocked}`)
       // console.log(`JSON.stringify(srcRsINDstocked)==> ${JSON.stringify(srcRsINDstocked)}`)
-      console.log(`typeof JSON.stringify(srcRsINDstocked)==> ${typeof JSON.stringify(srcRsINDstocked)}`)
-      let JSONstringifySrcRsINDstocked = JSON.stringify(srcRsINDstocked)
-      console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
+      // console.log(`typeof JSON.stringify(srcRsINDstocked)==> ${typeof JSON.stringify(srcRsINDstocked)}`)
+      // let JSONstringifySrcRsINDstocked = JSON.stringify(srcRsINDstocked)
+      // console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
 
-      srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "")
-      srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "")
-      srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "")
-      srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "")
-      srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "")
-      srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "")
-      srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "")
-      srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "")
-      srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "")
-      srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "")
+      srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
 
-      searchResults.push(srcRsINDstockedSani, srcRsIND_NOTstockedSani, srcRsSMstockedSani, srcRsSM_NOTstockedSani,
-        srcRsMTstockedSani, srcRsMT_NOTstockedSani, srcRsSHstockedSani, srcRsSH_NOTstockedSani,
-        srcRsGLstockedSani, srcRsGL_NOTstockedSani)
+      // searchResults.push(srcRsINDstockedSani, srcRsIND_NOTstockedSani, srcRsSMstockedSani, srcRsSM_NOTstockedSani,
+      //   srcRsMTstockedSani, srcRsMT_NOTstockedSani, srcRsSHstockedSani, srcRsSH_NOTstockedSani,
+      //   srcRsGLstockedSani, srcRsGL_NOTstockedSani)
 
-      let searchResultsToString = searchResults.toString()
-      searchResultsSplit = searchResultsToString.split(splitRegex1)
-      console.log(`searchResultsSplit.length==> ${searchResultsSplit.length}`)
-      console.log(`searchResultsSplit[0]==> ${searchResultsSplit[0]}`)
-      console.log(`typeof searchResultsSplit[0]==> ${typeof searchResultsSplit[0]}`)
-      console.log(`typeof JSON.parse(searchResultsSplit[0])==> ${typeof JSON.parse(searchResultsSplit[0])}`)
+      // let searchResultsToString = searchResults.toString()
+      // searchResultsSplit = searchResultsToString.split(splitRegex1)
+      // console.log(`searchResultsSplit.length==> ${searchResultsSplit.length}`)
+      // console.log(`searchResultsSplit[0]==> ${searchResultsSplit[0]}`)
+      // console.log(`typeof searchResultsSplit[0]==> ${typeof searchResultsSplit[0]}`)
+      // console.log(`typeof JSON.parse(searchResultsSplit[0])==> ${typeof JSON.parse(searchResultsSplit[0])}`)
 
-      for (let k = 0; k < searchResultsSplit.length; k++) {
-        let searchResultsSplitParsed = JSON.parse(searchResultsSplit[k])
-        searchResultsSplitParsedArr.push(searchResultsSplitParsed)
-      }
-      console.log(`searchResultsSplitParsedArr[0]['ri_t0d']==> ${searchResultsSplitParsedArr[0]['ri_t0d']}`)
+      // for (let k = 0; k < searchResultsSplit.length; k++) {
+      //   let searchResultsSplitParsed = JSON.parse(searchResultsSplit[k])
+      //   searchResultsSplitParsedArr.push(searchResultsSplitParsed)
+      // }
+      // console.log(`searchResultsSplitParsedArr[0]['ri_t0d']==> ${searchResultsSplitParsedArr[0]['ri_t0d']}`)
     }
 
 
