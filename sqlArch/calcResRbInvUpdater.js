@@ -180,7 +180,7 @@ module.exports = {
         res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
           title: 'vw-rbInvUpdater (using nhcrtRbInv table)',
           searchResRows: searchResultsSplit,
-          loadedSqlTbl: loadedSqlTbl,
+          // loadedSqlTbl: loadedSqlTbl,
           srcRsINDstocked: srcRsINDstocked,
           srcRsIND_NOTstocked: srcRsIND_NOTstocked,
           srcRsSMstocked: srcRsSMstocked,
