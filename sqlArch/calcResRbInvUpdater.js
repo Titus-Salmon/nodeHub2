@@ -142,15 +142,10 @@ module.exports = {
 
       console.log(`srcRsINDstocked[0]==> ${srcRsINDstocked[0]}`)
       console.log(`typeof srcRsINDstocked[0]==> ${typeof srcRsINDstocked[0]}`)
-      // console.log(`srcRsINDstocked==> ${srcRsINDstocked}`)
-      // console.log(`JSON.stringify(srcRsINDstocked)==> ${JSON.stringify(srcRsINDstocked)}`)
-      // console.log(`typeof JSON.stringify(srcRsINDstocked)==> ${typeof JSON.stringify(srcRsINDstocked)}`)
-      // let JSONstringifySrcRsINDstocked = JSON.stringify(srcRsINDstocked)
-      // console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
 
       srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       console.log(`typeof srcRsINDstockedSani==> ${typeof srcRsINDstockedSani}`)
-      console.log(`srcRsINDstockedSani==> ${srcRsINDstockedSani}`)
+      // console.log(`srcRsINDstockedSani==> ${srcRsINDstockedSani}`)
       srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
@@ -161,22 +156,6 @@ module.exports = {
       srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
 
-      // searchResults.push(srcRsINDstockedSani, srcRsIND_NOTstockedSani, srcRsSMstockedSani, srcRsSM_NOTstockedSani,
-      //   srcRsMTstockedSani, srcRsMT_NOTstockedSani, srcRsSHstockedSani, srcRsSH_NOTstockedSani,
-      //   srcRsGLstockedSani, srcRsGL_NOTstockedSani)
-
-      // let searchResultsToString = searchResults.toString()
-      // searchResultsSplit = searchResultsToString.split(splitRegex1)
-      // console.log(`searchResultsSplit.length==> ${searchResultsSplit.length}`)
-      // console.log(`searchResultsSplit[0]==> ${searchResultsSplit[0]}`)
-      // console.log(`typeof searchResultsSplit[0]==> ${typeof searchResultsSplit[0]}`)
-      // console.log(`typeof JSON.parse(searchResultsSplit[0])==> ${typeof JSON.parse(searchResultsSplit[0])}`)
-
-      // for (let k = 0; k < searchResultsSplit.length; k++) {
-      //   let searchResultsSplitParsed = JSON.parse(searchResultsSplit[k])
-      //   searchResultsSplitParsedArr.push(searchResultsSplitParsed)
-      // }
-      // console.log(`searchResultsSplitParsedArr[0]['ri_t0d']==> ${searchResultsSplitParsedArr[0]['ri_t0d']}`)
     }
 
 
