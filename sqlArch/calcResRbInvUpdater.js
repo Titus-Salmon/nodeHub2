@@ -58,6 +58,8 @@ module.exports = {
     let todaysDate = todaysDateRaw_split[0]
     console.log(`todaysDate==> ${todaysDate}`)
 
+
+    //v//////////one year ago///////////////////////////////////////
     let oneYearAgoRaw_pre = todaysDateRaw
     oneYearAgoRaw_pre.setFullYear(todaysDateRaw.getFullYear() - 1)
 
@@ -65,6 +67,17 @@ module.exports = {
     let oneYearAgoRaw_split = oneYearAgoRaw_iso.split('T')
     let oneYearAgo = oneYearAgoRaw_split[0]
     console.log(`oneYearAgo==> ${oneYearAgo}`)
+    //^//////////one year ago///////////////////////////////////////
+
+    //v//////////one month ago///////////////////////////////////////
+    let oneMonthAgoRaw_pre = todaysDateRaw
+    oneMonthAgoRaw_pre.setFullYear(todaysDateRaw.getFullYear() - .0833333)
+
+    let oneMonthAgoRaw_iso = oneMonthAgoRaw_pre.toISOString()
+    let oneMonthAgoRaw_split = oneMonthAgoRaw_iso.split('T')
+    let oneMonthAgo = oneMonthAgoRaw_split[0]
+    console.log(`oneMonthAgo==> ${oneMonthAgo}`)
+    //^//////////one month ago///////////////////////////////////////
 
     let storeNameArr = ['Indiana', 'Saint Matthews', 'Middletown', 'Springhurst', 'Gardiner Lane']
     let storeAbbrevArr = ['IND', 'SM', 'MT', 'SH', 'GL']
