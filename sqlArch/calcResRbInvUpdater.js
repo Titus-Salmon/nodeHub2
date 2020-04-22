@@ -80,7 +80,11 @@ module.exports = {
 
     function showSearchResults(rows) {
 
-      let nhcrtRows = rows
+      let nhcrtRows = rows[0]
+      let wishlistRows = rows[1]
+
+      console.log(`nhcrtRows[0]==> ${nhcrtRows[0]}`)
+      console.log(`wishlistRows[0]==> ${wishlistRows[0]}`)
 
       for (let i = 0; i < nhcrtRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
@@ -177,7 +181,9 @@ module.exports = {
 
 
     function queryNhcrtTable() {
-      connection.query(`SELECT * FROM ${tableName}`, function (err, rows, fields) {
+      connection.query(`
+      SELECT * FROM ${tableName};
+      SELECT * FROM rb_wishlist;`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
 
