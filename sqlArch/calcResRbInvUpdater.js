@@ -144,6 +144,8 @@ module.exports = {
       // console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
 
       srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      console.log(`typeof srcRsINDstockedSani==> ${typeof srcRsINDstockedSani}`)
+      console.log(`srcRsINDstockedSani==> ${srcRsINDstockedSani}`)
       srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
       srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
       srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
