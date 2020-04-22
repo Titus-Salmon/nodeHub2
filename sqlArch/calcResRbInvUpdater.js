@@ -71,6 +71,7 @@ module.exports = {
 
     let saniRegex1 = /(\[)|(\])/g
     let saniRegex2 = /"/g
+    let saniRegex3 = /\s/g
 
     // /* X(?=Y) 	Positive lookahead 	X if followed by Y
     //  * (?<=Y)X 	Positive lookbehind 	X if after Y
@@ -143,18 +144,18 @@ module.exports = {
       // let JSONstringifySrcRsINDstocked = JSON.stringify(srcRsINDstocked)
       // console.log(`typeof JSONstringifySrcRsINDstocked==> ${typeof JSONstringifySrcRsINDstocked}`)
 
-      srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       console.log(`typeof srcRsINDstockedSani==> ${typeof srcRsINDstockedSani}`)
       console.log(`srcRsINDstockedSani==> ${srcRsINDstockedSani}`)
-      srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
-      srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
-      srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
-      srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
-      srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
-      srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
-      srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
-      srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
-      srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'")
+      srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
 
       // searchResults.push(srcRsINDstockedSani, srcRsIND_NOTstockedSani, srcRsSMstockedSani, srcRsSM_NOTstockedSani,
       //   srcRsMTstockedSani, srcRsMT_NOTstockedSani, srcRsSHstockedSani, srcRsSH_NOTstockedSani,
