@@ -77,6 +77,7 @@ module.exports = {
 
     //v//////////one month ago///////////////////////////////////////
     let oneMonthAgoRaw_pre = todaysDateRaw2
+    console.log(`todaysDateRaw2==> ${todaysDateRaw2}`)
     oneMonthAgoRaw_pre.setFullYear(todaysDateRaw2.getFullYear() - .0833333)
 
     let oneMonthAgoRaw_iso = oneMonthAgoRaw_pre.toISOString()
