@@ -84,7 +84,9 @@ module.exports = {
       let wishlistRows = rows[1]
 
       console.log(`nhcrtRows[0]==> ${nhcrtRows[0]}`)
+      console.log(`JSON.stringify(nhcrtRows[0])==> ${JSON.stringify(nhcrtRows[0])}`)
       console.log(`wishlistRows[0]==> ${wishlistRows[0]}`)
+      console.log(`JSON.stringify(wishlistRows[0])==> ${JSON.stringify(wishlistRows[0])}`)
 
       for (let i = 0; i < nhcrtRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
