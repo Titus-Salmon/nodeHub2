@@ -88,44 +88,44 @@ module.exports = {
 
           function calcResRbInvUpdater(storeName, storeAbbrev) {
             if (nhcrtRows[i]['stoName'] == storeName) {
-              let rsltsObj = {}
-              rsltsObj['ri_t0d'] = i
-              rsltsObj[`${storeAbbrev}_UPCs`] = nhcrtRows[i]['invScanCode']
+              // let rsltsObj = {}
+              // rsltsObj['ri_t0d'] = i
+              // rsltsObj[`${storeAbbrev}_UPCs`] = nhcrtRows[i]['invScanCode']
               if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
                 nhcrtRows[i]['invLastsold'] > oneYearAgo ||
                 nhcrtRows[i]['invOnhand'] > 0) {
-                rsltsObj[`${storeAbbrev}stocked`] = nhcrtRows[i]['invScanCode']
+                // rsltsObj[`${storeAbbrev}stocked`] = nhcrtRows[i]['invScanCode']
                 if (nhcrtRows[i]['stoName'] == 'Indiana') {
-                  srcRsINDstocked.push(rsltsObj)
+                  srcRsINDstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
                 if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
-                  srcRsSMstocked.push(rsltsObj)
+                  srcRsSMstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
                 if (nhcrtRows[i]['stoName'] == 'Middletown') {
-                  srcRsMTstocked.push(rsltsObj)
+                  srcRsMTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
                 if (nhcrtRows[i]['stoName'] == 'Springhurst') {
-                  srcRsSHstocked.push(rsltsObj)
+                  srcRsSHstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
                 if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
-                  srcRsGLstocked.push(rsltsObj)
+                  srcRsGLstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
               } else {
-                rsltsObj[`${storeAbbrev}_NOTstocked`] = nhcrtRows[i]['invScanCode']
+                // rsltsObj[`${storeAbbrev}_NOTstocked`] = nhcrtRows[i]['invScanCode']
                 if (nhcrtRows[i]['stoName'] == 'Indiana') {
-                  srcRsIND_NOTstocked.push(rsltsObj)
+                  srcRsIND_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
                 if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
-                  srcRsSM_NOTstocked.push(rsltsObj)
+                  srcRsSM_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
                 if (nhcrtRows[i]['stoName'] == 'Middletown') {
-                  srcRsMT_NOTstocked.push(rsltsObj)
+                  srcRsMT_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
                 if (nhcrtRows[i]['stoName'] == 'Springhurst') {
-                  srcRsSH_NOTstocked.push(rsltsObj)
+                  srcRsSH_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
                 if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
-                  srcRsGL_NOTstocked.push(rsltsObj)
+                  srcRsGL_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
               }
             }
@@ -177,26 +177,96 @@ module.exports = {
         console.log(`searchResultsSplit[0] called from queryNhcrtTable==> ${searchResultsSplit[0]}`)
         console.log(`JSON.stringify(srcRsINDstocked[0]) called from queryNhcrtTable==> ${JSON.stringify(srcRsINDstocked[0])}`)
 
+        // res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
+        //   title: 'vw-rbInvUpdater (using nhcrtRbInv table)',
+        //   searchResRows: searchResultsSplit,
+        //   // loadedSqlTbl: loadedSqlTbl,
+        //   srcRsINDstocked: srcRsINDstocked,
+        //   srcRsIND_NOTstocked: srcRsIND_NOTstocked,
+        //   srcRsSMstocked: srcRsSMstocked,
+        //   srcRsSM_NOTstocked: srcRsSM_NOTstocked,
+        //   srcRsMTstocked: srcRsMTstocked,
+        //   srcRsMT_NOTstocked: srcRsMT_NOTstocked,
+        //   srcRsSHstocked: srcRsSHstocked,
+        //   srcRsSH_NOTstocked: srcRsSH_NOTstocked,
+        //   srcRsGLstocked: srcRsGLstocked,
+        //   srcRsGL_NOTstocked: srcRsGL_NOTstocked,
+        //   searchResultsSplitParsedArr: searchResultsSplitParsedArr
+        // })
+      })
+    }
+    queryNhcrtTable()
+
+    function update_rb_inventory() {
+      connection.query(`
+      UPDATE rb_inventory_titus_20200415
+      SET inv_in_stock = '1'
+      WHERE trim(inv_upc)
+      IN (${INDstockedUPCstring});
+      
+      UPDATE rb_inventory_titus_20200415
+      SET inv_in_stock = '0'
+      WHERE trim(inv_upc)
+      IN (${IND_NOTStockedUPCstring});
+      
+      UPDATE rb_inventory_titus_20200415
+      SET inv_sm_stock = '1'
+      WHERE trim(inv_upc)
+      IN (${SMstockedUPCstring});
+      
+      UPDATE rb_inventory_titus_20200415
+      SET inv_sm_stock = '0'
+      WHERE trim(inv_upc)
+      IN (${SM_NOTStockedUPCstring});
+      
+      UPDATE rb_inventory_titus_20200415
+      SET inv_mt_stock = '1'
+      WHERE trim(inv_upc)
+      IN (${MTstockedUPCstring});
+      
+      UPDATE rb_inventory_titus_20200415
+      SET inv_mt_stock = '0'
+      WHERE trim(inv_upc)
+      IN (${MT_NOTStockedUPCstring});
+      
+      UPDATE rb_inventory_titus_20200415
+      SET inv_sh_stock = '1'
+      WHERE trim(inv_upc)
+      IN (${SHstockedUPCstring});
+      
+      UPDATE rb_inventory_titus_20200415
+      SET inv_sh_stock = '0'
+      WHERE trim(inv_upc)
+      IN (${SH_NOTStockedUPCstring});
+      
+      UPDATE rb_inventory_titus_20200415
+      SET inv_gl_stock = '1'
+      WHERE trim(inv_upc)
+      IN (${GLstockedUPCstring});
+      
+      UPDATE rb_inventory_titus_20200415
+      SET inv_gl_stock = '0'
+      WHERE trim(inv_upc)
+      IN (${GL_NOTStockedUPCstring});`, function (err, rows, fields) {
+        if (err) throw err
+
         res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
-          title: 'vw-rbInvUpdater (using nhcrtRbInv table)',
-          searchResRows: searchResultsSplit,
-          // loadedSqlTbl: loadedSqlTbl,
-          srcRsINDstocked: srcRsINDstocked,
-          srcRsIND_NOTstocked: srcRsIND_NOTstocked,
-          srcRsSMstocked: srcRsSMstocked,
-          srcRsSM_NOTstocked: srcRsSM_NOTstocked,
-          srcRsMTstocked: srcRsMTstocked,
-          srcRsMT_NOTstocked: srcRsMT_NOTstocked,
-          srcRsSHstocked: srcRsSHstocked,
-          srcRsSH_NOTstocked: srcRsSH_NOTstocked,
-          srcRsGLstocked: srcRsGLstocked,
-          srcRsGL_NOTstocked: srcRsGL_NOTstocked,
-          searchResultsSplitParsedArr: searchResultsSplitParsedArr
+          title: 'vw-rbInvUpdater ==>> rb_inventory_titus_20200415 updated',
+          // searchResRows: searchResultsSplit,
+          // srcRsINDstocked: srcRsINDstocked,
+          // srcRsIND_NOTstocked: srcRsIND_NOTstocked,
+          // srcRsSMstocked: srcRsSMstocked,
+          // srcRsSM_NOTstocked: srcRsSM_NOTstocked,
+          // srcRsMTstocked: srcRsMTstocked,
+          // srcRsMT_NOTstocked: srcRsMT_NOTstocked,
+          // srcRsSHstocked: srcRsSHstocked,
+          // srcRsSH_NOTstocked: srcRsSH_NOTstocked,
+          // srcRsGLstocked: srcRsGLstocked,
+          // srcRsGL_NOTstocked: srcRsGL_NOTstocked,
+          // searchResultsSplitParsedArr: searchResultsSplitParsedArr
         })
       })
     }
-
-    queryNhcrtTable()
-
+    // update_rb_inventory()
   })
 }
