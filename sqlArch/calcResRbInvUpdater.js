@@ -52,16 +52,22 @@ module.exports = {
     let tableName = postBody['tblNameToPostPost'] //tblNameToPostPost
     console.log('tableName==>', tableName)
 
-    let todaysDateRaw = new Date()
-    let todaysDateRaw_iso = todaysDateRaw.toISOString()
-    let todaysDateRaw_split = todaysDateRaw_iso.split('T')
-    let todaysDate = todaysDateRaw_split[0]
-    console.log(`todaysDate==> ${todaysDate}`)
+    let todaysDateRaw1 = new Date()
+    let todaysDateRaw1_iso = todaysDateRaw1.toISOString()
+    let todaysDateRaw1_split = todaysDateRaw1_iso.split('T')
+    let todaysDate1 = todaysDateRaw1_split[0]
+    console.log(`todaysDate1==> ${todaysDate1}`)
+
+    let todaysDateRaw2 = new Date()
+    let todaysDateRaw2_iso = todaysDateRaw2.toISOString()
+    let todaysDateRaw2_split = todaysDateRaw2_iso.split('T')
+    let todaysDate2 = todaysDateRaw2_split[0]
+    console.log(`todaysDate1==> ${todaysDate2}`)
 
 
     //v//////////one year ago///////////////////////////////////////
-    let oneYearAgoRaw_pre = todaysDateRaw
-    oneYearAgoRaw_pre.setFullYear(todaysDateRaw.getFullYear() - 1)
+    let oneYearAgoRaw_pre = todaysDateRaw1
+    oneYearAgoRaw_pre.setFullYear(todaysDateRaw1.getFullYear() - 1)
 
     let oneYearAgoRaw_iso = oneYearAgoRaw_pre.toISOString()
     let oneYearAgoRaw_split = oneYearAgoRaw_iso.split('T')
@@ -70,8 +76,8 @@ module.exports = {
     //^//////////one year ago///////////////////////////////////////
 
     //v//////////one month ago///////////////////////////////////////
-    let oneMonthAgoRaw_pre = todaysDateRaw
-    oneMonthAgoRaw_pre.setFullYear(todaysDateRaw.getFullYear() - .0833333)
+    let oneMonthAgoRaw_pre = todaysDateRaw2
+    oneMonthAgoRaw_pre.setFullYear(todaysDateRaw2.getFullYear() - .0833333)
 
     let oneMonthAgoRaw_iso = oneMonthAgoRaw_pre.toISOString()
     let oneMonthAgoRaw_split = oneMonthAgoRaw_iso.split('T')
