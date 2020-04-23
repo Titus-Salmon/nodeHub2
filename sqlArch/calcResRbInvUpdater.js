@@ -110,42 +110,20 @@ module.exports = {
 
       for (let k = 0; k < wishlistRows.length; k++) {
         let wishlistCheckerObj = {}
-        if (wishlistRows[k]['rb_approved'] < oneMonthAgo) {
+        if (wishlistRows[k]['rb_approved'] < oneMonthAgo) { //if the Date value for rb_approved is less than the Date value for one month ago
+          //(i.e., if an item has been approved longer than one month ago), WE WILL UPDATE THAT ITEM using the new sign filter, since we've
+          //presumably had enough time for that item to have a lastSold or lastReceived date.
           wishlistCheckerObj['upc'] = wishlistRows[k]['upc_code']
           wishlistCheckerObj['dateApproved'] = wishlistRows[k]['rb_approved']
           wishlistUpdate.push(wishlistCheckerObj)
-        } else {
+        } else { //otherwise, we'll ignore it
           wishlistCheckerObj['upc'] = wishlistRows[k]['upc_code']
           wishlistCheckerObj['dateApproved'] = wishlistRows[k]['rb_approved']
           wishlistIgnore.push(wishlistCheckerObj)
         }
       }
 
-      console.log(`JSON.stringify(wishlistUpdate[0])==> ${JSON.stringify(wishlistUpdate[0])}`)
-      console.log(`JSON.stringify(wishlistUpdate[1])==> ${JSON.stringify(wishlistUpdate[1])}`)
-      console.log(`JSON.stringify(wishlistUpdate[2])==> ${JSON.stringify(wishlistUpdate[2])}`)
-      console.log(`JSON.stringify(wishlistUpdate[3])==> ${JSON.stringify(wishlistUpdate[3])}`)
-      console.log(`JSON.stringify(wishlistUpdate[4])==> ${JSON.stringify(wishlistUpdate[4])}`)
-      console.log(`JSON.stringify(wishlistUpdate[5])==> ${JSON.stringify(wishlistUpdate[5])}`)
-      console.log(`JSON.stringify(wishlistUpdate[6])==> ${JSON.stringify(wishlistUpdate[6])}`)
-      console.log(`JSON.stringify(wishlistUpdate[7])==> ${JSON.stringify(wishlistUpdate[7])}`)
-      console.log(`JSON.stringify(wishlistUpdate[8])==> ${JSON.stringify(wishlistUpdate[8])}`)
-      console.log(`JSON.stringify(wishlistUpdate[9])==> ${JSON.stringify(wishlistUpdate[9])}`)
-      console.log(`JSON.stringify(wishlistUpdate[10])==> ${JSON.stringify(wishlistUpdate[10])}`)
-
-      console.log(`JSON.stringify(wishlistIgnore[0])==> ${JSON.stringify(wishlistIgnore[0])}`)
-      console.log(`JSON.stringify(wishlistIgnore[1])==> ${JSON.stringify(wishlistIgnore[1])}`)
-      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[2])}`)
-      console.log(`JSON.stringify(wishlistIgnore[3])==> ${JSON.stringify(wishlistIgnore[3])}`)
-      console.log(`JSON.stringify(wishlistIgnore[4])==> ${JSON.stringify(wishlistIgnore[4])}`)
-      console.log(`JSON.stringify(wishlistIgnore[5])==> ${JSON.stringify(wishlistIgnore[5])}`)
-      console.log(`JSON.stringify(wishlistIgnore[6])==> ${JSON.stringify(wishlistIgnore[6])}`)
-      console.log(`JSON.stringify(wishlistIgnore[7])==> ${JSON.stringify(wishlistIgnore[7])}`)
-      console.log(`JSON.stringify(wishlistIgnore[8])==> ${JSON.stringify(wishlistIgnore[8])}`)
-      console.log(`JSON.stringify(wishlistIgnore[9])==> ${JSON.stringify(wishlistIgnore[9])}`)
-      console.log(`JSON.stringify(wishlistIgnore[10])==> ${JSON.stringify(wishlistIgnore[10])}`)
-
-      for (let m = 0; m < wishlistIgnore.length; m++) {
+      for (let m = 0; m < wishlistIgnore.length; m++) { //just a check to make sure the right items (approved within the last month) are ignored
         if (wishlistIgnore[m]['dateApproved'] !== null)
           console.log(`JSON.stringify(wishlistIgnore[${m})]==> ${JSON.stringify(wishlistIgnore[m])}`)
       }
@@ -157,48 +135,50 @@ module.exports = {
           storeAbbrev = storeAbbrevArr[j]
 
           function calcResRbInvUpdater(storeName, storeAbbrev) {
-            if (nhcrtRows[i]['stoName'] == storeName) {
-              // let rsltsObj = {}
-              // rsltsObj['ri_t0d'] = i
-              // rsltsObj[`${storeAbbrev}_UPCs`] = nhcrtRows[i]['invScanCode']
-              if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
-                nhcrtRows[i]['invLastsold'] > oneYearAgo ||
-                nhcrtRows[i]['invOnhand'] > 0) {
-                // rsltsObj[`${storeAbbrev}stocked`] = nhcrtRows[i]['invScanCode']
-                if (nhcrtRows[i]['stoName'] == 'Indiana') {
-                  srcRsINDstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                }
-                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
-                  srcRsSMstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                }
-                if (nhcrtRows[i]['stoName'] == 'Middletown') {
-                  srcRsMTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                }
-                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
-                  srcRsSHstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                }
-                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
-                  srcRsGLstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+            for (let m = 0; m < wishlistIgnore.length; m++) {
+              if (wishlistIgnore[m]['upc'] !== nhcrtRows[i]['invScanCode']) {
+                if (nhcrtRows[i]['stoName'] == storeName) {
+                  if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
+                    nhcrtRows[i]['invLastsold'] > oneYearAgo ||
+                    nhcrtRows[i]['invOnhand'] > 0) {
+                    if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                      srcRsINDstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                    }
+                    if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                      srcRsSMstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                    }
+                    if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                      srcRsMTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                    }
+                    if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                      srcRsSHstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                    }
+                    if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                      srcRsGLstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                    }
+                  } else {
+                    if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                      srcRsIND_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                    }
+                    if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                      srcRsSM_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                    }
+                    if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                      srcRsMT_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                    }
+                    if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                      srcRsSH_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                    }
+                    if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                      srcRsGL_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                    }
+                  }
                 }
               } else {
-                // rsltsObj[`${storeAbbrev}_NOTstocked`] = nhcrtRows[i]['invScanCode']
-                if (nhcrtRows[i]['stoName'] == 'Indiana') {
-                  srcRsIND_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                }
-                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
-                  srcRsSM_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                }
-                if (nhcrtRows[i]['stoName'] == 'Middletown') {
-                  srcRsMT_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                }
-                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
-                  srcRsSH_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                }
-                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
-                  srcRsGL_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                }
+                console.log(`${nhcrtRows[i]['invScanCode']} not updated, since its wishlist approval date is ${wishlistIgnore[m]['dateApproved']}`)
               }
             }
+
           }
           calcResRbInvUpdater(storeName, storeAbbrev)
         }
