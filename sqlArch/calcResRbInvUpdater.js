@@ -58,13 +58,6 @@ module.exports = {
     let todaysDate1 = todaysDateRaw1_split[0]
     console.log(`todaysDate1==> ${todaysDate1}`)
 
-    let todaysDateRaw2 = new Date()
-    let todaysDateRaw2_iso = todaysDateRaw2.toISOString()
-    let todaysDateRaw2_split = todaysDateRaw2_iso.split('T')
-    let todaysDate2 = todaysDateRaw2_split[0]
-    console.log(`todaysDate2==> ${todaysDate2}`)
-
-
     //v//////////one year ago///////////////////////////////////////
     let oneYearAgoRaw_pre = todaysDateRaw1
     oneYearAgoRaw_pre.setFullYear(todaysDateRaw1.getFullYear() - 1)
@@ -76,25 +69,16 @@ module.exports = {
     //^//////////one year ago///////////////////////////////////////
 
     //v//////////one month ago///////////////////////////////////////
-    let oneMonthAgoRaw_pre = todaysDateRaw2
-    console.log(`todaysDateRaw2==> ${todaysDateRaw2}`)
-    console.log(`todaysDateRaw2.getMonth()==> ${todaysDateRaw2.getMonth()}`)
-    oneMonthAgoRaw_pre.setFullYear(todaysDateRaw2.getFullYear())
-    console.log(`Date.now()==> ${Date.now()}`)
     let today = new Date()
-    console.log(`today.getTime()==> ${today.getTime()}`)
     let todayInMilliseconds = today.getTime()
     let oneMonthAgoInMilliseconds = todayInMilliseconds - 2592000000
     let todayISO = new Date(today).toISOString()
     console.log(`todayISO==> ${todayISO}`)
     let oneMonthAgoISO = new Date(oneMonthAgoInMilliseconds).toISOString()
     console.log(`oneMonthAgoISO==> ${oneMonthAgoISO}`)
-
-    let oneMonthAgoRaw_iso = oneMonthAgoRaw_pre.toISOString()
-    console.log(`oneMonthAgoRaw_iso==> ${oneMonthAgoRaw_iso}`)
-    let oneMonthAgoRaw_split = oneMonthAgoRaw_iso.split('T')
-    let oneMonthAgo = oneMonthAgoRaw_split[0]
-    console.log(`oneMonthAgo==> ${oneMonthAgo}`)
+    let oneMonthAgoISO_split = oneMonthAgoISO.split('T')
+    let oneMonthAgo = oneMonthAgoISO_split[0]
+    console.log(`oneMontghAgo==> ${oneMonthAgo}`)
     //^//////////one month ago///////////////////////////////////////
 
     let storeNameArr = ['Indiana', 'Saint Matthews', 'Middletown', 'Springhurst', 'Gardiner Lane']
