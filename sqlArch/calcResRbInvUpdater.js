@@ -136,14 +136,19 @@ module.exports = {
       console.log(`JSON.stringify(wishlistIgnore[0])==> ${JSON.stringify(wishlistIgnore[0])}`)
       console.log(`JSON.stringify(wishlistIgnore[1])==> ${JSON.stringify(wishlistIgnore[1])}`)
       console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[2])}`)
-      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[3])}`)
-      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[4])}`)
-      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[5])}`)
-      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[6])}`)
-      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[7])}`)
-      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[8])}`)
-      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[9])}`)
-      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[10])}`)
+      console.log(`JSON.stringify(wishlistIgnore[3])==> ${JSON.stringify(wishlistIgnore[3])}`)
+      console.log(`JSON.stringify(wishlistIgnore[4])==> ${JSON.stringify(wishlistIgnore[4])}`)
+      console.log(`JSON.stringify(wishlistIgnore[5])==> ${JSON.stringify(wishlistIgnore[5])}`)
+      console.log(`JSON.stringify(wishlistIgnore[6])==> ${JSON.stringify(wishlistIgnore[6])}`)
+      console.log(`JSON.stringify(wishlistIgnore[7])==> ${JSON.stringify(wishlistIgnore[7])}`)
+      console.log(`JSON.stringify(wishlistIgnore[8])==> ${JSON.stringify(wishlistIgnore[8])}`)
+      console.log(`JSON.stringify(wishlistIgnore[9])==> ${JSON.stringify(wishlistIgnore[9])}`)
+      console.log(`JSON.stringify(wishlistIgnore[10])==> ${JSON.stringify(wishlistIgnore[10])}`)
+
+      for (let m = 0; m < wishlistIgnore.length; m++) {
+        if (wishlistIgnore[m]['dateApproved'] !== null)
+          console.log(`wishlistIgnore[${m}]==> ${wishlistIgnore[m]}`)
+      }
 
       for (let i = 0; i < nhcrtRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
