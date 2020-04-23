@@ -98,6 +98,8 @@ module.exports = {
 
     function showSearchResults(rows) {
 
+      console.log(`rows.length==> ${rows.length}`)
+
       let nhcrtRows = rows[0]
       let wishlistRows = rows[1]
 
