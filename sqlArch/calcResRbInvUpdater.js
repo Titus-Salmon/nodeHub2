@@ -83,8 +83,12 @@ module.exports = {
     console.log(`Date.now()==> ${Date.now()}`)
     let today = new Date()
     console.log(`today.getTime()==> ${today.getTime()}`)
+    let todayInMilliseconds = today.getTime()
+    let oneMonthAgoInMilliseconds = todayInMilliseconds - 2592000000
     let todayISO = new Date(today).toISOString()
     console.log(`todayISO==> ${todayISO}`)
+    let oneMonthAgoISO = oneMonthAgoInMilliseconds.toISOString()
+    console.log(`oneMonthAgoISO==> ${oneMonthAgoISO}`)
 
     let oneMonthAgoRaw_iso = oneMonthAgoRaw_pre.toISOString()
     console.log(`oneMonthAgoRaw_iso==> ${oneMonthAgoRaw_iso}`)
