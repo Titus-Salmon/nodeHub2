@@ -135,53 +135,54 @@ module.exports = {
           storeAbbrev = storeAbbrevArr[j]
 
           function calcResRbInvUpdater(storeName, storeAbbrev) {
-            for (let m = 0; m < wishlistIgnore.length; m++) {
-              if (wishlistIgnore[m]['upc'] !== nhcrtRows[i]['invScanCode']) {
-                if (nhcrtRows[i]['stoName'] == storeName) {
-                  if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
-                    nhcrtRows[i]['invLastsold'] > oneYearAgo ||
-                    nhcrtRows[i]['invOnhand'] > 0) {
-                    if (nhcrtRows[i]['stoName'] == 'Indiana') {
-                      srcRsINDstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                    }
-                    if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
-                      srcRsSMstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                    }
-                    if (nhcrtRows[i]['stoName'] == 'Middletown') {
-                      srcRsMTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                    }
-                    if (nhcrtRows[i]['stoName'] == 'Springhurst') {
-                      srcRsSHstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                    }
-                    if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
-                      srcRsGLstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                    }
-                  } else {
-                    if (nhcrtRows[i]['stoName'] == 'Indiana') {
-                      srcRsIND_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                    }
-                    if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
-                      srcRsSM_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                    }
-                    if (nhcrtRows[i]['stoName'] == 'Middletown') {
-                      srcRsMT_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                    }
-                    if (nhcrtRows[i]['stoName'] == 'Springhurst') {
-                      srcRsSH_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                    }
-                    if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
-                      srcRsGL_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
-                    }
-                  }
+            if (nhcrtRows[i]['stoName'] == storeName) {
+              if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
+                nhcrtRows[i]['invLastsold'] > oneYearAgo ||
+                nhcrtRows[i]['invOnhand'] > 0) {
+                if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                  srcRsINDstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                  srcRsSMstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                  srcRsMTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                  srcRsSHstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                  srcRsGLstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                }
+              } else {
+                if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                  srcRsIND_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                  srcRsSM_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                  srcRsMT_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                  srcRsSH_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
+                }
+                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                  srcRsGL_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
               }
-              // else {
-              //   console.log(`${nhcrtRows[i]['invScanCode']} not updated, since its wishlist approval date is ${wishlistIgnore[m]['dateApproved']}`)
-              // }
             }
-
           }
           calcResRbInvUpdater(storeName, storeAbbrev)
+        }
+      }
+
+      for (let m = 0; m < wishlistIgnore.length; m++) {
+        for (let n = 0; n < srcRsINDstocked.length; n++) {
+          if (wishlistIgnore[m]['upc'] == srcRsINDstocked[n]) {
+            console.log(`${srcRsINDstocked[n]} removed from update, since its wishlist approved date is ${wishlistIgnore[m]['dateApproved']}`)
+            srcRsINDstocked.splice(n, 1)
+          }
         }
       }
 
