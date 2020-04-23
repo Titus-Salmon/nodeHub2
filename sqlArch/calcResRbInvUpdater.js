@@ -338,16 +338,16 @@ module.exports = {
           if (err) throw err
 
           console.log(`rows.length from nested connection.query==> ${rows.length}`)
-          console.log(`rows[0] from nested connection.query==> ${rows[0]}`)
-          console.log(`rows[1] from nested connection.query==> ${rows[1]}`)
-          console.log(`rows[2] from nested connection.query==> ${rows[2]}`)
-          console.log(`rows[3] from nested connection.query==> ${rows[3]}`)
-          console.log(`rows[4] from nested connection.query==> ${rows[4]}`)
-          console.log(`rows[5] from nested connection.query==> ${rows[5]}`)
-          console.log(`rows[6] from nested connection.query==> ${rows[6]}`)
-          console.log(`rows[7] from nested connection.query==> ${rows[7]}`)
-          console.log(`rows[8] from nested connection.query==> ${rows[8]}`)
-          console.log(`rows[9] from nested connection.query==> ${rows[9]}`)
+          console.log(`JSON.stringify(rows[0]) from nested connection.query==> ${JSON.stringify(rows[0])}`)
+          console.log(`JSON.stringify(rows[1]) from nested connection.query==> ${JSON.stringify(rows[1])}`)
+          console.log(`JSON.stringify(rows[2]) from nested connection.query==> ${JSON.stringify(rows[2])}`)
+          console.log(`JSON.stringify(rows[3]) from nested connection.query==> ${JSON.stringify(rows[3])}`)
+          console.log(`JSON.stringify(rows[4]) from nested connection.query==> ${JSON.stringify(rows[4])}`)
+          console.log(`JSON.stringify(rows[5]) from nested connection.query==> ${JSON.stringify(rows[5])}`)
+          console.log(`JSON.stringify(rows[6]) from nested connection.query==> ${JSON.stringify(rows[6])}`)
+          console.log(`JSON.stringify(rows[7]) from nested connection.query==> ${JSON.stringify(rows[7])}`)
+          console.log(`JSON.stringify(rows[8]) from nested connection.query==> ${JSON.stringify(rows[8])}`)
+          console.log(`JSON.stringify(rows[9]) from nested connection.query==> ${JSON.stringify(rows[9])}`)
 
           res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
             title: 'vw-rbInvUpdater ==>> rb_inventory_titus_20200415 updated',
