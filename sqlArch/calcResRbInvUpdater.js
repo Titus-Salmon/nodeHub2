@@ -124,10 +124,26 @@ module.exports = {
       console.log(`JSON.stringify(wishlistUpdate[0])==> ${JSON.stringify(wishlistUpdate[0])}`)
       console.log(`JSON.stringify(wishlistUpdate[1])==> ${JSON.stringify(wishlistUpdate[1])}`)
       console.log(`JSON.stringify(wishlistUpdate[2])==> ${JSON.stringify(wishlistUpdate[2])}`)
+      console.log(`JSON.stringify(wishlistUpdate[3])==> ${JSON.stringify(wishlistUpdate[3])}`)
+      console.log(`JSON.stringify(wishlistUpdate[4])==> ${JSON.stringify(wishlistUpdate[4])}`)
+      console.log(`JSON.stringify(wishlistUpdate[5])==> ${JSON.stringify(wishlistUpdate[5])}`)
+      console.log(`JSON.stringify(wishlistUpdate[6])==> ${JSON.stringify(wishlistUpdate[6])}`)
+      console.log(`JSON.stringify(wishlistUpdate[7])==> ${JSON.stringify(wishlistUpdate[7])}`)
+      console.log(`JSON.stringify(wishlistUpdate[8])==> ${JSON.stringify(wishlistUpdate[8])}`)
+      console.log(`JSON.stringify(wishlistUpdate[9])==> ${JSON.stringify(wishlistUpdate[9])}`)
+      console.log(`JSON.stringify(wishlistUpdate[10])==> ${JSON.stringify(wishlistUpdate[10])}`)
 
       console.log(`JSON.stringify(wishlistIgnore[0])==> ${JSON.stringify(wishlistIgnore[0])}`)
       console.log(`JSON.stringify(wishlistIgnore[1])==> ${JSON.stringify(wishlistIgnore[1])}`)
       console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[2])}`)
+      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[3])}`)
+      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[4])}`)
+      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[5])}`)
+      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[6])}`)
+      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[7])}`)
+      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[8])}`)
+      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[9])}`)
+      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[10])}`)
 
       for (let i = 0; i < nhcrtRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
