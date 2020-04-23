@@ -21,6 +21,9 @@ module.exports = {
     //   cacheMainStockFilter.del('searchResultsCache_key')
     // }
 
+    wishlistIgnore = []
+    wishlistUpdate = []
+
     srcRsINDstocked = []
     srcRsIND_NOTstocked = []
     srcRsSMstocked = []
@@ -102,6 +105,24 @@ module.exports = {
       console.log(`JSON.stringify(nhcrtRows[0])==> ${JSON.stringify(nhcrtRows[0])}`)
       console.log(`wishlistRows[0]==> ${wishlistRows[0]}`)
       console.log(`JSON.stringify(wishlistRows[0])==> ${JSON.stringify(wishlistRows[0])}`)
+
+      // let wishlistCheckerObj = {}
+
+      for (let k = 0; k < wishlistRows.length; k++) {
+        let wishlistCheckerObj = {}
+        if (wishlistRows[k]['rb_approved'] > oneMonthAgo) {
+          wishlistCheckerObj['upc'] = wishlistRows[k]['upc_code']
+          wishlistCheckerObj['dateApproved'] = wishlistRows[k]['rb_approved']
+          wishlistUpdate.push(wishlistCheckerObj)
+        } else {
+          wishlistCheckerObj['upc'] = wishlistRows[k]['upc_code']
+          wishlistCheckerObj['dateApproved'] = wishlistRows[k]['rb_approved']
+          wishlistIgnore.push(wishlistCheckerObj)
+        }
+      }
+
+      console.log(`JSON.stringify(wishlistUpdate)==> ${JSON.stringify(wishlistUpdate)}`)
+      console.log(`JSON.stringify(wishlistIgnore)==> ${JSON.stringify(wishlistIgnore)}`)
 
       for (let i = 0; i < nhcrtRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
