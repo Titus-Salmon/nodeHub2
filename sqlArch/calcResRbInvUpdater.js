@@ -177,6 +177,8 @@ module.exports = {
         }
       }
 
+      console.log(`srcRsINDstocked.length before wishlist filtering==> ${srcRsINDstocked.length}`)
+
       for (let m = 0; m < wishlistIgnore.length; m++) {
         for (let n = 0; n < srcRsINDstocked.length; n++) {
           if (wishlistIgnore[m]['upc'] == srcRsINDstocked[n]) {
@@ -185,6 +187,8 @@ module.exports = {
           }
         }
       }
+
+      console.log(`srcRsINDstocked.length after wishlist filtering==> ${srcRsINDstocked.length}`)
 
       console.log(`srcRsINDstocked[0]==> ${srcRsINDstocked[0]}`)
       console.log(`typeof srcRsINDstocked[0]==> ${typeof srcRsINDstocked[0]}`)
