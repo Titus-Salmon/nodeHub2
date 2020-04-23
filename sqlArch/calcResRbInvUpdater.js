@@ -268,7 +268,7 @@ module.exports = {
       srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      console.log(`srcRsMT_NOTstockedSani==> ${srcRsMT_NOTstockedSani}`)
+      // console.log(`srcRsMT_NOTstockedSani==> ${srcRsMT_NOTstockedSani}`)
       srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
