@@ -87,7 +87,7 @@ module.exports = {
     let oneMonthAgoInMilliseconds = todayInMilliseconds - 2592000000
     let todayISO = new Date(today).toISOString()
     console.log(`todayISO==> ${todayISO}`)
-    let oneMonthAgoISO = oneMonthAgoInMilliseconds.toISOString()
+    let oneMonthAgoISO = new Date(oneMonthAgoInMilliseconds).toISOString()
     console.log(`oneMonthAgoISO==> ${oneMonthAgoISO}`)
 
     let oneMonthAgoRaw_iso = oneMonthAgoRaw_pre.toISOString()
