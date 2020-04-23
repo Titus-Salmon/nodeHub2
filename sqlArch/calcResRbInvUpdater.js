@@ -62,7 +62,7 @@ module.exports = {
     let todaysDateRaw2_iso = todaysDateRaw2.toISOString()
     let todaysDateRaw2_split = todaysDateRaw2_iso.split('T')
     let todaysDate2 = todaysDateRaw2_split[0]
-    console.log(`todaysDate1==> ${todaysDate2}`)
+    console.log(`todaysDate2==> ${todaysDate2}`)
 
 
     //v//////////one year ago///////////////////////////////////////
@@ -78,6 +78,7 @@ module.exports = {
     //v//////////one month ago///////////////////////////////////////
     let oneMonthAgoRaw_pre = todaysDateRaw2
     console.log(`todaysDateRaw2==> ${todaysDateRaw2}`)
+    console.log(`todaysDateRaw2.getMonth()==> ${todaysDateRaw2.getMonth()}`)
     oneMonthAgoRaw_pre.setFullYear(todaysDateRaw2.getFullYear() - .0833333)
 
     let oneMonthAgoRaw_iso = oneMonthAgoRaw_pre.toISOString()
