@@ -98,7 +98,7 @@ module.exports = {
 
     function showSearchResults(rows) {
 
-      console.log(`rows.length==> ${rows.length}`)
+      console.log(`rows.length from showSearchResults==> ${rows.length}`)
 
       let nhcrtRows = rows[0]
       let wishlistRows = rows[1]
@@ -336,6 +336,8 @@ module.exports = {
         WHERE trim(inv_upc)
         IN (${srcRsGL_NOTstockedSani});`, function (err, rows, fields) {
           if (err) throw err
+
+          console.log(`rows.length from nested connection.query==> ${rows.length}`)
 
           res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
             title: 'vw-rbInvUpdater ==>> rb_inventory_titus_20200415 updated',
