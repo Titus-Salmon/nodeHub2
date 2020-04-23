@@ -178,17 +178,82 @@ module.exports = {
       }
 
       console.log(`srcRsINDstocked.length before wishlist filtering==> ${srcRsINDstocked.length}`)
+      console.log(`srcRsIND_NOTstocked.length before wishlist filtering==> ${srcRsIND_NOTstocked.length}`)
+      console.log(`srcRsSMstocked.length before wishlist filtering==> ${srcRsSMstocked.length}`)
+      console.log(`srcRsSM_NOTstocked.length before wishlist filtering==> ${srcRsSM_NOTstocked.length}`)
+      console.log(`srcRsMTstocked.length before wishlist filtering==> ${srcRsMTstocked.length}`)
+      console.log(`srcRsMT_NOTstocked.length before wishlist filtering==> ${srcRsMT_NOTstocked.length}`)
+      console.log(`srcRsSHstocked.length before wishlist filtering==> ${srcRsSHstocked.length}`)
+      console.log(`srcRsSH_NOTstocked.length before wishlist filtering==> ${srcRsSH_NOTstocked.length}`)
+      console.log(`srcRsGLstocked.length before wishlist filtering==> ${srcRsGLstocked.length}`)
+      console.log(`srcRsGL_NOTstocked.length before wishlist filtering==> ${srcRsGL_NOTstocked.length}`)
 
-      for (let m = 0; m < wishlistIgnore.length; m++) {
-        for (let n = 0; n < srcRsINDstocked.length; n++) {
-          if (wishlistIgnore[m]['upc'] == srcRsINDstocked[n]) {
-            console.log(`${srcRsINDstocked[n]} removed from update, since its wishlist approved date is ${wishlistIgnore[m]['dateApproved']}`)
-            srcRsINDstocked.splice(n, 1)
+      for (let m = 0; m < wishlistIgnore.length; m++) { //remove recent wishlist items from "stocked" and "not stocked" arrays for each store
+        //(removing anything approved within the last month)
+        for (let a = 0; a < srcRsINDstocked.length; a++) {
+          if (wishlistIgnore[m]['upc'] == srcRsINDstocked[a]) {
+            console.log(`${srcRsINDstocked[a]} removed from update, since its wishlist approved date is ${wishlistIgnore[m]['dateApproved']}`)
+            srcRsINDstocked.splice(a, 1)
+          }
+        }
+        for (let b = 0; b < srcRsIND_NOTstocked.length; b++) {
+          if (wishlistIgnore[m]['upc'] == srcRsIND_NOTstocked[b]) {
+            srcRsIND_NOTstocked.splice(b, 1)
+          }
+        }
+        for (let c = 0; c < srcRsSMstocked.length; c++) {
+          if (wishlistIgnore[m]['upc'] == srcRsSMstocked[c]) {
+            srcRsSMstocked.splice(c, 1)
+          }
+        }
+        for (let d = 0; d < srcRsSM_NOTstocked.length; d++) {
+          if (wishlistIgnore[m]['upc'] == srcRsSM_NOTstocked[d]) {
+            srcRsSM_NOTstocked.splice(d, 1)
+          }
+        }
+        for (let e = 0; e < srcRsMTstocked.length; e++) {
+          if (wishlistIgnore[m]['upc'] == srcRsMTstocked[e]) {
+            srcRsMTstocked.splice(e, 1)
+          }
+        }
+        for (let f = 0; f < srcRsMT_NOTstocked.length; f++) {
+          if (wishlistIgnore[m]['upc'] == srcRsMT_NOTstocked[f]) {
+            srcRsMT_NOTstocked.splice(f, 1)
+          }
+        }
+        for (let g = 0; g < srcRsSHstocked.length; g++) {
+          if (wishlistIgnore[m]['upc'] == srcRsSHstocked[g]) {
+            srcRsSHstocked.splice(g, 1)
+          }
+        }
+        for (let h = 0; h < srcRsSH_NOTstocked.length; h++) {
+          if (wishlistIgnore[m]['upc'] == srcRsSH_NOTstocked[h]) {
+            srcRsSH_NOTstocked.splice(h, 1)
+          }
+        }
+        for (let p = 0; p < srcRsGLstocked.length; p++) {
+          if (wishlistIgnore[m]['upc'] == srcRsGLstocked[p]) {
+            srcRsGLstocked.splice(p, 1)
+          }
+        }
+        for (let q = 0; q < srcRsGL_NOTstocked.length; q++) {
+          if (wishlistIgnore[m]['upc'] == srcRsGL_NOTstocked[q]) {
+            srcRsGL_NOTstocked.splice(q, 1)
           }
         }
       }
 
       console.log(`srcRsINDstocked.length after wishlist filtering==> ${srcRsINDstocked.length}`)
+      console.log(`srcRsIND_NOTstocked.length after wishlist filtering==> ${srcRsIND_NOTstocked.length}`)
+      console.log(`srcRsSMstocked.length after wishlist filtering==> ${srcRsSMstocked.length}`)
+      console.log(`srcRsSM_NOTstocked.length after wishlist filtering==> ${srcRsSM_NOTstocked.length}`)
+      console.log(`srcRsMTstocked.length after wishlist filtering==> ${srcRsMTstocked.length}`)
+      console.log(`srcRsMT_NOTstocked.length after wishlist filtering==> ${srcRsMT_NOTstocked.length}`)
+      console.log(`srcRsSHstocked.length after wishlist filtering==> ${srcRsSHstocked.length}`)
+      console.log(`srcRsSH_NOTstocked.length after wishlist filtering==> ${srcRsSH_NOTstocked.length}`)
+      console.log(`srcRsGLstocked.length after wishlist filtering==> ${srcRsGLstocked.length}`)
+      console.log(`srcRsGL_NOTstocked.length after wishlist filtering==> ${srcRsGL_NOTstocked.length}`)
+
 
       console.log(`srcRsINDstocked[0]==> ${srcRsINDstocked[0]}`)
       console.log(`typeof srcRsINDstocked[0]==> ${typeof srcRsINDstocked[0]}`)
