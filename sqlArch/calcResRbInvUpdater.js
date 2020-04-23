@@ -110,7 +110,7 @@ module.exports = {
 
       for (let k = 0; k < wishlistRows.length; k++) {
         let wishlistCheckerObj = {}
-        if (wishlistRows[k]['rb_approved'] > oneMonthAgo) {
+        if (wishlistRows[k]['rb_approved'] < oneMonthAgo) {
           wishlistCheckerObj['upc'] = wishlistRows[k]['upc_code']
           wishlistCheckerObj['dateApproved'] = wishlistRows[k]['rb_approved']
           wishlistUpdate.push(wishlistCheckerObj)
@@ -122,7 +122,12 @@ module.exports = {
       }
 
       console.log(`JSON.stringify(wishlistUpdate[0])==> ${JSON.stringify(wishlistUpdate[0])}`)
+      console.log(`JSON.stringify(wishlistUpdate[1])==> ${JSON.stringify(wishlistUpdate[1])}`)
+      console.log(`JSON.stringify(wishlistUpdate[2])==> ${JSON.stringify(wishlistUpdate[2])}`)
+
       console.log(`JSON.stringify(wishlistIgnore[0])==> ${JSON.stringify(wishlistIgnore[0])}`)
+      console.log(`JSON.stringify(wishlistIgnore[1])==> ${JSON.stringify(wishlistIgnore[1])}`)
+      console.log(`JSON.stringify(wishlistIgnore[2])==> ${JSON.stringify(wishlistIgnore[2])}`)
 
       for (let i = 0; i < nhcrtRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
