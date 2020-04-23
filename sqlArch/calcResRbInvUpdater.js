@@ -174,9 +174,10 @@ module.exports = {
                     }
                   }
                 }
-              } else {
-                console.log(`${nhcrtRows[i]['invScanCode']} not updated, since its wishlist approval date is ${wishlistIgnore[m]['dateApproved']}`)
               }
+              // else {
+              //   console.log(`${nhcrtRows[i]['invScanCode']} not updated, since its wishlist approval date is ${wishlistIgnore[m]['dateApproved']}`)
+              // }
             }
 
           }
