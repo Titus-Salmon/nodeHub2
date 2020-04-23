@@ -147,7 +147,7 @@ module.exports = {
 
       for (let m = 0; m < wishlistIgnore.length; m++) {
         if (wishlistIgnore[m]['dateApproved'] !== null)
-          console.log(`wishlistIgnore[${m}]==> ${wishlistIgnore[m]}`)
+          console.log(`JSON.stringify(wishlistIgnore[${m})]==> ${JSON.stringify(wishlistIgnore[m])}`)
       }
 
       for (let i = 0; i < nhcrtRows.length; i++) {
