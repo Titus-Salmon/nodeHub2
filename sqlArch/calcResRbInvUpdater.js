@@ -121,8 +121,8 @@ module.exports = {
         }
       }
 
-      console.log(`JSON.stringify(wishlistUpdate[0,1,2])==> ${JSON.stringify(wishlistUpdate[0,1,2])}`)
-      console.log(`JSON.stringify(wishlistIgnore[0,1,2])==> ${JSON.stringify(wishlistIgnore[0,1,2])}`)
+      console.log(`JSON.stringify(wishlistUpdate[0])==> ${JSON.stringify(wishlistUpdate[0])}`)
+      console.log(`JSON.stringify(wishlistIgnore[0])==> ${JSON.stringify(wishlistIgnore[0])}`)
 
       for (let i = 0; i < nhcrtRows.length; i++) {
         for (let j = 0; j < storeNameArr.length; j++) {
