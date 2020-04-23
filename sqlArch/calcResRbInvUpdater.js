@@ -81,6 +81,7 @@ module.exports = {
     console.log(`todaysDateRaw2.getMonth()==> ${todaysDateRaw2.getMonth()}`)
     oneMonthAgoRaw_pre.setFullYear(todaysDateRaw2.getFullYear())
     console.log(`Date.now()==> ${Date.now()}`)
+    console.log(`Date.getTime()==> ${Date.getTime()}`)
 
     let oneMonthAgoRaw_iso = oneMonthAgoRaw_pre.toISOString()
     console.log(`oneMonthAgoRaw_iso==> ${oneMonthAgoRaw_iso}`)
