@@ -83,6 +83,8 @@ module.exports = {
     console.log(`Date.now()==> ${Date.now()}`)
     let today = new Date()
     console.log(`today.getTime()==> ${today.getTime()}`)
+    let todayISO = new Date(today).toISOString()
+    console.log(`todayISO==> ${todayISO}`)
 
     let oneMonthAgoRaw_iso = oneMonthAgoRaw_pre.toISOString()
     console.log(`oneMonthAgoRaw_iso==> ${oneMonthAgoRaw_iso}`)
