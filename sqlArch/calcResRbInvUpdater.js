@@ -268,6 +268,7 @@ module.exports = {
       srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
+      console.log(`srcRsMT_NOTstockedSani==> ${srcRsMT_NOTstockedSani}`)
       srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
       srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
@@ -369,82 +370,5 @@ module.exports = {
       })
     }
     queryNhcrtTable()
-
-    function update_rb_inventory() {
-
-      // srcRsINDstockedSani = JSON.stringify(srcRsINDstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // console.log(`typeof srcRsINDstockedSani==> ${typeof srcRsINDstockedSani}`)
-      // console.log(`srcRsINDstockedSani==> ${srcRsINDstockedSani}`)
-      // srcRsIND_NOTstockedSani = JSON.stringify(srcRsIND_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsSMstockedSani = JSON.stringify(srcRsSMstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsSM_NOTstockedSani = JSON.stringify(srcRsSM_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsMTstockedSani = JSON.stringify(srcRsMTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsMT_NOTstockedSani = JSON.stringify(srcRsMT_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsSHstockedSani = JSON.stringify(srcRsSHstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsSH_NOTstockedSani = JSON.stringify(srcRsSH_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-      // srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "").replace(saniRegex2, "'").replace(saniRegex3, "")
-
-      connection.query(`
-      UPDATE rb_inventory_titus_20200415
-      SET inv_in_stock = '1'
-      WHERE trim(inv_upc)
-      IN (${srcRsINDstockedSani})
-      
-      SET inv_in_stock = '0'
-      WHERE trim(inv_upc)
-      IN (${srcRsIND_NOTstockedSani})
-      
-      SET inv_sm_stock = '1'
-      WHERE trim(inv_upc)
-      IN (${srcRsSMstockedSani})
-      
-      SET inv_sm_stock = '0'
-      WHERE trim(inv_upc)
-      IN (${srcRsSM_NOTstockedSani})
-      
-      SET inv_mt_stock = '1'
-      WHERE trim(inv_upc)
-      IN (${srcRsMTstockedSani})
-      
-      SET inv_mt_stock = '0'
-      WHERE trim(inv_upc)
-      IN (${srcRsMT_NOTstockedSani})
-      
-      SET inv_sh_stock = '1'
-      WHERE trim(inv_upc)
-      IN (${srcRsSHstockedSani})
-      
-      SET inv_sh_stock = '0'
-      WHERE trim(inv_upc)
-      IN (${srcRsSH_NOTstockedSani})
-      
-      SET inv_gl_stock = '1'
-      WHERE trim(inv_upc)
-      IN (${srcRsGLstockedSani})
-      
-      SET inv_gl_stock = '0'
-      WHERE trim(inv_upc)
-      IN (${srcRsGL_NOTstockedSani});`, function (err, rows, fields) {
-        if (err) throw err
-
-        res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
-          title: 'vw-rbInvUpdater ==>> rb_inventory_titus_20200415 updated',
-          // searchResRows: searchResultsSplit,
-          // srcRsINDstocked: srcRsINDstocked,
-          // srcRsIND_NOTstocked: srcRsIND_NOTstocked,
-          // srcRsSMstocked: srcRsSMstocked,
-          // srcRsSM_NOTstocked: srcRsSM_NOTstocked,
-          // srcRsMTstocked: srcRsMTstocked,
-          // srcRsMT_NOTstocked: srcRsMT_NOTstocked,
-          // srcRsSHstocked: srcRsSHstocked,
-          // srcRsSH_NOTstocked: srcRsSH_NOTstocked,
-          // srcRsGLstocked: srcRsGLstocked,
-          // srcRsGL_NOTstocked: srcRsGL_NOTstocked,
-          // searchResultsSplitParsedArr: searchResultsSplitParsedArr
-        })
-      })
-    }
-    // update_rb_inventory()
   })
 }
