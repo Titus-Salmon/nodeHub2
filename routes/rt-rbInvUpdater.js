@@ -17,6 +17,9 @@ const {
 const {
   rbInvUpdateAudit
 } = require('../sqlArch/rbInvUpdateAudit')
+const {
+  rbInvUpdateAuditSaveCSV_ind
+} = require('../sqlArch/rbInvUpdateAuditSaveCSV_ind')
 
 
 
@@ -35,6 +38,7 @@ router.post('/populateNhcrtRbInvTable', populateNhcrtRbInvTable)
 router.post('/query_rb_inventory', query_rb_inventory)
 router.post('/calcResRbInvUpdater', calcResRbInvUpdater)
 router.post('/rbInvUpdateAudit', rbInvUpdateAudit)
+router.post('/rbInvUpdateAuditSaveCSV_ind', rbInvUpdateAuditSaveCSV_ind)
 
 
 module.exports = router;
