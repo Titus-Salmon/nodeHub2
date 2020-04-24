@@ -134,7 +134,7 @@ module.exports = {
     ORDER BY new_inv_gl_stock;`, function (err, rows, fields) {
       if (err) throw err
       console.log(`rows.length==>${rows.length}`)
-      console.log('rows[0]==>', rows[0])
+      console.log('rows[0][0]==>', rows[0][0])
       displayRbInvJoin(rows)
 
       // res.render('vw-rbInvAudit', {
