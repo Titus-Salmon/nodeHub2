@@ -6,8 +6,8 @@ const fs = require('fs')
 module.exports = {
   rbInvUpdateAuditSaveCSV_ind: router.post('/rbInvUpdateAuditSaveCSV_ind', (req, res, next) => {
 
-    console.log(`req.body['csvDataPost']==> ${req.body['csvDataPost']}`)
-    console.log(`JSON.stringify(req.body['csvDataPost'])==> ${JSON.stringify(req.body['csvDataPost'])}`)
+    console.log(`req.body['csvDataPost'][0]==> ${req.body['csvDataPost'][0]}`)
+    console.log(`JSON.stringify(req.body['csvDataPost'][0])==> ${JSON.stringify(req.body['csvDataPost'][0])}`)
     console.log(`JSON.parse(req.body['csvDataPost'])==> ${JSON.parse(req.body['csvDataPost'])}`)
 
     let csvDataPostparsed = JSON.parse(req.body['csvDataPost'])
