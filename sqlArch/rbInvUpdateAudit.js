@@ -48,8 +48,8 @@ module.exports = {
         rbInvJoinObj_sm['ri_t0d'] = i + 1
         rbInvJoinObj_sm['new_inv_upc'] = smRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
         rbInvJoinObj_sm['new_inv_name'] = smRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
-        rbInvJoinObj_sm['new_inv_in_stock'] = smRows[i]['new_inv_in_stock']
-        rbInvJoinObj_sm['old_inv_in_stock'] = smRows[i]['old_inv_in_stock']
+        rbInvJoinObj_sm['new_inv_sm_stock'] = smRows[i]['new_inv_sm_stock']
+        rbInvJoinObj_sm['old_inv_sm_stock'] = smRows[i]['old_inv_sm_stock']
 
         rbInvJoinArr_sm.push(rbInvJoinObj_sm)
       }
@@ -59,8 +59,8 @@ module.exports = {
         rbInvJoinObj_mt['ri_t0d'] = i + 1
         rbInvJoinObj_mt['new_inv_upc'] = mtRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
         rbInvJoinObj_mt['new_inv_name'] = mtRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
-        rbInvJoinObj_mt['new_inv_in_stock'] = mtRows[i]['new_inv_in_stock']
-        rbInvJoinObj_mt['old_inv_in_stock'] = mtRows[i]['old_inv_in_stock']
+        rbInvJoinObj_mt['new_inv_mt_stock'] = mtRows[i]['new_inv_mt_stock']
+        rbInvJoinObj_mt['old_inv_mt_stock'] = mtRows[i]['old_inv_mt_stock']
 
         rbInvJoinArr_mt.push(rbInvJoinObj_mt)
       }
@@ -70,8 +70,8 @@ module.exports = {
         rbInvJoinObj_sh['ri_t0d'] = i + 1
         rbInvJoinObj_sh['new_inv_upc'] = shRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
         rbInvJoinObj_sh['new_inv_name'] = shRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
-        rbInvJoinObj_sh['new_inv_in_stock'] = shRows[i]['new_inv_in_stock']
-        rbInvJoinObj_sh['old_inv_in_stock'] = shRows[i]['old_inv_in_stock']
+        rbInvJoinObj_sh['new_inv_sh_stock'] = shRows[i]['new_inv_sh_stock']
+        rbInvJoinObj_sh['old_inv_sh_stock'] = shRows[i]['old_inv_sh_stock']
 
         rbInvJoinArr_sh.push(rbInvJoinObj_sh)
       }
@@ -81,8 +81,8 @@ module.exports = {
         rbInvJoinObj_gl['ri_t0d'] = i + 1
         rbInvJoinObj_gl['new_inv_upc'] = glRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
         rbInvJoinObj_gl['new_inv_name'] = glRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
-        rbInvJoinObj_gl['new_inv_in_stock'] = glRows[i]['new_inv_in_stock']
-        rbInvJoinObj_gl['old_inv_in_stock'] = glRows[i]['old_inv_in_stock']
+        rbInvJoinObj_gl['new_inv_gl_stock'] = glRows[i]['new_inv_gl_stock']
+        rbInvJoinObj_gl['old_inv_gl_stock'] = glRows[i]['old_inv_gl_stock']
 
         rbInvJoinArr_gl.push(rbInvJoinObj_gl)
       }
