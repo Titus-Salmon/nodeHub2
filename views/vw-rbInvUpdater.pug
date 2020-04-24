@@ -55,7 +55,7 @@ html
 				label.input-label-1(for='rb_inventoryTable') rb_inventory Table to update
 				input#rb_inventoryTable.input-unit-1(type='text', placeholder='enter rb_inventory table name', name='rb_inventoryTablePost')
 		button#updateRbInv(type='submit', form='rbInvUpdate', style="display: block; float: left") Update rb_inventory Table
-	
+
 		br
 		br
 
@@ -66,5 +66,117 @@ html
 				label.input-label-1(for='rbInvNEW') rbInvNEW table to compare
 				input#rbInvNEW.input-unit-1(type='text', placeholder='enter data', name='rbInvNEWPost', value='rb_inventory_titus_20200423b')
 		button#auditRbInv(type='submit', form='rbInvUpdateAudit', style="display: block; float: left") AUDIT rb_inventory Table	
-		
+
+		br
+		br
+
+		if rbInvJoinArr_ind !== undefined
+			div.rslt-tbl-1-absolute-z1
+				table#resTbl
+					thead
+						tr
+							th ri_t0d
+							th upc
+							th name
+							th old stock (IN)
+							th new stock (IN)
+
+					tbody#resTblBdy
+						if rbInvJoinArr_ind !== undefined
+							each elmnt in rbInvJoinArr_ind
+								tr
+									td= elmnt.ri_t0d
+									td= elmnt.new_inv_upc
+									td= elmnt.new_inv_name
+									td= elmnt.new_inv_in_stock
+									td= elmnt.old_inv_in_stock
+
+
+		if rbInvJoinArr_sm !== undefined
+			div.rslt-tbl-1-absolute-z1
+				table#resTbl
+					thead
+						tr
+							th ri_t0d
+							th upc
+							th name
+							th old stock (SM)
+							th new stock (SM)
+
+					tbody#resTblBdy
+						if rbInvJoinArr_sm !== undefined
+							each elmnt in rbInvJoinArr_sm
+								tr
+									td= elmnt.ri_t0d
+									td= elmnt.new_inv_upc
+									td= elmnt.new_inv_name
+									td= elmnt.new_inv_sm_stock
+									td= elmnt.old_inv_sm_stock
+
+
+		if rbInvJoinArr_mt !== undefined
+			div.rslt-tbl-1-absolute-z1
+				table#resTbl
+					thead
+						tr
+							th ri_t0d
+							th upc
+							th name
+							th old stock (MT)
+							th new stock (MT)
+
+					tbody#resTblBdy
+						if rbInvJoinArr_mt !== undefined
+							each elmnt in rbInvJoinArr_mt
+								tr
+									td= elmnt.ri_t0d
+									td= elmnt.new_inv_upc
+									td= elmnt.new_inv_name
+									td= elmnt.new_inv_mt_stock
+									td= elmnt.old_inv_mt_stock
+
+
+		if rbInvJoinArr_sh !== undefined
+			div.rslt-tbl-1-absolute-z1
+				table#resTbl
+					thead
+						tr
+							th ri_t0d
+							th upc
+							th name
+							th old stock (SH)
+							th new stock (SH)
+
+					tbody#resTblBdy
+						if rbInvJoinArr_sh !== undefined
+							each elmnt in rbInvJoinArr_sh
+								tr
+									td= elmnt.ri_t0d
+									td= elmnt.new_inv_upc
+									td= elmnt.new_inv_name
+									td= elmnt.new_inv_sh_stock
+									td= elmnt.old_inv_sh_stock
+
+
+		if rbInvJoinArr_gl !== undefined
+			div.rslt-tbl-1-absolute-z1
+				table#resTbl
+					thead
+						tr
+							th ri_t0d
+							th upc
+							th name
+							th old stock (GL)
+							th new stock (GL)
+
+					tbody#resTblBdy
+						if rbInvJoinArr_gl !== undefined
+							each elmnt in rbInvJoinArr_gl
+								tr
+									td= elmnt.ri_t0d
+									td= elmnt.new_inv_upc
+									td= elmnt.new_inv_name
+									td= elmnt.new_inv_gl_stock
+									td= elmnt.old_inv_gl_stock
+
 		script(src='/javascripts/modules/adminM0d.js')

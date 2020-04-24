@@ -18,75 +18,74 @@ module.exports = {
     let rbInvNEW = rbInvUpdateAuditPostBody['rbInvNEWPost']
     console.log(`rbInvNEW==> ${rbInvNEW}`)
 
-    let rbInvJoinArr = []
+    let rbInvJoinArr_ind = []
+    let rbInvJoinArr_sm = []
+    let rbInvJoinArr_mt = []
+    let rbInvJoinArr_sh = []
+    let rbInvJoinArr_gl = []
 
     function displayRbInvJoin(rows) {
-      for (let i = 0; i < rows.length; i++) {
-        let rbInvJoinObj = {}
-        rbInvJoinObj['ri_t0d'] = i + 1
-        rbInvJoinObj['invPK'] = rows[i]['invPK']
-        rbInvJoinObj['invCPK'] = rows[i]['invCPK']
-        rbInvJoinObj['invScanCode'] = rows[i]['invScanCode']
-        rbInvJoinObj['ordSupplierStockNumber'] = rows[i]['ordSupplierStockNumber']
 
-        // for (let j = 0; j < Object.keys(rows[i]).length; j++) {
-        //   if (Object.keys(rows[i])[j].includes('_sku')) {
-        //     rbInvJoinObj['ediSKU'] = rows[i][`${Object.keys(rows[i])[j]}`]
-        //   }
-        // }
+      let indRows = rows[0]
+      let smRows = rows[1]
+      let mtRows = rows[2]
+      let shRows = rows[3]
+      let glRows = rows[4]
 
-        rbInvJoinObj['invName'] = rows[i]['invName']
-        rbInvJoinObj['invSize'] = rows[i]['invSize']
-        rbInvJoinObj['invReceiptAlias'] = rows[i]['invReceiptAlias']
-        rbInvJoinObj['posTimeStamp'] = rows[i]['posTimeStamp']
-        rbInvJoinObj['invDateCreated'] = rows[i]['invDateCreated']
-        rbInvJoinObj['invEmpFkCreatedBy'] = rows[i]['invEmpFkCreatedBy']
-        rbInvJoinObj['ordQuantityInOrderUnit'] = rows[i]['ordQuantityInOrderUnit']
-        rbInvJoinObj['oupName'] = rows[i]['oupName']
-        rbInvJoinObj['stoName'] = rows[i]['stoName']
-        rbInvJoinObj['brdName'] = rows[i]['brdName']
-        rbInvJoinObj['dptName'] = rows[i]['dptName']
-        rbInvJoinObj['dptNumber'] = rows[i]['dptNumber']
-        rbInvJoinObj['sibIdealMargin'] = rows[i]['sibIdealMargin']
-        rbInvJoinObj['venCompanyname'] = rows[i]['venCompanyname']
-        rbInvJoinObj['invLastreceived'] = rows[i]['invLastreceived']
-        rbInvJoinObj['invLastsold'] = rows[i]['invLastsold']
-        rbInvJoinObj['invLastcost'] = rows[i]['invLastcost']
+      for (let i = 0; i < indRows.length; i++) {
+        let rbInvJoinObj_ind = {}
+        rbInvJoinObj_ind['ri_t0d'] = i + 1
+        rbInvJoinObj_ind['new_inv_upc'] = indRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
+        rbInvJoinObj_ind['new_inv_name'] = indRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
+        rbInvJoinObj_ind['new_inv_in_stock'] = indRows[i]['new_inv_in_stock']
+        rbInvJoinObj_ind['old_inv_in_stock'] = indRows[i]['old_inv_in_stock']
 
-        for (let j = 0; j < Object.keys(rows[i]).length; j++) {
-          //extract cost from EDI catalog (all catalogs have some '_cost' column, except kehe, which has '_tier3')
-          //!Object.keys(rows[i])[j].includes('_case_cost') will EXCLUDE '_case_cost' columns (such as cw_case_cost for Charlotte's Web)
-          if (Object.keys(rows[i])[j].includes('_cost') && !Object.keys(rows[i])[j].includes('_case_cost') &&
-            !Object.keys(rows[i])[j].includes('_display_cost') || Object.keys(rows[i])[j].includes('_tier3')) { //exclude _display_cost columns
-            //from Jack N Jill
-            rbInvJoinObj['ediCost'] = rows[i][`${Object.keys(rows[i])[j]}`]
-          }
-        }
-
-        rbInvJoinObj['sibBasePrice'] = rows[i]['sibBasePrice']
-
-        for (let j = 0; j < Object.keys(rows[i]).length; j++) {
-          //extract msrp from EDI catalog (all catalogs have some '_msrp' column)
-          if (Object.keys(rows[i])[j].includes('_msrp')) {
-            rbInvJoinObj['ediPrice'] = rows[i][`${Object.keys(rows[i])[j]}`]
-            // console.log(`rbInvJoinObj['ediPrice']==>${rbInvJoinObj['ediPrice']}`)
-          }
-        }
-
-        rbInvJoinObj['invOnhand'] = rows[i]['invOnhand']
-        rbInvJoinObj['invOnorder'] = rows[i]['invOnorder']
-        rbInvJoinObj['invIntransit'] = rows[i]['invIntransit']
-        rbInvJoinObj['pi1Description'] = rows[i]['pi1Description']
-        rbInvJoinObj['pi2Description'] = rows[i]['pi2Description']
-        rbInvJoinObj['pi3Description'] = rows[i]['pi3Description']
-        rbInvJoinObj['invPowerField3'] = rows[i]['invPowerField3']
-        rbInvJoinObj['invPowerField4'] = rows[i]['invPowerField4']
-
-        rbInvJoinArr.push(rbInvJoinObj)
+        rbInvJoinArr_ind.push(rbInvJoinObj_ind)
       }
-      console.log('rows.length~~~>', rows.length)
-      console.log(`Object.keys(rows[0][0])==>${Object.keys(rows[0][0])}`)
 
+      for (let i = 0; i < smRows.length; i++) {
+        let rbInvJoinObj_sm = {}
+        rbInvJoinObj_sm['ri_t0d'] = i + 1
+        rbInvJoinObj_sm['new_inv_upc'] = smRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
+        rbInvJoinObj_sm['new_inv_name'] = smRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
+        rbInvJoinObj_sm['new_inv_in_stock'] = smRows[i]['new_inv_in_stock']
+        rbInvJoinObj_sm['old_inv_in_stock'] = smRows[i]['old_inv_in_stock']
+
+        rbInvJoinArr_sm.push(rbInvJoinObj_sm)
+      }
+
+      for (let i = 0; i < mtRows.length; i++) {
+        let rbInvJoinObj_mt = {}
+        rbInvJoinObj_mt['ri_t0d'] = i + 1
+        rbInvJoinObj_mt['new_inv_upc'] = mtRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
+        rbInvJoinObj_mt['new_inv_name'] = mtRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
+        rbInvJoinObj_mt['new_inv_in_stock'] = mtRows[i]['new_inv_in_stock']
+        rbInvJoinObj_mt['old_inv_in_stock'] = mtRows[i]['old_inv_in_stock']
+
+        rbInvJoinArr_mt.push(rbInvJoinObj_mt)
+      }
+
+      for (let i = 0; i < shRows.length; i++) {
+        let rbInvJoinObj_sh = {}
+        rbInvJoinObj_sh['ri_t0d'] = i + 1
+        rbInvJoinObj_sh['new_inv_upc'] = shRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
+        rbInvJoinObj_sh['new_inv_name'] = shRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
+        rbInvJoinObj_sh['new_inv_in_stock'] = shRows[i]['new_inv_in_stock']
+        rbInvJoinObj_sh['old_inv_in_stock'] = shRows[i]['old_inv_in_stock']
+
+        rbInvJoinArr_sh.push(rbInvJoinObj_sh)
+      }
+
+      for (let i = 0; i < glRows.length; i++) {
+        let rbInvJoinObj_gl = {}
+        rbInvJoinObj_gl['ri_t0d'] = i + 1
+        rbInvJoinObj_gl['new_inv_upc'] = glRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
+        rbInvJoinObj_gl['new_inv_name'] = glRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
+        rbInvJoinObj_gl['new_inv_in_stock'] = glRows[i]['new_inv_in_stock']
+        rbInvJoinObj_gl['old_inv_in_stock'] = glRows[i]['old_inv_in_stock']
+
+        rbInvJoinArr_gl.push(rbInvJoinObj_gl)
+      }
     }
 
 
@@ -133,14 +132,18 @@ module.exports = {
     AND updated.inv_in_stock != orig.inv_in_stock
     ORDER BY updated.inv_in_stock;`, function (err, rows, fields) {
       if (err) throw err
-      console.log(`rows.length==>${rows.length}`)
-      console.log('rows[0][0]==>', rows[0][0])
-      // displayRbInvJoin(rows)
+      // console.log(`rows.length==>${rows.length}`)
+      // console.log('rows[0][0]==>', rows[0][0])
+      displayRbInvJoin(rows)
 
-      // res.render('vw-rbInvAudit', {
-      //   title: 'vw-rbInvAudit',
-      //   rbInvJoinArr: rbInvJoinArr
-      // })
+      res.render('vw-rbInvUpdater', {
+        title: 'vw-rbInvUpdater',
+        rbInvJoinArr_ind: rbInvJoinArr_ind,
+        rbInvJoinArr_sm: rbInvJoinArr_sm,
+        rbInvJoinArr_mt: rbInvJoinArr_mt,
+        rbInvJoinArr_sh: rbInvJoinArr_sh,
+        rbInvJoinArr_gl: rbInvJoinArr_gl
+      })
     })
 
   })
