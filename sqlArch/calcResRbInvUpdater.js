@@ -52,8 +52,10 @@ module.exports = {
     // console.log('calcResRbInvUpdater says: postBody[\'fldArrToPostPost\']==>', postBody['fldArrToPostPost'])
     // console.log('calcResRbInvUpdater says: postBody[\'fldArrToPostPost\'][0]==>', postBody['fldArrToPostPost'][0])
 
-    let tableName = postBody['tblNameToPostPost'] //tblNameToPostPost
-    console.log('tableName==>', tableName)
+    let nhcrtRbInvTable = postBody['nhcrtRbInvTablePost'] //nhcrtRbInvTablePost
+    console.log('nhcrtRbInvTable==>', nhcrtRbInvTable)
+
+    let rb_inventoryTable = postBody['rb_inventoryTablePost']
 
     let todaysDateRaw1 = new Date()
     let todaysDateRaw1_iso = todaysDateRaw1.toISOString()
@@ -279,7 +281,7 @@ module.exports = {
 
     function queryNhcrtTable() {
       connection.query(`
-      SELECT * FROM ${tableName};
+      SELECT * FROM ${nhcrtRbInvTable};
       SELECT * FROM rb_wishlist;`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
@@ -287,52 +289,52 @@ module.exports = {
         console.log(`srcRsINDstocked[0] called from queryNhcrtTable==> ${srcRsINDstocked[0]}`)
 
         connection.query(`
-        UPDATE rb_inventory_titus_20200423b
+        UPDATE ${rb_inventoryTable}
         SET inv_in_stock = '1'
         WHERE trim(inv_upc)
         IN (${srcRsINDstockedSani});
         
-        UPDATE rb_inventory_titus_20200423b
+        UPDATE ${rb_inventoryTable}
         SET inv_in_stock = '0'
         WHERE trim(inv_upc)
         IN (${srcRsIND_NOTstockedSani});
         
-        UPDATE rb_inventory_titus_20200423b
+        UPDATE ${rb_inventoryTable}
         SET inv_sm_stock = '1'
         WHERE trim(inv_upc)
         IN (${srcRsSMstockedSani});
         
-        UPDATE rb_inventory_titus_20200423b
+        UPDATE ${rb_inventoryTable}
         SET inv_sm_stock = '0'
         WHERE trim(inv_upc)
         IN (${srcRsSM_NOTstockedSani});
         
-        UPDATE rb_inventory_titus_20200423b
+        UPDATE ${rb_inventoryTable}
         SET inv_mt_stock = '1'
         WHERE trim(inv_upc)
         IN (${srcRsMTstockedSani});
         
-        UPDATE rb_inventory_titus_20200423b
+        UPDATE ${rb_inventoryTable}
         SET inv_mt_stock = '0'
         WHERE trim(inv_upc)
         IN (${srcRsMT_NOTstockedSani});
         
-        UPDATE rb_inventory_titus_20200423b
+        UPDATE ${rb_inventoryTable}
         SET inv_sh_stock = '1'
         WHERE trim(inv_upc)
         IN (${srcRsSHstockedSani});
         
-        UPDATE rb_inventory_titus_20200423b
+        UPDATE ${rb_inventoryTable}
         SET inv_sh_stock = '0'
         WHERE trim(inv_upc)
         IN (${srcRsSH_NOTstockedSani});
         
-        UPDATE rb_inventory_titus_20200423b
+        UPDATE ${rb_inventoryTable}
         SET inv_gl_stock = '1'
         WHERE trim(inv_upc)
         IN (${srcRsGLstockedSani});
         
-        UPDATE rb_inventory_titus_20200423b
+        UPDATE ${rb_inventoryTable}
         SET inv_gl_stock = '0'
         WHERE trim(inv_upc)
         IN (${srcRsGL_NOTstockedSani});`, function (err, rows, fields) {

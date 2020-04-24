@@ -50,8 +50,20 @@ html
 
 		form#rbInvUpdate(action='/rbInvUpdater/calcResRbInvUpdater' method='POST' accept-charset="UTF-8")
 			div(style="display:block")
-				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value='nhcrtRbInv')
+				label.input-label-1(for='nhcrtRbInvTable') nhcrtRbInv Table to use for updating rb_inventory
+				input#nhcrtRbInvTable.input-unit-1(type='text', placeholder='enter data', name='nhcrtRbInvTablePost', readonly, style="background-color:#c2d6d6", value='nhcrtRbInv')
+				label.input-label-1(for='rb_inventoryTable') rb_inventory Table to update
+				input#rb_inventoryTable.input-unit-1(type='text', placeholder='enter rb_inventory table name', name='rb_inventoryTablePost')
 		button#updateRbInv(type='submit', form='rbInvUpdate', style="display: block; float: left") Update rb_inventory Table
-		
+	
+		br
+
+		form#rbInvUpdateAudit(action='/rbInvUpdater/rbInvUpdateAudit' method='POST' accept-charset="UTF-8")
+			div(style="display:block")
+				label.input-label-1(for='rbInvOLD') rbInvOLD table to compare
+				input#rbInvOLD.input-unit-1(type='text', placeholder='enter data', name='rbInvOLDPost', value='rb_inventory')
+				label.input-label-1(for='rbInvNEW') rbInvNEW table to compare
+				input#rbInvNEW.input-unit-1(type='text', placeholder='enter data', name='rbInvNEWPost', value='rb_inventory_titus_20200423b')
+		button#auditRbInv(type='submit', form='rbInvUpdateAudit', style="display: block; float: left") AUDIT rb_inventory Table	
 		
 		script(src='/javascripts/modules/adminM0d.js')
