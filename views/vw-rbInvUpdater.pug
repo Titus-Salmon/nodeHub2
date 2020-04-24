@@ -57,12 +57,12 @@ html
 		button#updateRbInv(type='submit', form='rbInvUpdate', style="display: block; float: left") Update rb_inventory Table
 	
 		br
+		br
 
 		form#rbInvUpdateAudit(action='/rbInvUpdater/rbInvUpdateAudit' method='POST' accept-charset="UTF-8")
 			div(style="display:block")
 				label.input-label-1(for='rbInvOLD') rbInvOLD table to compare
 				input#rbInvOLD.input-unit-1(type='text', placeholder='enter data', name='rbInvOLDPost', value='rb_inventory')
-			div(style="display:block")
 				label.input-label-1(for='rbInvNEW') rbInvNEW table to compare
 				input#rbInvNEW.input-unit-1(type='text', placeholder='enter data', name='rbInvNEWPost', value='rb_inventory_titus_20200423b')
 		button#auditRbInv(type='submit', form='rbInvUpdateAudit', style="display: block; float: left") AUDIT rb_inventory Table	
