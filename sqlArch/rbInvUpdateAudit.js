@@ -85,7 +85,7 @@ module.exports = {
         rbInvJoinArr.push(rbInvJoinObj)
       }
       console.log('rows.length~~~>', rows.length)
-      console.log(`Object.keys(rows[0])==>${Object.keys(rows[0])}`)
+      console.log(`Object.keys(rows[0][0])==>${Object.keys(rows[0][0])}`)
 
     }
 
@@ -135,7 +135,7 @@ module.exports = {
       if (err) throw err
       console.log(`rows.length==>${rows.length}`)
       console.log('rows[0][0]==>', rows[0][0])
-      displayRbInvJoin(rows)
+      // displayRbInvJoin(rows)
 
       // res.render('vw-rbInvAudit', {
       //   title: 'vw-rbInvAudit',
