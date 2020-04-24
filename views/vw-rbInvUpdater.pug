@@ -71,6 +71,13 @@ html
 		br
 
 		if rbInvJoinArr_ind !== undefined
+			form#rbInvUpdateAuditSaveCSVind(action='/rbInvUpdater/rbInvUpdateAuditSaveCSV_ind' method='POST' accept-charset="UTF-8")
+			div(style="display:block")
+				label.input-label-1(for='csv') filename - IND:
+				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+				label.input-label-1(for='rbInvJoinArr_ind') rbInvJoinArr_ind values
+				input#rbInvJoinArr_ind.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=rbInvJoinArr_ind)
+			button(type='submit', form='rbInvUpdateAuditSaveCSVind', style="display: block; float: left") save IND results to CSV
 			div.rslt-tbl-1
 				table
 					thead
@@ -93,6 +100,11 @@ html
 
 
 		if rbInvJoinArr_sm !== undefined
+			form#rbInvUpdateAuditSaveCSVsm(action='/rbInvUpdater/rbInvUpdateAuditSaveCSV' method='POST' accept-charset="UTF-8")
+			div(style="display:block")
+				label.input-label-1(for='rbInvJoinArr_sm') rbInvJoinArr_sm values
+				input#rbInvJoinArr_sm.input-unit-1(type='text', placeholder='enter data', name='csvPost', value=rbInvJoinArr_sm)
+			button(type='submit', form='rbInvUpdateAuditSaveCSVsm', style="display: block; float: left") save SM results to CSV
 			div.rslt-tbl-1
 				table
 					thead
@@ -115,6 +127,11 @@ html
 
 
 		if rbInvJoinArr_mt !== undefined
+			form#rbInvUpdateAuditSaveCSVmt(action='/rbInvUpdater/rbInvUpdateAuditSaveCSV' method='POST' accept-charset="UTF-8")
+			div(style="display:block")
+				label.input-label-1(for='rbInvJoinArr_mt') rbInvJoinArr_mt values
+				input#rbInvJoinArr_sm.input-unit-1(type='text', placeholder='enter data', name='csvPost', value=rbInvJoinArr_mt)
+			button(type='submit', form='rbInvUpdateAuditSaveCSVmt', style="display: block; float: left") save MT results to CSV
 			div.rslt-tbl-1
 				table
 					thead
@@ -137,6 +154,11 @@ html
 
 
 		if rbInvJoinArr_sh !== undefined
+			form#rbInvUpdateAuditSaveCSVsh(action='/rbInvUpdater/rbInvUpdateAuditSaveCSV' method='POST' accept-charset="UTF-8")
+			div(style="display:block")
+				label.input-label-1(for='rbInvJoinArr_sh') rbInvJoinArr_sh values
+				input#rbInvJoinArr_sh.input-unit-1(type='text', placeholder='enter data', name='csvPost', value=rbInvJoinArr_sh)
+			button(type='submit', form='rbInvUpdateAuditSaveCSVsh', style="display: block; float: left") save SH results to CSV
 			div.rslt-tbl-1
 				table
 					thead
@@ -159,6 +181,11 @@ html
 
 
 		if rbInvJoinArr_gl !== undefined
+			form#rbInvUpdateAuditSaveCSVgl(action='/rbInvUpdater/rbInvUpdateAuditSaveCSV' method='POST' accept-charset="UTF-8")
+			div(style="display:block")
+				label.input-label-1(for='rbInvJoinArr_gl') rbInvJoinArr_gl values
+				input#rbInvJoinArr_gl.input-unit-1(type='text', placeholder='enter data', name='csvPost', value=rbInvJoinArr_gl)
+			button(type='submit', form='rbInvUpdateAuditSaveCSVgl', style="display: block; float: left") save GL results to CSV
 			div.rslt-tbl-1
 				table
 					thead
