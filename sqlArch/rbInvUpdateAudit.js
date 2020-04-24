@@ -96,42 +96,42 @@ module.exports = {
     SELECT updated.inv_upc AS new_inv_upc, updated.inv_name AS new_inv_name, updated.inv_in_stock AS new_inv_in_stock,
     orig.inv_upc AS old_inv_upc, orig.inv_name AS old_inv_name, orig.inv_in_stock AS old_inv_in_stock
     FROM ${rbInvNEW} updated
-    JOIN ${rbInvOLD} orig ON new_inv_upc
-    WHERE new_inv_upc = old_inv_upc
-    AND new_inv_in_stock != old_inv_in_stock
-    ORDER BY new_inv_in_stock;
+    JOIN ${rbInvOLD} orig ON updated.inv_upc
+    WHERE updated.inv_upc = orig.inv_upc
+    AND updated.inv_in_stock != orig.inv_in_stock
+    ORDER BY updated.inv_in_stock;
     
     SELECT updated.inv_upc AS new_inv_upc, updated.inv_name AS new_inv_name, updated.inv_sm_stock AS new_inv_sm_stock,
     orig.inv_upc AS old_inv_upc, orig.inv_name AS old_inv_name, orig.inv_sm_stock AS old_inv_sm_stock
     FROM ${rbInvNEW} updated
-    JOIN ${rbInvOLD} orig ON new_inv_upc
-    WHERE new_inv_upc = old_inv_upc
-    AND new_inv_sm_stock != old_inv_sm_stock
-    ORDER BY new_inv_sm_stock;
+    JOIN ${rbInvOLD} orig ON updated.inv_upc
+    WHERE updated.inv_upc = orig.inv_upc
+    AND updated.inv_in_stock != orig.inv_in_stock
+    ORDER BY updated.inv_in_stock;
     
     SELECT updated.inv_upc AS new_inv_upc, updated.inv_name AS new_inv_name, updated.inv_mt_stock AS new_inv_mt_stock,
     orig.inv_upc AS old_inv_upc, orig.inv_name AS old_inv_name, orig.inv_mt_stock AS old_inv_mt_stock
     FROM ${rbInvNEW} updated
-    JOIN ${rbInvOLD} orig ON new_inv_upc
-    WHERE new_inv_upc = old_inv_upc
-    AND new_inv_mt_stock != old_inv_mt_stock
-    ORDER BY new_inv_mt_stock;
+    JOIN ${rbInvOLD} orig ON updated.inv_upc
+    WHERE updated.inv_upc = orig.inv_upc
+    AND updated.inv_in_stock != orig.inv_in_stock
+    ORDER BY updated.inv_in_stock;
     
     SELECT updated.inv_upc AS new_inv_upc, updated.inv_name AS new_inv_name, updated.inv_sh_stock AS new_inv_sh_stock,
     orig.inv_upc AS old_inv_upc, orig.inv_name AS old_inv_name, orig.inv_sh_stock AS old_inv_sh_stock
     FROM ${rbInvNEW} updated
-    JOIN ${rbInvOLD} orig ON new_inv_upc
-    WHERE new_inv_upc = old_inv_upc
-    AND new_inv_sh_stock != old_inv_sh_stock
-    ORDER BY new_inv_sh_stock;
+    JOIN ${rbInvOLD} orig ON updated.inv_upc
+    WHERE updated.inv_upc = orig.inv_upc
+    AND updated.inv_in_stock != orig.inv_in_stock
+    ORDER BY updated.inv_in_stock;
     
     SELECT updated.inv_upc AS new_inv_upc, updated.inv_name AS new_inv_name, updated.inv_gl_stock AS new_inv_gl_stock,
     orig.inv_upc AS old_inv_upc, orig.inv_name AS old_inv_name, orig.inv_gl_stock AS old_inv_gl_stock
     FROM ${rbInvNEW} updated
-    JOIN ${rbInvOLD} orig ON new_inv_upc
-    WHERE new_inv_upc = old_inv_upc
-    AND new_inv_gl_stock != old_inv_gl_stock
-    ORDER BY new_inv_gl_stock;`, function (err, rows, fields) {
+    JOIN ${rbInvOLD} orig ON updated.inv_upc
+    WHERE updated.inv_upc = orig.inv_upc
+    AND updated.inv_in_stock != orig.inv_in_stock
+    ORDER BY updated.inv_in_stock;`, function (err, rows, fields) {
       if (err) throw err
       console.log(`rows.length==>${rows.length}`)
       console.log('rows[0][0]==>', rows[0][0])
