@@ -140,13 +140,17 @@ module.exports = {
         rbInvJoinObj_gl['ri_t0dGL'] = i + 1
         rbInvJoinObj_gl['new_inv_upcGL'] = glRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
         rbInvJoinObj_gl['new_inv_nameGL'] = glRows[i]['new_inv_name'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
-        rbInvJoinObj_gl['new_inv_gl_stockGL'] = glRows[i]['new_inv_gl_stock']
+        // rbInvJoinObj_gl['new_inv_gl_stockGL'] = glRows[i]['new_inv_gl_stock']
         if (glRows[i]['new_inv_gl_stock'] == '') {
           rbInvJoinObj_gl['new_inv_gl_stockGL'] == 'EMPTY'
+        } else {
+          rbInvJoinObj_gl['new_inv_gl_stockGL'] = glRows[i]['new_inv_gl_stock']
         }
-        rbInvJoinObj_gl['old_inv_gl_stockGL'] = glRows[i]['old_inv_gl_stock']
+        // rbInvJoinObj_gl['old_inv_gl_stockGL'] = glRows[i]['old_inv_gl_stock']
         if (glRows[i]['old_inv_gl_stock'] == '') {
           rbInvJoinObj_gl['old_inv_gl_stockGL'] == 'EMPTY'
+        } else {
+          rbInvJoinObj_gl['old_inv_gl_stockGL'] = glRows[i]['old_inv_gl_stock']
         }
 
         rbInvJoinArr_gl.push(rbInvJoinObj_gl)
