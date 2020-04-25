@@ -70,14 +70,19 @@ html
 		br
 		br
 
+		div(style="display:block")
+		form#save2CSVrbInvAudit(action='/rbInvUpdater/save2CSVrbInvAudit' method='POST' accept-charset='UTF-8')
+			if searchResultsSplitParsedArr !== undefined
+				label.input-label-1(for='csv') filename:
+					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+				label.input-label-1(for='csvData') CSV Body data
+					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=searchResultsSplitParsedArr)
+				button#saveCSVrbInvAudit(type="submit" form="save2CSVrbInvAudit") Save Results as CSV - rbInvAudit
+
+		br
+		br
+
 		if rbInvJoinArr_ind !== undefined
-			//- form#rbInvUpdateAuditSaveCSVind(action='/rbInvUpdater/rbInvUpdateAuditSaveCSV_ind' method='POST' accept-charset="UTF-8")
-			//- div(style="display:block")
-			//- 	label.input-label-1(for='csv') filename - IND:
-			//- 	input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-			//- 	label.input-label-1(for='rbInvJoinArr_ind') rbInvJoinArr_ind values
-			//- 	input#rbInvJoinArr_ind.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=rbInvJoinArr_ind)
-			//- button(type='submit', form='rbInvUpdateAuditSaveCSVind', style="display: block; float: left") save IND results to CSV
 			div.rslt-tbl-1
 				table
 					thead
@@ -92,19 +97,14 @@ html
 						if rbInvJoinArr_ind !== undefined
 							each elmnt in rbInvJoinArr_ind
 								tr
-									td= elmnt.ri_t0d
-									td= elmnt.new_inv_upc
-									td= elmnt.new_inv_name
-									td= elmnt.new_inv_in_stock
-									td= elmnt.old_inv_in_stock
+									td= elmnt.ri_t0dIND
+									td= elmnt.new_inv_upcIND
+									td= elmnt.new_inv_nameIND
+									td= elmnt.new_inv_in_stockIND
+									td= elmnt.old_inv_in_stockIND
 
 
 		if rbInvJoinArr_sm !== undefined
-			//- form#rbInvUpdateAuditSaveCSVsm(action='/rbInvUpdater/rbInvUpdateAuditSaveCSV' method='POST' accept-charset="UTF-8")
-			//- div(style="display:block")
-			//- 	label.input-label-1(for='rbInvJoinArr_sm') rbInvJoinArr_sm values
-			//- 	input#rbInvJoinArr_sm.input-unit-1(type='text', placeholder='enter data', name='csvPost', value=rbInvJoinArr_sm)
-			//- button(type='submit', form='rbInvUpdateAuditSaveCSVsm', style="display: block; float: left") save SM results to CSV
 			div.rslt-tbl-1
 				table
 					thead
@@ -119,19 +119,14 @@ html
 						if rbInvJoinArr_sm !== undefined
 							each elmnt in rbInvJoinArr_sm
 								tr
-									td= elmnt.ri_t0d
-									td= elmnt.new_inv_upc
-									td= elmnt.new_inv_name
-									td= elmnt.new_inv_sm_stock
-									td= elmnt.old_inv_sm_stock
+									td= elmnt.ri_t0dSM
+									td= elmnt.new_inv_upcSM
+									td= elmnt.new_inv_nameSM
+									td= elmnt.new_inv_sm_stockSM
+									td= elmnt.old_inv_sm_stockSM
 
 
 		if rbInvJoinArr_mt !== undefined
-			//- form#rbInvUpdateAuditSaveCSVmt(action='/rbInvUpdater/rbInvUpdateAuditSaveCSV' method='POST' accept-charset="UTF-8")
-			//- div(style="display:block")
-			//- 	label.input-label-1(for='rbInvJoinArr_mt') rbInvJoinArr_mt values
-			//- 	input#rbInvJoinArr_sm.input-unit-1(type='text', placeholder='enter data', name='csvPost', value=rbInvJoinArr_mt)
-			//- button(type='submit', form='rbInvUpdateAuditSaveCSVmt', style="display: block; float: left") save MT results to CSV
 			div.rslt-tbl-1
 				table
 					thead
@@ -146,19 +141,14 @@ html
 						if rbInvJoinArr_mt !== undefined
 							each elmnt in rbInvJoinArr_mt
 								tr
-									td= elmnt.ri_t0d
-									td= elmnt.new_inv_upc
-									td= elmnt.new_inv_name
-									td= elmnt.new_inv_mt_stock
-									td= elmnt.old_inv_mt_stock
+									td= elmnt.ri_t0dMT
+									td= elmnt.new_inv_upcMT
+									td= elmnt.new_inv_nameMT
+									td= elmnt.new_inv_mt_stockMT
+									td= elmnt.old_inv_mt_stockMT
 
 
 		if rbInvJoinArr_sh !== undefined
-			//- form#rbInvUpdateAuditSaveCSVsh(action='/rbInvUpdater/rbInvUpdateAuditSaveCSV' method='POST' accept-charset="UTF-8")
-			//- div(style="display:block")
-			//- 	label.input-label-1(for='rbInvJoinArr_sh') rbInvJoinArr_sh values
-			//- 	input#rbInvJoinArr_sh.input-unit-1(type='text', placeholder='enter data', name='csvPost', value=rbInvJoinArr_sh)
-			//- button(type='submit', form='rbInvUpdateAuditSaveCSVsh', style="display: block; float: left") save SH results to CSV
 			div.rslt-tbl-1
 				table
 					thead
@@ -173,26 +163,21 @@ html
 						if rbInvJoinArr_sh !== undefined
 							each elmnt in rbInvJoinArr_sh
 								tr
-									td= elmnt.ri_t0d
-									td= elmnt.new_inv_upc
-									td= elmnt.new_inv_name
-									td= elmnt.new_inv_sh_stock
-									td= elmnt.old_inv_sh_stock
+									td= elmnt.ri_t0dSH
+									td= elmnt.new_inv_upcSH
+									td= elmnt.new_inv_nameSH
+									td= elmnt.new_inv_sh_stockSH
+									td= elmnt.old_inv_sh_stockSH
 
 
 		if rbInvJoinArr_gl !== undefined
-			//- form#rbInvUpdateAuditSaveCSVgl(action='/rbInvUpdater/rbInvUpdateAuditSaveCSV' method='POST' accept-charset="UTF-8")
-			//- div(style="display:block")
-			//- 	label.input-label-1(for='rbInvJoinArr_gl') rbInvJoinArr_gl values
-			//- 	input#rbInvJoinArr_gl.input-unit-1(type='text', placeholder='enter data', name='csvPost', value=rbInvJoinArr_gl)
-			//- button(type='submit', form='rbInvUpdateAuditSaveCSVgl', style="display: block; float: left") save GL results to CSV
 			div.rslt-tbl-1
 				table
 					thead
 						tr
 							th #
-							th upc
-							th name (GL)
+							th upc (GL)
+							th name
 							th new
 							th old
 
@@ -200,10 +185,10 @@ html
 						if rbInvJoinArr_gl !== undefined
 							each elmnt in rbInvJoinArr_gl
 								tr
-									td= elmnt.ri_t0d
-									td= elmnt.new_inv_upc
-									td= elmnt.new_inv_name
-									td= elmnt.new_inv_gl_stock
-									td= elmnt.old_inv_gl_stock
+									td= elmnt.ri_t0dGL
+									td= elmnt.new_inv_upcGL
+									td= elmnt.new_inv_nameGL
+									td= elmnt.new_inv_gl_stockGL
+									td= elmnt.old_inv_gl_stockGL
 
 		script(src='/javascripts/modules/adminM0d.js')
