@@ -56,13 +56,17 @@ module.exports = {
         rbInvJoinObj_ind['ri_t0dIND'] = i + 1
         rbInvJoinObj_ind['new_inv_upcIND'] = indRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
         rbInvJoinObj_ind['new_inv_nameIND'] = indRows[i]['new_inv_name'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
-        rbInvJoinObj_ind['new_inv_in_stockIND'] = indRows[i]['new_inv_in_stock']
+        // rbInvJoinObj_ind['new_inv_in_stockIND'] = indRows[i]['new_inv_in_stock']
         if (indRows[i]['new_inv_in_stock'] == null) {
           rbInvJoinObj_ind['new_inv_in_stockIND'] == 'EMPTY'
+        } else {
+          rbInvJoinObj_ind['new_inv_in_stockIND'] = indRows[i]['new_inv_in_stock']
         }
-        rbInvJoinObj_ind['old_inv_in_stockIND'] = indRows[i]['old_inv_in_stock']
+        // rbInvJoinObj_ind['old_inv_in_stockIND'] = indRows[i]['old_inv_in_stock']
         if (indRows[i]['old_inv_in_stock'] == null) {
           rbInvJoinObj_ind['old_inv_in_stockIND'] == 'EMPTY'
+        } else {
+          rbInvJoinObj_ind['old_inv_in_stockIND'] = indRows[i]['old_inv_in_stock']
         }
 
         rbInvJoinArr_ind.push(rbInvJoinObj_ind)
@@ -73,13 +77,17 @@ module.exports = {
         rbInvJoinObj_sm['ri_t0dSM'] = i + 1
         rbInvJoinObj_sm['new_inv_upcSM'] = smRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
         rbInvJoinObj_sm['new_inv_nameSM'] = smRows[i]['new_inv_name'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
-        rbInvJoinObj_sm['new_inv_sm_stockSM'] = smRows[i]['new_inv_sm_stock']
+        // rbInvJoinObj_sm['new_inv_sm_stockSM'] = smRows[i]['new_inv_sm_stock']
         if (smRows[i]['new_inv_sm_stock'] == null) {
           rbInvJoinObj_sm['new_inv_sm_stockSM'] == 'EMPTY'
+        } else {
+          rbInvJoinObj_sm['new_inv_sm_stockSM'] = smRows[i]['new_inv_sm_stock']
         }
-        rbInvJoinObj_sm['old_inv_sm_stockSM'] = smRows[i]['old_inv_sm_stock']
+        // rbInvJoinObj_sm['old_inv_sm_stockSM'] = smRows[i]['old_inv_sm_stock']
         if (smRows[i]['old_inv_sm_stock'] == null) {
           rbInvJoinObj_sm['old_inv_sm_stockSM'] == 'EMPTY'
+        } else {
+          rbInvJoinObj_sm['old_inv_sm_stockSM'] = smRows[i]['old_inv_sm_stock']
         }
 
         rbInvJoinArr_sm.push(rbInvJoinObj_sm)
@@ -90,13 +98,17 @@ module.exports = {
         rbInvJoinObj_mt['ri_t0dMT'] = i + 1
         rbInvJoinObj_mt['new_inv_upcMT'] = mtRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
         rbInvJoinObj_mt['new_inv_nameMT'] = mtRows[i]['new_inv_name'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
-        rbInvJoinObj_mt['new_inv_mt_stockMT'] = mtRows[i]['new_inv_mt_stock']
+        // rbInvJoinObj_mt['new_inv_mt_stockMT'] = mtRows[i]['new_inv_mt_stock']
         if (mtRows[i]['new_inv_mt_stock'] == null) {
           rbInvJoinObj_mt['new_inv_mt_stockMT'] == 'EMPTY'
+        } else {
+          rbInvJoinObj_mt['new_inv_mt_stockMT'] = mtRows[i]['new_inv_mt_stock']
         }
-        rbInvJoinObj_mt['old_inv_mt_stockMT'] = mtRows[i]['old_inv_mt_stock']
+        // rbInvJoinObj_mt['old_inv_mt_stockMT'] = mtRows[i]['old_inv_mt_stock']
         if (mtRows[i]['old_inv_mt_stock'] == null) {
           rbInvJoinObj_mt['old_inv_mt_stockMT'] == 'EMPTY'
+        } else {
+          rbInvJoinObj_mt['old_inv_mt_stockMT'] = mtRows[i]['old_inv_mt_stock']
         }
 
         rbInvJoinArr_mt.push(rbInvJoinObj_mt)
@@ -107,13 +119,17 @@ module.exports = {
         rbInvJoinObj_sh['ri_t0dSH'] = i + 1
         rbInvJoinObj_sh['new_inv_upcSH'] = shRows[i]['new_inv_upc'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
         rbInvJoinObj_sh['new_inv_nameSH'] = shRows[i]['new_inv_name'] //could use smRows[i], mtRows[i], etc. here, since they're all the same
-        rbInvJoinObj_sh['new_inv_sh_stockSH'] = shRows[i]['new_inv_sh_stock']
+        // rbInvJoinObj_sh['new_inv_sh_stockSH'] = shRows[i]['new_inv_sh_stock']
         if (shRows[i]['new_inv_sh_stock'] == null) {
           rbInvJoinObj_sh['new_inv_sh_stockSH'] == 'EMPTY'
+        } else {
+          rbInvJoinObj_sh['new_inv_sh_stockSH'] = shRows[i]['new_inv_sh_stock']
         }
-        rbInvJoinObj_sh['old_inv_sh_stockSH'] = shRows[i]['old_inv_sh_stock']
+        // rbInvJoinObj_sh['old_inv_sh_stockSH'] = shRows[i]['old_inv_sh_stock']
         if (shRows[i]['old_inv_sh_stock'] == null) {
           rbInvJoinObj_sh['old_inv_sh_stockSH'] == 'EMPTY'
+        } else {
+          rbInvJoinObj_sh['old_inv_sh_stockSH'] = shRows[i]['old_inv_sh_stock']
         }
 
         rbInvJoinArr_sh.push(rbInvJoinObj_sh)
