@@ -37,6 +37,7 @@ module.exports = {
     searchResultsSplitParsedArr = []
 
     let saniRegex1 = /(\[)|(\])/g
+    let saniRegex2 = /""/g
 
     /* X(?=Y) 	Positive lookahead 	X if followed by Y
      * (?<=Y)X 	Positive lookbehind 	X if after Y
@@ -156,11 +157,11 @@ module.exports = {
         rbInvJoinArr_gl.push(rbInvJoinObj_gl)
       }
 
-      rbInvJoinArr_indSani = JSON.stringify(rbInvJoinArr_ind).replace(saniRegex1, "")
-      rbInvJoinArr_smSani = JSON.stringify(rbInvJoinArr_sm).replace(saniRegex1, "")
-      rbInvJoinArr_mtSani = JSON.stringify(rbInvJoinArr_mt).replace(saniRegex1, "")
-      rbInvJoinArr_shSani = JSON.stringify(rbInvJoinArr_sh).replace(saniRegex1, "")
-      rbInvJoinArr_glSani = JSON.stringify(rbInvJoinArr_gl).replace(saniRegex1, "")
+      rbInvJoinArr_indSani = JSON.stringify(rbInvJoinArr_ind).replace(saniRegex2, "EMPTY").replace(saniRegex1, "")
+      rbInvJoinArr_smSani = JSON.stringify(rbInvJoinArr_sm).replace(saniRegex2, "EMPTY").replace(saniRegex1, "")
+      rbInvJoinArr_mtSani = JSON.stringify(rbInvJoinArr_mt).replace(saniRegex2, "EMPTY").replace(saniRegex1, "")
+      rbInvJoinArr_shSani = JSON.stringify(rbInvJoinArr_sh).replace(saniRegex2, "EMPTY").replace(saniRegex1, "")
+      rbInvJoinArr_glSani = JSON.stringify(rbInvJoinArr_gl).replace(saniRegex2, "EMPTY").replace(saniRegex1, "")
 
       searchResults.push(rbInvJoinArr_indSani, rbInvJoinArr_smSani, rbInvJoinArr_mtSani, rbInvJoinArr_shSani, rbInvJoinArr_glSani)
 
