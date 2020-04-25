@@ -34,10 +34,10 @@ module.exports = {
       // 'INDstocked', 'IND_NOTstocked', 'SMstocked', 'SM_NOTstocked', 'MTstocked',
       // 'MT_NOTstocked', 'SHstocked', 'SH_NOTstocked', 'GLstocked', 'GL_NOTstocked'
       'ri_t0dIND', 'new_inv_upcIND', 'new_inv_nameIND', 'new_inv_in_stockIND', 'old_inv_in_stockIND',
-      'ri_t0dSM', 'new_inv_upcSM', 'new_inv_nameSM', 'new_inv_in_stockSM', 'old_inv_in_stockSM',
-      'ri_t0dMT', 'new_inv_upcMT', 'new_inv_nameMT', 'new_inv_in_stockMT', 'old_inv_in_stockMT',
-      'ri_t0dSH', 'new_inv_upcSH', 'new_inv_nameSH', 'new_inv_in_stockSH', 'old_inv_in_stockSH',
-      'ri_t0dGL', 'new_inv_upcGL', 'new_inv_nameGL', 'new_inv_in_stockGL', 'old_inv_in_stockGL',
+      'ri_t0dSM', 'new_inv_upcSM', 'new_inv_nameSM', 'new_inv_sm_stockSM', 'old_inv_sm_stockSM',
+      'ri_t0dMT', 'new_inv_upcMT', 'new_inv_nameMT', 'new_inv_mt_stockMT', 'old_inv_mt_stockMT',
+      'ri_t0dSH', 'new_inv_upcSH', 'new_inv_nameSH', 'new_inv_sh_stockSH', 'old_inv_sh_stockSH',
+      'ri_t0dGL', 'new_inv_upcGL', 'new_inv_nameGL', 'new_inv_gl_stockGL', 'old_inv_gl_stockGL',
     ]
 
     const opts = {
