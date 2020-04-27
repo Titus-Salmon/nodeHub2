@@ -353,7 +353,7 @@ module.exports = {
           console.log(`JSON.stringify(rows[9]) from nested connection.query==> ${JSON.stringify(rows[9])}`)
 
           res.render('vw-rbInvUpdater', { //render searchResults to vw-MySqlTableHub page
-            title: 'vw-rbInvUpdater ==>> rb_inventory_titus_20200415 updated',
+            title: `vw-rbInvUpdater ==>> ${rb_inventoryTable} updated`,
             // searchResRows: searchResultsSplit,
             // srcRsINDstocked: srcRsINDstocked,
             // srcRsIND_NOTstocked: srcRsIND_NOTstocked,

@@ -19,7 +19,8 @@ module.exports = {
         if (tableName.toLowerCase().includes('nej') || tableName.toLowerCase().includes('nhcrt') ||
             tableName.toLowerCase().includes('nisf') || tableName.toLowerCase().includes('portinfra') ||
             tableName.toLowerCase().includes('rb_inventory_titus') || tableName.toLowerCase().includes('rcth') ||
-            tableName.toLowerCase().includes('infrasales') || tableName.toLowerCase().includes('gpet')) {
+            tableName.toLowerCase().includes('infrasales') || tableName.toLowerCase().includes('gpet') ||
+            tableName.toLowerCase().includes('icat')) {
             connection.query(mySqlQuery, (error, response) => {
                 console.log(`error==>${error}` || `response==>${response}`)
             }).on('end', function () {
