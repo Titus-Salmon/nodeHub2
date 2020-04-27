@@ -9,13 +9,21 @@ const showSearchRes = require('../funcLibT0d/showSearchRes')
 const remvItem = require('../funcLibT0d/removeItem')
 const paginPost = require('../funcLibT0d/paginPost')
 
-const connection = mysql.createConnection({ //for home local testing
-  host: process.env.TEST_STUFF_T0D_HOST,
-  user: process.env.TEST_STUFF_T0D_USER,
-  password: process.env.TEST_STUFF_T0D_PW,
-  database: process.env.TEST_STUFF_T0D_DB,
+const connection = mysql.createConnection({ //for work use in RB DB
+  host: process.env.RB_HOST,
+  user: process.env.RB_USER,
+  password: process.env.RB_PW,
+  database: process.env.RB_DB,
   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
+
+// const connection = mysql.createConnection({ //for home local testing
+//   host: process.env.TEST_STUFF_T0D_HOST,
+//   user: process.env.TEST_STUFF_T0D_USER,
+//   password: process.env.TEST_STUFF_T0D_PW,
+//   database: process.env.TEST_STUFF_T0D_DB,
+//   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+// })
 
 // const connection = mysql.createConnection({ //for work testing
 //   host: process.env.NODEHUB_TEST1_HOST,
