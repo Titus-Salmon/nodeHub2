@@ -29,8 +29,12 @@ module.exports = {
     // let objectifiedImwProdArr = [] //we objectify imwProductArr so it can be easily displayed in the DOM template
 
     let nhcrtTableName = postBody['nhcrtTablePost']
+    console.log(`nhcrtTableName==> ${nhcrtTableName}`)
     let ediTableName = postBody['ediTablePost']
+    console.log(`ediTableName==> ${ediTableName}`)
     let ediPrefix = postBody['ediPrefixPost']
+    console.log(`ediPrefix==> ${ediPrefix}`)
+
     let srsObjArr = []
 
 
@@ -40,6 +44,7 @@ module.exports = {
     function showSearchRes(rows) {
 
       let displayRows = rows[0]
+      console.log(`displayRows[0]==> ${displayRows[0]}`)
 
       for (let i = 0; i < displayRows.length; i++) {
         let srsObj = {}
