@@ -31,6 +31,7 @@ html
 					table#resTbl_loadedTable
 						thead
 							tr
+								th #
 								th item_id
 								th dept_id
 								th dept_name
@@ -80,6 +81,7 @@ html
 						tbody#resTblBdy_loadedTable
 							each elmnt in srsObjArr
 								tr
+									td= elmnt.ri_t0d
 									td= elmnt.item_id
 									td= elmnt.dept_id
 									td= elmnt.dept_name
