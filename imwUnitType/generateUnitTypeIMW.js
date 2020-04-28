@@ -103,13 +103,9 @@ module.exports = {
     function queryNejUnitType_Table() {
       connection.query(`
       SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
-      nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName, nhcrt.invSize AS nhcrtInvSize,
-      nhcrt.invReceiptAlias AS nhcrtInvReceiptAlias, nhcrt.posTimeStamp AS nhcrtPosTimeStamp, nhcrt.invDateCreated AS nhcrtInvDateCreated,
-      nhcrt.ordQuantityInOrderUnit AS nhcrtOrdQuantityInOrderUnit, nhcrt.oupName AS nhcrtOupName,
-      nhcrt.brdName AS nhcrtBrandName, nhcrt.dptName AS nhcrtDptName, nhcrt.dptNumber AS nhcrtDptNumber, nhcrt.sibIdealMargin AS nhcrtSibIdealMargin,
-      nhcrt.venCompanyname AS nhcrtVenCompanyName, nhcrt.invLastcost AS nhcrtInvLastCost, nhcrt.sibBasePrice AS nhcrtSibBasePrice,
-      nhcrt.pi1Description AS nhcrtPi1Description, nhcrt.pi2Description AS nhcrtPi2Description, nhcrt.pi3Description AS nhcrtPi3Description,
-      nhcrt.invPowerField3 AS nhcrtInvPowerField3, nhcrt.invPowerField4 AS nhcrtInvPowerField4,
+      nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName,
+      nhcrt.invReceiptAlias AS nhcrtInvReceiptAlias,
+      nhcrt.venCompanyname AS nhcrtVenCompanyName, nhcrt.pi1Description AS nhcrtPi1Description, nhcrt.pi2Description AS nhcrtPi2Description,
       edi_table.${ediPrefix}_upc AS edi_tableEDIprefixUPC, edi_table.${ediPrefix}_unit_type AS edi_tableEDIprefixUnitType FROM ${nhcrtTableName}
       nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode
       WHERE nhcrt.invScanCode = edi_table.${ediPrefix}_upc
