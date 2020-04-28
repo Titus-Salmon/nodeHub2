@@ -10,7 +10,14 @@ module.exports = {
 
     const postBody = req.body
     let itemsToAdd = postBody['productArrayPost']
-    console.log(`itemsToAdd[0]==> ${itemsToAdd[0]}`)
+
+    let saniRegex1 = /(\[)|(\])/g
+
+    let itemsToAddSani = itemsToAdd.replace(saniRegex1, "")
+    console.log(`JSON.parse(itemsToAdd)[0]==> ${JSON.parse(itemsToAdd)[0]}`)
+
+    let itemsToAddSaniParsed = JSON.parse(itemsToAdd)
+
     // let itemsToAddArr = []
     // let objectifiedItemsToAddArr = []
 
@@ -49,7 +56,7 @@ module.exports = {
       // console.log('objectifiedItemsToAddArr from json2csv======>>', objectifiedItemsToAddArr)
       const parser = new Parser(opts);
       // const csv = parser.parse(objectifiedItemsToAddArr);
-      const csv = parser.parse(itemsToAdd[0]);
+      const csv = parser.parse(itemsToAddSaniParsed);
       // csvContainer.push(csv);
       console.log('csv_T0d=====>>', csv);
       fs.writeFile(process.cwd() + '/public/csv/' + req.body['csvPost'] + '.csv', csv, function (err) {
