@@ -10,7 +10,7 @@ module.exports = {
 
     const postBody = req.body
     let itemsToAdd = postBody['productArrayPost']
-    console.log(`itemsToAdd==> ${itemsToAdd}`)
+    console.log(`itemsToAdd[0]==> ${itemsToAdd[0]}`)
     // let itemsToAddArr = []
     // let objectifiedItemsToAddArr = []
 
@@ -49,7 +49,7 @@ module.exports = {
       // console.log('objectifiedItemsToAddArr from json2csv======>>', objectifiedItemsToAddArr)
       const parser = new Parser(opts);
       // const csv = parser.parse(objectifiedItemsToAddArr);
-      const csv = parser.parse(itemsToAdd);
+      const csv = parser.parse(itemsToAdd[0]);
       // csvContainer.push(csv);
       console.log('csv_T0d=====>>', csv);
       fs.writeFile(process.cwd() + '/public/csv/' + req.body['csvPost'] + '.csv', csv, function (err) {
