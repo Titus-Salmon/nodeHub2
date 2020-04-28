@@ -10,6 +10,7 @@ module.exports = {
 
     const postBody = req.body
     let itemsToAdd = postBody['productArrayPost']
+    console.log(`itemsToAdd==> ${itemsToAdd}`)
     // let itemsToAddArr = []
     // let objectifiedItemsToAddArr = []
 
