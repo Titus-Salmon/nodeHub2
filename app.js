@@ -25,6 +25,7 @@ const pcwGenRouter = require('./routes/rt-pcwGen') //t0d
 const pcwGenINFRARouter = require('./routes/rt-pcwGenINFRA') //t0d
 const compareUnequalListsRouter = require('./routes/rt-compareUnequalLists') //t0d
 const rbInvUpdaterRouter = require('./routes/rt-rbInvUpdater') //t0d
+const imwUnitTypeRouter = require('./routes/rt-imwUnitType') //t0d
 
 var app = express();
 
@@ -62,6 +63,7 @@ app.use('/pcwGen', pcwGenRouter) //t0d
 app.use('/pcwGenINFRA', pcwGenINFRARouter) //t0d
 app.use('/compareUnequalLists', compareUnequalListsRouter) //t0d
 app.use('/rbInvUpdater', rbInvUpdaterRouter) //t0d
+app.use('/imwUnitType', imwUnitTypeRouter) //t0d
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
