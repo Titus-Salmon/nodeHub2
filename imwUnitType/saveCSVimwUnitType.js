@@ -16,7 +16,8 @@ module.exports = {
     let itemsToAddSani = itemsToAdd.replace(saniRegex1, "")
     console.log(`JSON.parse(itemsToAdd)[0]==> ${JSON.parse(itemsToAdd)[0]}`)
 
-    let itemsToAddSaniParsed = JSON.parse(itemsToAdd)
+    let itemsToAddSaniParsed = JSON.parse(itemsToAddSani)
+    console.log(`JSON.stringify(itemsToAddSaniParsed)==> ${JSON.stringify(itemsToAddSaniParsed)}`)
 
     // let itemsToAddArr = []
     // let objectifiedItemsToAddArr = []
