@@ -43,7 +43,7 @@ module.exports = {
 
     function showSearchRes(rows) {
 
-      let displayRows = rows[0]
+      let displayRows = rows
       console.log(`displayRows[0]==> ${displayRows[0]}`)
 
       for (let i = 0; i < displayRows.length; i++) {
