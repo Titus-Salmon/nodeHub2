@@ -119,7 +119,7 @@ module.exports = {
             // imwProductValObj: imwProductValObj,
             // imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
             // objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
-            tableName: tableName,
+            // tableName: tableName,
             // numQueryRes: paginPostObj.numQueryRes,
             // pageLinkArray: pageLinkArray,
             // currentPage: paginPostObj.currentPage,
