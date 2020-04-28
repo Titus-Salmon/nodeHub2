@@ -101,8 +101,29 @@ module.exports = {
         srsObj['flrRsn'] = ''
         srsObj['dsd'] = ''
         srsObj['disc_mult'] = ''
-        srsObj['case_pk_mult'] = ''
-        srsObj['ovr'] = ''
+        // srsObj['case_pk_mult'] = ''
+        if (oupNameSplit[0].toLowerCase().includes('cs') || oupNameSplit[0].toLowerCase().includes('case')) {
+          if (oupNameSplit[1]) {
+            srsObj['case_pk_mult'] = ''
+          } else {
+            srsObj['case_pk_mult'] = 'badValCS'
+          }
+        } else {
+          if (oupNameSplit[0].toLowerCase().includes('ea') || oupNameSplit[0].toLowerCase().includes('each')) {
+            if (oupNameSplit[1]) {
+              srsObj['case_pk_mult'] = oupNameSplit[1]
+            } else {
+              srsObj['case_pk_mult'] = 'badValEA'
+            }
+          } else {
+            if (oupNameSplit[0].toLowerCase().includes('cs') || oupNameSplit[0].toLowerCase().includes('case')) {
+              srsObj['case_pk_mult'] = ''
+            } else {
+              srsObj['case_pk_mult'] = 'badVal'
+            }
+          }
+        }
+        srsObj['ovr'] = '1'
 
         if (displayRows[i]['nhcrtOrdSupplierStockNumber'] !== '') {
           srsObjArr.push(srsObj)
