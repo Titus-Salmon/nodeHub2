@@ -13,6 +13,7 @@ module.exports = {
     console.log(`typeof itemsToAdd==> ${typeof itemsToAdd}`)
     console.log(`itemsToAdd.length==> ${itemsToAdd.length}`)
     console.log(`itemsToAdd[0]==> ${itemsToAdd[0]}`)
+    console.log(`JSON.parse(itemsToAdd)==> ${JSON.parse(itemsToAdd)}`)
 
     let saniRegex1 = /(\[)|(\])/g
 
