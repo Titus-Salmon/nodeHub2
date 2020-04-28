@@ -105,7 +105,7 @@ module.exports = {
       SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
       nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName, nhcrt.invSize AS nhcrtInvSize,
       nhcrt.invReceiptAlias AS nhcrtInvReceiptAlias, nhcrt.posTimeStamp AS nhcrtPosTimeStamp, nhcrt.invDateCreated AS nhcrtInvDateCreated,
-      nhcrt.ordQuantityInOrderUnit AS nhcrtOrdQuantityInOrderUnit, nhcrt.oupName AS nhcrtOupName, nhcrt.stoName AS nhcrtStoName,
+      nhcrt.ordQuantityInOrderUnit AS nhcrtOrdQuantityInOrderUnit, nhcrt.oupName AS nhcrtOupName,
       nhcrt.brdName AS nhcrtBrandName, nhcrt.dptName AS nhcrtDptName, nhcrt.dptNumber AS nhcrtDptNumber, nhcrt.sibIdealMargin AS nhcrtSibIdealMargin,
       nhcrt.venCompanyname AS nhcrtVenCompanyName, nhcrt.invLastcost AS nhcrtInvLastCost, nhcrt.sibBasePrice AS nhcrtSibBasePrice,
       nhcrt.pi1Description AS nhcrtPi1Description, nhcrt.pi2Description AS nhcrtPi2Description, nhcrt.pi3Description AS nhcrtPi3Description,
