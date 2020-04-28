@@ -41,13 +41,13 @@ module.exports = {
 
     const fields = [
       // "itemID", "deptID", "deptName", "recptAlias", "brand", "itemName", "size", "suggRtl", "lastCost", "basePrice", "autoDisco",
-      // "discoMult", "idealMarg", "weightProf", "tax1", "tax2", "tax3", "specTndr1", "specTndr2", "posPrompt", "location", "altID",
-      // "altRcptAlias", "pkgQty", "suppUnitID", "suppID", "unit", "numPkgs", "dsd", "csPkMlt", "ovr", "category", "subCtgry", "prodGroup",
-      // "prodFlag", "rbNote", "ediDefault", "pwrfld7", "tmpGroup", "onhndQty", "reorderPt", "mcl", "reorderQty"
-      "itemID", "deptID", "deptName", "recptAlias", "brand", "itemName", "size", "suggRtl", "lastCost", "basePrice", "autoDisco",
-      "idealMarg", "weightProf", "tax1", "tax2", "tax3", "specTndr1", "specTndr2", "posPrompt", "location", "altID", "altRcptAlias",
-      "pkgQty", "suppUnitID", "suppID", "unit", "numPkgs", "category", "subCtgry", "prodGroup", "prodFlag", "rbNote", "ediDefault",
-      "pwrfld7", "tmpGroup", "onhndQty", "reorderPt", "mcl", "reorderQty", "memo", "flrRsn", "dsd", "discoMult", "csPkMlt", "ovr"
+      // "idealMarg", "weightProf", "tax1", "tax2", "tax3", "specTndr1", "specTndr2", "posPrompt", "location", "altID", "altRcptAlias",
+      // "pkgQty", "suppUnitID", "suppID", "unit", "numPkgs", "category", "subCtgry", "prodGroup", "prodFlag", "rbNote", "ediDefault",
+      // "pwrfld7", "tmpGroup", "onhndQty", "reorderPt", "mcl", "reorderQty", "memo", "flrRsn", "dsd", "discoMult", "csPkMlt", "ovr"
+      "item_id", "dept_id", "dept_name", "recpt_alias", "brand", "item_name", "size", "sugg_retail", "last_cost", "base_price", "auto_discount",
+      "ideal_margin", "weight_profile", "tax1", "tax2", "tax3", "spec_tndr1", "spec_tndr2", "pos_prompt", "location", "alternate_id", "alt_rcpt_alias",
+      "pkg_qty", "supp_unit_id", "supplier_id", "unit", "num_pkgs", "category", "sub_category", "product_group", "product_flag", "rb_note", "edi_default",
+      "powerfield_7", "temp_group", "onhand_qty", "reorder_point", "mcl", "reorder_qty", "memo", "flrRsn", "dsd", "disc_mult", "case_pk_mult", "ovr"
     ];
     const opts = {
       fields,
