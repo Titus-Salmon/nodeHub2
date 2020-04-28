@@ -23,11 +23,6 @@ module.exports = {
 
     const postBody = req.body
 
-    // let imwProductValObj = {} //this holds product values (for one discrete product entry at a time) as an object;
-    //it gets stringified & pushed to imwProductArr
-    // let imwProductArr = [] //this gets sent back to frontend input for itemListAccumulatorPost
-    // let objectifiedImwProdArr = [] //we objectify imwProductArr so it can be easily displayed in the DOM template
-
     let nhcrtTableName = postBody['nhcrtTablePost']
     console.log(`nhcrtTableName==> ${nhcrtTableName}`)
     let ediTableName = postBody['ediTablePost']
@@ -37,17 +32,17 @@ module.exports = {
 
     let srsObjArr = []
 
-
-    // console.log(`imwProductValObj from addNewProducts.js POST==> ${imwProductValObj}`)
-    // console.log(`JSON.stringify(imwProductValObj) from addNewProducts.js POST==> ${JSON.stringify(imwProductValObj)}`)
-
     function showSearchRes(rows) {
 
       let displayRows = rows
       console.log(`displayRows[0]==> ${displayRows[0]}`)
 
       for (let i = 0; i < displayRows.length; i++) {
+
         let srsObj = {}
+
+        let oupNameVar = displayRows[i]['edi_tableEDIprefixUnitType'] //define variable for oupName
+        oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
 
         srsObj['ri_t0d'] = i + 1
         srsObj['item_id'] = displayRows[i]['nhcrtInvScanCode']
@@ -76,7 +71,20 @@ module.exports = {
         srsObj['supp_unit_id'] = displayRows[i]['nhcrtOrdSupplierStockNumber'] //here we use SKU from Catapult (ordSupplierStockNumber), NOT from EDI table (ediSKU)
         srsObj['supplier_id'] = displayRows[i]['nhcrtVenCompanyName']
         srsObj['unit'] = displayRows[i]['edi_tableEDIprefixUnitType'] // here we use ${ediPrefix}_unit_type from EDI table, NOT from Catapult (nhcrt.oupName)
-        srsObj['num_pkgs'] = displayRows[i]['num_pkgs'] //NEED LOGIC FOR THIS; this should be whatever the ## is for CS-##, otherwise, just ''
+        if (oupNameSplit[0].toLowerCase().includes('cs') || oupNameSplit[0].toLowerCase().includes('case')) {
+          if (oupNameSplit[1]) {
+            srsObj['num_pkgs'] = oupNameSplit[1]
+          } else {
+            srsObj['num_pkgs'] = 'badValCS'
+          }
+        } else {
+          if (oupNameSplit[0].toLowerCase().includes('ea') || oupNameSplit[0].toLowerCase().includes('each')) {
+            srsObj['num_pkgs'] = ''
+          } else {
+            srsObj['num_pkgs'] = 'badVal'
+          }
+        }
+        // srsObj['num_pkgs'] = displayRows[i]['num_pkgs'] //NEED LOGIC FOR THIS; this should be whatever the ## is for CS-##, otherwise, just ''
         srsObj['category'] = ''
         srsObj['sub_category'] = ''
         srsObj['product_group'] = ''
