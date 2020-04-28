@@ -10,15 +10,15 @@ module.exports = {
 
     const postBody = req.body
     let itemsToAdd = postBody['productArrayPost']
-    let itemsToAddArr = []
-    let objectifiedItemsToAddArr = []
+    // let itemsToAddArr = []
+    // let objectifiedItemsToAddArr = []
 
-    console.log(`typeof itemsToAdd==> ${typeof itemsToAdd}`)
+    // console.log(`typeof itemsToAdd==> ${typeof itemsToAdd}`)
 
-    function objectifyProductArr() {
-      sanitizerFuncs.itemsToAddArrayGenerator(itemsToAdd, sanitizerFuncs.thingSanitizer, itemsToAddArr)
-      sanitizerFuncs.objectifyImwProductArr(itemsToAddArr, objectifiedItemsToAddArr)
-    }
+    // function objectifyProductArr() {
+    //   sanitizerFuncs.itemsToAddArrayGenerator(itemsToAdd, sanitizerFuncs.thingSanitizer, itemsToAddArr)
+    //   sanitizerFuncs.objectifyImwProductArr(itemsToAddArr, objectifiedItemsToAddArr)
+    // }
 
     //begin csv generator //////////////////////////////////////////////////////////////////////////
     const {
@@ -45,9 +45,10 @@ module.exports = {
 
     try {
       objectifyProductArr()
-      console.log('objectifiedItemsToAddArr from json2csv======>>', objectifiedItemsToAddArr)
+      // console.log('objectifiedItemsToAddArr from json2csv======>>', objectifiedItemsToAddArr)
       const parser = new Parser(opts);
-      const csv = parser.parse(objectifiedItemsToAddArr);
+      // const csv = parser.parse(objectifiedItemsToAddArr);
+      const csv = parser.parse(itemsToAdd);
       // csvContainer.push(csv);
       console.log('csv_T0d=====>>', csv);
       fs.writeFile(process.cwd() + '/public/csv/' + req.body['csvPost'] + '.csv', csv, function (err) {

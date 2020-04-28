@@ -17,10 +17,11 @@ html
 				input#ediPrefix.input-unit-1(type='text', placeholder='enter data1', name='ediPrefixPost', value='')
 				button#ldTblBtn(type='submit', form='nejUnitTypeJoin') Generate Unit Type IMW
 
-			form#imwGenerator(action='/imwUnitType/saveProdArrAsCSV' method='POST' accept-charset="UTF-8")
+			form#imwGenerator(action='/imwUnitType/saveCSVimwUnitType' method='POST' accept-charset="UTF-8")
 				div.horiz-2-abs
 					label.input-label-1(for='productArray') Product Array for saving IMW
-					input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
+					//- input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
+					input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=srsObjArr)
 				div.horiz-3-abs
 					label.input-label-1(for='csv') filename:
 					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)

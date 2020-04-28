@@ -9,8 +9,8 @@ const {
   generateUnitTypeIMW
 } = require('../imwUnitType/generateUnitTypeIMW')
 const {
-  saveProdArrAsCSV
-} = require('../imwUnitType/saveProdArrAsCSV')
+  saveCSVimwUnitType
+} = require('../imwUnitType/saveCSVimwUnitType')
 // const {
 //   loadEDI_Table
 // } = require('../imwGen/loadEDI_Table')
@@ -36,7 +36,7 @@ router.get('/', function (req, res, next) {
 // router.post('/addNewProducts', addNewProducts)
 // router.get('/addNewProducts', addNewProducts) //trying this for GET request when clicking anchor tags for pagination
 router.post('/generateUnitTypeIMW', generateUnitTypeIMW)
-router.post('/saveProdArrAsCSV', saveProdArrAsCSV)
+router.post('/saveCSVimwUnitType', saveCSVimwUnitType)
 // router.post('/loadEDI_Table', loadEDI_Table)
 // router.post('/createImwCatTable', createImwCatTable)
 // router.post('/populateImwCatTable', populateImwCatTable)
