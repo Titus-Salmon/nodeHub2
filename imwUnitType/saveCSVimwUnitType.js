@@ -14,14 +14,15 @@ module.exports = {
     console.log(`itemsToAdd.length==> ${itemsToAdd.length}`)
     console.log(`itemsToAdd[0]==> ${itemsToAdd[0]}`)
     console.log(`JSON.parse(itemsToAdd)==> ${JSON.parse(itemsToAdd)}`)
+    let itemsToAddParsed = JSON.parse(itemsToAdd)
 
-    let saniRegex1 = /(\[)|(\])/g
+    // let saniRegex1 = /(\[)|(\])/g
 
-    let itemsToAddSani = itemsToAdd.replace(saniRegex1, "")
-    console.log(`JSON.parse(itemsToAdd)[0]==> ${JSON.parse(itemsToAdd)[0]}`)
+    // let itemsToAddSani = itemsToAdd.replace(saniRegex1, "")
+    // console.log(`JSON.parse(itemsToAdd)[0]==> ${JSON.parse(itemsToAdd)[0]}`)
 
-    let itemsToAddSaniParsed = JSON.parse(itemsToAddSani)
-    console.log(`JSON.stringify(itemsToAddSaniParsed)==> ${JSON.stringify(itemsToAddSaniParsed)}`)
+    // let itemsToAddSaniParsed = JSON.parse(itemsToAddSani)
+    // console.log(`JSON.stringify(itemsToAddSaniParsed)==> ${JSON.stringify(itemsToAddSaniParsed)}`)
 
     // let itemsToAddArr = []
     // let objectifiedItemsToAddArr = []
@@ -61,7 +62,7 @@ module.exports = {
       // console.log('objectifiedItemsToAddArr from json2csv======>>', objectifiedItemsToAddArr)
       const parser = new Parser(opts);
       // const csv = parser.parse(objectifiedItemsToAddArr);
-      const csv = parser.parse(itemsToAddSaniParsed);
+      const csv = parser.parse(itemsToAddParsed);
       // csvContainer.push(csv);
       console.log('csv_T0d=====>>', csv);
       fs.writeFile(process.cwd() + '/public/csv/' + req.body['csvPost'] + '.csv', csv, function (err) {
