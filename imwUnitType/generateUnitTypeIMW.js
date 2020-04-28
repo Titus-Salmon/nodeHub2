@@ -102,7 +102,7 @@ module.exports = {
 
     function queryNejUnitType_Table() {
       connection.query(`
-      SELECT nhcrt.ri_t0d AS nhcrtRiT0d, nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
+      SELECT DISTINCT nhcrt.ri_t0d AS nhcrtRiT0d, nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
       nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName, nhcrt.invSize AS nhcrtInvSize,
       nhcrt.invReceiptAlias AS nhcrtInvReceiptAlias, nhcrt.posTimeStamp AS nhcrtPosTimeStamp, nhcrt.invDateCreated AS nhcrtInvDateCreated,
       nhcrt.ordQuantityInOrderUnit AS nhcrtOrdQuantityInOrderUnit, nhcrt.oupName AS nhcrtOupName, nhcrt.stoName AS nhcrtStoName,
