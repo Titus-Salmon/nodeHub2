@@ -10,6 +10,9 @@ module.exports = {
 
     const postBody = req.body
     let itemsToAdd = postBody['productArrayPost']
+    console.log(`typeof itemsToAdd==> ${typeof itemsToAdd}`)
+    console.log(`itemsToAdd.length==> ${itemsToAdd.length}`)
+    console.log(`itemsToAdd[0]==> ${itemsToAdd[0]}`)
 
     let saniRegex1 = /(\[)|(\])/g
 
