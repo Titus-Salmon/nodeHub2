@@ -104,7 +104,9 @@ module.exports = {
         srsObj['case_pk_mult'] = ''
         srsObj['ovr'] = ''
 
-        srsObjArr.push(srsObj)
+        if (displayRows[i]['nhcrtOrdSupplierStockNumber'] !== '') {
+          srsObjArr.push(srsObj)
+        }
       }
     }
 
