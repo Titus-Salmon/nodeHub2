@@ -44,7 +44,7 @@ module.exports = {
     };
 
     try {
-      objectifyProductArr()
+      // objectifyProductArr()
       // console.log('objectifiedItemsToAddArr from json2csv======>>', objectifiedItemsToAddArr)
       const parser = new Parser(opts);
       // const csv = parser.parse(objectifiedItemsToAddArr);
