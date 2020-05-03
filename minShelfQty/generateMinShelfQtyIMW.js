@@ -77,22 +77,22 @@ module.exports = {
         srsObj['rb_note'] = ''
         srsObj['edi_default'] = ''
         srsObj['powerfield_7'] = ''
-        if (0 < soldPerTimeframe < 5.9) {
+        if (soldPerTimeframe > 0 && soldPerTimeframe < 5.9) {
           srsObj['temp_group'] = `${storeAbbrev}_5`
         }
-        if (5.9 < soldPerTimeframe < 10.9) {
+        if (soldPerTimeframe > 5.9 && soldPerTimeframe < 10.9) {
           srsObj['temp_group'] = `${storeAbbrev}_10`
         }
-        if (10.9 < soldPerTimeframe < 15.9) {
+        if (soldPerTimeframe > 10.9 && soldPerTimeframe < 15.9) {
           srsObj['temp_group'] = `${storeAbbrev}_15`
         }
-        if (15.9 < soldPerTimeframe < 20.9) {
+        if (soldPerTimeframe > 15.9 && soldPerTimeframe < 20.9) {
           srsObj['temp_group'] = `${storeAbbrev}_20`
         }
-        if (20.9 < soldPerTimeframe < 25.9) {
+        if (soldPerTimeframe > 20.9 && soldPerTimeframe < 25.9) {
           srsObj['temp_group'] = `${storeAbbrev}_25`
         }
-        if (25.9 < soldPerTimeframe < 30.9) {
+        if (soldPerTimeframe > 25.9 && soldPerTimeframe < 30.9) {
           srsObj['temp_group'] = `${storeAbbrev}_30`
         }
         if (soldPerTimeframe > 30.9) {
