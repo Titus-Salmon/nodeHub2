@@ -95,8 +95,20 @@ module.exports = {
         if (soldPerTimeframe > 25.9 && soldPerTimeframe < 30.9) {
           srsObj['temp_group'] = `${storeAbbrev}_30`
         }
-        if (soldPerTimeframe > 30.9) {
+        if (soldPerTimeframe > 30.9 && soldPerTimeframe < 35.9) {
           srsObj['temp_group'] = `${storeAbbrev}_35`
+        }
+        if (soldPerTimeframe > 35.9 && soldPerTimeframe < 40.9) {
+          srsObj['temp_group'] = `${storeAbbrev}_40`
+        }
+        if (soldPerTimeframe > 40.9 && soldPerTimeframe < 45.9) {
+          srsObj['temp_group'] = `${storeAbbrev}_45`
+        }
+        if (soldPerTimeframe > 45.9 && soldPerTimeframe < 50.9) {
+          srsObj['temp_group'] = `${storeAbbrev}_50`
+        }
+        if (soldPerTimeframe > 50.9) {
+          srsObj['temp_group'] = `${storeAbbrev}_greaterThan50.9???`
         }
         // srsObj['temp_group'] = ''
         srsObj['onhand_qty'] = ''
