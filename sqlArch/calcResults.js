@@ -101,7 +101,6 @@ module.exports = {
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
             edlpRows, nejRowsNonPagin)
           cacheMain.set('searchResultsNonPagCache_key', searchResultsNonPag)
-          //console.log(`JSON.stringify(cacheMain)==> ${JSON.stringify(cacheMain)}`)
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
             edlpRows, nejRowsPagin)
