@@ -83,7 +83,8 @@ module.exports = {
       
       SELECT COUNT(*) FROM ${frmInptsObj.formInput0};
       
-      SELECT * FROM gpet_groc;`,
+      SELECT * FROM gpet_groc;
+      SELECT * FROM gpet_ref;`,
 
         function (err, rows, fields) {
           if (err) throw err
@@ -99,6 +100,7 @@ module.exports = {
           console.log(`JSON.stringify(countRows) from calcResults.js==> ${JSON.stringify(countRows)}`)
           let gpetGrocRows = rows[4]
           console.log(`JSON.stringify(gpetGrocRows[0])==> ${JSON.stringify(gpetGrocRows[0])}`)
+          let gpetRefRows = rows[5]
 
           //v////////handle gpet tables ==> if UPC is in gpet table, ignore it in showSearchResults calcs
           for (let x = 0; x < gpetGrocRows.length; x++) {
@@ -111,6 +113,20 @@ module.exports = {
           for (let x = 0; x < gpetGrocRows.length; x++) {
             for (let y = 0; y < nejRowsNonPagin.length; y++) {
               if (gpetGrocRows[x]['upc'] == nejRowsNonPagin[y]['invScanCode']) {
+                nejRowsNonPagin.splice(y, 1)
+              }
+            }
+          }
+          for (let x = 0; x < gpetRefRows.length; x++) {
+            for (let y = 0; y < nejRowsPagin.length; y++) {
+              if (gpetRefRows[x]['upc'] == nejRowsPagin[y]['invScanCode']) {
+                nejRowsPagin.splice(y, 1)
+              }
+            }
+          }
+          for (let x = 0; x < gpetRefRows.length; x++) {
+            for (let y = 0; y < nejRowsNonPagin.length; y++) {
+              if (gpetRefRows[x]['upc'] == nejRowsNonPagin[y]['invScanCode']) {
                 nejRowsNonPagin.splice(y, 1)
               }
             }
