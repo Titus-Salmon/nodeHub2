@@ -49,7 +49,7 @@ module.exports = {
         //ACTUALLY, CATAPULT WONT UPDATE RECORD UNLESS SKU IS INCLUDED, SO CAN'T LEAVE SKU BLANK -t0d
         if (nejRowsToggle[i][genericHeaderObj.cpltSKUHeader] !== nejRowsToggle[i][genericHeaderObj.ediSKUHeader]) {
           if (frmInptsObj.skuMismatchOption == "yes") {
-            console.log(`frmInptsObj.skuMismatchOption==> ${frmInptsObj.skuMismatchOption}`)
+            // console.log(`frmInptsObj.skuMismatchOption==> ${frmInptsObj.skuMismatchOption}`)
             // srcRsObj['imwSKU'] = reviewObj['imwSKU'] = "" //ACTUALLY, CATAPULT WONT UPDATE RECORD UNLESS SKU IS INCLUDED, SO CAN'T LEAVE SKU BLANK -t0d
             srcRsObj['pf7'] = reviewObj['pf7'] = "skuMismatch"
             // console.log(`nejRowsToggle[${i}][genericHeaderObj.cpltSKUHeader]==> ${nejRowsToggle[i][genericHeaderObj.cpltSKUHeader]}`)
