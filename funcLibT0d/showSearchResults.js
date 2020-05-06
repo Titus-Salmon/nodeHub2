@@ -11,6 +11,8 @@ module.exports = {
     // console.log(`JSON.stringify(nejRowsToggle[0])==> ${JSON.stringify(nejRowsToggle[0])}`)
     // console.log(`JSON.stringify(edlpRows[0])==> ${JSON.stringify(edlpRows[0])}`)
 
+    console.log(`nejRowsToggle.length from showSearchResults==> ${nejRowsToggle.length}`)
+
     for (let i = 0; i < nejRowsToggle.length; i++) { //Add searched-for table entries from db to searchResults array, for
       //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
       let srcRsObj = {}
