@@ -201,7 +201,7 @@ module.exports = {
 
       function testCostDivideByOupNameSplit_1() {
         wsDiscoVarSetter()
-        console.log(`wsDiscoVar==> ${wsDiscoVar}`)
+        // console.log(`wsDiscoVar==> ${wsDiscoVar}`)
         let ediTestCost1 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]}` //apply vendor WS discount, if applicable
         let ediTstCst1Tr = ediTestCost1.trim().replace(/"/g, '')
         let ediTstCst1TrRnd = Math.round(ediTstCst1Tr * 100) / 100 //converts the result to a number with just 2 decimal places
