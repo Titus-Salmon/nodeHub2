@@ -85,7 +85,12 @@ module.exports = {
       
       SELECT * FROM gpet_groc;
       SELECT * FROM gpet_ref;
-      SELECT * FROM gpet_frz;`,
+      SELECT * FROM gpet_frz;
+      SELECT * FROM gpet_gen_merch;
+      SELECT * FROM gpet_infra;
+      SELECT * FROM gpet_case_stack;
+      SELECT * FROM gpet_nego_edlp;
+      SELECT * FROM gpet_cadia;`,
 
         function (err, rows, fields) {
           if (err) throw err
@@ -103,50 +108,38 @@ module.exports = {
           console.log(`JSON.stringify(gpetGrocRows[0])==> ${JSON.stringify(gpetGrocRows[0])}`)
           let gpetRefRows = rows[5]
           let gpetFrzRows = rows[6]
+          let gpetGenMerchRows = rows[7]
+          let gpetINFRArows = rows[8]
+          let gpetCaseStackRows = rows[9]
+          let gpetNegoEDLProws = rows[10]
+          let gpetCadiaRows = rows[11]
 
           //v////////handle gpet tables ==> if UPC is in gpet table, ignore it in showSearchResults calcs
-          for (let x = 0; x < gpetGrocRows.length; x++) {
-            for (let y = 0; y < nejRowsPagin.length; y++) {
-              if (gpetGrocRows[x]['upc'] == nejRowsPagin[y]['invScanCode']) {
-                nejRowsPagin.splice(y, 1)
+          function gpetUPCremover(gpetTableRows) {
+            for (let x = 0; x < gpetTableRows.length; x++) {
+              for (let y = 0; y < nejRowsPagin.length; y++) {
+                if (gpetTableRows[x]['upc'] == nejRowsPagin[y]['invScanCode']) {
+                  nejRowsPagin.splice(y, 1)
+                }
+              }
+            }
+            for (let x = 0; x < gpetTableRows.length; x++) {
+              for (let y = 0; y < nejRowsNonPagin.length; y++) {
+                if (gpetTableRows[x]['upc'] == nejRowsNonPagin[y]['invScanCode']) {
+                  nejRowsNonPagin.splice(y, 1)
+                }
               }
             }
           }
-          for (let x = 0; x < gpetGrocRows.length; x++) {
-            for (let y = 0; y < nejRowsNonPagin.length; y++) {
-              if (gpetGrocRows[x]['upc'] == nejRowsNonPagin[y]['invScanCode']) {
-                nejRowsNonPagin.splice(y, 1)
-              }
-            }
-          }
-          for (let x = 0; x < gpetRefRows.length; x++) {
-            for (let y = 0; y < nejRowsPagin.length; y++) {
-              if (gpetRefRows[x]['upc'] == nejRowsPagin[y]['invScanCode']) {
-                nejRowsPagin.splice(y, 1)
-              }
-            }
-          }
-          for (let x = 0; x < gpetRefRows.length; x++) {
-            for (let y = 0; y < nejRowsNonPagin.length; y++) {
-              if (gpetRefRows[x]['upc'] == nejRowsNonPagin[y]['invScanCode']) {
-                nejRowsNonPagin.splice(y, 1)
-              }
-            }
-          }
-          for (let x = 0; x < gpetFrzRows.length; x++) {
-            for (let y = 0; y < nejRowsPagin.length; y++) {
-              if (gpetFrzRows[x]['upc'] == nejRowsPagin[y]['invScanCode']) {
-                nejRowsPagin.splice(y, 1)
-              }
-            }
-          }
-          for (let x = 0; x < gpetFrzRows.length; x++) {
-            for (let y = 0; y < nejRowsNonPagin.length; y++) {
-              if (gpetFrzRows[x]['upc'] == nejRowsNonPagin[y]['invScanCode']) {
-                nejRowsNonPagin.splice(y, 1)
-              }
-            }
-          }
+          gpetUPCremover(gpetGrocRows)
+          gpetUPCremover(gpetRefRows)
+          gpetUPCremover(gpetFrzRows)
+          gpetUPCremover(gpetGenMerchRows)
+          gpetUPCremover(gpetINFRArows)
+          gpetUPCremover(gpetCaseStackRows)
+          gpetUPCremover(gpetNegoEDLProws)
+          gpetUPCremover(gpetCadiaRows)
+
           console.log(`nejRowsPagin.length (AFTER gpet handling)==> ${nejRowsPagin.length}`)
           console.log(`nejRowsNonPagin.length (AFTER gpet handling)==> ${nejRowsNonPagin.length}`)
           //^////////handle gpet tables ==> if UPC is in gpet table, ignore it in showSearchResults calcs
