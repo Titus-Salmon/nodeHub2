@@ -81,17 +81,22 @@ module.exports = {
       SELECT * FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
       ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.pi1Description} ASC, ${genericHeaderObj.pi2Description} ASC;
       
-      SELECT COUNT(*) FROM ${frmInptsObj.formInput0};`,
+      SELECT COUNT(*) FROM ${frmInptsObj.formInput0};
+      
+      SELECT * FROM gpet_groc;`,
 
         function (err, rows, fields) {
           if (err) throw err
 
           let nejRowsPagin = rows[0] //targets 1st query on NEJ table
+          console.log(`JSON.stringify(nejRowsPagin[0])==> ${JSON.stringify(nejRowsPagin[0])}`)
           let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
           let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
-
           let countRows = rows[3]
+          console.log(`nejRowsPagin[0]==> ${nejRowsPagin[0]}`)
           console.log(`JSON.stringify(countRows) from calaResults.js==> ${JSON.stringify(countRows)}`)
+          let gpetGrocRows = rows[4]
+          console.log(`JSON.stringify(gpetGrocRows[0])==> ${JSON.stringify(gpetGrocRows[0])}`)
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
             edlpRows, nejRowsNonPagin)
