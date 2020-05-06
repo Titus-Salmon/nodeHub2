@@ -105,6 +105,12 @@ module.exports = {
             for (let y = 0; y < nejRowsPagin.length; y++) {
               if (gpetGrocRows[x]['upc'] == nejRowsPagin[y]['invScanCode']) {
                 nejRowsPagin.splice(y, 1)
+              }
+            }
+          }
+          for (let x = 0; x < gpetGrocRows.length; x++) {
+            for (let y = 0; y < nejRowsNonPagin.length; y++) {
+              if (gpetGrocRows[x]['upc'] == nejRowsNonPagin[y]['invScanCode']) {
                 nejRowsNonPagin.splice(y, 1)
               }
             }
