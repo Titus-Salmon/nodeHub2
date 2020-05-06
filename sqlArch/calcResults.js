@@ -89,14 +89,29 @@ module.exports = {
           if (err) throw err
 
           let nejRowsPagin = rows[0] //targets 1st query on NEJ table
+          console.log(`nejRowsPagin.length (BEFORE gpet handling)==> ${nejRowsPagin.length}`)
           console.log(`JSON.stringify(nejRowsPagin[0])==> ${JSON.stringify(nejRowsPagin[0])}`)
           let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
           let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
+          console.log(`nejRowsNonPagin.length (BEFORE gpet handling)==> ${nejRowsNonPagin.length}`)
           let countRows = rows[3]
           console.log(`nejRowsPagin[0]==> ${nejRowsPagin[0]}`)
-          console.log(`JSON.stringify(countRows) from calaResults.js==> ${JSON.stringify(countRows)}`)
+          console.log(`JSON.stringify(countRows) from calcResults.js==> ${JSON.stringify(countRows)}`)
           let gpetGrocRows = rows[4]
           console.log(`JSON.stringify(gpetGrocRows[0])==> ${JSON.stringify(gpetGrocRows[0])}`)
+
+          //v////////handle gpet tables ==> if UPC is in gpet table, ignore it in showSearchResults calcs
+          for (let x = 0; x < gpetGrocRows.length; x++) {
+            for (let y = 0; y < nejRowsPagin.length; y++) {
+              if (gpetGrocRows[x]['upc'] == nejRowsPagin[y]['invScanCode']) {
+                nejRowsPagin.splice(y, 1)
+                nejRowsNonPagin.splice(y, 1)
+              }
+            }
+          }
+          console.log(`nejRowsPagin.length (AFTER gpet handling)==> ${nejRowsPagin.length}`)
+          console.log(`nejRowsNonPagin.length (AFTER gpet handling)==> ${nejRowsNonPagin.length}`)
+          //^////////handle gpet tables ==> if UPC is in gpet table, ignore it in showSearchResults calcs
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
             edlpRows, nejRowsNonPagin)
