@@ -17,6 +17,6 @@ function highlight_row() {
     console.log('cells[i].parentNode.childNodes[0].innerHTML==>', cells[i].parentNode.childNodes[0].innerHTML)
   }
 }
-if (ResTblBdy) {
+if (ResTblBdy) { //only call highlight_row() if there is a results table generated
   highlight_row()
 }
