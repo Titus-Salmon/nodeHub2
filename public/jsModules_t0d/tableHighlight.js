@@ -15,6 +15,13 @@ function highlight_row() {
     console.log('cells[i].parentNode==>', cells[i].parentNode)
     console.log('cells[i].parentNode.childNodes==>', cells[i].parentNode.childNodes)
     console.log('cells[i].parentNode.childNodes[0].innerHTML==>', cells[i].parentNode.childNodes[0].innerHTML)
+
+    let exist_ws = cells[i].parentNode.childNodes[14].innerHTML
+    let edi_cost_mod = cells[i].parentNode.childNodes[16].innerHTML
+
+    if (Math.abs((edi_cost_mod - exist_ws) / (edi_cost_mod)) > .15) {
+      edi_cost_mod.style.backgroundColor = "#ffb3ca"
+    }
   }
 }
 if (ResTblBdy) { //only call highlight_row() if there is a results table generated
