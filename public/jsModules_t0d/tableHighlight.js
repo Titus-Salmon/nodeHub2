@@ -16,10 +16,10 @@ function highlight_row() {
     console.log('cells[i].parentNode.childNodes==>', cells[i].parentNode.childNodes)
     console.log('cells[i].parentNode.childNodes[0].innerHTML==>', cells[i].parentNode.childNodes[0].innerHTML)
 
-    let exist_ws = cells[i].parentNode.childNodes[14].innerHTML
-    let edi_cost_mod = cells[i].parentNode.childNodes[16].innerHTML
+    let exist_ws = cells[i].parentNode.childNodes[14]
+    let edi_cost_mod = cells[i].parentNode.childNodes[16]
 
-    if (Math.abs((edi_cost_mod - exist_ws) / (edi_cost_mod)) > .15) {
+    if (Math.abs((edi_cost_mod.innerHTML - exist_ws.innerHTML) / (edi_cost_mod.innerHTML)) > .15) {
       edi_cost_mod.style.backgroundColor = "#ffb3ca"
     }
   }
