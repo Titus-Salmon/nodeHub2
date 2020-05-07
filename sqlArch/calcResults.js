@@ -169,7 +169,7 @@ module.exports = {
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
-            searchResRows: searchResultsNonPag,
+            searchResRows: searchResultsPag,
             loadedSqlTbl: frmInptsObj.loadedSqlTbl,
             numQueryRes: paginPostObj.numQueryRes,
             currentPage: paginPostObj.currentPage,
