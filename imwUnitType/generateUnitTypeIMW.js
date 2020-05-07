@@ -53,7 +53,7 @@ module.exports = {
         // let saniReceiptAlias = nhcrtInvReceiptAlias.replace(",", "")
         // srsObj['recpt_alias'] = saniReceiptAlias
         // //^//replace any commas in receipt alias, so columns in IMW don't get shifted
-        srsObj['recpt_alias'] = displayRows[i]['nhcrtInvReceiptAlias']
+        srsObj['recpt_alias'] = displayRows[i]['nhcrtInvReceiptAlias'] // here we use the receipt alias from Catapult, NOT the item name from EDI catalog
         srsObj['brand'] = ''
         srsObj['item_name'] = ''
         srsObj['size'] = ''
