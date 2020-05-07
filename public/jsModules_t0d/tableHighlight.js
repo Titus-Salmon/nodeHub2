@@ -17,4 +17,6 @@ function highlight_row() {
     console.log('cells[i].parentNode.childNodes[0].innerHTML==>', cells[i].parentNode.childNodes[0].innerHTML)
   }
 }
-highlight_row()
+if (ResTblBdy) {
+  highlight_row()
+}
