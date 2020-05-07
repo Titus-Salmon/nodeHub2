@@ -131,14 +131,14 @@ module.exports = {
               }
             }
           }
-          gpetUPCremover(gpetGrocRows)
-          gpetUPCremover(gpetRefRows)
-          gpetUPCremover(gpetFrzRows)
-          gpetUPCremover(gpetGenMerchRows)
-          gpetUPCremover(gpetINFRArows)
-          gpetUPCremover(gpetCaseStackRows)
-          gpetUPCremover(gpetNegoEDLProws)
-          gpetUPCremover(gpetCadiaRows)
+          // gpetUPCremover(gpetGrocRows)
+          // gpetUPCremover(gpetRefRows)
+          // gpetUPCremover(gpetFrzRows)
+          // gpetUPCremover(gpetGenMerchRows)
+          // gpetUPCremover(gpetINFRArows)
+          // gpetUPCremover(gpetCaseStackRows)
+          // gpetUPCremover(gpetNegoEDLProws)
+          // gpetUPCremover(gpetCadiaRows)
 
           console.log(`nejRowsPagin.length (AFTER gpet handling)==> ${nejRowsPagin.length}`)
           console.log(`nejRowsNonPagin.length (AFTER gpet handling)==> ${nejRowsNonPagin.length}`)
