@@ -50,8 +50,8 @@ module.exports = {
         srsObj['dept_name'] = ''
         //v//replace any commas in receipt alias, so columns in IMW don't get shifted
         let nhcrtInvReceiptAlias = displayRows[i]['nhcrtInvReceiptAlias']
-        nhcrtInvReceiptAlias.replace(",", "")
-        srsObj['recpt_alias'] = nhcrtInvReceiptAlias
+        let saniReceiptAlias = nhcrtInvReceiptAlias.replace(",", "")
+        srsObj['recpt_alias'] = saniReceiptAlias
         //^//replace any commas in receipt alias, so columns in IMW don't get shifted
         srsObj['brand'] = ''
         srsObj['item_name'] = ''
