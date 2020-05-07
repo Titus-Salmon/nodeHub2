@@ -96,16 +96,16 @@ module.exports = {
           if (err) throw err
 
           let nejRowsPagin = rows[0] //targets 1st query on NEJ table
+          // console.log(`nejRowsPagin[0]==> ${nejRowsPagin[0]}`)
           console.log(`nejRowsPagin.length (BEFORE gpet handling)==> ${nejRowsPagin.length}`)
-          console.log(`JSON.stringify(nejRowsPagin[0])==> ${JSON.stringify(nejRowsPagin[0])}`)
+          // console.log(`JSON.stringify(nejRowsPagin[0])==> ${JSON.stringify(nejRowsPagin[0])}`)
           let edlpRows = rows[1] //targets 2nd query on rb_edlp_data table
           let nejRowsNonPagin = rows[2] //targets 3rd query on NEJ table
           console.log(`nejRowsNonPagin.length (BEFORE gpet handling)==> ${nejRowsNonPagin.length}`)
           let countRows = rows[3]
-          console.log(`nejRowsPagin[0]==> ${nejRowsPagin[0]}`)
           console.log(`JSON.stringify(countRows) from calcResults.js==> ${JSON.stringify(countRows)}`)
           let gpetGrocRows = rows[4]
-          console.log(`JSON.stringify(gpetGrocRows[0])==> ${JSON.stringify(gpetGrocRows[0])}`)
+          // console.log(`JSON.stringify(gpetGrocRows[0])==> ${JSON.stringify(gpetGrocRows[0])}`)
           let gpetRefRows = rows[5]
           let gpetFrzRows = rows[6]
           let gpetGenMerchRows = rows[7]
