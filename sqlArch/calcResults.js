@@ -144,12 +144,12 @@ module.exports = {
           console.log(`nejRowsNonPagin.length (AFTER gpet handling)==> ${nejRowsNonPagin.length}`)
           //^////////handle gpet tables ==> if UPC is in gpet table, ignore it in showSearchResults calcs
 
-          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
-            edlpRows, nejRowsPagin)
-
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
             edlpRows, nejRowsNonPagin)
           cacheMain.set('searchResultsNonPagCache_key', searchResultsNonPag)
+
+          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
+            edlpRows, nejRowsPagin)
 
           let totalRows = searchResultsNonPag.length //use length of non-paginated results from showSearchResults for total # of rows,
           console.log(`totalRows==> ${totalRows}`)
@@ -169,7 +169,7 @@ module.exports = {
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
-            searchResRows: searchResultsPag,
+            searchResRows: searchResultsNonPag,
             loadedSqlTbl: frmInptsObj.loadedSqlTbl,
             numQueryRes: paginPostObj.numQueryRes,
             currentPage: paginPostObj.currentPage,
