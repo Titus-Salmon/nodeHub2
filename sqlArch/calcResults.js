@@ -26,6 +26,7 @@ module.exports = {
 
     let searchResultsNonPag = [] //clear searchResultsNonPag from previous search
     let searchResultsPag = [] //clear searchResultsPag from previous search
+    let firstResultSet = [] // holds results for the 1st POST result set (will be paginated, if specified)
     srcRsCSV_Pag = [] //why does this break if instantiated with "let"? A question for another time...
     srcRsCSV_nonPag = [] //why does this break if instantiated with "let"? A question for another time...
     srcRsCSVrvwPag = [] //why does this break if instantiated with "let"? A question for another time...
@@ -148,8 +149,17 @@ module.exports = {
             edlpRows, nejRowsNonPagin)
           cacheMain.set('searchResultsNonPagCache_key', searchResultsNonPag)
 
-          showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
-            edlpRows, nejRowsPagin)
+          function paginFirstResultSet() {
+            //push the 1st n elements of searchResultsNonPag into firstResultSet array
+            for (let n = 0; n < paginPostObj['numQueryRes']; n++) {
+              firstResultSet.push(searchResultsNonPag[n])
+            }
+          }
+
+          paginFirstResultSet()
+
+          // showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
+          //   edlpRows, nejRowsPagin)
 
           let totalRows = searchResultsNonPag.length //use length of non-paginated results from showSearchResults for total # of rows,
           console.log(`totalRows==> ${totalRows}`)
@@ -169,7 +179,7 @@ module.exports = {
 
           res.render('vw-MySqlTableHub', { //render searchResults to vw-MySqlTableHub page
             title: `Retail Price Calculator (using nhcrtEdiJoin table: <<${frmInptsObj.loadedSqlTbl}>>)`,
-            searchResRows: searchResultsPag,
+            searchResRows: firstResultSet,
             loadedSqlTbl: frmInptsObj.loadedSqlTbl,
             numQueryRes: paginPostObj.numQueryRes,
             currentPage: paginPostObj.currentPage,
