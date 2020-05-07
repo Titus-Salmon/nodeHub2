@@ -158,6 +158,8 @@ module.exports = {
 
           paginFirstResultSet()
 
+          console.log(`calcResults says firstResultSet.length from paginFirstResultSet==> ${firstResultSet.length}`)
+
           // showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsPag, srcRsCSV_Pag, srcRsCSVrvwPag,
           //   edlpRows, nejRowsPagin)
 
