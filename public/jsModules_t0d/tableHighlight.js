@@ -19,7 +19,7 @@ function highlight_row() {
     let exist_ws = cells[i].parentNode.childNodes[14]
     let edi_cost_mod = cells[i].parentNode.childNodes[16]
 
-    if (Math.abs((edi_cost_mod.innerHTML - exist_ws.innerHTML) / (edi_cost_mod.innerHTML)) > .15) {
+    if (Math.abs((edi_cost_mod.innerHTML - exist_ws.innerHTML) / (edi_cost_mod.innerHTML)) > .25) {
       edi_cost_mod.style.backgroundColor = "#ffb3ca"
     }
   }
