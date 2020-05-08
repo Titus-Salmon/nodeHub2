@@ -81,34 +81,34 @@ module.exports = {
           srsObj['temp_group'] = `${storeAbbrev}_5`
         }
         if (soldPerTimeframe > 5.9 && soldPerTimeframe < 10.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_10`
+          srsObj['temp_group'] = `${storeAbbrev}_5`
         }
         if (soldPerTimeframe > 10.9 && soldPerTimeframe < 15.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_15`
+          srsObj['temp_group'] = `${storeAbbrev}_5`
         }
         if (soldPerTimeframe > 15.9 && soldPerTimeframe < 20.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_20`
+          srsObj['temp_group'] = `${storeAbbrev}_10`
         }
         if (soldPerTimeframe > 20.9 && soldPerTimeframe < 25.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_25`
+          srsObj['temp_group'] = `${storeAbbrev}_10`
         }
         if (soldPerTimeframe > 25.9 && soldPerTimeframe < 30.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_30`
+          srsObj['temp_group'] = `${storeAbbrev}_10`
         }
         if (soldPerTimeframe > 30.9 && soldPerTimeframe < 35.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_35`
+          srsObj['temp_group'] = `${storeAbbrev}_15`
         }
         if (soldPerTimeframe > 35.9 && soldPerTimeframe < 40.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_40`
+          srsObj['temp_group'] = `${storeAbbrev}_15`
         }
         if (soldPerTimeframe > 40.9 && soldPerTimeframe < 45.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_45`
+          srsObj['temp_group'] = `${storeAbbrev}_15`
         }
         if (soldPerTimeframe > 45.9 && soldPerTimeframe < 50.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_50`
+          srsObj['temp_group'] = `${storeAbbrev}_20`
         }
         if (soldPerTimeframe > 50.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_greaterThan50.9???`
+          srsObj['temp_group'] = `${storeAbbrev}_20`
         }
         // srsObj['temp_group'] = ''
         srsObj['onhand_qty'] = ''
