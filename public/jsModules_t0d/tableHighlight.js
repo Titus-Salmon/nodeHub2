@@ -18,9 +18,14 @@ function highlight_row() {
 
     let exist_ws = cells[i].parentNode.childNodes[14]
     let edi_cost_mod = cells[i].parentNode.childNodes[16]
+    let charm_price = cells[i].parentNode.childNodes[19]
+    let crnt_pr_cplt = cells[i].parentNode.childNodes[21]
 
     if (Math.abs((edi_cost_mod.innerHTML - exist_ws.innerHTML) / (edi_cost_mod.innerHTML)) > .35) {
       edi_cost_mod.style.backgroundColor = "#ffb3ca"
+    }
+    if (Math.abs((charm_price.innerHTML - crnt_pr_cplt.innerHTML) / (charm_price.innerHTML)) > .35) {
+      charm_price.style.backgroundColor = "#ffdb4b"
     }
   }
 }
