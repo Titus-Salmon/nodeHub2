@@ -102,7 +102,8 @@ module.exports = {
           numPkgsHandler_case()
         } else {
           if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
-            oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
+            oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs' ||
+            oupNameVar.trim().toLowerCase() == 'pound' || oupNameVar.trim().toLowerCase() == 'lb') {
             divideCostBy_1()
             numPkgsHandler_case()
           } else {
@@ -112,15 +113,20 @@ module.exports = {
       }
 
       function divideCostToUnitWholesale() {
-        if (oupNameSplit[1] !== undefined) { //if there is something after 'EA' or 'CS' (i.e. #n)
-          testCostDivideByOupNameSplit_1()
-        } else {
-          if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
-            oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
-            testCostDivideBy_1()
+        if (!oupNameSplit[0].trim().toLowerCase().includes('lb') &&
+          !oupNameSplit[0].trim().toLowerCase().includes('pound')) { // if oupName DOESNT include 'lb' or 'pound'
+          if (oupNameSplit[1] !== undefined) { //if there is something after 'EA' or 'CS' (i.e. #n)
+            testCostDivideByOupNameSplit_1()
           } else {
-            testCostDivideByOupNameVar()
+            if (oupNameVar.trim().toLowerCase() == 'each' || oupNameVar.trim().toLowerCase() == 'ea' ||
+              oupNameVar.trim().toLowerCase() == 'case' || oupNameVar.trim().toLowerCase() == 'cs') {
+              testCostDivideBy_1()
+            } else {
+              testCostDivideByOupNameVar()
+            }
           }
+        } else { // if oupName DOES include 'lb' or 'pound'
+          testCostDivideBy_1() //DONT change cost from what EDI catalog shows
         }
       }
 
