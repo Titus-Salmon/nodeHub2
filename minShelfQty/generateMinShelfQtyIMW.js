@@ -20,8 +20,14 @@ module.exports = {
     let movementTableName = postBody['movementTablePost']
     console.log(`movementTableName==> ${movementTableName}`)
 
+    let nhcrtTableName = postBody['nhcrtTablePost']
+    console.log(`nhcrtTableName==> ${nhcrtTableName}`)
+
     let storeAbbrev = postBody['storeAbbrevPost']
     console.log(`storeAbbrev==> ${storeAbbrev}`)
+
+    let storeName = postBody['storeNamePost']
+    console.log(`storeName==> ${storeName}`)
 
     let totalDays = postBody['totalDaysPost']
     console.log(`totalDays==> ${totalDays}`)
@@ -33,20 +39,26 @@ module.exports = {
 
     function showSearchRes(rows) {
 
-      let displayRows = rows
-      console.log(`displayRows[0]==> ${displayRows[0]}`)
+      // let movementTableRows = rows[0]
+      // console.log(`movementTableRows[0]==> ${movementTableRows[0]}`)
 
-      for (let i = 0; i < displayRows.length; i++) {
+      // let nhcrtTableRows = rows[1]
+      // console.log(`nhcrtTableRows[0]==> ${nhcrtTableRows[0]}`)
+
+      let tableJoinRows = rows
+      console.log(`tableJoinRows[0]==> ${tableJoinRows[0]}`)
+
+      for (let i = 0; i < tableJoinRows.length; i++) {
 
         let srsObj = {}
 
-        let soldPerTimeframe = displayRows[i]['quantity_sold'] * arFreq / totalDays
+        let soldPerTimeframe = tableJoinRows[i]['woMvTblQtySold'] * arFreq / totalDays
 
         srsObj['ri_t0d'] = i + 1
-        srsObj['item_id'] = displayRows[i]['item_id']
+        srsObj['item_id'] = tableJoinRows[i]['nhcrtInvScanCode']
         srsObj['dept_id'] = ''
         srsObj['dept_name'] = ''
-        srsObj['recpt_alias'] = displayRows[i]['receipt_alias']
+        srsObj['recpt_alias'] = tableJoinRows[i]['nhcrtInvReceiptAlias']
         srsObj['brand'] = ''
         srsObj['item_name'] = ''
         srsObj['size'] = ''
@@ -66,8 +78,8 @@ module.exports = {
         srsObj['alternate_id'] = ''
         srsObj['alt_rcpt_alias'] = ''
         srsObj['pkg_qty'] = ''
-        srsObj['supp_unit_id'] = displayRows[i]['supplier_unit_id']
-        srsObj['supplier_id'] = displayRows[i]['supplier_id']
+        srsObj['supp_unit_id'] = tableJoinRows[i]['nhcrtOrdSupplierStockNumber']
+        srsObj['supplier_id'] = tableJoinRows[i]['nhcrtVenCompanyName']
         srsObj['unit'] = ''
         srsObj['num_pkgs'] = ''
         srsObj['category'] = ''
@@ -120,7 +132,7 @@ module.exports = {
         srsObj['dsd'] = ''
         srsObj['disc_mult'] = ''
         srsObj['case_pk_mult'] = ''
-        srsObj['ovr'] = '1'
+        srsObj['ovr'] = ''
 
         srsObjArr.push(srsObj)
       }
@@ -128,7 +140,17 @@ module.exports = {
 
     function queryMovementTable() {
       connection.query(`
-      SELECT * FROM ${movementTableName}`,
+      SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
+      nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName,
+      REPLACE (nhcrt.invReceiptAlias, ',', '') AS nhcrtInvReceiptAlias,
+      nhcrt.stoName AS nhcrtStoName, nhcrt.venCompanyname AS nhcrtVenCompanyName, nhcrt.pi1Description AS nhcrtPi1Description,
+      nhcrt.pi2Description AS nhcrtPi2Description,
+      wo_mv_table.item_id AS woMvTblItemId, wo_mv_table.quantity_sold AS woMvTblQtySold
+      FROM ${nhcrtTableName}
+      nhcrt JOIN ${movementTableName} wo_mv_table ON nhcrt.invScanCode
+      WHERE nhcrt.invScanCode = wo_mv_table.item_id
+      AND nhcrt.stoName = ${storeName}
+      ORDER BY nhcrt.pi1Description, nhcrt.pi2Description;`,
         function (err, rows, fields) {
           if (err) throw err
           showSearchRes(rows)
