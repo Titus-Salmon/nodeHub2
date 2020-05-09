@@ -149,7 +149,7 @@ module.exports = {
       FROM ${nhcrtTableName}
       nhcrt JOIN ${movementTableName} wo_mv_table ON nhcrt.invScanCode
       WHERE nhcrt.invScanCode = wo_mv_table.item_id
-      AND nhcrt.stoName = ${storeName}
+      AND nhcrt.stoName = '${storeName}'
       ORDER BY nhcrt.pi1Description, nhcrt.pi2Description;`,
         function (err, rows, fields) {
           if (err) throw err
