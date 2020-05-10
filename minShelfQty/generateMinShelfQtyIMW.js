@@ -52,7 +52,8 @@ module.exports = {
 
         let srsObj = {}
 
-        let soldPerTimeframe = tableJoinRows[i]['woMvTblQtySold'] * arFreq / totalDays
+        let soldPerTimeframeRaw = tableJoinRows[i]['woMvTblQtySold'] * arFreq / totalDays
+        let soldPerTimeframe = Math.round(soldPerTimeframeRaw)
 
         srsObj['ri_t0d'] = i + 1
         srsObj['item_id'] = tableJoinRows[i]['nhcrtInvScanCode']
@@ -90,7 +91,7 @@ module.exports = {
         srsObj['edi_default'] = ''
         srsObj['powerfield_7'] = ''
         if (soldPerTimeframe > 0 && soldPerTimeframe < 5.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_5`
+          srsObj['temp_group'] = `${storeAbbrev}_${soldPerTimeframe}`
         }
         if (soldPerTimeframe > 5.9 && soldPerTimeframe < 10.9) {
           srsObj['temp_group'] = `${storeAbbrev}_5`
