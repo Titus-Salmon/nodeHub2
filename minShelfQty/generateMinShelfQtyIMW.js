@@ -54,6 +54,7 @@ module.exports = {
 
         let soldPerTimeframeRaw = tableJoinRows[i]['woMvTblQtySold'] * arFreq / totalDays
         let soldPerTimeframe = Math.round(soldPerTimeframeRaw)
+        console.log(`${tableJoinRows[i]['nhcrtInvScanCode']} soldPerTimeFrame==> ${soldPerTimeframe}`)
 
         srsObj['ri_t0d'] = i + 1
         srsObj['item_id'] = tableJoinRows[i]['nhcrtInvScanCode']
