@@ -136,7 +136,9 @@ module.exports = {
         srsObj['case_pk_mult'] = ''
         srsObj['ovr'] = ''
 
-        srsObjArr.push(srsObj)
+        if (soldPerTimeframe > 0) { //only push resukts where soldPerTimeFrame > 0; otherwise, don't include for auto-reorder
+          srsObjArr.push(srsObj)
+        }
       }
     }
 
