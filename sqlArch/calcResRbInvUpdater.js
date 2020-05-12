@@ -114,7 +114,9 @@ module.exports = {
 
       for (let k = 0; k < wishlistRows.length; k++) {
         let splitRegex1 = /\s/g
-        let rb_approved_pre_split = wishlistRows[k]['rb_approved']
+        if (wishlistRows[k]['rb_approved'] !== null) {
+          let rb_approved_pre_split = wishlistRows[k]['rb_approved']
+        }
         let rb_approved_split = rb_approved_pre_split.split(splitRegex1) //we have to account for old rb_approved dates being in the form of:
         //YYY-MM-DD hh:mm:ss, instead of just YYY-MM-DD. the space between date and time isn't standard, and returns as NULL, which will then
         //get ignored by the date checker.  The solution is to split the date/time format on the space between data and time, and then read
