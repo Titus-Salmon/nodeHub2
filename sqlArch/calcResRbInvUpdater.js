@@ -132,8 +132,8 @@ module.exports = {
         //   rb_approved = rb_approved_pre_split
         // }
 
-        if (wishlistRows[k]['upc_code_count'] > 1) {
-          console.log(`${wishlistRows[k]['upc_code']} occurs ${wishlistRows[k]['upc_code_count']} times, but(and)...`)
+        if (wishlistRows[k]['COUNT(upc_code)'] > 1) {
+          console.log(`${wishlistRows[k]['upc_code']} occurs ${wishlistRows[k]['COUNT(upc_code)']} times, but(and)...`)
           if (wishlistRows[k]['rb_approved'] !== null) {
             rb_approved = wishlistRows[k]['rb_approved']
             console.log(`${wishlistRows[k]['rb_approved']} is being used for its rb_approved value`)
@@ -312,7 +312,7 @@ module.exports = {
     function queryNhcrtTable() {
       connection.query(`
       SELECT * FROM ${nhcrtRbInvTable};
-      SELECT *, COUNT(upc_code) AS upc_code_count FROM rb_wishlist;`, function (err, rows, fields) {
+      SELECT *, COUNT(upc_code) FROM rb_wishlist;`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
 
