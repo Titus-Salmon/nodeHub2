@@ -312,7 +312,7 @@ module.exports = {
     function queryNhcrtTable() {
       connection.query(`
       SELECT * FROM ${nhcrtRbInvTable};
-      SELECT *, COUNT(upc_code) FROM rb_wishlist;`, function (err, rows, fields) {
+      SELECT *, COUNT(upc_code) FROM rb_wishlist GROUP BY upc_code;`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
 
