@@ -133,6 +133,7 @@ module.exports = {
         // }
 
         if (wishlistRows[k]['COUNT(upc_code)'] > 1) {
+          rb_approved = null
           console.log(`${wishlistRows[k]['upc_code']} occurs ${wishlistRows[k]['COUNT(upc_code)']} times, but>>>`)
           if (wishlistRows[k]['rb_approved'] !== null) {
             rb_approved = wishlistRows[k]['rb_approved']
