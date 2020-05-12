@@ -116,6 +116,9 @@ module.exports = {
       var rb_approved
 
       for (let k = 0; k < wishlistRows.length; k++) {
+        if (wishlistRows[k]['upc_code'] == '680443010837') {
+          console.log(`${wishlistRows[k]['upc_code']} approval date==> ${wishlistRows[k]['rb_approved']}`)
+        }
         let splitRegex1 = /\s/g
         let rb_approved_pre_split = wishlistRows[k]['rb_approved']
         if (rb_approved_pre_split !== null) {
