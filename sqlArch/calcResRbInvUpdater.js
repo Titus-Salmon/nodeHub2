@@ -112,18 +112,24 @@ module.exports = {
 
       // let wishlistCheckerObj = {}
 
+      var rb_approved_split
+      var rb_approved
+
       for (let k = 0; k < wishlistRows.length; k++) {
         let splitRegex1 = /\s/g
-        if (wishlistRows[k]['rb_approved'] !== null) {
-          let rb_approved_pre_split = wishlistRows[k]['rb_approved']
+        let rb_approved_pre_split = wishlistRows[k]['rb_approved']
+        if (rb_approved_pre_split !== null) {
+          rb_approved_split = rb_approved_pre_split.split(splitRegex1) //we have to account for old rb_approved dates being in the form of:
+          //YYY-MM-DD hh:mm:ss, instead of just YYY-MM-DD. the space between date and time isn't standard, and returns as NULL, which will then
+          //get ignored by the date checker.  The solution is to split the date/time format on the space between data and time, and then read
+          //from the 1st array element only (YYY-MM-DD)
+          rb_approved = rb_approved_split[0]
+        } else {
+          rb_approved = rb_approved_pre_split
         }
-        let rb_approved_split = rb_approved_pre_split.split(splitRegex1) //we have to account for old rb_approved dates being in the form of:
-        //YYY-MM-DD hh:mm:ss, instead of just YYY-MM-DD. the space between date and time isn't standard, and returns as NULL, which will then
-        //get ignored by the date checker.  The solution is to split the date/time format on the space between data and time, and then read
-        //from the 1st array element only (YYY-MM-DD)
-        console.log(``)
+
         let wishlistCheckerObj = {}
-        if (rb_approved_split < oneMonthAgo) { //if the Date value for rb_approved is less than the Date value for one month ago
+        if (rb_approved < oneMonthAgo) { //if the Date value for rb_approved is less than the Date value for one month ago
           //(i.e., if an item has been approved longer than one month ago), WE WILL UPDATE THAT ITEM using the new sign filter, since we've
           //presumably had enough time for that item to have a lastSold or lastReceived date.
           wishlistCheckerObj['upc'] = wishlistRows[k]['upc_code']
