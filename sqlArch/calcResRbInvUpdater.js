@@ -133,11 +133,14 @@ module.exports = {
         // }
 
         if (wishlistRows[k]['upc_code_count'] > 1) {
+          console.log(`${wishlistRows[k]['upc_code']} occurs ${wishlistRows[k]['upc_code_count']} times, but(and)...`)
           if (wishlistRows[k]['rb_approved'] !== null) {
             rb_approved = wishlistRows[k]['rb_approved']
+            console.log(`${wishlistRows[k]['rb_approved']} is being used for its rb_approved value`)
           }
         } else {
           rb_approved = wishlistRows[k]['rb_approved']
+          console.log(`${wishlistRows[k]['rb_approved']} is being used for its rb_approved value`)
         }
 
         let wishlistCheckerObj = {}
