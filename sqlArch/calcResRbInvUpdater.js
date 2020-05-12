@@ -133,12 +133,13 @@ module.exports = {
         // }
 
         if (wishlistRows[k]['COUNT(upc_code)'] > 1) {
-          console.log(`${wishlistRows[k]['upc_code']} occurs ${wishlistRows[k]['COUNT(upc_code)']} times, but(and)...`)
+          console.log(`${wishlistRows[k]['upc_code']} occurs ${wishlistRows[k]['COUNT(upc_code)']} times, but>>>`)
           if (wishlistRows[k]['rb_approved'] !== null) {
             rb_approved = wishlistRows[k]['rb_approved']
             console.log(`${wishlistRows[k]['rb_approved']} is being used for its rb_approved value`)
           }
         } else {
+          console.log(`${wishlistRows[k]['upc_code']} occurs ${wishlistRows[k]['COUNT(upc_code)']} times, and...`)
           rb_approved = wishlistRows[k]['rb_approved']
           console.log(`${wishlistRows[k]['rb_approved']} is being used for its rb_approved value`)
         }
