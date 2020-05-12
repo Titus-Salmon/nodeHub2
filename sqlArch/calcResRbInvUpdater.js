@@ -116,19 +116,28 @@ module.exports = {
       var rb_approved
 
       for (let k = 0; k < wishlistRows.length; k++) {
-        if (wishlistRows[k]['upc_code'] == '680443010837') {
-          console.log(`${wishlistRows[k]['upc_code']} approval date==> ${wishlistRows[k]['rb_approved']}`)
-        }
-        let splitRegex1 = /\s/g
-        let rb_approved_pre_split = wishlistRows[k]['rb_approved']
-        if (rb_approved_pre_split !== null) {
-          rb_approved_split = rb_approved_pre_split.split(splitRegex1) //we have to account for old rb_approved dates being in the form of:
-          //YYY-MM-DD hh:mm:ss, instead of just YYY-MM-DD. the space between date and time isn't standard, and returns as NULL, which will then
-          //get ignored by the date checker.  The solution is to split the date/time format on the space between data and time, and then read
-          //from the 1st array element only (YYY-MM-DD)
-          rb_approved = rb_approved_split[0]
+
+        // if (wishlistRows[k]['upc_code'] == '680443010837') {
+        //   console.log(`${wishlistRows[k]['upc_code']} approval date==> ${wishlistRows[k]['rb_approved']}`)
+        // }
+        // let splitRegex1 = /\s/g
+        // let rb_approved_pre_split = wishlistRows[k]['rb_approved']
+        // if (rb_approved_pre_split !== null) {
+        //   rb_approved_split = rb_approved_pre_split.split(splitRegex1) //we have to account for old rb_approved dates being in the form of:
+        //   //YYY-MM-DD hh:mm:ss, instead of just YYY-MM-DD. the space between date and time isn't standard, and returns as NULL, which will then
+        //   //get ignored by the date checker.  The solution is to split the date/time format on the space between data and time, and then read
+        //   //from the 1st array element only (YYY-MM-DD)
+        //   rb_approved = rb_approved_split[0]
+        // } else {
+        //   rb_approved = rb_approved_pre_split
+        // }
+
+        if (wishlistRows[k]['upc_code_count'] > 1) {
+          if (wishlistRows[k]['rb_approved'] !== null) {
+            rb_approved = wishlistRows[k]['rb_approved']
+          }
         } else {
-          rb_approved = rb_approved_pre_split
+          rb_approved = wishlistRows[k]['rb_approved']
         }
 
         let wishlistCheckerObj = {}
@@ -300,7 +309,7 @@ module.exports = {
     function queryNhcrtTable() {
       connection.query(`
       SELECT * FROM ${nhcrtRbInvTable};
-      SELECT * FROM rb_wishlist;`, function (err, rows, fields) {
+      SELECT *, COUNT(upc_code) AS upc_code_count FROM rb_wishlist;`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
 
