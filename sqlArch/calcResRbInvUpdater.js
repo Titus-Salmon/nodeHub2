@@ -112,41 +112,9 @@ module.exports = {
 
       // let wishlistCheckerObj = {}
 
-      var rb_approved_split
-      var rb_approved
-
       for (let k = 0; k < wishlistRows.length; k++) {
-
-        // if (wishlistRows[k]['upc_code'] == '680443010837') {
-        //   console.log(`${wishlistRows[k]['upc_code']} approval date==> ${wishlistRows[k]['rb_approved']}`)
-        // }
-        // let splitRegex1 = /\s/g
-        // let rb_approved_pre_split = wishlistRows[k]['rb_approved']
-        // if (rb_approved_pre_split !== null) {
-        //   rb_approved_split = rb_approved_pre_split.split(splitRegex1) //we have to account for old rb_approved dates being in the form of:
-        //   //YYY-MM-DD hh:mm:ss, instead of just YYY-MM-DD. the space between date and time isn't standard, and returns as NULL, which will then
-        //   //get ignored by the date checker.  The solution is to split the date/time format on the space between data and time, and then read
-        //   //from the 1st array element only (YYY-MM-DD)
-        //   rb_approved = rb_approved_split[0]
-        // } else {
-        //   rb_approved = rb_approved_pre_split
-        // }
-
-        if (wishlistRows[k]['COUNT(upc_code)'] > 1) {
-          rb_approved = null
-          console.log(`${wishlistRows[k]['upc_code']} occurs ${wishlistRows[k]['COUNT(upc_code)']} times, but>>>`)
-          if (wishlistRows[k]['rb_approved'] !== null) {
-            rb_approved = wishlistRows[k]['rb_approved']
-            console.log(`${wishlistRows[k]['rb_approved']} is being used for its rb_approved value`)
-          }
-        } else {
-          console.log(`${wishlistRows[k]['upc_code']} occurs ${wishlistRows[k]['COUNT(upc_code)']} times, and...`)
-          rb_approved = wishlistRows[k]['rb_approved']
-          console.log(`${wishlistRows[k]['rb_approved']} is being used for its rb_approved value`)
-        }
-
         let wishlistCheckerObj = {}
-        if (rb_approved < oneMonthAgo) { //if the Date value for rb_approved is less than the Date value for one month ago
+        if (wishlistRows[k]['rb_approved'] < oneMonthAgo) { //if the Date value for rb_approved is less than the Date value for one month ago
           //(i.e., if an item has been approved longer than one month ago), WE WILL UPDATE THAT ITEM using the new sign filter, since we've
           //presumably had enough time for that item to have a lastSold or lastReceived date.
           wishlistCheckerObj['upc'] = wishlistRows[k]['upc_code']
@@ -314,7 +282,7 @@ module.exports = {
     function queryNhcrtTable() {
       connection.query(`
       SELECT * FROM ${nhcrtRbInvTable};
-      SELECT *, COUNT(upc_code) FROM rb_wishlist GROUP BY upc_code;`, function (err, rows, fields) {
+      SELECT * FROM rb_wishlist;`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
 

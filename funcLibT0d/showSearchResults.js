@@ -478,8 +478,8 @@ module.exports = {
 
       srcRsObj['pf1'] = `${nejRowsToggle[i][genericHeaderObj.pi1Description]}` //Power Field 1 SPINS category
       reviewObj['pf1'] = `${nejRowsToggle[i][genericHeaderObj.pi1Description]}` //Power Field 1 SPINS category
-      srcRsObj['pf2'] = `${nejRowsToggle[i][genericHeaderObj.pi2Description]}` //Power Field 1 SPINS sub-category
-      reviewObj['pf2'] = `${nejRowsToggle[i][genericHeaderObj.pi2Description]}` //Power Field 1 SPINS sub-category
+      srcRsObj['pf2'] = `${nejRowsToggle[i][genericHeaderObj.pi2Description]}` //Power Field 2 SPINS sub-category
+      reviewObj['pf2'] = `${nejRowsToggle[i][genericHeaderObj.pi2Description]}` //Power Field 2 SPINS sub-category
       srcRsObj['pf3'] = "" //Power Field 3 try to get department margin
       // reviewObj['pf3'] = //Power Field 3 revealAppliedMarg()
       srcRsObj['pf4'] = "" //Power Field 4
