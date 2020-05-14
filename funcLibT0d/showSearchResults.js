@@ -521,12 +521,9 @@ module.exports = {
 
       srcRsObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
 
-      if (nejRowsToggle[i][genericHeaderObj.nameHeader].includes(',')) { //remove any commas from item names, so Review csv isn't horked
-        var cleanedName = nejRowsToggle[i][genericHeaderObj.nameHeader].replace(',', '')
-        reviewObj['name'] = cleanedName
-      } else {
-        reviewObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader]
-      }
+      //remove any commas from item names, so Review csv isn't horked
+      var cleanedName2 = nejRowsToggle[i][genericHeaderObj.nameHeader].replace(',', '')
+      reviewObj['name'] = cleanedName2
 
       // reviewObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader]
 
