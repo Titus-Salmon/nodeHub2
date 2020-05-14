@@ -73,7 +73,7 @@ module.exports = {
       //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
       connection.query( //1st query is pagination query; 2nd query is getting EDLP data; 3rd query is non-paginated query;
         //4th query is for getting COUNT (# of total rows)
-        `SELECT * FROM ${frmInptsObj.formInput0} REPLACE (invReceiptAlias, ',', '') GROUP BY ${genericHeaderObj.upcHeader},
+        `SELECT *, REPLACE (invReceiptAlias, ',', '') FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
       ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.pi1Description} ASC, ${genericHeaderObj.pi2Description} ASC 
       LIMIT ${paginPostObj['offsetPost']},${paginPostObj['numQueryRes']};
 
