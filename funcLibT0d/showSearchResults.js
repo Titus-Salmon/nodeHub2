@@ -520,7 +520,15 @@ module.exports = {
       //this WILL give buyers the option to override to buy "eaches" for items vendors sell to us in "cases"
 
       srcRsObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
-      reviewObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader]
+
+      if (nejRowsToggle[i][genericHeaderObj.nameHeader].includes(',')) { //remove any commas from item names, so Review csv isn't horked
+        var cleanedName = nejRowsToggle[i][genericHeaderObj.nameHeader].replace(',', '')
+        reviewObj['name'] = cleanedName
+      } else {
+        reviewObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader]
+      }
+
+      // reviewObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader]
 
       //v//this should get set as the value from edi catalog & never changed 
       reviewObj['ediCost'] = srcRsObj['ediCost'] = nejRowsToggle[i][genericHeaderObj.ediCostHeader] //INCLUDE in save2CSVreview export data
