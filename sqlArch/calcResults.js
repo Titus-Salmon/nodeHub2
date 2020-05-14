@@ -74,9 +74,9 @@ module.exports = {
       connection.query( //1st query is pagination query; 2nd query is getting EDLP data; 3rd query is non-paginated query;
         //4th query is for getting COUNT (# of total rows)
         `SELECT ri_t0d, invPK, invCPK, invScanCode, ordSupplierStockNumber, ediSKU,
-         REPLACE (invName, ',', ''),
+         REPLACE (invName, ",", ""),
          invSize,
-         REPLACE (invReceiptAlias, ',', ''),
+         REPLACE (invReceiptAlias, ",", ""),
          posTimeStamp, invDateCreated, ordQuantityInOrderUnit, oupName, stoName, brdName, dptName, dptNumber, sibIdealMargin, venCompanyName,
          invLastCost, ediCost, sibBasePrice, ediPrice, pi1Description, pi2Description, pi3Description, invPowerField3, invPowerField4
          FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
@@ -86,9 +86,9 @@ module.exports = {
       SELECT * FROM rb_edlp_data;
       
       SELECT ri_t0d, invPK, invCPK, invScanCode, ordSupplierStockNumber, ediSKU,
-         REPLACE (invName, ',', ''),
+         REPLACE (invName, ",", ""),
          invSize,
-         REPLACE (invReceiptAlias, ',', ''),
+         REPLACE (invReceiptAlias, ",", ""),
          posTimeStamp, invDateCreated, ordQuantityInOrderUnit, oupName, stoName, brdName, dptName, dptNumber, sibIdealMargin, venCompanyName,
          invLastCost, ediCost, sibBasePrice, ediPrice, pi1Description, pi2Description, pi3Description, invPowerField3, invPowerField4
          FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
