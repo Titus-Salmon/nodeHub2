@@ -73,13 +73,25 @@ module.exports = {
       //filters by UPC & catapult cost (want to grab any differing cost items & make decision on what to do in showSearchResults())
       connection.query( //1st query is pagination query; 2nd query is getting EDLP data; 3rd query is non-paginated query;
         //4th query is for getting COUNT (# of total rows)
-        `SELECT *, REPLACE (invReceiptAlias, ',', ''), REPLACE (invName, ',', '') FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
+        `SELECT ri_t0d, invPK, invCPK, invScanCode, ordSupplierStockNumber, ediSKU,
+         REPLACE (invName, ',', ''),
+         invSize,
+         REPLACE (invReceiptAlias, ',', ''),
+         posTimeStamp, invDateCreated, ordQuantityInOrderUnit, oupName, stoName, brdName, dptName, dptNumber, sibIdealMargin, venCompanyName,
+         invLastCost, ediCost, sibBasePrice, ediPrice, pi1Description, pi2Description, pi3Description, invPowerField3, invPowerField4
+         FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
       ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.pi1Description} ASC, ${genericHeaderObj.pi2Description} ASC 
       LIMIT ${paginPostObj['offsetPost']},${paginPostObj['numQueryRes']};
 
       SELECT * FROM rb_edlp_data;
       
-      SELECT *, REPLACE (invReceiptAlias, ',', ''), REPLACE (invName, ',', '') FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
+      SELECT ri_t0d, invPK, invCPK, invScanCode, ordSupplierStockNumber, ediSKU,
+         REPLACE (invName, ',', ''),
+         invSize,
+         REPLACE (invReceiptAlias, ',', ''),
+         posTimeStamp, invDateCreated, ordQuantityInOrderUnit, oupName, stoName, brdName, dptName, dptNumber, sibIdealMargin, venCompanyName,
+         invLastCost, ediCost, sibBasePrice, ediPrice, pi1Description, pi2Description, pi3Description, invPowerField3, invPowerField4
+         FROM ${frmInptsObj.formInput0} GROUP BY ${genericHeaderObj.upcHeader},
       ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.pi1Description} ASC, ${genericHeaderObj.pi2Description} ASC;
       
       SELECT COUNT(*) FROM ${frmInptsObj.formInput0};
