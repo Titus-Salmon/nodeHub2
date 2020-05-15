@@ -66,7 +66,8 @@ module.exports = {
 
                 for (let j = 0; j < Object.keys(rows[i]).length; j++) {
                     //extract msrp from EDI catalog (all catalogs have some '_msrp' column)
-                    if (Object.keys(rows[i])[j].includes('_msrp')) {
+                    if (Object.keys(rows[i])[j].includes('_msrp') ||
+                        Object.keys(rows[i])[j].includes('_srp')) { //catches infra_srp column for Kehe
                         nhcrtEdiJoinObj['ediPrice'] = rows[i][`${Object.keys(rows[i])[j]}`]
                         // console.log(`nhcrtEdiJoinObj['ediPrice']==>${nhcrtEdiJoinObj['ediPrice']}`)
                     }
