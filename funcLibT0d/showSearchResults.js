@@ -524,6 +524,7 @@ module.exports = {
       //remove any commas from item names, so Review csv isn't horked
       var cleanedName2 = nejRowsToggle[i][genericHeaderObj.nameHeader].replace(',', '')
       reviewObj['name'] = cleanedName2
+      console.log(`cleanedName2 <<${i}>>==> ${cleanedName2}`)
 
       // reviewObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader]
 
