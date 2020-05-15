@@ -75,14 +75,16 @@ module.exports = {
         //4th query is for getting COUNT (# of total rows)
         `SELECT * FROM ${frmInptsObj.formInput0}
         WHERE dptName != 'RB_CLEANUP' GROUP BY ${genericHeaderObj.upcHeader},
-      ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.pi1Description} ASC, ${genericHeaderObj.pi2Description} ASC 
+      ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.pi1Description} ASC, ${genericHeaderObj.pi2Description} ASC,
+      ${genericHeaderObj.rbDeptHeader} ASC
       LIMIT ${paginPostObj['offsetPost']},${paginPostObj['numQueryRes']};
 
       SELECT * FROM rb_edlp_data;
       
       SELECT * FROM ${frmInptsObj.formInput0}
       WHERE dptName != 'RB_CLEANUP' GROUP BY ${genericHeaderObj.upcHeader},
-      ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.pi1Description} ASC, ${genericHeaderObj.pi2Description} ASC;
+      ${genericHeaderObj.invLastcostHeader} ORDER BY ${genericHeaderObj.pi1Description} ASC, ${genericHeaderObj.pi2Description} ASC,
+      ${genericHeaderObj.rbDeptHeader} ASC;
       
       SELECT COUNT(*) FROM ${frmInptsObj.formInput0};
       
