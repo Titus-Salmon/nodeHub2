@@ -519,12 +519,13 @@ module.exports = {
       srcRsObj['ovr'] = reviewObj['ovr'] = 1 //20191224 set ovr (for IMW) to 1 FOR EVERYTHING per MaryKate's request
       //this WILL give buyers the option to override to buy "eaches" for items vendors sell to us in "cases"
 
-      srcRsObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
+      // srcRsObj['name'] = nejRowsToggle[i][genericHeaderObj.nameHeader] //INCLUDE in save2CSVreview export data
 
       //remove any commas from item names, so Review csv isn't horked
       var cleanedNameTest = nejRowsToggle[0][genericHeaderObj.nameHeader].replace(',', '')
       console.log(`cleanedNameTest==> ${cleanedNameTest}`)
       var cleanedName2 = nejRowsToggle[i][genericHeaderObj.nameHeader].replace(',', '')
+      srcRsObj['name'] = cleanedName2
       reviewObj['name'] = cleanedName2
       // console.log(`cleanedName2 <<${i}>>==> ${cleanedName2}`)
 
