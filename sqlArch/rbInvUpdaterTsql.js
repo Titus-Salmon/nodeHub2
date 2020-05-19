@@ -79,6 +79,11 @@ module.exports = {
         } else {
           catapultResObj['oupName'] = result[i]['oup_name']
         }
+        if (typeof result[i]['sto_number'] == 'string') {
+          catapultResObj['stoNumber'] = result[i]['sto_number'].trim()
+        } else {
+          catapultResObj['stoNumber'] = result[i]['sto_number']
+        }
         if (typeof result[i]['sto_name'] == 'string') {
           catapultResObj['stoName'] = result[i]['sto_name'].trim()
         } else {
@@ -168,7 +173,7 @@ module.exports = {
 
         const fields = [
           "ri_t0d", "invPK", "invCPK", "invScanCode", "invName", "ordSupplierStockNumber", "invSize", "invReceiptAlias", "posTimeStamp", "invDateCreated",
-          "invEmpFkCreatedBy", "ordQuantityInOrderUnit", "oupName", "stoName", "brdName", "dptName", "dptNumber", "sibIdealMargin", "venCompanyname",
+          "invEmpFkCreatedBy", "ordQuantityInOrderUnit", "oupName", "stoNumber", "stoName", "brdName", "dptName", "dptNumber", "sibIdealMargin", "venCompanyname",
           "invLastreceived", "invLastsold", "invLastcost", "sibBasePrice", "invOnhand", "invOnorder", "invIntransit", "pi1Description",
           "pi2Description", "pi3Description", "invPowerField3", "invPowerField4"
         ]

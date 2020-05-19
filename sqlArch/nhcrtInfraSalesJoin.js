@@ -41,6 +41,7 @@ module.exports = {
         nhcrtInfraSalesJoinObj['invEmpFkCreatedBy'] = rows[i]['invEmpFkCreatedBy']
         nhcrtInfraSalesJoinObj['ordQuantityInOrderUnit'] = rows[i]['ordQuantityInOrderUnit']
         nhcrtInfraSalesJoinObj['oupName'] = rows[i]['oupName']
+        nhcrtInfraSalesJoinObj['stoNumber'] = rows[i]['stoNumber']
         nhcrtInfraSalesJoinObj['stoName'] = rows[i]['stoName']
         nhcrtInfraSalesJoinObj['brdName'] = rows[i]['brdName']
         nhcrtInfraSalesJoinObj['dptName'] = rows[i]['dptName']

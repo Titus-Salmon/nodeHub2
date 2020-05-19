@@ -32,6 +32,7 @@ module.exports = {
                 nhcrtObj['invEmpFkCreatedBy'] = rows[i]['invEmpFkCreatedBy']
                 nhcrtObj['ordQuantityInOrderUnit'] = rows[i]['ordQuantityInOrderUnit']
                 nhcrtObj['oupName'] = rows[i]['oupName']
+                nhcrtObj['stoNumber'] = rows[i]['stoNumber']
                 nhcrtObj['stoName'] = rows[i]['stoName']
                 nhcrtObj['brdName'] = rows[i]['brdName']
                 nhcrtObj['dptName'] = rows[i]['dptName']

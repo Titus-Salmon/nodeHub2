@@ -41,6 +41,7 @@ module.exports = {
                 nhcrtEdiJoinObj['invEmpFkCreatedBy'] = rows[i]['invEmpFkCreatedBy']
                 nhcrtEdiJoinObj['ordQuantityInOrderUnit'] = rows[i]['ordQuantityInOrderUnit']
                 nhcrtEdiJoinObj['oupName'] = rows[i]['oupName']
+                nhcrtEdiJoinObj['stoNumber'] = rows[i]['stoNumber']
                 nhcrtEdiJoinObj['stoName'] = rows[i]['stoName']
                 nhcrtEdiJoinObj['brdName'] = rows[i]['brdName']
                 nhcrtEdiJoinObj['dptName'] = rows[i]['dptName']
