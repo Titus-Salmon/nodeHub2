@@ -34,6 +34,7 @@ module.exports = {
         nhcrtInfraSF_JoinObj['invEmpFkCreatedBy'] = rows[i]['invEmpFkCreatedBy']
         nhcrtInfraSF_JoinObj['ordQuantityInOrderUnit'] = rows[i]['ordQuantityInOrderUnit']
         nhcrtInfraSF_JoinObj['oupName'] = rows[i]['oupName']
+        nhcrtInfraSF_JoinObj['stoNumber'] = rows[i]['stoNumber']
         nhcrtInfraSF_JoinObj['stoName'] = rows[i]['stoName']
         nhcrtInfraSF_JoinObj['brdName'] = rows[i]['brdName']
         nhcrtInfraSF_JoinObj['dptName'] = rows[i]['dptName']

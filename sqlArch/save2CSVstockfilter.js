@@ -13,17 +13,6 @@ module.exports = {
     console.log(`JSON.parse(req.body['csvDataPost'])==> ${JSON.parse(req.body['csvDataPost'])}`)
 
     let csvDataPostparsed = JSON.parse(req.body['csvDataPost'])
-    // console.log(`csvDataPostparsed==> ${csvDataPostparsed}`)
-    // console.log(`JSON.parse(csvDataPostparsed)==> ${JSON.parse(csvDataPostparsed)}`)
-    // console.log(`csvDataPostparsed[0]==> ${csvDataPostparsed[0]}`)
-    // console.log(`JSON.stringify(csvDataPostparsed[0])==> ${JSON.stringify(csvDataPostparsed[0])}`)
-    // console.log(`csvDataPostparsed[0][0]==> ${csvDataPostparsed[0][0]}`)
-    // console.log(`csvDataPostparsed[0][0]['ri_t0d']==> ${csvDataPostparsed[0][0]['ri_t0d']}`)
-    // console.log(`JSON.stringify(csvDataPostparsed[0][0])==> ${JSON.stringify(csvDataPostparsed[0][0])}`)
-
-    // console.log(`JSON.stringify(req.body['csvDataPost'])==>${JSON.stringify(req.body['csvDataPost'])}`)
-
-    // let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
 
     //begin csv generator //////////////////////////////////////////////////////////////////////////
     const {
@@ -31,8 +20,6 @@ module.exports = {
     } = require('json2csv')
 
     const fields = [
-      // 'ri_t0d', 'INDstocked', 'ri_t0d', 'IND_NOTstocked', 'ri_t0d', 'SMstocked', 'ri_t0d', 'SM_NOTstocked', 'ri_t0d', 'MTstocked',
-      // 'ri_t0d', 'MT_NOTstocked', 'ri_t0d', 'SHstocked', 'ri_t0d', 'SH_NOTstocked', 'ri_t0d', 'GLstocked', 'ri_t0d', 'GL_NOTstocked'
       'INDstocked', 'IND_NOTstocked', 'SMstocked', 'SM_NOTstocked', 'MTstocked',
       'MT_NOTstocked', 'SHstocked', 'SH_NOTstocked', 'GLstocked', 'GL_NOTstocked'
     ]

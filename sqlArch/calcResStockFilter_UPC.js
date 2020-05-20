@@ -66,7 +66,8 @@ module.exports = {
     let oneYearAgo = oneYearAgoRaw_split[0]
     console.log(`oneYearAgo==> ${oneYearAgo}`)
 
-    let storeNameArr = ['Indiana', 'Saint Matthews', 'Middletown', 'Springhurst', 'Gardiner Lane']
+    // let storeNameArr = ['Indiana', 'Saint Matthews', 'Middletown', 'Springhurst', 'Gardiner Lane']
+    let storeNumberArr = ['IN', 'SM', 'MT', 'SPR', 'GL']
     let storeAbbrevArr = ['IND', 'SM', 'MT', 'SH', 'GL']
 
     let saniRegex1 = /(\[)|(\])/g
@@ -81,13 +82,13 @@ module.exports = {
       let nhcrtRows = rows
 
       for (let i = 0; i < nhcrtRows.length; i++) {
-        for (let j = 0; j < storeNameArr.length; j++) {
+        for (let j = 0; j < storeNumberArr.length; j++) {
 
-          storeName = storeNameArr[j]
+          storeNumber = storeNumberArr[j]
           storeAbbrev = storeAbbrevArr[j]
 
-          function calcResStockFilter_UPC(storeName, storeAbbrev) {
-            if (nhcrtRows[i]['stoName'] == storeName) {
+          function calcResStockFilter_UPC(storeNumber, storeAbbrev) {
+            if (nhcrtRows[i]['stoNumber'] == storeNumber) {
               let rsltsObj = {}
               rsltsObj['ri_t0d'] = i
               rsltsObj[`${storeAbbrev}_UPCs`] = nhcrtRows[i]['invScanCode']
@@ -95,46 +96,41 @@ module.exports = {
                 nhcrtRows[i]['invLastsold'] > oneYearAgo ||
                 nhcrtRows[i]['invOnhand'] > 0) {
                 rsltsObj[`${storeAbbrev}stocked`] = nhcrtRows[i]['invScanCode']
-                if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                if (nhcrtRows[i]['stoNumber'] == 'IN') {
                   srcRsINDstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                if (nhcrtRows[i]['stoNumber'] == 'SM') {
                   srcRsSMstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                if (nhcrtRows[i]['stoNumber'] == 'MT') {
                   srcRsMTstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                if (nhcrtRows[i]['stoNumber'] == 'SPR') {
                   srcRsSHstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                if (nhcrtRows[i]['stoNumber'] == 'GL') {
                   srcRsGLstocked.push(rsltsObj)
                 }
               } else {
                 rsltsObj[`${storeAbbrev}_NOTstocked`] = nhcrtRows[i]['invScanCode']
-                if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                if (nhcrtRows[i]['stoNumber'] == 'IN') {
                   srcRsIND_NOTstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                if (nhcrtRows[i]['stoNumber'] == 'SM') {
                   srcRsSM_NOTstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                if (nhcrtRows[i]['stoNumber'] == 'MT') {
                   srcRsMT_NOTstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                if (nhcrtRows[i]['stoNumber'] == 'SPR') {
                   srcRsSH_NOTstocked.push(rsltsObj)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                if (nhcrtRows[i]['stoNumber'] == 'GL') {
                   srcRsGL_NOTstocked.push(rsltsObj)
                 }
               }
               // searchResults.push(rsltsObj)
             }
-            // searchResults.push(srcRsINDstocked, srcRsIND_NOTstocked, srcRsSMstocked, srcRsSM_NOTstocked, srcRsMTstocked, srcRsMT_NOTstocked,
-            //   srcRsSHstocked, srcRsSH_NOTstocked, srcRsGLstocked, srcRsGL_NOTstocked)
-            // cacheMainStockFilter.set('searchResultsCache_key', searchResults)
-            // let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
-            // console.log(`JSON.stringify(searchResultsCache[0])==> ${JSON.stringify(searchResultsCache[0])}`)
           }
           calcResStockFilter_UPC(storeName, storeAbbrev)
         }
@@ -157,9 +153,6 @@ module.exports = {
       srcRsGLstockedSani = JSON.stringify(srcRsGLstocked).replace(saniRegex1, "")
       srcRsGL_NOTstockedSani = JSON.stringify(srcRsGL_NOTstocked).replace(saniRegex1, "")
 
-      // searchResults.push(srcRsINDstocked.toString(), srcRsIND_NOTstocked.toString(), srcRsSMstocked.toString(), srcRsSM_NOTstocked.toString(),
-      //   srcRsMTstocked.toString(), srcRsMT_NOTstocked.toString(), srcRsSHstocked.toString(), srcRsSH_NOTstocked.toString(),
-      //   srcRsGLstocked.toString(), srcRsGL_NOTstocked.toString())
 
       searchResults.push(srcRsINDstockedSani, srcRsIND_NOTstockedSani, srcRsSMstockedSani, srcRsSM_NOTstockedSani,
         srcRsMTstockedSani, srcRsMT_NOTstockedSani, srcRsSHstockedSani, srcRsSH_NOTstockedSani,
@@ -177,16 +170,6 @@ module.exports = {
         searchResultsSplitParsedArr.push(searchResultsSplitParsed)
       }
       console.log(`searchResultsSplitParsedArr[0]['ri_t0d']==> ${searchResultsSplitParsedArr[0]['ri_t0d']}`)
-      // console.log(`searchResultsSplitParsedArr==> ${searchResultsSplitParsedArr}`)
-
-      // console.log(`searchResultsSplit==> ${searchResultsSplit}`)
-      // console.log(`searchResults[0]==> ${searchResults[0]}`)
-      // console.log(`JSON.stringify(searchResults[0])==> ${JSON.stringify(searchResults[0])}`)
-      // cacheMainStockFilter.set('searchResultsCache_key', searchResults)
-      // let searchResultsCache = cacheMainStockFilter['data']['searchResultsCache_key']['v']
-      // console.log(`JSON.stringify(searchResultsCache[0])==> ${JSON.stringify(searchResultsCache[0])}`)
-
-      // console.log(`JSON.stringify(searchResults)==> ${JSON.stringify(searchResults)}`)
     }
 
 

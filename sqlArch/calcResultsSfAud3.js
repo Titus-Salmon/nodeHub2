@@ -43,18 +43,18 @@ module.exports = {
       for (let i = 0; i < nisfRows.length; i++) { //Add searched-for table entries from db to searchResults array, for
         //displaying in the dynamic DOM table. Also add margin data, & retail & charm calcs to display in DOM table
 
-        function sfAud3(storeName, inStockCode) { //i.e. storeName = 'Indiana', inStockCode = 'IND'
+        function sfAud3(storeNumber, inStockCode) { //i.e. storeNumber = 'IN', inStockCode = 'IND'
 
           let parsedInvVal = parseInt(nisfRows[i]['invOnhand'])
 
           function sfAud3Results(shouldBeStockedOrNot) {
-            if (nisfRows[i]['stoName'] == storeName) {
+            if (nisfRows[i]['storeNumber'] == storeNumber) {
               let srcRsObj = {}
               srcRsObj['ri_t0d'] = i
               srcRsObj['invMismatchUPC'] = nisfRows[i]['invScanCode']
               srcRsObj['invMismatchSKU'] = nisfRows[i]['ordSupplierStockNumber']
               srcRsObj['invMismatchName'] = nisfRows[i]['invName']
-              srcRsObj['invMismatchStore'] = nisfRows[i]['stoName']
+              srcRsObj['invMismatchStore'] = nisfRows[i]['storeNumber']
               srcRsObj['invMismatchSFdata'] = nisfRows[i][inStockCode]
               srcRsObj['invMismatchCPLTdata'] = nisfRows[i]['invOnhand']
               srcRsObj['invMismatchLastRecd'] = nisfRows[i]['invLastreceived']
@@ -145,8 +145,6 @@ module.exports = {
             if (parsedInvVal > 0) {
               sfAud3Results('SHOULD_be_stocked')
             }
-
-
           }
 
           if (nisfRows[i][inStockCode] !== '-') {
@@ -158,38 +156,21 @@ module.exports = {
                 sfAud3Results('should_NOT_be_stocked')
               }
             }
-            // if (nisfRows[i]['invLastsold'] < '2019-03-05' && nisfRows[i]['invLastreceived'] < '2019-03-05' && parsedInvVal <= 0) {
-            //   sfAud3Results('should_NOT_be_stocked')
-            // }
-
-
           }
         }
 
-        sfAud3('Indiana', 'IND')
-        sfAud3('Saint Matthews', 'SM')
-        sfAud3('Middletown', 'MT')
-        sfAud3('Springhurst', 'SH')
-        sfAud3('Gardiner Lane', 'GL')
+        sfAud3('IN', 'IND')
+        sfAud3('SM', 'SM')
+        sfAud3('MT', 'MT')
+        sfAud3('SPR', 'SH')
+        sfAud3('GL', 'GL')
 
       }
       console.log(`JSON.stringify(searchResults)==> ${JSON.stringify(searchResults)}`)
     }
 
 
-
     function queryNisfJoinTable() {
-      //v//retrieve info from database table to display in DOM table/////////////////////////////////////////////////////////
-      // connection.query(`SELECT * FROM ${formInput0} ORDER BY invLastreceived;`, function (err, rows, fields) {
-      //   if (err) throw err
-      //   showSearchResults(rows)
-
-      //   res.render('vw-nisfResults3', { //render searchResults to vw-MySqlTableHub page
-      //     title: 'sfAud3 (using nisf table)',
-      //     searchResRows: searchResults,
-      //     loadedSqlTbl: loadedSqlTbl
-      //   })
-      // })
       connection.query(`SELECT * FROM ${formInput0}`, function (err, rows, fields) {
         if (err) throw err
         showSearchResults(rows)
