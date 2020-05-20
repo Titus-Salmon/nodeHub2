@@ -16,10 +16,10 @@ function highlight_row() {
     console.log('cells[i].parentNode.childNodes==>', cells[i].parentNode.childNodes)
     console.log('cells[i].parentNode.childNodes[0].innerHTML==>', cells[i].parentNode.childNodes[0].innerHTML)
 
-    let exist_ws = cells[i].parentNode.childNodes[14]
-    let edi_cost_mod = cells[i].parentNode.childNodes[16]
-    let charm_price = cells[i].parentNode.childNodes[19]
-    let crnt_pr_cplt = cells[i].parentNode.childNodes[21]
+    let exist_ws = cells[i].parentNode.childNodes[15]
+    let edi_cost_mod = cells[i].parentNode.childNodes[17]
+    let charm_price = cells[i].parentNode.childNodes[20]
+    let crnt_pr_cplt = cells[i].parentNode.childNodes[22]
 
     if (Math.abs((edi_cost_mod.innerHTML - exist_ws.innerHTML) / (edi_cost_mod.innerHTML)) > .35) {
       edi_cost_mod.style.backgroundColor = "#ffb3ca"
