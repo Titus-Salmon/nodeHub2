@@ -68,13 +68,16 @@ module.exports = {
       if (splitFieldResult[i] == 'ordQuantityInOrderUnit') { //need to target catapult uos(oupName) in order to divide by that for any items sold by case
         genHeadObj.ordQuantityInOrderUnit = splitFieldResult[i]
       }
+      if (splitFieldResult[i] == 'stoNumber') { //targets Catapult nhcrt stoNumber column
+        genHeadObj.stoNumber = splitFieldResult[i]
+      }
       if (splitFieldResult[i] == 'stoName') { //targets Catapult nhcrt stoName column
         genHeadObj.stoName = splitFieldResult[i]
       }
-      if (splitFieldResult[i] == 'pi1Description') { //targets Catapult nhcrt stoName column
+      if (splitFieldResult[i] == 'pi1Description') { //targets Catapult nhcrt pi1Description column
         genHeadObj.pi1Description = splitFieldResult[i]
       }
-      if (splitFieldResult[i] == 'pi2Description') { //targets Catapult nhcrt stoName column
+      if (splitFieldResult[i] == 'pi2Description') { //targets Catapult nhcrt pi2Description column
         genHeadObj.pi2Description = splitFieldResult[i]
       }
     }

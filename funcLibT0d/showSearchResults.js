@@ -469,6 +469,9 @@ module.exports = {
       srcRsObj['oupName'] = nejRowsToggle[i][genericHeaderObj.oupName] //oupName from catapult
       reviewObj['oupName'] = nejRowsToggle[i][genericHeaderObj.oupName] //oupName from catapult
 
+      srcRsObj['stoNumber'] = nejRowsToggle[i][genericHeaderObj.stoNumber] //stoNumber from catapult
+      reviewObj['stoNumber'] = nejRowsToggle[i][genericHeaderObj.stoNumber] //stoNumber from catapult
+
       srcRsObj['stoName'] = nejRowsToggle[i][genericHeaderObj.stoName] //stoName from catapult
       reviewObj['stoName'] = nejRowsToggle[i][genericHeaderObj.stoName] //stoName from catapult
 
