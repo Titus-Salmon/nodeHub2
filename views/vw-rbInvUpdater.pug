@@ -11,7 +11,7 @@ html
 		form#query_rb_inventory(action='/rbInvUpdater/query_rb_inventory' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='query_rb_inventory') Enter Query for Rainbow DB
-				textarea#query_rb_inventory.input-unit-1(name="query_rb_inventoryPost", cols="30", rows="1", wrap="soft") SELECT inv_upc FROM rb_inventory_titus_20200415;
+				textarea#query_rb_inventory.input-unit-1(name="query_rb_inventoryPost", cols="30", rows="1", wrap="soft") SELECT inv_upc FROM rb_inventory;
 				button#crtTblBtn1(type='submit', form='query_rb_inventory', style="display: block; float: left") QUERY Rainbow DB
 		//- //^// queries RB DB
 
