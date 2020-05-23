@@ -76,6 +76,7 @@ module.exports = {
      * (?<=Y)X 	Positive lookbehind 	X if after Y
      * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
     let splitRegex1 = /(?<=}),(?={)/g
+    let splitRegex2 = /(?<=}),,(?={)/g //for some reason, we sometimes get the following format for 
 
     function showSearchResults(rows) {
 
@@ -159,6 +160,7 @@ module.exports = {
         srcRsGLstockedSani, srcRsGL_NOTstockedSani)
 
       let searchResultsToString = searchResults.toString()
+      console.log(`searchResultsToString==> ${searchResultsToString}`)
       searchResultsSplit = searchResultsToString.split(splitRegex1)
       console.log(`searchResultsSplit.length==> ${searchResultsSplit.length}`)
       // console.log(`searchResultsSplit[0]==> ${searchResultsSplit[0]}`)
