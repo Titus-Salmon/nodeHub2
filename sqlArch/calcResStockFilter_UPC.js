@@ -132,7 +132,7 @@ module.exports = {
               // searchResults.push(rsltsObj)
             }
           }
-          calcResStockFilter_UPC(storeName, storeAbbrev)
+          calcResStockFilter_UPC(storeNumber, storeAbbrev)
         }
       }
 
