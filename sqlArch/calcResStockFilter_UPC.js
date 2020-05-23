@@ -161,7 +161,8 @@ module.exports = {
       let searchResultsToString = searchResults.toString()
       searchResultsSplit = searchResultsToString.split(splitRegex1)
       console.log(`searchResultsSplit.length==> ${searchResultsSplit.length}`)
-      console.log(`searchResultsSplit[0]==> ${searchResultsSplit[0]}`)
+      // console.log(`searchResultsSplit[0]==> ${searchResultsSplit[0]}`)
+      console.log(`searchResultsSplit==> ${searchResultsSplit}`)
       console.log(`typeof searchResultsSplit[0]==> ${typeof searchResultsSplit[0]}`)
       console.log(`typeof JSON.parse(searchResultsSplit[0])==> ${typeof JSON.parse(searchResultsSplit[0])}`)
 
