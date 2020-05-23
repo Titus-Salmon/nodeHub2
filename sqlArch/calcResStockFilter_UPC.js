@@ -71,12 +71,15 @@ module.exports = {
     let storeAbbrevArr = ['IND', 'SM', 'MT', 'SH', 'GL']
 
     let saniRegex1 = /(\[)|(\])/g
+    let saniRegex2 = /(?<=}),,(?={)/g //for some reason, we sometimes get the following format for searchResultsToStringPreSani:
+    // {},,{}, so we need to convert that to {},{}
 
     /* X(?=Y) 	Positive lookahead 	X if followed by Y
      * (?<=Y)X 	Positive lookbehind 	X if after Y
      * ==t0d==>you can combine the 2==> (?<=A)X(?=B) to yield: "X if after A and followed by B" <==t0d==*/
     let splitRegex1 = /(?<=}),(?={)/g
-    let splitRegex2 = /(?<=}),,(?={)/g //for some reason, we sometimes get the following format for 
+    let splitRegex2 = /(?<=}),,(?={)/g //for some reason, we sometimes get the following format for searchResultsToStringPreSani:
+    // {},,{}, so we need to convert that to {},{}
 
     function showSearchResults(rows) {
 
@@ -159,7 +162,9 @@ module.exports = {
         srcRsMTstockedSani, srcRsMT_NOTstockedSani, srcRsSHstockedSani, srcRsSH_NOTstockedSani,
         srcRsGLstockedSani, srcRsGL_NOTstockedSani)
 
-      let searchResultsToString = searchResults.toString()
+      let searchResultsToStringPreSani = searchResults.toString()
+      let searchResultsToString = searchResultsToStringPreSani.replace(saniRegex2, ",") //for some reason, we sometimes get the following format for searchResultsToStringPreSani:
+      // {},,{}, so we need to convert that to {},{}
       console.log(`searchResultsToString==> ${searchResultsToString}`)
       searchResultsSplit = searchResultsToString.split(splitRegex1)
       console.log(`searchResultsSplit.length==> ${searchResultsSplit.length}`)
