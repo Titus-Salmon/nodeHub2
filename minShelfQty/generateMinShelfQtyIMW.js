@@ -91,39 +91,45 @@ module.exports = {
         srsObj['rb_note'] = ''
         srsObj['edi_default'] = ''
         srsObj['powerfield_7'] = ''
-        if (soldPerTimeframe > 0 && soldPerTimeframe < 5.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_${soldPerTimeframe}`
-        }
-        if (soldPerTimeframe > 5.9 && soldPerTimeframe < 10.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_5`
-        }
-        if (soldPerTimeframe > 10.9 && soldPerTimeframe < 15.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_5`
-        }
-        if (soldPerTimeframe > 15.9 && soldPerTimeframe < 20.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_10`
-        }
-        if (soldPerTimeframe > 20.9 && soldPerTimeframe < 25.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_10`
-        }
-        if (soldPerTimeframe > 25.9 && soldPerTimeframe < 30.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_10`
-        }
-        if (soldPerTimeframe > 30.9 && soldPerTimeframe < 35.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_15`
-        }
-        if (soldPerTimeframe > 35.9 && soldPerTimeframe < 40.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_15`
-        }
-        if (soldPerTimeframe > 40.9 && soldPerTimeframe < 45.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_15`
-        }
-        if (soldPerTimeframe > 45.9 && soldPerTimeframe < 50.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_20`
-        }
-        if (soldPerTimeframe > 50.9) {
-          srsObj['temp_group'] = `${storeAbbrev}_20`
-        }
+
+        console.log(`${tableJoinRows[i]['nhcrtInvScanCode']} soldPerTimeframe==> ${soldPerTimeframe}`)
+        console.log(`${tableJoinRows[i]['nhcrtInvScanCode']} soldPerTimeframe+6==> ${soldPerTimeframe+6}`)
+
+        srsObj['temp_group'] = `${storeAbbrev}_${soldPerTimeframe+6}`
+
+        // if (soldPerTimeframe > 0 && soldPerTimeframe < 5.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_${soldPerTimeframe}`
+        // }
+        // if (soldPerTimeframe > 5.9 && soldPerTimeframe < 10.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_5`
+        // }
+        // if (soldPerTimeframe > 10.9 && soldPerTimeframe < 15.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_5`
+        // }
+        // if (soldPerTimeframe > 15.9 && soldPerTimeframe < 20.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_10`
+        // }
+        // if (soldPerTimeframe > 20.9 && soldPerTimeframe < 25.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_10`
+        // }
+        // if (soldPerTimeframe > 25.9 && soldPerTimeframe < 30.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_10`
+        // }
+        // if (soldPerTimeframe > 30.9 && soldPerTimeframe < 35.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_15`
+        // }
+        // if (soldPerTimeframe > 35.9 && soldPerTimeframe < 40.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_15`
+        // }
+        // if (soldPerTimeframe > 40.9 && soldPerTimeframe < 45.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_15`
+        // }
+        // if (soldPerTimeframe > 45.9 && soldPerTimeframe < 50.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_20`
+        // }
+        // if (soldPerTimeframe > 50.9) {
+        //   srsObj['temp_group'] = `${storeAbbrev}_20`
+        // }
         // srsObj['temp_group'] = ''
         srsObj['onhand_qty'] = ''
         srsObj['reorder_point'] = ''
@@ -136,9 +142,9 @@ module.exports = {
         srsObj['case_pk_mult'] = ''
         srsObj['ovr'] = ''
 
-        if (soldPerTimeframe > 0) { //only push resukts where soldPerTimeFrame > 0; otherwise, don't include for auto-reorder
-          srsObjArr.push(srsObj)
-        }
+        // if (soldPerTimeframe > 0) { //only push resukts where soldPerTimeFrame > 0; otherwise, don't include for auto-reorder
+        srsObjArr.push(srsObj)
+        //}
       }
     }
 
