@@ -71,7 +71,7 @@ module.exports = {
     let storeAbbrevArr = ['IND', 'SM', 'MT', 'SH', 'GL']
 
     let saniRegex1 = /(\[)|(\])/g
-    let saniRegex2 = /(?<=}),,(?={)/g //for some reason, we sometimes get the following format for searchResultsToStringPreSani:
+    let saniRegex2 = /(?<=},),+(?={)/g //for some reason, we sometimes get the following format for searchResultsToStringPreSani:
     // {},,{} so we need to convert that to {},{}
     let saniRegex3 = /(,$)/g //for some reason, we sometimes get the following format for searchResultsToStringPreSani:
     // {}, so we need to convert that to {}; $ = end of string anchor (^ = beginning of string anchor)
