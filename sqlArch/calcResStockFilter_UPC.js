@@ -165,7 +165,7 @@ module.exports = {
         srcRsGLstockedSani, srcRsGL_NOTstockedSani)
 
       let searchResultsToStringPreSani = searchResults.toString()
-      let searchResultsToString = searchResultsToStringPreSani.replace(saniRegex2, ",").replace(saniRegex3, "") //for some reason, we sometimes get the following format for searchResultsToStringPreSani:
+      let searchResultsToString = searchResultsToStringPreSani.replace(saniRegex2, "").replace(saniRegex3, "") //for some reason, we sometimes get the following format for searchResultsToStringPreSani:
       // {},,{}, so we need to convert that to {},{}
       console.log(`searchResultsToString==> ${searchResultsToString}`)
       searchResultsSplit = searchResultsToString.split(splitRegex1)
