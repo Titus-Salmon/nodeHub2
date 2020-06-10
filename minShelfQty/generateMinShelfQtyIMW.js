@@ -26,8 +26,11 @@ module.exports = {
     let storeAbbrev = postBody['storeAbbrevPost']
     console.log(`storeAbbrev==> ${storeAbbrev}`)
 
-    let storeName = postBody['storeNamePost']
-    console.log(`storeName==> ${storeName}`)
+    // let storeName = postBody['storeNamePost']
+    // console.log(`storeName==> ${storeName}`)
+
+    let storeNumber = postBody['storeNumberPost']
+    console.log(`storeNumber==> ${storeNumber}`)
 
     let totalDays = postBody['totalDaysPost']
     console.log(`totalDays==> ${totalDays}`)
@@ -93,9 +96,11 @@ module.exports = {
         srsObj['powerfield_7'] = ''
 
         console.log(`${tableJoinRows[i]['nhcrtInvScanCode']} soldPerTimeframe==> ${soldPerTimeframe}`)
-        console.log(`${tableJoinRows[i]['nhcrtInvScanCode']} soldPerTimeframe+6==> ${soldPerTimeframe+6}`)
+        // console.log(`${tableJoinRows[i]['nhcrtInvScanCode']} soldPerTimeframe+6==> ${soldPerTimeframe+6}`)
+        console.log(`${tableJoinRows[i]['nhcrtInvScanCode']} soldPerTimeframe+3==> ${soldPerTimeframe+3}`)
 
-        srsObj['temp_group'] = `${storeAbbrev}_${soldPerTimeframe+6}`
+        // srsObj['temp_group'] = `${storeAbbrev}_${soldPerTimeframe+6}`
+        srsObj['temp_group'] = `${storeAbbrev}_${soldPerTimeframe+3}`
 
         // if (soldPerTimeframe > 0 && soldPerTimeframe < 5.9) {
         //   srsObj['temp_group'] = `${storeAbbrev}_${soldPerTimeframe}`
@@ -153,13 +158,13 @@ module.exports = {
       SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
       nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName,
       REPLACE (nhcrt.invReceiptAlias, ',', '') AS nhcrtInvReceiptAlias,
-      nhcrt.stoName AS nhcrtStoName, nhcrt.venCompanyname AS nhcrtVenCompanyName, nhcrt.pi1Description AS nhcrtPi1Description,
+      nhcrt.stoNumber AS nhcrtstoNumber, nhcrt.venCompanyname AS nhcrtVenCompanyName, nhcrt.pi1Description AS nhcrtPi1Description,
       nhcrt.pi2Description AS nhcrtPi2Description,
       wo_mv_table.item_id AS woMvTblItemId, wo_mv_table.quantity_sold AS woMvTblQtySold
       FROM ${nhcrtTableName}
       nhcrt JOIN ${movementTableName} wo_mv_table ON nhcrt.invScanCode
       WHERE nhcrt.invScanCode = wo_mv_table.item_id
-      AND nhcrt.stoName = '${storeName}'
+      AND nhcrt.stoNumber = '${storeNumber}'
       ORDER BY nhcrt.pi1Description, nhcrt.pi2Description;`,
         function (err, rows, fields) {
           if (err) throw err
