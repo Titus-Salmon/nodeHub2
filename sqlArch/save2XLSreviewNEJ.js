@@ -39,10 +39,22 @@ module.exports = {
         .string(`${Object.keys(srcRsXLS_nonPag[0])[i]}`)
         .style(style)
 
-      ws.cell(2, i + 1)
-        .string(`${Object.values(srcRsXLS_nonPag[0])[i]}`)
-        .style(style)
+      // ws.cell(2, i + 1)
+      //   .string(`${Object.values(srcRsXLS_nonPag[0])[i]}`)
+      //   .style(style)
+
+      for (let j = 0; j < srcRsXLS_nonPag.length; j++) {
+        ws.cell(j + 2, i + 1)
+          .string(`${Object.values(srcRsXLS_nonPag[0])[j]}`)
+          .style(style)
+      }
     }
+
+    // for (let i = 0; i < srcRsXLS_nonPag.length; i++) {
+    //   ws.cell(2, i + 1)
+    //     .string(`${Object.values(srcRsXLS_nonPag[0])[i]}`)
+    //     .style(style)
+    // }
 
     wb.write(`${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs`)
 
