@@ -15,6 +15,10 @@ module.exports = {
     console.log(`JSON.stringify(srcRsXLS_nonPag[0])==> ${JSON.stringify(srcRsXLS_nonPag[0])}`)
     console.log(`Object.keys(srcRsXLS_nonPag[0])[0]==> ${Object.keys(srcRsXLS_nonPag[0])[0]}`)
 
+    for (let i = 0; i < Object.keys(srcRsXLS_nonPag[0]).length; i++) {
+      console.log(`Object.keys(srcRsXLS_nonPag[0])[${i}]==> ${Object.keys(srcRsXLS_nonPag[0])[i]}`)
+    }
+
 
     // Create a new instance of a Workbook class
     var wb = new xl.Workbook()
