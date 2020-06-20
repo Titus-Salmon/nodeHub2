@@ -38,6 +38,10 @@ module.exports = {
       ws.cell(1, i + 1)
         .string(`${Object.keys(srcRsXLS_nonPag[0])[i]}`)
         .style(style)
+
+      ws.cell(i + 2, i + 1)
+        .string(`${Object.values(srcRsXLS_nonPag[0])[i]}`)
+        .style(style)
     }
 
     wb.write(`${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs`)
