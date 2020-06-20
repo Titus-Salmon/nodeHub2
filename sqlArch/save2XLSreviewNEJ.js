@@ -10,6 +10,7 @@ module.exports = {
     //NOTE++++++++>>> srcRsXLS_nonPag is the array that holds the collection of SearchResults objects {columnNema: cellValue}
 
     console.log(`typeof srcRsXLS_nonPag[0]==> ${typeof srcRsXLS_nonPag[0]}`)
+    console.log(`typeof Object.keys(srcRsXLS_nonPag[0])==> ${typeof Object.keys(srcRsXLS_nonPag[0])}`)
 
     console.log(`srcRsXLS_nonPag[0].length==> ${srcRsXLS_nonPag[0].length}`)
 
