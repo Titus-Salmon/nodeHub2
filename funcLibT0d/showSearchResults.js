@@ -1,6 +1,6 @@
 module.exports = {
   showSearchResults: function (rows, genericHeaderObj, frmInptsObj, searchResults, searchResultsForCSV,
-    searchResultsForCSVreview, edlpRows, nejRowsToggle) {
+    searchResultsForCSVreview, searchResultsForXLS, edlpRows, nejRowsToggle) {
 
     console.log(`rows.length==>${rows.length}`)
     // let nejRows = rows[0] //targets 1st query on NEJ table
@@ -601,11 +601,13 @@ module.exports = {
                   searchResults.push(srcRsObj)
                   searchResultsForCSV.push(srcRsObj)
                   searchResultsForCSVreview.push(reviewObj)
+                  searchResultsForXLS.push(srcRsObj)
                 }
               } else { //otherwise, push all depts into searchResults
                 searchResults.push(srcRsObj)
                 searchResultsForCSV.push(srcRsObj)
                 searchResultsForCSVreview.push(reviewObj)
+                searchResultsForXLS.push(srcRsObj)
               }
             }
           } else {
@@ -616,11 +618,13 @@ module.exports = {
                 searchResults.push(srcRsObj)
                 searchResultsForCSV.push(srcRsObj)
                 searchResultsForCSVreview.push(reviewObj)
+                searchResultsForXLS.push(srcRsObj)
               }
             } else { //otherwise, push all depts into searchResults
               searchResults.push(srcRsObj)
               searchResultsForCSV.push(srcRsObj)
               searchResultsForCSVreview.push(reviewObj)
+              searchResultsForXLS.push(srcRsObj)
             }
           }
         }
@@ -780,11 +784,13 @@ module.exports = {
                     searchResults.push(srcRsObj)
                     searchResultsForCSV.push(srcRsObj)
                     searchResultsForCSVreview.push(reviewObj)
+                    searchResultsForXLS.push(srcRsObj)
                   }
                 } else { //otherwise, push all depts into searchResults
                   searchResults.push(srcRsObj)
                   searchResultsForCSV.push(srcRsObj)
                   searchResultsForCSVreview.push(reviewObj)
+                  searchResultsForXLS.push(srcRsObj)
                 }
               }
             } else {
@@ -793,11 +799,13 @@ module.exports = {
                   searchResults.push(srcRsObj)
                   searchResultsForCSV.push(srcRsObj)
                   searchResultsForCSVreview.push(reviewObj)
+                  searchResultsForXLS.push(srcRsObj)
                 }
               } else { //otherwise, push all depts into searchResults
                 searchResults.push(srcRsObj)
                 searchResultsForCSV.push(srcRsObj)
                 searchResultsForCSVreview.push(reviewObj)
+                searchResultsForXLS.push(srcRsObj)
               }
             }
           }

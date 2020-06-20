@@ -31,6 +31,7 @@ module.exports = {
     srcRsCSV_nonPag = [] //why does this break if instantiated with "let"? A question for another time...
     srcRsCSVrvwPag = [] //why does this break if instantiated with "let"? A question for another time...
     srcRsCSVrvw_nonPag = [] //why does this break if instantiated with "let"? A question for another time...
+    srcRsXLS_nonPag = []
     csvContainer = [] //why does this break if instantiated with "let"? A question for another time...
     const postBody = req.body
 
@@ -150,7 +151,7 @@ module.exports = {
           //^////////handle gpet tables ==> if UPC is in gpet table, ignore it in showSearchResults calcs
 
           showSearchResults.showSearchResults(rows, genericHeaderObj, frmInptsObj, searchResultsNonPag, srcRsCSV_nonPag, srcRsCSVrvw_nonPag,
-            edlpRows, nejRowsNonPagin)
+            srcRsXLS_nonPag, edlpRows, nejRowsNonPagin)
           cacheMain.set('searchResultsNonPagCache_key', searchResultsNonPag)
 
           function paginFirstResultSet() {
