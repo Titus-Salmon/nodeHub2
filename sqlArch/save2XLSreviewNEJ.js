@@ -39,7 +39,7 @@ module.exports = {
         .string(`${Object.keys(srcRsXLS_nonPag[0])[i]}`)
         .style(style)
 
-      ws.cell(i + 2, i + 1)
+      ws.cell(2, i + 1)
         .string(`${Object.values(srcRsXLS_nonPag[0])[i]}`)
         .style(style)
     }
