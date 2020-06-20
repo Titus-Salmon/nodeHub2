@@ -9,7 +9,7 @@ module.exports = {
 
     //NOTE++++++++>>> srcRsXLS_nonPag is the array that holds the collection of SearchResults objects {columnNema: cellValue}
 
-    console.log(`srcRsXLS_nonPag[0]==> ${srcRsXLS_nonPag[0]}`)
+    console.log(`JSON.stringify(srcRsXLS_nonPag[0])==> ${JSON.stringify(srcRsXLS_nonPag[0])}`)
 
     // Create a new instance of a Workbook class
     var wb = new xl.Workbook()
