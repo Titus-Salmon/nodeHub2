@@ -19,7 +19,6 @@ module.exports = {
       console.log(`Object.keys(srcRsXLS_nonPag[0])[${i}]==> ${Object.keys(srcRsXLS_nonPag[0])[i]}`)
     }
 
-
     // Create a new instance of a Workbook class
     var wb = new xl.Workbook()
 
@@ -34,10 +33,19 @@ module.exports = {
       numberFormat: '$#,##0.00; ($#,##0.00); -',
     })
 
-    // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 1)
-      .string('string')
-      .style(style)
+    for (let i = 0; i < Object.keys(srcRsXLS_nonPag[0]).length; i++) {
+      // console.log(`Object.keys(srcRsXLS_nonPag[0])[${i}]==> ${Object.keys(srcRsXLS_nonPag[0])[i]}`)
+      ws.cell(1, i + 1)
+        .string(`${Object.keys(srcRsXLS_nonPag[0])[i]}`)
+        .style(style)
+    }
+
+    wb.write(`/csv/${req.body['xlsPost']}.xlxs`)
+
+    // // Set value of cell A2 to 'string' styled with paramaters of style
+    // ws.cell(2, 1)
+    //   .string('string')
+    //   .style(style)
 
     //   // console.log('srcRsCSV_nonPag[0][\'P_K\']', srcRsCSV_nonPag[0]['P_K'])
     //   // console.log('Object.keys(srcRsCSV_nonPag[0])', Object.keys(srcRsCSV_nonPag[0]))
