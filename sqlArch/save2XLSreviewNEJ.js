@@ -40,7 +40,7 @@ module.exports = {
         .style(style)
     }
 
-    wb.write(`/public/csv/${req.body['xlsPost']}.xlxs`)
+    wb.write(`${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs`)
 
     // // Set value of cell A2 to 'string' styled with paramaters of style
     // ws.cell(2, 1)
