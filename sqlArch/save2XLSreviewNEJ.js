@@ -45,7 +45,7 @@ module.exports = {
 
       for (let j = 0; j < srcRsXLS_nonPag.length; j++) {
         ws.cell(j + 2, i + 1)
-          .string(`${Object.values(srcRsXLS_nonPag[0])[j]}`)
+          .string(`${Object.values(srcRsXLS_nonPag[0])[i]}`)
           .style(style)
       }
     }
