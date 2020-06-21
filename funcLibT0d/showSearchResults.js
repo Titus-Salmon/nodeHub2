@@ -601,13 +601,13 @@ module.exports = {
                   searchResults.push(srcRsObj)
                   searchResultsForCSV.push(srcRsObj)
                   searchResultsForCSVreview.push(reviewObj)
-                  searchResultsForXLS.push(srcRsObj)
+                  searchResultsForXLS.push(reviewObj)
                 }
               } else { //otherwise, push all depts into searchResults
                 searchResults.push(srcRsObj)
                 searchResultsForCSV.push(srcRsObj)
                 searchResultsForCSVreview.push(reviewObj)
-                searchResultsForXLS.push(srcRsObj)
+                searchResultsForXLS.push(reviewObj)
               }
             }
           } else {
@@ -618,13 +618,13 @@ module.exports = {
                 searchResults.push(srcRsObj)
                 searchResultsForCSV.push(srcRsObj)
                 searchResultsForCSVreview.push(reviewObj)
-                searchResultsForXLS.push(srcRsObj)
+                searchResultsForXLS.push(reviewObj)
               }
             } else { //otherwise, push all depts into searchResults
               searchResults.push(srcRsObj)
               searchResultsForCSV.push(srcRsObj)
               searchResultsForCSVreview.push(reviewObj)
-              searchResultsForXLS.push(srcRsObj)
+              searchResultsForXLS.push(reviewObj)
             }
           }
         }
@@ -784,13 +784,13 @@ module.exports = {
                     searchResults.push(srcRsObj)
                     searchResultsForCSV.push(srcRsObj)
                     searchResultsForCSVreview.push(reviewObj)
-                    searchResultsForXLS.push(srcRsObj)
+                    searchResultsForXLS.push(reviewObj)
                   }
                 } else { //otherwise, push all depts into searchResults
                   searchResults.push(srcRsObj)
                   searchResultsForCSV.push(srcRsObj)
                   searchResultsForCSVreview.push(reviewObj)
-                  searchResultsForXLS.push(srcRsObj)
+                  searchResultsForXLS.push(reviewObj)
                 }
               }
             } else {
@@ -799,13 +799,13 @@ module.exports = {
                   searchResults.push(srcRsObj)
                   searchResultsForCSV.push(srcRsObj)
                   searchResultsForCSVreview.push(reviewObj)
-                  searchResultsForXLS.push(srcRsObj)
+                  searchResultsForXLS.push(reviewObj)
                 }
               } else { //otherwise, push all depts into searchResults
                 searchResults.push(srcRsObj)
                 searchResultsForCSV.push(srcRsObj)
                 searchResultsForCSVreview.push(reviewObj)
-                searchResultsForXLS.push(srcRsObj)
+                searchResultsForXLS.push(reviewObj)
               }
             }
           }
