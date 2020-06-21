@@ -43,8 +43,8 @@ module.exports = {
             }
 
           } else {
-            reviewObj['numPkgs'] = srcRsObj['numPkgs'] = 'invalid Unit Type' //set numPkgs to 'invalid Unit Type' if oupNameSplit[0]
-            //doesn't = CS or EA
+            reviewObj['numPkgs'] = srcRsObj['numPkgs'] = 'invalid oupName' //set numPkgs to 'invalid oupName' if oupNameSplit[0] doesn't = CS or EA
+            reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = 'invalid oupName' //set numPkgs to 'invalid oupName' if oupNameSplit[0] doesn't = CS or EA
           }
         }
       }
