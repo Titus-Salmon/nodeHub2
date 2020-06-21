@@ -27,10 +27,10 @@ module.exports = {
 
     var style = wb.createStyle({
       font: {
-        color: '#FF0800',
+        color: 'black',
         size: 12,
       },
-      numberFormat: '$#,##0.00; ($#,##0.00); -',
+      // numberFormat: '$#,##0.00; ($#,##0.00); -',
     })
 
     for (let i = 0; i < Object.keys(srcRsXLS_nonPag[0]).length; i++) {
