@@ -49,7 +49,7 @@ module.exports = {
         type: 'pattern', // Currently only 'pattern' is implemented. Non-implemented option is 'gradient'
         patternType: 'solid', //solid=t0d //§18.18.55 ST_PatternType (Pattern Type)
         bgColor: '#99ff99', // HTML style hex value. defaults to black
-        fgColor: string // HTML style hex value. defaults to black.
+        // fgColor: string // HTML style hex value. defaults to black.
       },
     })
 
