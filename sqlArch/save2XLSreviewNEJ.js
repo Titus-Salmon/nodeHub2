@@ -58,9 +58,9 @@ module.exports = {
     })
 
     for (let i = 0; i < Object.keys(srcRsXLS_nonPag[0]).length; i++) {
-      if (Object.keys(srcRsXLS_nonPag[0][i]) == 'invPK' || Object.keys(srcRsXLS_nonPag[0][i]) == 'invCPK' || Object.keys(srcRsXLS_nonPag[0][i]) == 'edlpUPC' ||
-        Object.keys(srcRsXLS_nonPag[0][i]) == 'cpltSKU' || Object.keys(srcRsXLS_nonPag[0][i]) == 'ediSKU' || Object.keys(srcRsXLS_nonPag[0][i]) == 'stoName' ||
-        Object.keys(srcRsXLS_nonPag[0][i]) == 'sale_flag') {
+      if (Object.keys(srcRsXLS_nonPag[0])[i] == 'invPK' || Object.keys(srcRsXLS_nonPag[0])[i] == 'invCPK' || Object.keys(srcRsXLS_nonPag[0])[i] == 'edlpUPC' ||
+        Object.keys(srcRsXLS_nonPag[0])[i] == 'cpltSKU' || Object.keys(srcRsXLS_nonPag[0])[i] == 'ediSKU' || Object.keys(srcRsXLS_nonPag[0])[i] == 'stoName' ||
+        Object.keys(srcRsXLS_nonPag[0])[i] == 'sale_flag') {
         ws.column(i + 1).hide()
       }
       // let headerCellStringLength = Object.keys(srcRsXLS_nonPag[0])[i]
