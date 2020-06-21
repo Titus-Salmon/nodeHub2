@@ -13,6 +13,7 @@ module.exports = {
     console.log(`typeof Object.keys(srcRsXLS_nonPag[0])==> ${typeof Object.keys(srcRsXLS_nonPag[0])}`)
     console.log(`Object.keys(srcRsXLS_nonPag[0])==> ${Object.keys(srcRsXLS_nonPag[0])}`)
     console.log(`JSON.stringify(srcRsXLS_nonPag[0])==> ${JSON.stringify(srcRsXLS_nonPag[0])}`)
+    console.log(`JSON.stringify(srcRsXLS_nonPag[3])==> ${JSON.stringify(srcRsXLS_nonPag[3])}`)
     console.log(`Object.keys(srcRsXLS_nonPag[0])[0]==> ${Object.keys(srcRsXLS_nonPag[0])[0]}`)
 
     for (let i = 0; i < Object.keys(srcRsXLS_nonPag[0]).length; i++) {
