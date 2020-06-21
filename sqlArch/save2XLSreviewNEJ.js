@@ -34,28 +34,42 @@ module.exports = {
       // numberFormat: '$#,##0.00; ($#,##0.00); -',
     })
 
-    for (let i = 0; i < Object.keys(srcRsXLS_nonPag[0]).length; i++) {
-      // console.log(`Object.keys(srcRsXLS_nonPag[0])[${i}]==> ${Object.keys(srcRsXLS_nonPag[0])[i]}`)
-      ws.cell(1, i + 1)
-        .string(`${Object.keys(srcRsXLS_nonPag[0])[i]}`)
-        .style(style)
+    var headerStyle = wb.createStyle({
+      alignment: {
+        wrapText: true,
+        horizontal: 'center',
+      },
+      font: {
+        color: 'black',
+        size: 14,
+        bold: true,
 
-      // ws.cell(2, i + 1)
-      //   .string(`${Object.values(srcRsXLS_nonPag[0])[i]}`)
-      //   .style(style)
+      },
+      fill: { // §18.8.20 fill (Fill)
+        type: 'pattern', // Currently only 'pattern' is implemented. Non-implemented option is 'gradient'
+        patternType: 'solid', //solid=t0d //§18.18.55 ST_PatternType (Pattern Type)
+        bgColor: '#99ff99', // HTML style hex value. defaults to black
+        fgColor: string // HTML style hex value. defaults to black.
+      },
+    })
+
+    for (let i = 0; i < Object.keys(srcRsXLS_nonPag[0]).length; i++) {
+      // let headerCellStringLength = Object.keys(srcRsXLS_nonPag[0])[i]
+      // console.log(`Object.keys(srcRsXLS_nonPag[0])[${i}]==> ${Object.keys(srcRsXLS_nonPag[0])[i]}`)
+      ws.cell(1, i + 1) //this targets "header" cells
+        .string(`${Object.keys(srcRsXLS_nonPag[0])[i]}`)
+        .style(headerStyle)
+      // .column(i + 1).setWidth(headerCellStringLength.length)
 
       for (let j = 0; j < srcRsXLS_nonPag.length; j++) {
+        // let bodyCellStringLength = Object.values(srcRsXLS_nonPag[j])[i]
         ws.cell(j + 2, i + 1)
           .string(`${Object.values(srcRsXLS_nonPag[j])[i]}`)
           .style(style)
+        // .column(i + 1).setWidth(bodyCellStringLength.length)
       }
     }
 
-    // for (let i = 0; i < srcRsXLS_nonPag.length; i++) {
-    //   ws.cell(2, i + 1)
-    //     .string(`${Object.values(srcRsXLS_nonPag[0])[i]}`)
-    //     .style(style)
-    // }
 
     wb.write(`${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs`)
 
