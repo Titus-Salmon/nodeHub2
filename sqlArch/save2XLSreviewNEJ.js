@@ -26,7 +26,11 @@ module.exports = {
     // Add Worksheets to the workbook
     var ws = wb.addWorksheet('Sheet 1')
 
-    var style = wb.createStyle({
+    var bodyStyle = wb.createStyle({
+      alignment: {
+        wrapText: false,
+        horizontal: 'center',
+      },
       font: {
         color: 'black',
         size: 12,
@@ -36,7 +40,7 @@ module.exports = {
 
     var headerStyle = wb.createStyle({
       alignment: {
-        wrapText: true,
+        wrapText: false,
         horizontal: 'center',
       },
       font: {
@@ -65,7 +69,7 @@ module.exports = {
         // let bodyCellStringLength = Object.values(srcRsXLS_nonPag[j])[i]
         ws.cell(j + 2, i + 1)
           .string(`${Object.values(srcRsXLS_nonPag[j])[i]}`)
-          .style(style)
+          .style(bodyStyle)
         // .column(i + 1).setWidth(bodyCellStringLength.length)
       }
     }
