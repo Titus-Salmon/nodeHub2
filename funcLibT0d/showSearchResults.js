@@ -42,6 +42,9 @@ module.exports = {
               reviewObj['csPkgMltpl'] = srcRsObj['csPkgMltpl'] = oupNameSplit[1] //set csPkgMltpl to numerical portion of oupName
             }
 
+          } else {
+            reviewObj['numPkgs'] = srcRsObj['numPkgs'] = 'invalid Unit Type' //set numPkgs to 'invalid Unit Type' if oupNameSplit[0]
+            //doesn't = CS or EA
           }
         }
       }
