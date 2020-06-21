@@ -58,6 +58,11 @@ module.exports = {
     })
 
     for (let i = 0; i < Object.keys(srcRsXLS_nonPag[0]).length; i++) {
+      if (Object.keys(srcRsXLS_nonPag[0]) == 'invPK' || Object.keys(srcRsXLS_nonPag[0]) == 'invCPK' || Object.keys(srcRsXLS_nonPag[0]) == 'edlpUPC' ||
+        Object.keys(srcRsXLS_nonPag[0]) == 'cpltSKU' || Object.keys(srcRsXLS_nonPag[0]) == 'ediSKU' || Object.keys(srcRsXLS_nonPag[0]) == 'stoName' ||
+        Object.keys(srcRsXLS_nonPag[0]) == 'sale_flag') {
+        ws.column(i + 1).hide()
+      }
       // let headerCellStringLength = Object.keys(srcRsXLS_nonPag[0])[i]
       // console.log(`Object.keys(srcRsXLS_nonPag[0])[${i}]==> ${Object.keys(srcRsXLS_nonPag[0])[i]}`)
       ws.cell(1, i + 1) //this targets "header" cells
