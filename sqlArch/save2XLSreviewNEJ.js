@@ -48,7 +48,7 @@ module.exports = {
       fill: { // §18.8.20 fill (Fill)
         type: 'pattern', // Currently only 'pattern' is implemented. Non-implemented option is 'gradient'
         patternType: 'solid', //solid=t0d //§18.18.55 ST_PatternType (Pattern Type)
-        bgColor: '#66FF00', // HTML style hex value. defaults to black
+        bgColor: 'black', // HTML style hex value. defaults to black
         fgColor: 'white' // HTML style hex value. defaults to black.
       },
     })
