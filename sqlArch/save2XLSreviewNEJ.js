@@ -40,12 +40,13 @@ module.exports = {
     let reqdRetail = srcRsXLS_nonPag[0][30]
     let charm = srcRsXLS_nonPag[0][31]
     let appldMrgn = srcRsXLS_nonPag[0][32]
+    // let edlpVar = srcRsXLS_nonPag[0][???]
 
 
 
-    var srcRsXLS_selectiveReordering = []
-    srcRsXLS_selectiveReordering.push(upc, cpltSKU, ediSKU, skuMismatch, name, oupName, numPkgs, csPkgMltpl, ovr, cpltCost, ediCost, ediCostMod,
-      reqdRetail, charm, ediPrice, sibBasePrice, dptName, dptNumber, sibIdealMargin, defaultMarg, appldMrgn, discountToApply, edlpVar, pf1, pf2)
+    // var srcRsXLS_selectiveReordering = []
+    // srcRsXLS_selectiveReordering.push(upc, cpltSKU, ediSKU, skuMismatch, name, oupName, numPkgs, csPkgMltpl, ovr, cpltCost, ediCost, ediCostMod,
+    //   reqdRetail, charm, ediPrice, sibBasePrice, dptName, dptNumber, sibIdealMargin, defaultMarg, appldMrgn, discountToApply, edlpVar, pf1, pf2)
 
     //NOTE++++++++>>> srcRsXLS_nonPag is the array that holds the collection of SearchResults objects {columnNema: cellValue}
 
