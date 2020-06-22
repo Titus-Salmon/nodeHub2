@@ -49,7 +49,7 @@ module.exports = {
       srcRsXLS_selectiveReordering.push(reorderedResObj)
     }
 
-    console.log(`JSON.stringify(srcRsXLS_selectiveReordering[0])==> ${JSON.stringify(srcRsXLS_selectiveReordering)}`)
+    console.log(`JSON.stringify(srcRsXLS_selectiveReordering[0])==> ${JSON.stringify(srcRsXLS_selectiveReordering[0])}`)
 
 
 
