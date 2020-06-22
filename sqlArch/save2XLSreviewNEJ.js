@@ -151,7 +151,7 @@ module.exports = {
         if (Object.keys(srcRsXLS_selectiveReordering[0])[i] == 'sibBasePrice') {
           ws.cell(j + 2, i + 1).style(sibBasePriceHilite)
         }
-        if (Object.values(srcRsXLS_selectiveReordering[0])[i] == 'invalid oupName') {
+        if (Object.values(srcRsXLS_selectiveReordering[j])[i] == 'invalid oupName') {
           ws.cell(j + 2, i + 1).style(invalidOupName)
         }
       }
