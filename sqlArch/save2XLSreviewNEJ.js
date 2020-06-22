@@ -13,6 +13,7 @@ module.exports = {
       let reorderedResObj = {}
       // reorderedResObj['invPK'] = srcRsXLS_nonPag[a]['invPK']
       // reorderedResObj['invCPK'] = srcRsXLS_nonPag[a]['invCPK']
+      // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
       reorderedResObj['upc'] = srcRsXLS_nonPag[a]['upc']
       reorderedResObj['cpltSKU'] = srcRsXLS_nonPag[a]['cpltSKU']
       reorderedResObj['ediSKU'] = srcRsXLS_nonPag[a]['ediSKU']
@@ -55,16 +56,16 @@ module.exports = {
 
     //NOTE++++++++>>> srcRsXLS_nonPag is the array that holds the collection of SearchResults objects {columnNema: cellValue}
 
-    console.log(`typeof srcRsXLS_nonPag[0]==> ${typeof srcRsXLS_nonPag[0]}`)
-    console.log(`typeof Object.keys(srcRsXLS_nonPag[0])==> ${typeof Object.keys(srcRsXLS_nonPag[0])}`)
-    console.log(`Object.keys(srcRsXLS_nonPag[0])==> ${Object.keys(srcRsXLS_nonPag[0])}`)
-    console.log(`JSON.stringify(srcRsXLS_nonPag[0])==> ${JSON.stringify(srcRsXLS_nonPag[0])}`)
-    console.log(`JSON.stringify(srcRsXLS_nonPag[3])==> ${JSON.stringify(srcRsXLS_nonPag[3])}`)
-    console.log(`Object.keys(srcRsXLS_nonPag[0])[0]==> ${Object.keys(srcRsXLS_nonPag[0])[0]}`)
+    // console.log(`typeof srcRsXLS_nonPag[0]==> ${typeof srcRsXLS_nonPag[0]}`)
+    // console.log(`typeof Object.keys(srcRsXLS_nonPag[0])==> ${typeof Object.keys(srcRsXLS_nonPag[0])}`)
+    // console.log(`Object.keys(srcRsXLS_nonPag[0])==> ${Object.keys(srcRsXLS_nonPag[0])}`)
+    // console.log(`JSON.stringify(srcRsXLS_nonPag[0])==> ${JSON.stringify(srcRsXLS_nonPag[0])}`)
+    // console.log(`JSON.stringify(srcRsXLS_nonPag[3])==> ${JSON.stringify(srcRsXLS_nonPag[3])}`)
+    // console.log(`Object.keys(srcRsXLS_nonPag[0])[0]==> ${Object.keys(srcRsXLS_nonPag[0])[0]}`)
 
-    for (let i = 0; i < Object.keys(srcRsXLS_nonPag[0]).length; i++) {
-      console.log(`Object.keys(srcRsXLS_nonPag[0])[${i}]==> ${Object.keys(srcRsXLS_nonPag[0])[i]}`)
-    }
+    // for (let i = 0; i < Object.keys(srcRsXLS_selectiveReordering[0]).length; i++) {
+    //   console.log(`Object.keys(srcRsXLS_selectiveReordering[0])[${i}]==> ${Object.keys(srcRsXLS_selectiveReordering[0])[i]}`)
+    // }
 
     // Create a new instance of a Workbook class
     var wb = new xl.Workbook()
@@ -112,28 +113,23 @@ module.exports = {
       },
     })
 
-    for (let i = 0; i < Object.keys(srcRsXLS_nonPag[0]).length; i++) {
-      if (Object.keys(srcRsXLS_nonPag[0])[i] == 'invPK' || Object.keys(srcRsXLS_nonPag[0])[i] == 'invCPK' || Object.keys(srcRsXLS_nonPag[0])[i] == 'edlpUPC' ||
-        Object.keys(srcRsXLS_nonPag[0])[i] == 'cpltSKU' || Object.keys(srcRsXLS_nonPag[0])[i] == 'ediSKU' || Object.keys(srcRsXLS_nonPag[0])[i] == 'stoName' ||
-        Object.keys(srcRsXLS_nonPag[0])[i] == 'sale_flag') {
-        ws.column(i + 1).hide()
-      }
-      // let headerCellStringLength = Object.keys(srcRsXLS_nonPag[0])[i]
-      // console.log(`Object.keys(srcRsXLS_nonPag[0])[${i}]==> ${Object.keys(srcRsXLS_nonPag[0])[i]}`)
+    for (let i = 0; i < Object.keys(srcRsXLS_selectiveReordering[0]).length; i++) {
+      // if (Object.keys(srcRsXLS_nonPag[0])[i] == 'invPK' || Object.keys(srcRsXLS_nonPag[0])[i] == 'invCPK' || Object.keys(srcRsXLS_nonPag[0])[i] == 'edlpUPC' ||
+      //   Object.keys(srcRsXLS_nonPag[0])[i] == 'cpltSKU' || Object.keys(srcRsXLS_nonPag[0])[i] == 'ediSKU' || Object.keys(srcRsXLS_nonPag[0])[i] == 'stoName' ||
+      //   Object.keys(srcRsXLS_nonPag[0])[i] == 'sale_flag') {
+      //   ws.column(i + 1).hide()
+      // }
       ws.cell(1, i + 1) //this targets "header" cells
-        .string(`${Object.keys(srcRsXLS_nonPag[0])[i]}`)
+        .string(`${Object.keys(srcRsXLS_selectiveReordering[0])[i]}`)
         .style(headerStyle)
-      // .column(i + 1).setWidth(headerCellStringLength.length)
 
-      for (let j = 0; j < srcRsXLS_nonPag.length; j++) {
-        if (Object.keys(srcRsXLS_nonPag[0])[i] == 'ediCost') {
+      for (let j = 0; j < srcRsXLS_selectiveReordering.length; j++) {
+        if (Object.keys(srcRsXLS_selectiveReordering[0])[i] == 'ediCost') {
           ws.column(i + 1).style(ediCostHilite)
         }
-        // let bodyCellStringLength = Object.values(srcRsXLS_nonPag[j])[i]
         ws.cell(j + 2, i + 1)
-          .string(`${Object.values(srcRsXLS_nonPag[j])[i]}`)
+          .string(`${Object.values(srcRsXLS_selectiveReordering[j])[i]}`)
           .style(bodyStyle)
-        // .column(i + 1).setWidth(bodyCellStringLength.length)
       }
     }
 
