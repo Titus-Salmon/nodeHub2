@@ -109,7 +109,7 @@ module.exports = {
         type: 'pattern', // Currently only 'pattern' is implemented. Non-implemented option is 'gradient'
         patternType: 'solid', //solid=t0d //§18.18.55 ST_PatternType (Pattern Type)
         bgColor: 'black', // HTML style hex value. defaults to black
-        fgColor: 'sea green' // HTML style hex value. defaults to black.
+        fgColor: 'light green' // HTML style hex value. defaults to black.
       },
     })
 
@@ -118,7 +118,7 @@ module.exports = {
         type: 'pattern', // Currently only 'pattern' is implemented. Non-implemented option is 'gradient'
         patternType: 'solid', //solid=t0d //§18.18.55 ST_PatternType (Pattern Type)
         bgColor: 'black', // HTML style hex value. defaults to black
-        fgColor: 'light blue' // HTML style hex value. defaults to black.
+        fgColor: 'Aqua, Accent 5, Lighter 40%' // HTML style hex value. defaults to black.
       },
     })
 
