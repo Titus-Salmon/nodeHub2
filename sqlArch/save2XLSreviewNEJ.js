@@ -104,12 +104,30 @@ module.exports = {
       },
     })
 
-    var ediCostHilite = wb.createStyle({
+    var charmHilite = wb.createStyle({
       fill: { // §18.8.20 fill (Fill)
         type: 'pattern', // Currently only 'pattern' is implemented. Non-implemented option is 'gradient'
         patternType: 'solid', //solid=t0d //§18.18.55 ST_PatternType (Pattern Type)
         bgColor: 'black', // HTML style hex value. defaults to black
-        fgColor: 'light yellow' // HTML style hex value. defaults to black.
+        fgColor: 'sea green' // HTML style hex value. defaults to black.
+      },
+    })
+
+    var ediPriceHilite = wb.createStyle({
+      fill: { // §18.8.20 fill (Fill)
+        type: 'pattern', // Currently only 'pattern' is implemented. Non-implemented option is 'gradient'
+        patternType: 'solid', //solid=t0d //§18.18.55 ST_PatternType (Pattern Type)
+        bgColor: 'black', // HTML style hex value. defaults to black
+        fgColor: 'light blue' // HTML style hex value. defaults to black.
+      },
+    })
+
+    var sibBasePriceHilite = wb.createStyle({
+      fill: { // §18.8.20 fill (Fill)
+        type: 'pattern', // Currently only 'pattern' is implemented. Non-implemented option is 'gradient'
+        patternType: 'solid', //solid=t0d //§18.18.55 ST_PatternType (Pattern Type)
+        bgColor: 'black', // HTML style hex value. defaults to black
+        fgColor: 'yellow' // HTML style hex value. defaults to black.
       },
     })
 
@@ -127,8 +145,14 @@ module.exports = {
         ws.cell(j + 2, i + 1)
           .string(`${Object.values(srcRsXLS_selectiveReordering[j])[i]}`)
           .style(bodyStyle)
-        if (Object.keys(srcRsXLS_selectiveReordering[0])[i] == 'ediCost') {
-          ws.cell(j + 2, i + 1).style(ediCostHilite)
+        if (Object.keys(srcRsXLS_selectiveReordering[0])[i] == 'charm') {
+          ws.cell(j + 2, i + 1).style(charmHilite)
+        }
+        if (Object.keys(srcRsXLS_selectiveReordering[0])[i] == 'ediPrice') {
+          ws.cell(j + 2, i + 1).style(ediPriceHilite)
+        }
+        if (Object.keys(srcRsXLS_selectiveReordering[0])[i] == 'sibBasePrice') {
+          ws.cell(j + 2, i + 1).style(sibBasePriceHilite)
         }
       }
     }
