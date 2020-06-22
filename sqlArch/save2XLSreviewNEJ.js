@@ -7,46 +7,51 @@ module.exports = {
 
   save2XLSreviewNEJ: router.post('/save2XLSreviewNEJ', (req, res, next) => {
 
-    let invPK = srcRsXLS_nonPag[0][0]
-    let invCPK = srcRsXLS_nonPag[0][1]
-    let upc = srcRsXLS_nonPag[0][2]
-    let edlpUPC = srcRsXLS_nonPag[0][3]
-    let cpltCost = srcRsXLS_nonPag[0][4]
-    let cpltSKU = srcRsXLS_nonPag[0][5]
-    let ediSKU = srcRsXLS_nonPag[0][6]
-    let imwSKU = srcRsXLS_nonPag[0][7]
-    let skuMismatch = srcRsXLS_nonPag[0][8]
-    let oupName = srcRsXLS_nonPag[0][9]
-    let stoNumber = srcRsXLS_nonPag[0][10]
-    let stoName = srcRsXLS_nonPag[0][11]
-    let pf1 = srcRsXLS_nonPag[0][12]
-    let pf2 = srcRsXLS_nonPag[0][13]
-    let pf6 = srcRsXLS_nonPag[0][14]
-    let ovr = srcRsXLS_nonPag[0][15]
-    let name = srcRsXLS_nonPag[0][16]
-    let ediCost = srcRsXLS_nonPag[0][17]
-    let ediCostMod = srcRsXLS_nonPag[0][18]
-    let ediPrice = srcRsXLS_nonPag[0][19]
-    let sibBasePrice = srcRsXLS_nonPag[0][20]
-    let dptName = srcRsXLS_nonPag[0][21]
-    let dptNumber = srcRsXLS_nonPag[0][22]
-    let defaultMarg = srcRsXLS_nonPag[0][23]
-    let sibIdealMargin = srcRsXLS_nonPag[0][24]
-    let sale_flag = srcRsXLS_nonPag[0][25]
-    let discountToApply = srcRsXLS_nonPag[0][26]
-    let lastCost = srcRsXLS_nonPag[0][27]
-    let numPkgs = srcRsXLS_nonPag[0][28]
-    let csPkgMltpl = srcRsXLS_nonPag[0][29]
-    let reqdRetail = srcRsXLS_nonPag[0][30]
-    let charm = srcRsXLS_nonPag[0][31]
-    let appldMrgn = srcRsXLS_nonPag[0][32]
-    // let edlpVar = srcRsXLS_nonPag[0][???]
+    var srcRsXLS_selectiveReordering = []
+
+    for (let a = 0; a < srcRsXLS_nonPag.length; a++) {
+      let invPK = srcRsXLS_nonPag[i][0]
+      let invCPK = srcRsXLS_nonPag[i][1]
+      let upc = srcRsXLS_nonPag[i][2]
+      let edlpUPC = srcRsXLS_nonPag[i][3]
+      let edlpVar = srcRsXLS_nonPag[i][4]
+      let cpltCost = srcRsXLS_nonPag[i][5]
+      let cpltSKU = srcRsXLS_nonPag[i][6]
+      let ediSKU = srcRsXLS_nonPag[i][7]
+      let imwSKU = srcRsXLS_nonPag[i][8]
+      let skuMismatch = srcRsXLS_nonPag[i][9]
+      let oupName = srcRsXLS_nonPag[i][10]
+      let stoNumber = srcRsXLS_nonPag[i][11]
+      let stoName = srcRsXLS_nonPag[i][12]
+      let pf1 = srcRsXLS_nonPag[i][13]
+      let pf2 = srcRsXLS_nonPag[i][14]
+      let pf6 = srcRsXLS_nonPag[i][15]
+      let ovr = srcRsXLS_nonPag[i][16]
+      let name = srcRsXLS_nonPag[i][17]
+      let ediCost = srcRsXLS_nonPag[i][18]
+      let ediCostMod = srcRsXLS_nonPag[i][19]
+      let ediPrice = srcRsXLS_nonPag[i][20]
+      let sibBasePrice = srcRsXLS_nonPag[i][21]
+      let dptName = srcRsXLS_nonPag[i][22]
+      let dptNumber = srcRsXLS_nonPag[i][23]
+      let defaultMarg = srcRsXLS_nonPag[i][24]
+      let sibIdealMargin = srcRsXLS_nonPag[i][25]
+      let sale_flag = srcRsXLS_nonPag[i][26]
+      let discountToApply = srcRsXLS_nonPag[i][27]
+      let lastCost = srcRsXLS_nonPag[i][28]
+      let numPkgs = srcRsXLS_nonPag[i][29]
+      let csPkgMltpl = srcRsXLS_nonPag[i][30]
+      let reqdRetail = srcRsXLS_nonPag[i][31]
+      let charm = srcRsXLS_nonPag[i][32]
+      let appldMrgn = srcRsXLS_nonPag[i][33]
+
+      srcRsXLS_selectiveReordering.push(upc, cpltSKU, ediSKU, skuMismatch, name, oupName, numPkgs, csPkgMltpl, ovr, cpltCost, ediCost, ediCostMod,
+        reqdRetail, charm, ediPrice, sibBasePrice, dptName, dptNumber, sibIdealMargin, defaultMarg, appldMrgn, discountToApply, edlpVar, pf1, pf2)
+    }
+
+    console.log(`srcRsXLS_selectiveReordering==> ${srcRsXLS_selectiveReordering}`)
 
 
-
-    // var srcRsXLS_selectiveReordering = []
-    // srcRsXLS_selectiveReordering.push(upc, cpltSKU, ediSKU, skuMismatch, name, oupName, numPkgs, csPkgMltpl, ovr, cpltCost, ediCost, ediCostMod,
-    //   reqdRetail, charm, ediPrice, sibBasePrice, dptName, dptNumber, sibIdealMargin, defaultMarg, appldMrgn, discountToApply, edlpVar, pf1, pf2)
 
     //NOTE++++++++>>> srcRsXLS_nonPag is the array that holds the collection of SearchResults objects {columnNema: cellValue}
 
