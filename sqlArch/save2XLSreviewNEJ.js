@@ -124,12 +124,12 @@ module.exports = {
         .style(headerStyle)
 
       for (let j = 0; j < srcRsXLS_selectiveReordering.length; j++) {
-        if (Object.keys(srcRsXLS_selectiveReordering[0])[i] == 'ediCost') {
-          ws.column(i + 1).style(ediCostHilite)
-        }
         ws.cell(j + 2, i + 1)
           .string(`${Object.values(srcRsXLS_selectiveReordering[j])[i]}`)
           .style(bodyStyle)
+        if (Object.keys(srcRsXLS_selectiveReordering[0])[i] == 'ediCost') {
+          ws.cell(j + 2, i + 1).style(ediCostHilite)
+        }
       }
     }
 
