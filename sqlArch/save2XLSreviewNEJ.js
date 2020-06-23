@@ -161,9 +161,9 @@ module.exports = {
     wb.write(`${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs`)
 
 
-    //   res.render('vw-MySqlTableHub', {
-    //     title: `<<${process.cwd()}/public/csv/${req.body['csvPost']} SAVED>>`
-    //   });
+    res.render('vw-MySqlTableHub', {
+      title: `<<${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs SAVED>>`
+    });
 
   })
 }
