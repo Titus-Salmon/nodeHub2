@@ -33,7 +33,8 @@ module.exports = {
     }).on('end', function () {
 
       if (ongDisco == undefined) {
-        console.log(`err==> ${err}`)
+        console.log(`rainbowCatQuery==> ${rainbowCatQuery}`)
+        console.log(`ongDisco==> ${ongDisco}`)
         res.render('vw-rainbowCatTableHub', {
           title: `THERE WAS LIKELY AN ECONNRESET ERROR TRY EXTRACTING DATA AGAIN`
         })
