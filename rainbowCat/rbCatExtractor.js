@@ -17,7 +17,7 @@ module.exports = {
     var ongDisco
 
     function ongDiscoExtractor(rows) {
-      if (rows) {
+      if (rows[0]) {
         ongDisco = rows[0]['ongDisco'] / 100
       }
     }
