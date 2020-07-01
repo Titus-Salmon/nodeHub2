@@ -30,6 +30,11 @@ module.exports = {
                 } else {
                     catapultResObj['invScanCode'] = result[i]['INV_ScanCode']
                 }
+                if (typeof result[i]['asc_scancode'] == 'string') {
+                    catapultResObj['ascScancode'] = result[i]['asc_scancode'].trim()
+                } else {
+                    catapultResObj['ascScancode'] = result[i]['asc_scancode']
+                }
                 if (typeof result[i]['ORD_SupplierStockNumber'] == 'string') {
                     catapultResObj['ordSupplierStockNumber'] = result[i]['ORD_SupplierStockNumber'].trim()
                 } else {
