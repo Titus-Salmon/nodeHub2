@@ -102,7 +102,7 @@ module.exports = {
                 if (typeof result[i]['inv_memo'] == 'string') {
                     catapultResObj['invMemo'] = result[i]['inv_memo'].trim()
                 } else {
-                    catapultResObj['pi1Description'] = result[i]['PI1_Description']
+                    catapultResObj['invMemo'] = result[i]['inv_memo']
                 }
                 if (typeof result[i]['PI1_Description'] == 'string') {
                     catapultResObj['pi1Description'] = result[i]['PI1_Description'].trim()
