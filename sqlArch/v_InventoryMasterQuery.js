@@ -152,6 +152,7 @@ module.exports = {
                 }
                 console.log(`result.length~~~> ${result.length}`)
                 // console.log('JSON.stringify(result)==>', JSON.stringify(result))
+                console.log(`Object.keys(result[0])==> ${Object.keys(result[0])}`)
                 console.log(`JSON.stringify(result[0])==> ${JSON.stringify(result[0])}`)
                 console.log(`JSON.stringify(result['columns'][2])==> ${JSON.stringify(result['columns'][2])}`)
                 showcatapultResults(result)
