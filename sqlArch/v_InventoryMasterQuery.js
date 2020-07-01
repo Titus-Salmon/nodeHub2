@@ -153,6 +153,8 @@ module.exports = {
                 console.log(`result.length~~~> ${result.length}`)
                 // console.log('JSON.stringify(result)==>', JSON.stringify(result))
                 console.log(`typeof Object.keys(result[0])==> ${typeof Object.keys(result[0])}`)
+                let queriedColumns_0 = Object.keys(result[0])
+                console.log(`typeof queriedColumns_0==> ${typeof queriedColumns_0}`)
                 console.log(`typeof JSON.stringify(Object.keys(result[0]))==> ${typeof JSON.stringify(Object.keys(result[0]))}`)
                 console.log(`Object.keys(result[0])==> ${Object.keys(result[0])}`)
                 console.log(`JSON.stringify(result[0])==> ${JSON.stringify(result[0])}`)
