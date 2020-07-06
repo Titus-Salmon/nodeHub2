@@ -25,9 +25,10 @@ module.exports = {
 
     let discoToApplyCarryOver = loadTablePostBody['discountToApplyPost']
 
-    // let sqlQuery = `SELECT * FROM ${tableNameToLoad}; SHOW COLUMNS FROM ${tableNameToLoad};`
-    let sqlQuery = `SHOW COLUMNS FROM ${tableNameToLoad};`
-    connection.query(sqlQuery, (error, response, rows) => {
+    connection.query(`
+    SHOW COLUMNS FROM ${tableNameToLoad};
+    SELECT * FROM rainbowcat;
+    `, (error, rows, fields) => {
       if (error) {
         console.log('error=====>>', error)
         loadErrors.push(error.code)
@@ -41,14 +42,13 @@ module.exports = {
           },
         })
       } else {
-        console.log(`the following querie(s) have been successfully performed from loadTable_MySqlHub.js:
-        (1) SHOW COLUMNS FROM ${tableNameToLoad};
-        This gives a response.length of ==> ${response.length}
-        >>Here is that entire response:
-        JSON.stringify(response)==> ${JSON.stringify(response)}`)
+        let loadedTableRows = rows[0]
+        let rainbowCatRows = rows[1]
+        console.log(`JSON.stringify(loadedTableRows)==> ${JSON.stringify(loadedTableRows)}`)
+        console.log(`JSON.stringify(rainbowCatRows[0])==> ${JSON.stringify(rainbowCatRows[0])}`)
 
-        for (let i = 0; i < response.length; i++) {
-          FieldArray.push(response[i]['Field'])
+        for (let i = 0; i < loadedTableRows.length; i++) {
+          FieldArray.push(loadedTableRows[i]['Field'])
         }
         res.render('vw-MySqlTableHub', {
           title: `vw-MySqlTableHub with table headers for <<${tableNameToLoad}>> loaded`,
