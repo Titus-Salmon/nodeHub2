@@ -55,6 +55,7 @@ module.exports = {
         console.log(`JSON.stringify(loadedTableRows)==> ${JSON.stringify(loadedTableRows)}`)
         console.log(`JSON.stringify(rainbowCatRows[0])==> ${JSON.stringify(rainbowCatRows[0])}`)
         let discoToApplyCarryOver = rainbowCatRows[0]['ongDisco']
+        console.log(`discoToApplyCarryOver==> ${discoToApplyCarryOver}`)
 
         for (let i = 0; i < loadedTableRows.length; i++) {
           FieldArray.push(loadedTableRows[i]['Field'])
