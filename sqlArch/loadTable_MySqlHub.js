@@ -68,8 +68,8 @@ module.exports = {
             tableNameToLoad: tableNameToLoad,
             tableLoadError: loadErrors,
             tableFields: FieldArray,
-            ongDisco_WS: discoToApplyCarryOver_WS,
-            ongDisco_Rtl: discoToApplyCarryOver_Rtl
+            ongDisco_WS: discoToApplyCarryOver_WS / 100,
+            ongDisco_Rtl: discoToApplyCarryOver_Rtl / 100
           },
           // wsDiff: wsDiffResults
         });
