@@ -84,7 +84,8 @@ module.exports = {
           //BUT SOMETIMES WE WANT TO APPLY DISCOUNT AT BOTH WS AND RTL LEVELS (THIS IS WHEN WE PASS THE SAVINGS ON TO CUSTOMER)
           //IN SUCH CASES, WE UTILIZE BOTH wsDiscoVarSetter() at the WS level, and rtlDiscoVarSetter() at the retail level
           rtlDiscoVar = frmInptsObj.discountToApply_Rtl
-          if (rtlDiscoVar = null) {
+          console.log(`showSearchResults.js says: rtlDiscoVar==> ${rtlDiscoVar}`)
+          if (rtlDiscoVar == null) {
             rtlDiscoVar = 0
           }
         } else {
@@ -276,7 +277,7 @@ module.exports = {
         lowerCutoffCharm5, lowerCutoffCharm6, lowerCutoffCharm7, upperCharmRqdRtl, defaultCharm1, defaultCharm2, defaultCharm3, defaultCharm4) {
 
         if (frmInptsObj.typeOfIMW.toLowerCase() == 'retail') {
-          //apply DEPARTMENT margin to calculate charm pricing
+
           rtlDiscoVarSetter()
 
           if (srcRsObj['ediCost'] > 0) {
