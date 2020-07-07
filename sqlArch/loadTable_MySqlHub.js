@@ -26,6 +26,7 @@ module.exports = {
     let regex1 = /(\d+)/g
     let vendorName = tableNameToLoad.replace('nej', '').replace(regex1, '')
     let ediVendorName = `EDI-${vendorName.toUpperCase()}`
+    console.log(`ediVendorName==> ${ediVendorName}`)
 
     let discoToApplyCarryOver = loadTablePostBody['discountToApplyPost']
 
