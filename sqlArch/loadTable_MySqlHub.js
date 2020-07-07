@@ -31,7 +31,7 @@ module.exports = {
     let ediVendorName = `EDI-${vendorName.toUpperCase()}`
     console.log(`ediVendorName==> ${ediVendorName}`)
 
-    let discoToApplyCarryOver = loadTablePostBody['discountToApplyPost']
+    // let discoToApplyCarryOver = loadTablePostBody['discountToApplyPost']
 
     connection.query(`
     SHOW COLUMNS FROM ${tableNameToLoad};
@@ -54,6 +54,7 @@ module.exports = {
         let rainbowCatRows = rows[1]
         console.log(`JSON.stringify(loadedTableRows)==> ${JSON.stringify(loadedTableRows)}`)
         console.log(`JSON.stringify(rainbowCatRows[0])==> ${JSON.stringify(rainbowCatRows[0])}`)
+        let discoToApplyCarryOver = rainbowCatRows[0]['ongDisco']
 
         for (let i = 0; i < loadedTableRows.length; i++) {
           FieldArray.push(loadedTableRows[i]['Field'])
