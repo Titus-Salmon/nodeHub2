@@ -24,7 +24,10 @@ module.exports = {
 
     //here we are doing some js magic to extract the "catalog" name from the nej table name we're loading (nejTableNameYYYMMDD):
     let regex1 = /(\d+)/g
-    let vendorName = tableNameToLoad.replace('nej', '').replace(regex1, '')
+    let vendorNameSplit1 = tableNameToLoad.split('nej')
+    let vendorNameSplit2 = vendorNameSplit1[1]
+    let vendorNameSplit3 = vendorNameSplit2.split(regex1)
+    let vendorName = vendorNameSplit3[0]
     let ediVendorName = `EDI-${vendorName.toUpperCase()}`
     console.log(`ediVendorName==> ${ediVendorName}`)
 
