@@ -846,7 +846,7 @@ module.exports = {
 
     }
     console.log('showSearchResults says: searchResults.length from showSearchResults()==->', searchResults.length)
-    // console.log('showSearchResults says: searchResults[0] from showSearchResults()==>', searchResults[0])
+    console.log('showSearchResults says: searchResults[0] from showSearchResults()==>', searchResults[0])
     // console.log('showSearchResults says: searchResultsForCSVreview[0] from showSearchResults()==>', searchResultsForCSVreview[0])
   }
 }
