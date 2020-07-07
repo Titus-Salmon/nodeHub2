@@ -15,8 +15,7 @@ html
 				label.input-label-1(for='ldTblName') Table Name to Load (loads column names) AND (loads ongDisco data from rainbowcat)
 				input#ldTblName.input-unit-1(type='text', placeholder='enter data1', name='ldTblNamePost', value='')
 				label.input-label-1(for='discountToApplyCarryOver') % Discount To Apply To Entire Catalog (CarryOver)
-				//- input#discountToApplyCarryOver.input-unit-1(type='number', placeholder='0', step='.01', name='discountToApplyPost', value=ongDisco)
-				input#discountToApplyCarryOver.input-unit-1(name='discountToApplyPost', value=ongDisco)
+				input#discountToApplyCarryOver.input-unit-1(type='number', placeholder='0', step='.01', name='discountToApplyPost', value=loadedTable.ongDisco)
 
 				button#ldTblBtn(type='submit', form='loadTable') Load Table
 
