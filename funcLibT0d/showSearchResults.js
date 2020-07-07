@@ -69,6 +69,7 @@ module.exports = {
       var wsDiscoVar
       var rtlDiscoVar
 
+      //v//Wholesale applied vendor discount (math is dependent on these variables)****************************************************
       function wsDiscoVarSetter() {
         if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
           //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
@@ -77,7 +78,9 @@ module.exports = {
           wsDiscoVar = frmInptsObj.edlpDisco
         }
       }
+      //^//Wholesale applied vendor discount (math is dependent on these variables)****************************************************
 
+      //v//Retail applied vendor discount (math is dependent on these variables)****************************************************
       function rtlDiscoVarSetter() {
         if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
           //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
@@ -92,7 +95,10 @@ module.exports = {
           rtlDiscoVar = frmInptsObj.edlpDisco
         }
       }
+      //v//Retail applied vendor discount (math is dependent on these variables)****************************************************
 
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //v//Wholesale applied vendor discount (math is dependent on these variables)****************************************************
       function divideCostByOupNameSplit_1() {
         reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]) * 100) / 100 //divide ediCost by oupName parsed value (index 1 = numerical value)
         //AND deduct any vendor discount from ediCost
@@ -114,6 +120,8 @@ module.exports = {
         reviewObj['lastCost'] = srcRsObj['lastCost'] = Math.round(((srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1) * 100) / 100 //change lastCost to ediCostMod for retail IMWs
         //AND deduct any vendor discount from ediCost
       }
+      //^//Wholesale applied vendor discount (math is dependent on these variables)****************************************************
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       function divideCostToUnitRetail() {
         if (oupNameSplit[1] !== undefined) { //if there is something after 'EA' or 'CS' (i.e. #n)
@@ -228,7 +236,9 @@ module.exports = {
       }
 
       function testCostDivideByOupNameSplit_1() {
+        //v//Wholesale applied vendor discount (math is dependent on these variables)
         wsDiscoVarSetter()
+        //^//Wholesale applied vendor discount (math is dependent on these variables)
         // console.log(`wsDiscoVar==> ${wsDiscoVar}`)
         let ediTestCost1 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameSplit[1]}` //apply vendor WS discount, if applicable
         let ediTstCst1Tr = ediTestCost1.trim().replace(/"/g, '')
@@ -243,7 +253,9 @@ module.exports = {
       }
 
       function testCostDivideBy_1() {
+        //v//Wholesale applied vendor discount (math is dependent on these variables)
         wsDiscoVarSetter()
+        //^//Wholesale applied vendor discount (math is dependent on these variables)
         let ediTestCost2 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / 1}` //apply vendor WS discount, if applicable
         let ediTstCst2Tr = ediTestCost2.trim().replace(/"/g, '')
         let ediTstCst2TrRnd = Math.round(ediTstCst2Tr * 100) / 100 //converts the result to a number with just 2 decimal places
@@ -256,7 +268,9 @@ module.exports = {
       }
 
       function testCostDivideByOupNameVar() {
+        //v//Wholesale applied vendor discount (math is dependent on these variables)
         wsDiscoVarSetter()
+        //^//Wholesale applied vendor discount (math is dependent on these variables)
         let ediTestCost3 = `${(srcRsObj['ediCost'] - srcRsObj['ediCost'] * wsDiscoVar) / oupNameVar}` //apply vendor WS discount, if applicable
         let ediTestCost3Tr = ediTestCost3.trim().replace(/"/g, '')
         let ediTestCost3TrRnd = Math.round(ediTestCost3Tr * 100) / 100 //converts the result to a number with just 2 decimal places
@@ -269,7 +283,9 @@ module.exports = {
 
       function divideCostToUOS_WS_IMW() {
         if (frmInptsObj.typeOfIMW.toLowerCase() == 'wholesale') {
+          //v//Wholesale applied vendor discount (math is dependent on these variables)
           wsDiscoVarSetter()
+          //^//Wholesale applied vendor discount (math is dependent on these variables)
           divideCostOrNotWholesale()
         }
       }
@@ -278,14 +294,18 @@ module.exports = {
         lowerCutoffCharm5, lowerCutoffCharm6, lowerCutoffCharm7, upperCharmRqdRtl, defaultCharm1, defaultCharm2, defaultCharm3, defaultCharm4) {
 
         if (frmInptsObj.typeOfIMW.toLowerCase() == 'retail') {
-
+          //v//Retail applied vendor discount (math is dependent on these variables)
           rtlDiscoVarSetter()
+          //^//Retail applied vendor discount (math is dependent on these variables)
 
           if (srcRsObj['ediCost'] > 0) {
 
             divideCostToUOS_Rtl_IMW()
 
+            //v//Retail applied vendor discount (math is dependent on these variables)
             srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * rtlDiscoVar) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+            //^//Retail applied vendor discount (math is dependent on these variables)
+
             console.log(`calcCharm() from showSearchResults.js says: srcRsObj['ediCostMod']==> ${srcRsObj['ediCostMod']}`)
             console.log(`calcCharm() from showSearchResults.js says: rtlDiscoVar==> ${rtlDiscoVar}`)
             console.log(`calcCharm() from showSearchResults.js says: srcRsObj['ediCostMod'] * rtlDiscoVar==> ${srcRsObj['ediCostMod'] * rtlDiscoVar}`)
@@ -574,11 +594,13 @@ module.exports = {
         reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = nejRowsToggle[i][genericHeaderObj.ediCostHeader] //NEED TO CHECK
         //^//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
 
+        //v//Wholesale versus Retail applied vendor discount (just for retail reviews; no math is dependent on these variables)
         srcRsObj['discountToApply_WS'] = 0
         reviewObj['discountToApply_WS'] = 0 //INCLUDE in save2CSVreview export data
 
         srcRsObj['discountToApply_Rtl'] = frmInptsObj.discountToApply_Rtl * 100
         reviewObj['discountToApply_Rtl'] = frmInptsObj.discountToApply_Rtl * 100 //INCLUDE in save2CSVreview export data
+        //^//Wholesale versus Retail applied vendor discount (just for retail reviews; no math is dependent on these variables)
 
       }
 
@@ -624,11 +646,15 @@ module.exports = {
 
       if (frmInptsObj.typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
         //because lower down, we will be filtering for retail imw after running calcCharm()
+
+        //v//Wholesale versus Retail applied vendor discount (just for retail reviews; no math is dependent on these variables)
         srcRsObj['discountToApply_WS'] = frmInptsObj.discountToApply_WS * 100
         reviewObj['discountToApply_WS'] = frmInptsObj.discountToApply_WS * 100 //INCLUDE in save2CSVreview export data
 
         srcRsObj['discountToApply_Rtl'] = 0
         reviewObj['discountToApply_Rtl'] = 0 //INCLUDE in save2CSVreview export data
+        //^//Wholesale versus Retail applied vendor discount (just for retail reviews; no math is dependent on these variables)
+
         divideCostToUOS_WS_IMW()
         skuMismatchFlagOptionHandler()
         if (srcRsObj['ediCostMod'] !== undefined) { //only push items that have ediCostMod value (which means that exist cplt cost
