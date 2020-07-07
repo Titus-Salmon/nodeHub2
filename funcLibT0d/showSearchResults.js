@@ -573,6 +573,13 @@ module.exports = {
         //v//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
         reviewObj['ediCostMod'] = srcRsObj['ediCostMod'] = nejRowsToggle[i][genericHeaderObj.ediCostHeader] //NEED TO CHECK
         //^//this should get initially set as the value from edi catalog & then changed according to division to UOS in calcCharm()
+
+        srcRsObj['discountToApply_WS'] = 0
+        reviewObj['discountToApply_WS'] = 0 //INCLUDE in save2CSVreview export data
+
+        srcRsObj['discountToApply_Rtl'] = frmInptsObj.discountToApply_Rtl * 100
+        reviewObj['discountToApply_Rtl'] = frmInptsObj.discountToApply_Rtl * 100 //INCLUDE in save2CSVreview export data
+
       }
 
 
@@ -609,14 +616,19 @@ module.exports = {
       srcRsObj['sale_flag'] = nejRowsToggle[i][genericHeaderObj.saleFlagHeader]
       reviewObj['sale_flag'] = nejRowsToggle[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data
 
-      srcRsObj['discountToApply_WS'] = frmInptsObj.discountToApply_WS * 100
-      reviewObj['discountToApply_WS'] = frmInptsObj.discountToApply_WS * 100 //INCLUDE in save2CSVreview export data
+      // srcRsObj['discountToApply_WS'] = frmInptsObj.discountToApply_WS * 100
+      // reviewObj['discountToApply_WS'] = frmInptsObj.discountToApply_WS * 100 //INCLUDE in save2CSVreview export data
 
-      srcRsObj['discountToApply_Rtl'] = frmInptsObj.discountToApply_Rtl * 100
-      reviewObj['discountToApply_Rtl'] = frmInptsObj.discountToApply_Rtl * 100 //INCLUDE in save2CSVreview export data
+      // srcRsObj['discountToApply_Rtl'] = frmInptsObj.discountToApply_Rtl * 100
+      // reviewObj['discountToApply_Rtl'] = frmInptsObj.discountToApply_Rtl * 100 //INCLUDE in save2CSVreview export data
 
       if (frmInptsObj.typeOfIMW.toLowerCase() == 'wholesale') { //start dept filtering handling with wholesale imw,
         //because lower down, we will be filtering for retail imw after running calcCharm()
+        srcRsObj['discountToApply_WS'] = frmInptsObj.discountToApply_WS * 100
+        reviewObj['discountToApply_WS'] = frmInptsObj.discountToApply_WS * 100 //INCLUDE in save2CSVreview export data
+
+        srcRsObj['discountToApply_Rtl'] = 0
+        reviewObj['discountToApply_Rtl'] = 0 //INCLUDE in save2CSVreview export data
         divideCostToUOS_WS_IMW()
         skuMismatchFlagOptionHandler()
         if (srcRsObj['ediCostMod'] !== undefined) { //only push items that have ediCostMod value (which means that exist cplt cost
