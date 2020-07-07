@@ -54,9 +54,9 @@ module.exports = {
         let rainbowCatRows = rows[1]
         console.log(`JSON.stringify(loadedTableRows)==> ${JSON.stringify(loadedTableRows)}`)
         console.log(`JSON.stringify(rainbowCatRows[0])==> ${JSON.stringify(rainbowCatRows[0])}`)
-        let discoToApplyCarryOver_WS = rainbowCatRows[0]['ongDiscoWS']
+        let discoToApplyCarryOver_WS = rainbowCatRows[0]['ongDscWS']
         console.log(`discoToApplyCarryOver_WS==> ${discoToApplyCarryOver_WS}`)
-        let discoToApplyCarryOver_Rtl = rainbowCatRows[0]['ongDiscoRtl']
+        let discoToApplyCarryOver_Rtl = rainbowCatRows[0]['ongDscRtl']
         console.log(`discoToApplyCarryOver_Rtl==> ${discoToApplyCarryOver_Rtl}`)
 
         for (let i = 0; i < loadedTableRows.length; i++) {
