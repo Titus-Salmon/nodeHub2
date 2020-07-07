@@ -212,42 +212,43 @@ module.exports = {
     formInputsObj.formInput51 = Object.values(postBodyData)[51] = formInputsObj.defaultCharm4Andrea = postBodyData['defaultCharm4AndreaPost'] //defaultCharm4AndreaPost
     formInputsObj.formInput52 = Object.values(postBodyData)[52] = formInputsObj.defaultCharm4Brad = postBodyData['defaultCharm4BradPost'] //defaultCharm4BradPost
 
-    formInputsObj.formInput53 = Object.values(postBodyData)[53] = formInputsObj.discountToApply = postBodyData['discountToApplyPost'] //discountToApplyPost
+    formInputsObj.formInput53 = Object.values(postBodyData)[53] = formInputsObj.discountToApply_WS = postBodyData['discountToApplyPost_WS'] //discountToApplyPost_WS
+    formInputsObj.formInput54 = Object.values(postBodyData)[54] = formInputsObj.discountToApply_Rtl = postBodyData['discountToApplyPost_Rtl'] //discountToApplyPost_Rtl
     console.log(`typeof formInputsObj.discountToApply==> ${typeof formInputsObj.discountToApply}`)
     console.log(`formInputsObj.discountToApply==> ${formInputsObj.discountToApply}`)
     console.log(`formInputsObj.discountToApply * 5==> ${formInputsObj.discountToApply * 5}`)
-    formInputsObj.formInput54 = Object.values(postBodyData)[54] = formInputsObj.edlpDisco = postBodyData['edlpDiscoPost'] //edlpDiscoPost
+    formInputsObj.formInput55 = Object.values(postBodyData)[55] = formInputsObj.edlpDisco = postBodyData['edlpDiscoPost'] //edlpDiscoPost
 
     // formInputsObj.formInput53 = Object.values(postBodyData)[53] //wsDiffResultsPost
 
     // formInputsObj.formInput55 = Object.values(postBodyData)[55] = formInputsObj.typeOfIMW //typeOfIMWPost
-    formInputsObj.typeOfIMW = Object.values(postBodyData)[55] //typeOfIMWPost
+    formInputsObj.typeOfIMW = Object.values(postBodyData)[56] //typeOfIMWPost
     console.log('formInputsObj.typeOfIMW==>', formInputsObj.typeOfIMW)
     // formInputsObj.formInput56 = Object.values(postBodyData)[56] = formInputsObj.skuOveride //skuOveridePost
-    formInputsObj.skuOveride = Object.values(postBodyData)[56] //skuOveridePost
+    formInputsObj.skuOveride = Object.values(postBodyData)[57] //skuOveridePost
     console.log('formInputsObj.skuOveride==>', formInputsObj.skuOveride)
     // formInputsObj.formInput57 = Object.values(postBodyData)[57] = formInputsObj.deptFilter //deptFilterPost
-    formInputsObj.deptFilter = Object.values(postBodyData)[57] //deptFilterPost
+    formInputsObj.deptFilter = Object.values(postBodyData)[58] //deptFilterPost
     console.log('formInputsObj.deptFilter==>', formInputsObj.deptFilter)
     // formInputsObj.deptFilter = deptFilter
     // formInputsObj.formInput58 = Object.values(postBodyData)[58] = formInputsObj.edlpSwitch //edlpSwitchPost
-    formInputsObj.edlpSwitch = Object.values(postBodyData)[58] //edlpSwitchPost
+    formInputsObj.edlpSwitch = Object.values(postBodyData)[59] //edlpSwitchPost
     console.log('formInputsObj.edlpSwitch==>', formInputsObj.edlpSwitch)
     // formInputsObj.formInput59 = Object.values(postBodyData)[59] = formInputsObj.skuToggle
-    formInputsObj.skuToggle = Object.values(postBodyData)[59] //skuTogglePost
+    formInputsObj.skuToggle = Object.values(postBodyData)[60] //skuTogglePost
     console.log('formInputsObj.skuToggle==>', formInputsObj.skuToggle)
     // formInputsObj.formInput60 = Object.values(postBodyData)[60] = formInputsObj.ediTblName //ediTblNamePost
-    formInputsObj.ediTblName = Object.values(postBodyData)[60] //ediTblNamePost
+    formInputsObj.ediTblName = Object.values(postBodyData)[61] //ediTblNamePost
     console.log('formInputsObj.ediTblName==>', formInputsObj.ediTblName)
     // formInputsObj.formInput61 = Object.values(postBodyData)[61] = formInputsObj.skuMismatchOption //skuMismatchOptionPost
-    formInputsObj.skuMismatchOption = Object.values(postBodyData)[61]
+    formInputsObj.skuMismatchOption = Object.values(postBodyData)[62]
     console.log('formInputsObj.skuMismatchOption==>', formInputsObj.skuMismatchOption)
 
     // formInputsObj.formInput62 = Object.values(postBodyData)[62] = formInputsObj.divideCostByEachOption //divideCostByEachOptionPost
-    formInputsObj.divideCostByEachOption = Object.values(postBodyData)[62] //divideCostByEachOptionPost
+    formInputsObj.divideCostByEachOption = Object.values(postBodyData)[63] //divideCostByEachOptionPost
     console.log('formInputsObj.divideCostByEachOption==>', formInputsObj.divideCostByEachOption)
     // formInputsObj.formInput63 = Object.values(postBodyData)[63] = formInputsObj.divideCostByCaseOption //divideCostByCaseOptionPost
-    formInputsObj.divideCostByCaseOption = Object.values(postBodyData)[63] //divideCostByCaseOptionPost
+    formInputsObj.divideCostByCaseOption = Object.values(postBodyData)[64] //divideCostByCaseOptionPost
     console.log('formInputsObj.divideCostByCaseOption==>', formInputsObj.divideCostByCaseOption)
 
     formInputsObj.deptFilterToApply = null

@@ -54,8 +54,10 @@ module.exports = {
         let rainbowCatRows = rows[1]
         console.log(`JSON.stringify(loadedTableRows)==> ${JSON.stringify(loadedTableRows)}`)
         console.log(`JSON.stringify(rainbowCatRows[0])==> ${JSON.stringify(rainbowCatRows[0])}`)
-        let discoToApplyCarryOver = rainbowCatRows[0]['ongDisco']
-        console.log(`discoToApplyCarryOver==> ${discoToApplyCarryOver}`)
+        let discoToApplyCarryOver_WS = rainbowCatRows[0]['ongDiscoWS']
+        console.log(`discoToApplyCarryOver_WS==> ${discoToApplyCarryOver_WS}`)
+        let discoToApplyCarryOver_Rtl = rainbowCatRows[0]['ongDiscoRtl']
+        console.log(`discoToApplyCarryOver_Rtl==> ${discoToApplyCarryOver_Rtl}`)
 
         for (let i = 0; i < loadedTableRows.length; i++) {
           FieldArray.push(loadedTableRows[i]['Field'])
@@ -66,7 +68,8 @@ module.exports = {
             tableNameToLoad: tableNameToLoad,
             tableLoadError: loadErrors,
             tableFields: FieldArray,
-            ongDisco: discoToApplyCarryOver
+            ongDisco_WS: discoToApplyCarryOver_WS,
+            ongDisco_Rtl: discoToApplyCarryOver_Rtl
           },
           // wsDiff: wsDiffResults
         });

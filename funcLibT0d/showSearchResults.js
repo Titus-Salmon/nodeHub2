@@ -67,13 +67,28 @@ module.exports = {
       //v//handle skuMismatchFlagOption////////////////////////////////////////////////////////////////////////////////
 
       var wsDiscoVar
+      var rtlDiscoVar
 
       function wsDiscoVarSetter() {
         if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
           //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
-          wsDiscoVar = frmInptsObj.discountToApply
+          wsDiscoVar = frmInptsObj.discountToApply_WS
         } else {
           wsDiscoVar = frmInptsObj.edlpDisco
+        }
+      }
+
+      function rtlDiscoVarSetter() {
+        if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually don't want to apply ongoing discount (discountToApply) OR edplDisco
+          //at the RETAIL level, since we should have already applied it at the WHOLESALE level. VERY IMPORTANT!!!
+          //BUT SOMETIMES WE WANT TO APPLY DISCOUNT AT BOTH WS AND RTL LEVELS (THIS IS WHEN WE PASS THE SAVINGS ON TO CUSTOMER)
+          //IN SUCH CASES, WE UTILIZE BOTH wsDiscoVarSetter() at the WS level, and rtlDiscoVarSetter() at the retail level
+          rtlDiscoVar = frmInptsObj.discountToApply_Rtl
+          if (rtlDiscoVar = null) {
+            rtlDiscoVar = 0
+          }
+        } else {
+          rtlDiscoVar = frmInptsObj.edlpDisco
         }
       }
 
@@ -262,13 +277,15 @@ module.exports = {
 
         if (frmInptsObj.typeOfIMW.toLowerCase() == 'retail') {
           //apply DEPARTMENT margin to calculate charm pricing
+          rtlDiscoVarSetter()
 
           if (srcRsObj['ediCost'] > 0) {
 
             divideCostToUOS_Rtl_IMW()
 
-            srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod']) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
+            srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * rtlDiscoVar) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
             //v//ACTUALLY, IT APPEARS WE DO NOT want to apply ongoing discount (discountToApply) OR edplDisco at the RETAIL level/////////////////////
+            //BUT SOMETIMES WE DO WANT TO APPLY THE DISCOUNT AT THE RETAIL LEVEL ALSO; THAT IS WHEN WE'RE PASSING THE SAVINGS ON TO THE CUSTOMER
             // if (srcRsObj['edlpVar'] !== 'EDLP') { //we actually DO want to apply ongoing discount (discountToApply) OR edplDisco
             //   //at the RETAIL level, since even though we should have already applied it at the WHOLESALE level, we are using
             //   //cost from the EDI Vendor catalog (which has not yet had the disco applied) to calc updated retail VERY IMPORTANT!!!
