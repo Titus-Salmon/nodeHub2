@@ -222,7 +222,8 @@ module.exports = {
       srcRsObj['invCPK'] = reviewObj['invCPK'] = nejRowsToggle[i]['invCPK'] //populate srcRsObj & reviewObj with invCPK from Catapult
 
       function divideCostToUOS_Rtl_IMW() {
-        rtlDiscoVarSetter()
+        // wsDiscoVarSetter()
+        wsDiscoVar = 0 //set wsDiscoVar to 0, so wholesales won't have vendor discounts applied FOR typeOFIMW = RETAIL
         divideCostOrNotRetail()
       }
 
