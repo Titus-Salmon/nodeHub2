@@ -14,8 +14,8 @@ html
 			form#loadTable(action='/MySqlTableHub/loadTable_MySqlHub' method='POST' accept-charset="UTF-8")
 				label.input-label-1(for='ldTblName') Table Name to Load (loads column names) AND (loads ongDisco_WS & ongDisco_Rtl data from rainbowcat)
 				input#ldTblName.input-unit-1(type='text', placeholder='enter data1', name='ldTblNamePost', value='')
-				label.input-label-1(for='discountToApplyCarryOver') % Discount To Apply To Entire Catalog (CarryOver)
-				input#discountToApplyCarryOver.input-unit-1(type='number', placeholder='0', step='.01', name='discountToApplyPost', value=loadedTable.ongDisco_WS)
+				//- label.input-label-1(for='discountToApplyCarryOver') % Discount To Apply To Entire Catalog (CarryOver)
+				//- input#discountToApplyCarryOver.input-unit-1(type='number', placeholder='0', step='.01', name='discountToApplyPost', value=loadedTable.ongDisco_WS)
 
 				button#ldTblBtn(type='submit', form='loadTable') Load Table
 
