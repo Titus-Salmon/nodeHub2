@@ -222,7 +222,7 @@ module.exports = {
       srcRsObj['invCPK'] = reviewObj['invCPK'] = nejRowsToggle[i]['invCPK'] //populate srcRsObj & reviewObj with invCPK from Catapult
 
       function divideCostToUOS_Rtl_IMW() {
-        wsDiscoVarSetter()
+        rtlDiscoVarSetter()
         divideCostOrNotRetail()
       }
 
