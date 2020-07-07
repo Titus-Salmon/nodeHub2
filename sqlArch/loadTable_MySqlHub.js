@@ -21,13 +21,17 @@ module.exports = {
     const loadTablePostBody = req.body
     let tableNameToLoad = loadTablePostBody['ldTblNamePost']
     console.log(`loadTablePostBody['ldTblNamePost']==> ${loadTablePostBody['ldTblNamePost']}`)
-    // let wsDiffResults = loadTablePostBody['wsDiffResultsLoadTblPost']
+
+    //here we are doing some js magic to extract the "catalog" name from the nej table name we're loading (nejTableNameYYYMMDD):
+    let regex1 = /(\d+)/g
+    let vendorName = tableNameToLoad.replace('nej', '').replace(regex1, '')
+    let ediVendorName = `EDI-${vendorName.toUpperCase()}`
 
     let discoToApplyCarryOver = loadTablePostBody['discountToApplyPost']
 
     connection.query(`
     SHOW COLUMNS FROM ${tableNameToLoad};
-    SELECT * FROM rainbowcat;
+    SELECT * FROM rainbowcat WHERE vendorName = '${ediVendorName}';
     `, (error, rows, fields) => {
       if (error) {
         console.log('error=====>>', error)
