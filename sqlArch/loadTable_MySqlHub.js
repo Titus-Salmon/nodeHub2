@@ -35,7 +35,7 @@ module.exports = {
 
     connection.query(`
     SHOW COLUMNS FROM ${tableNameToLoad};
-    SELECT * FROM rainbowcat WHERE vendorName = '${ediVendorName}';
+    SELECT * FROM rainbowcat WHERE ediName = '${ediVendorName}';
     `, (error, rows, fields) => {
       if (error) {
         console.log('error=====>>', error)
