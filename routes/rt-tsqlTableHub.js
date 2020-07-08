@@ -36,7 +36,7 @@ const {
   save2XLS_tsql
 } = require('../sqlArch/save2XLS_tsql')
 const {
-  save2XLS_tsql
+  save2XLS_tsql_autoreorder
 } = require('../sqlArch/save2XLS_tsql_autoreorder')
 
 
