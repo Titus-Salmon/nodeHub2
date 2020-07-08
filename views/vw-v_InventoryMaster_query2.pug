@@ -28,6 +28,13 @@ html
 					input#xlsReview.input-unit-1(type='text', placeholder='enter filename here', name='xlsPost', value='')
 					button#saveXLSreview(type="submit" form="saveXLSreviewPost") Save Results as XLS - NHCRT
 
+		div(style="display:block")
+			form#saveXLSautoreorderPost(action='/tsqlTableHub/save2XLS_tsql_autoreorder' method='POST' accept-charset='UTF-8')
+				if catapultResults !== undefined
+					label.input-label-1(for='xlsAutoReorder') filename:
+					input#xlsAutoReorder.input-unit-1(type='text', placeholder='enter filename here', name='xlsPost', value='')
+					button#saveXLSautoreorder(type="submit" form="saveXLSautoreorderPost") Save Results as XLS - AutoReorder Master List
+
 		div.rslt-tbl-1
 			table#resTbl
 				thead

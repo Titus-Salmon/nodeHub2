@@ -35,6 +35,9 @@ const {
 const {
   save2XLS_tsql
 } = require('../sqlArch/save2XLS_tsql')
+const {
+  save2XLS_tsql
+} = require('../sqlArch/save2XLS_tsql_autoreorder')
 
 
 router.get('/', function (req, res, next) {
@@ -57,5 +60,6 @@ router.post('/rbInvUpdaterTsql', rbInvUpdaterTsql)
 router.post('/queryOrderingInfoTable', OrderingInfoQuery)
 router.post('/save2CSV', save2CSV)
 router.post('/save2XLS_tsql', save2XLS_tsql)
+router.post('/save2XLS_tsql_autoreorder', save2XLS_tsql_autoreorder)
 
 module.exports = router;
