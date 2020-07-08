@@ -7,50 +7,50 @@ module.exports = {
 
   save2XLS_tsql: router.post('/save2XLS_tsql', (req, res, next) => {
 
-    //NOTE++++++++>>> catapultResArr is the original array that holds the collection of SearchResults objects {columnName: cellValue}
+    //NOTE++++++++>>> srcRsXLS_tsql is the original array that holds the collection of SearchResults objects {columnName: cellValue}
     //HOWEVER, since the inherent order (from showSearchResults()) of these key:value pairs is not the order we want to display them
-    //in the excel file, and also since there are additional key:value pairs from catapultResArr that we DON'T want to display (i.e.
-    //invPK, invCPK), we selectively reorder and/or remove the key:value pairs from catapultResArr to form the srcRsXLS_selectiveReordering array
-    //(WITHOUT modifying the original catapultResArr array).
+    //in the excel file, and also since there are additional key:value pairs from srcRsXLS_tsql that we DON'T want to display (i.e.
+    //invPK, invCPK), we selectively reorder and/or remove the key:value pairs from srcRsXLS_tsql to form the srcRsXLS_selectiveReordering array
+    //(WITHOUT modifying the original srcRsXLS_tsql array).
 
     var srcRsXLS_selectiveReordering = []
 
-    for (let a = 0; a < catapultResArr.length; a++) {
+    for (let a = 0; a < srcRsXLS_tsql.length; a++) {
       let reorderedResObj = {}
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
-      reorderedResObj['invScanCode'] = catapultResArr[a]['invScanCode']
-      reorderedResObj['ordSupplierStockNumber'] = catapultResArr[a]['ordSupplierStockNumber']
-      reorderedResObj['invName'] = catapultResArr[a]['invName']
-      reorderedResObj['invSize'] = catapultResArr[a]['invSize']
-      reorderedResObj['invReceiptAlias'] = catapultResArr[a]['invReceiptAlias']
-      reorderedResObj['invDefault'] = catapultResArr[a]['invDefault']
-      reorderedResObj['posTimeStamp'] = catapultResArr[a]['posTimeStamp']
-      reorderedResObj['invDateCreated'] = catapultResArr[a]['invDateCreated']
-      reorderedResObj['invEmpFkCreatedBy'] = catapultResArr[a]['invEmpFkCreatedBy']
-      reorderedResObj['oupName'] = catapultResArr[a]['oupName']
-      reorderedResObj['stoNumber'] = catapultResArr[a]['stoNumber']
-      reorderedResObj['stoName'] = catapultResArr[a]['stoName']
-      reorderedResObj['brdName'] = catapultResArr[a]['brdName']
-      reorderedResObj['dptName'] = catapultResArr[a]['dptName']
-      reorderedResObj['dptNumber'] = catapultResArr[a]['dptNumber']
-      reorderedResObj['sibIdealMargin'] = catapultResArr[a]['sibIdealMargin']
-      reorderedResObj['venCompanyname'] = catapultResArr[a]['venCompanyname']
-      reorderedResObj['invLastreceived'] = catapultResArr[a]['invLastreceived']
-      reorderedResObj['invLastsold'] = catapultResArr[a]['invLastsold']
-      reorderedResObj['invLastcost'] = catapultResArr[a]['invLastcost']
-      reorderedResObj['sibBasePrice'] = catapultResArr[a]['sibBasePrice']
-      reorderedResObj['invOnhand'] = catapultResArr[a]['invOnhand']
-      reorderedResObj['invOnorder'] = catapultResArr[a]['invOnorder']
-      reorderedResObj['invIntransit'] = catapultResArr[a]['invIntransit']
-      reorderedResObj['invMemo'] = catapultResArr[a]['invMemo']
-      reorderedResObj['pi1Description'] = catapultResArr[a]['pi1Description']
-      reorderedResObj['pi2Description'] = catapultResArr[a]['pi2Description']
-      reorderedResObj['pi3Description'] = catapultResArr[a]['pi3Description']
-      reorderedResObj['pi4Description'] = catapultResArr[a]['pi4Description']
-      reorderedResObj['invPowerField1'] = catapultResArr[a]['invPowerField1']
-      reorderedResObj['invPowerField2'] = catapultResArr[a]['invPowerField2']
-      reorderedResObj['invPowerField3'] = catapultResArr[a]['invPowerField3']
-      reorderedResObj['invPowerField4'] = catapultResArr[a]['invPowerField4']
+      reorderedResObj['invScanCode'] = srcRsXLS_tsql[a]['invScanCode']
+      reorderedResObj['ordSupplierStockNumber'] = srcRsXLS_tsql[a]['ordSupplierStockNumber']
+      reorderedResObj['invName'] = srcRsXLS_tsql[a]['invName']
+      reorderedResObj['invSize'] = srcRsXLS_tsql[a]['invSize']
+      reorderedResObj['invReceiptAlias'] = srcRsXLS_tsql[a]['invReceiptAlias']
+      reorderedResObj['invDefault'] = srcRsXLS_tsql[a]['invDefault']
+      reorderedResObj['posTimeStamp'] = srcRsXLS_tsql[a]['posTimeStamp']
+      reorderedResObj['invDateCreated'] = srcRsXLS_tsql[a]['invDateCreated']
+      reorderedResObj['invEmpFkCreatedBy'] = srcRsXLS_tsql[a]['invEmpFkCreatedBy']
+      reorderedResObj['oupName'] = srcRsXLS_tsql[a]['oupName']
+      reorderedResObj['stoNumber'] = srcRsXLS_tsql[a]['stoNumber']
+      reorderedResObj['stoName'] = srcRsXLS_tsql[a]['stoName']
+      reorderedResObj['brdName'] = srcRsXLS_tsql[a]['brdName']
+      reorderedResObj['dptName'] = srcRsXLS_tsql[a]['dptName']
+      reorderedResObj['dptNumber'] = srcRsXLS_tsql[a]['dptNumber']
+      reorderedResObj['sibIdealMargin'] = srcRsXLS_tsql[a]['sibIdealMargin']
+      reorderedResObj['venCompanyname'] = srcRsXLS_tsql[a]['venCompanyname']
+      reorderedResObj['invLastreceived'] = srcRsXLS_tsql[a]['invLastreceived']
+      reorderedResObj['invLastsold'] = srcRsXLS_tsql[a]['invLastsold']
+      reorderedResObj['invLastcost'] = srcRsXLS_tsql[a]['invLastcost']
+      reorderedResObj['sibBasePrice'] = srcRsXLS_tsql[a]['sibBasePrice']
+      reorderedResObj['invOnhand'] = srcRsXLS_tsql[a]['invOnhand']
+      reorderedResObj['invOnorder'] = srcRsXLS_tsql[a]['invOnorder']
+      reorderedResObj['invIntransit'] = srcRsXLS_tsql[a]['invIntransit']
+      reorderedResObj['invMemo'] = srcRsXLS_tsql[a]['invMemo']
+      reorderedResObj['pi1Description'] = srcRsXLS_tsql[a]['pi1Description']
+      reorderedResObj['pi2Description'] = srcRsXLS_tsql[a]['pi2Description']
+      reorderedResObj['pi3Description'] = srcRsXLS_tsql[a]['pi3Description']
+      reorderedResObj['pi4Description'] = srcRsXLS_tsql[a]['pi4Description']
+      reorderedResObj['invPowerField1'] = srcRsXLS_tsql[a]['invPowerField1']
+      reorderedResObj['invPowerField2'] = srcRsXLS_tsql[a]['invPowerField2']
+      reorderedResObj['invPowerField3'] = srcRsXLS_tsql[a]['invPowerField3']
+      reorderedResObj['invPowerField4'] = srcRsXLS_tsql[a]['invPowerField4']
 
       srcRsXLS_selectiveReordering.push(reorderedResObj)
     }

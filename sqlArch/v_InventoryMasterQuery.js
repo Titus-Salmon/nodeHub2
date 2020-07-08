@@ -16,6 +16,7 @@ module.exports = {
         console.log(`catapultDbQuery==> ${catapultDbQuery}`)
 
         let catapultResArr = []
+        srcRsXLS_tsql = []
 
         function showcatapultResults(result) {
             for (let i = 0; i < result.length; i++) {
@@ -151,6 +152,7 @@ module.exports = {
                 }
 
                 catapultResArr.push(catapultResObj)
+                srcRsXLS_tsql.push(catapultResObj)
             }
             // console.log(`result.length~~~> ${result.length}`)
         }
