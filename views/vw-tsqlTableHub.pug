@@ -34,13 +34,16 @@ html
 		div(style="display:block")
 			form#saveCSVreviewPost(action='/tsqlTableHub/save2CSV' method='POST' accept-charset='UTF-8')
 				if catapultTables !== undefined
-					label.input-label-1(for='csv') filename:
-						input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-					//- label.input-label-1(for='csvReviewHeaders') CSV Review headers:
-					//- 	input#csvReviewHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value="upc, sku, name, pf2, pf3, cost, charm, edlp_flag, sale_flag")
-					//- label.input-label-1(for='save2CSVArr') Catapult Table Query Results Array:
-					//- 	input#save2CSVArr.input-unit-1(type='text', placeholder='enter data', name='save2CSVArrPost', readonly, style="background-color:#c2d6d6", value=catapultTables)
+					label.input-label-1(for='csvReview') filename:
+					input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
 					button#saveCSVreview(type="submit" form="saveCSVreviewPost") Save Results as CSV - Catapult Inventory Master Query
+
+		div(style="display:block")
+			form#saveXLSreviewPost(action='/tsqlTableHub/save2XLS_tsql' method='POST' accept-charset='UTF-8')
+				if catapultTables !== undefined
+					label.input-label-1(for='xlsReview') filename:
+					input#xlsReview.input-unit-1(type='text', placeholder='enter filename here', name='xlsPost', value='')
+					button#saveXLSreview(type="submit" form="saveXLSreviewPost") Save Results as XLS - NHCRT
 
 
 		//-/v// NEW STUFF FOR TSQL

@@ -32,39 +32,10 @@ const {
 const {
   save2CSV
 } = require('../sqlArch/save2CSV')
+const {
+  save2XLS_tsql
+} = require('../sqlArch/save2XLS_tsql')
 
-
-
-// const {
-//   populateTableSimple
-// } = require('../sqlArch/populateTableSimple')
-
-// const {
-//   searchEditCalcUniversal_brandTargeting
-// } = require('../sqlArch/searchEditCalcUniversal_brandTargeting')
-
-// const {
-//   loadTableUniversal_brandTargeting
-// } = require('../sqlArch/loadTableUniversal_brandTargeting')
-
-// const {
-//   saveResultsToCSV
-// } = require('../sqlArch/saveResultsToCSV')
-
-// const {
-//   save2CSVReview
-// } = require('../sqlArch/save2CSVreview')
-//^//destructuring////////////////////////////////
-
-
-// router.get('/', ensureAuthenticated, function (req, res, next) {
-//   res.render('vw-retailCalcUniversal_brandTargeting', {
-//     title: 'Universal Retail Price Calculator (with Brand Targeting',
-//     username: req.user.name,
-//     userEmail: req.user.email,
-//     userEmail_stringified: JSON.stringify(req.user.email),
-//   });
-// });
 
 router.get('/', function (req, res, next) {
   res.render('vw-tsqlTableHub', {
@@ -85,15 +56,6 @@ router.post('/rbInvUpdaterTsql', rbInvUpdaterTsql)
 
 router.post('/queryOrderingInfoTable', OrderingInfoQuery)
 router.post('/save2CSV', save2CSV)
-
-// router.post('/populateTableSimple', populateTableSimple)
-
-
-// router.post('/results', searchEditCalcUniversal_brandTargeting)
-// router.post('/loadTableUniversal_brandTargeting', loadTableUniversal_brandTargeting)
-// router.post('/saveCSV', saveResultsToCSV)
-// router.post('/saveCSVreview', save2CSVReview)
-
-
+router.post('/save2XLS_tsql', save2XLS_tsql)
 
 module.exports = router;

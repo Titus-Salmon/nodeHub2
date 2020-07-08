@@ -38,7 +38,7 @@ module.exports = {
                 if (typeof result[i]['ORD_SupplierStockNumber'] == 'string') {
                     catapultResObj['ordSupplierStockNumber'] = result[i]['ORD_SupplierStockNumber'].trim()
                 } else {
-                    catapultResObj['invScanCode'] = result[i]['INV_ScanCode']
+                    catapultResObj['ordSupplierStockNumber'] = result[i]['ORD_SupplierStockNumber']
                 }
                 if (typeof result[i]['INV_Name'] == 'string') {
                     catapultResObj['invName'] = result[i]['INV_Name'].trim()
