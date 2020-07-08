@@ -21,6 +21,13 @@ html
 						input#save2CSVArr.input-unit-1(type='text', placeholder='enter data', name='save2CSVArrPost', readonly, style="background-color:#c2d6d6", value=catapultResults)
 					button#saveCSVreview(type="submit" form="saveCSVreviewPost") Save Results as CSV - Catapult Inventory Master Query2
 
+		div(style="display:block")
+			form#saveXLSreviewPost(action='/tsqlTableHub/save2XLS_tsql' method='POST' accept-charset='UTF-8')
+				if catapultResults !== undefined
+					label.input-label-1(for='xlsReview') filename:
+					input#xlsReview.input-unit-1(type='text', placeholder='enter filename here', name='xlsPost', value='')
+					button#saveXLSreview(type="submit" form="saveXLSreviewPost") Save Results as XLS - NHCRT
+
 		div.rslt-tbl-1
 			table#resTbl
 				thead
