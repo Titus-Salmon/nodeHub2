@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 // const fs = require('fs')
 const xl = require('excel4node')
+const mysql = require('mysql')
 
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
