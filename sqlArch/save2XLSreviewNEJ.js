@@ -184,7 +184,7 @@ module.exports = {
 
     function updateRbCat() {
       connection.query(
-        `UPDATE rainbowcat SET RtlRvw = ${req.body['xlsPost']}.xlxs} WHERE ediName = ${ediVendorName}`,
+        `UPDATE rainbowcat SET RtlRvw = ${req.body['xlsPost']}.xlxs} WHERE ediName = '${ediVendorName}'`,
         function (err, rows, fields) {
           if (err) throw err
           res.render('vw-MySqlTableHub', {
