@@ -1,7 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const fs = require('fs')
+// const fs = require('fs')
 const xl = require('excel4node')
+
+const connection = mysql.createConnection({
+  host: process.env.RB_HOST,
+  user: process.env.RB_USER,
+  password: process.env.RB_PW,
+  database: process.env.RB_DB,
+  multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+})
 
 module.exports = {
 
@@ -160,10 +168,36 @@ module.exports = {
 
     wb.write(`${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs`)
 
+    //v//Automatically add note to rainbowcat table that Retail Review has been generated//////////////////////////////////////
+    let rtlRvwFilename = req.body['xlsPost']
+    //here we are doing some js magic to extract the "catalog" name from the nej table name we're loading (nejTableNameYYYMMDD):
+    // let regex1 = /(\d+)/g
+    let vendorNameSplit1 = rtlRvwFilename.split('nej')
+    let vendorNameSplit2 = vendorNameSplit1[1]
+    let vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlrvw')
+    let vendorName = vendorNameSplit3[0]
+    let ediVendorName = `EDI-${vendorName.toUpperCase()}`
+    console.log(`ediVendorName==> ${ediVendorName}`)
+    //^//Automatically add note to rainbowcat table that Retail Review has been generated//////////////////////////////////////
 
-    res.render('vw-MySqlTableHub', {
-      title: `<<${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs SAVED>>`
-    });
+
+    function updateRbCat() {
+      connection.query(
+        `UPDATE rainbowcat SET RtlRvw = ${req.body['xlsPost']}.xlxs} WHERE ediName = ${ediVendorName}`,
+        function (err, rows, fields) {
+          if (err) throw err
+          res.render('vw-MySqlTableHub', {
+            title: `<<${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs SAVED, and rainbowcat updated>>`
+          })
+        })
+    }
+
+    updateRbCat()
+
+
+    // res.render('vw-MySqlTableHub', {
+    //   title: `<<${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs SAVED>>`
+    // });
 
   })
 }
