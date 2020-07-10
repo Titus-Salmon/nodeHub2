@@ -2,10 +2,21 @@ const express = require('express')
 const router = express.Router()
 const fs = require('fs')
 
+const mysql = require('mysql')
+
+const connection = mysql.createConnection({
+  host: process.env.RB_HOST,
+  user: process.env.RB_USER,
+  password: process.env.RB_PW,
+  database: process.env.RB_DB,
+  multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
+})
+
 module.exports = {
 
   saveIMW_CSV: router.post('/saveIMW_CSV', (req, res, next) => {
 
+    console.log(`srcRsCSV_nonPag.length==> ${srcRsCSV_nonPag.length}`)
     console.log('srcRsCSV_nonPag[0][\'P_K\']', srcRsCSV_nonPag[0]['P_K'])
     console.log('Object.keys(srcRsCSV_nonPag[0])', Object.keys(srcRsCSV_nonPag[0]))
 
@@ -42,9 +53,42 @@ module.exports = {
     }
     //end csv generator //////////////////////////////////////////////////////////////////////////
 
-    res.render('vw-MySqlTableHub', {
-      title: `<<${process.cwd()}/public/csv/${req.body['csvPost']} SAVED>>`
-    });
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //v//Automatically add note to rainbowcat table that Retail IMW has been generated//////////////////////////////////////
+    let rtlRvwFilename = req.body['xlsPost']
+    //here we are doing some js magic to extract the "ediName" from the Rtl IMW name we're saving (nejTableNameRtlIMWYYYMMDD):
+    let vendorNameSplit1 = rtlRvwFilename.split('nej')
+    let vendorNameSplit2 = vendorNameSplit1[1]
+    let vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
+    let vendorName = vendorNameSplit3[0]
+    let ediVendorName = `EDI-${vendorName.toUpperCase()}`
+    console.log(`ediVendorName==> ${ediVendorName}`)
+
+    var today = new Date()
+    var todayIso = today.toISOString()
+
+    function updateRbCat() {
+      connection.query(
+        `UPDATE rainbowcat SET RtlImw = '${req.body['csvPost']}.csv (${srcRsCSV_nonPag.length} items)' WHERE ediName = '${ediVendorName}';
+
+        INSERT INTO rainbowcat_update_tracker (date, edi_vendor_name, rtlImw, items_updtd)
+        VALUES('${todayIso}', 'EDI-${vendorName.toUpperCase()}', '${req.body['csvPost']}.csv', '${srcRsCSV_nonPag.length}');`,
+
+        function (err, rows, fields) {
+          if (err) throw err
+          res.render('vw-MySqlTableHub', {
+            title: `<<${process.cwd()}/public/csv/${req.body['csvPost']}.csv SAVED, and rainbowcat updated>>`
+          })
+        })
+    }
+
+    updateRbCat()
+    //v//Automatically add note to rainbowcat table that Retail IMW has been generated//////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // res.render('vw-MySqlTableHub', {
+    //   title: `<<${process.cwd()}/public/csv/${req.body['csvPost']} SAVED>>`
+    // });
 
   })
 }

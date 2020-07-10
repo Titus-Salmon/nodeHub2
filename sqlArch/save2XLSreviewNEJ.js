@@ -169,9 +169,10 @@ module.exports = {
 
     wb.write(`${process.cwd()}/public/csv/${req.body['xlsPost']}.xlxs`)
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //v//Automatically add note to rainbowcat table that Retail Review has been generated//////////////////////////////////////
     let rtlRvwFilename = req.body['xlsPost']
-    //here we are doing some js magic to extract the "catalog" name from the nej table name we're loading (nejTableNameYYYMMDD):
+    //here we are doing some js magic to extract the "ediName" from the Rtl Rvw name we're saving (nejTableNameRtlRvwYYYMMDD):
     // let regex1 = /(\d+)/g
     let vendorNameSplit1 = rtlRvwFilename.split('nej')
     let vendorNameSplit2 = vendorNameSplit1[1]
@@ -179,8 +180,6 @@ module.exports = {
     let vendorName = vendorNameSplit3[0]
     let ediVendorName = `EDI-${vendorName.toUpperCase()}`
     console.log(`ediVendorName==> ${ediVendorName}`)
-    //^//Automatically add note to rainbowcat table that Retail Review has been generated//////////////////////////////////////
-
 
     function updateRbCat() {
       connection.query(
@@ -194,6 +193,8 @@ module.exports = {
     }
 
     updateRbCat()
+    //^//Automatically add note to rainbowcat table that Retail Review has been generated//////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     // res.render('vw-MySqlTableHub', {
