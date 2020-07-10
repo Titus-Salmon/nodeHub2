@@ -55,9 +55,16 @@ module.exports = {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //v//Automatically add note to rainbowcat table that Retail IMW has been generated//////////////////////////////////////
-    let rtlRvwFilename = req.body['xlsPost']
+    let fileName = req.body['xlsPost']
+
+    if (fileName.toLowerCase().includes('rtlimw')) {
+      imwTypeColumn = 'rtlImw'
+    }
+    if (fileName.toLowerCase().includes('wsimw')) {
+      imwTypeColumn = 'wsImw'
+    }
     //here we are doing some js magic to extract the "ediName" from the Rtl IMW name we're saving (nejTableNameRtlIMWYYYMMDD):
-    let vendorNameSplit1 = rtlRvwFilename.split('nej')
+    let vendorNameSplit1 = fileName.split('nej')
     let vendorNameSplit2 = vendorNameSplit1[1]
     let vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
     let vendorName = vendorNameSplit3[0]
@@ -67,9 +74,10 @@ module.exports = {
     var today = new Date()
     var todayIso = today.toISOString()
 
-    function updateRbCat() {
+    function updateRbCat(imwTypeColumn) {
+
       connection.query(
-        `UPDATE rainbowcat SET RtlImw = '${req.body['csvPost']}.csv (${srcRsCSV_nonPag.length} items)' WHERE ediName = '${ediVendorName}';
+        `UPDATE rainbowcat SET ${imwTypeColumn} = '${req.body['csvPost']}.csv (${srcRsCSV_nonPag.length} items)' WHERE ediName = '${ediVendorName}';
 
         INSERT INTO rainbowcat_update_tracker (date, edi_vendor_name, rtlImw, items_updtd)
         VALUES('${todayIso}', 'EDI-${vendorName.toUpperCase()}', '${req.body['csvPost']}.csv', '${srcRsCSV_nonPag.length}');`,
