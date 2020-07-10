@@ -74,7 +74,7 @@ module.exports = {
     var today = new Date()
     var todayIso = today.toISOString()
 
-    function updateRbCat(imwTypeColumn) {
+    function updateRbCat() {
 
       //here we are doing some js magic to extract the "ediName" from the Rtl IMW name we're saving (nejTableNameRtlIMWYYYMMDD):
       let vendorNameSplit1 = fileName.split('nej')
@@ -107,7 +107,7 @@ module.exports = {
         })
     }
 
-    updateRbCat(imwTypeColumn)
+    updateRbCat()
     //v//Automatically add note to rainbowcat table that Retail IMW has been generated//////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
