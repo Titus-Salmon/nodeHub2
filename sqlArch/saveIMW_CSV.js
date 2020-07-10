@@ -69,9 +69,7 @@ module.exports = {
 
     // console.log(`imwTypeColumn==> ${imwTypeColumn}`)
     // let vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
-    let vendorName = vendorNameSplit3[0]
-    let ediVendorName = `EDI-${vendorName.toUpperCase()}`
-    console.log(`ediVendorName==> ${ediVendorName}`)
+
 
     var today = new Date()
     var todayIso = today.toISOString()
@@ -91,6 +89,9 @@ module.exports = {
         vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsImw')
         console.log(`imwTypeColumn==> ${imwTypeColumn}`)
       }
+      let vendorName = vendorNameSplit3[0]
+      let ediVendorName = `EDI-${vendorName.toUpperCase()}`
+      console.log(`ediVendorName==> ${ediVendorName}`)
 
       connection.query(
         `UPDATE rainbowcat SET ${imwTypeColumn} = '${req.body['csvPost']}.csv (${srcRsCSV_nonPag.length} items)' WHERE ediName = '${ediVendorName}';
