@@ -65,19 +65,7 @@ module.exports = {
     //   imwTypeColumn = 'wsImw'
     //   vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsImw')
     // }
-    //here we are doing some js magic to extract the "ediName" from the Rtl IMW name we're saving (nejTableNameRtlIMWYYYMMDD):
-    let vendorNameSplit1 = fileName.split('nej')
-    let vendorNameSplit2 = vendorNameSplit1[1]
-    if (fileName.toLowerCase().includes('rtlimw')) {
-      let imwTypeColumn = 'rtlImw'
-      vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
-      console.log(`imwTypeColumn==> ${imwTypeColumn}`)
-    }
-    if (fileName.toLowerCase().includes('wsimw')) {
-      let imwTypeColumn = 'wsImw'
-      vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsImw')
-      console.log(`imwTypeColumn==> ${imwTypeColumn}`)
-    }
+
 
     // console.log(`imwTypeColumn==> ${imwTypeColumn}`)
     // let vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
@@ -89,6 +77,20 @@ module.exports = {
     var todayIso = today.toISOString()
 
     function updateRbCat(imwTypeColumn) {
+
+      //here we are doing some js magic to extract the "ediName" from the Rtl IMW name we're saving (nejTableNameRtlIMWYYYMMDD):
+      let vendorNameSplit1 = fileName.split('nej')
+      let vendorNameSplit2 = vendorNameSplit1[1]
+      if (fileName.toLowerCase().includes('rtlimw')) {
+        let imwTypeColumn = 'rtlImw'
+        vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
+        console.log(`imwTypeColumn==> ${imwTypeColumn}`)
+      }
+      if (fileName.toLowerCase().includes('wsimw')) {
+        let imwTypeColumn = 'wsImw'
+        vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsImw')
+        console.log(`imwTypeColumn==> ${imwTypeColumn}`)
+      }
 
       connection.query(
         `UPDATE rainbowcat SET ${imwTypeColumn} = '${req.body['csvPost']}.csv (${srcRsCSV_nonPag.length} items)' WHERE ediName = '${ediVendorName}';
