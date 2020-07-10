@@ -88,7 +88,7 @@ module.exports = {
     var today = new Date()
     var todayIso = today.toISOString()
 
-    function updateRbCat() {
+    function updateRbCat(imwTypeColumn) {
 
       connection.query(
         `UPDATE rainbowcat SET ${imwTypeColumn} = '${req.body['csvPost']}.csv (${srcRsCSV_nonPag.length} items)' WHERE ediName = '${ediVendorName}';
@@ -104,7 +104,7 @@ module.exports = {
         })
     }
 
-    updateRbCat()
+    updateRbCat(imwTypeColumn)
     //v//Automatically add note to rainbowcat table that Retail IMW has been generated//////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
