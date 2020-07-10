@@ -55,7 +55,7 @@ module.exports = {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //v//Automatically add note to rainbowcat table that Retail IMW has been generated//////////////////////////////////////
-    let fileName = req.body['xlsPost']
+    let fileName = req.body['csvPost']
 
     // if (fileName.toLowerCase().includes('rtlimw')) {
     //   imwTypeColumn = 'rtlImw'
