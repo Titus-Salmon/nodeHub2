@@ -21,7 +21,7 @@ module.exports = {
         function displayNhcrt(rows) {
             for (let i = 0; i < rows.length; i++) {
                 let nhcrtObj = {}
-                nhcrtObj['ri_t0d'] = rows[i]['ri_t0d']
+                nhcrtObj['ri_t0d'] = i + 1
                 nhcrtObj['invScanCode'] = rows[i]['invScanCode']
                 nhcrtObj['ordSupplierStockNumber'] = rows[i]['ordSupplierStockNumber']
                 nhcrtObj['invName'] = rows[i]['invName']
