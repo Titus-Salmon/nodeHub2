@@ -57,16 +57,26 @@ module.exports = {
     //v//Automatically add note to rainbowcat table that Retail IMW has been generated//////////////////////////////////////
     let fileName = req.body['xlsPost']
 
-    if (fileName.toLowerCase().includes('rtlimw')) {
-      imwTypeColumn = 'rtlImw'
-    }
-    if (fileName.toLowerCase().includes('wsimw')) {
-      imwTypeColumn = 'wsImw'
-    }
+    // if (fileName.toLowerCase().includes('rtlimw')) {
+    //   imwTypeColumn = 'rtlImw'
+    //   vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
+    // }
+    // if (fileName.toLowerCase().includes('wsimw')) {
+    //   imwTypeColumn = 'wsImw'
+    //   vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsImw')
+    // }
     //here we are doing some js magic to extract the "ediName" from the Rtl IMW name we're saving (nejTableNameRtlIMWYYYMMDD):
     let vendorNameSplit1 = fileName.split('nej')
     let vendorNameSplit2 = vendorNameSplit1[1]
-    let vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
+    if (fileName.toLowerCase().includes('rtlimw')) {
+      imwTypeColumn = 'rtlImw'
+      vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
+    }
+    if (fileName.toLowerCase().includes('wsimw')) {
+      imwTypeColumn = 'wsImw'
+      vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsImw')
+    }
+    // let vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
     let vendorName = vendorNameSplit3[0]
     let ediVendorName = `EDI-${vendorName.toUpperCase()}`
     console.log(`ediVendorName==> ${ediVendorName}`)
