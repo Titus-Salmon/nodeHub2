@@ -75,17 +75,18 @@ module.exports = {
     var todayIso = today.toISOString()
 
     function updateRbCat() {
+      var imwTypeColumn
 
       //here we are doing some js magic to extract the "ediName" from the Rtl IMW name we're saving (nejTableNameRtlIMWYYYMMDD):
       let vendorNameSplit1 = fileName.split('nej')
       let vendorNameSplit2 = vendorNameSplit1[1]
       if (fileName.toLowerCase().includes('rtlimw')) {
-        let imwTypeColumn = 'rtlImw'
+        imwTypeColumn = 'rtlImw'
         vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
         console.log(`imwTypeColumn==> ${imwTypeColumn}`)
       }
       if (fileName.toLowerCase().includes('wsimw')) {
-        let imwTypeColumn = 'wsImw'
+        imwTypeColumn = 'wsImw'
         vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsImw')
         console.log(`imwTypeColumn==> ${imwTypeColumn}`)
       }
@@ -96,7 +97,7 @@ module.exports = {
       connection.query(
         `UPDATE rainbowcat SET ${imwTypeColumn} = '${req.body['csvPost']}.csv (${srcRsCSV_nonPag.length} items)' WHERE ediName = '${ediVendorName}';
 
-        INSERT INTO rainbowcat_update_tracker (date, edi_vendor_name, rtlImw, items_updtd)
+        INSERT INTO rainbowcat_update_tracker (date, edi_vendor_name, ${imwTypeColumn}, items_updtd)
         VALUES('${todayIso}', 'EDI-${vendorName.toUpperCase()}', '${req.body['csvPost']}.csv', '${srcRsCSV_nonPag.length}');`,
 
         function (err, rows, fields) {
