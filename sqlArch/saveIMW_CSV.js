@@ -87,7 +87,7 @@ module.exports = {
       }
       if (fileName.toLowerCase().includes('wsimw')) {
         imwTypeColumn = 'wsImw'
-        vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsImw')
+        vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsimw')
         console.log(`imwTypeColumn==> ${imwTypeColumn}`)
       }
       let vendorName = vendorNameSplit3[0]
