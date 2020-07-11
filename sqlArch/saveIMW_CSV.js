@@ -106,8 +106,10 @@ module.exports = {
 
         UPDATE rainbowcat rbc
         INNER JOIN (
+          SELECT edi_vendor_name,
           SUM(${itemsUpdtdTypeColumn}) as total_updated
           FROM rainbowcat_update_tracker
+          GROUP BY edi_vendor_name
         )
         rbcut ON rbc.ediName = rbcut.edi_vendor_name
         SET rbc.${updateTypeTotal} = rbcut.total_updated;`,
