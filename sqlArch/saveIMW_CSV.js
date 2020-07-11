@@ -101,16 +101,16 @@ module.exports = {
       connection.query(
         `UPDATE rainbowcat SET ${imwTypeColumn} = '${req.body['csvPost']}.csv (${srcRsCSV_nonPag.length} items)' WHERE ediName = '${ediVendorName}';
 
+        INSERT INTO rainbowcat_update_tracker (date, edi_vendor_name, ${imwTypeColumn}, ${itemsUpdtdTypeColumn})
+        VALUES('${todayIso}', 'EDI-${vendorName.toUpperCase()}', '${req.body['csvPost']}.csv', '${srcRsCSV_nonPag.length}');
+
         UPDATE rainbowcat rbc
         INNER JOIN (
           SUM(${itemsUpdtdTypeColumn}) as total_updated
           FROM rainbowcat_update_tracker
         )
         rbcut ON rbc.ediName = rbcut.edi_vendor_name
-        SET rbc.${updateTypeTotal} = rbcut.total_updated
-
-        INSERT INTO rainbowcat_update_tracker (date, edi_vendor_name, ${imwTypeColumn}, ${itemsUpdtdTypeColumn})
-        VALUES('${todayIso}', 'EDI-${vendorName.toUpperCase()}', '${req.body['csvPost']}.csv', '${srcRsCSV_nonPag.length}');`,
+        SET rbc.${updateTypeTotal} = rbcut.total_updated;`,
 
         function (err, rows, fields) {
           if (err) throw err
