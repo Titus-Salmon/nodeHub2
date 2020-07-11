@@ -84,12 +84,14 @@ module.exports = {
         imwTypeColumn = 'rtlImw'
         itemsUpdtdTypeColumn = 'items_updtd_rtl'
         vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
+        updateTypeTotal = 'tot_updtd_rtl'
         console.log(`imwTypeColumn==> ${imwTypeColumn}`)
       }
       if (fileName.toLowerCase().includes('wsimw')) {
         imwTypeColumn = 'wsImw'
         itemsUpdtdTypeColumn = 'items_updtd_ws'
         vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsimw')
+        updateTypeTotal = 'tot_updtd_ws'
         console.log(`imwTypeColumn==> ${imwTypeColumn}`)
       }
       let vendorName = vendorNameSplit3[0]
@@ -98,6 +100,14 @@ module.exports = {
 
       connection.query(
         `UPDATE rainbowcat SET ${imwTypeColumn} = '${req.body['csvPost']}.csv (${srcRsCSV_nonPag.length} items)' WHERE ediName = '${ediVendorName}';
+
+        UPDATE rainbowcat rbc
+        INNER JOIN (
+          SUM(${itemsUpdtdTypeColumn}) as total_updated
+          FROM rainbowcat_update_tracker
+        )
+        rbcut ON rbc.ediName = rbcut.edi_vendor_name
+        SET rbc.${updateTypeTotal} = rbcut.total_updated
 
         INSERT INTO rainbowcat_update_tracker (date, edi_vendor_name, ${imwTypeColumn}, ${itemsUpdtdTypeColumn})
         VALUES('${todayIso}', 'EDI-${vendorName.toUpperCase()}', '${req.body['csvPost']}.csv', '${srcRsCSV_nonPag.length}');`,
