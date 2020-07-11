@@ -82,11 +82,13 @@ module.exports = {
       let vendorNameSplit2 = vendorNameSplit1[1]
       if (fileName.toLowerCase().includes('rtlimw')) {
         imwTypeColumn = 'rtlImw'
+        itemsUpdtdTypeColumn = 'items_updtd_rtl'
         vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('rtlimw')
         console.log(`imwTypeColumn==> ${imwTypeColumn}`)
       }
       if (fileName.toLowerCase().includes('wsimw')) {
         imwTypeColumn = 'wsImw'
+        itemsUpdtdTypeColumn = 'items_updtd_ws'
         vendorNameSplit3 = vendorNameSplit2.toLowerCase().split('wsimw')
         console.log(`imwTypeColumn==> ${imwTypeColumn}`)
       }
@@ -97,7 +99,7 @@ module.exports = {
       connection.query(
         `UPDATE rainbowcat SET ${imwTypeColumn} = '${req.body['csvPost']}.csv (${srcRsCSV_nonPag.length} items)' WHERE ediName = '${ediVendorName}';
 
-        INSERT INTO rainbowcat_update_tracker (date, edi_vendor_name, ${imwTypeColumn}, items_updtd)
+        INSERT INTO rainbowcat_update_tracker (date, edi_vendor_name, ${imwTypeColumn}, ${itemsUpdtdTypeColumn})
         VALUES('${todayIso}', 'EDI-${vendorName.toUpperCase()}', '${req.body['csvPost']}.csv', '${srcRsCSV_nonPag.length}');`,
 
         function (err, rows, fields) {
