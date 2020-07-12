@@ -36,6 +36,7 @@ module.exports = {
       // let dateToFixMonth = dateToFixSplit[2]
       // fixedDate = `${dateToFixDay}/${dateToFixMonth}/${dateToFixYear}`
       // console.log(`fixedDate from dateFixer()==> ${fixedDate}`)
+      fixedDate = dateToFix
     }
 
     for (let a = 0; a < rbCatUpdtTrkrDisplayArr4xls.length; a++) {
