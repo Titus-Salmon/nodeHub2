@@ -8,7 +8,7 @@ html
 		include vw-dashboard.pug
 
 		//- //v// displays rainbowcat_update_tracker table
-		form#rbCatUpdtTrkrDisplay(action='/MySqlTableHub/rbCatUpdtTrkrDisplay' method='POST' accept-charset="UTF-8" style="display:block")
+		form#rbCatUpdtTrkrDisplay(action='/rbCatUpdtTrkr/rbCatUpdtTrkrDisplay' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='rbCatUpdtTrkrDisplay') This query selects all from rainbowcat_update_tracker table
 				textarea#rbCatUpdtTrkrDisplayTextArea.input-unit-1(name="rbCatUpdtTrkrDisplayPost", cols="30", rows="1", wrap="soft") SELECT * FROM rainbowcat_update_tracker;
