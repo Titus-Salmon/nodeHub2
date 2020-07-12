@@ -36,7 +36,7 @@ module.exports = {
     function displayRBcut(rows) {
       for (let i = 0; i < rows.length; i++) {
         let rbCUTobj = {}
-        // dateFixer(rows[i]['date'])
+        dateFixer(rows[i]['date'])
         rbCUTobj['ri_t0d'] = i + 1
         rbCUTobj['date'] = rows[i]['date']
         rbCUTobj['edi_vendor_name'] = rows[i]['edi_vendor_name']
