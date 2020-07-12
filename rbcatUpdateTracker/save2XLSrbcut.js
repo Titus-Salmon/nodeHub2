@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-// const fs = require('fs')
 const xl = require('excel4node')
 const mysql = require('mysql')
 
@@ -24,10 +23,25 @@ module.exports = {
 
     var rbCUTdisplArr_selectiveReordering = []
 
+    function dateFixer(dateToFix) {
+      if (dateToFix.includes('T')) {
+        let dateToFixSplit_T = dateToFix.split('T')
+        let dateToFix = dateToFixSplit_T[0]
+      }
+      let dateToFixSplit = dateToFix.split('-')
+      let dateToFixYear = dateToFixSplit[0]
+      let dateToFixMonth = dateToFixSplit[1]
+      let dateToFixDay = dateToFixSplit[2]
+      let fixedDate = `${dateToFixDay}/${dateToFixMonth}/${dateToFixYear}`
+      console.log(`fixedDate from dateFixer()==> ${fixedDate}`)
+    }
+
     for (let a = 0; a < rbCatUpdtTrkrDisplayArr4xls.length; a++) {
       let reorderedResObj = {}
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
-      reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
+      dateFixer(rbCatUpdtTrkrDisplayArr4xls[a]['date'])
+      reorderedResObj['date'] = fixedDate
+      // reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
       reorderedResObj['edi_vendor_name'] = rbCatUpdtTrkrDisplayArr4xls[a]['edi_vendor_name']
       reorderedResObj['wsImw'] = rbCatUpdtTrkrDisplayArr4xls[a]['wsImw']
       reorderedResObj['rtlImw'] = rbCatUpdtTrkrDisplayArr4xls[a]['rtlImw']
