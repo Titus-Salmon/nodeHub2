@@ -42,7 +42,7 @@ module.exports = {
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
       console.log(`rbCatUpdtTrkrDisplayArr4xls[${a}]['date']==> ${rbCatUpdtTrkrDisplayArr4xls[a]['date']}`)
       console.log(`typeof rbCatUpdtTrkrDisplayArr4xls[65]['date']==> ${typeof rbCatUpdtTrkrDisplayArr4xls[65]['date']}`)
-      let rbCatUpdtTrkrDisplayArr4xls[65]['date'] = dfTroubleShoot1
+      let dfTroubleShoot1 = rbCatUpdtTrkrDisplayArr4xls[65]['date']
       let dfTroubleShoot1Split = dfTroubleShoot1.split('T')
       console.log(`dfTroubleShoot1Split==> ${dfTroubleShoot1Split}`)
       dateFixer(rbCatUpdtTrkrDisplayArr4xls[a]['date'])
