@@ -16,24 +16,24 @@ module.exports = {
 
   save2XLSrbcut: router.post('/save2XLSrbcut', (req, res, next) => {
 
-    //NOTE++++++++>>> rbCatUpdtTrkrDisplayArr is the original array that holds the collection of SearchResults objects {columnName: cellValue}
+    //NOTE++++++++>>> rbCatUpdtTrkrDisplayArr4xls is the original array that holds the collection of SearchResults objects {columnName: cellValue}
     //HOWEVER, since the inherent order (from showSearchResults()) of these key:value pairs is NOT NECESSARILY the order we want to display them
-    //in the excel file, and also since there are additional key:value pairs from rbCatUpdtTrkrDisplayArr that we DON'T want to display, we
-    //selectively reorder and/or remove the key:value pairs from rbCatUpdtTrkrDisplayArr to form the rbCUTdisplArr_selectiveReordering array
-    //(WITHOUT modifying the original rbCatUpdtTrkrDisplayArr array).
+    //in the excel file, and also since there are additional key:value pairs from rbCatUpdtTrkrDisplayArr4xls that we DON'T want to display, we
+    //selectively reorder and/or remove the key:value pairs from rbCatUpdtTrkrDisplayArr4xls to form the rbCUTdisplArr_selectiveReordering array
+    //(WITHOUT modifying the original rbCatUpdtTrkrDisplayArr4xls array).
 
     var rbCUTdisplArr_selectiveReordering = []
 
-    for (let a = 0; a < rbCatUpdtTrkrDisplayArr.length; a++) {
+    for (let a = 0; a < rbCatUpdtTrkrDisplayArr4xls.length; a++) {
       let reorderedResObj = {}
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
-      reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr[a]['date']
-      reorderedResObj['edi_vendor_name'] = rbCatUpdtTrkrDisplayArr[a]['edi_vendor_name']
-      reorderedResObj['wsImw'] = rbCatUpdtTrkrDisplayArr[a]['wsImw']
-      reorderedResObj['rtlImw'] = rbCatUpdtTrkrDisplayArr[a]['rtlImw']
-      reorderedResObj['items_updtd_ws'] = rbCatUpdtTrkrDisplayArr[a]['items_updtd_ws']
-      reorderedResObj['items_updtd_rtl'] = rbCatUpdtTrkrDisplayArr[a]['items_updtd_rtl']
-      reorderedResObj['note1'] = rbCatUpdtTrkrDisplayArr[a]['note1']
+      reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
+      reorderedResObj['edi_vendor_name'] = rbCatUpdtTrkrDisplayArr4xls[a]['edi_vendor_name']
+      reorderedResObj['wsImw'] = rbCatUpdtTrkrDisplayArr4xls[a]['wsImw']
+      reorderedResObj['rtlImw'] = rbCatUpdtTrkrDisplayArr4xls[a]['rtlImw']
+      reorderedResObj['items_updtd_ws'] = rbCatUpdtTrkrDisplayArr4xls[a]['items_updtd_ws']
+      reorderedResObj['items_updtd_rtl'] = rbCatUpdtTrkrDisplayArr4xls[a]['items_updtd_rtl']
+      reorderedResObj['note1'] = rbCatUpdtTrkrDisplayArr4xls[a]['note1']
 
       rbCUTdisplArr_selectiveReordering.push(reorderedResObj)
     }

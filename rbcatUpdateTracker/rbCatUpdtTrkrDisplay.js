@@ -17,6 +17,7 @@ module.exports = {
     console.log(`rbCUTquery==> ${rbCUTquery}`)
 
     let rbCatUpdtTrkrDisplayArr = []
+    rbCatUpdtTrkrDisplayArr4xls = []
 
     function displayRBcut(rows) {
       for (let i = 0; i < rows.length; i++) {
@@ -31,6 +32,7 @@ module.exports = {
         rbCUTobj['note1'] = rows[i]['note1']
 
         rbCatUpdtTrkrDisplayArr.push(rbCUTobj)
+        rbCatUpdtTrkrDisplayArr4xls.push(rbCUTobj)
       }
       console.log('rows.length~~~>', rows.length)
     }
