@@ -44,8 +44,8 @@ module.exports = {
       // res.send(rows)
       displayRBcut(rows)
 
-      res.render('vw-rbCUTquery', {
-        title: 'NodeHub Catapult Results Table Query Results',
+      res.render('vw-rbCatUpdtTrkr', {
+        title: 'rainbowcat_update_tracker table Query Results',
         rbCatUpdtTrkrDisplay: rbCatUpdtTrkrDisplayArr
       })
     })
