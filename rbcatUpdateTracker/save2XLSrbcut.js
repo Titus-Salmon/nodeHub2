@@ -48,7 +48,7 @@ module.exports = {
       console.log(`dfTroubleShoot1Split[0]==> ${dfTroubleShoot1Split[0]}`)
       console.log(`typeof dfTroubleShoot1Split[0]==> ${typeof dfTroubleShoot1Split[0]}`)
       dateFixer(rbCatUpdtTrkrDisplayArr4xls[a]['date'])
-      reorderedResObj['date'] = fixedDate
+      reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
       // reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
       reorderedResObj['edi_vendor_name'] = rbCatUpdtTrkrDisplayArr4xls[a]['edi_vendor_name']
       reorderedResObj['wsImw'] = rbCatUpdtTrkrDisplayArr4xls[a]['wsImw']

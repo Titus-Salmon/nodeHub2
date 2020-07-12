@@ -19,9 +19,24 @@ module.exports = {
     let rbCatUpdtTrkrDisplayArr = []
     rbCatUpdtTrkrDisplayArr4xls = []
 
+    function dateFixer(dateToFix) {
+      if (dateToFix.includes('T')) {
+        console.log(`dateToFix that includes T==> ${dateToFix}`)
+        let dateToFixSplit_T = dateToFix.split('T')
+        let dateToFix = dateToFixSplit_T[0]
+      }
+      let dateToFixSplit = dateToFix.split('-')
+      let dateToFixYear = dateToFixSplit[0]
+      let dateToFixDay = dateToFixSplit[1]
+      let dateToFixMonth = dateToFixSplit[2]
+      fixedDate = `${dateToFixDay}/${dateToFixMonth}/${dateToFixYear}`
+      console.log(`fixedDate from dateFixer()==> ${fixedDate}`)
+    }
+
     function displayRBcut(rows) {
       for (let i = 0; i < rows.length; i++) {
         let rbCUTobj = {}
+        // dateFixer(rows[i]['date'])
         rbCUTobj['ri_t0d'] = i + 1
         rbCUTobj['date'] = rows[i]['date']
         rbCUTobj['edi_vendor_name'] = rows[i]['edi_vendor_name']
