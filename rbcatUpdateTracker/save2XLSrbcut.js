@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
 
 module.exports = {
 
-  saveXLSrbcut: router.post('/saveXLSrbcut', (req, res, next) => {
+  save2XLSrbcut: router.post('/save2XLSrbcut', (req, res, next) => {
 
     //NOTE++++++++>>> rbCatUpdtTrkrDisplayArr is the original array that holds the collection of SearchResults objects {columnName: cellValue}
     //HOWEVER, since the inherent order (from showSearchResults()) of these key:value pairs is NOT NECESSARILY the order we want to display them
