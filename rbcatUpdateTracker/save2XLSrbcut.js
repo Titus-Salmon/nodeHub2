@@ -41,6 +41,7 @@ module.exports = {
       let reorderedResObj = {}
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
       console.log(`rbCatUpdtTrkrDisplayArr4xls[${a}]['date']==> ${rbCatUpdtTrkrDisplayArr4xls[a]['date']}`)
+      console.log(`typeof rbCatUpdtTrkrDisplayArr4xls[65]['date']==> ${typeof rbCatUpdtTrkrDisplayArr4xls[65]['date']}`)
       dateFixer(rbCatUpdtTrkrDisplayArr4xls[a]['date'])
       reorderedResObj['date'] = fixedDate
       // reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
