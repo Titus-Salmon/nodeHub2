@@ -24,10 +24,10 @@ module.exports = {
     var rbCUTdisplArr_selectiveReordering = []
 
     function dateFixer(dateToFix) {
-      if (this.dateToFix.includes('T')) {
+      if (dateToFix.includes('T')) {
         console.log(`dateToFix that includes T==> ${dateToFix}`)
         let dateToFixSplit_T = dateToFix.split('T')
-        let dateToFix = dateToFixSplit_T[0]
+        dateToFix = dateToFixSplit_T[0]
       }
       let dateToFixSplit = dateToFix.split('-')
       let dateToFixYear = dateToFixSplit[0]
