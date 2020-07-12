@@ -39,9 +39,9 @@ module.exports = {
     for (let a = 0; a < rbCatUpdtTrkrDisplayArr4xls.length; a++) {
       let reorderedResObj = {}
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
-      // dateFixer(rbCatUpdtTrkrDisplayArr4xls[a]['date'])
-      // reorderedResObj['date'] = fixedDate
-      reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
+      dateFixer(rbCatUpdtTrkrDisplayArr4xls[a]['date'])
+      reorderedResObj['date'] = fixedDate
+      // reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
       reorderedResObj['edi_vendor_name'] = rbCatUpdtTrkrDisplayArr4xls[a]['edi_vendor_name']
       reorderedResObj['wsImw'] = rbCatUpdtTrkrDisplayArr4xls[a]['wsImw']
       reorderedResObj['rtlImw'] = rbCatUpdtTrkrDisplayArr4xls[a]['rtlImw']
