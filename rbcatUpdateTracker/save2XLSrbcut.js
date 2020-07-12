@@ -30,11 +30,11 @@ module.exports = {
         dateToFix = dateToFixSplit_T[0] // can't use let dateToFix here, because that would reinstantiate rbCatUpdtTrkrDisplayArr4xls[a]['date']
         //from below, as though it were a new variable
       }
-      let dateToFixSplit = dateToFix.split('-')
-      let dateToFixYear = dateToFixSplit[0]
-      let dateToFixDay = dateToFixSplit[1]
-      let dateToFixMonth = dateToFixSplit[2]
-      fixedDate = `${dateToFixDay}/${dateToFixMonth}/${dateToFixYear}`
+      // let dateToFixSplit = dateToFix.split('-')
+      // let dateToFixYear = dateToFixSplit[0]
+      // let dateToFixDay = dateToFixSplit[1]
+      // let dateToFixMonth = dateToFixSplit[2]
+      // fixedDate = `${dateToFixDay}/${dateToFixMonth}/${dateToFixYear}`
       console.log(`fixedDate from dateFixer()==> ${fixedDate}`)
     }
 
