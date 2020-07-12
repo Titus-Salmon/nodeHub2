@@ -30,8 +30,8 @@ module.exports = {
       }
       let dateToFixSplit = dateToFix.split('-')
       let dateToFixYear = dateToFixSplit[0]
-      let dateToFixMonth = dateToFixSplit[1]
-      let dateToFixDay = dateToFixSplit[2]
+      let dateToFixDay = dateToFixSplit[1]
+      let dateToFixMonth = dateToFixSplit[2]
       fixedDate = `${dateToFixDay}/${dateToFixMonth}/${dateToFixYear}`
       console.log(`fixedDate from dateFixer()==> ${fixedDate}`)
     }
