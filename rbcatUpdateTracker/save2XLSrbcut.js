@@ -27,7 +27,8 @@ module.exports = {
       if (dateToFix.includes('T')) {
         console.log(`dateToFix that includes T==> ${dateToFix}`)
         let dateToFixSplit_T = dateToFix.split('T')
-        dateToFix = dateToFixSplit_T[0]
+        dateToFix = dateToFixSplit_T[0] // can't use let dateToFix here, because that would reinstantiate rbCatUpdtTrkrDisplayArr4xls[a]['date']
+        //from below, as though it were a new variable
       }
       let dateToFixSplit = dateToFix.split('-')
       let dateToFixYear = dateToFixSplit[0]
@@ -39,16 +40,9 @@ module.exports = {
 
     for (let a = 0; a < rbCatUpdtTrkrDisplayArr4xls.length; a++) {
       let reorderedResObj = {}
-      // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
-      console.log(`rbCatUpdtTrkrDisplayArr4xls[${a}]['date']==> ${rbCatUpdtTrkrDisplayArr4xls[a]['date']}`)
-      console.log(`typeof rbCatUpdtTrkrDisplayArr4xls[65]['date']==> ${typeof rbCatUpdtTrkrDisplayArr4xls[65]['date']}`)
-      let dfTroubleShoot1 = rbCatUpdtTrkrDisplayArr4xls[65]['date']
-      let dfTroubleShoot1Split = dfTroubleShoot1.split('T')
-      console.log(`dfTroubleShoot1Split==> ${dfTroubleShoot1Split}`)
-      console.log(`dfTroubleShoot1Split[0]==> ${dfTroubleShoot1Split[0]}`)
-      console.log(`typeof dfTroubleShoot1Split[0]==> ${typeof dfTroubleShoot1Split[0]}`)
       dateFixer(rbCatUpdtTrkrDisplayArr4xls[a]['date'])
-      reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
+      // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
+      reorderedResObj['date'] = fixedDate
       // reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
       reorderedResObj['edi_vendor_name'] = rbCatUpdtTrkrDisplayArr4xls[a]['edi_vendor_name']
       reorderedResObj['wsImw'] = rbCatUpdtTrkrDisplayArr4xls[a]['wsImw']
