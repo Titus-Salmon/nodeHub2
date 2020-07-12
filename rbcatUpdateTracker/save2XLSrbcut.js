@@ -45,6 +45,8 @@ module.exports = {
       let dfTroubleShoot1 = rbCatUpdtTrkrDisplayArr4xls[65]['date']
       let dfTroubleShoot1Split = dfTroubleShoot1.split('T')
       console.log(`dfTroubleShoot1Split==> ${dfTroubleShoot1Split}`)
+      console.log(`dfTroubleShoot1Split[0]==> ${dfTroubleShoot1Split[0]}`)
+      console.log(`typeof dfTroubleShoot1Split[0]==> ${typeof dfTroubleShoot1Split[0]}`)
       dateFixer(rbCatUpdtTrkrDisplayArr4xls[a]['date'])
       reorderedResObj['date'] = fixedDate
       // reorderedResObj['date'] = rbCatUpdtTrkrDisplayArr4xls[a]['date']
