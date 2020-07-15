@@ -99,7 +99,7 @@ module.exports = {
       {
         '158': {
           'name': 'Herbs & Homeopathic',
-          'dfltMrg': '40'
+          'dfltMrg': '50' //changed from 40% per Andrea 20200715
         }
       },
       {
@@ -123,7 +123,7 @@ module.exports = {
       {
         '157': {
           'name': 'Vitamins & Supplements',
-          'dfltMrg': '40'
+          'dfltMrg': '50' //changed from 40% per Andrea 20200715
         }
       }
     ]
