@@ -11,7 +11,8 @@ const connection = mysql.createConnection({
   user: process.env.RB_USER,
   password: process.env.RB_PW,
   database: process.env.RB_DB,
-  debug: true
+  debug: true,
+  multipleStatements: true
 })
 
 const fs = require('fs')
