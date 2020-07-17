@@ -33,6 +33,9 @@ const {
   save2CSV
 } = require('../sqlArch/save2CSV')
 const {
+  save2CSVcreatePop
+} = require('../sqlArch/save2CSVcreatePop')
+const {
   save2XLS_tsql
 } = require('../sqlArch/save2XLS_tsql')
 const {
@@ -59,6 +62,7 @@ router.post('/rbInvUpdaterTsql', rbInvUpdaterTsql)
 
 router.post('/queryOrderingInfoTable', OrderingInfoQuery)
 router.post('/save2CSV', save2CSV)
+router.post('/save2CSVcreatePop', save2CSVcreatePop)
 router.post('/save2XLS_tsql', save2XLS_tsql)
 router.post('/save2XLS_tsql_autoreorder', save2XLS_tsql_autoreorder)
 

@@ -11,15 +11,26 @@ html
 
 
 		div(style="display:block")
-			form#saveCSVreviewPost(action='/tsqlTableHub/save2CSV' method='POST' accept-charset='UTF-8' style="display:block")
+			form#saveCSVPost(action='/tsqlTableHub/save2CSV' method='POST' accept-charset='UTF-8' style="display:block")
 				if catapultResults !== undefined
 					label.input-label-1(for='csv') filename:
-						input#csvReview.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+						input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
 					//- label.input-label-1(for='csvReviewHeaders') CSV Review headers:
 					//- 	input#csvReviewHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value="upc, sku, name, pf2, pf3, cost, charm, edlp_flag, sale_flag")
 					label.input-label-1(for='save2CSVArr') Catapult Table Query Results Array:
 						input#save2CSVArr.input-unit-1(type='text', placeholder='enter data', name='save2CSVArrPost', readonly, style="background-color:#c2d6d6", value=catapultResults)
-					button#saveCSVreview(type="submit" form="saveCSVreviewPost") Save Results as CSV - Catapult Inventory Master Query2
+					button#saveCSV(type="submit" form="saveCSVPost") Save Results as CSV - Catapult Inventory Master Query2
+
+		div(style="display:block")
+			form#saveCSVcreatePopPost(action='/tsqlTableHub/save2CSVcreatePop' method='POST' accept-charset='UTF-8' style="display:block")
+				if catapultResults !== undefined
+					label.input-label-1(for='csvCreatePop') filename:
+						input#csvCreatePop.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+					label.input-label-1(for='tableNameCreatePop') Table Name:
+						input#tableNameCreatePop.input-unit-1(type='text', placeholder='enter tablename here', name='tablenamePost', value='')
+					label.input-label-1(for='save2CSVArr2') Catapult Table Query Results Array:
+						input#save2CSVArr2.input-unit-1(type='text', placeholder='enter data', name='save2CSVArrPost', readonly, style="background-color:#c2d6d6", value=catapultResults)
+					button#saveCSVcreatePop(type="submit" form="saveCSVcreatePopPost") Save Results as CSV, Create & Pop NHCRT table
 
 		div(style="display:block")
 			form#saveXLSreviewPost(action='/tsqlTableHub/save2XLS_tsql' method='POST' accept-charset='UTF-8')
