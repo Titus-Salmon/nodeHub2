@@ -4,6 +4,8 @@ var router = express.Router();
 const odbc = require('odbc')
 const DSN = process.env.ODBC_CONN_STRING
 
+const mysql = require('mysql')
+
 const connection = mysql.createConnection({
   host: process.env.RB_HOST,
   user: process.env.RB_USER,
