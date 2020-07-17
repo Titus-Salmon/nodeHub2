@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
 const fs = require('fs')
 
 module.exports = {
-  save2CSVcreatePop: router.post('/save2CSVcreatePop', (req, res, next) => {
+  save2CSVcreatePopNej: router.post('/save2CSVcreatePopNej', (req, res, next) => {
 
     console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
     console.log(`JSON.parse(req.body['save2CSVArrPost'])==>${JSON.parse(req.body['save2CSVArrPost'])}`)
