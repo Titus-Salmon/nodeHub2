@@ -17,6 +17,17 @@ html
 					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=nhcrtEdiJoin)
 				button#saveCSVnhcrtEdi(type="submit" form="nhcrtEdiCSVPost") Save Results as CSV - NHCRT/EDI joined tables
 
+	div(style="display:block")
+			form#saveCSVcreatePopNejPost(action='/MySqlTableHub/save2CSVcreatePopNej' method='POST' accept-charset='UTF-8' style="display:block")
+				if nhcrtEdiJoin !== undefined
+					label.input-label-1(for='csvCreatePop') filename:
+						input#csvCreatePop.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+					label.input-label-1(for='tableNameCreatePop') Table Name:
+						input#tableNameCreatePop.input-unit-1(type='text', placeholder='enter tablename here', name='tablenamePost', value='')
+					label.input-label-1(for='save2CSVArr2') Catapult Table Query Results Array:
+						input#save2CSVArr2.input-unit-1(type='text', placeholder='enter data', name='save2CSVArrPost', readonly, style="background-color:#c2d6d6", value=nhcrtEdiJoin)
+					button#saveCSVcreatePop(type="submit" form="saveCSVcreatePopNejPost") Save Results as CSV, Create & Pop NHCRT table
+
 		div.rslt-tbl-1
 			table#resTbl
 				thead

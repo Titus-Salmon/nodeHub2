@@ -34,6 +34,9 @@ const {
   save2CSVnhcrtEdiJoin
 } = require('../sqlArch/save2CSVnhcrtEdiJoin')
 const {
+  save2CSVcreatePopNej
+} = require('../sqlArch/save2CSVcreatePopNej')
+const {
   save2CSVnhcrtInfraSalesJoin
 } = require('../sqlArch/save2CSVnhcrtInfraSalesJoin')
 const {
@@ -76,6 +79,7 @@ router.post('/nhcrtEdiJoin', nhcrtEdiJoin)
 router.post('/nhcrtInfraSalesJoin', nhcrtInfraSalesJoin)
 // router.post('/nhcrtInfraSF_Join', nhcrtInfraSF_Join)
 router.post('/save2CSVnhcrtEdiJoin', save2CSVnhcrtEdiJoin)
+router.post('/save2CSVcreatePopNej', save2CSVcreatePopNej)
 router.post('/save2CSVnhcrtInfraSalesJoin', save2CSVnhcrtInfraSalesJoin)
 router.post('/save2CSVreviewNEJ', save2CSVreviewNEJ)
 router.post('/saveIMW_CSV', saveIMW_CSV)
