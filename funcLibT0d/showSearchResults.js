@@ -301,6 +301,7 @@ module.exports = {
           if (srcRsObj['ediCost'] > 0) {
 
             divideCostToUOS_Rtl_IMW()
+            srcRsObj['lastCost'] = '' //**HERE WE RESET LAST COST TO BE EMPTY, BECAUSE WE DON'T WANT TO INCLUDE LAST COST IN RETAIL IMWs
 
             //v//Retail applied vendor discount (math is dependent on these variables)
             srcRsObj['reqdRetail'] = reviewObj['reqdRetail'] = Math.round((-(srcRsObj['ediCostMod'] - srcRsObj['ediCostMod'] * rtlDiscoVar) / (departmentMargin - 1)) * 100) / 100 //applies margin to WS
