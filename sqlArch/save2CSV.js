@@ -11,7 +11,7 @@ const catapultResArrCache = require('../nodeCacheStuff/cache1')
 module.exports = {
     save2CSV: router.post('/save2CSV', (req, res, next) => {
 
-        catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // value === "myValue"; this also deletes the key
+        catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // this also deletes the key
 
         // console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
 

@@ -17,11 +17,12 @@ const connection = mysql.createConnection({
 
 const fs = require('fs')
 
+const catapultResArrCache = require('../nodeCacheStuff/cache1')
+
 module.exports = {
   save2CSVcreatePop: router.post('/save2CSVcreatePop', (req, res, next) => {
 
-    console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
-    // console.log(`JSON.parse(req.body['save2CSVArrPost'])==>${JSON.parse(req.body['save2CSVArrPost'])}`)
+    catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // this also deletes the key
 
     //begin csv generator //////////////////////////////////////////////////////////////////////////
     const {
@@ -75,9 +76,7 @@ module.exports = {
 
     try {
       const parser = new Parser(opts);
-      console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
-      const csv = parser.parse(JSON.parse(req.body['save2CSVArrPost']))
-      console.log(`JSON.stringify(req.body['save2CSVArrPost'][0])-->${JSON.stringify(req.body['save2CSVArrPost'][0])}`)
+      const csv = parser.parse(catapultResArrCacheValue)
       console.log(`req.body['csvPost']-->${req.body['csvPost']}`)
       console.log('csv.length=====>>', csv.length);
       fs.writeFile(process.cwd() + '/public/csv-to-insert/' + req.body['csvPost'] + '.csv', csv, function (err) {
