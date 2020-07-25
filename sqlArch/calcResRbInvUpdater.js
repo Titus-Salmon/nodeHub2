@@ -136,49 +136,49 @@ module.exports = {
       for (let i = 0; i < nhcrtRows.length; i++) {
         for (let j = 0; j < storeNumberArr.length; j++) {
 
-          storeName = storeNumberArr[j]
+          storeNumber = storeNumberArr[j]
           storeAbbrev = storeAbbrevArr[j]
 
-          function calcResRbInvUpdater(storeName, storeAbbrev) {
-            if (nhcrtRows[i]['stoName'] == storeName) {
+          function calcResRbInvUpdater(storeNumber, storeAbbrev) {
+            if (nhcrtRows[i]['stoNumber'] == storeNumber) {
               if (nhcrtRows[i]['invLastreceived'] > oneYearAgo ||
                 nhcrtRows[i]['invLastsold'] > oneYearAgo ||
                 nhcrtRows[i]['invOnhand'] > 0) {
-                if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                if (nhcrtRows[i]['stoNumber'] == 'IN') {
                   srcRsINDstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                if (nhcrtRows[i]['stoNumber'] == 'SM') {
                   srcRsSMstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                if (nhcrtRows[i]['stoNumber'] == 'MT') {
                   srcRsMTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                if (nhcrtRows[i]['stoNumber'] == 'SPR') {
                   srcRsSHstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                if (nhcrtRows[i]['stoNumber'] == 'GL') {
                   srcRsGLstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
               } else {
-                if (nhcrtRows[i]['stoName'] == 'Indiana') {
+                if (nhcrtRows[i]['stoNumber'] == 'IN') {
                   srcRsIND_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Saint Matthews') {
+                if (nhcrtRows[i]['stoNumber'] == 'SM') {
                   srcRsSM_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Middletown') {
+                if (nhcrtRows[i]['stoNumber'] == 'MT') {
                   srcRsMT_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Springhurst') {
+                if (nhcrtRows[i]['stoNumber'] == 'SPR') {
                   srcRsSH_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
-                if (nhcrtRows[i]['stoName'] == 'Gardiner Lane') {
+                if (nhcrtRows[i]['stoNumber'] == 'GL') {
                   srcRsGL_NOTstocked.push(`${nhcrtRows[i]['invScanCode']}`)
                 }
               }
             }
           }
-          calcResRbInvUpdater(storeName, storeAbbrev)
+          calcResRbInvUpdater(storeNumber, storeAbbrev)
         }
       }
 
