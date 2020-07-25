@@ -86,7 +86,8 @@ module.exports = {
     console.log(`oneMontghAgo==> ${oneMonthAgo}`)
     //^//////////one month ago///////////////////////////////////////
 
-    let storeNameArr = ['Indiana', 'Saint Matthews', 'Middletown', 'Springhurst', 'Gardiner Lane']
+    // let storeNameArr = ['Indiana', 'Saint Matthews', 'Middletown', 'Springhurst', 'Gardiner Lane']
+    let storeNumberArr = ['IN', 'SM', 'MT', 'SPR', 'GL']
     let storeAbbrevArr = ['IND', 'SM', 'MT', 'SH', 'GL']
 
     let saniRegex1 = /(\[)|(\])/g
@@ -133,9 +134,9 @@ module.exports = {
       }
 
       for (let i = 0; i < nhcrtRows.length; i++) {
-        for (let j = 0; j < storeNameArr.length; j++) {
+        for (let j = 0; j < storeNumberArr.length; j++) {
 
-          storeName = storeNameArr[j]
+          storeName = storeNumberArr[j]
           storeAbbrev = storeAbbrevArr[j]
 
           function calcResRbInvUpdater(storeName, storeAbbrev) {
