@@ -21,7 +21,7 @@ module.exports = {
   save2CSVcreatePop: router.post('/save2CSVcreatePop', (req, res, next) => {
 
     console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
-    console.log(`JSON.parse(req.body['save2CSVArrPost'])==>${JSON.parse(req.body['save2CSVArrPost'])}`)
+    // console.log(`JSON.parse(req.body['save2CSVArrPost'])==>${JSON.parse(req.body['save2CSVArrPost'])}`)
 
     //begin csv generator //////////////////////////////////////////////////////////////////////////
     const {

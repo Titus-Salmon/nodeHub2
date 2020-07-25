@@ -11,7 +11,7 @@ module.exports = {
 
         // console.log(`req.body['save2CSVArrPost']==> ${req.body['save2CSVArrPost']}`)
         console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
-        console.log(`JSON.parse(req.body['save2CSVArrPost'])==>${JSON.parse(req.body['save2CSVArrPost'])}`)
+        // console.log(`JSON.parse(req.body['save2CSVArrPost'])==>${JSON.parse(req.body['save2CSVArrPost'])}`)
 
         // console.log(`catapultTableArr[0]==>${catapultTableArr[0]}`)
         // console.log(`catapultTables[0]==>${catapultTables[0]}`)
