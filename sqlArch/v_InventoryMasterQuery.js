@@ -156,8 +156,8 @@ module.exports = {
                 catapultResArr.push(catapultResObj)
                 srcRsXLS_tsql.push(catapultResObj)
                 catapultResArrCache.set('catapultResArrCache_key', catapultResArr)
-                console.log(`catapultResArrCache['catapultResArrCache_key'].length==> ${catapultResArrCache['catapultResArrCache_key'].length}`)
-                console.log(`typeof catapultResArrCache['catapultResArrCache_key']==> ${typeof catapultResArrCache['catapultResArrCache_key']}`)
+                console.log(`catapultResArrCache['data']['catapultResArrCache_key']['v'].length==> ${catapultResArrCache['data']['catapultResArrCache_key']['v'].length}`)
+                console.log(`catapultResArrCache['data']['catapultResArrCache_key']['v'][0]==> ${catapultResArrCache['data']['catapultResArrCache_key']['v'][0]}`)
             }
             // console.log(`result.length~~~> ${result.length}`)
         }
