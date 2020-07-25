@@ -105,11 +105,11 @@ module.exports = {
                 catapultResObj['invOnhand'] = result[i]['inv_onhand']
                 catapultResObj['invOnorder'] = result[i]['inv_onorder']
                 catapultResObj['invIntransit'] = result[i]['inv_intransit']
-                if (typeof result[i]['inv_memo'] == 'string') {
-                    catapultResObj['invMemo'] = result[i]['inv_memo'].trim()
-                } else {
-                    catapultResObj['invMemo'] = result[i]['inv_memo']
-                }
+                // if (typeof result[i]['inv_memo'] == 'string') {
+                //     catapultResObj['invMemo'] = result[i]['inv_memo'].trim()
+                // } else {
+                //     catapultResObj['invMemo'] = result[i]['inv_memo']
+                // }
                 if (typeof result[i]['PI1_Description'] == 'string') {
                     catapultResObj['pi1Description'] = result[i]['PI1_Description'].trim()
                 } else {
