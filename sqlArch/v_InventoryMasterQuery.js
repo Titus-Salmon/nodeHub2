@@ -76,11 +76,11 @@ module.exports = {
                 } else {
                     catapultResObj['stoNumber'] = result[i]['sto_number']
                 }
-                if (typeof result[i]['sto_name'] == 'string') {
-                    catapultResObj['stoName'] = result[i]['sto_name'].trim()
-                } else {
-                    catapultResObj['stoName'] = result[i]['sto_name']
-                }
+                // if (typeof result[i]['sto_name'] == 'string') {
+                //     catapultResObj['stoName'] = result[i]['sto_name'].trim()
+                // } else {
+                //     catapultResObj['stoName'] = result[i]['sto_name']
+                // }
                 if (typeof result[i]['brd_name'] == 'string') {
                     catapultResObj['brdName'] = result[i]['brd_name'].trim()
                 } else {
