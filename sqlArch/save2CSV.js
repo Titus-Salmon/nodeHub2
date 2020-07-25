@@ -13,14 +13,7 @@ module.exports = {
 
         catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // value === "myValue"; this also deletes the key
 
-        // console.log(`req.body['save2CSVArrPost']==> ${req.body['save2CSVArrPost']}`)
-        console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
-        // console.log(`JSON.parse(req.body['save2CSVArrPost'])==>${JSON.parse(req.body['save2CSVArrPost'])}`)
-
-        // console.log(`catapultTableArr[0]==>${catapultTableArr[0]}`)
-        // console.log(`catapultTables[0]==>${catapultTables[0]}`)
-        // console.log(`JSON.stringify(catapultTableArr[0])==>${JSON.stringify(catapultTableArr[0])}`)
-        // console.log(`JSON.parse(JSON.stringify(catapultTableArr[0]))==>${JSON.parse(JSON.stringify(catapultTableArr[0]))}`)
+        // console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
 
 
         //begin csv generator //////////////////////////////////////////////////////////////////////////
@@ -44,17 +37,11 @@ module.exports = {
         }
 
         try {
-            // console.log('catapultTableArr[0] from json2csv======>>', catapultTableArr[0])
             const parser = new Parser(opts);
-            // const csv = parser.parse(catapultTableArr);
-            // const csv = parser.parse(catapultTables)
-            // const csv = parser.parse(JSON.stringify(req.body['save2CSVArrPost']))
-            console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
-            const csv = parser.parse(JSON.parse(req.body['save2CSVArrPost']))
-            // csvContainer.push(csv);
-            // console.log(`req.body-->${req.body}`)
-            // console.log(`JSON.stringify(req.body)-->${JSON.stringify(req.body)}`)
-            console.log(`JSON.stringify(req.body['save2CSVArrPost'][0])-->${JSON.stringify(req.body['save2CSVArrPost'][0])}`)
+            // console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
+            // const csv = parser.parse(JSON.parse(req.body['save2CSVArrPost']))
+            const csv = parser.parse(catapultResArrCacheValue)
+            // console.log(`JSON.stringify(req.body['save2CSVArrPost'][0])-->${JSON.stringify(req.body['save2CSVArrPost'][0])}`)
             console.log(`req.body['csvPost']-->${req.body['csvPost']}`)
             console.log('csv.length=====>>', csv.length);
             fs.writeFile(process.cwd() + '/public/csv-to-insert/' + req.body['csvPost'] + '.csv', csv, function (err) {
