@@ -6,6 +6,8 @@ const DSN = process.env.ODBC_CONN_STRING
 
 const fs = require('fs')
 
+const catapultResArrCache = require('../nodeCacheStuff/cache1')
+
 module.exports = {
     v_InventoryMasterQuery: router.post('/queryInvMasterTable', (req, res, next) => {
         const queryCatapultDBPostBody = req.body
@@ -153,6 +155,8 @@ module.exports = {
 
                 catapultResArr.push(catapultResObj)
                 srcRsXLS_tsql.push(catapultResObj)
+                catapultResArrCache.set('catapultResArrCache_key', catapultResArr)
+                console.log(`catapultResArrCache['catapultResArrCache_key'][0]==> ${catapultResArrCache['catapultResArrCache_key'][0]}`)
             }
             // console.log(`result.length~~~> ${result.length}`)
         }

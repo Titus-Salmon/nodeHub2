@@ -6,8 +6,12 @@ const DSN = process.env.ODBC_CONN_STRING
 
 const fs = require('fs')
 
+const catapultResArrCache = require('../nodeCacheStuff/cache1')
+
 module.exports = {
     save2CSV: router.post('/save2CSV', (req, res, next) => {
+
+        catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // value === "myValue"; this also deletes the key
 
         // console.log(`req.body['save2CSVArrPost']==> ${req.body['save2CSVArrPost']}`)
         console.log(`req.body['save2CSVArrPost'][0]==>${req.body['save2CSVArrPost'][0]}`)
