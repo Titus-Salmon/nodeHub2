@@ -24,8 +24,8 @@ module.exports = {
                 catapultResObj['ri_t0d'] = i + 1 //create sequential record id (ri_t0d) column for saving as csv; you will NOT
                 //want to include INV_PK or INV_CPK in your save-to-csv results - ONLY ri_t0d... adding 1 to 'i', so we don't
                 //start our ri_t0d with 0, as that seems to confuse MySQL...
-                catapultResObj['invPK'] = result[i]['INV_PK']
-                catapultResObj['invCPK'] = result[i]['INV_CPK']
+                // catapultResObj['invPK'] = result[i]['INV_PK']
+                // catapultResObj['invCPK'] = result[i]['INV_CPK']
                 if (typeof result[i]['INV_ScanCode'] == 'string') {
                     catapultResObj['invScanCode'] = result[i]['INV_ScanCode'].trim()
                 } else {
