@@ -26,8 +26,8 @@ module.exports = {
                 catapultResObj['ri_t0d'] = i + 1 //create sequential record id (ri_t0d) column for saving as csv; you will NOT
                 //want to include INV_PK or INV_CPK in your save-to-csv results - ONLY ri_t0d... adding 1 to 'i', so we don't
                 //start our ri_t0d with 0, as that seems to confuse MySQL...
-                // catapultResObj['invPK'] = result[i]['INV_PK']
-                // catapultResObj['invCPK'] = result[i]['INV_CPK']
+                catapultResObj['invPK'] = result[i]['INV_PK']
+                catapultResObj['invCPK'] = result[i]['INV_CPK']
                 if (typeof result[i]['INV_ScanCode'] == 'string') {
                     catapultResObj['invScanCode'] = result[i]['INV_ScanCode'].trim()
                 } else {
@@ -156,11 +156,12 @@ module.exports = {
                 catapultResArr.push(catapultResObj)
                 srcRsXLS_tsql.push(catapultResObj)
             }
-            // console.log(`result.length~~~> ${result.length}`)
+            //V// CACHE V_INVENTORYMASTER QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
             catapultResArrCache.set('catapultResArrCache_key', catapultResArr)
             console.log(`catapultResArrCache['data']['catapultResArrCache_key']['v'].length==> ${catapultResArrCache['data']['catapultResArrCache_key']['v'].length}`)
             console.log(`catapultResArrCache['data']['catapultResArrCache_key']['v'][0]==> ${catapultResArrCache['data']['catapultResArrCache_key']['v'][0]}`)
             console.log(`JSON.stringify(catapultResArrCache['data']['catapultResArrCache_key']['v'][0])==> ${JSON.stringify(catapultResArrCache['data']['catapultResArrCache_key']['v'][0])}`)
+            //^// CACHE V_INVENTORYMASTER QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
         }
 
         odbc.connect(DSN, (error, connection) => {
