@@ -419,7 +419,7 @@ html
 							th csPkgMltpl (calcResults)
 							th ovr (calcResults)
 							th stoNum
-							th stoName
+							//- th stoName
 							th Exst WS (Cplt)
 							th Updtd WS (EDI)
 							th ediCostMod
@@ -431,6 +431,7 @@ html
 							th dptName (Catapult)
 							th dptNumber (Cplt)
 							th sibIdealMargin (Cplt)
+							th actualMargT0d
 							th rb dflt margin
 							th Applied Margin
 							th wsDiff
@@ -465,7 +466,7 @@ html
 									td= elmnt.csPkgMltpl
 									td= elmnt.ovr
 									td= elmnt.stoNumber
-									td= elmnt.stoName
+									//- td= elmnt.stoName
 									td= elmnt.cpltCost
 									td= elmnt.ediCost
 									td= elmnt.ediCostMod
@@ -474,6 +475,7 @@ html
 									td= elmnt.charm
 									td= elmnt.ediPrice
 									td= elmnt.sibBasePrice
+									td= elmnt.actualMargT0d
 									td= elmnt.dptName
 									td= elmnt.dptNumber
 									td= elmnt.sibIdealMargin
