@@ -34,6 +34,7 @@ module.exports = {
       reorderedResObj['dptName'] = srcRsXLS_tsql[a]['dptName']
       reorderedResObj['dptNumber'] = srcRsXLS_tsql[a]['dptNumber']
       reorderedResObj['sibIdealMargin'] = srcRsXLS_tsql[a]['sibIdealMargin']
+      reorderedResObj['actualMargT0d'] = srcRsXLS_tsql[a]['actualMargT0d']
       reorderedResObj['venCompanyname'] = srcRsXLS_tsql[a]['venCompanyname']
       reorderedResObj['invLastreceived'] = srcRsXLS_tsql[a]['invLastreceived']
       reorderedResObj['invLastsold'] = srcRsXLS_tsql[a]['invLastsold']
