@@ -483,6 +483,7 @@ module.exports = {
 
       // srcRsObj['idealMarg'] = "" //Ideal Margin
       srcRsObj['idealMarg'] = nejRowsToggle[i][genericHeaderObj.sibIdealMarginHeader] //set idealMarg to what it actually is in Catapult
+      // srcRsObj['actualMargT0d'] = nejRowsToggle[i][genericHeaderObj.actualMargT0dHeader]
 
       srcRsObj['wtPrfl'] = "" //Weight Profile
       srcRsObj['tax1'] = "" //Tax1
@@ -635,6 +636,9 @@ module.exports = {
 
       srcRsObj['sibIdealMargin'] = nejRowsToggle[i][genericHeaderObj.sibIdealMarginHeader]
       reviewObj['sibIdealMargin'] = nejRowsToggle[i][genericHeaderObj.sibIdealMarginHeader] //INCLUDE in save2CSVreview export data
+
+      srcRsObj['actualMargT0d'] = nejRowsToggle[i][genericHeaderObj.actualMargT0dHeader]
+      reviewObj['actualMargT0d'] = nejRowsToggle[i][genericHeaderObj.actualMargT0dHeader]
 
       srcRsObj['sale_flag'] = nejRowsToggle[i][genericHeaderObj.saleFlagHeader]
       reviewObj['sale_flag'] = nejRowsToggle[i][genericHeaderObj.saleFlagHeader] //INCLUDE in save2CSVreview export data

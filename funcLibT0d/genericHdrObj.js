@@ -59,6 +59,9 @@ module.exports = {
       if (splitFieldResult[i] == 'sibIdealMargin') {
         genHeadObj.sibIdealMarginHeader = splitFieldResult[i]
       }
+      if (splitFieldResult[i] == 'actualMargT0d') {
+        genHeadObj.actualMargT0dHeader = splitFieldResult[i]
+      }
       if (splitFieldResult[i] == 'venCompanyname') {
         genHeadObj.rbSupplierHeader = splitFieldResult[i]
       }
