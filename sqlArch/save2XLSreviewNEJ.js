@@ -48,6 +48,7 @@ module.exports = {
       reorderedResObj['dptName'] = srcRsXLS_nonPag[a]['dptName']
       reorderedResObj['dptNumber'] = srcRsXLS_nonPag[a]['dptNumber']
       reorderedResObj['sibIdealMargin'] = srcRsXLS_nonPag[a]['sibIdealMargin']
+      reorderedResObj['actualMargT0d'] = srcRsXLS_nonPag[a]['actualMargT0d']
       reorderedResObj['defaultMarg'] = srcRsXLS_nonPag[a]['defaultMarg']
       reorderedResObj['appldMrgn'] = srcRsXLS_nonPag[a]['appldMrgn']
       // reorderedResObj['discountToApply'] = srcRsXLS_nonPag[a]['discountToApply']
