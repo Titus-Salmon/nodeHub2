@@ -7,8 +7,6 @@ html
 	body
 		include vw-dashboard.pug
 
-		//-/v// NEW STUFF FOR MySqlTableHub*****************************************************************************************************
-
 		//- //v// loads table column names for specified table
 		div(style="display:block")
 			form#loadTable(action='/MySqlTableHub/loadTable_MySqlHub' method='POST' accept-charset="UTF-8")
@@ -151,23 +149,6 @@ html
 		if sqlTablePopulated !== undefined
 			p= 'Table Populated: ' + sqlTablePopulated.tablePopulated
 
-		//-/^// NEW STUFF FOR MySqlTableHub*********************************************************************************************************
-
-
-		//- if formInputsObj_stringified !== undefined && genericHeaderObj_stringified !== undefined
-		//- 	script.
-		//- 		localStorage.clear()
-		//- 		console.log(`formInputsObj_stringified==> ${!{formInputsObj_stringified}}`)
-		//- 		console.log(`JSON.stringify(formInputsObj_stringified)==> ${JSON.stringify(!{formInputsObj_stringified})}`)
-		//- 		if (localStorage.getItem('formInputsObj_locStor') == undefined) {localStorage.setItem('formInputsObj_locStor', JSON.stringify(!{formInputsObj_stringified}))}
-
-		//- 		console.log(`genericHeaderObj_stringified==> ${!{genericHeaderObj_stringified}}`)
-		//- 		console.log(`JSON.stringify(genericHeaderObj_stringified)==> ${JSON.stringify(!{genericHeaderObj_stringified})}`)
-		//- 		if (localStorage.getItem('genericHeaderObj_locStor') == undefined) {localStorage.setItem('genericHeaderObj_locStor', JSON.stringify(!{genericHeaderObj_stringified}))}
-
-		//- script.
-		//- 	console.log(`localStorage from vw-MySqlTableHub.pug==> ${localStorage}`)
-		//- 	console.log(`JSON.stringify(localStorage) from vw-MySqlTableHub.pug==> ${JSON.stringify(localStorage)}`)
 
 		form#retailCalcUniversal(action='/MySqlTableHub/calcResults' method='POST' accept-charset="UTF-8")
 
@@ -180,10 +161,6 @@ html
 				input#tblNameToPost.input-unit-1(type='text', placeholder='enter data', name='tblNameToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableNameToLoad)
 				input#fldArrToPost.input-unit-1(type='text', placeholder='enter data', name='fldArrToPostPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
 
-			//- label.input-label-1(for='paginPostOption') Paginate?
-			//- select#paginPostOption.input-unit-1(name='paginPostOptionPost')
-			//- 	option(value='no') no
-			//- 	option(value='yes') yes
 
 			if pageLinkArray == undefined
 				//- div.pagination-1(style="display: none")
@@ -203,8 +180,6 @@ html
 					a(href=`/MySqlTableHub/calcResults?page=${currentPage+1}&tableName=${tableName}&numQueryRes=${numQueryRes}`) NEXT
 					a(href=`/MySqlTableHub/calcResults?page=${lastPage}&tableName=${tableName}&numQueryRes=${numQueryRes}`) LAST PAGE
 
-			//- label.input-label-1(for='currentPage') Current Page
-			//- input#currentPage.input-unit-1(type='text', placeholder='enter data1', name='currentPagePost', value=currentPage)
 
 			label.input-label-1(for='numQueryRes') Number of Results to Show
 			input#numQueryRes.input-unit-1(type='text', placeholder='enter data1', name='numQueryResPost', value=numQueryRes, required)
@@ -370,7 +345,6 @@ html
 			input#edlpDisco.input-unit-1(type='number', placeholder='0', step='.01', name='edlpDiscoPost', value='0')
 
 
-			//- input#typeOfIMW.input-unit-1(type='text', placeholder='Type of IMW', name='typeOfIMWPost', value='')
 			select#typeOfIMW.input-unit-1(name='typeOfIMWPost')
 				option(value='wholesale') Wholesale Update IMW
 				option(value='retail') Retail Update IMW
@@ -418,13 +392,6 @@ html
 					option(value='no') no
 					option(value='yes') yes
 
-			//- div(style="display:block")
-			//- 	label.input-label-1(for='itemUnitValSwitch') Populate IMW with ItemUnitValues?
-			//- 	select#itemUnitValSwitch.input-unit-1(name='itemUnitValSwitchPost')
-			//- 		option(value='no') no
-			//- 		option(value='yes') yes
-
-			//- input#tableToJoin.input-unit-1(type='text', placeholder='enter table to join', name='tableToJoinPost', value="")
 
 		button#searchDB(type='submit', form='retailCalcUniversal', style="display: block; float: left") Search Loaded Table
 		br
@@ -433,7 +400,6 @@ html
 		form#saveCSVPost(action='/MySqlTableHub/saveIMW_CSV' method='POST' accept-charset='UTF-8')
 			label.input-label-1(for='csv') filename:
 				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				//- input#typeOfIMW.input-unit-1(type='text', placeholder='Type if IMW', name='typeOfIMWPost', value='')
 			if loadedTable !== undefined
 				label.input-label-1(for='csvHeaders') CSV headers:
 					input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', readonly, style="background-color:#c2d6d6", value=loadedTable.tableFields)
@@ -449,10 +415,6 @@ html
 		if searchResRows !== undefined
 			div.rslt-tbl-1-absolute-z1
 				table#resTbl
-					//- label.input-label-1(for='ldSqlTbl') Loaded Sql Table:
-					//- input#ldSqlTbl.input-unit-1(type='text', placeholder='loaded sql table', name='ldSqlTblPost', value=loadedSqlTbl)
-					//- button#editDB(style="display: inline-block") Edit Selection
-					//- button.adminButton#deleteSelection(style="display: inline-block") Delete Selection
 					thead
 						tr
 							th ri_t0d
@@ -541,13 +503,6 @@ html
 									td= elmnt.pf6
 									td= elmnt.pf7
 									td= elmnt.pf8
-										//- label.input-label-1(for='mrgnVl') margin value
-										//- input#mrgVl.input-unit-1(type='number', placeholder='0', name='mrgVldPost', value='')
-
-
-		//- script(src='/javascripts/modules/sortTableM0d.js')
-		//- script(src='/javascripts/modules/tblHiliteM0d.js')
-		//- script(src='/javascripts/modules/dateCalcM0d.js')
-		//- script(src='/javascripts/modules/editDBM0d.js')
+									
 		script(src='/jsModules_t0d/tableHighlight.js')
 		script(src='/javascripts/modules/adminM0d.js')
