@@ -95,6 +95,9 @@ module.exports = {
                 }
                 catapultResObj['dptNumber'] = result[i]['dpt_number']
                 catapultResObj['sibIdealMargin'] = result[i]['SIB_IdealMargin']
+                //calc actual margin --t0d/////////////////////////////////////////////////////
+                catapultResObj['actualMargT0d'] = (result[i]['SIB_BasePrice'] - result[i]['inv_lastcost']) / (result[i]['SIB_BasePrice'])
+                //calc actual margin --t0d/////////////////////////////////////////////////////
                 if (typeof result[i]['ven_companyname'] == 'string') {
                     catapultResObj['venCompanyname'] = result[i]['ven_companyname'].trim()
                 } else {
