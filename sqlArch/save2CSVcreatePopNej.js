@@ -17,12 +17,12 @@ const connection = mysql.createConnection({
 
 const fs = require('fs')
 
-const catapultResArrCache = require('../nodeCacheStuff/cache1')
+const nhcrtEdiJoinArrCache = require('../nodeCacheStuff/cache1')
 
 module.exports = {
   save2CSVcreatePopNej: router.post('/save2CSVcreatePopNej', (req, res, next) => {
 
-    catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // this also deletes the key
+    nhcrtEdiJoinArrCacheValue = nhcrtEdiJoinArrCache.take('nhcrtEdiJoinArrCache_key') // this also deletes the key
 
     //begin csv generator //////////////////////////////////////////////////////////////////////////
     const {
@@ -69,7 +69,7 @@ module.exports = {
 
     try {
       const parser = new Parser(opts);
-      const csv = parser.parse(catapultResArrCacheValue)
+      const csv = parser.parse(nhcrtEdiJoinArrCacheValue)
       console.log(`req.body['csvPost']-->${req.body['csvPost']}`)
       console.log('csv.length=====>>', csv.length);
       fs.writeFile(process.cwd() + '/public/csv-to-insert/' + req.body['csvPost'] + '.csv', csv, function (err) {

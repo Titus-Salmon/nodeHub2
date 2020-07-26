@@ -9,6 +9,8 @@ const connection = mysql.createConnection({
     database: process.env.RB_DB
 })
 
+const nhcrtEdiJoinArrCache = require('../nodeCacheStuff/cache1')
+
 module.exports = {
     nhcrtEdiJoin: router.post('/nhcrtEdiJoin', (req, res, next) => {
         const nhcrtEdiJoinPostBody = req.body
@@ -85,6 +87,7 @@ module.exports = {
 
                 nhcrtEdiJoinArr.push(nhcrtEdiJoinObj)
             }
+            nhcrtEdiJoinArrCache.set('nhcrtEdiJoinArrCache_key', nhcrtEdiJoinArr)
             console.log('rows.length~~~>', rows.length)
             // console.log(`Object.keys(rows)==>${Object.keys(rows)}`)
             console.log(`Object.keys(rows[0])==>${Object.keys(rows[0])}`)

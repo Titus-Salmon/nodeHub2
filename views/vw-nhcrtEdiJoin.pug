@@ -6,16 +6,16 @@ html
 	body
 		include vw-dashboard.pug
 
-	div(style="display:block")
-		form#nhcrtEdiCSVPost(action='/MySqlTableHub/save2CSVnhcrtEdiJoin' method='POST' accept-charset='UTF-8')
-			if nhcrtEdiJoin !== undefined
-				label.input-label-1(for='csv') filename:
-					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
-				//- label.input-label-1(for='csvHeaders') CSV Headers
-				//- 	input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', value='ri_t0d,invScanCode,ordSupplierStockNumber,invName,invSize,invReceiptAlias,posTimeStamp,invDateCreated,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastcost,sibBasePrice,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4,ediCost')
-				label.input-label-1(for='csvData') CSV Body data
-					input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=nhcrtEdiJoin)
-				button#saveCSVnhcrtEdi(type="submit" form="nhcrtEdiCSVPost") Save Results as CSV - NHCRT/EDI joined tables
+	//- div(style="display:block")
+	//- 	form#nhcrtEdiCSVPost(action='/MySqlTableHub/save2CSVnhcrtEdiJoin' method='POST' accept-charset='UTF-8')
+	//- 		if nhcrtEdiJoin !== undefined
+	//- 			label.input-label-1(for='csv') filename:
+	//- 				input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+	//- 			//- label.input-label-1(for='csvHeaders') CSV Headers
+	//- 			//- 	input#csvHeaders.input-unit-1(type='text', placeholder='enter data', name='csvHeadersPost', value='ri_t0d,invScanCode,ordSupplierStockNumber,invName,invSize,invReceiptAlias,posTimeStamp,invDateCreated,ordQuantityInOrderUnit,oupName,stoName,brdName,dptName,dptNumber,sibIdealMargin,venCompanyname,invLastcost,sibBasePrice,pi1Description,pi2Description,pi3Description,invPowerField3,invPowerField4,ediCost')
+	//- 			label.input-label-1(for='csvData') CSV Body data
+	//- 				input#csvData.input-unit-1(type='text', placeholder='enter data', name='csvDataPost', value=nhcrtEdiJoin)
+	//- 			button#saveCSVnhcrtEdi(type="submit" form="nhcrtEdiCSVPost") Save Results as CSV - NHCRT/EDI joined tables
 
 	div(style="display:block")
 		form#saveCSVcreatePopNejPost(action='/MySqlTableHub/save2CSVcreatePopNej' method='POST' accept-charset='UTF-8' style="display:block")
@@ -108,7 +108,7 @@ html
 								td= elmnt.pi3Description
 								td= elmnt.invPowerField3
 								td= elmnt.invPowerField4
-								
+
 
 
 
