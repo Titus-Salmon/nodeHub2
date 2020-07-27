@@ -9,6 +9,7 @@ module.exports = {
   save2XLS_tsql: router.post('/save2XLS_tsql', (req, res, next) => {
 
     catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // this also deletes the key
+    console.log(`JSON.stringify(catapultResArrCacheValue[0])==> ${JSON.stringify(catapultResArrCacheValue[0])}`)
 
     //NOTE++++++++>>> srcRsXLS_tsql is the original array that holds the collection of SearchResults objects {columnName: cellValue}
     //HOWEVER, since the inherent order (from showSearchResults()) of these key:value pairs is not the order we want to display them
