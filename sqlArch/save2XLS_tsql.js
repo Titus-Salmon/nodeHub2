@@ -18,7 +18,7 @@ module.exports = {
 
     var srcRsXLS_selectiveReordering = []
 
-    for (let a = 0; a < catapultResArrCache['data']['catapultResArrCache_key']['v'].length; a++) {
+    for (let a = 0; a < catapultResArrCacheValue.length; a++) {
       let reorderedResObj = {}
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
       reorderedResObj['invScanCode'] = catapultResArrCacheValue[a]['invScanCode']
