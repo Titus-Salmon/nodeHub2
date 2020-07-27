@@ -2,10 +2,13 @@ const express = require('express')
 const router = express.Router()
 // const fs = require('fs')
 const xl = require('excel4node')
+const catapultResArrCache = require('../nodeCacheStuff/cache1')
 
 module.exports = {
 
   save2XLS_tsql: router.post('/save2XLS_tsql', (req, res, next) => {
+
+    catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // this also deletes the key
 
     //NOTE++++++++>>> srcRsXLS_tsql is the original array that holds the collection of SearchResults objects {columnName: cellValue}
     //HOWEVER, since the inherent order (from showSearchResults()) of these key:value pairs is not the order we want to display them
@@ -15,43 +18,43 @@ module.exports = {
 
     var srcRsXLS_selectiveReordering = []
 
-    for (let a = 0; a < srcRsXLS_tsql.length; a++) {
+    for (let a = 0; a < catapultResArrCache['data']['catapultResArrCache_key']['v'].length; a++) {
       let reorderedResObj = {}
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
-      reorderedResObj['invScanCode'] = srcRsXLS_tsql[a]['invScanCode']
-      reorderedResObj['ordSupplierStockNumber'] = srcRsXLS_tsql[a]['ordSupplierStockNumber']
-      reorderedResObj['invName'] = srcRsXLS_tsql[a]['invName']
-      reorderedResObj['invSize'] = srcRsXLS_tsql[a]['invSize']
-      reorderedResObj['invReceiptAlias'] = srcRsXLS_tsql[a]['invReceiptAlias']
-      reorderedResObj['invDefault'] = srcRsXLS_tsql[a]['invDefault']
-      reorderedResObj['posTimeStamp'] = srcRsXLS_tsql[a]['posTimeStamp']
-      reorderedResObj['invDateCreated'] = srcRsXLS_tsql[a]['invDateCreated']
-      reorderedResObj['invEmpFkCreatedBy'] = srcRsXLS_tsql[a]['invEmpFkCreatedBy']
-      reorderedResObj['oupName'] = srcRsXLS_tsql[a]['oupName']
-      reorderedResObj['stoNumber'] = srcRsXLS_tsql[a]['stoNumber']
-      reorderedResObj['stoName'] = srcRsXLS_tsql[a]['stoName']
-      reorderedResObj['brdName'] = srcRsXLS_tsql[a]['brdName']
-      reorderedResObj['dptName'] = srcRsXLS_tsql[a]['dptName']
-      reorderedResObj['dptNumber'] = srcRsXLS_tsql[a]['dptNumber']
-      reorderedResObj['sibIdealMargin'] = srcRsXLS_tsql[a]['sibIdealMargin']
-      reorderedResObj['actualMargT0d'] = srcRsXLS_tsql[a]['actualMargT0d']
-      reorderedResObj['venCompanyname'] = srcRsXLS_tsql[a]['venCompanyname']
-      reorderedResObj['invLastreceived'] = srcRsXLS_tsql[a]['invLastreceived']
-      reorderedResObj['invLastsold'] = srcRsXLS_tsql[a]['invLastsold']
-      reorderedResObj['invLastcost'] = srcRsXLS_tsql[a]['invLastcost']
-      reorderedResObj['sibBasePrice'] = srcRsXLS_tsql[a]['sibBasePrice']
-      reorderedResObj['invOnhand'] = srcRsXLS_tsql[a]['invOnhand']
-      reorderedResObj['invOnorder'] = srcRsXLS_tsql[a]['invOnorder']
-      reorderedResObj['invIntransit'] = srcRsXLS_tsql[a]['invIntransit']
-      reorderedResObj['invMemo'] = srcRsXLS_tsql[a]['invMemo']
-      reorderedResObj['pi1Description'] = srcRsXLS_tsql[a]['pi1Description']
-      reorderedResObj['pi2Description'] = srcRsXLS_tsql[a]['pi2Description']
-      reorderedResObj['pi3Description'] = srcRsXLS_tsql[a]['pi3Description']
-      reorderedResObj['pi4Description'] = srcRsXLS_tsql[a]['pi4Description']
-      reorderedResObj['invPowerField1'] = srcRsXLS_tsql[a]['invPowerField1']
-      reorderedResObj['invPowerField2'] = srcRsXLS_tsql[a]['invPowerField2']
-      reorderedResObj['invPowerField3'] = srcRsXLS_tsql[a]['invPowerField3']
-      reorderedResObj['invPowerField4'] = srcRsXLS_tsql[a]['invPowerField4']
+      reorderedResObj['invScanCode'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invScanCode']
+      reorderedResObj['ordSupplierStockNumber'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['ordSupplierStockNumber']
+      reorderedResObj['invName'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invName']
+      reorderedResObj['invSize'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invSize']
+      reorderedResObj['invReceiptAlias'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invReceiptAlias']
+      reorderedResObj['invDefault'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invDefault']
+      reorderedResObj['posTimeStamp'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['posTimeStamp']
+      reorderedResObj['invDateCreated'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invDateCreated']
+      reorderedResObj['invEmpFkCreatedBy'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invEmpFkCreatedBy']
+      reorderedResObj['oupName'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['oupName']
+      reorderedResObj['stoNumber'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['stoNumber']
+      reorderedResObj['stoName'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['stoName']
+      reorderedResObj['brdName'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['brdName']
+      reorderedResObj['dptName'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['dptName']
+      reorderedResObj['dptNumber'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['dptNumber']
+      reorderedResObj['sibIdealMargin'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['sibIdealMargin']
+      reorderedResObj['actualMargT0d'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['actualMargT0d']
+      reorderedResObj['venCompanyname'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['venCompanyname']
+      reorderedResObj['invLastreceived'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invLastreceived']
+      reorderedResObj['invLastsold'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invLastsold']
+      reorderedResObj['invLastcost'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invLastcost']
+      reorderedResObj['sibBasePrice'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['sibBasePrice']
+      reorderedResObj['invOnhand'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invOnhand']
+      reorderedResObj['invOnorder'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invOnorder']
+      reorderedResObj['invIntransit'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invIntransit']
+      reorderedResObj['invMemo'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invMemo']
+      reorderedResObj['pi1Description'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['pi1Description']
+      reorderedResObj['pi2Description'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['pi2Description']
+      reorderedResObj['pi3Description'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['pi3Description']
+      reorderedResObj['pi4Description'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['pi4Description']
+      reorderedResObj['invPowerField1'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invPowerField1']
+      reorderedResObj['invPowerField2'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invPowerField2']
+      reorderedResObj['invPowerField3'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invPowerField3']
+      reorderedResObj['invPowerField4'] = catapultResArrCache['data']['catapultResArrCache_key']['v']['invPowerField4']
 
       srcRsXLS_selectiveReordering.push(reorderedResObj)
     }

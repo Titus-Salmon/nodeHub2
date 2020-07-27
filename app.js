@@ -28,6 +28,7 @@ const rbInvUpdaterRouter = require('./routes/rt-rbInvUpdater') //t0d
 const imwUnitTypeRouter = require('./routes/rt-imwUnitType') //t0d
 const minShelfQtyRouter = require('./routes/rt-minShelfQty') //t0d
 const rbCatUpdtTrkrRouter = require('./routes/rt-rbCatUpdtTrkr') //t0d
+const keheUnfiWSdiffRouter = require('./routes/rt-keheUnfiWSdiff') //t0d
 
 var app = express();
 
@@ -68,6 +69,7 @@ app.use('/rbInvUpdater', rbInvUpdaterRouter) //t0d
 app.use('/imwUnitType', imwUnitTypeRouter) //t0d
 app.use('/minShelfQty', minShelfQtyRouter) //t0d
 app.use('/rbCatUpdtTrkr', rbCatUpdtTrkrRouter) //t0d
+app.use('/keheUnfiWSdiff', keheUnfiWSdiffRouter) //t0d
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
