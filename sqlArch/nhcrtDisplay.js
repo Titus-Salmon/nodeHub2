@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
     multipleStatements: true
 })
 
-const catapultResArrCache = require('../nodeCacheStuff/cache1')
+const nhcrtDisplayArrCache = require('../nodeCacheStuff/cache1')
 
 module.exports = {
     nhcrtDisplay: router.post('/nhcrtDisplay', (req, res, next) => {
@@ -70,10 +70,10 @@ module.exports = {
             console.log('rows.length~~~>', rows.length)
 
             //V// CACHE NHCRT QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
-            catapultResArrCache.set('catapultResArrCache_key', catapultResArr)
-            console.log(`catapultResArrCache['data']['catapultResArrCache_key']['v'].length==> ${catapultResArrCache['data']['catapultResArrCache_key']['v'].length}`)
-            console.log(`catapultResArrCache['data']['catapultResArrCache_key']['v'][0]==> ${catapultResArrCache['data']['catapultResArrCache_key']['v'][0]}`)
-            console.log(`JSON.stringify(catapultResArrCache['data']['catapultResArrCache_key']['v'][0])==> ${JSON.stringify(catapultResArrCache['data']['catapultResArrCache_key']['v'][0])}`)
+            nhcrtDisplayArrCache.set('nhcrtDisplayArrCache_key', nhcrtDisplayArr)
+            console.log(`nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'].length==> ${nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'].length}`)
+            console.log(`nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'][0]==> ${nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'][0]}`)
+            console.log(`JSON.stringify(nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'][0])==> ${JSON.stringify(nhcrtDisplayArrCache['data']['catapultResArrCache_key']['v'][0])}`)
             //^// CACHE NHCRT QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
         }
 
