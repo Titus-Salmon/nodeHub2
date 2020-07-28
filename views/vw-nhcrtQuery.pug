@@ -5,6 +5,12 @@ html
 
 	body
 		include vw-dashboard.pug
+
+		button.adminButton#saveXLSnhcrt(type="submit" form="saveXLSnhcrtPost") Save Results as XLS - Retail Price Review
+		form#saveXLSnhcrtPost(action='/MySqlTableHub/save2XLS_NHCRT' method='POST' accept-charset='UTF-8')
+			label.input-label-1(for='xlsNhcrt') filename:
+				input#xlsNhcrt.input-unit-1(type='text', placeholder='enter filename here', name='xlsPost', value='')
+
 		div.rslt-tbl-1
 			table#resTbl
 				thead

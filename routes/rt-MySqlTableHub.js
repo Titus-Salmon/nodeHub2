@@ -49,6 +49,9 @@ const {
   save2XLSreviewNEJ
 } = require('../sqlArch/save2XLSreviewNEJ')
 const {
+  save2XLS_NHCRT
+} = require('../sqlArch/save2XLS_NHCRT')
+const {
   loadTable_MySqlHub
 } = require('../sqlArch/loadTable_MySqlHub')
 const {
@@ -82,6 +85,7 @@ router.post('/save2CSVnhcrtEdiJoin', save2CSVnhcrtEdiJoin)
 router.post('/save2CSVcreatePopNej', save2CSVcreatePopNej)
 router.post('/save2CSVnhcrtInfraSalesJoin', save2CSVnhcrtInfraSalesJoin)
 router.post('/save2CSVreviewNEJ', save2CSVreviewNEJ)
+router.post('/save2XLS_NHCRT', save2XLS_NHCRT)
 router.post('/saveIMW_CSV', saveIMW_CSV)
 router.post('/save2XLSreviewNEJ', save2XLSreviewNEJ)
 router.post('/loadTable_MySqlHub', loadTable_MySqlHub)

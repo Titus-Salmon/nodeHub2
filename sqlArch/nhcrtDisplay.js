@@ -28,6 +28,8 @@ module.exports = {
             for (let a = 0; a < rows.length; a++) {
                 let nhcrtObj = {}
                 nhcrtObj['ri_t0d'] = a + 1
+                nhcrtObj['invPK'] = rows[a]['invPK']
+                nhcrtObj['invCPK'] = rows[a]['invCPK']
                 nhcrtObj['invScanCode'] = rows[a]['invScanCode']
                 nhcrtObj['ordSupplierStockNumber'] = rows[a]['ordSupplierStockNumber']
                 nhcrtObj['invName'] = rows[a]['invName']
@@ -66,6 +68,13 @@ module.exports = {
                 nhcrtDisplayArr.push(nhcrtObj)
             }
             console.log('rows.length~~~>', rows.length)
+
+            //V// CACHE NHCRT QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
+            catapultResArrCache.set('catapultResArrCache_key', catapultResArr)
+            console.log(`catapultResArrCache['data']['catapultResArrCache_key']['v'].length==> ${catapultResArrCache['data']['catapultResArrCache_key']['v'].length}`)
+            console.log(`catapultResArrCache['data']['catapultResArrCache_key']['v'][0]==> ${catapultResArrCache['data']['catapultResArrCache_key']['v'][0]}`)
+            console.log(`JSON.stringify(catapultResArrCache['data']['catapultResArrCache_key']['v'][0])==> ${JSON.stringify(catapultResArrCache['data']['catapultResArrCache_key']['v'][0])}`)
+            //^// CACHE NHCRT QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
         }
 
 
