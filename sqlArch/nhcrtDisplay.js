@@ -77,7 +77,7 @@ module.exports = {
 
             res.render('vw-nhcrtQuery', {
                 title: 'NodeHub Catapult Results Table Query Results',
-                // nhcrtDisplay: nhcrtDisplayArr
+                nhcrtDisplay: nhcrtDisplayArr
             })
         })
 
