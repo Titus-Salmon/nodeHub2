@@ -25,9 +25,9 @@ module.exports = {
         // console.log(`JSON.stringify(catapultResArrCacheValue[0])==> ${JSON.stringify(catapultResArrCacheValue[0])}`)
 
         function displayNhcrt(rows) {
-            for (let i = 0; i < rows.length; i++) {
+            for (let a = 0; i < rows.length; a++) {
                 let nhcrtObj = {}
-                nhcrtObj['ri_t0d'] = i + 1
+                nhcrtObj['ri_t0d'] = a + 1
                 nhcrtObj['invScanCode'] = rows[a]['invScanCode']
                 nhcrtObj['ordSupplierStockNumber'] = rows[a]['ordSupplierStockNumber']
                 nhcrtObj['invName'] = rows[a]['invName']
