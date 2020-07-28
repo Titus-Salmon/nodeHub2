@@ -21,51 +21,51 @@ module.exports = {
 
         let nhcrtDisplayArr = []
 
-        catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // this also deletes the key
-        console.log(`JSON.stringify(catapultResArrCacheValue[0])==> ${JSON.stringify(catapultResArrCacheValue[0])}`)
+        // catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // this also deletes the key
+        // console.log(`JSON.stringify(catapultResArrCacheValue[0])==> ${JSON.stringify(catapultResArrCacheValue[0])}`)
 
-        function displayNhcrt(catapultResArrCacheValue) {
-            for (let i = 0; i < catapultResArrCacheValue.length; i++) {
+        function displayNhcrt(rows) {
+            for (let i = 0; i < rows.length; i++) {
                 let nhcrtObj = {}
                 nhcrtObj['ri_t0d'] = i + 1
-                nhcrtObj['invScanCode'] = catapultResArrCacheValue[a]['invScanCode']
-                nhcrtObj['ordSupplierStockNumber'] = catapultResArrCacheValue[a]['ordSupplierStockNumber']
-                nhcrtObj['invName'] = catapultResArrCacheValue[a]['invName']
-                nhcrtObj['invSize'] = catapultResArrCacheValue[a]['invSize']
-                nhcrtObj['invReceiptAlias'] = catapultResArrCacheValue[a]['invReceiptAlias']
-                nhcrtObj['invDefault'] = catapultResArrCacheValue[a]['invDefault']
-                nhcrtObj['posTimeStamp'] = catapultResArrCacheValue[a]['posTimeStamp']
-                nhcrtObj['invDateCreated'] = catapultResArrCacheValue[a]['invDateCreated']
-                nhcrtObj['invEmpFkCreatedBy'] = catapultResArrCacheValue[a]['invEmpFkCreatedBy']
-                nhcrtObj['oupName'] = catapultResArrCacheValue[a]['oupName']
-                nhcrtObj['stoNumber'] = catapultResArrCacheValue[a]['stoNumber']
-                nhcrtObj['stoName'] = catapultResArrCacheValue[a]['stoName']
-                nhcrtObj['brdName'] = catapultResArrCacheValue[a]['brdName']
-                nhcrtObj['dptName'] = catapultResArrCacheValue[a]['dptName']
-                nhcrtObj['dptNumber'] = catapultResArrCacheValue[a]['dptNumber']
-                nhcrtObj['sibIdealMargin'] = catapultResArrCacheValue[a]['sibIdealMargin']
-                nhcrtObj['actualMargT0d'] = catapultResArrCacheValue[a]['actualMargT0d']
-                nhcrtObj['venCompanyname'] = catapultResArrCacheValue[a]['venCompanyname']
-                nhcrtObj['invLastreceived'] = catapultResArrCacheValue[a]['invLastreceived']
-                nhcrtObj['invLastsold'] = catapultResArrCacheValue[a]['invLastsold']
-                nhcrtObj['invLastcost'] = catapultResArrCacheValue[a]['invLastcost']
-                nhcrtObj['sibBasePrice'] = catapultResArrCacheValue[a]['sibBasePrice']
-                nhcrtObj['invOnhand'] = catapultResArrCacheValue[a]['invOnhand']
-                nhcrtObj['invOnorder'] = catapultResArrCacheValue[a]['invOnorder']
-                nhcrtObj['invIntransit'] = catapultResArrCacheValue[a]['invIntransit']
-                nhcrtObj['invMemo'] = catapultResArrCacheValue[a]['invMemo']
-                nhcrtObj['pi1Description'] = catapultResArrCacheValue[a]['pi1Description']
-                nhcrtObj['pi2Description'] = catapultResArrCacheValue[a]['pi2Description']
-                nhcrtObj['pi3Description'] = catapultResArrCacheValue[a]['pi3Description']
-                nhcrtObj['pi4Description'] = catapultResArrCacheValue[a]['pi4Description']
-                nhcrtObj['invPowerField1'] = catapultResArrCacheValue[a]['invPowerField1']
-                nhcrtObj['invPowerField2'] = catapultResArrCacheValue[a]['invPowerField2']
-                nhcrtObj['invPowerField3'] = catapultResArrCacheValue[a]['invPowerField3']
-                nhcrtObj['invPowerField4'] = catapultResArrCacheValue[a]['invPowerField4']
+                nhcrtObj['invScanCode'] = rows[a]['invScanCode']
+                nhcrtObj['ordSupplierStockNumber'] = rows[a]['ordSupplierStockNumber']
+                nhcrtObj['invName'] = rows[a]['invName']
+                nhcrtObj['invSize'] = rows[a]['invSize']
+                nhcrtObj['invReceiptAlias'] = rows[a]['invReceiptAlias']
+                nhcrtObj['invDefault'] = rows[a]['invDefault']
+                nhcrtObj['posTimeStamp'] = rows[a]['posTimeStamp']
+                nhcrtObj['invDateCreated'] = rows[a]['invDateCreated']
+                nhcrtObj['invEmpFkCreatedBy'] = rows[a]['invEmpFkCreatedBy']
+                nhcrtObj['oupName'] = rows[a]['oupName']
+                nhcrtObj['stoNumber'] = rows[a]['stoNumber']
+                nhcrtObj['stoName'] = rows[a]['stoName']
+                nhcrtObj['brdName'] = rows[a]['brdName']
+                nhcrtObj['dptName'] = rows[a]['dptName']
+                nhcrtObj['dptNumber'] = rows[a]['dptNumber']
+                nhcrtObj['sibIdealMargin'] = rows[a]['sibIdealMargin']
+                nhcrtObj['actualMargT0d'] = rows[a]['actualMargT0d']
+                nhcrtObj['venCompanyname'] = rows[a]['venCompanyname']
+                nhcrtObj['invLastreceived'] = rows[a]['invLastreceived']
+                nhcrtObj['invLastsold'] = rows[a]['invLastsold']
+                nhcrtObj['invLastcost'] = rows[a]['invLastcost']
+                nhcrtObj['sibBasePrice'] = rows[a]['sibBasePrice']
+                nhcrtObj['invOnhand'] = rows[a]['invOnhand']
+                nhcrtObj['invOnorder'] = rows[a]['invOnorder']
+                nhcrtObj['invIntransit'] = rows[a]['invIntransit']
+                nhcrtObj['invMemo'] = rows[a]['invMemo']
+                nhcrtObj['pi1Description'] = rows[a]['pi1Description']
+                nhcrtObj['pi2Description'] = rows[a]['pi2Description']
+                nhcrtObj['pi3Description'] = rows[a]['pi3Description']
+                nhcrtObj['pi4Description'] = rows[a]['pi4Description']
+                nhcrtObj['invPowerField1'] = rows[a]['invPowerField1']
+                nhcrtObj['invPowerField2'] = rows[a]['invPowerField2']
+                nhcrtObj['invPowerField3'] = rows[a]['invPowerField3']
+                nhcrtObj['invPowerField4'] = rows[a]['invPowerField4']
 
                 nhcrtDisplayArr.push(nhcrtObj)
             }
-            console.log('catapultResArrCacheValue.length~~~>', catapultResArrCacheValue.length)
+            console.log('rows.length~~~>', rows.length)
         }
 
 
@@ -73,7 +73,7 @@ module.exports = {
 
         connection.query(mySqlQuery, function (err, rows, fields) {
             if (err) throw err
-            displayNhcrt(catapultResArrCacheValue)
+            displayNhcrt(rows)
 
             res.render('vw-nhcrtQuery', {
                 title: 'NodeHub Catapult Results Table Query Results',
