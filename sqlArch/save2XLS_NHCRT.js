@@ -20,7 +20,7 @@ module.exports = {
     var srcRsXLS_selectiveReordering = []
 
     for (let a = 0; a < nhcrtDisplayArrCacheValue.length; a++) {
-      let reorderedResObj = {}
+      let nhcrtObj = {}
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
       nhcrtObj['invPK'] = nhcrtDisplayArrCacheValue[a]['invPK']
       nhcrtObj['invCPK'] = nhcrtDisplayArrCacheValue[a]['invCPK']
