@@ -2,14 +2,14 @@ const express = require('express')
 const router = express.Router()
 // const fs = require('fs')
 const xl = require('excel4node')
-const catapultResArrCache = require('../nodeCacheStuff/cache1')
+const nhcrtDisplayArrCache = require('../nodeCacheStuff/cache1')
 
 module.exports = {
 
   save2XLS_NHCRT: router.post('/save2XLS_NHCRT', (req, res, next) => {
 
-    catapultResArrCacheValue = catapultResArrCache.take('catapultResArrCache_key') // this also deletes the key
-    console.log(`JSON.stringify(catapultResArrCacheValue[0])==> ${JSON.stringify(catapultResArrCacheValue[0])}`)
+    nhcrtDisplayArrCacheValue = nhcrtDisplayArrCache.take('nhcrtDisplayArrCache_key') // this also deletes the key
+    console.log(`JSON.stringify(nhcrtDisplayArrCacheValue[0])==> ${JSON.stringify(nhcrtDisplayArrCacheValue[0])}`)
 
     //NOTE++++++++>>> srcRsXLS_tsql is the original array that holds the collection of SearchResults objects {columnName: cellValue}
     //HOWEVER, since the inherent order (from showSearchResults()) of these key:value pairs is not the order we want to display them
@@ -19,45 +19,45 @@ module.exports = {
 
     var srcRsXLS_selectiveReordering = []
 
-    for (let a = 0; a < catapultResArrCacheValue.length; a++) {
+    for (let a = 0; a < nhcrtDisplayArrCacheValue.length; a++) {
       let reorderedResObj = {}
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
-      nhcrtObj['invPK'] = catapultResArrCacheValue[a]['invPK']
-      nhcrtObj['invCPK'] = catapultResArrCacheValue[a]['invCPK']
-      nhcrtObj['invScanCode'] = catapultResArrCacheValue[a]['invScanCode']
-      nhcrtObj['ordSupplierStockNumber'] = catapultResArrCacheValue[a]['ordSupplierStockNumber']
-      nhcrtObj['invName'] = catapultResArrCacheValue[a]['invName']
-      nhcrtObj['invSize'] = catapultResArrCacheValue[a]['invSize']
-      nhcrtObj['invReceiptAlias'] = catapultResArrCacheValue[a]['invReceiptAlias']
-      nhcrtObj['invDefault'] = catapultResArrCacheValue[a]['invDefault']
-      nhcrtObj['posTimeStamp'] = catapultResArrCacheValue[a]['posTimeStamp']
-      nhcrtObj['invDateCreated'] = catapultResArrCacheValue[a]['invDateCreated']
-      nhcrtObj['invEmpFkCreatedBy'] = catapultResArrCacheValue[a]['invEmpFkCreatedBy']
-      nhcrtObj['oupName'] = catapultResArrCacheValue[a]['oupName']
-      nhcrtObj['stoNumber'] = catapultResArrCacheValue[a]['stoNumber']
-      nhcrtObj['stoName'] = catapultResArrCacheValue[a]['stoName']
-      nhcrtObj['brdName'] = catapultResArrCacheValue[a]['brdName']
-      nhcrtObj['dptName'] = catapultResArrCacheValue[a]['dptName']
-      nhcrtObj['dptNumber'] = catapultResArrCacheValue[a]['dptNumber']
-      nhcrtObj['sibIdealMargin'] = catapultResArrCacheValue[a]['sibIdealMargin']
-      nhcrtObj['actualMargT0d'] = catapultResArrCacheValue[a]['actualMargT0d']
-      nhcrtObj['venCompanyname'] = catapultResArrCacheValue[a]['venCompanyname']
-      nhcrtObj['invLastreceived'] = catapultResArrCacheValue[a]['invLastreceived']
-      nhcrtObj['invLastsold'] = catapultResArrCacheValue[a]['invLastsold']
-      nhcrtObj['invLastcost'] = catapultResArrCacheValue[a]['invLastcost']
-      nhcrtObj['sibBasePrice'] = catapultResArrCacheValue[a]['sibBasePrice']
-      nhcrtObj['invOnhand'] = catapultResArrCacheValue[a]['invOnhand']
-      nhcrtObj['invOnorder'] = catapultResArrCacheValue[a]['invOnorder']
-      nhcrtObj['invIntransit'] = catapultResArrCacheValue[a]['invIntransit']
-      nhcrtObj['invMemo'] = catapultResArrCacheValue[a]['invMemo']
-      nhcrtObj['pi1Description'] = catapultResArrCacheValue[a]['pi1Description']
-      nhcrtObj['pi2Description'] = catapultResArrCacheValue[a]['pi2Description']
-      nhcrtObj['pi3Description'] = catapultResArrCacheValue[a]['pi3Description']
-      nhcrtObj['pi4Description'] = catapultResArrCacheValue[a]['pi4Description']
-      nhcrtObj['invPowerField1'] = catapultResArrCacheValue[a]['invPowerField1']
-      nhcrtObj['invPowerField2'] = catapultResArrCacheValue[a]['invPowerField2']
-      nhcrtObj['invPowerField3'] = catapultResArrCacheValue[a]['invPowerField3']
-      nhcrtObj['invPowerField4'] = catapultResArrCacheValue[a]['invPowerField4']
+      nhcrtObj['invPK'] = nhcrtDisplayArrCacheValue[a]['invPK']
+      nhcrtObj['invCPK'] = nhcrtDisplayArrCacheValue[a]['invCPK']
+      nhcrtObj['invScanCode'] = nhcrtDisplayArrCacheValue[a]['invScanCode']
+      nhcrtObj['ordSupplierStockNumber'] = nhcrtDisplayArrCacheValue[a]['ordSupplierStockNumber']
+      nhcrtObj['invName'] = nhcrtDisplayArrCacheValue[a]['invName']
+      nhcrtObj['invSize'] = nhcrtDisplayArrCacheValue[a]['invSize']
+      nhcrtObj['invReceiptAlias'] = nhcrtDisplayArrCacheValue[a]['invReceiptAlias']
+      nhcrtObj['invDefault'] = nhcrtDisplayArrCacheValue[a]['invDefault']
+      nhcrtObj['posTimeStamp'] = nhcrtDisplayArrCacheValue[a]['posTimeStamp']
+      nhcrtObj['invDateCreated'] = nhcrtDisplayArrCacheValue[a]['invDateCreated']
+      nhcrtObj['invEmpFkCreatedBy'] = nhcrtDisplayArrCacheValue[a]['invEmpFkCreatedBy']
+      nhcrtObj['oupName'] = nhcrtDisplayArrCacheValue[a]['oupName']
+      nhcrtObj['stoNumber'] = nhcrtDisplayArrCacheValue[a]['stoNumber']
+      nhcrtObj['stoName'] = nhcrtDisplayArrCacheValue[a]['stoName']
+      nhcrtObj['brdName'] = nhcrtDisplayArrCacheValue[a]['brdName']
+      nhcrtObj['dptName'] = nhcrtDisplayArrCacheValue[a]['dptName']
+      nhcrtObj['dptNumber'] = nhcrtDisplayArrCacheValue[a]['dptNumber']
+      nhcrtObj['sibIdealMargin'] = nhcrtDisplayArrCacheValue[a]['sibIdealMargin']
+      nhcrtObj['actualMargT0d'] = nhcrtDisplayArrCacheValue[a]['actualMargT0d']
+      nhcrtObj['venCompanyname'] = nhcrtDisplayArrCacheValue[a]['venCompanyname']
+      nhcrtObj['invLastreceived'] = nhcrtDisplayArrCacheValue[a]['invLastreceived']
+      nhcrtObj['invLastsold'] = nhcrtDisplayArrCacheValue[a]['invLastsold']
+      nhcrtObj['invLastcost'] = nhcrtDisplayArrCacheValue[a]['invLastcost']
+      nhcrtObj['sibBasePrice'] = nhcrtDisplayArrCacheValue[a]['sibBasePrice']
+      nhcrtObj['invOnhand'] = nhcrtDisplayArrCacheValue[a]['invOnhand']
+      nhcrtObj['invOnorder'] = nhcrtDisplayArrCacheValue[a]['invOnorder']
+      nhcrtObj['invIntransit'] = nhcrtDisplayArrCacheValue[a]['invIntransit']
+      nhcrtObj['invMemo'] = nhcrtDisplayArrCacheValue[a]['invMemo']
+      nhcrtObj['pi1Description'] = nhcrtDisplayArrCacheValue[a]['pi1Description']
+      nhcrtObj['pi2Description'] = nhcrtDisplayArrCacheValue[a]['pi2Description']
+      nhcrtObj['pi3Description'] = nhcrtDisplayArrCacheValue[a]['pi3Description']
+      nhcrtObj['pi4Description'] = nhcrtDisplayArrCacheValue[a]['pi4Description']
+      nhcrtObj['invPowerField1'] = nhcrtDisplayArrCacheValue[a]['invPowerField1']
+      nhcrtObj['invPowerField2'] = nhcrtDisplayArrCacheValue[a]['invPowerField2']
+      nhcrtObj['invPowerField3'] = nhcrtDisplayArrCacheValue[a]['invPowerField3']
+      nhcrtObj['invPowerField4'] = nhcrtDisplayArrCacheValue[a]['invPowerField4']
 
       srcRsXLS_selectiveReordering.push(nhcrtObj)
     }
