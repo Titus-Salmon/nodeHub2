@@ -73,7 +73,7 @@ module.exports = {
             nhcrtDisplayArrCache.set('nhcrtDisplayArrCache_key', nhcrtDisplayArr)
             console.log(`nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'].length==> ${nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'].length}`)
             console.log(`nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'][0]==> ${nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'][0]}`)
-            console.log(`JSON.stringify(nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'][0])==> ${JSON.stringify(nhcrtDisplayArrCache['data']['catapultResArrCache_key']['v'][0])}`)
+            console.log(`JSON.stringify(nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'][0])==> ${JSON.stringify(nhcrtDisplayArrCache['data']['nhcrtDisplayArrCache_key']['v'][0])}`)
             //^// CACHE NHCRT QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
         }
 
