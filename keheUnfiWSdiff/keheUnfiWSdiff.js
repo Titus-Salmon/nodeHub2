@@ -11,11 +11,15 @@ const connection = mysql.createConnection({ //for work use in RB DB
   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
 
+const srsObjArrCache = require('../nodeCacheStuff/cache1')
+
 module.exports = {
 
   keheUnfiWSdiff: router.post(`/keheUnfiWSdiff`, (req, res, next) => {
 
-    const postBody = req.body
+    let query = req.body['keheUnfiJoinPost']
+
+    // const postBody = req.body
 
     // let nhcrtTableName = postBody['nhcrtTablePost']
     // console.log(`nhcrtTableName==> ${nhcrtTableName}`)
@@ -39,102 +43,38 @@ module.exports = {
         // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
 
         srsObj['ri_t0d'] = i + 1
-        srsObj['item_id'] = displayRows[i]['nhcrtInvScanCode']
-        srsObj['dept_id'] = ''
-        srsObj['dept_name'] = ''
-        srsObj['recpt_alias'] = displayRows[i]['nhcrtInvReceiptAlias'] // here we use the receipt alias from Catapult, NOT the item name from EDI catalog
-        srsObj['brand'] = ''
-        srsObj['item_name'] = ''
-        srsObj['size'] = ''
-        srsObj['sugg_retail'] = ''
-        srsObj['last_cost'] = ''
-        srsObj['base_price'] = ''
-        srsObj['auto_discount'] = ''
-        srsObj['ideal_margin'] = ''
-        srsObj['weight_profile'] = ''
-        srsObj['tax1'] = ''
-        srsObj['tax2'] = ''
-        srsObj['tax3'] = ''
-        srsObj['spec_tndr1'] = ''
-        srsObj['spec_tndr2'] = ''
-        srsObj['pos_prompt'] = ''
-        srsObj['location'] = ''
-        srsObj['alternate_id'] = ''
-        srsObj['alt_rcpt_alias'] = ''
-        srsObj['pkg_qty'] = ''
-        srsObj['supp_unit_id'] = displayRows[i]['nhcrtOrdSupplierStockNumber'] //here we use SKU from Catapult (ordSupplierStockNumber), NOT from EDI table (ediSKU)
-        srsObj['supplier_id'] = displayRows[i]['nhcrtVenCompanyName']
-        srsObj['unit'] = displayRows[i]['edi_tableEDIprefixUnitType'] // here we use ${ediPrefix}_unit_type from EDI table, NOT from Catapult (nhcrt.oupName)
-        if (oupNameSplit[0].toLowerCase().includes('cs') || oupNameSplit[0].toLowerCase().includes('case')) {
-          if (oupNameSplit[1]) {
-            srsObj['num_pkgs'] = oupNameSplit[1]
-          } else {
-            srsObj['num_pkgs'] = 'badValCS'
-          }
-        } else {
-          if (oupNameSplit[0].toLowerCase().includes('ea') || oupNameSplit[0].toLowerCase().includes('each')) {
-            srsObj['num_pkgs'] = ''
-          } else {
-            srsObj['num_pkgs'] = 'badVal'
-          }
-        }
-        // srsObj['num_pkgs'] = displayRows[i]['num_pkgs'] //NEED LOGIC FOR THIS; this should be whatever the ## is for CS-##, otherwise, just ''
-        srsObj['category'] = ''
-        srsObj['sub_category'] = ''
-        srsObj['product_group'] = ''
-        srsObj['product_flag'] = ''
-        srsObj['rb_note'] = ''
-        srsObj['edi_default'] = ''
-        srsObj['powerfield_7'] = ''
-        srsObj['temp_group'] = ''
-        srsObj['onhand_qty'] = ''
-        srsObj['reorder_point'] = ''
-        srsObj['mcl'] = ''
-        srsObj['reorder_qty'] = ''
-        srsObj['memo'] = ''
-        srsObj['flrRsn'] = ''
-        srsObj['dsd'] = ''
-        srsObj['disc_mult'] = ''
-        // srsObj['case_pk_mult'] = ''
-        if (oupNameSplit[0].toLowerCase().includes('cs') || oupNameSplit[0].toLowerCase().includes('case')) {
-          if (oupNameSplit[1]) {
-            srsObj['case_pk_mult'] = ''
-          } else {
-            srsObj['case_pk_mult'] = 'badValCS'
-          }
-        } else {
-          if (oupNameSplit[0].toLowerCase().includes('ea') || oupNameSplit[0].toLowerCase().includes('each')) {
-            if (oupNameSplit[1]) {
-              srsObj['case_pk_mult'] = oupNameSplit[1]
-            } else {
-              srsObj['case_pk_mult'] = 'badValEA'
-            }
-          } else {
-            if (oupNameSplit[0].toLowerCase().includes('cs') || oupNameSplit[0].toLowerCase().includes('case')) {
-              srsObj['case_pk_mult'] = ''
-            } else {
-              srsObj['case_pk_mult'] = 'badVal'
-            }
-          }
-        }
-        srsObj['ovr'] = '1'
+        srsObj['kehe_upc'] = displayRows[i]['kehe_upc']
+        srsObj['unfi_upc'] = displayRows[i]['unfi_upc']
+        srsObj['kehe_unit_type'] = displayRows[i]['kehe_unit_type']
+        srsObj['unfi_unit_type'] = displayRows[i]['unfi_unit_type']
 
-        if (displayRows[i]['nhcrtOrdSupplierStockNumber'] !== '') {
-          srsObjArr.push(srsObj)
+        if (displayRows[i]['kehe_unit_type'].toLowerCase().includes('ea')) {
+          let unitIntSplit = displayRows[i]['kehe_tier3'].split('-')
+          let unitInt = unitIntSplit[1]
+          srsObj['kehe_unit_cost'] = (displayRows[i]['kehe_tier3']) / (unitInt)
         }
+
+        srsObj['unfi_unit_cost'] = displayRows[i]['unfi_unit_cost']
+
+        if (srsObj['kehe_unit_cost'] < srsObj['unfi_unit_cost']) {
+          srsObj['lower_cost'] = 'KEHE'
+        } else {
+          srsObj['lower_cost'] = 'UNFI'
+        }
+
+        srsObjArr.push(srsObj)
+
       }
+      //V// CACHE QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
+      srsObjArrCache.set('srsObjArrCache_key', srsObjArr)
+      console.log(`srsObjArrCache['data']['srsObjArrCache_key']['v'].length==> ${srsObjArrCache['data']['srsObjArrCache_key']['v'].length}`)
+      console.log(`srsObjArrCache['data']['srsObjArrCache_key']['v'][0]==> ${srsObjArrCache['data']['srsObjArrCache_key']['v'][0]}`)
+      console.log(`JSON.stringify(srsObjArrCache['data']['srsObjArrCache_key']['v'][0])==> ${JSON.stringify(srsObjArrCache['data']['srsObjArrCache_key']['v'][0])}`)
+      //^// CACHE QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
     }
 
     function queryNejUnitType_Table() {
-      connection.query(`
-      SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
-      nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName,
-      REPLACE (nhcrt.invReceiptAlias, ',', '') AS nhcrtInvReceiptAlias,
-      nhcrt.venCompanyname AS nhcrtVenCompanyName, nhcrt.pi1Description AS nhcrtPi1Description, nhcrt.pi2Description AS nhcrtPi2Description,
-      edi_table.${ediPrefix}_upc AS edi_tableEDIprefixUPC, edi_table.${ediPrefix}_unit_type AS edi_tableEDIprefixUnitType FROM ${nhcrtTableName}
-      nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode
-      WHERE nhcrt.invScanCode = edi_table.${ediPrefix}_upc
-      ORDER BY nhcrt.pi1Description, nhcrt.pi2Description;`,
+      connection.query(`${query}`,
         function (err, rows, fields) {
           if (err) throw err
           showSearchRes(rows)
