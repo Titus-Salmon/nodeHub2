@@ -8,7 +8,7 @@ html
 		include vw-dashboard.pug
 
 		//- //v// joins nhcrt table to edi table
-		form#nhcrtEdiJoin(action='/keheUnfiWSdiff/keheUnfiWSdiff' method='POST' accept-charset="UTF-8" style="display:block")
+		form#keheUnfiJoin(action='/keheUnfiWSdiff/keheUnfiWSdiff' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='keheUnfiJoin') This query joins kehe & unfi tables
 				textarea#keheUnfiJoinTextArea.input-unit-1(name="keheUnfiJoinPost", cols="30", rows="1", wrap="soft") SELECT kehe.kehe_upc, kehe.kehe_unit_type, kehe.kehe_tier3, unfi.unfi_upc, unfi.unfi_unit_type, unfi.unit_cost FROM edi_kehe_data kehe JOIN edi_unfi_data unfi ON kehe.kehe_upc WHERE kehe.kehe_upc = unfi.unfi_upc;
