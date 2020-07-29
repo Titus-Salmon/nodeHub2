@@ -53,6 +53,9 @@ module.exports = {
           let unitInt = unitIntSplit[1]
           srsObj['kehe_unit_cost'] = (displayRows[i]['kehe_tier3']) / (unitInt)
           srsObj['unfi_unit_cost'] = displayRows[i]['unfi_unit_cost']
+        } else {
+          srsObj['kehe_unit_cost'] = 'NA'
+          srsObj['unfi_unit_cost'] = 'NA'
         }
 
         if (srsObj['kehe_unit_cost'] < srsObj['unfi_unit_cost']) {
