@@ -49,12 +49,11 @@ module.exports = {
         srsObj['unfi_unit_type'] = displayRows[i]['unfi_unit_type']
 
         if (displayRows[i]['kehe_unit_type'].toLowerCase().includes('ea')) {
-          let unitIntSplit = displayRows[i]['kehe_tier3'].split('-')
+          let unitIntSplit = displayRows[i]['kehe_unit_type'].split('-')
           let unitInt = unitIntSplit[1]
           srsObj['kehe_unit_cost'] = (displayRows[i]['kehe_tier3']) / (unitInt)
+          srsObj['unfi_unit_cost'] = displayRows[i]['unfi_unit_cost']
         }
-
-        srsObj['unfi_unit_cost'] = displayRows[i]['unfi_unit_cost']
 
         if (srsObj['kehe_unit_cost'] < srsObj['unfi_unit_cost']) {
           srsObj['lower_cost'] = 'KEHE'
