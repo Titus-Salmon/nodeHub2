@@ -22,13 +22,13 @@ function highlight_row() {
     let unfiUnitCost = cells[i].parentNode.childNodes[6]
 
     if (keheUnitCost.innerHTML !== 'NA') {
-      if (Math.abs((keheUnitCost.innerHTML - unfiUnitCost.innerHTML) / (keheUnitCost.innerHTML)) > .25) {
+      if (Math.abs((keheUnitCost.innerHTML - unfiUnitCost.innerHTML) / ((keheUnitCost.innerHTML + unfiUnitCost.innerHTML) / 2)) > .25) {
         keheUnitType.style.backgroundColor = "#ffdb4b"
         unfiUnitType.style.backgroundColor = "#ffdb4b"
         keheUnitCost.style.backgroundColor = "#ffdb4b"
         unfiUnitCost.style.backgroundColor = "#ffdb4b"
       }
-      if (Math.abs((keheUnitCost.innerHTML - unfiUnitCost.innerHTML) / (keheUnitCost.innerHTML)) > .5) {
+      if (Math.abs((keheUnitCost.innerHTML - unfiUnitCost.innerHTML) / ((keheUnitCost.innerHTML + unfiUnitCost.innerHTML) / 2)) > .5) {
         keheUnitType.style.backgroundColor = "#ff0000"
         unfiUnitType.style.backgroundColor = "#ff0000"
         keheUnitCost.style.backgroundColor = "#ff0000"
