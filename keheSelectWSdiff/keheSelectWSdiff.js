@@ -11,7 +11,7 @@ const connection = mysql.createConnection({ //for work use in RB DB
   multipleStatements: true //MUST HAVE to make more than 1 sql statement in a single query
 })
 
-const srsObjArrCache = require('../nodeCacheStuff/cache1')
+const keheSelectObjArrCache = require('../nodeCacheStuff/cache1')
 
 module.exports = {
 
@@ -83,10 +83,10 @@ module.exports = {
 
       }
       //V// CACHE QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
-      srsObjArrCache.set('srsObjArrCache_key', srsObjArr)
-      console.log(`srsObjArrCache['data']['srsObjArrCache_key']['v'].length==> ${srsObjArrCache['data']['srsObjArrCache_key']['v'].length}`)
-      console.log(`srsObjArrCache['data']['srsObjArrCache_key']['v'][0]==> ${srsObjArrCache['data']['srsObjArrCache_key']['v'][0]}`)
-      console.log(`JSON.stringify(srsObjArrCache['data']['srsObjArrCache_key']['v'][0])==> ${JSON.stringify(srsObjArrCache['data']['srsObjArrCache_key']['v'][0])}`)
+      keheSelectObjArrCache.set('keheSelectObjArrCache_key', srsObjArr)
+      console.log(`keheSelectObjArrCache['data']['keheSelectObjArrCache_key']['v'].length==> ${keheSelectObjArrCache['data']['keheSelectObjArrCache_key']['v'].length}`)
+      console.log(`keheSelectObjArrCache['data']['keheSelectObjArrCache_key']['v'][0]==> ${keheSelectObjArrCache['data']['keheSelectObjArrCache_key']['v'][0]}`)
+      console.log(`JSON.stringify(keheSelectObjArrCache['data']['keheSelectObjArrCache_key']['v'][0])==> ${JSON.stringify(keheSelectObjArrCache['data']['keheSelectObjArrCache_key']['v'][0])}`)
       //^// CACHE QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
     }
 

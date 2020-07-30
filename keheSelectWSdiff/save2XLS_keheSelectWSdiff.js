@@ -2,13 +2,13 @@ const express = require('express')
 const router = express.Router()
 // const fs = require('fs')
 const xl = require('excel4node')
-const srsObjArrCache = require('../nodeCacheStuff/cache1')
+const keheSelectObjArrCache = require('../nodeCacheStuff/cache1')
 
 module.exports = {
 
   save2XLS_keheSelectWSdiff: router.post('/save2XLS_keheSelectWSdiff', (req, res, next) => {
 
-    keheSelectWSdiffArrCacheValue = srsObjArrCache.take('srsObjArrCache_key') // this also deletes the key
+    keheSelectWSdiffArrCacheValue = keheSelectObjArrCache.take('keheSelectObjArrCache_key') // this also deletes the key
     console.log(`JSON.stringify(keheSelectWSdiffArrCacheValue[0])==> ${JSON.stringify(keheSelectWSdiffArrCacheValue[0])}`)
 
     //NOTE++++++++>>> srcRsXLS_tsql is the original array that holds the collection of SearchResults objects {columnName: cellValue}
