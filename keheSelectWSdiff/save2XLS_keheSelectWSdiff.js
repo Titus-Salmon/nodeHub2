@@ -30,6 +30,8 @@ module.exports = {
       keheSelectWSdiffObj['s_unit_cost'] = keheSelectWSdiffArrCacheValue[a]['s_unit_cost']
       keheSelectWSdiffObj['lower_cost'] = keheSelectWSdiffArrCacheValue[a]['lower_cost']
       keheSelectWSdiffObj['note'] = keheSelectWSdiffArrCacheValue[a]['note']
+      keheSelectWSdiffObj['kehe_name'] = keheSelectWSdiffArrCacheValue[a]['kehe_name']
+      keheSelectWSdiffObj['s_name'] = keheSelectWSdiffArrCacheValue[a]['s_name']
 
       srcRsXLS_selectiveReordering.push(keheSelectWSdiffObj)
     }

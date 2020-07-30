@@ -11,7 +11,7 @@ html
 		form#keheSelectJoin(action='/keheSelectWSdiff/keheSelectWSdiff' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='keheSelectJoin') This query joins kehe & SELECT tables
-				textarea#keheSelectJoinTextArea.input-unit-1(name="keheSelectJoinPost", cols="30", rows="1", wrap="soft") SELECT kehe.kehe_upc, kehe.kehe_unit_type, kehe.kehe_tier3, selct.s_upc, selct.s_unit_type, selct.s_unit_cost FROM edi_kehe_data kehe JOIN edi_select_data selct ON kehe.kehe_upc WHERE kehe.kehe_upc = selct.s_upc;
+				textarea#keheSelectJoinTextArea.input-unit-1(name="keheSelectJoinPost", cols="30", rows="1", wrap="soft") SELECT kehe.kehe_upc, kehe.kehe_unit_type, kehe.kehe_tier3, kehe.kehe_name, selct.s_upc, selct.s_unit_type, selct.s_unit_cost, selct.s_name FROM edi_kehe_data kehe JOIN edi_select_data selct ON kehe.kehe_upc WHERE kehe.kehe_upc = selct.s_upc;
 				button#crtTblBtn3(type='submit', form='keheSelectJoin', style="display: block; float: left") Display kehe/SELECT joined tables
 		//- //^// joins nhcrt table to edi table
 
@@ -34,6 +34,8 @@ html
 							th s_unit_cost
 							th lower_cost
 							th note
+              th kehe_name
+              th s_name
 
 					tbody#resTblBdy_loadedTable
 						each elmnt in srsObjArr
@@ -47,6 +49,8 @@ html
 								td= elmnt.s_unit_cost
 								td= elmnt.lower_cost
 								td= elmnt.note
+                td= elmnt.kehe_name
+                td= elmnt.s_name
 
 
 		script(src='/jsModules_t0d/tableHighlight_keheSelect.js')
