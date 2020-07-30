@@ -1,0 +1,52 @@
+doctype html
+html
+	head
+		link(rel="stylesheet" type="text/css" href="/stylesheets/style.css")
+		title #{title}
+
+	body
+		include vw-dashboard.pug
+
+		//- //v// joins nhcrt table to edi table
+		form#keheUnfiJoin(action='/keheUnfiWSdiff/keheUnfiWSdiff' method='POST' accept-charset="UTF-8" style="display:block")
+			div(style="display:block")
+				label.input-label-1(for='keheUnfiJoin') This query joins kehe & unfi tables
+				textarea#keheUnfiJoinTextArea.input-unit-1(name="keheUnfiJoinPost", cols="30", rows="1", wrap="soft") SELECT kehe.kehe_upc, kehe.kehe_unit_type, kehe.kehe_tier3, select.s_upc, select.s_unit_type, select.s_unit_cost FROM edi_kehe_data kehe JOIN edi_select_data select ON kehe.kehe_upc WHERE kehe.kehe_upc = select.s_upc;
+				button#crtTblBtn3(type='submit', form='keheUnfiJoin', style="display: block; float: left") Display kehe/unfi joined tables
+		//- //^// joins nhcrt table to edi table
+
+		button.adminButton#saveXLSreview(type="submit" form="saveXLSreviewPost") Save Results as XLS
+		form#saveXLSreviewPost(action='/keheUnfiWSdiff/save2XLS_keheUnfiWSdiff' method='POST' accept-charset='UTF-8')
+			label.input-label-1(for='xlsReview') filename:
+				input#xlsReview.input-unit-1(type='text', placeholder='enter filename here', name='xlsPost', value='')
+
+		div.rslt-tbl-1-absolute
+			if srsObjArr !== undefined
+				table#resTbl_loadedTable
+					thead
+						tr
+							th #
+							th kehe_upc
+							th select_upc
+							th kehe_unit_type
+							th select_unit_type
+							th kehe_unit_cost
+							th select_unit_cost
+							th lower_cost
+							th note
+
+					tbody#resTblBdy_loadedTable
+						each elmnt in srsObjArr
+							tr
+								td= elmnt.ri_t0d
+								td= elmnt.kehe_upc
+								td= elmnt.select_upc
+								td= elmnt.kehe_unit_type
+								td= elmnt.select_unit_type
+								td= elmnt.kehe_unit_cost
+								td= elmnt.select_unit_cost
+								td= elmnt.lower_cost
+								td= elmnt.note
+
+
+		script(src='/jsModules_t0d/tableHighlight_keheUnfi.js')
