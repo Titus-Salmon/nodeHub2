@@ -67,13 +67,13 @@ module.exports = {
         srsObj['note'] = 'nullT0d'
 
         if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['unfi_unit_cost']) / (srsObj['kehe_unit_cost'])) > .25) {
-          srsObj['note'] = '25'
+          srsObj['note'] = '25diff'
         }
         if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['unfi_unit_cost']) / (srsObj['kehe_unit_cost'])) > .5) {
-          srsObj['note'] = '50'
+          srsObj['note'] = '50diff'
         }
         if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['unfi_unit_cost']) / (srsObj['kehe_unit_cost'])) > .75) {
-          srsObj['note'] = '75'
+          srsObj['note'] = '75diff'
         }
 
         srsObjArr.push(srsObj)

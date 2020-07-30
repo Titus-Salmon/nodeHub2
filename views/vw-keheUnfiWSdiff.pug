@@ -15,15 +15,10 @@ html
 				button#crtTblBtn3(type='submit', form='keheUnfiJoin', style="display: block; float: left") Display kehe/unfi joined tables
 		//- //^// joins nhcrt table to edi table
 
-		//- form#imwGenerator(action='/imwUnitType/saveCSVimwUnitType' method='POST' accept-charset="UTF-8")
-		//- 	div.horiz-2-abs
-		//- 		label.input-label-1(for='productArray') Product Array for saving IMW
-		//- 		//- input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=imwProductArr)
-		//- 		input#productArray.input-unit-1(type='text', placeholder='enter data1', name='productArrayPost', value=srsObjArr)
-		//- 	div.horiz-3-abs
-		//- 		label.input-label-1(for='csv') filename:
-		//- 		input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='', required)
-		//- 		button#imwGeneratorButton(type='submit', form='imwGenerator') Save IMW as CSV
+		button.adminButton#saveXLSreview(type="submit" form="saveXLSreviewPost") Save Results as XLS
+		form#saveXLSreviewPost(action='/keheUnfiWSdiff/save2XLS_keheUnfiWSdiff' method='POST' accept-charset='UTF-8')
+			label.input-label-1(for='xlsReview') filename:
+				input#xlsReview.input-unit-1(type='text', placeholder='enter filename here', name='xlsPost', value='')
 
 		div.rslt-tbl-1-absolute
 			if srsObjArr !== undefined
