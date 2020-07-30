@@ -10,7 +10,7 @@ html
 		//- //v// joins nhcrt table to edi table
 		form#keheUnfiJoin(action='/keheSelectWSdiff/keheSelectWSdiff' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
-				label.input-label-1(for='keheUnfiJoin') This query joins kehe & unfi tables
+				label.input-label-1(for='keheUnfiJoin') This query joins kehe & SELECT tables
 				textarea#keheUnfiJoinTextArea.input-unit-1(name="keheUnfiJoinPost", cols="30", rows="1", wrap="soft") SELECT kehe.kehe_upc, kehe.kehe_unit_type, kehe.kehe_tier3, selct.s_upc, selct.s_unit_type, selct.s_unit_cost FROM edi_kehe_data kehe JOIN edi_select_data selct ON kehe.kehe_upc WHERE kehe.kehe_upc = selct.s_upc;
 				button#crtTblBtn3(type='submit', form='keheUnfiJoin', style="display: block; float: left") Display kehe/SELECT joined tables
 		//- //^// joins nhcrt table to edi table
@@ -27,11 +27,11 @@ html
 						tr
 							th #
 							th kehe_upc
-							th select_upc
+							th s_upc
 							th kehe_unit_type
-							th select_unit_type
+							th s_unit_type
 							th kehe_unit_cost
-							th select_unit_cost
+							th s_unit_cost
 							th lower_cost
 							th note
 
@@ -40,11 +40,11 @@ html
 							tr
 								td= elmnt.ri_t0d
 								td= elmnt.kehe_upc
-								td= elmnt.select_upc
+								td= elmnt.s_upc
 								td= elmnt.kehe_unit_type
-								td= elmnt.select_unit_type
+								td= elmnt.s_unit_type
 								td= elmnt.kehe_unit_cost
-								td= elmnt.select_unit_cost
+								td= elmnt.s_unit_cost
 								td= elmnt.lower_cost
 								td= elmnt.note
 

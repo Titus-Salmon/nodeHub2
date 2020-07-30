@@ -44,21 +44,21 @@ module.exports = {
 
         srsObj['ri_t0d'] = i + 1
         srsObj['kehe_upc'] = displayRows[i]['kehe_upc']
-        srsObj['select_upc'] = displayRows[i]['select_upc']
+        srsObj['s_upc'] = displayRows[i]['s_upc']
         srsObj['kehe_unit_type'] = displayRows[i]['kehe_unit_type']
-        srsObj['select_unit_type'] = displayRows[i]['select_unit_type']
+        srsObj['s_unit_type'] = displayRows[i]['s_unit_type']
 
         if (displayRows[i]['kehe_unit_type'].toLowerCase().includes('ea')) {
           let unitIntSplit = displayRows[i]['kehe_unit_type'].split('-')
           let unitInt = unitIntSplit[1]
           srsObj['kehe_unit_cost'] = (displayRows[i]['kehe_tier3']) / (unitInt)
-          srsObj['select_unit_cost'] = displayRows[i]['select_unit_cost']
+          srsObj['s_unit_cost'] = displayRows[i]['s_unit_cost']
         } else {
           srsObj['kehe_unit_cost'] = 'NA'
-          srsObj['select_unit_cost'] = 'NA'
+          srsObj['s_unit_cost'] = 'NA'
         }
 
-        if (srsObj['kehe_unit_cost'] < srsObj['select_unit_cost']) {
+        if (srsObj['kehe_unit_cost'] < srsObj['s_unit_cost']) {
           srsObj['lower_cost'] = 'KEHE'
         } else {
           srsObj['lower_cost'] = 'SELECT'
@@ -66,13 +66,13 @@ module.exports = {
 
         srsObj['note'] = 'nullT0d'
 
-        if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['select_unit_cost']) / (srsObj['kehe_unit_cost'])) > .25) {
+        if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['s_unit_cost']) / (srsObj['kehe_unit_cost'])) > .25) {
           srsObj['note'] = '25diff'
         }
-        if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['select_unit_cost']) / (srsObj['kehe_unit_cost'])) > .5) {
+        if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['s_unit_cost']) / (srsObj['kehe_unit_cost'])) > .5) {
           srsObj['note'] = '50diff'
         }
-        if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['select_unit_cost']) / (srsObj['kehe_unit_cost'])) > .75) {
+        if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['s_unit_cost']) / (srsObj['kehe_unit_cost'])) > .75) {
           srsObj['note'] = '75diff'
         }
 

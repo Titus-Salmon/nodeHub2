@@ -23,11 +23,11 @@ module.exports = {
       let keheSelectWSdiffObj = {}
       // THE ORDER OF THE FOLLOWING OBJECT KEYS IS CRITICAL TO THE ORDER OF EXCEL COLUMNS
       keheSelectWSdiffObj['kehe_upc'] = keheSelectWSdiffArrCacheValue[a]['kehe_upc']
-      keheSelectWSdiffObj['select_upc'] = keheSelectWSdiffArrCacheValue[a]['select_upc']
+      keheSelectWSdiffObj['s_upc'] = keheSelectWSdiffArrCacheValue[a]['s_upc']
       keheSelectWSdiffObj['kehe_unit_type'] = keheSelectWSdiffArrCacheValue[a]['kehe_unit_type']
-      keheSelectWSdiffObj['select_unit_type'] = keheSelectWSdiffArrCacheValue[a]['select_unit_type']
+      keheSelectWSdiffObj['s_unit_type'] = keheSelectWSdiffArrCacheValue[a]['s_unit_type']
       keheSelectWSdiffObj['kehe_unit_cost'] = keheSelectWSdiffArrCacheValue[a]['kehe_unit_cost']
-      keheSelectWSdiffObj['select_unit_cost'] = keheSelectWSdiffArrCacheValue[a]['select_unit_cost']
+      keheSelectWSdiffObj['s_unit_cost'] = keheSelectWSdiffArrCacheValue[a]['s_unit_cost']
       keheSelectWSdiffObj['lower_cost'] = keheSelectWSdiffArrCacheValue[a]['lower_cost']
       keheSelectWSdiffObj['note'] = keheSelectWSdiffArrCacheValue[a]['note']
 
