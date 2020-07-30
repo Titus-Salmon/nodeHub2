@@ -8,11 +8,11 @@ html
 		include vw-dashboard.pug
 
 		//- //v// joins nhcrt table to edi table
-		form#keheUnfiJoin(action='/keheSelectWSdiff/keheSelectWSdiff' method='POST' accept-charset="UTF-8" style="display:block")
+		form#keheSelectJoin(action='/keheSelectWSdiff/keheSelectWSdiff' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
-				label.input-label-1(for='keheUnfiJoin') This query joins kehe & SELECT tables
-				textarea#keheUnfiJoinTextArea.input-unit-1(name="keheUnfiJoinPost", cols="30", rows="1", wrap="soft") SELECT kehe.kehe_upc, kehe.kehe_unit_type, kehe.kehe_tier3, selct.s_upc, selct.s_unit_type, selct.s_unit_cost FROM edi_kehe_data kehe JOIN edi_select_data selct ON kehe.kehe_upc WHERE kehe.kehe_upc = selct.s_upc;
-				button#crtTblBtn3(type='submit', form='keheUnfiJoin', style="display: block; float: left") Display kehe/SELECT joined tables
+				label.input-label-1(for='keheSelectJoin') This query joins kehe & SELECT tables
+				textarea#keheSelectJoinTextArea.input-unit-1(name="keheSelectJoinPost", cols="30", rows="1", wrap="soft") SELECT kehe.kehe_upc, kehe.kehe_unit_type, kehe.kehe_tier3, selct.s_upc, selct.s_unit_type, selct.s_unit_cost FROM edi_kehe_data kehe JOIN edi_select_data selct ON kehe.kehe_upc WHERE kehe.kehe_upc = selct.s_upc;
+				button#crtTblBtn3(type='submit', form='keheSelectJoin', style="display: block; float: left") Display kehe/SELECT joined tables
 		//- //^// joins nhcrt table to edi table
 
 		button.adminButton#saveXLSreview(type="submit" form="saveXLSreviewPost") Save Results as XLS
@@ -49,4 +49,4 @@ html
 								td= elmnt.note
 
 
-		script(src='/jsModules_t0d/tableHighlight_keheUnfi.js')
+		script(src='/jsModules_t0d/tableHighlight_keheSelect.js')
