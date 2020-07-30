@@ -1,4 +1,4 @@
-const ResTblBdy = document.getElementById("resTblBdy")
+const ResTblBdy = document.getElementById("resTblBdy_loadedTable")
 
 function highlight_row() {
   let cells = ResTblBdy.getElementsByTagName('td'); //targets all cells in table
