@@ -27,6 +27,12 @@ function highlight_row() {
       keheUnitCost.style.backgroundColor = "#ffdb4b"
       unfiUnitCost.style.backgroundColor = "#ffdb4b"
     }
+    if (Math.abs((keheUnitCost.innerHTML - unfiUnitCost.innerHTML) / (keheUnitCost.innerHTML)) > .5) {
+      keheUnitType.style.backgroundColor = "#ff0000"
+      unfiUnitType.style.backgroundColor = "#ff0000"
+      keheUnitCost.style.backgroundColor = "#ff0000"
+      unfiUnitCost.style.backgroundColor = "#ff0000"
+    }
     // if (Math.abs((edi_cost_mod.innerHTML - exist_ws.innerHTML) / (edi_cost_mod.innerHTML)) > .50) {
     //   edi_cost_mod.style.backgroundColor = "#ff8533"
     // }
