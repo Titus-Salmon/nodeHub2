@@ -34,7 +34,7 @@ function highlight_row() {
         keheUnitCost.style.backgroundColor = "#ff8533"
         unfiUnitCost.style.backgroundColor = "#ff8533"
       }
-      if (Math.abs((keheUnitCost.innerHTML - unfiUnitCost.innerHTML) / (keheUnitCost.innerHTML)) > .5) {
+      if (Math.abs((keheUnitCost.innerHTML - unfiUnitCost.innerHTML) / (keheUnitCost.innerHTML)) > .75) {
         keheUnitType.style.backgroundColor = "#ff0000"
         unfiUnitType.style.backgroundColor = "#ff0000"
         keheUnitCost.style.backgroundColor = "#ff0000"
