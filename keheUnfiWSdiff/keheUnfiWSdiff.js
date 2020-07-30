@@ -76,6 +76,9 @@ module.exports = {
           srsObj['note'] = '75diff'
         }
 
+        srsObj['kehe_name'] = displayRows[i]['kehe_name']
+        srsObj['unfi_name'] = displayRows[i]['unfi_name']
+
         srsObjArr.push(srsObj)
 
       }

@@ -30,6 +30,8 @@ module.exports = {
       keheUnfiWSdiffObj['unfi_unit_cost'] = keheUnfiWSdiffArrCacheValue[a]['unfi_unit_cost']
       keheUnfiWSdiffObj['lower_cost'] = keheUnfiWSdiffArrCacheValue[a]['lower_cost']
       keheUnfiWSdiffObj['note'] = keheUnfiWSdiffArrCacheValue[a]['note']
+      keheSelectWSdiffObj['kehe_name'] = keheSelectWSdiffArrCacheValue[a]['kehe_name']
+      keheSelectWSdiffObj['unfi_name'] = keheSelectWSdiffArrCacheValue[a]['unfi_name']
 
       srcRsXLS_selectiveReordering.push(keheUnfiWSdiffObj)
     }
