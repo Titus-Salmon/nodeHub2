@@ -17,7 +17,8 @@ module.exports = {
 
   keheSelectWSdiff: router.post(`/keheSelectWSdiff`, (req, res, next) => {
 
-    let query = req.body['keheSelectJoinPost']
+    // let query = req.body['keheSelectJoinPost']
+    let nhcrtName = req.body['nhcrtNamePost']
 
     // const postBody = req.body
 
@@ -32,54 +33,59 @@ module.exports = {
 
     function showSearchRes(rows) {
 
-      let displayRows = rows
-      console.log(`displayRows[0]==> ${displayRows[0]}`)
+      let query1 = rows[0]
+      let query2 = rows[1]
+      console.log(`query1[0]==> ${query1[0]}`)
+      console.log(`query2[0]==> ${query2[0]}`)
 
-      for (let i = 0; i < displayRows.length; i++) {
+      for (let i = 0; i < query1.length; i++) {
 
-        let srsObj = {}
+        for (let j = 0; j < query2.length; j++) {
+          if (query2[j]['invScanCode'] == query1[i]['kehe_upc']) {
+            let srsObj = {}
 
-        // let oupNameVar = displayRows[i]['edi_tableEDIprefixUnitType'] //define variable for oupName
-        // oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+            srsObj['ri_t0d'] = i + 1
+            srsObj['kehe_upc'] = query1[i]['kehe_upc']
+            srsObj['s_upc'] = query1[i]['s_upc']
+            srsObj['kehe_unit_type'] = query1[i]['kehe_unit_type']
+            srsObj['s_unit_type'] = query1[i]['s_unit_type']
 
-        srsObj['ri_t0d'] = i + 1
-        srsObj['kehe_upc'] = displayRows[i]['kehe_upc']
-        srsObj['s_upc'] = displayRows[i]['s_upc']
-        srsObj['kehe_unit_type'] = displayRows[i]['kehe_unit_type']
-        srsObj['s_unit_type'] = displayRows[i]['s_unit_type']
+            if (query1[i]['kehe_unit_type'].toLowerCase().includes('ea')) {
+              let unitIntSplit = query1[i]['kehe_unit_type'].split('-')
+              let unitInt = unitIntSplit[1]
+              srsObj['kehe_unit_cost'] = (query1[i]['kehe_tier3']) / (unitInt)
+              srsObj['s_unit_cost'] = query1[i]['s_unit_cost']
+            } else {
+              srsObj['kehe_unit_cost'] = 'NA'
+              srsObj['s_unit_cost'] = 'NA'
+            }
 
-        if (displayRows[i]['kehe_unit_type'].toLowerCase().includes('ea')) {
-          let unitIntSplit = displayRows[i]['kehe_unit_type'].split('-')
-          let unitInt = unitIntSplit[1]
-          srsObj['kehe_unit_cost'] = (displayRows[i]['kehe_tier3']) / (unitInt)
-          srsObj['s_unit_cost'] = displayRows[i]['s_unit_cost']
-        } else {
-          srsObj['kehe_unit_cost'] = 'NA'
-          srsObj['s_unit_cost'] = 'NA'
+            if (srsObj['kehe_unit_cost'] < srsObj['s_unit_cost']) {
+              srsObj['lower_cost'] = 'KEHE'
+            } else {
+              srsObj['lower_cost'] = 'SELECT'
+            }
+
+            srsObj['note'] = 'nullT0d'
+
+            if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['s_unit_cost']) / (srsObj['kehe_unit_cost'])) > .25) {
+              srsObj['note'] = '25diff'
+            }
+            if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['s_unit_cost']) / (srsObj['kehe_unit_cost'])) > .5) {
+              srsObj['note'] = '50diff'
+            }
+            if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['s_unit_cost']) / (srsObj['kehe_unit_cost'])) > .75) {
+              srsObj['note'] = '75diff'
+            }
+
+            srsObj['kehe_name'] = query1[i]['kehe_name']
+            srsObj['s_name'] = query1[i]['s_name']
+
+            srsObj['invReceiptAlias'] = query2[j]['invReceiptAlias']
+
+            srsObjArr.push(srsObj)
+          }
         }
-
-        if (srsObj['kehe_unit_cost'] < srsObj['s_unit_cost']) {
-          srsObj['lower_cost'] = 'KEHE'
-        } else {
-          srsObj['lower_cost'] = 'SELECT'
-        }
-
-        srsObj['note'] = 'nullT0d'
-
-        if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['s_unit_cost']) / (srsObj['kehe_unit_cost'])) > .25) {
-          srsObj['note'] = '25diff'
-        }
-        if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['s_unit_cost']) / (srsObj['kehe_unit_cost'])) > .5) {
-          srsObj['note'] = '50diff'
-        }
-        if (Math.abs((srsObj['kehe_unit_cost'] - srsObj['s_unit_cost']) / (srsObj['kehe_unit_cost'])) > .75) {
-          srsObj['note'] = '75diff'
-        }
-
-        srsObj['kehe_name'] = displayRows[i]['kehe_name']
-        srsObj['s_name'] = displayRows[i]['s_name']
-
-        srsObjArr.push(srsObj)
 
       }
       //V// CACHE QUERY RESULTS IN BACKEND //////////////////////////////////////////////////////////////////////////////
@@ -91,7 +97,14 @@ module.exports = {
     }
 
     function queryNejUnitType_Table() {
-      connection.query(`${query}`,
+      connection.query(`
+      SELECT kehe.kehe_upc, kehe.kehe_unit_type, kehe.kehe_tier3, kehe.kehe_name,
+      selct.s_upc, selct.s_unit_type, selct.s_unit_cost, selct.s_name 
+      FROM edi_kehe_data kehe JOIN edi_select_data selct ON kehe.kehe_upc WHERE kehe.kehe_upc = selct.s_upc;
+
+      SELECT DISTINCT nhcrt.invScanCode, nhcrt.venCompanyname, nhcrt.invReceiptAlias 
+      FROM ${nhcrtName};
+      `,
         function (err, rows, fields) {
           if (err) throw err
           showSearchRes(rows)
