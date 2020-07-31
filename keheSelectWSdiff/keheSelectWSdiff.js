@@ -40,9 +40,10 @@ module.exports = {
 
       for (let i = 0; i < query1.length; i++) {
 
+        let srsObj = {}
+
         for (let j = 0; j < query2.length; j++) {
           if (query2[j]['invScanCode'] == query1[i]['kehe_upc']) {
-            let srsObj = {}
 
             srsObj['ri_t0d'] = i + 1
             srsObj['kehe_upc'] = query1[i]['kehe_upc']
