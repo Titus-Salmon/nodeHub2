@@ -38,24 +38,24 @@ module.exports = {
       console.log(`query1[0]==> ${query1[0]}`)
       console.log(`query2[0]==> ${query2[0]}`)
 
-      for (let i = 0; i < query1.length; i++) {
+      for (let i = 0; i < query2.length; i++) {
 
         let srsObj = {}
 
-        for (let j = 0; j < query2.length; j++) {
-          if (query2[j]['invScanCode'] == query1[i]['kehe_upc']) {
+        for (let j = 0; j < query1.length; j++) {
+          if (query2[i]['invScanCode'] == query1[j]['kehe_upc']) {
 
             srsObj['ri_t0d'] = i + 1
-            srsObj['kehe_upc'] = query1[i]['kehe_upc']
-            srsObj['s_upc'] = query1[i]['s_upc']
-            srsObj['kehe_unit_type'] = query1[i]['kehe_unit_type']
-            srsObj['s_unit_type'] = query1[i]['s_unit_type']
+            srsObj['kehe_upc'] = query1[j]['kehe_upc']
+            srsObj['s_upc'] = query1[j]['s_upc']
+            srsObj['kehe_unit_type'] = query1[j]['kehe_unit_type']
+            srsObj['s_unit_type'] = query1[j]['s_unit_type']
 
-            if (query1[i]['kehe_unit_type'].toLowerCase().includes('ea')) {
-              let unitIntSplit = query1[i]['kehe_unit_type'].split('-')
+            if (query1[j]['kehe_unit_type'].toLowerCase().includes('ea')) {
+              let unitIntSplit = query1[j]['kehe_unit_type'].split('-')
               let unitInt = unitIntSplit[1]
-              srsObj['kehe_unit_cost'] = (query1[i]['kehe_tier3']) / (unitInt)
-              srsObj['s_unit_cost'] = query1[i]['s_unit_cost']
+              srsObj['kehe_unit_cost'] = (query1[j]['kehe_tier3']) / (unitInt)
+              srsObj['s_unit_cost'] = query1[j]['s_unit_cost']
             } else {
               srsObj['kehe_unit_cost'] = 'NA'
               srsObj['s_unit_cost'] = 'NA'
@@ -79,10 +79,10 @@ module.exports = {
               srsObj['note'] = '75diff'
             }
 
-            srsObj['kehe_name'] = query1[i]['kehe_name']
-            srsObj['s_name'] = query1[i]['s_name']
+            srsObj['kehe_name'] = query1[j]['kehe_name']
+            srsObj['s_name'] = query1[j]['s_name']
 
-            srsObj['invReceiptAlias'] = query2[j]['invReceiptAlias']
+            srsObj['invReceiptAlias'] = query2[i]['invReceiptAlias']
 
             srsObjArr.push(srsObj)
           }
