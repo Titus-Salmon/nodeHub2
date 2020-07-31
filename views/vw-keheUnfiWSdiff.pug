@@ -16,7 +16,7 @@ html
 		//- //- //^// joins nhcrt table to edi table
 
 		//- //v//
-		form#nhcrtName(action='/keheSelectWSdiff/keheSelectWSdiff' method='POST' accept-charset="UTF-8" style="display:block")
+		form#nhcrtName(action='/keheUnfiWSdiff/keheUnfiWSdiff' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='nhcrtName') Enter NHCRT table name
 				input#nhcrtName.input-unit-1(type='text', placeholder='enter data', name="nhcrtNamePost", value='') 
@@ -44,6 +44,8 @@ html
 							th note
 							th kehe_name
 							th unfi_name
+							th invReceiptAlias
+							th venCompanyname
 
 					tbody#resTblBdy_loadedTable
 						each elmnt in srsObjArr
@@ -59,6 +61,8 @@ html
 								td= elmnt.note
 								td= elmnt.kehe_name
 								td= elmnt.unfi_name
+								td= elmnt.invReceiptAlias
+								td= elmnt.venCompanyname
 
 
 		script(src='/jsModules_t0d/tableHighlight_keheUnfi.js')
