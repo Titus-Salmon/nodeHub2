@@ -20,15 +20,6 @@ module.exports = {
     // let query = req.body['keheSelectJoinPost']
     let nhcrtName = req.body['nhcrtNamePost']
 
-    // const postBody = req.body
-
-    // let nhcrtTableName = postBody['nhcrtTablePost']
-    // console.log(`nhcrtTableName==> ${nhcrtTableName}`)
-    // let ediTableName = postBody['ediTablePost']
-    // console.log(`ediTableName==> ${ediTableName}`)
-    // let ediPrefix = postBody['ediPrefixPost']
-    // console.log(`ediPrefix==> ${ediPrefix}`)
-
     let srsObjArr = []
 
     function showSearchRes(rows) {
