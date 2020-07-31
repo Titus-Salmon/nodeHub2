@@ -33,29 +33,31 @@ module.exports = {
 
     function showSearchRes(rows) {
 
-      let query1 = rows[0]
-      let query2 = rows[1]
-      console.log(`JSON.stringify(query1[0])==> ${JSON.stringify(query1[0])}`)
-      console.log(`JSON.stringify(query2[0])==> ${JSON.stringify(query2[0])}`)
+      let queryRes1 = rows[0]
+      let queryRes2 = rows[1]
+      console.log(`queryRes1.length==> ${queryRes1.length}`)
+      console.log(`queryRes2.length==> ${queryRes2.length}`)
+      console.log(`JSON.stringify(queryRes1[0])==> ${JSON.stringify(queryRes1[0])}`)
+      console.log(`JSON.stringify(queryRes2[0])==> ${JSON.stringify(queryRes2[0])}`)
 
-      for (let i = 0; i < query2.length; i++) {
+      for (let i = 0; i < queryRes2.length; i++) {
 
         let srsObj = {}
 
-        for (let j = 0; j < query1.length; j++) {
-          if (query2[i]['invScanCode'] == query1[j]['kehe_upc']) {
+        for (let j = 0; j < queryRes1.length; j++) {
+          if (queryRes2[i]['invScanCode'] == queryRes1[j]['kehe_upc']) {
 
             srsObj['ri_t0d'] = j + 1
-            srsObj['kehe_upc'] = query1[j]['kehe_upc']
-            srsObj['s_upc'] = query1[j]['s_upc']
-            srsObj['kehe_unit_type'] = query1[j]['kehe_unit_type']
-            srsObj['s_unit_type'] = query1[j]['s_unit_type']
+            srsObj['kehe_upc'] = queryRes1[j]['kehe_upc']
+            srsObj['s_upc'] = queryRes1[j]['s_upc']
+            srsObj['kehe_unit_type'] = queryRes1[j]['kehe_unit_type']
+            srsObj['s_unit_type'] = queryRes1[j]['s_unit_type']
 
-            if (query1[j]['kehe_unit_type'].toLowerCase().includes('ea')) {
-              let unitIntSplit = query1[j]['kehe_unit_type'].split('-')
+            if (queryRes1[j]['kehe_unit_type'].toLowerCase().includes('ea')) {
+              let unitIntSplit = queryRes1[j]['kehe_unit_type'].split('-')
               let unitInt = unitIntSplit[1]
-              srsObj['kehe_unit_cost'] = (query1[j]['kehe_tier3']) / (unitInt)
-              srsObj['s_unit_cost'] = query1[j]['s_unit_cost']
+              srsObj['kehe_unit_cost'] = (queryRes1[j]['kehe_tier3']) / (unitInt)
+              srsObj['s_unit_cost'] = queryRes1[j]['s_unit_cost']
             } else {
               srsObj['kehe_unit_cost'] = 'NA'
               srsObj['s_unit_cost'] = 'NA'
@@ -79,11 +81,11 @@ module.exports = {
               srsObj['note'] = '75diff'
             }
 
-            srsObj['kehe_name'] = query1[j]['kehe_name']
-            srsObj['s_name'] = query1[j]['s_name']
+            srsObj['kehe_name'] = queryRes1[j]['kehe_name']
+            srsObj['s_name'] = queryRes1[j]['s_name']
 
-            srsObj['invReceiptAlias'] = query2[i]['invReceiptAlias']
-            srsObj['venCompanyname'] = query2[i]['venCompanyname']
+            srsObj['invReceiptAlias'] = queryRes2[i]['invReceiptAlias']
+            srsObj['venCompanyname'] = queryRes2[i]['venCompanyname']
 
             srsObjArr.push(srsObj)
           }
