@@ -102,7 +102,7 @@ module.exports = {
       selct.s_upc, selct.s_unit_type, selct.s_unit_cost, selct.s_name 
       FROM edi_kehe_data kehe JOIN edi_select_data selct ON kehe.kehe_upc WHERE kehe.kehe_upc = selct.s_upc;
 
-      SELECT DISTINCT nhcrt.invScanCode, nhcrt.venCompanyname, nhcrt.invReceiptAlias 
+      SELECT DISTINCT invScanCode, venCompanyname, invReceiptAlias 
       FROM ${nhcrtName};
       `,
         function (err, rows, fields) {
