@@ -83,6 +83,7 @@ module.exports = {
             srsObj['s_name'] = query1[j]['s_name']
 
             srsObj['invReceiptAlias'] = query2[i]['invReceiptAlias']
+            srsObj['venCompanyname'] = query2[i]['venCompanyname']
 
             srsObjArr.push(srsObj)
           }
