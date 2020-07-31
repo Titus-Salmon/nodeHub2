@@ -45,7 +45,7 @@ module.exports = {
         let srsObj = {}
 
         for (let j = 0; j < queryRes1.length; j++) {
-          if (queryRes2[i]['invScanCode'] == queryRes1[j]['kehe_upc']) {
+          if (queryRes2[i]['invScanCode'] == queryRes1[j]['s_upc']) {
 
             srsObj['ri_t0d'] = j + 1
             srsObj['kehe_upc'] = queryRes1[j]['kehe_upc']
