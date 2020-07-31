@@ -35,8 +35,8 @@ module.exports = {
 
       let query1 = rows[0]
       let query2 = rows[1]
-      console.log(`query1[0]==> ${query1[0]}`)
-      console.log(`query2[0]==> ${query2[0]}`)
+      console.log(`JSON.stringify(query1[0])==> ${JSON.stringify(query1[0])}`)
+      console.log(`JSON.stringify(query2[0])==> ${JSON.stringify(query2[0])}`)
 
       for (let i = 0; i < query2.length; i++) {
 
