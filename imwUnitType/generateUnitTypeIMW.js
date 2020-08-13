@@ -72,7 +72,7 @@ module.exports = {
 
     function showSearchRes(rows) {
 
-      let displayRows = rows[1]
+      let displayRows = rows
       console.log(`displayRows[0]==> ${displayRows[0]}`)
       console.log(`Object.keys(displayRows[0])==> ${Object.keys(displayRows[0])}`)
       // for (let n = 0; n < Object.keys(displayRows).length; n++) {
@@ -179,8 +179,8 @@ module.exports = {
     }
 
     function queryNejUnitType_Table() {
-      console.log(`queryArray[0] from within queryNejUnitType_Table()==> ${queryArray[0]}`)
-      connection.query(queryArray[0],
+      console.log(`queryArray from within queryNejUnitType_Table()==> ${queryArray}`)
+      connection.query(queryArray,
         function (err, rows, fields) {
           if (err) throw err
           showSearchRes(rows)
