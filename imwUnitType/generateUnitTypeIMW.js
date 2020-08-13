@@ -32,6 +32,8 @@ module.exports = {
 
     let srsObjArr = []
 
+
+
     function showSearchRes(rows) {
 
       let displayRows = rows
