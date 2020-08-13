@@ -66,14 +66,13 @@ module.exports = {
           }
           console.log(`queryArray[0]==> ${queryArray[0]}`)
         })
-      connection.end()
     }
 
     checkForBulkTypeColumn()
 
     function showSearchRes(rows) {
 
-      let displayRows = rows
+      let displayRows = rows[1]
       console.log(`displayRows[0]==> ${displayRows[0]}`)
       console.log(`Object.keys(displayRows[0])==> ${Object.keys(displayRows[0])}`)
       // for (let n = 0; n < Object.keys(displayRows).length; n++) {
