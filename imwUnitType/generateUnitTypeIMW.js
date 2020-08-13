@@ -177,15 +177,7 @@ module.exports = {
     }
 
     function queryNejUnitType_Table() {
-      connection.query(`
-      SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
-      nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName,
-      REPLACE (nhcrt.invReceiptAlias, ',', '') AS nhcrtInvReceiptAlias,
-      nhcrt.venCompanyname AS nhcrtVenCompanyName, nhcrt.pi1Description AS nhcrtPi1Description, nhcrt.pi2Description AS nhcrtPi2Description,
-      edi_table.${ediPrefix}_upc AS edi_tableEDIprefixUPC, edi_table.${ediPrefix}_unit_type AS edi_tableEDIprefixUnitType FROM ${nhcrtTableName}
-      nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode
-      WHERE nhcrt.invScanCode = edi_table.${ediPrefix}_upc
-      ORDER BY nhcrt.pi1Description, nhcrt.pi2Description;`,
+      connection.query(query,
         function (err, rows, fields) {
           if (err) throw err
           showSearchRes(rows)
