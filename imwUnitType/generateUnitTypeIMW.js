@@ -26,7 +26,8 @@ module.exports = {
 
     let srsObjArr = []
 
-    let queryArray = []
+    // let queryArray = []
+    var chosenQuery
 
     let query1 = `
     SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
@@ -60,9 +61,11 @@ module.exports = {
           console.log(`ediColNames.length==> ${ediColNames.length}`)
           let ediColNamesToString = ediColNames.toString()
           if (ediColNamesToString.includes('_bulk_type')) {
-            queryArray.push(query2)
+            // queryArray.push(query2
+            chosenQuery = query2
           } else {
-            queryArray.push(query1)
+            // queryArray.push(query1)
+            chosenQuery = query1
           }
           console.log(`queryArray[0]==> ${queryArray[0]}`)
         }).on('end', () => {
@@ -181,8 +184,8 @@ module.exports = {
     }
 
     function queryNejUnitType_Table() {
-      console.log(`queryArray[0] from within queryNejUnitType_Table()==> ${queryArray[0]}`)
-      connection.query(queryArray[0],
+      console.log(`chosenQuery from within queryNejUnitType_Table()==> ${chosenQuery}`)
+      connection.query(chosenQuery,
         function (err, rows, fields) {
           if (err) throw err
           showSearchRes(rows)
