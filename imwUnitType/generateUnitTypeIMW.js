@@ -26,6 +26,8 @@ module.exports = {
 
     let srsObjArr = []
 
+    var query
+
     let query1 = `
     SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
     nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName,
@@ -54,8 +56,15 @@ module.exports = {
           if (err) throw err
           console.log(`Object.keys(rows[0])==> ${Object.keys(rows[0])}`)
           let ediColNames = Object.keys(rows[0])
-          console.log(`typeof ediColNames==> ${ediColNames}`)
+          console.log(`typeof ediColNames==> ${typeof ediColNames}`)
           console.log(`ediColNames.length==> ${ediColNames.length}`)
+          let ediColNamesToString = ediColNames.toString()
+          if (ediColNamesToString.includes('_bulk_type')) {
+            query = query2
+          } else {
+            query = query1
+          }
+          console.log(`query==> ${query}`)
         })
     }
 
