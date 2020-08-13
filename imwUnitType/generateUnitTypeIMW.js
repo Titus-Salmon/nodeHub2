@@ -68,6 +68,8 @@ module.exports = {
         })
     }
 
+    checkForBulkTypeColumn()
+
     function showSearchRes(rows) {
 
       let displayRows = rows
@@ -175,8 +177,6 @@ module.exports = {
         }
       }
     }
-
-    checkForBulkTypeColumn()
 
     function queryNejUnitType_Table() {
       console.log(`queryArray[0] from within queryNejUnitType_Table()==> ${queryArray[0]}`)
