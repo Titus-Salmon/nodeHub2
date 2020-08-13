@@ -179,7 +179,7 @@ module.exports = {
     checkForBulkTypeColumn()
 
     function queryNejUnitType_Table() {
-      connection.query(queryArray[0],
+      connection.query(`${queryArray[0]}`,
         function (err, rows, fields) {
           if (err) throw err
           showSearchRes(rows)
