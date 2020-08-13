@@ -176,6 +176,8 @@ module.exports = {
       }
     }
 
+    checkForBulkTypeColumn()
+
     function queryNejUnitType_Table() {
       connection.query(query,
         function (err, rows, fields) {
@@ -188,7 +190,7 @@ module.exports = {
           })
         })
     }
-    checkForBulkTypeColumn()
+    // checkForBulkTypeColumn()
     queryNejUnitType_Table()
   })
 }
