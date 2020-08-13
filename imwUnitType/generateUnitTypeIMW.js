@@ -66,6 +66,7 @@ module.exports = {
           }
           console.log(`queryArray[0]==> ${queryArray[0]}`)
         })
+      connection.end()
     }
 
     checkForBulkTypeColumn()
