@@ -181,8 +181,8 @@ module.exports = {
     }
 
     function queryNejUnitType_Table() {
-      console.log(`queryArray from within queryNejUnitType_Table()==> ${queryArray}`)
-      connection.query(queryArray,
+      console.log(`queryArray[0] from within queryNejUnitType_Table()==> ${queryArray[0]}`)
+      connection.query(queryArray[0],
         function (err, rows, fields) {
           if (err) throw err
           showSearchRes(rows)
