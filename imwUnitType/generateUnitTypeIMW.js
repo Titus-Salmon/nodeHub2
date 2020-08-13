@@ -67,7 +67,7 @@ module.exports = {
             // queryArray.push(query1)
             chosenQuery = query1
           }
-          console.log(`queryArray[0]==> ${queryArray[0]}`)
+          console.log(`chosenQuery==> ${chosenQuery}`)
         }).on('end', () => {
         queryNejUnitType_Table()
       })
