@@ -64,7 +64,7 @@ module.exports = {
           } else {
             queryArray.push(query1)
           }
-          console.log(`query==> ${query}`)
+          console.log(`queryArray[0]==> ${queryArray[0]}`)
         })
     }
 
