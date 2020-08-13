@@ -65,7 +65,9 @@ module.exports = {
             queryArray.push(query1)
           }
           console.log(`queryArray[0]==> ${queryArray[0]}`)
-        })
+        }).on('end', () => {
+        queryNejUnitType_Table()
+      })
     }
 
     checkForBulkTypeColumn()
@@ -192,6 +194,6 @@ module.exports = {
         })
     }
     // checkForBulkTypeColumn()
-    queryNejUnitType_Table()
+    // queryNejUnitType_Table()
   })
 }
