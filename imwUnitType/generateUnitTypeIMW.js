@@ -2,12 +2,6 @@ const express = require('express')
 const router = express.Router()
 
 const mysql = require('mysql')
-// const querystring = require('querystring')
-
-// const sanitizerFuncs = require('../funcLibT0d/sanitizerFuncs')
-// const showSearchRes = require('../funcLibT0d/showSearchRes')
-// const remvItem = require('../funcLibT0d/removeItem')
-// const paginPost = require('../funcLibT0d/paginPost')
 
 const connection = mysql.createConnection({ //for work use in RB DB
   host: process.env.RB_HOST,
@@ -32,7 +26,38 @@ module.exports = {
 
     let srsObjArr = []
 
+    let query1 = `
+    SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
+    nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName,
+    REPLACE (nhcrt.invReceiptAlias, ',', '') AS nhcrtInvReceiptAlias,
+    nhcrt.venCompanyname AS nhcrtVenCompanyName, nhcrt.pi1Description AS nhcrtPi1Description, nhcrt.pi2Description AS nhcrtPi2Description,
+    edi_table.${ediPrefix}_upc AS edi_tableEDIprefixUPC, edi_table.${ediPrefix}_unit_type AS edi_tableEDIprefixUnitType FROM ${nhcrtTableName}
+    nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode
+    WHERE nhcrt.invScanCode = edi_table.${ediPrefix}_upc
+    ORDER BY nhcrt.pi1Description, nhcrt.pi2Description;`
 
+    let query2 = `
+    SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
+    nhcrt.ordSupplierStockNumber AS nhcrtOrdSupplierStockNumber, nhcrt.invName AS nhcrtInvName,
+    REPLACE (nhcrt.invReceiptAlias, ',', '') AS nhcrtInvReceiptAlias,
+    nhcrt.venCompanyname AS nhcrtVenCompanyName, nhcrt.pi1Description AS nhcrtPi1Description, nhcrt.pi2Description AS nhcrtPi2Description,
+    edi_table.${ediPrefix}_upc AS edi_tableEDIprefixUPC, edi_table.${ediPrefix}_bulk_type AS edi_tableEDIprefixBulkType, 
+    edi_table.${ediPrefix}_unit_type AS edi_tableEDIprefixUnitType FROM ${nhcrtTableName}
+    nhcrt JOIN ${ediTableName} edi_table ON nhcrt.invScanCode
+    WHERE nhcrt.invScanCode = edi_table.${ediPrefix}_upc
+    ORDER BY nhcrt.pi1Description, nhcrt.pi2Description;`
+
+    function checkForBulkTypeColumn() {
+      connection.query(`
+      SELECT * FROM ${ediTableName};`,
+        function (err, rows, fields) {
+          if (err) throw err
+          console.log(`Object.keys(rows[0])==> ${Object.keys(rows[0])}`)
+          let ediColNames = Object.keys(rows[0])
+          console.log(`typeof ediColNames==> ${ediColNames}`)
+          console.log(`ediColNames.length==> ${ediColNames.length}`)
+        })
+    }
 
     function showSearchRes(rows) {
 
@@ -159,33 +184,10 @@ module.exports = {
           res.render('vw-imwUnitType', {
             title: `vw-imwUnitType`,
             srsObjArr: srsObjArr,
-            // imwProductValObj: imwProductValObj,
-            // imwProductArr: imwProductArr, //this is stringified product key/value pairs in an array to populate itemListAccumulatorPost
-            // objectifiedImwProdArr: objectifiedImwProdArr, //this is for DOM template display
-            // tableName: tableName,
-            // numQueryRes: paginPostObj.numQueryRes,
-            // pageLinkArray: pageLinkArray,
-            // currentPage: paginPostObj.currentPage,
-            // numberOfPages: numPagesPlaceholder[0],
-            // lastPage: numPagesPlaceholder[0] - 1,
-            // firstPage: 0
           })
         })
     }
-
+    checkForBulkTypeColumn()
     queryNejUnitType_Table()
-
-    // if (tableName !== undefined && tableName !== '') {
-    //   queryNejUnitType_Table()
-    //   console.log(`numPages from queryNejUnitType_Table() POST==> ${showSearchRes.showSearchRes.numPages}`)
-    // } else {
-    //   res.render('vw-imwUnitType', {
-    //     title: `vw-imwUnitType`,
-    //     // imwProductValObj: imwProductValObj,
-    //     srsObjArr: srsObjArr
-    //     // imwProductArr: imwProductArr,
-    //     // objectifiedImwProdArr: objectifiedImwProdArr
-    //   })
-    // }
   })
 }
