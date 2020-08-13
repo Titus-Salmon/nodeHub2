@@ -36,9 +36,10 @@ module.exports = {
 
       let displayRows = rows
       console.log(`displayRows[0]==> ${displayRows[0]}`)
-      for (let n = 0; n < Object.keys(displayRows).length; n++) {
-        console.log(`Object.keys(displayRows[${n}])==> ${Object.keys(displayRows[n])}`)
-      }
+      console.log(`Object.keys(displayRows[0])==> ${Object.keys(displayRows[0])}`)
+      // for (let n = 0; n < Object.keys(displayRows).length; n++) {
+      //   console.log(`Object.keys(displayRows[${n}])==> ${Object.keys(displayRows[n])}`)
+      // }
 
       for (let i = 0; i < displayRows.length; i++) {
 
