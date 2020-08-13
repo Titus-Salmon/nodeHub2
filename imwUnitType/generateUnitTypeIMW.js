@@ -26,7 +26,7 @@ module.exports = {
 
     let srsObjArr = []
 
-    var query
+    let queryArray = []
 
     let query1 = `
     SELECT DISTINCT nhcrt.invPK AS nhcrtInvPK, nhcrt.invCPK AS nhcrtInvCPK, nhcrt.invScanCode AS nhcrtInvScanCode,
@@ -60,9 +60,9 @@ module.exports = {
           console.log(`ediColNames.length==> ${ediColNames.length}`)
           let ediColNamesToString = ediColNames.toString()
           if (ediColNamesToString.includes('_bulk_type')) {
-            query = query2
+            queryArray.push(query2)
           } else {
-            query = query1
+            queryArray.push(query1)
           }
           console.log(`query==> ${query}`)
         })
@@ -179,7 +179,7 @@ module.exports = {
     checkForBulkTypeColumn()
 
     function queryNejUnitType_Table() {
-      connection.query(query,
+      connection.query(queryArray[0],
         function (err, rows, fields) {
           if (err) throw err
           showSearchRes(rows)
