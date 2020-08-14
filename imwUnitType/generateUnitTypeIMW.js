@@ -143,8 +143,10 @@ module.exports = {
         if (bulkTypeOverride == 'yes') {
           if (displayRows[i]['edi_tableEDIprefixBulkType'] &&
             displayRows[i]['edi_tableEDIprefixBulkType'] !== null) {
-            srsObj['num_pkgs'] = bulkTypeSplit[1]
-            console.log(`displayRows[i]['edi_tableEDIprefixBulkType']==> ${displayRows[i]['edi_tableEDIprefixBulkType']}`)
+            if (bulkTypeSplit[0] == 'LB') {
+              srsObj['num_pkgs'] = bulkTypeSplit[1]
+              console.log(`displayRows[i]['edi_tableEDIprefixBulkType']==> ${displayRows[i]['edi_tableEDIprefixBulkType']}`)
+            }
           } else {
             srsObj['num_pkgs'] = 'badValBulkType'
           }
@@ -193,7 +195,9 @@ module.exports = {
         if (bulkTypeOverride == 'yes') {
           if (displayRows[i]['edi_tableEDIprefixBulkType'] &&
             displayRows[i]['edi_tableEDIprefixBulkType'] !== null) {
-            srsObj['case_pk_mult'] = ''
+            if (bulkTypeSplit[0] == 'LB') {
+              srsObj['case_pk_mult'] = ''
+            }
           } else {
             srsObj['case_pk_mult'] = 'badValBulkType'
           }
