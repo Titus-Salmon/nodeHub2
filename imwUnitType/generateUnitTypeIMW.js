@@ -126,6 +126,16 @@ module.exports = {
         srsObj['supp_unit_id'] = displayRows[i]['nhcrtOrdSupplierStockNumber'] //here we use SKU from Catapult (ordSupplierStockNumber), NOT from EDI table (ediSKU)
         srsObj['supplier_id'] = displayRows[i]['nhcrtVenCompanyName']
         srsObj['unit'] = displayRows[i]['edi_tableEDIprefixUnitType'] // here we use ${ediPrefix}_unit_type from EDI table, NOT from Catapult (nhcrt.oupName)
+
+        if (bulkTypeOverride == 'yes') {
+          if (displayRows[i]['edi_tableEDIprefixBulkType'] &&
+            displayRows[i]['edi_tableEDIprefixBulkType'] !== null) {
+            if (bulkTypeSplit[0].toLowerCase().includes('lb')) {
+              srsObj['unit'] = bulkTypeVar
+            }
+          }
+        }
+
         if (oupNameSplit[0].toLowerCase().includes('cs') || oupNameSplit[0].toLowerCase().includes('case')) {
           if (oupNameSplit[1]) {
             srsObj['num_pkgs'] = oupNameSplit[1]
@@ -149,9 +159,6 @@ module.exports = {
               console.log(`displayRows[i]['edi_tableEDIprefixBulkType']==> ${displayRows[i]['edi_tableEDIprefixBulkType']}`)
             }
           }
-          // else {
-          //   srsObj['num_pkgs'] = 'badValBulkType'
-          // }
         }
 
         // srsObj['num_pkgs'] = displayRows[i]['num_pkgs'] //NEED LOGIC FOR THIS; this should be whatever the ## is for CS-##, otherwise, just ''
@@ -201,9 +208,6 @@ module.exports = {
               srsObj['case_pk_mult'] = ''
             }
           }
-          // else {
-          //   srsObj['case_pk_mult'] = 'badValBulkType'
-          // }
         }
 
         srsObj['ovr'] = '1'
