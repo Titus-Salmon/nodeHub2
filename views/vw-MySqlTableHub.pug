@@ -400,99 +400,99 @@ html
 			label.input-label-1(for='xlsReview') filename:
 				input#xlsReview.input-unit-1(type='text', placeholder='enter filename here', name='xlsPost', value='')
 			
-		if searchResRows !== undefined
-			div.rslt-tbl-1-absolute-z1
-				table#resTbl
-					thead
-						tr
-							th ri_t0d
-							th invPK
-							th invCPK
-							th UPC
-							th SKU (Cplt)
-							th SKU (EDI)
-							th SKU MISMATCH
-							th imwSKU
-							th Description (Cplt)
-							th oupName (Cplt)
-							th numPkgs (calcResults)
-							th csPkgMltpl (calcResults)
-							th ovr (calcResults)
-							th stoNum
-							//- th stoName
-							th Exst WS (Cplt)
-							th Updtd WS (EDI)
-							th ediCostMod
-							th Global Margin
-							th Rtl Rqd
-							th Charm Price
-							th MSRP (EDI)
-							th CrntPr(Cplt)
-							th dptName (Catapult)
-							th dptNumber (Cplt)
-							th sibIdealMargin (Cplt)
-							th actualMargT0d
-							th rb dflt margin
-							th Applied Margin
-							th wsDiff
-							th Appld WS Disco
-							th Appld Rtl Disco
-							th EDLP
-							th pf1
-							th pf2
-							th pf3
-							th pf4
-							th pf5
-							th pf6
-							th pf7
-							th pf8
+		//- if searchResRows !== undefined
+		//- 	div.rslt-tbl-1-absolute-z1
+		//- 		table#resTbl
+		//- 			thead
+		//- 				tr
+		//- 					th ri_t0d
+		//- 					th invPK
+		//- 					th invCPK
+		//- 					th UPC
+		//- 					th SKU (Cplt)
+		//- 					th SKU (EDI)
+		//- 					th SKU MISMATCH
+		//- 					th imwSKU
+		//- 					th Description (Cplt)
+		//- 					th oupName (Cplt)
+		//- 					th numPkgs (calcResults)
+		//- 					th csPkgMltpl (calcResults)
+		//- 					th ovr (calcResults)
+		//- 					th stoNum
+		//- 					//- th stoName
+		//- 					th Exst WS (Cplt)
+		//- 					th Updtd WS (EDI)
+		//- 					th ediCostMod
+		//- 					th Global Margin
+		//- 					th Rtl Rqd
+		//- 					th Charm Price
+		//- 					th MSRP (EDI)
+		//- 					th CrntPr(Cplt)
+		//- 					th dptName (Catapult)
+		//- 					th dptNumber (Cplt)
+		//- 					th sibIdealMargin (Cplt)
+		//- 					th actualMargT0d
+		//- 					th rb dflt margin
+		//- 					th Applied Margin
+		//- 					th wsDiff
+		//- 					th Appld WS Disco
+		//- 					th Appld Rtl Disco
+		//- 					th EDLP
+		//- 					th pf1
+		//- 					th pf2
+		//- 					th pf3
+		//- 					th pf4
+		//- 					th pf5
+		//- 					th pf6
+		//- 					th pf7
+		//- 					th pf8
 
 
-					tbody#resTblBdy
-						if searchResRows !== undefined
-							each elmnt in searchResRows
-								tr
-									td= elmnt.ri_t0d
-									td= elmnt.invPK
-									td= elmnt.invCPK
-									td= elmnt.upc
-									td= elmnt.cpltSKU
-									td= elmnt.ediSKU
-									td= elmnt.skuMismatch
-									td= elmnt.imwSKU
-									td= elmnt.name
-									td= elmnt.oupName
-									td= elmnt.numPkgs
-									td= elmnt.csPkgMltpl
-									td= elmnt.ovr
-									td= elmnt.stoNumber
-									//- td= elmnt.stoName
-									td= elmnt.cpltCost
-									td= elmnt.ediCost
-									td= elmnt.ediCostMod
-									td= elmnt.globalMargin
-									td= elmnt.reqdRetail
-									td= elmnt.charm
-									td= elmnt.ediPrice
-									td= elmnt.sibBasePrice
-									td= elmnt.dptName
-									td= elmnt.dptNumber
-									td= elmnt.sibIdealMargin
-									td= elmnt.actualMargT0d
-									td= elmnt.defaultMarg
-									td= elmnt.appldMrgn
-									td= elmnt.wsDiff_t0d
-									td= elmnt.discountToApply_WS
-									td= elmnt.discountToApply_Rtl
-									td= elmnt.edlpVar
-									td= elmnt.pf1
-									td= elmnt.pf2
-									td= elmnt.pf3
-									td= elmnt.pf4
-									td= elmnt.pf5
-									td= elmnt.pf6
-									td= elmnt.pf7
-									td= elmnt.pf8
+		//- 			tbody#resTblBdy
+		//- 				if searchResRows !== undefined
+		//- 					each elmnt in searchResRows
+		//- 						tr
+		//- 							td= elmnt.ri_t0d
+		//- 							td= elmnt.invPK
+		//- 							td= elmnt.invCPK
+		//- 							td= elmnt.upc
+		//- 							td= elmnt.cpltSKU
+		//- 							td= elmnt.ediSKU
+		//- 							td= elmnt.skuMismatch
+		//- 							td= elmnt.imwSKU
+		//- 							td= elmnt.name
+		//- 							td= elmnt.oupName
+		//- 							td= elmnt.numPkgs
+		//- 							td= elmnt.csPkgMltpl
+		//- 							td= elmnt.ovr
+		//- 							td= elmnt.stoNumber
+		//- 							//- td= elmnt.stoName
+		//- 							td= elmnt.cpltCost
+		//- 							td= elmnt.ediCost
+		//- 							td= elmnt.ediCostMod
+		//- 							td= elmnt.globalMargin
+		//- 							td= elmnt.reqdRetail
+		//- 							td= elmnt.charm
+		//- 							td= elmnt.ediPrice
+		//- 							td= elmnt.sibBasePrice
+		//- 							td= elmnt.dptName
+		//- 							td= elmnt.dptNumber
+		//- 							td= elmnt.sibIdealMargin
+		//- 							td= elmnt.actualMargT0d
+		//- 							td= elmnt.defaultMarg
+		//- 							td= elmnt.appldMrgn
+		//- 							td= elmnt.wsDiff_t0d
+		//- 							td= elmnt.discountToApply_WS
+		//- 							td= elmnt.discountToApply_Rtl
+		//- 							td= elmnt.edlpVar
+		//- 							td= elmnt.pf1
+		//- 							td= elmnt.pf2
+		//- 							td= elmnt.pf3
+		//- 							td= elmnt.pf4
+		//- 							td= elmnt.pf5
+		//- 							td= elmnt.pf6
+		//- 							td= elmnt.pf7
+		//- 							td= elmnt.pf8
 
 		script(src='/jsModules_t0d/tableHighlight.js')
 		script(src='/javascripts/modules/adminM0d.js')
