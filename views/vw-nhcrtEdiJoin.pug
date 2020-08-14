@@ -28,88 +28,88 @@ html
 					input#save2CSVArr2.input-unit-1(type='text', placeholder='enter data', name='save2CSVArrPost', readonly, style="background-color:#c2d6d6", value=nhcrtEdiJoin)
 				button#saveCSVcreatePop(type="submit" form="saveCSVcreatePopNejPost") Save Results as CSV, Create & Pop NEJ table
 
-		div.rslt-tbl-1
-			table#resTbl
-				thead
-					tr
-						th ri_t0d
-						th invPK
-						th invCPK
-						th invScanCode
-						th ordSupplierStockNumber
-						th ediSKU
-						th invName
-						th invSize
-						th invReceiptAlias
-						th posTimeStamp
-						th invDateCreated
-						//- th invEmpFkCreatedBy
-						th ordQuantityInOrderUnit
-						th oupName
-						th stoNumber
-						//- th stoName
-						th brdName
-						th dptName
-						th dptNumber
-						th sibIdealMargin
-						th actualMargT0d
-						th venCompanyname
-						//- th invLastreceived
-						//- th invLastsold
-						th invLastcost
-						th ediCost
-						th sibBasePrice
-						th ediPrice(MSRP)
-						//- th invOnhand
-						//- th invOnorder
-						//- th invIntransit
-						th pi1Description
-						th pi2Description
-						th pi3Description
-						th invPowerField3
-						th invPowerField4
+		//- div.rslt-tbl-1
+		//- 	table#resTbl
+		//- 		thead
+		//- 			tr
+		//- 				th ri_t0d
+		//- 				th invPK
+		//- 				th invCPK
+		//- 				th invScanCode
+		//- 				th ordSupplierStockNumber
+		//- 				th ediSKU
+		//- 				th invName
+		//- 				th invSize
+		//- 				th invReceiptAlias
+		//- 				th posTimeStamp
+		//- 				th invDateCreated
+		//- 				//- th invEmpFkCreatedBy
+		//- 				th ordQuantityInOrderUnit
+		//- 				th oupName
+		//- 				th stoNumber
+		//- 				//- th stoName
+		//- 				th brdName
+		//- 				th dptName
+		//- 				th dptNumber
+		//- 				th sibIdealMargin
+		//- 				th actualMargT0d
+		//- 				th venCompanyname
+		//- 				//- th invLastreceived
+		//- 				//- th invLastsold
+		//- 				th invLastcost
+		//- 				th ediCost
+		//- 				th sibBasePrice
+		//- 				th ediPrice(MSRP)
+		//- 				//- th invOnhand
+		//- 				//- th invOnorder
+		//- 				//- th invIntransit
+		//- 				th pi1Description
+		//- 				th pi2Description
+		//- 				th pi3Description
+		//- 				th invPowerField3
+		//- 				th invPowerField4
 
 
-				tbody#resTblBdy
-					if nhcrtEdiJoin !== undefined
-						each elmnt in nhcrtEdiJoin
-							tr
-								td= elmnt.ri_t0d
-								td= elmnt.invPK
-								td= elmnt.invCPK
-								td= elmnt.invScanCode
-								td= elmnt.ordSupplierStockNumber
-								td= elmnt.ediSKU
-								td= elmnt.invName
-								td= elmnt.invSize
-								td= elmnt.invReceiptAlias
-								td= elmnt.posTimeStamp
-								td= elmnt.invDateCreated
-								//- td= elmnt.invEmpFkCreatedBy
-								td= elmnt.ordQuantityInOrderUnit
-								td= elmnt.oupName
-								td= elmnt.stoNumber
-								//- td= elmnt.stoName
-								td= elmnt.brdName
-								td= elmnt.dptName
-								td= elmnt.dptNumber
-								td= elmnt.sibIdealMargin
-								td= elmnt.actualMargT0d
-								td= elmnt.venCompanyname
-								//- td= elmnt.invLastreceived
-								//- td= elmnt.invLastsold
-								td= elmnt.invLastcost
-								td= elmnt.ediCost
-								td= elmnt.sibBasePrice
-								td= elmnt.ediPrice
-								//- td= elmnt.invOnhand
-								//- td= elmnt.invOnorder
-								//- td= elmnt.invIntransit
-								td= elmnt.pi1Description
-								td= elmnt.pi2Description
-								td= elmnt.pi3Description
-								td= elmnt.invPowerField3
-								td= elmnt.invPowerField4
+		//- 		tbody#resTblBdy
+		//- 			if nhcrtEdiJoin !== undefined
+		//- 				each elmnt in nhcrtEdiJoin
+		//- 					tr
+		//- 						td= elmnt.ri_t0d
+		//- 						td= elmnt.invPK
+		//- 						td= elmnt.invCPK
+		//- 						td= elmnt.invScanCode
+		//- 						td= elmnt.ordSupplierStockNumber
+		//- 						td= elmnt.ediSKU
+		//- 						td= elmnt.invName
+		//- 						td= elmnt.invSize
+		//- 						td= elmnt.invReceiptAlias
+		//- 						td= elmnt.posTimeStamp
+		//- 						td= elmnt.invDateCreated
+		//- 						//- td= elmnt.invEmpFkCreatedBy
+		//- 						td= elmnt.ordQuantityInOrderUnit
+		//- 						td= elmnt.oupName
+		//- 						td= elmnt.stoNumber
+		//- 						//- td= elmnt.stoName
+		//- 						td= elmnt.brdName
+		//- 						td= elmnt.dptName
+		//- 						td= elmnt.dptNumber
+		//- 						td= elmnt.sibIdealMargin
+		//- 						td= elmnt.actualMargT0d
+		//- 						td= elmnt.venCompanyname
+		//- 						//- td= elmnt.invLastreceived
+		//- 						//- td= elmnt.invLastsold
+		//- 						td= elmnt.invLastcost
+		//- 						td= elmnt.ediCost
+		//- 						td= elmnt.sibBasePrice
+		//- 						td= elmnt.ediPrice
+		//- 						//- td= elmnt.invOnhand
+		//- 						//- td= elmnt.invOnorder
+		//- 						//- td= elmnt.invIntransit
+		//- 						td= elmnt.pi1Description
+		//- 						td= elmnt.pi2Description
+		//- 						td= elmnt.pi3Description
+		//- 						td= elmnt.invPowerField3
+		//- 						td= elmnt.invPowerField4
 
 
 
