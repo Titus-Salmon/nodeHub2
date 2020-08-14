@@ -131,7 +131,7 @@ module.exports = {
           if (displayRows[i]['edi_tableEDIprefixBulkType'] &&
             displayRows[i]['edi_tableEDIprefixBulkType'] !== null) {
             if (bulkTypeSplit[0].toLowerCase().includes('lb')) {
-              srsObj['unit'] = bulkTypeVar
+              srsObj['unit'] = displayRows[i]['edi_tableEDIprefixBulkType']
             }
           }
         }
