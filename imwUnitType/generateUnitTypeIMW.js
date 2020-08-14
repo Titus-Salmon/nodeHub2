@@ -143,13 +143,15 @@ module.exports = {
         if (bulkTypeOverride == 'yes') {
           if (displayRows[i]['edi_tableEDIprefixBulkType'] &&
             displayRows[i]['edi_tableEDIprefixBulkType'] !== null) {
+            console.log(`bulkTypeSplit==> ${bulkTypeSplit}`)
             if (bulkTypeSplit[0] == 'LB') {
               srsObj['num_pkgs'] = bulkTypeSplit[1]
               console.log(`displayRows[i]['edi_tableEDIprefixBulkType']==> ${displayRows[i]['edi_tableEDIprefixBulkType']}`)
             }
-          } else {
-            srsObj['num_pkgs'] = 'badValBulkType'
           }
+          // else {
+          //   srsObj['num_pkgs'] = 'badValBulkType'
+          // }
         }
 
         // srsObj['num_pkgs'] = displayRows[i]['num_pkgs'] //NEED LOGIC FOR THIS; this should be whatever the ## is for CS-##, otherwise, just ''
@@ -198,9 +200,10 @@ module.exports = {
             if (bulkTypeSplit[0] == 'LB') {
               srsObj['case_pk_mult'] = ''
             }
-          } else {
-            srsObj['case_pk_mult'] = 'badValBulkType'
           }
+          // else {
+          //   srsObj['case_pk_mult'] = 'badValBulkType'
+          // }
         }
 
         srsObj['ovr'] = '1'
