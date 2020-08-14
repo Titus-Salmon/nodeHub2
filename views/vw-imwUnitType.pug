@@ -15,7 +15,9 @@ html
 				input#ediTable.input-unit-1(type='text', placeholder='enter data1', name='ediTablePost', value='')
 				label.input-label-1(for='ediPrefix') ${ediPrefix_upc}
 				input#ediPrefix.input-unit-1(type='text', placeholder='enter data1', name='ediPrefixPost', value='')
-				select#bulkTypeOverride.input-unit-1(name='bulkTypeOverridePost') bulkTypeOverride?
+
+				label.input-label-1(for='bulkTypeOverride') bulkTypeOverride?
+				select#bulkTypeOverride.input-unit-1(name='bulkTypeOverridePost')
 					option(value='no') no
 					option(value='yes') yes
 				button#ldTblBtn(type='submit', form='nejUnitTypeJoin') Generate Unit Type IMW
