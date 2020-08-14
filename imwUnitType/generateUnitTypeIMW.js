@@ -144,7 +144,7 @@ module.exports = {
           if (displayRows[i]['edi_tableEDIprefixBulkType'] &&
             displayRows[i]['edi_tableEDIprefixBulkType'] !== null) {
             console.log(`bulkTypeSplit==> ${bulkTypeSplit}`)
-            if (bulkTypeSplit[0] == 'LB') {
+            if (bulkTypeSplit[0].toLowerCase().includes('lb')) {
               srsObj['num_pkgs'] = bulkTypeSplit[1]
               console.log(`displayRows[i]['edi_tableEDIprefixBulkType']==> ${displayRows[i]['edi_tableEDIprefixBulkType']}`)
             }
@@ -197,7 +197,7 @@ module.exports = {
         if (bulkTypeOverride == 'yes') {
           if (displayRows[i]['edi_tableEDIprefixBulkType'] &&
             displayRows[i]['edi_tableEDIprefixBulkType'] !== null) {
-            if (bulkTypeSplit[0] == 'LB') {
+            if (bulkTypeSplit[0].toLowerCase().includes('lb')) {
               srsObj['case_pk_mult'] = ''
             }
           }
