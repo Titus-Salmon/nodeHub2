@@ -23,6 +23,7 @@ module.exports = {
     console.log(`ediTableName==> ${ediTableName}`)
     let ediPrefix = postBody['ediPrefixPost']
     console.log(`ediPrefix==> ${ediPrefix}`)
+    let bulkTypeOverride = postBody['bulkTypeOverridePost']
 
     let srsObjArr = []
 
@@ -80,9 +81,6 @@ module.exports = {
       let displayRows = rows
       console.log(`displayRows[0]==> ${displayRows[0]}`)
       console.log(`Object.keys(displayRows[0])==> ${Object.keys(displayRows[0])}`)
-      // for (let n = 0; n < Object.keys(displayRows).length; n++) {
-      //   console.log(`Object.keys(displayRows[${n}])==> ${Object.keys(displayRows[n])}`)
-      // }
 
       for (let i = 0; i < displayRows.length; i++) {
 
@@ -90,6 +88,11 @@ module.exports = {
 
         let oupNameVar = displayRows[i]['edi_tableEDIprefixUnitType'] //define variable for oupName
         oupNameSplit = oupNameVar.split(/([0-9]+)/) //should split oupName into array with the digit as the 2nd array element
+
+        if (displayRows[i]['edi_tableEDIprefixBulkType']) {
+          let bulkTypeVar = displayRows[i]['edi_tableEDIprefixBulkType']
+          bulkTypeSplit = bulkTypeVar.split(/([0-9]+)/)
+        }
 
         srsObj['ri_t0d'] = i + 1
         srsObj['item_id'] = displayRows[i]['nhcrtInvScanCode']
@@ -136,6 +139,17 @@ module.exports = {
             srsObj['num_pkgs'] = 'badVal'
           }
         }
+
+        if (bulkTypeOverride == 'yes') {
+          if (displayRows[i]['edi_tableEDIprefixBulkType'] &&
+            displayRows[i]['edi_tableEDIprefixBulkType'] !== null) {
+            srsObj['num_pkgs'] = bulkTypeSplit[1]
+            console.log(`displayRows[i]['edi_tableEDIprefixBulkType']==> ${displayRows[i]['edi_tableEDIprefixBulkType']}`)
+          } else {
+            srsObj['num_pkgs'] = 'badValBulkType'
+          }
+        }
+
         // srsObj['num_pkgs'] = displayRows[i]['num_pkgs'] //NEED LOGIC FOR THIS; this should be whatever the ## is for CS-##, otherwise, just ''
         srsObj['category'] = ''
         srsObj['sub_category'] = ''
@@ -175,6 +189,16 @@ module.exports = {
             }
           }
         }
+
+        if (bulkTypeOverride == 'yes') {
+          if (displayRows[i]['edi_tableEDIprefixBulkType'] &&
+            displayRows[i]['edi_tableEDIprefixBulkType'] !== null) {
+            srsObj['case_pk_mult'] = ''
+          } else {
+            srsObj['case_pk_mult'] = 'badValBulkType'
+          }
+        }
+
         srsObj['ovr'] = '1'
 
         if (displayRows[i]['nhcrtOrdSupplierStockNumber'] !== '') {
@@ -196,7 +220,5 @@ module.exports = {
           })
         })
     }
-    // checkForBulkTypeColumn()
-    // queryNejUnitType_Table()
   })
 }
