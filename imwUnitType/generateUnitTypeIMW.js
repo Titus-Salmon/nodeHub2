@@ -143,7 +143,9 @@ module.exports = {
             srsObj['num_pkgs'] = 'badValCS'
           }
         } else {
-          if (oupNameSplit[0].toLowerCase().includes('ea') || oupNameSplit[0].toLowerCase().includes('each')) {
+          if (oupNameSplit[0].toLowerCase().includes('ea') ||
+            oupNameSplit[0].toLowerCase().includes('each') ||
+            oupNameSplit[0].toLowerCase().includes('lb')) {
             srsObj['num_pkgs'] = ''
           } else {
             srsObj['num_pkgs'] = 'badVal'
@@ -193,7 +195,9 @@ module.exports = {
               srsObj['case_pk_mult'] = 'badValEA'
             }
           } else {
-            if (oupNameSplit[0].toLowerCase().includes('cs') || oupNameSplit[0].toLowerCase().includes('case')) {
+            if (oupNameSplit[0].toLowerCase().includes('cs') ||
+              oupNameSplit[0].toLowerCase().includes('case') ||
+              oupNameSplit[0].toLowerCase().includes('lb')) {
               srsObj['case_pk_mult'] = ''
             } else {
               srsObj['case_pk_mult'] = 'badVal'
