@@ -56,8 +56,10 @@ module.exports = {
         nhcrtOptItemSalesObj['ExtCost'] = rows[i]['ExtCost']
         nhcrtOptItemSalesObj['Sales'] = rows[i]['Sales']
 
-        if (rows[i - 1]['venCompanyname'] == rows[i]['venCompanyname']) {
-          nhcrtOptItemSalesObj['SalesTot'] = rows[i - 1]['Sales'] + rows[i]['Sales']
+        if (i > 0) {
+          if (rows[i - 1]['venCompanyname'] == rows[i]['venCompanyname']) {
+            nhcrtOptItemSalesObj['SalesTot'] = rows[i - 1]['Sales'] + rows[i]['Sales']
+          }
         }
 
         nhcrtOptItemSalesObj['Margin'] = rows[i]['Margin']
