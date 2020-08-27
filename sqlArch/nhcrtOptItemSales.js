@@ -18,6 +18,7 @@ module.exports = {
     console.log(`nhcrtOptItemSales==> ${nhcrtOptItemSales}`)
 
     let nhcrtOptItemSalesArr = []
+    let venCompanynameArr = []
 
     function displayNhcrtOptItemSales(rows) {
       for (let i = 0; i < rows.length; i++) {
@@ -56,21 +57,26 @@ module.exports = {
         nhcrtOptItemSalesObj['ExtCost'] = rows[i]['ExtCost']
         nhcrtOptItemSalesObj['Sales'] = rows[i]['Sales']
 
-        if (i > 0) {
-          if (rows[i - 1]['venCompanyname'] == rows[i]['venCompanyname']) {
-            nhcrtOptItemSalesObj['SalesTot'] = rows[i - 1]['Sales'] + rows[i]['Sales']
-          }
-        }
+        // if (i > 0) {
+        //   if (rows[i - 1]['venCompanyname'] == rows[i]['venCompanyname']) {
+        //     nhcrtOptItemSalesObj['SalesTot'] = rows[i - 1]['Sales'] + rows[i]['Sales']
+        //   }
+        // }
 
         nhcrtOptItemSalesObj['Margin'] = rows[i]['Margin']
         nhcrtOptItemSalesObj['percMargin'] = rows[i]['percMargin']
 
         nhcrtOptItemSalesArr.push(nhcrtOptItemSalesObj)
+        venCompanynameArr.push(rows[i]['venCompanyname'])
       }
       nhcrtOptItemSalesArrCache.set('nhcrtOptItemSalesArrCache_key', nhcrtOptItemSalesArr)
       console.log('rows.length~~~>', rows.length)
       // console.log(`Object.keys(rows)==>${Object.keys(rows)}`)
       console.log(`Object.keys(rows[0])==>${Object.keys(rows[0])}`)
+
+      const distinctVenCompName = [...new Set(venCompanynameArr)]
+      console.log(`distinctVenCompName==> ${distinctVenCompName}`)
+
     }
 
 
