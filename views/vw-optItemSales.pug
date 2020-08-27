@@ -40,9 +40,16 @@ html
 							th invLastreceived
 							th invLastsold
 							th invLastcost
+							th sibBasePrice
+							th invOnhand
+							th invOnorder
+							th invIntransit
+							th pi1Description
+							th pi2Description
 							th qtySold (OIS)
 							th ExtCost (OIS)
 							th Sales (OIS)
+							th SalesTot
 							th Margin
 							th percMargin
 
@@ -69,12 +76,19 @@ html
 									td= elmnt.invLastreceived
 									td= elmnt.invLastsold
 									td= elmnt.invLastcost
+									td= elmnt.sibBasePrice
+									td= elmnt.invOnhand
+									td= elmnt.invOnorder
+									td= elmnt.invIntransit
+									td= elmnt.pi1Description
+									td= elmnt.pi2Description
 									td= elmnt.Quantity
 									td= elmnt.ExtCost
 									td= elmnt.Sales
+									td= elmnt.SalesTot
 									td= elmnt.Margin
 									td= elmnt.percMargin
 
 
-		script(src='/jsModules_t0d/tableHighlight.js')
-		script(src='/javascripts/modules/adminM0d.js')
+		//- script(src='/jsModules_t0d/tableHighlight.js')
+		//- script(src='/javascripts/modules/adminM0d.js')
