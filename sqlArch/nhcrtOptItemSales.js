@@ -111,7 +111,7 @@ module.exports = {
       // res.send(rows)
       displayNhcrtOptItemSales(rows)
 
-      res.render('vw-nhcrtOptItemSales', {
+      res.render('vw-optItemSales', {
         title: 'NodeHub CRT Joined on Optimized Item Sales Table Query Results',
         nhcrtOptItemSales: nhcrtOptItemSalesArr
       })
