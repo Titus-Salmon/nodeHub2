@@ -85,7 +85,8 @@ module.exports = {
         for (let k = 0; k < nhcrtOptItemSalesArr.length; k++) {
           if (distinctVenCompName[j] == nhcrtOptItemSalesArr[k]['venCompanyname']) {
             let vendorSales = nhcrtOptItemSalesArr[k]['Sales']
-            vendorSalesTot += vendorSales
+            let vendorSalesParseInt = parseInt(vendorSales)
+            vendorSalesTot += vendorSalesParseInt
           }
         }
         vendorSalesTotArr.push(vendorSalesTot)
