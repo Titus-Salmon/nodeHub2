@@ -98,6 +98,7 @@ module.exports = {
       }
       console.log(`vendorSalesTotArr.length==> ${vendorSalesTotArr.length}`)
       console.log(`vendorSalesTotArr==> ${vendorSalesTotArr}`)
+      console.log(`vendorSalesTotObjArr==> ${vendorSalesTotObjArr}`)
     }
 
 
