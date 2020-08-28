@@ -98,10 +98,11 @@ module.exports = {
       }
       console.log(`vendorSalesTotArr.length==> ${vendorSalesTotArr.length}`)
       console.log(`vendorSalesTotArr==> ${vendorSalesTotArr}`)
-      console.log(`JSON.stringify(vendorSalesTotObjArr)==> ${JSON.stringify(vendorSalesTotObjArr)}`)
+      // console.log(`JSON.stringify(vendorSalesTotObjArr)==> ${JSON.stringify(vendorSalesTotObjArr)}`)
       vendorSalesTotObjArr.sort(function (a, b) {
         return a.salesTot - b.salesTot
       })
+      console.log(`JSON.stringify(vendorSalesTotObjArr)==> ${JSON.stringify(vendorSalesTotObjArr)}`)
     }
 
 
