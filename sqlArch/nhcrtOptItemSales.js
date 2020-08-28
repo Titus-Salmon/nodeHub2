@@ -99,13 +99,14 @@ module.exports = {
       }
       console.log(`vendorSalesTotArr.length==> ${vendorSalesTotArr.length}`)
       console.log(`vendorSalesTotArr==> ${vendorSalesTotArr}`)
-      console.log(`JSON.stringify(vendorSalesTotObjArr)==> ${JSON.stringify(vendorSalesTotObjArr)}`)
-      // vendorSalesTotObjArr.sort(function (a, b) {
-      //   return a.salesTot - b.salesTot
-      // })
+      console.log(`JSON.stringify(vendorSalesTotObjArr) before sort==> ${JSON.stringify(vendorSalesTotObjArr)}`)
+      vendorSalesTotObjArr.sort(function (a, b) {
+        return a.salesTot - b.salesTot
+      })
       // vendorSalesTotObjArr.forEach((e) => {
       //   console.log(`${e.vendor} ${e.salesTot}`)
       // })
+      console.log(`JSON.stringify(vendorSalesTotObjArr) AFTER sort==> ${JSON.stringify(vendorSalesTotObjArr)}`)
     }
 
 
