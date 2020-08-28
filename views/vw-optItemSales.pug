@@ -52,6 +52,8 @@ html
 							//- th SalesTot
 							th Margin
 							th percMargin
+							th vendor
+							th salesTot
 
 
 					tbody#resTblBdy
@@ -88,6 +90,11 @@ html
 									//- td= elmnt.SalesTot
 									td= elmnt.Margin
 									td= elmnt.percMargin
+
+							each elmnt in vendorSalesTotObjArr
+								tr
+									td= elmnt.vendor
+									td= elmnt.salesTot
 
 
 		//- script(src='/jsModules_t0d/tableHighlight.js')

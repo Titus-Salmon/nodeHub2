@@ -20,6 +20,7 @@ module.exports = {
     let nhcrtOptItemSalesArr = []
     let venCompanynameArr = []
     let vendorSalesTotArr = []
+    let vendorSalesTotObjArr = []
 
     function displayNhcrtOptItemSales(rows) {
       for (let i = 0; i < rows.length; i++) {
@@ -82,6 +83,7 @@ module.exports = {
       var vendorSalesTot = 0
 
       for (let j = 0; j < distinctVenCompName.length; j++) {
+        let vendorSalesTotObj = {}
         for (let k = 0; k < nhcrtOptItemSalesArr.length; k++) {
           if (distinctVenCompName[j] == nhcrtOptItemSalesArr[k]['venCompanyname']) {
             let vendorSales = nhcrtOptItemSalesArr[k]['Sales']
@@ -90,6 +92,9 @@ module.exports = {
           }
         }
         vendorSalesTotArr.push(vendorSalesTot)
+        vendorSalesTotObj['vendor'] = distinctVenCompName[j]
+        vendorSalesTotObj['salesTot'] = vendorSalesTotArr[j]
+        vendorSalesTotObjArr.push(vendorSalesTotObj)
       }
       console.log(`vendorSalesTotArr.length==> ${vendorSalesTotArr.length}`)
       console.log(`vendorSalesTotArr==> ${vendorSalesTotArr}`)
@@ -110,7 +115,8 @@ module.exports = {
 
       res.render('vw-optItemSales', {
         title: 'NodeHub CRT Joined on Optimized Item Sales Table Query Results',
-        nhcrtOptItemSales: nhcrtOptItemSalesArr
+        nhcrtOptItemSales: nhcrtOptItemSalesArr,
+        vendorSalesTotObjArr: vendorSalesTotObjArr
       })
     })
 
