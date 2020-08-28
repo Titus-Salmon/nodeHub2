@@ -98,7 +98,7 @@ module.exports = {
       }
       console.log(`vendorSalesTotArr.length==> ${vendorSalesTotArr.length}`)
       console.log(`vendorSalesTotArr==> ${vendorSalesTotArr}`)
-      console.log(`vendorSalesTotObjArr==> ${vendorSalesTotObjArr}`)
+      console.log(`JSON.stringify(vendorSalesTotObjArr)==> ${JSON.stringify(vendorSalesTotObjArr)}`)
     }
 
 
