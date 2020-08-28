@@ -80,9 +80,10 @@ module.exports = {
       console.log(`distinctVenCompName.length==> ${distinctVenCompName.length}`)
       console.log(`distinctVenCompName==> ${distinctVenCompName}`)
 
-      var vendorSalesTot = 0
+      // var vendorSalesTot = 0
 
       for (let j = 0; j < distinctVenCompName.length; j++) {
+        var vendorSalesTot = 0
         let vendorSalesTotObj = {}
         for (let k = 0; k < nhcrtOptItemSalesArr.length; k++) {
           if (distinctVenCompName[j] == nhcrtOptItemSalesArr[k]['venCompanyname']) {
