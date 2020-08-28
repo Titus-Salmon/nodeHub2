@@ -19,6 +19,7 @@ module.exports = {
 
     let nhcrtOptItemSalesArr = []
     let venCompanynameArr = []
+    let vendorSalesTotArr = []
 
     function displayNhcrtOptItemSales(rows) {
       for (let i = 0; i < rows.length; i++) {
@@ -75,8 +76,22 @@ module.exports = {
       console.log(`Object.keys(rows[0])==>${Object.keys(rows[0])}`)
 
       const distinctVenCompName = [...new Set(venCompanynameArr)]
+      console.log(`distinctVenCompName.length==> ${distinctVenCompName.length}`)
       console.log(`distinctVenCompName==> ${distinctVenCompName}`)
 
+      var vendorSalesTot = 0
+
+      for (let j = 0; j < distinctVenCompName.length; j++) {
+        for (let k = 0; k < nhcrtOptItemSalesArr.length; k++) {
+          if (distinctVenCompName[j] == nhcrtOptItemSalesArr[k]['venCompanyname']) {
+            let vendorSales = nhcrtOptItemSalesArr[k]['Sales']
+            vendorSalesTot += vendorSales
+          }
+        }
+        vendorSalesTotArr.push(vendorSalesTot)
+      }
+      console.log(`vendorSalesTotArr.length==> ${vendorSalesTotArr.length}`)
+      console.log(`vendorSalesTotArr==> ${vendorSalesTotArr}`)
     }
 
 
