@@ -17,7 +17,7 @@ html
 
 		br
 
-		if vendorSalesTotObjArr !== undefined
+		if vendorTotalsObjArr !== undefined
 			div
 				table
 					thead
@@ -28,8 +28,8 @@ html
 
 
 					tbody#resTblBdy
-						if vendorSalesTotObjArr !== undefined
-							each elmnt in vendorSalesTotObjArr
+						if vendorTotalsObjArr !== undefined
+							each elmnt in vendorTotalsObjArr
 								tr
 									td= elmnt.vendor
 									td= elmnt.salesTot
