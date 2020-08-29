@@ -18,9 +18,10 @@ module.exports = {
     console.log(`nhcrtOptItemSales==> ${nhcrtOptItemSales}`)
 
     let nhcrtOptItemSalesArr = []
-    let venCompanynameArr = []
+    let venCompanynameArr = [] //holds non-distinct vendor names (for each item in nhcrt)
     let vendorSalesTotArr = []
-    let vendorSalesTotObjArr = []
+    let vendorTotalsObjArr = []
+    let vendorMarginTotArr = []
 
     function displayNhcrtOptItemSales(rows) {
       for (let i = 0; i < rows.length; i++) {
@@ -69,44 +70,51 @@ module.exports = {
         nhcrtOptItemSalesObj['percMargin'] = rows[i]['percMargin']
 
         nhcrtOptItemSalesArr.push(nhcrtOptItemSalesObj)
-        venCompanynameArr.push(rows[i]['venCompanyname'])
+        venCompanynameArr.push(rows[i]['venCompanyname']) //push all non-distinct vendor names to array (each item's vendor for all nhcrt items)
       }
       nhcrtOptItemSalesArrCache.set('nhcrtOptItemSalesArrCache_key', nhcrtOptItemSalesArr)
       console.log('rows.length~~~>', rows.length)
       // console.log(`Object.keys(rows)==>${Object.keys(rows)}`)
       console.log(`Object.keys(rows[0])==>${Object.keys(rows[0])}`)
 
-      const distinctVenCompName = [...new Set(venCompanynameArr)]
+      const distinctVenCompName = [...new Set(venCompanynameArr)] //create "distinct" array of non-repeating vendor names from non-distinct array
       console.log(`distinctVenCompName.length==> ${distinctVenCompName.length}`)
       console.log(`distinctVenCompName==> ${distinctVenCompName}`)
 
       // var vendorSalesTot = 0
 
-      for (let j = 0; j < distinctVenCompName.length; j++) {
+      for (let j = 0; j < distinctVenCompName.length; j++) { //tally sales and margins for each vendor
         var vendorSalesTot = 0
-        let vendorSalesTotObj = {}
+        var vendorMarginTot = 0
+        let vendorTotalsObj = {}
         for (let k = 0; k < nhcrtOptItemSalesArr.length; k++) {
           if (distinctVenCompName[j] == nhcrtOptItemSalesArr[k]['venCompanyname']) {
             let vendorSales = nhcrtOptItemSalesArr[k]['Sales']
             let vendorSalesParseInt = parseInt(vendorSales)
             vendorSalesTot += vendorSalesParseInt
+
+            let vendorMargin = nhcrtOptItemSalesArr[k]['Margin']
+            let vendorMarginParseInt = parseInt(vendorMargin)
+            vendorMarginTot += vendorMarginParseInt
           }
         }
         vendorSalesTotArr.push(vendorSalesTot)
-        vendorSalesTotObj['vendor'] = distinctVenCompName[j]
-        vendorSalesTotObj['salesTot'] = vendorSalesTotArr[j]
-        vendorSalesTotObjArr.push(vendorSalesTotObj)
+        vendorMarginTotArr.push(vendorMarginTot)
+        vendorTotalsObj['vendor'] = distinctVenCompName[j]
+        vendorTotalsObj['salesTot'] = vendorSalesTotArr[j]
+        vendorTotalsObj['marginTot'] = vendorMarginTotArr[j]
+        vendorTotalsObjArr.push(vendorTotalsObj)
       }
       console.log(`vendorSalesTotArr.length==> ${vendorSalesTotArr.length}`)
       console.log(`vendorSalesTotArr==> ${vendorSalesTotArr}`)
-      console.log(`JSON.stringify(vendorSalesTotObjArr) before sort==> ${JSON.stringify(vendorSalesTotObjArr)}`)
-      vendorSalesTotObjArr.sort(function (a, b) {
-        return a.salesTot - b.salesTot
+      console.log(`JSON.stringify(vendorTotalsObjArr) before sort==> ${JSON.stringify(vendorTotalsObjArr)}`)
+      vendorTotalsObjArr.sort(function (a, b) { //sort distinct vendorTotalsObjArr by sales from highest to lowest
+        return b.salesTot - a.salesTot
       })
-      // vendorSalesTotObjArr.forEach((e) => {
+      // vendorTotalsObjArr.forEach((e) => {
       //   console.log(`${e.vendor} ${e.salesTot}`)
       // })
-      console.log(`JSON.stringify(vendorSalesTotObjArr) AFTER sort==> ${JSON.stringify(vendorSalesTotObjArr)}`)
+      console.log(`JSON.stringify(vendorTotalsObjArr) AFTER sort==> ${JSON.stringify(vendorTotalsObjArr)}`)
     }
 
 
@@ -125,7 +133,7 @@ module.exports = {
       res.render('vw-optItemSales', {
         title: 'NodeHub CRT Joined on Optimized Item Sales Table Query Results',
         nhcrtOptItemSales: nhcrtOptItemSalesArr,
-        vendorSalesTotObjArr: vendorSalesTotObjArr
+        vendorTotalsObjArr: vendorTotalsObjArr
       })
     })
 
