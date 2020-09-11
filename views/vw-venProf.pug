@@ -15,12 +15,12 @@ html
 		//- 		button#crtTblBtn3(type='submit', form='nhcrtOptItemSales', style="display: block; float: left") Display NHCRT/optItemSales joined tables
 		//- //- //^// joins nhcrt table to edi table
 
-    //- //v// select vendor
+		//- //v// select vendor
 		form#selectVendor(action='/venProf/venProfDisplay' method='POST' accept-charset="UTF-8" style="display:block")
 			div(style="display:block")
 				label.input-label-1(for='slctVnd') Enter Vendor(s) to display monthly profits for
 				input#slctVnd.input-unit-1(type='text', placeholder='enter data', name='vendorNamePost', value='')
-        button#slctVndBtn(type='submit', form='selectVendor', style="display: block") SUBMIT
+				button#slctVndBtn(type='submit', form='selectVendor', style="display: block") SUBMIT
 		//- //^// select vendor
 
 		br
