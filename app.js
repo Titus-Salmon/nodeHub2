@@ -31,6 +31,7 @@ const rbCatUpdtTrkrRouter = require('./routes/rt-rbCatUpdtTrkr') //t0d
 const keheUnfiWSdiffRouter = require('./routes/rt-keheUnfiWSdiff') //t0d
 const keheSelectWSdiffRouter = require('./routes/rt-keheSelectWSdiff') //t0d
 const optItemSalesRouter = require('./routes/rt-optItemSales') //t0d
+const venProfRouter = require('./routes/rt-venProf') //t0d
 
 var app = express();
 
@@ -74,6 +75,7 @@ app.use('/rbCatUpdtTrkr', rbCatUpdtTrkrRouter) //t0d
 app.use('/keheUnfiWSdiff', keheUnfiWSdiffRouter) //t0d
 app.use('/keheSelectWSdiff', keheSelectWSdiffRouter) //t0d
 app.use('/optItemSales', optItemSalesRouter) //t0d
+app.use('/venProf', venProfRouter) //t0d
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
