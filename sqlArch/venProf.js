@@ -11,9 +11,9 @@ const connection = mysql.createConnection({
 
 const venProfArrCache = require('../nodeCacheStuff/cache1')
 
-// const d3 = require('d3')
-// const jsdom = require('jsdom')
-// const fs = require('fs')
+const d3 = require('d3')
+const jsdom = require('jsdom')
+const fs = require('fs')
 
 var htmlStub = `<div id="dataviz-container"></div>` // html file skull with a container div for the d3 dataviz
 
