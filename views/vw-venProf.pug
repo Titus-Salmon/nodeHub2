@@ -25,7 +25,8 @@ html
 
 		br
 
-		div#dataviz-container(style="display:block")
+		if venProfArr !== undefined
+			include includes/venProfResults.html
 
 		if venProfArr !== undefined
 			div
