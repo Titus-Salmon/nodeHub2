@@ -4,7 +4,7 @@ var router = express.Router();
 const mysql = require('mysql');
 
 const connection = mysql.createConnection(process.env.RAINBOWCAT_CONNECTION_STRING);
-connection.connect();
+// connection.connect();
 
 
 module.exports = {
